@@ -34,8 +34,6 @@ Each example is a complete application that runs on the following platforms:
 # Examples
 
 <a name="examples-embed-resources"/>
-  * [01. Embed resources into executable](#examples-embed-resources)
-  * [02. Use images with PNG/ImageIO plugins](#examples-images)
 
 ### [01. Embed resources into executable](01.EmbedResourcesIntoExecutable)
 
@@ -51,8 +49,8 @@ Each example is a complete application that runs on the following platforms:
 
   ![Screenshot](02.Images/shot.png)
 
-  Learn how to build PNG/ImageIO plugins across platforms to reference built-in
-  PNG images.
+  Learn how to build PNG/ImageIO plugins across platforms and reference built-in
+  PNG images using simple shaders.
 
 <a name="help"/>
 
