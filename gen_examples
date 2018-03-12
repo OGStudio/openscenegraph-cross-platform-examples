@@ -1,0 +1,15 @@
+#!/bin/bash
+# NOTE We use Feature Tool ( https://bitbucket.org/ogstudio/feature-tool )
+# NOTE to generate different versions from the same source code
+
+dir=`dirname $0`
+
+max_version_id=1
+
+for id in $(seq 1 $max_version_id); do
+    example=$(printf '%02d' "$id")
+    echo "Generating example '$example'"
+    echo "feature-tool $dir/$example/desktop/src-gen/Features.txt $dir/features"
+    feature-tool $dir/$example/desktop/src-gen/Features.txt $dir/features
+done
+
