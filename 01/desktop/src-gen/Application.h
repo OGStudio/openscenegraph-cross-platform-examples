@@ -38,6 +38,9 @@ freely, subject to the following restrictions:
 // Application+Rendering End
 
 
+namespace osgcpe
+{
+
 class Application
 {
     public:
@@ -128,6 +131,8 @@ class Application
         
         // Application+RenderingDesktop End
 };
+
+} // namespace osgcpe
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_APPLICATION_H
 

@@ -28,6 +28,12 @@ freely, subject to the following restrictions:
 // Rendering+Camera Start
 #include <osg/Camera>
 
+// Rendering+Camera End
+
+namespace osgcpe
+{
+
+// Rendering+Camera Start
 // Configure camera with common defaults.
 void setupCamera(
     osg::Camera *cam,
@@ -75,6 +81,8 @@ osg::GraphicsContext *createGraphicsContext(
     return osg::GraphicsContext::createGraphicsContext(traits);
 }
 // Rendering+Desktop End
+
+} // namespace osgcpe
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDERING_H
 

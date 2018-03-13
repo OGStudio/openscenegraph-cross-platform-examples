@@ -22,18 +22,23 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "Application.h"
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGING_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGING_H
 
-int main(int argc, char *argv[])
+// FEATURE Logging+LogLevel/Include
+// FEATURE Logging+Printf/Include
+// FEATURE Logging+PlatformAndroid/Include
+// FEATURE Logging+PlatformDefault/Include
+
+namespace osgcpe
 {
-    // Run application.
-    osgcpe::Application *app = new osgcpe::Application;
-    app->setupWindow("OSG", 100, 100, 1024, 768);
-    // TODO Read built-in resource.
-    //app->loadScene(model);
-    app->run();
-    delete app;
 
-    return 0;
-}
+// FEATURE Logging+LogLevel/Impl
+// FEATURE Logging+Printf/Impl
+// FEATURE Logging+PlatformAndroid/Impl
+// FEATURE Logging+PlatformDefault/Impl
+
+} // namespace osgcpe
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGING_H
 

@@ -25,9 +25,18 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDERING_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDERING_H
 
+// FEATURE Rendering+Camera/Include
+// FEATURE Rendering+Desktop/Include
+// FEATURE Rendering+Shaders/Include
+
+namespace osgcpe
+{
+
 // FEATURE Rendering+Camera/Impl
 // FEATURE Rendering+Desktop/Impl
 // FEATURE Rendering+Shaders/Impl
+
+} // namespace osgcpe
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDERING_H
 

@@ -1,6 +1,7 @@
-FEATURE rendering.h/Impl
+FEATURE rendering.h/Include
 #include <osg/Program>
 
+FEATURE rendering.h/Impl
 // Fragment shader to display everything in red colour.
 static const char shaderFragment[] =
     "void main() {                             \n"

@@ -1,6 +1,7 @@
-FEATURE rendering.h/Impl
+FEATURE rendering.h/Include
 #include <osg/Camera>
 
+FEATURE rendering.h/Impl
 // Configure camera with common defaults.
 void setupCamera(
     osg::Camera *cam,

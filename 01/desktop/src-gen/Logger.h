@@ -25,60 +25,10 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
 
-// Logger+LogLevel Start
-#include <string>
-#include <osg/Notify>
+#include "logging.h"
 
-// Convert OpenSceneGraph logging level to string representation.
-std::string logLevelToString(osg::NotifySeverity severity)
+namespace osgcpe
 {
-    switch (severity)
-    {
-        case osg::DEBUG_FP:
-            // Verbose.
-            return "V";
-        case osg::DEBUG_INFO:
-            // Debug.
-            return "D";
-        case osg::NOTICE:
-        case osg::INFO:
-            // Info.
-            return "I";
-        case osg::WARN:
-            // Warning.
-            return "W";
-        case osg::FATAL:
-        case osg::ALWAYS:
-            // Error.
-            return "E";
-    }
-}
-// Logger+LogLevel End
-// Logger+Printf Start
-#include <cstdarg>
-
-// Construct a string using printf-like syntax.
-std::string printfString(const char *fmt, ...)
-{
-    const int PRINTF_STRING_MAX_STRLEN = 1024;
-    va_list args;
-    char msg[PRINTF_STRING_MAX_STRLEN];
-    va_start(args, fmt);
-    vsnprintf(msg, PRINTF_STRING_MAX_STRLEN, fmt, args);
-    va_end(args);
-    return msg;
-}
-// Logger+Printf End
-
-// Logger+Default Start
-#include <iostream>
-
-// Log message using platform specific tools.
-void platformLog(const char *message)
-{
-    std::cout << message << std::endl;
-}
-// Logger+Default End
 
 // This class prints OpenSceneGraph notifications to console.
 class Logger : public osg::NotifyHandler
@@ -99,6 +49,12 @@ class Logger : public osg::NotifyHandler
             platformLog(finalMessage.c_str());
         }
 };
+
+} // namespace osgcpe
+
+// Logger+stub Start
+// Stub.
+// Logger+stub End
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
 

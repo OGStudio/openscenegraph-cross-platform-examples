@@ -1,7 +1,8 @@
-FEATURE Logger.h/Impl
+FEATURE logging.h/Include
 #include <string>
 #include <osg/Notify>
 
+FEATURE logging.h/Impl
 // Convert OpenSceneGraph logging level to string representation.
 std::string logLevelToString(osg::NotifySeverity severity)
 {

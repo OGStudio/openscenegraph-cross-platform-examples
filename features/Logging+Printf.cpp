@@ -1,6 +1,7 @@
-FEATURE Logger.h/Impl
+FEATURE logging.h/Include
 #include <cstdarg>
 
+FEATURE logging.h/Impl
 // Construct a string using printf-like syntax.
 std::string printfString(const char *fmt, ...)
 {

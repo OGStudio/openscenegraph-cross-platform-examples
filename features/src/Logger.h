@@ -25,11 +25,10 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
 
-// FEATURE Logger+LogLevel/Impl
-// FEATURE Logger+Printf/Impl
+#include "logging.h"
 
-// FEATURE Logger+Android/Impl
-// FEATURE Logger+Default/Impl
+namespace osgcpe
+{
 
 // This class prints OpenSceneGraph notifications to console.
 class Logger : public osg::NotifyHandler
@@ -50,6 +49,10 @@ class Logger : public osg::NotifyHandler
             platformLog(finalMessage.c_str());
         }
 };
+
+} // namespace osgcpe
+
+// FEATURE Logger+stub/Impl
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
 

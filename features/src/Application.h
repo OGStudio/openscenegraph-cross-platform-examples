@@ -31,6 +31,9 @@ freely, subject to the following restrictions:
 // FEATURE Application+VBO/Include
 // FEATURE Application+StaticPlugins/Impl
 
+namespace osgcpe
+{
+
 class Application
 {
     public:
@@ -49,6 +52,8 @@ class Application
         // FEATURE Application+Rendering/Impl
         // FEATURE Application+RenderingDesktop/Impl
 };
+
+} // namespace osgcpe
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_APPLICATION_H
 

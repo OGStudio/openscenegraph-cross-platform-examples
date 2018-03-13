@@ -1,8 +1,10 @@
-Logger+Default
-Logger+LogLevel
-Logger+Printf
+Logging+PlatformDefault
+Logging+LogLevel
+Logging+Printf
+Logger+stub
 Rendering+Camera
 Rendering+Desktop
 Application+Logging
 Application+Rendering
 Application+RenderingDesktop
+Resource+Stream
