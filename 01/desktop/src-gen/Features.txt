@@ -1,2 +1,8 @@
-LoggingDefault
-RenderingDesktop
+Logger+Default
+Logger+LogLevel
+Logger+Printf
+Rendering+Camera
+Rendering+Desktop
+Application+Logging
+Application+Rendering
+Application+RenderingDesktop

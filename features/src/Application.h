@@ -22,18 +22,33 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "Application.h"
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_APPLICATION_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_APPLICATION_H
 
-int main(int argc, char *argv[])
+// FEATURE Application+Logging/Include
+// FEATURE Application+Rendering/Include
+
+// FEATURE Application+VBO/Include
+// FEATURE Application+StaticPlugins/Impl
+
+class Application
 {
-    // Run application.
-    Application *app = new Application;
-    app->setupWindow("OSG", 100, 100, 1024, 768);
-    // TODO Read built-in resource.
-    //app->loadScene(model);
-    app->run();
-    delete app;
+    public:
+        Application()
+        {
+            // FEATURE Application+Logging/Setup
+            // FEATURE Application+Rendering/Setup
+        }
+        ~Application()
+        {
+            // FEATURE Application+Rendering/TearDown
+            // FEATURE Application+Logging/TearDown
+        }
 
-    return 0;
-}
+        // FEATURE Application+Logging/Impl
+        // FEATURE Application+Rendering/Impl
+        // FEATURE Application+RenderingDesktop/Impl
+};
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_APPLICATION_H
 

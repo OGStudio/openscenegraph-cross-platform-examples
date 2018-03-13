@@ -22,18 +22,34 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "Application.h"
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
 
-int main(int argc, char *argv[])
+// FEATURE Logger+LogLevel/Impl
+// FEATURE Logger+Printf/Impl
+
+// FEATURE Logger+Android/Impl
+// FEATURE Logger+Default/Impl
+
+// This class prints OpenSceneGraph notifications to console.
+class Logger : public osg::NotifyHandler
 {
-    // Run application.
-    Application *app = new Application;
-    app->setupWindow("OSG", 100, 100, 1024, 768);
-    // TODO Read built-in resource.
-    //app->loadScene(model);
-    app->run();
-    delete app;
+    public:
+        Logger() { }
+        virtual ~Logger() { }
 
-    return 0;
-}
+        // Override NotifyHandler::notify() to receive OpenSceneGraph notifications.
+        void notify(osg::NotifySeverity severity, const char *message)
+        {
+            std::string finalMessage =
+                printfString(
+                    "OSG/%s %s",
+                    logLevelToString(severity).c_str(),
+                    message
+                );
+            platformLog(finalMessage.c_str());
+        }
+};
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
 

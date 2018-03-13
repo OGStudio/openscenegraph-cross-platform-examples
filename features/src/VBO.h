@@ -22,18 +22,34 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "Application.h"
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_H
 
-int main(int argc, char *argv[])
+#include <osg/Geode>
+#include <osg/Geometry>
+#include <osg/NodeVisitor>
+
+// This class forces the use of VBO.
+class VBOSetupVisitor : public osg::NodeVisitor
 {
-    // Run application.
-    Application *app = new Application;
-    app->setupWindow("OSG", 100, 100, 1024, 768);
-    // TODO Read built-in resource.
-    //app->loadScene(model);
-    app->run();
-    delete app;
+    public:
+        VBOSetupVisitor() :
+            osg::NodeVisitor(osg::NodeVisitor::TRAVERSE_ALL_CHILDREN) { }
 
-    return 0;
-}
+        virtual void apply(osg::Geode &geode)
+        {
+            for (unsigned int i = 0; i < geode.getNumDrawables(); ++i)
+            {
+                osg::Geometry *geom =
+                    dynamic_cast<osg::Geometry*>(geode.getDrawable(i));
+                if (geom)
+                {
+                    geom->setUseVertexBufferObjects(true);
+                }
+            }
+            NodeVisitor::apply(geode);
+        }
+};
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_H
 
