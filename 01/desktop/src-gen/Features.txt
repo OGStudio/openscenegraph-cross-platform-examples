@@ -4,7 +4,10 @@ Logging+Printf
 Logger+stub
 Rendering+Camera
 Rendering+Desktop
+Rendering+Shaders
 Application+Logging
 Application+Rendering
 Application+RenderingDesktop
-Resource+Stream
+Application+Scene
+Resource+StreamSeek
+resources+Node

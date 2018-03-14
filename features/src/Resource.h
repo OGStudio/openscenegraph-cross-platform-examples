@@ -26,7 +26,7 @@ freely, subject to the following restrictions:
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
 
 #include <string>
-// FEATURE Resource+Stream/Include
+#include <streambuf>
 
 namespace osgcpe
 {
@@ -49,7 +49,17 @@ struct Resource
     unsigned int len;
 };
 
-// FEATURE Resource+Stream/Impl
+//! Work with resource contents as a stream.
+struct ResourceStreamBuffer : std::streambuf
+{
+    ResourceStreamBuffer(const Resource &resource)
+    {
+        char *contents = reinterpret_cast<char *>(resource.contents);
+        this->setg(contents, contents, contents + resource.len);
+    }
+    // FEATURE Resource+StreamSeek/Impl
+};
+
 
 } // namespace osgcpe
 

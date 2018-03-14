@@ -26,10 +26,7 @@ freely, subject to the following restrictions:
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
 
 #include <string>
-// Resource+Stream Start
 #include <streambuf>
-
-// Resource+Stream End
 
 namespace osgcpe
 {
@@ -52,8 +49,7 @@ struct Resource
     unsigned int len;
 };
 
-// Resource+Stream Start
-//! Provide input stream to work with resource contents.
+//! Work with resource contents as a stream.
 struct ResourceStreamBuffer : std::streambuf
 {
     ResourceStreamBuffer(const Resource &resource)
@@ -61,7 +57,7 @@ struct ResourceStreamBuffer : std::streambuf
         char *contents = reinterpret_cast<char *>(resource.contents);
         this->setg(contents, contents, contents + resource.len);
     }
-
+    // Resource+StreamSeek Start
     // Implement 'seekoff()' to support 'seekg()' calls.
     // E.g., 'seekg()' is used in OSG ImageIO plugin.
     // Topic: How to implement custom std::streambuf's seekoff()?
@@ -79,8 +75,9 @@ struct ResourceStreamBuffer : std::streambuf
             this->setg(this->eback(), this->eback() + off, this->egptr());
         return this->gptr() - this->eback();
     }
+    // Resource+StreamSeek End
 };
-// Resource+Stream End
+
 
 } // namespace osgcpe
 

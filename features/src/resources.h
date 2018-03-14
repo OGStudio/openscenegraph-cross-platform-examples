@@ -22,40 +22,17 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_APPLICATION_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_APPLICATION_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCES_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCES_H
 
-// FEATURE Application+Logging/Include
-// FEATURE Application+Rendering/Include
-// FEATURE Application+Scene/Include
-
-// FEATURE Application+VBO/Include
-// FEATURE Application+StaticPlugins/Impl
+// FEATURE resources+Node/Include
 
 namespace osgcpe
 {
 
-class Application
-{
-    public:
-        Application()
-        {
-            // FEATURE Application+Logging/Setup
-            // FEATURE Application+Rendering/Setup
-        }
-        ~Application()
-        {
-            // FEATURE Application+Rendering/TearDown
-            // FEATURE Application+Logging/TearDown
-        }
-
-        // FEATURE Application+Logging/Impl
-        // FEATURE Application+Rendering/Impl
-        // FEATURE Application+RenderingDesktop/Impl
-        // FEATURE Application+Scene/Impl
-};
+// FEATURE resources+Node/Impl
 
 } // namespace osgcpe
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_APPLICATION_H
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCES_H
 

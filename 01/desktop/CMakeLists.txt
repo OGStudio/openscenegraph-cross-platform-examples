@@ -10,8 +10,10 @@ LINK_DIRECTORIES(${OSG_LIB_DIR})
 # Use C++11.
 ADD_DEFINITIONS("-std=c++11")
 
-# Reference own includes.
+# Reference generated headers.
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/src-gen)
+# Reference resource headers.
+INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/../../data)
 # Create executable.
 ADD_EXECUTABLE(exampleEmbedResource src/main.cpp)
 # Link executable with OpenSceneGraph libraries.
