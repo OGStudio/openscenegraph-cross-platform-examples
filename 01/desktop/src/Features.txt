@@ -8,6 +8,7 @@ Rendering+Shaders
 Application+Logging
 Application+Rendering
 Application+RenderingDesktop
-Application+Scene
 Resource+StreamSeek
 resources+Node
+main+Box
+Application+Scene

@@ -34,8 +34,9 @@ namespace osgcpe
 {
 
 // resources+Node Start
-osg::Node *resourceNode(Resource &resource, const std::string extension)
+osg::ref_ptr<osg::Node> resourceNode(Resource &resource, const std::string extension)
 {
+    osg::ref_ptr<osg::Node> node;
     auto reader =
         osgDB::Registry::instance()->getReaderWriterForExtension(extension);
     if (reader)
@@ -45,7 +46,7 @@ osg::Node *resourceNode(Resource &resource, const std::string extension)
         auto result = reader->readNode(in, 0);
         if (result.success())
         {
-            return result.getNode();
+            node = result.getNode();
         }
         else
         {
@@ -68,6 +69,7 @@ osg::Node *resourceNode(Resource &resource, const std::string extension)
             );
         platformLog(errmsg.c_str());
     }
+    return node.release();
 }
 // resources+Node End
 

@@ -1,19 +1,23 @@
 FEATURE Application.h/Include
 #include "rendering.h"
-#include "Resource.h"
-#include "resources.h"
+#include <osgDB/ReadFile>
+
+#include "InfoVisitor.h"
 
 FEATURE Application.h/Impl
 public:
-    void loadScene(Resource &resource)
+    void loadScene(const std::string &fileName)
     {
         // Load scene.
-        auto scene = resourceNode(resource, "osgt");
-        if (!scene.valid())
+        osg::Node *scene = osgDB::readNodeFile(fileName);
+        if (!scene)
         {
             platformLog("Could not load scene");
             return;
         }
+        platformLog("Scene has been loaded");
+        InfoVisitor iv;
+        scene->accept(iv);
         // TODO FEATURE VBO/IMPL
         // Load shaders.
         osg::Program *prog = createShaderProgram(shaderVertex, shaderFragment);

@@ -9,7 +9,8 @@ max_version_id=1
 for id in $(seq 1 $max_version_id); do
     example=$(printf '%02d' "$id")
     echo "Generating example '$example'"
-    echo "feature-tool $dir/$example/desktop/src-gen/Features.txt $dir/features"
-    feature-tool $dir/$example/desktop/src-gen/Features.txt $dir/features
+    featuresSpec=$dir/$example/desktop/src/Features.txt
+    echo "feature-tool $featuresSpec $dir/features"
+    feature-tool $featuresSpec $dir/features
 done
 

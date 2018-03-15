@@ -10,8 +10,8 @@ LINK_DIRECTORIES(${OSG_LIB_DIR})
 # Use C++11.
 ADD_DEFINITIONS("-std=c++11")
 
-# Reference generated headers.
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/src-gen)
+# Reference headers.
+INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/src)
 # Reference resource headers.
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/../../data)
 # Create executable.

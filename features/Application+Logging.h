@@ -18,7 +18,8 @@ private:
         osg::setNotifyHandler(this->logger);
         // Only accept notifications of Info level or higher
         // like warnings and errors.
-        osg::setNotifyLevel(osg::INFO);
+        //osg::setNotifyLevel(osg::INFO);
+        osg::setNotifyLevel(osg::WARN);
     }
     void tearLoggingDown()
     {

@@ -23,19 +23,15 @@ freely, subject to the following restrictions:
 */
 
 #include "Application.h"
-// main+Box Start
-#include "box.osgt.h"
-
-// main+Box End
+// FEATURE main+Box/Include
+// FEATURE main+BoxFile/Include
 
 int main(int argc, char *argv[])
 {
     auto app = new osgcpe::Application;
     app->setupWindow("OSG", 100, 100, 1024, 768);
-    // main+Box Start
-    osgcpe::Resource box("box.osgt", box_osgt, box_osgt_len);
-    app->loadScene(box);
-    // main+Box End
+    // FEATURE main+Box/Impl
+    // FEATURE main+BoxFile/Impl
     app->run();
 
     delete app;

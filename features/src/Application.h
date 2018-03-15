@@ -28,6 +28,7 @@ freely, subject to the following restrictions:
 // FEATURE Application+Logging/Include
 // FEATURE Application+Rendering/Include
 // FEATURE Application+Scene/Include
+// FEATURE Application+SceneFile/Include
 
 // FEATURE Application+VBO/Include
 // FEATURE Application+StaticPlugins/Impl
@@ -53,6 +54,7 @@ class Application
         // FEATURE Application+Rendering/Impl
         // FEATURE Application+RenderingDesktop/Impl
         // FEATURE Application+Scene/Impl
+        // FEATURE Application+SceneFile/Impl
 };
 
 } // namespace osgcpe

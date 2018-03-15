@@ -84,7 +84,8 @@ class Application
                 osg::setNotifyHandler(this->logger);
                 // Only accept notifications of Info level or higher
                 // like warnings and errors.
-                osg::setNotifyLevel(osg::INFO);
+                //osg::setNotifyLevel(osg::INFO);
+                osg::setNotifyLevel(osg::WARN);
             }
             void tearLoggingDown()
             {
@@ -141,13 +142,12 @@ class Application
             void loadScene(Resource &resource)
             {
                 // Load scene.
-                osg::Node *scene = resourceNode(resource, "osgt");
-                if (!scene)
+                auto scene = resourceNode(resource, "osgt");
+                if (!scene.valid())
                 {
                     platformLog("Could not load scene");
                     return;
                 }
-                platformLog("Scene has been loaded");
                 // TODO FEATURE VBO/IMPL
                 // Load shaders.
                 osg::Program *prog = createShaderProgram(shaderVertex, shaderFragment);
