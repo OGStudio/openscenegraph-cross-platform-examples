@@ -28,17 +28,22 @@ freely, subject to the following restrictions:
 
 // main+Box End
 
+
 int main(int argc, char *argv[])
 {
+    // main+Desktop Start
     auto app = new osgcpe::Application;
     app->setupWindow("OSG", 100, 100, 1024, 768);
+    
+    // main+Desktop End
     // main+Box Start
     osgcpe::Resource box("box.osgt", box_osgt, box_osgt_len);
     app->loadScene(box);
     // main+Box End
+    // main+Desktop Start
     app->run();
-
     delete app;
+    // main+Desktop End
     return 0;
 }
 

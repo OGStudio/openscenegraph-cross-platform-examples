@@ -6,11 +6,19 @@ dir=`dirname $0`
 
 max_version_id=1
 
+platforms="
+desktop
+web
+"
+
+
 for id in $(seq 1 $max_version_id); do
     example=$(printf '%02d' "$id")
     echo "Generating example '$example'"
-    featuresSpec=$dir/$example/desktop/src/Features.txt
-    echo "feature-tool $featuresSpec $dir/features"
-    feature-tool $featuresSpec $dir/features
+    for platform in $platforms; do
+        featuresSpec=$dir/$example/$platform/src/Features.txt
+        echo "feature-tool $featuresSpec $dir/features"
+        feature-tool $featuresSpec $dir/features
+    done
 done
 

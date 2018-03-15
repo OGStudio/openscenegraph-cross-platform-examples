@@ -22,22 +22,39 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "Application.h"
-// FEATURE main+Box/Include
-// FEATURE main+BoxFile/Include
-// FEATURE main+Web/Include
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
 
-// FEATURE main+StaticPluginOSG/Impl
-// FEATURE main+Web/Loop
+#include "logging.h"
 
-int main(int argc, char *argv[])
+namespace osgcpe
 {
-    // FEATURE main+Desktop/Setup
-    // FEATURE main+Web/Setup
-    // FEATURE main+Box/Impl
-    // FEATURE main+BoxFile/Impl
-    // FEATURE main+Desktop/Run
-    // FEATURE main+Web/Run
-    return 0;
-}
+
+// This class prints OpenSceneGraph notifications to console.
+class Logger : public osg::NotifyHandler
+{
+    public:
+        Logger() { }
+        virtual ~Logger() { }
+
+        // Override NotifyHandler::notify() to receive OpenSceneGraph notifications.
+        void notify(osg::NotifySeverity severity, const char *message)
+        {
+            std::string finalMessage =
+                printfString(
+                    "OSG/%s %s",
+                    logLevelToString(severity).c_str(),
+                    message
+                );
+            platformLog(finalMessage.c_str());
+        }
+};
+
+} // namespace osgcpe
+
+// Logger+stub Start
+// Stub.
+// Logger+stub End
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
 

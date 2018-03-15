@@ -9,7 +9,8 @@ Application+Logging
 Application+Rendering
 Application+RenderingDesktop
 Resource+StreamSeek
-Application+Scene
 resources+Node
+Application+Scene
 main+Box
-main+Desktop
+main+Web
+main+StaticPluginOSG
