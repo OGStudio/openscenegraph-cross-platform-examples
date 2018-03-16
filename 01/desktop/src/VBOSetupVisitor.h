@@ -22,25 +22,43 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDERING_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDERING_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_SETUP_VISITOR_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_SETUP_VISITOR_H
 
-// FEATURE rendering+Camera/Include
-// FEATURE rendering+Desktop/Include
-// FEATURE rendering+Shaders/Include
-// FEATURE rendering+Scene/Include
-// FEATURE rendering+Box/Include
+#include <osg/Geode>
+#include <osg/Geometry>
+#include <osg/NodeVisitor>
 
 namespace osgcpe
 {
 
-// FEATURE rendering+Camera/Impl
-// FEATURE rendering+Desktop/Impl
-// FEATURE rendering+Shaders/Impl
-// FEATURE rendering+Scene/Impl
-// FEATURE rendering+Box/Impl
+// This class forces the use of VBO.
+class VBOSetupVisitor : public osg::NodeVisitor
+{
+    public:
+        VBOSetupVisitor() :
+            osg::NodeVisitor(osg::NodeVisitor::TRAVERSE_ALL_CHILDREN) { }
+
+        virtual void apply(osg::Geode &geode)
+        {
+            for (unsigned int i = 0; i < geode.getNumDrawables(); ++i)
+            {
+                osg::Geometry *geom =
+                    dynamic_cast<osg::Geometry*>(geode.getDrawable(i));
+                if (geom)
+                {
+                    geom->setUseVertexBufferObjects(true);
+                }
+            }
+            NodeVisitor::apply(geode);
+        }
+};
 
 } // namespace osgcpe
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDERING_H
+// VBOSetupVisitor+stub Start
+// Stub.
+// VBOSetupVisitor+stub End
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_SETUP_VISITOR_H
 

@@ -21,6 +21,15 @@ void loop()
     }
     if (app)
     {
+        if (true)
+        {
+            static int i = 0;
+            if (++i > 10)
+            {
+                return;
+            }
+        }
+
         app->frame();
     }
 }

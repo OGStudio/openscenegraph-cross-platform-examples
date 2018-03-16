@@ -6,10 +6,16 @@ rendering+Camera
 rendering+Desktop
 rendering+Shaders
 rendering+Scene
+rendering+Box
 Application+Logging
 Application+Rendering
 Application+RenderingDesktop
 Resource+StreamSeek
 resources+Node
-main+Box
 main+Desktop
+
+#main+Box
+main+BoxBuiltin
+
+#VBOSetupVisitor+stub
+#main+SceneVBO

@@ -37,6 +37,7 @@ int main(int argc, char *argv[])
     // FEATURE main+Web/Setup
     // FEATURE main+Box/Impl
     // FEATURE main+BoxFile/Impl
+    // FEATURE main+BoxBuiltin/Impl
     // FEATURE main+SceneVBO/Impl
     app->setScene(scene);
     // FEATURE main+Desktop/Run

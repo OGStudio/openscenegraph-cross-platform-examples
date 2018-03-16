@@ -37,6 +37,12 @@ freely, subject to the following restrictions:
 #include "resources.h"
 
 // rendering+Scene End
+// rendering+Box Start
+#include <osg/Geode>
+#include <osg/MatrixTransform>
+#include <osg/ShapeDrawable>
+
+// rendering+Box End
 
 namespace osgcpe
 {
@@ -116,16 +122,20 @@ osg::Program *createShaderProgram(
 }
 // rendering+Shaders End
 // rendering+Scene Start
+void paintScene(osg::Node *scene)
+{
+    // Load shaders.
+    osg::Program *prog = createShaderProgram(shaderVertex, shaderFragment);
+    // Apply shaders.
+    scene->getOrCreateStateSet()->setAttribute(prog);
+}
 osg::ref_ptr<osg::Node> createScene(Resource &resource)
 {
     // Load scene.
     auto scene = resourceNode(resource, "osgt");
     if (scene.valid())
     {
-        // Load shaders.
-        osg::Program *prog = createShaderProgram(shaderVertex, shaderFragment);
-        // Apply shaders.
-        scene->getOrCreateStateSet()->setAttribute(prog);
+        paintScene(scene);
     }
     else
     {
@@ -134,6 +144,29 @@ osg::ref_ptr<osg::Node> createScene(Resource &resource)
     return scene.release();
 }
 // rendering+Scene End
+// rendering+Box Start
+osg::MatrixTransform *createShape(osg::Shape *shape) {
+    auto *hints = new osg::TessellationHints;
+    hints->setDetailRatio(0.5);
+    osg::ref_ptr<osg::Geode> geode = new osg::Geode();
+    geode->addDrawable(new osg::ShapeDrawable(shape, hints));
+    osg::ref_ptr<osg::MatrixTransform> node = new osg::MatrixTransform;
+    node->addChild(geode);
+    return node.release();
+}
+
+osg::MatrixTransform *createBox(const osg::Vec3f &size)
+{
+    auto *box = new osg::Box(osg::Vec3f(0, 0, 0), size.x(), size.y(), size.z());
+    return createShape(box);
+}
+
+osg::MatrixTransform *createBox(float width)
+{
+    return createBox(osg::Vec3f(width, width, width));
+}
+
+// rendering+Box End
 
 } // namespace osgcpe
 

@@ -23,10 +23,6 @@ freely, subject to the following restrictions:
 */
 
 #include "Application.h"
-// main+Box Start
-#include "box.osgt.h"
-
-// main+Box End
 
 
 int main(int argc, char *argv[])
@@ -36,10 +32,11 @@ int main(int argc, char *argv[])
     app->setupWindow("OSG", 100, 100, 1024, 768);
     
     // main+Desktop End
-    // main+Box Start
-    osgcpe::Resource box("box.osgt", box_osgt, box_osgt_len);
-    auto scene = createScene(box);
-    // main+Box End
+    // main+BoxBuiltin Start
+    auto scene = osgcpe::createBox(1);
+    osgcpe::paintScene(scene);
+    
+    // main+BoxBuiltin End
     app->setScene(scene);
     // main+Desktop Start
     app->run();
