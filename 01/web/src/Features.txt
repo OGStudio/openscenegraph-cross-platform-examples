@@ -15,8 +15,8 @@ resources+Node
 main+Web
 main+StaticPluginOSG
 
-main+Box
+#main+Box
 
-#main+BoxBuiltin
+main+BoxBuiltin
 VBOSetupVisitor+stub
 main+SceneVBO

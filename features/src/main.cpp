@@ -39,6 +39,7 @@ int main(int argc, char *argv[])
     // FEATURE main+BoxFile/Impl
     // FEATURE main+BoxBuiltin/Impl
     // FEATURE main+SceneVBO/Impl
+    osgcpe::paintScene(scene);
     app->setScene(scene);
     // FEATURE main+Desktop/Run
     // FEATURE main+Web/Run

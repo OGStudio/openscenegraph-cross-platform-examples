@@ -13,11 +13,7 @@ osg::ref_ptr<osg::Node> createScene(Resource &resource)
 {
     // Load scene.
     auto scene = resourceNode(resource, "osgt");
-    if (scene.valid())
-    {
-        paintScene(scene);
-    }
-    else
+    if (!scene.valid())
     {
         platformLog("Could not load scene");
     }

@@ -37,6 +37,7 @@ int main(int argc, char *argv[])
     osgcpe::paintScene(scene);
     
     // main+BoxBuiltin End
+    osgcpe::paintScene(scene);
     app->setScene(scene);
     // main+Desktop Start
     app->run();
