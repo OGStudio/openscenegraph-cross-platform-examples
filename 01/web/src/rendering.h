@@ -25,19 +25,23 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDERING_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDERING_H
 
-// Rendering+Camera Start
+// rendering+Camera Start
 #include <osg/Camera>
 
-// Rendering+Camera End
-// Rendering+Shaders Start
+// rendering+Camera End
+// rendering+Shaders Start
 #include <osg/Program>
 
-// Rendering+Shaders End
+// rendering+Shaders End
+// rendering+Scene Start
+#include "resources.h"
+
+// rendering+Scene End
 
 namespace osgcpe
 {
 
-// Rendering+Camera Start
+// rendering+Camera Start
 // Configure camera with common defaults.
 void setupCamera(
     osg::Camera *cam,
@@ -57,8 +61,8 @@ void setupCamera(
     // Configure projection.
     cam->setProjectionMatrixAsPerspective(fovy, aspect, 1, 1000);
 }
-// Rendering+Camera End
-// Rendering+Desktop Start
+// rendering+Camera End
+// rendering+Desktop Start
 // Create graphics context for Linux, macOS, Windows.
 osg::GraphicsContext *createGraphicsContext(
     const std::string &title,
@@ -84,8 +88,8 @@ osg::GraphicsContext *createGraphicsContext(
     // Create GC.
     return osg::GraphicsContext::createGraphicsContext(traits);
 }
-// Rendering+Desktop End
-// Rendering+Shaders Start
+// rendering+Desktop End
+// rendering+Shaders Start
 // Fragment shader to display everything in red colour.
 static const char shaderFragment[] =
     "void main() {                             \n"
@@ -110,7 +114,26 @@ osg::Program *createShaderProgram(
     prog->addShader(fs);
     return prog;
 }
-// Rendering+Shaders End
+// rendering+Shaders End
+// rendering+Scene Start
+osg::ref_ptr<osg::Node> createScene(Resource &resource)
+{
+    // Load scene.
+    auto scene = resourceNode(resource, "osgt");
+    if (scene.valid())
+    {
+        // Load shaders.
+        osg::Program *prog = createShaderProgram(shaderVertex, shaderFragment);
+        // Apply shaders.
+        scene->getOrCreateStateSet()->setAttribute(prog);
+    }
+    else
+    {
+        platformLog("Could not load scene");
+    }
+    return scene.release();
+}
+// rendering+Scene End
 
 } // namespace osgcpe
 

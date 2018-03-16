@@ -53,6 +53,7 @@ class Application
         // FEATURE Application+Logging/Impl
         // FEATURE Application+Rendering/Impl
         // FEATURE Application+RenderingDesktop/Impl
+        // FEATURE Application+RenderingEmbedded/Impl
         // FEATURE Application+Scene/Impl
         // FEATURE Application+SceneFile/Impl
 };

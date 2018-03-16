@@ -3,4 +3,4 @@ FEATURE main.cpp/Include
 
 FEATURE main.cpp/Impl
 osgcpe::Resource box("box.osgt", box_osgt, box_osgt_len);
-app->loadScene(box);
+auto scene = createScene(box);

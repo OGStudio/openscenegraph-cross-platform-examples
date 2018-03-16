@@ -36,12 +36,6 @@ freely, subject to the following restrictions:
 #include <osgGA/TrackballManipulator>
 
 // Application+Rendering End
-// Application+Scene Start
-#include "rendering.h"
-#include "Resource.h"
-#include "resources.h"
-
-// Application+Scene End
 
 
 namespace osgcpe
@@ -100,6 +94,10 @@ class Application
             {
                 this->viewer->frame();
             }
+            void setScene(osg::Node *scene)
+            {
+                this->viewer->setSceneData(scene);
+            }
         private:
             osgViewer::Viewer *viewer;
             void setupRendering()
@@ -137,26 +135,6 @@ class Application
             }
         
         // Application+RenderingDesktop End
-        // Application+Scene Start
-        public:
-            void loadScene(Resource &resource)
-            {
-                // Load scene.
-                auto scene = resourceNode(resource, "osgt");
-                if (!scene.valid())
-                {
-                    platformLog("Could not load scene");
-                    return;
-                }
-                // TODO FEATURE VBO/IMPL
-                // Load shaders.
-                osg::Program *prog = createShaderProgram(shaderVertex, shaderFragment);
-                // Apply shaders.
-                scene->getOrCreateStateSet()->setAttribute(prog);
-                // Set scene.
-                this->viewer->setSceneData(scene);
-            }
-        // Application+Scene End
 };
 
 } // namespace osgcpe

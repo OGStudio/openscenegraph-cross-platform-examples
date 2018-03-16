@@ -25,16 +25,18 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDERING_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDERING_H
 
-// FEATURE Rendering+Camera/Include
-// FEATURE Rendering+Desktop/Include
-// FEATURE Rendering+Shaders/Include
+// FEATURE rendering+Camera/Include
+// FEATURE rendering+Desktop/Include
+// FEATURE rendering+Shaders/Include
+// FEATURE rendering+Scene/Include
 
 namespace osgcpe
 {
 
-// FEATURE Rendering+Camera/Impl
-// FEATURE Rendering+Desktop/Impl
-// FEATURE Rendering+Shaders/Impl
+// FEATURE rendering+Camera/Impl
+// FEATURE rendering+Desktop/Impl
+// FEATURE rendering+Shaders/Impl
+// FEATURE rendering+Scene/Impl
 
 } // namespace osgcpe
 

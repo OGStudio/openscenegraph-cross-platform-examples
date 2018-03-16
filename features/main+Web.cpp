@@ -58,7 +58,7 @@ if (!window)
 }
 SDL_GL_CreateContext(window);
 // Create application.
-app = new Application;
+app = new osgcpe::Application;
 app->setupWindow(width, height);
 
 FEATURE main.cpp/Run

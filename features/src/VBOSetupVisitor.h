@@ -22,18 +22,41 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCES_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCES_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_SETUP_VISITOR_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_SETUP_VISITOR_H
 
-#include "Resource.h"
-// FEATURE resources+Node/Include
+#include <osg/Geode>
+#include <osg/Geometry>
+#include <osg/NodeVisitor>
 
 namespace osgcpe
 {
 
-// FEATURE resources+Node/Impl
+// This class forces the use of VBO.
+class VBOSetupVisitor : public osg::NodeVisitor
+{
+    public:
+        VBOSetupVisitor() :
+            osg::NodeVisitor(osg::NodeVisitor::TRAVERSE_ALL_CHILDREN) { }
+
+        virtual void apply(osg::Geode &geode)
+        {
+            for (unsigned int i = 0; i < geode.getNumDrawables(); ++i)
+            {
+                osg::Geometry *geom =
+                    dynamic_cast<osg::Geometry*>(geode.getDrawable(i));
+                if (geom)
+                {
+                    geom->setUseVertexBufferObjects(true);
+                }
+            }
+            NodeVisitor::apply(geode);
+        }
+};
 
 } // namespace osgcpe
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCES_H
+// FEATURE VBOSetupVisitor+stub/Impl
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_SETUP_VISITOR_H
 

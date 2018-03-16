@@ -26,6 +26,7 @@ freely, subject to the following restrictions:
 // FEATURE main+Box/Include
 // FEATURE main+BoxFile/Include
 // FEATURE main+Web/Include
+// FEATURE main+SceneVBO/Include
 
 // FEATURE main+StaticPluginOSG/Impl
 // FEATURE main+Web/Loop
@@ -36,6 +37,8 @@ int main(int argc, char *argv[])
     // FEATURE main+Web/Setup
     // FEATURE main+Box/Impl
     // FEATURE main+BoxFile/Impl
+    // FEATURE main+SceneVBO/Impl
+    app->setScene(scene);
     // FEATURE main+Desktop/Run
     // FEATURE main+Web/Run
     return 0;

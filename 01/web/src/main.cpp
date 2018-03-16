@@ -32,6 +32,10 @@ freely, subject to the following restrictions:
 #include <SDL2/SDL.h>
 
 // main+Web End
+// main+SceneVBO Start
+#include "VBOSetupVisitor.h"
+
+// main+SceneVBO End
 
 // main+StaticPluginOSG Start
 // Reference plugins to read `osgt` file statically.
@@ -98,14 +102,21 @@ int main(int argc, char *argv[])
     }
     SDL_GL_CreateContext(window);
     // Create application.
-    app = new Application;
+    app = new osgcpe::Application;
     app->setupWindow(width, height);
     
     // main+Web End
     // main+Box Start
     osgcpe::Resource box("box.osgt", box_osgt, box_osgt_len);
-    app->loadScene(box);
+    auto scene = createScene(box);
     // main+Box End
+    // main+SceneVBO Start
+    // Use VBO and EBO instead of display lists. CRITICAL for web (Emscripten)
+    // to skip FULL_ES2 emulation flag.
+    osgcpe::VBOSetupVisitor vbo;
+    scene->accept(vbo);
+    // main+SceneVBO End
+    app->setScene(scene);
     // main+Web Start
     // Render asynchronously.
     emscripten_set_main_loop(loop, -1, 0);

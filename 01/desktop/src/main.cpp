@@ -38,8 +38,9 @@ int main(int argc, char *argv[])
     // main+Desktop End
     // main+Box Start
     osgcpe::Resource box("box.osgt", box_osgt, box_osgt_len);
-    app->loadScene(box);
+    auto scene = createScene(box);
     // main+Box End
+    app->setScene(scene);
     // main+Desktop Start
     app->run();
     delete app;

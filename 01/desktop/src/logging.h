@@ -25,24 +25,24 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGING_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGING_H
 
-// Logging+LogLevel Start
+// logging+LogLevel Start
 #include <string>
 #include <osg/Notify>
 
-// Logging+LogLevel End
-// Logging+Printf Start
+// logging+LogLevel End
+// logging+Printf Start
 #include <cstdarg>
 
-// Logging+Printf End
-// Logging+PlatformDefault Start
+// logging+Printf End
+// logging+PlatformDefault Start
 #include <iostream>
 
-// Logging+PlatformDefault End
+// logging+PlatformDefault End
 
 namespace osgcpe
 {
 
-// Logging+LogLevel Start
+// logging+LogLevel Start
 // Convert OpenSceneGraph logging level to string representation.
 std::string logLevelToString(osg::NotifySeverity severity)
 {
@@ -67,8 +67,8 @@ std::string logLevelToString(osg::NotifySeverity severity)
             return "E";
     }
 }
-// Logging+LogLevel End
-// Logging+Printf Start
+// logging+LogLevel End
+// logging+Printf Start
 // Construct a string using printf-like syntax.
 std::string printfString(const char *fmt, ...)
 {
@@ -80,14 +80,14 @@ std::string printfString(const char *fmt, ...)
     va_end(args);
     return msg;
 }
-// Logging+Printf End
-// Logging+PlatformDefault Start
+// logging+Printf End
+// logging+PlatformDefault Start
 // Log message using platform specific tools.
 void platformLog(const char *message)
 {
     std::cout << message << std::endl;
 }
-// Logging+PlatformDefault End
+// logging+PlatformDefault End
 
 } // namespace osgcpe
 

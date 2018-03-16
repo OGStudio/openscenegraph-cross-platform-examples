@@ -36,12 +36,6 @@ freely, subject to the following restrictions:
 #include <osgGA/TrackballManipulator>
 
 // Application+Rendering End
-// Application+Scene Start
-#include "rendering.h"
-#include "Resource.h"
-#include "resources.h"
-
-// Application+Scene End
 
 
 namespace osgcpe
@@ -100,6 +94,10 @@ class Application
             {
                 this->viewer->frame();
             }
+            void setScene(osg::Node *scene)
+            {
+                this->viewer->setSceneData(scene);
+            }
         private:
             osgViewer::Viewer *viewer;
             void setupRendering()
@@ -116,47 +114,13 @@ class Application
                 delete this->viewer;
             }
         // Application+Rendering End
-        // Application+RenderingDesktop Start
+        // Application+RenderingEmbedded Start
         public:
-            void run()
+            void setupWindow(int width, int height)
             {
-                this->viewer->run();
+                this->viewer->setUpViewerAsEmbeddedInWindow(0, 0, width, height);
             }
-            void setupWindow(
-                const std::string &title,
-                int x,
-                int y,
-                int width,
-                int height
-            ) {
-                osg::GraphicsContext *gc =
-                    createGraphicsContext(title, x, y, width, height);
-                // Configure viewer's camera with FOVY and window size.
-                osg::Camera *cam = this->viewer->getCamera();
-                setupCamera(cam, gc, 30, width, height);
-            }
-        
-        // Application+RenderingDesktop End
-        // Application+Scene Start
-        public:
-            void loadScene(Resource &resource)
-            {
-                // Load scene.
-                auto scene = resourceNode(resource, "osgt");
-                if (!scene.valid())
-                {
-                    platformLog("Could not load scene");
-                    return;
-                }
-                // TODO FEATURE VBO/IMPL
-                // Load shaders.
-                osg::Program *prog = createShaderProgram(shaderVertex, shaderFragment);
-                // Apply shaders.
-                scene->getOrCreateStateSet()->setAttribute(prog);
-                // Set scene.
-                this->viewer->setSceneData(scene);
-            }
-        // Application+Scene End
+        // Application+RenderingEmbedded End
 };
 
 } // namespace osgcpe

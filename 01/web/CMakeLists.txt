@@ -21,8 +21,10 @@ SET(_OPENTHREADS_ATOMIC_USE_GCC_BUILTINS_EXITCODE "0" CACHE STRING "Prevent cfg 
 # * -O3: make compact binary, critical for web
 # * -s USE_SDL=2: provide SDL2
 # * -s ALLOW_MEMORY_GROWTH=1: allow total memory used to increase when necessary
-SET(BUILD_FLAGS "-O3 -s USE_SDL=2 -s -s ALLOW_MEMORY_GROWTH=1")
+SET(BUILD_FLAGS "-O3 -s USE_SDL=2 -s ALLOW_MEMORY_GROWTH=1")
 ADD_DEFINITIONS(${BUILD_FLAGS})
+# Use C++11.
+ADD_DEFINITIONS("-std=c++11")
 
 SET(OSG_SOURCE_DIR "${EXT_PROJ_DIR}/OpenSceneGraph")
 SET(OSG_BUILD_DIR "${EXT_PROJ_DIR}/OpenSceneGraph/build/Emscripten")

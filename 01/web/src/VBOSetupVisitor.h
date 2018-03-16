@@ -22,12 +22,15 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_SETUP_VISITOR_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_SETUP_VISITOR_H
 
 #include <osg/Geode>
 #include <osg/Geometry>
 #include <osg/NodeVisitor>
+
+namespace osgcpe
+{
 
 // This class forces the use of VBO.
 class VBOSetupVisitor : public osg::NodeVisitor
@@ -51,5 +54,11 @@ class VBOSetupVisitor : public osg::NodeVisitor
         }
 };
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_H
+} // namespace osgcpe
+
+// VBOSetupVisitor+stub Start
+// Stub.
+// VBOSetupVisitor+stub End
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_SETUP_VISITOR_H
 

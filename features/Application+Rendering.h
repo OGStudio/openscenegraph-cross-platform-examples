@@ -16,6 +16,10 @@ public:
     {
         this->viewer->frame();
     }
+    void setScene(osg::Node *scene)
+    {
+        this->viewer->setSceneData(scene);
+    }
 private:
     osgViewer::Viewer *viewer;
     void setupRendering()

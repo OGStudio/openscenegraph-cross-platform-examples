@@ -25,18 +25,18 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGING_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGING_H
 
-// FEATURE Logging+LogLevel/Include
-// FEATURE Logging+Printf/Include
-// FEATURE Logging+PlatformAndroid/Include
-// FEATURE Logging+PlatformDefault/Include
+// FEATURE logging+LogLevel/Include
+// FEATURE logging+Printf/Include
+// FEATURE logging+PlatformAndroid/Include
+// FEATURE logging+PlatformDefault/Include
 
 namespace osgcpe
 {
 
-// FEATURE Logging+LogLevel/Impl
-// FEATURE Logging+Printf/Impl
-// FEATURE Logging+PlatformAndroid/Impl
-// FEATURE Logging+PlatformDefault/Impl
+// FEATURE logging+LogLevel/Impl
+// FEATURE logging+Printf/Impl
+// FEATURE logging+PlatformAndroid/Impl
+// FEATURE logging+PlatformDefault/Impl
 
 } // namespace osgcpe
 

@@ -25,6 +25,7 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCES_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCES_H
 
+#include "Resource.h"
 // resources+Node Start
 #include <osgDB/Registry>
 
