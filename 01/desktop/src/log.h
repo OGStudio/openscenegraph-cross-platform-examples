@@ -22,28 +22,49 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGING_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGING_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOG_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOG_H
 
-// logging+LogLevel Start
-#include <string>
-#include <osg/Notify>
-
-// logging+LogLevel End
-// logging+Printf Start
-#include <cstdarg>
-
-// logging+Printf End
-// logging+PlatformDefault Start
+// log+log-default Start
 #include <iostream>
 
-// logging+PlatformDefault End
+// log+log-default End
+// log+logLevelToString Start
+#include <osg/Notify>
+
+// log+logLevelToString End
+// log+logprintf Start
+#include <cstdarg>
+
+// log+logprintf End
 
 namespace osgcpe
 {
+namespace log
+{
 
-// logging+LogLevel Start
-// Convert OpenSceneGraph logging level to string representation.
+// log+printfString Start
+//! Construct a string using printf-like syntax.
+std::string printfString(const char *fmt, ...)
+{
+    const int PRINTF_STRING_MAX_STRLEN = 1024;
+    va_list args;
+    char msg[PRINTF_STRING_MAX_STRLEN];
+    va_start(args, fmt);
+    vsnprintf(msg, PRINTF_STRING_MAX_STRLEN, fmt, args);
+    va_end(args);
+    return msg;
+}
+// log+printfString End
+// log+log-default Start
+//! Cross-platform logging function.
+void log(const char *message)
+{
+    std::cout << message << std::endl;
+}
+// log+log-default End
+// log+logLevelToString Start
+//! Convert OpenSceneGraph log level to string.
 std::string logLevelToString(osg::NotifySeverity severity)
 {
     switch (severity)
@@ -67,10 +88,10 @@ std::string logLevelToString(osg::NotifySeverity severity)
             return "E";
     }
 }
-// logging+LogLevel End
-// logging+Printf Start
-// Construct a string using printf-like syntax.
-std::string printfString(const char *fmt, ...)
+// log+logLevelToString End
+// log+logprintf Start
+//! Cross-platform logging function with printf-like syntax.
+void logprintf(const char *fmt, ...)
 {
     const int PRINTF_STRING_MAX_STRLEN = 1024;
     va_list args;
@@ -78,18 +99,12 @@ std::string printfString(const char *fmt, ...)
     va_start(args, fmt);
     vsnprintf(msg, PRINTF_STRING_MAX_STRLEN, fmt, args);
     va_end(args);
-    return msg;
+    log(msg);
 }
-// logging+Printf End
-// logging+PlatformDefault Start
-// Log message using platform specific tools.
-void platformLog(const char *message)
-{
-    std::cout << message << std::endl;
-}
-// logging+PlatformDefault End
+// log+logprintf End
 
+} // namespace log
 } // namespace osgcpe
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGING_H
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOG_H
 

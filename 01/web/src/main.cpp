@@ -23,6 +23,10 @@ freely, subject to the following restrictions:
 */
 
 #include "Application.h"
+// main+Box Start
+#include "box.osgt.h"
+
+// main+Box End
 // main+Web Start
 #include <emscripten.h>
 #include <SDL2/SDL.h>
@@ -111,11 +115,10 @@ int main(int argc, char *argv[])
     app->setupWindow(width, height);
     
     // main+Web End
-    // main+BoxBuiltin Start
-    auto scene = osgcpe::createBox(1);
-    osgcpe::paintScene(scene);
-    
-    // main+BoxBuiltin End
+    // main+Box Start
+    osgcpe::Resource box("box.osgt", box_osgt, box_osgt_len);
+    auto scene = createScene(box);
+    // main+Box End
     // main+SceneVBO Start
     // Use VBO and EBO instead of display lists. CRITICAL for web (Emscripten)
     // to skip FULL_ES2 emulation flag.

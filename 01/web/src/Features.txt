@@ -1,7 +1,9 @@
-logging+PlatformDefault
-logging+LogLevel
-logging+Printf
+log+printfString
+log+log-default
+log+logprintf
+log+logLevelToString
 Logger+stub
+
 rendering+Camera
 rendering+Desktop
 rendering+Shaders
@@ -15,8 +17,7 @@ resources+Node
 main+Web
 main+StaticPluginOSG
 
-#main+Box
+main+Box
 
-main+BoxBuiltin
 VBOSetupVisitor+stub
 main+SceneVBO

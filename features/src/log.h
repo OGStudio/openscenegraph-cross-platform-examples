@@ -22,23 +22,27 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGING_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGING_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOG_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOG_H
 
-// FEATURE logging+LogLevel/Include
-// FEATURE logging+Printf/Include
-// FEATURE logging+PlatformAndroid/Include
-// FEATURE logging+PlatformDefault/Include
+// FEATURE log+log-android/Include
+// FEATURE log+log-default/Include
+// FEATURE log+logLevelToString/Include
+// FEATURE log+logprintf/Include
 
 namespace osgcpe
 {
+namespace log
+{
 
-// FEATURE logging+LogLevel/Impl
-// FEATURE logging+Printf/Impl
-// FEATURE logging+PlatformAndroid/Impl
-// FEATURE logging+PlatformDefault/Impl
+// FEATURE log+printfString/Impl
+// FEATURE log+log-android/Impl
+// FEATURE log+log-default/Impl
+// FEATURE log+logLevelToString/Impl
+// FEATURE log+logprintf/Impl
 
+} // namespace log
 } // namespace osgcpe
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGING_H
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOG_H
 

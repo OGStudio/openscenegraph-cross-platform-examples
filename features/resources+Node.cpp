@@ -18,24 +18,20 @@ osg::ref_ptr<osg::Node> resourceNode(Resource &resource, const std::string exten
         }
         else
         {
-            auto errmsg =
-                printfString(
-                    "ERROR Could not read node of '%s' resource from buffer.",
-                    resource.name.c_str()
-                );
-            platformLog(errmsg.c_str());
+            log::logprintf(
+                "ERROR Could not read node of '%s' resource from buffer.",
+                resource.name.c_str()
+            );
         }
     }
     else
     {
-        auto errmsg =
-            printfString(
-                "ERROR Could not read node of '%s' resource because "
-                "node reader for extension '%s' is absent.",
-                resource.name.c_str(),
-                extension.c_str()
-            );
-        platformLog(errmsg.c_str());
+        log::logprintf(
+            "ERROR Could not read node of '%s' resource because "
+            "node reader for extension '%s' is absent.",
+            resource.name.c_str(),
+            extension.c_str()
+        );
     }
     return node.release();
 }

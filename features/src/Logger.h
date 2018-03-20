@@ -25,31 +25,36 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
 
-#include "logging.h"
+#include "log.h"
 
 namespace osgcpe
 {
+namespace log
+{
 
-// This class prints OpenSceneGraph notifications to console.
+//! Print OpenSceneGraph notifications to console.
 class Logger : public osg::NotifyHandler
 {
     public:
-        Logger() { }
+        Logger(const std::string &domain = "") : domain(domain) { }
         virtual ~Logger() { }
 
         // Override NotifyHandler::notify() to receive OpenSceneGraph notifications.
-        void notify(osg::NotifySeverity severity, const char *message)
+        void notify(osg::NotifySeverity severity, const char *message) override
         {
-            std::string finalMessage =
-                printfString(
-                    "OSG/%s %s",
-                    logLevelToString(severity).c_str(),
-                    message
-                );
-            platformLog(finalMessage.c_str());
+            logprintf(
+                "%s OSG/%s %s",
+                domain.c_str(),
+                logLevelToString(severity).c_str(),
+                message
+            );
         }
+
+    private:
+        const std::string domain;
 };
 
+} // namespace log
 } // namespace osgcpe
 
 // FEATURE Logger+stub/Impl

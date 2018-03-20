@@ -1,7 +1,9 @@
-logging+PlatformDefault
-logging+LogLevel
-logging+Printf
+log+printfString
+log+log-default
+log+logprintf
+log+logLevelToString
 Logger+stub
+
 rendering+Camera
 rendering+Desktop
 rendering+Shaders
@@ -14,8 +16,5 @@ Resource+StreamSeek
 resources+Node
 main+Desktop
 
-#main+Box
-main+BoxBuiltin
+main+Box
 
-#VBOSetupVisitor+stub
-#main+SceneVBO

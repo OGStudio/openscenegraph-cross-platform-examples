@@ -135,7 +135,7 @@ osg::ref_ptr<osg::Node> createScene(Resource &resource)
     auto scene = resourceNode(resource, "osgt");
     if (!scene.valid())
     {
-        platformLog("Could not load scene");
+        log::log("ERROR Could not load scene");
     }
     return scene.release();
 }

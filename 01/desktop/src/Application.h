@@ -69,11 +69,11 @@ class Application
 
         // Application+Logging Start
         private:
-            Logger *logger;
+            log::Logger *logger;
             void setupLogging()
             {
                 // Create custom logger.
-                this->logger = new Logger;
+                this->logger = new log::Logger("Ex01");
                 // Provide the logger to OpenSceneGraph.
                 osg::setNotifyHandler(this->logger);
                 // Only accept notifications of Info level or higher
