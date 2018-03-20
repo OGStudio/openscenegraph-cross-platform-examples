@@ -27,8 +27,8 @@ ADD_DEFINITIONS(${BUILD_FLAGS})
 # Use C++11.
 ADD_DEFINITIONS("-std=c++11")
 
-SET(OSG_SOURCE_DIR "${EXT_PROJ_DIR}/OpenSceneGraph")
-SET(OSG_BUILD_DIR "${EXT_PROJ_DIR}/OpenSceneGraph/build/Emscripten")
+SET(OSG_SOURCE_DIR "${EXT_PROJ_DIR}/OSG-20171121")
+SET(OSG_BUILD_DIR "${OSG_SOURCE_DIR}/build/Emscripten")
 # Only build OpenSceneGraph if it has not yet been built.
 IF (NOT EXISTS "${OSG_BUILD_DIR}/lib/libosg.a")
     FILE(MAKE_DIRECTORY ${OSG_BUILD_DIR})
