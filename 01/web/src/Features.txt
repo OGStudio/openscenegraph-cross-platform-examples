@@ -2,22 +2,23 @@ log+printfString
 log+log-default
 log+logprintf
 log+logLevelToString
+
 Logger+stub
 
-rendering+Camera
-rendering+Desktop
-rendering+Shaders
-rendering+Scene
-rendering+Box
+render+setupCamera
+render+createShaderProgram
+
+scene+paintScene
+
 Application+Logging
 Application+Rendering
 Application+RenderingEmbedded
 Resource+StreamSeek
 resources+Node
-main+Web
-main+StaticPluginOSG
 
+main+Web
 main+Box
 
+main+StaticPluginOSG
 VBOSetupVisitor+stub
 main+SceneVBO

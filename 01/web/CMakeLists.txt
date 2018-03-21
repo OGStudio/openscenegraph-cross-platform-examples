@@ -1,4 +1,4 @@
-PROJECT(EXAMPLE_EMBED_RESOURCE)
+PROJECT(EX01_EMBED_RESOURCE)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 # Path to external projects:
@@ -45,11 +45,11 @@ INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/src)
 # Reference resource headers.
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/../../data)
 # Create executable (aka HTML page).
-ADD_EXECUTABLE(exampleEmbedResource src/main.cpp)
+ADD_EXECUTABLE(ex01-embed-resource src/main.cpp)
 # Link with OpenSceneGraph libraries in specific order.
 # Otherwise you may get unsatisified linker errors.
 TARGET_LINK_LIBRARIES(
-    exampleEmbedResource
+    ex01-embed-resource
     osgViewer
     osgDB
     # osgDB plugins start.
@@ -66,4 +66,4 @@ TARGET_LINK_LIBRARIES(
 # Make Emscripten generate ready-to-open HTML page.
 SET(CMAKE_EXECUTABLE_SUFFIX ".html")
 # Link with special build flags.
-SET_TARGET_PROPERTIES(exampleEmbedResource PROPERTIES LINK_FLAGS ${BUILD_FLAGS})
+SET_TARGET_PROPERTIES(ex01-embed-resource PROPERTIES LINK_FLAGS ${BUILD_FLAGS})

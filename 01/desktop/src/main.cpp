@@ -23,8 +23,11 @@ freely, subject to the following restrictions:
 */
 
 #include "Application.h"
+#include "log.h"
+#include "scene.h"
 // main+Box Start
 #include "box.osgt.h"
+#include "resources.h"
 
 // main+Box End
 
@@ -38,9 +41,13 @@ int main(int argc, char *argv[])
     // main+Desktop End
     // main+Box Start
     osgcpe::Resource box("box.osgt", box_osgt, box_osgt_len);
-    auto scene = createScene(box);
+    auto scene = resourceNode(box, "osgt");
+    if (!scene.valid())
+    {
+        osgcpe::log::log("ERROR Could not load scene");
+    }
     // main+Box End
-    osgcpe::paintScene(scene);
+    osgcpe::scene::paintScene(scene);
     app->setScene(scene);
     // main+Desktop Start
     app->run();

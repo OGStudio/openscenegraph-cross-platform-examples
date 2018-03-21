@@ -12,9 +12,9 @@ public:
         int height
     ) {
         osg::GraphicsContext *gc =
-            createGraphicsContext(title, x, y, width, height);
+            render::createGraphicsContext(title, x, y, width, height);
         // Configure viewer's camera with FOVY and window size.
         osg::Camera *cam = this->viewer->getCamera();
-        setupCamera(cam, gc, 30, width, height);
+        render::setupCamera(cam, gc, 30, width, height);
     }
 

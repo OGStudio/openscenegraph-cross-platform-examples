@@ -30,7 +30,7 @@ freely, subject to the following restrictions:
 
 // Application+Logging End
 // Application+Rendering Start
-#include "rendering.h"
+#include "render.h"
 
 #include <osgViewer/Viewer>
 #include <osgGA/TrackballManipulator>
@@ -128,10 +128,10 @@ class Application
                 int height
             ) {
                 osg::GraphicsContext *gc =
-                    createGraphicsContext(title, x, y, width, height);
+                    render::createGraphicsContext(title, x, y, width, height);
                 // Configure viewer's camera with FOVY and window size.
                 osg::Camera *cam = this->viewer->getCamera();
-                setupCamera(cam, gc, 30, width, height);
+                render::setupCamera(cam, gc, 30, width, height);
             }
         
         // Application+RenderingDesktop End

@@ -22,29 +22,18 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "Application.h"
-#include "log.h"
-#include "scene.h"
-// FEATURE main+Box/Include
-// FEATURE main+BoxFile/Include
-// FEATURE main+Web/Include
-// FEATURE main+SceneVBO/Include
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 
-// FEATURE main+StaticPluginOSG/Impl
-// FEATURE main+Web/Loop
-
-int main(int argc, char *argv[])
+namespace osgcpe
 {
-    // FEATURE main+Desktop/Setup
-    // FEATURE main+Web/Setup
-    // FEATURE main+Box/Impl
-    // FEATURE main+BoxFile/Impl
-    // FEATURE main+BoxBuiltin/Impl
-    // FEATURE main+SceneVBO/Impl
-    osgcpe::scene::paintScene(scene);
-    app->setScene(scene);
-    // FEATURE main+Desktop/Run
-    // FEATURE main+Web/Run
-    return 0;
-}
+namespace scene
+{
+
+// FEATURE scene+paintScene/Impl
+
+} // namespace scene
+} // namespace osgcpe
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 

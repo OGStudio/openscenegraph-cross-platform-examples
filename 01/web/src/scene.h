@@ -22,29 +22,36 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "Application.h"
-#include "log.h"
-#include "scene.h"
-// FEATURE main+Box/Include
-// FEATURE main+BoxFile/Include
-// FEATURE main+Web/Include
-// FEATURE main+SceneVBO/Include
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 
-// FEATURE main+StaticPluginOSG/Impl
-// FEATURE main+Web/Loop
-
-int main(int argc, char *argv[])
+namespace osgcpe
 {
-    // FEATURE main+Desktop/Setup
-    // FEATURE main+Web/Setup
-    // FEATURE main+Box/Impl
-    // FEATURE main+BoxFile/Impl
-    // FEATURE main+BoxBuiltin/Impl
-    // FEATURE main+SceneVBO/Impl
-    osgcpe::scene::paintScene(scene);
-    app->setScene(scene);
-    // FEATURE main+Desktop/Run
-    // FEATURE main+Web/Run
-    return 0;
+namespace scene
+{
+
+// scene+paintScene Start
+void paintScene(osg::Node *scene)
+{
+    // Fragment shader to display everything in red colour.
+    const char shaderFragment[] = R"(
+        void main() {
+          gl_FragColor = vec4(0.5, 0.3, 0.3, 1.0);
+        }
+    )";
+    // Vertex shader to pass geometry vertices to fragment shader.
+    const char shaderVertex[] = R"(
+        void main() {
+          gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
+        }
+    )";
+    auto prog = render::createShaderProgram(shaderVertex, shaderFragment);
+    scene->getOrCreateStateSet()->setAttribute(prog);
 }
+// scene+paintScene End
+
+} // namespace scene
+} // namespace osgcpe
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 

@@ -23,8 +23,11 @@ freely, subject to the following restrictions:
 */
 
 #include "Application.h"
+#include "log.h"
+#include "scene.h"
 // main+Box Start
 #include "box.osgt.h"
+#include "resources.h"
 
 // main+Box End
 // main+Web Start
@@ -117,7 +120,11 @@ int main(int argc, char *argv[])
     // main+Web End
     // main+Box Start
     osgcpe::Resource box("box.osgt", box_osgt, box_osgt_len);
-    auto scene = createScene(box);
+    auto scene = resourceNode(box, "osgt");
+    if (!scene.valid())
+    {
+        osgcpe::log::log("ERROR Could not load scene");
+    }
     // main+Box End
     // main+SceneVBO Start
     // Use VBO and EBO instead of display lists. CRITICAL for web (Emscripten)
@@ -125,7 +132,7 @@ int main(int argc, char *argv[])
     osgcpe::VBOSetupVisitor vbo;
     scene->accept(vbo);
     // main+SceneVBO End
-    osgcpe::paintScene(scene);
+    osgcpe::scene::paintScene(scene);
     app->setScene(scene);
     // main+Web Start
     // Render asynchronously.

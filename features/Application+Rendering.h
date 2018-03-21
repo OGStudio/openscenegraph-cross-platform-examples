@@ -1,5 +1,5 @@
 FEATURE Application.h/Include
-#include "rendering.h"
+#include "render.h"
 
 #include <osgViewer/Viewer>
 #include <osgGA/TrackballManipulator>

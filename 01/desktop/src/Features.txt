@@ -2,19 +2,21 @@ log+printfString
 log+log-default
 log+logprintf
 log+logLevelToString
+
 Logger+stub
 
-rendering+Camera
-rendering+Desktop
-rendering+Shaders
-rendering+Scene
-rendering+Box
+render+setupCamera
+render+createGraphicsContext-desktop
+render+createShaderProgram
+
+scene+paintScene
+
 Application+Logging
 Application+Rendering
 Application+RenderingDesktop
 Resource+StreamSeek
 resources+Node
-main+Desktop
 
+main+Desktop
 main+Box
 

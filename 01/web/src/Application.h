@@ -30,7 +30,7 @@ freely, subject to the following restrictions:
 
 // Application+Logging End
 // Application+Rendering Start
-#include "rendering.h"
+#include "render.h"
 
 #include <osgViewer/Viewer>
 #include <osgGA/TrackballManipulator>

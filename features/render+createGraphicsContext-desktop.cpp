@@ -1,4 +1,4 @@
-FEATURE rendering.h/Impl
+FEATURE render.h/Impl
 // Create graphics context for Linux, macOS, Windows.
 osg::GraphicsContext *createGraphicsContext(
     const std::string &title,
