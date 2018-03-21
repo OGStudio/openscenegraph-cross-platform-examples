@@ -3,8 +3,8 @@ FEATURE main.cpp/Include
 #include "resources.h"
 
 FEATURE main.cpp/Impl
-osgcpe::Resource box("box.osgt", box_osgt, box_osgt_len);
-auto scene = resourceNode(box, "osgt");
+osgcpe::Resource box("models", "box.osgt", box_osgt, box_osgt_len);
+auto scene = osgcpe::resources::node(box, "osgt");
 if (!scene.valid())
 {
     osgcpe::log::log("ERROR Could not load scene");

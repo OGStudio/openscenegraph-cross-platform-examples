@@ -11,11 +11,13 @@ render+createShaderProgram
 
 scene+paintScene
 
+Resource+stub
+ResourceStreamBuffer+seekoff
+resources+node
+
 Application+Logging
 Application+Rendering
 Application+RenderingDesktop
-Resource+StreamSeek
-resources+Node
 
 main+Desktop
 main+Box

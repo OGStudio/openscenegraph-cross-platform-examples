@@ -1,6 +1,6 @@
-FEATURE Resource.h/Impl
+FEATURE ResourceStreamBuffer.h/Impl
 // Implement 'seekoff()' to support 'seekg()' calls.
-// E.g., 'seekg()' is used in OSG ImageIO plugin.
+// E.g., OpenSceneGraph ImageIO plugin uses 'seekg()'.
 // Topic: How to implement custom std::streambuf's seekoff()?
 // Source: https://stackoverflow.com/a/46068920
 std::streampos seekoff(

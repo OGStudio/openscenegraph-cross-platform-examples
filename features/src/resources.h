@@ -26,13 +26,17 @@ freely, subject to the following restrictions:
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCES_H
 
 #include "Resource.h"
-// FEATURE resources+Node/Include
+#include "ResourceStreamBuffer.h"
+// FEATURE resources+node/Include
 
 namespace osgcpe
 {
+namespace resources
+{
 
-// FEATURE resources+Node/Impl
+// FEATURE resources+node/Impl
 
+} // namespace resources
 } // namespace osgcpe
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCES_H

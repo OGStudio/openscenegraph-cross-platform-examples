@@ -40,8 +40,8 @@ int main(int argc, char *argv[])
     
     // main+Desktop End
     // main+Box Start
-    osgcpe::Resource box("box.osgt", box_osgt, box_osgt_len);
-    auto scene = resourceNode(box, "osgt");
+    osgcpe::Resource box("models", "box.osgt", box_osgt, box_osgt_len);
+    auto scene = osgcpe::resources::node(box, "osgt");
     if (!scene.valid())
     {
         osgcpe::log::log("ERROR Could not load scene");

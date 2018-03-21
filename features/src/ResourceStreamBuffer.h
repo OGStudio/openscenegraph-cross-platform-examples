@@ -22,38 +22,27 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_STREAM_BUFFER_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_STREAM_BUFFER_H
 
-#include <string>
+#include "Resource.h"
 
 namespace osgcpe
 {
 
-//! Resource container.
-struct Resource
+//! Work with Resource contents as with any stream.
+struct ResourceStreamBuffer : std::streambuf
 {
-    Resource(
-        const std::string &group,
-        const std::string &name,
-        unsigned char *contents,
-        unsigned int len
-    ) :
-        group(group),
-        name(name),
-        contents(contents),
-        len(len)
-    { }
-
-    std::string group;
-    std::string name;
-    unsigned char *contents;
-    unsigned int len;
+    ResourceStreamBuffer(const Resource &resource)
+    {
+        char *contents = reinterpret_cast<char *>(resource.contents);
+        this->setg(contents, contents, contents + resource.len);
+    }
+    // FEATURE ResourceStreamBuffer+seek/Impl
 };
+
 
 } // namespace osgcpe
 
-// FEATURE Resource+stub/Impl
-
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_STREAM_BUFFER_H
 

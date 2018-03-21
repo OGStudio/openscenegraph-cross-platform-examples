@@ -1,4 +1,4 @@
-PROJECT(EXAMPLE_EMBED_RESOURCE)
+PROJECT(EX01_EMBED_RESOURCE)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 # OpenSceneGraph directories.
@@ -15,6 +15,6 @@ INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/src)
 # Reference resource headers.
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/../../data)
 # Create executable.
-ADD_EXECUTABLE(exampleEmbedResource src/main.cpp)
+ADD_EXECUTABLE(ex01-embed-resource src/main.cpp)
 # Link executable with OpenSceneGraph libraries.
-TARGET_LINK_LIBRARIES(exampleEmbedResource osg osgDB osgGA osgViewer)
+TARGET_LINK_LIBRARIES(ex01-embed-resource osg osgDB osgGA osgViewer)

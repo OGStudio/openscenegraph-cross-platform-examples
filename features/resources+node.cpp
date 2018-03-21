@@ -2,7 +2,8 @@ FEATURE resources.h/Include
 #include <osgDB/Registry>
 
 FEATURE resources.h/Impl
-osg::ref_ptr<osg::Node> resourceNode(Resource &resource, const std::string extension)
+// TODO Support extension detection.
+osg::ref_ptr<osg::Node> node(Resource &resource, const std::string extension)
 {
     osg::ref_ptr<osg::Node> node;
     auto reader =
