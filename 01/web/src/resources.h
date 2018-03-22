@@ -26,16 +26,20 @@ freely, subject to the following restrictions:
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCES_H
 
 #include "Resource.h"
-// resources+Node Start
+#include "ResourceStreamBuffer.h"
+// resources+node Start
 #include <osgDB/Registry>
 
-// resources+Node End
+// resources+node End
 
 namespace osgcpe
 {
+namespace resources
+{
 
-// resources+Node Start
-osg::ref_ptr<osg::Node> resourceNode(Resource &resource, const std::string extension)
+// resources+node Start
+// TODO Support extension detection.
+osg::ref_ptr<osg::Node> node(Resource &resource, const std::string extension)
 {
     osg::ref_ptr<osg::Node> node;
     auto reader =
@@ -68,8 +72,9 @@ osg::ref_ptr<osg::Node> resourceNode(Resource &resource, const std::string exten
     }
     return node.release();
 }
-// resources+Node End
+// resources+node End
 
+} // namespace resources
 } // namespace osgcpe
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCES_H

@@ -10,11 +10,13 @@ render+createShaderProgram
 
 scene+paintScene
 
+Resource+stub
+ResourceStreamBuffer+stub
+resources+node
+
 Application+Logging
 Application+Rendering
 Application+RenderingEmbedded
-Resource+StreamSeek
-resources+Node
 
 main+Web
 main+Box

@@ -26,7 +26,6 @@ freely, subject to the following restrictions:
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
 
 #include <string>
-#include <streambuf>
 
 namespace osgcpe
 {
@@ -35,51 +34,28 @@ namespace osgcpe
 struct Resource
 {
     Resource(
+        const std::string &group,
         const std::string &name,
         unsigned char *contents,
         unsigned int len
     ) :
+        group(group),
         name(name),
         contents(contents),
         len(len)
     { }
 
+    std::string group;
     std::string name;
     unsigned char *contents;
     unsigned int len;
 };
 
-//! Work with resource contents as a stream.
-struct ResourceStreamBuffer : std::streambuf
-{
-    ResourceStreamBuffer(const Resource &resource)
-    {
-        char *contents = reinterpret_cast<char *>(resource.contents);
-        this->setg(contents, contents, contents + resource.len);
-    }
-    // Resource+StreamSeek Start
-    // Implement 'seekoff()' to support 'seekg()' calls.
-    // E.g., 'seekg()' is used in OSG ImageIO plugin.
-    // Topic: How to implement custom std::streambuf's seekoff()?
-    // Source: https://stackoverflow.com/a/46068920
-    std::streampos seekoff(
-        std::streamoff off,
-        std::ios_base::seekdir dir,
-        std::ios_base::openmode which = std::ios_base::in
-    ) {
-        if (dir == std::ios_base::cur)
-            this->gbump(off);
-        else if (dir == std::ios_base::end)
-            this->setg(this->eback(), this->egptr() + off, this->egptr());
-        else if (dir == std::ios_base::beg)
-            this->setg(this->eback(), this->eback() + off, this->egptr());
-        return this->gptr() - this->eback();
-    }
-    // Resource+StreamSeek End
-};
-
-
 } // namespace osgcpe
+
+// Resource+stub Start
+// Stub.
+// Resource+stub End
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
 
