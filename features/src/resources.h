@@ -29,11 +29,14 @@ freely, subject to the following restrictions:
 #include "ResourceStreamBuffer.h"
 // FEATURE resources+node/Include
 
+// FEATURE resources+OSGCPE_RESOURCES_LOG/Impl
+
 namespace osgcpe
 {
 namespace resources
 {
 
+// FEATURE resources+extension/Impl
 // FEATURE resources+node/Impl
 
 } // namespace resources

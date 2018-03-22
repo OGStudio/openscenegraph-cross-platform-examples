@@ -12,7 +12,10 @@ scene+paintScene
 
 Resource+stub
 ResourceStreamBuffer+stub
+
+resources+OSGCPE_RESOURCES_LOG
 resources+node
+resources+extension
 
 Application+Logging
 Application+Rendering

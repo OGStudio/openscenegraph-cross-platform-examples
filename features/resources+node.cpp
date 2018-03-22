@@ -2,12 +2,23 @@ FEATURE resources.h/Include
 #include <osgDB/Registry>
 
 FEATURE resources.h/Impl
-// TODO Support extension detection.
-osg::ref_ptr<osg::Node> node(Resource &resource, const std::string extension)
+osg::ref_ptr<osg::Node> node(Resource &resource, const std::string ext = "")
 {
     osg::ref_ptr<osg::Node> node;
-    auto reader =
-        osgDB::Registry::instance()->getReaderWriterForExtension(extension);
+    // Get extension from resource's name if extension is not specified.
+    std::string ex = ext.empty() ?  extension(resource) : ext;
+    // Return empty node if extention is absent.
+    if (ex.empty())
+    {
+        OSGCPE_RESOURCES_LOG(
+            "ERROR Could not read node of '%s/%s' resource "
+            "because extension is absent",
+            resource.group.c_str(),
+            resource.name.c_str()
+        );
+        return node.release();
+    }
+    auto reader = osgDB::Registry::instance()->getReaderWriterForExtension(ex);
     if (reader)
     {
         ResourceStreamBuffer buf(resource);
@@ -19,19 +30,20 @@ osg::ref_ptr<osg::Node> node(Resource &resource, const std::string extension)
         }
         else
         {
-            log::logprintf(
-                "ERROR Could not read node of '%s' resource from buffer.",
+            OSGCPE_RESOURCES_LOG(
+                "ERROR Could not read node of '%s/%s' resource from buffer.",
+                resource.group.c_str(),
                 resource.name.c_str()
             );
         }
     }
     else
     {
-        log::logprintf(
+        OSGCPE_RESOURCES_LOG(
             "ERROR Could not read node of '%s' resource because "
             "node reader for extension '%s' is absent.",
             resource.name.c_str(),
-            extension.c_str()
+            ex.c_str()
         );
     }
     return node.release();

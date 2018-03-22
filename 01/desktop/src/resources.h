@@ -32,18 +32,56 @@ freely, subject to the following restrictions:
 
 // resources+node End
 
+// resources+OSGCPE_RESOURCES_LOG Start
+#define OSGCPE_RESOURCES_LOG_PREFIX "osgcpe-resource %s"
+#define OSGCPE_RESOURCES_LOG(...) \
+    osgcpe::log::logprintf( \
+        OSGCPE_RESOURCES_LOG_PREFIX, \
+        osgcpe::log::printfString(__VA_ARGS__).c_str() \
+    )
+
+// resources+OSGCPE_RESOURCES_LOG End
+
 namespace osgcpe
 {
 namespace resources
 {
 
+// resources+extension Start
+std::string extension(const Resource &resource)
+{
+    auto dotPosition = resource.name.rfind(".");
+    // Return empty extension if we cannot detect it.
+    if (dotPosition == std::string::npos)
+    {
+        OSGCPE_RESOURCES_LOG(
+            "ERROR Could not detect file extension for '%s/%s' resource",
+            resource.group.c_str(),
+            resource.name.c_str()
+        );
+        return "";
+    }
+    return resource.name.substr(dotPosition + 1);
+}
+// resources+extension End
 // resources+node Start
-// TODO Support extension detection.
-osg::ref_ptr<osg::Node> node(Resource &resource, const std::string extension)
+osg::ref_ptr<osg::Node> node(Resource &resource, const std::string ext = "")
 {
     osg::ref_ptr<osg::Node> node;
-    auto reader =
-        osgDB::Registry::instance()->getReaderWriterForExtension(extension);
+    // Get extension from resource's name if extension is not specified.
+    std::string ex = ext.empty() ?  extension(resource) : ext;
+    // Return empty node if extention is absent.
+    if (ex.empty())
+    {
+        OSGCPE_RESOURCES_LOG(
+            "ERROR Could not read node of '%s/%s' resource "
+            "because extension is absent",
+            resource.group.c_str(),
+            resource.name.c_str()
+        );
+        return node.release();
+    }
+    auto reader = osgDB::Registry::instance()->getReaderWriterForExtension(ex);
     if (reader)
     {
         ResourceStreamBuffer buf(resource);
@@ -55,19 +93,20 @@ osg::ref_ptr<osg::Node> node(Resource &resource, const std::string extension)
         }
         else
         {
-            log::logprintf(
-                "ERROR Could not read node of '%s' resource from buffer.",
+            OSGCPE_RESOURCES_LOG(
+                "ERROR Could not read node of '%s/%s' resource from buffer.",
+                resource.group.c_str(),
                 resource.name.c_str()
             );
         }
     }
     else
     {
-        log::logprintf(
+        OSGCPE_RESOURCES_LOG(
             "ERROR Could not read node of '%s' resource because "
             "node reader for extension '%s' is absent.",
             resource.name.c_str(),
-            extension.c_str()
+            ex.c_str()
         );
     }
     return node.release();
