@@ -12,7 +12,7 @@ render+createShaderProgram
 scene+paintScene
 
 Resource+stub
-ResourceStreamBuffer+seekoff
+ResourceStreamBuffer+stub
 resources+node
 
 Application+Logging
