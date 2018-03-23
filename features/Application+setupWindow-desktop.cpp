@@ -1,9 +1,5 @@
 FEATURE Application.h/Impl
 public:
-    void run()
-    {
-        this->viewer->run();
-    }
     void setupWindow(
         const std::string &title,
         int x,
@@ -17,4 +13,3 @@ public:
         osg::Camera *cam = this->viewer->getCamera();
         render::setupCamera(cam, gc, 30, width, height);
     }
-

@@ -37,17 +37,16 @@ freely, subject to the following restrictions:
 
 // Application+Rendering End
 
-
 namespace osgcpe
 {
 
 class Application
 {
     public:
-        Application()
+        Application(const std::string &name)
         {
             // Application+Logging Start
-            this->setupLogging();
+            this->setupLogging(name);
             
             // Application+Logging End
             // Application+Rendering Start
@@ -67,13 +66,37 @@ class Application
             // Application+Logging End
         }
 
+        // Application+run Start
+        public:
+            void run()
+            {
+                this->viewer->run();
+            }
+        // Application+run End
+        // Application+setupWindow-desktop Start
+        public:
+            void setupWindow(
+                const std::string &title,
+                int x,
+                int y,
+                int width,
+                int height
+            ) {
+                osg::GraphicsContext *gc =
+                    render::createGraphicsContext(title, x, y, width, height);
+                // Configure viewer's camera with FOVY and window size.
+                osg::Camera *cam = this->viewer->getCamera();
+                render::setupCamera(cam, gc, 30, width, height);
+            }
+        // Application+setupWindow-desktop End
+
         // Application+Logging Start
         private:
-            log::Logger *logger;
-            void setupLogging()
+            Logger *logger;
+            void setupLogging(const std::string &appName)
             {
                 // Create custom logger.
-                this->logger = new log::Logger("Ex01");
+                this->logger = new Logger(appName);
                 // Provide the logger to OpenSceneGraph.
                 osg::setNotifyHandler(this->logger);
                 // Only accept notifications of Info level or higher
@@ -114,27 +137,6 @@ class Application
                 delete this->viewer;
             }
         // Application+Rendering End
-        // Application+RenderingDesktop Start
-        public:
-            void run()
-            {
-                this->viewer->run();
-            }
-            void setupWindow(
-                const std::string &title,
-                int x,
-                int y,
-                int width,
-                int height
-            ) {
-                osg::GraphicsContext *gc =
-                    render::createGraphicsContext(title, x, y, width, height);
-                // Configure viewer's camera with FOVY and window size.
-                osg::Camera *cam = this->viewer->getCamera();
-                render::setupCamera(cam, gc, 30, width, height);
-            }
-        
-        // Application+RenderingDesktop End
 };
 
 } // namespace osgcpe

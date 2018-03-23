@@ -27,11 +27,6 @@ freely, subject to the following restrictions:
 
 // FEATURE Application+Logging/Include
 // FEATURE Application+Rendering/Include
-// FEATURE Application+Scene/Include
-// FEATURE Application+SceneFile/Include
-
-// FEATURE Application+VBO/Include
-// FEATURE Application+StaticPlugins/Impl
 
 namespace osgcpe
 {
@@ -39,7 +34,7 @@ namespace osgcpe
 class Application
 {
     public:
-        Application()
+        Application(const std::string &name)
         {
             // FEATURE Application+Logging/Setup
             // FEATURE Application+Rendering/Setup
@@ -50,12 +45,12 @@ class Application
             // FEATURE Application+Logging/TearDown
         }
 
+        // FEATURE Application+run/Impl
+        // FEATURE Application+setupWindow-desktop/Impl
+        // FEATURE Application+setupWindow-embedded/Impl
+
         // FEATURE Application+Logging/Impl
         // FEATURE Application+Rendering/Impl
-        // FEATURE Application+RenderingDesktop/Impl
-        // FEATURE Application+RenderingEmbedded/Impl
-        // FEATURE Application+Scene/Impl
-        // FEATURE Application+SceneFile/Impl
 };
 
 } // namespace osgcpe

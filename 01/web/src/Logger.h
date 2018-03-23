@@ -29,8 +29,6 @@ freely, subject to the following restrictions:
 
 namespace osgcpe
 {
-namespace log
-{
 
 //! Print OpenSceneGraph notifications to console.
 class Logger : public osg::NotifyHandler
@@ -42,10 +40,10 @@ class Logger : public osg::NotifyHandler
         // Override NotifyHandler::notify() to receive OpenSceneGraph notifications.
         void notify(osg::NotifySeverity severity, const char *message) override
         {
-            logprintf(
+            log::logprintf(
                 "%s OSG/%s %s",
                 domain.c_str(),
-                logLevelToString(severity).c_str(),
+                log::logLevelToString(severity).c_str(),
                 message
             );
         }
@@ -54,7 +52,6 @@ class Logger : public osg::NotifyHandler
         const std::string domain;
 };
 
-} // namespace log
 } // namespace osgcpe
 
 // Logger+stub Start

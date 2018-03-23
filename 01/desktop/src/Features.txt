@@ -18,9 +18,10 @@ resources+OSGCPE_RESOURCES_LOG
 resources+node
 resources+extension
 
+Application+run
+Application+setupWindow-desktop
 Application+Logging
 Application+Rendering
-Application+RenderingDesktop
 
 main+Desktop
 main+Box

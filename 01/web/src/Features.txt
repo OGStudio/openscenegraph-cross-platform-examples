@@ -17,9 +17,9 @@ resources+OSGCPE_RESOURCES_LOG
 resources+node
 resources+extension
 
+Application+setupWindow-embedded
 Application+Logging
 Application+Rendering
-Application+RenderingEmbedded
 
 main+Web
 main+Box

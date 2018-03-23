@@ -37,17 +37,16 @@ freely, subject to the following restrictions:
 
 // Application+Rendering End
 
-
 namespace osgcpe
 {
 
 class Application
 {
     public:
-        Application()
+        Application(const std::string &name)
         {
             // Application+Logging Start
-            this->setupLogging();
+            this->setupLogging(name);
             
             // Application+Logging End
             // Application+Rendering Start
@@ -67,13 +66,21 @@ class Application
             // Application+Logging End
         }
 
+        // Application+setupWindow-embedded Start
+        public:
+            void setupWindow(int width, int height)
+            {
+                this->viewer->setUpViewerAsEmbeddedInWindow(0, 0, width, height);
+            }
+        // Application+setupWindow-embedded End
+
         // Application+Logging Start
         private:
-            log::Logger *logger;
-            void setupLogging()
+            Logger *logger;
+            void setupLogging(const std::string &appName)
             {
                 // Create custom logger.
-                this->logger = new log::Logger("Ex01");
+                this->logger = new Logger(appName);
                 // Provide the logger to OpenSceneGraph.
                 osg::setNotifyHandler(this->logger);
                 // Only accept notifications of Info level or higher
@@ -114,13 +121,6 @@ class Application
                 delete this->viewer;
             }
         // Application+Rendering End
-        // Application+RenderingEmbedded Start
-        public:
-            void setupWindow(int width, int height)
-            {
-                this->viewer->setUpViewerAsEmbeddedInWindow(0, 0, width, height);
-            }
-        // Application+RenderingEmbedded End
 };
 
 } // namespace osgcpe

@@ -114,7 +114,7 @@ int main(int argc, char *argv[])
     }
     SDL_GL_CreateContext(window);
     // Create application.
-    app = new osgcpe::Application;
+    app = new osgcpe::Application("Ex01");
     app->setupWindow(width, height);
     
     // main+Web End

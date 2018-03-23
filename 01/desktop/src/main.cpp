@@ -35,7 +35,7 @@ freely, subject to the following restrictions:
 int main(int argc, char *argv[])
 {
     // main+Desktop Start
-    auto app = new osgcpe::Application;
+    auto app = new osgcpe::Application("Ex01");
     app->setupWindow("OSG", 100, 100, 1024, 768);
     
     // main+Desktop End
