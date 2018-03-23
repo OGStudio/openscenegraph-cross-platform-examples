@@ -7,5 +7,5 @@ osgcpe::Resource box("models", "box.osgt", box_osgt, box_osgt_len);
 auto scene = osgcpe::resources::node(box);
 if (!scene.valid())
 {
-    osgcpe::log::log("ERROR Could not load scene");
+    OSGCPE_MAIN_LOG("ERROR Could not load scene");
 }

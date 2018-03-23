@@ -23,29 +23,38 @@ freely, subject to the following restrictions:
 */
 
 #include "Application.h"
-#include "log.h"
 #include "scene.h"
-// main+Box Start
-#include "box.osgt.h"
-#include "resources.h"
-
-// main+Box End
-// main+Web Start
+// main-web Start
 #include <emscripten.h>
 #include <SDL2/SDL.h>
 
-// main+Web End
-// main+SceneVBO Start
+// main-web End
+// main+BoxScene Start
+#include "box.osgt.h"
+#include "resources.h"
+
+// main+BoxScene End
+// main+VBO Start
 #include "VBOSetupVisitor.h"
 
-// main+SceneVBO End
+// main+VBO End
 
+// main+OSGCPE_MAIN_LOG Start
+#include "log.h"
+#define OSGCPE_MAIN_LOG_PREFIX "osgcpe-main %s"
+#define OSGCPE_MAIN_LOG(...) \
+    osgcpe::log::logprintf( \
+        OSGCPE_MAIN_LOG_PREFIX, \
+        osgcpe::log::printfString(__VA_ARGS__).c_str() \
+    )
+
+// main+OSGCPE_MAIN_LOG End
 // main+StaticPluginOSG Start
 // Reference plugins to read `osgt` file statically.
 USE_OSGPLUGIN(osg2)
 USE_SERIALIZER_WRAPPER_LIBRARY(osg)
 // main+StaticPluginOSG End
-// main+Web Start
+// main-web Start
 // We use app global variable in loop() function.
 osgcpe::Application *app = 0;
 
@@ -64,28 +73,23 @@ void loop()
     }
     if (app)
     {
-        if (true)
-        {
-            static int i = 0;
-            if (++i > 10)
-            {
-                return;
-            }
-        }
-
         app->frame();
     }
 }
 
-// main+Web End
+// main-web End
 
 int main(int argc, char *argv[])
 {
-    // main+Web Start
+    // main+Ex01 Start
+    auto appName = "Ex01";
+    // main+Ex01 End
+
+    // main-web Start
     // Make sure SDL is working.
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {
-        printf("OSG. Could not init SDL: '%s'\n", SDL_GetError());
+        OSGCPE_MAIN_LOG("Could not init SDL: '%s'\n", SDL_GetError());
         return 1;
     }
     // Clean SDL up at exit.
@@ -101,7 +105,7 @@ int main(int argc, char *argv[])
     int height = 600;
     SDL_Window* window =
         SDL_CreateWindow(
-            "OSG",
+            appName,
             SDL_WINDOWPOS_CENTERED,
             SDL_WINDOWPOS_CENTERED,
             width,
@@ -109,35 +113,35 @@ int main(int argc, char *argv[])
             SDL_WINDOW_OPENGL);
     if (!window)
     {
-        printf("OSG. Could not create window: '%s'\n", SDL_GetError());
+        OSGCPE_MAIN_LOG("Could not create window: '%s'\n", SDL_GetError());
         return 1;
     }
     SDL_GL_CreateContext(window);
     // Create application.
-    app = new osgcpe::Application("Ex01");
+    app = new osgcpe::Application(appName);
     app->setupWindow(width, height);
     
-    // main+Web End
-    // main+Box Start
+    // main-web End
+    // main+BoxScene Start
     osgcpe::Resource box("models", "box.osgt", box_osgt, box_osgt_len);
     auto scene = osgcpe::resources::node(box);
     if (!scene.valid())
     {
-        osgcpe::log::log("ERROR Could not load scene");
+        OSGCPE_MAIN_LOG("ERROR Could not load scene");
     }
-    // main+Box End
-    // main+SceneVBO Start
+    // main+BoxScene End
+    // main+VBO Start
     // Use VBO and EBO instead of display lists. CRITICAL for web (Emscripten)
     // to skip FULL_ES2 emulation flag.
     osgcpe::VBOSetupVisitor vbo;
     scene->accept(vbo);
-    // main+SceneVBO End
+    // main+VBO End
     osgcpe::scene::paintScene(scene);
     app->setScene(scene);
-    // main+Web Start
+    // main-web Start
     // Render asynchronously.
     emscripten_set_main_loop(loop, -1, 0);
-    // main+Web End
+    // main-web End
     return 0;
 }
 

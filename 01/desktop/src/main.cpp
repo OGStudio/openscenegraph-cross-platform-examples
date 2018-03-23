@@ -23,36 +23,49 @@ freely, subject to the following restrictions:
 */
 
 #include "Application.h"
-#include "log.h"
 #include "scene.h"
-// main+Box Start
+// main+BoxScene Start
 #include "box.osgt.h"
 #include "resources.h"
 
-// main+Box End
+// main+BoxScene End
 
+// main+OSGCPE_MAIN_LOG Start
+#include "log.h"
+#define OSGCPE_MAIN_LOG_PREFIX "osgcpe-main %s"
+#define OSGCPE_MAIN_LOG(...) \
+    osgcpe::log::logprintf( \
+        OSGCPE_MAIN_LOG_PREFIX, \
+        osgcpe::log::printfString(__VA_ARGS__).c_str() \
+    )
+
+// main+OSGCPE_MAIN_LOG End
 
 int main(int argc, char *argv[])
 {
-    // main+Desktop Start
-    auto app = new osgcpe::Application("Ex01");
-    app->setupWindow("OSG", 100, 100, 1024, 768);
+    // main+Ex01 Start
+    auto appName = "Ex01";
+    // main+Ex01 End
+
+    // main-desktop Start
+    auto app = new osgcpe::Application(appName);
+    app->setupWindow(appName, 100, 100, 1024, 768);
     
-    // main+Desktop End
-    // main+Box Start
+    // main-desktop End
+    // main+BoxScene Start
     osgcpe::Resource box("models", "box.osgt", box_osgt, box_osgt_len);
     auto scene = osgcpe::resources::node(box);
     if (!scene.valid())
     {
-        osgcpe::log::log("ERROR Could not load scene");
+        OSGCPE_MAIN_LOG("ERROR Could not load scene");
     }
-    // main+Box End
+    // main+BoxScene End
     osgcpe::scene::paintScene(scene);
     app->setScene(scene);
-    // main+Desktop Start
+    // main-desktop Start
     app->run();
     delete app;
-    // main+Desktop End
+    // main-desktop End
     return 0;
 }
 

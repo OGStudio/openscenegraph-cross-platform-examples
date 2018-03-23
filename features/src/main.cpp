@@ -23,28 +23,27 @@ freely, subject to the following restrictions:
 */
 
 #include "Application.h"
-#include "log.h"
 #include "scene.h"
-// FEATURE main+Box/Include
-// FEATURE main+BoxFile/Include
-// FEATURE main+Web/Include
-// FEATURE main+SceneVBO/Include
+// FEATURE main-web/Include
+// FEATURE main+BoxScene/Include
+// FEATURE main+VBO/Include
 
+// FEATURE main+OSGCPE_MAIN_LOG/Impl
 // FEATURE main+StaticPluginOSG/Impl
-// FEATURE main+Web/Loop
+// FEATURE main-web/Loop
 
 int main(int argc, char *argv[])
 {
-    // FEATURE main+Desktop/Setup
-    // FEATURE main+Web/Setup
-    // FEATURE main+Box/Impl
-    // FEATURE main+BoxFile/Impl
-    // FEATURE main+BoxBuiltin/Impl
-    // FEATURE main+SceneVBO/Impl
+    // FEATURE main+Ex01/Name
+
+    // FEATURE main-desktop/Setup
+    // FEATURE main-web/Setup
+    // FEATURE main+BoxScene/Impl
+    // FEATURE main+VBO/Impl
     osgcpe::scene::paintScene(scene);
     app->setScene(scene);
-    // FEATURE main+Desktop/Run
-    // FEATURE main+Web/Run
+    // FEATURE main-desktop/Run
+    // FEATURE main-web/Run
     return 0;
 }
 

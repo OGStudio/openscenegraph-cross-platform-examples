@@ -21,15 +21,6 @@ void loop()
     }
     if (app)
     {
-        if (true)
-        {
-            static int i = 0;
-            if (++i > 10)
-            {
-                return;
-            }
-        }
-
         app->frame();
     }
 }
@@ -38,7 +29,7 @@ FEATURE main.cpp/Setup
 // Make sure SDL is working.
 if (SDL_Init(SDL_INIT_VIDEO) < 0)
 {
-    printf("OSG. Could not init SDL: '%s'\n", SDL_GetError());
+    OSGCPE_MAIN_LOG("Could not init SDL: '%s'\n", SDL_GetError());
     return 1;
 }
 // Clean SDL up at exit.
@@ -54,7 +45,7 @@ int width = 800;
 int height = 600;
 SDL_Window* window =
     SDL_CreateWindow(
-        "OSG",
+        appName,
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
         width,
@@ -62,12 +53,12 @@ SDL_Window* window =
         SDL_WINDOW_OPENGL);
 if (!window)
 {
-    printf("OSG. Could not create window: '%s'\n", SDL_GetError());
+    OSGCPE_MAIN_LOG("Could not create window: '%s'\n", SDL_GetError());
     return 1;
 }
 SDL_GL_CreateContext(window);
 // Create application.
-app = new osgcpe::Application("Ex01");
+app = new osgcpe::Application(appName);
 app->setupWindow(width, height);
 
 FEATURE main.cpp/Run
