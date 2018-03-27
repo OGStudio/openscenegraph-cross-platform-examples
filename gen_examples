@@ -9,6 +9,7 @@ max_version_id=1
 platforms="
 desktop
 web
+ios
 "
 
 

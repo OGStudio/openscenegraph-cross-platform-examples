@@ -22,28 +22,41 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
 
-// FEATURE render+createGraphicsContext-desktop/Include
-// FEATURE render+createGraphicsContext-ios/Include
-// FEATURE render+createShaderProgram/Include
-// FEATURE render+setupCamera/Include
+#include "log.h"
 
 namespace osgcpe
 {
-namespace render
+
+//! Print OpenSceneGraph notifications to console.
+class Logger : public osg::NotifyHandler
 {
+    public:
+        Logger(const std::string &domain = "") : domain(domain) { }
+        virtual ~Logger() { }
 
-// FEATURE render+createGraphicsContext-desktop/Impl
-// FEATURE render+createGraphicsContext-ios/Impl
-// FEATURE render+createShaderProgram/Impl
-// FEATURE render+setupCamera/Impl
+        // Override NotifyHandler::notify() to receive OpenSceneGraph notifications.
+        void notify(osg::NotifySeverity severity, const char *message) override
+        {
+            log::logprintf(
+                "%s OSG/%s %s",
+                domain.c_str(),
+                log::logLevelToString(severity).c_str(),
+                message
+            );
+        }
 
-// FEATURE render+shaders/Impl
+    private:
+        const std::string domain;
+};
 
-} // namespace render
 } // namespace osgcpe
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
+// Logger+stub Start
+// Stub.
+// Logger+stub End
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
 

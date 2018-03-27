@@ -22,28 +22,36 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
-
-// FEATURE render+createGraphicsContext-desktop/Include
-// FEATURE render+createGraphicsContext-ios/Include
-// FEATURE render+createShaderProgram/Include
-// FEATURE render+setupCamera/Include
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 
 namespace osgcpe
 {
-namespace render
+namespace scene
 {
 
-// FEATURE render+createGraphicsContext-desktop/Impl
-// FEATURE render+createGraphicsContext-ios/Impl
-// FEATURE render+createShaderProgram/Impl
-// FEATURE render+setupCamera/Impl
+// scene+paintScene Start
+void paintScene(osg::Node *scene)
+{
+    // Fragment shader to display everything in red colour.
+    const char shaderFragment[] = R"(
+        void main() {
+          gl_FragColor = vec4(0.5, 0.3, 0.3, 1.0);
+        }
+    )";
+    // Vertex shader to pass geometry vertices to fragment shader.
+    const char shaderVertex[] = R"(
+        void main() {
+          gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
+        }
+    )";
+    auto prog = render::createShaderProgram(shaderVertex, shaderFragment);
+    scene->getOrCreateStateSet()->setAttribute(prog);
+}
+// scene+paintScene End
 
-// FEATURE render+shaders/Impl
-
-} // namespace render
+} // namespace scene
 } // namespace osgcpe
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 

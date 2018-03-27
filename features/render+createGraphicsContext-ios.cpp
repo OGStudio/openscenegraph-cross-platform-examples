@@ -1,25 +1,7 @@
-FEATURE main.h/Impl
-UIView *setupWindow(
-    int width,
-    int height,
-    float scale,
-    UIView *parentView
-) {
-    osgViewer::GraphicsWindowIOS *gc =
-        dynamic_cast<osgViewer::GraphicsWindowIOS *>(
-            createGraphicsContext(width, height, scale, parentView)
-        );
-    // Configure viewer's camera with FOVY and window size.
-    osg::Camera *cam = mViewer->getCamera();
-    setupCamera(cam, gc, 30, width * scale, height * scale);
-    // Return UIView to embed.
-    return (UIView *)gc->getView();
-}
-
-FEATURE functions.h/Include
+FEATURE render.h/Include
 #include <osgViewer/api/IOS/GraphicsWindowIOS>
 
-FEATURE functions.h/Impl
+FEATURE render.h/Impl
 // Create graphics context for iOS.
 osg::GraphicsContext *createGraphicsContext(
     int width,

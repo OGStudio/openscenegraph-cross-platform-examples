@@ -22,28 +22,30 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_H
 
-// FEATURE render+createGraphicsContext-desktop/Include
-// FEATURE render+createGraphicsContext-ios/Include
-// FEATURE render+createShaderProgram/Include
-// FEATURE render+setupCamera/Include
+// Forward declare UIView for Objective-C++ and C++.
+#ifdef __OBJC__
+    @class UIView;
+#else
+    class UIView;
+#endif
 
-namespace osgcpe
+namespace library
 {
-namespace render
-{
 
-// FEATURE render+createGraphicsContext-desktop/Impl
-// FEATURE render+createGraphicsContext-ios/Impl
-// FEATURE render+createShaderProgram/Impl
-// FEATURE render+setupCamera/Impl
+// Initialization.
+UIView *init(int width, int height, float scale, UIView *parentView);
 
-// FEATURE render+shaders/Impl
+// Rendering.
+void frame();
 
-} // namespace render
-} // namespace osgcpe
+// library+Ex01 Start
+// Stub.
+// library+Ex01 End
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
+} // namespace library.
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_H
 

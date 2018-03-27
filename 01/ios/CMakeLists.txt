@@ -57,7 +57,7 @@ INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/src)
 # Reference resource headers.
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/../../data)
 # Build example library.
-ADD_LIBRARY(rawex01 STATIC src/libexample.cpp)
+ADD_LIBRARY(rawex01 STATIC src/library.cpp)
 # WARNING: This does not actually link anything. However, this command
 # WARNING: makes sure all necessary libraries are built.
 TARGET_LINK_LIBRARIES(

@@ -22,28 +22,27 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
+#include "Application.h"
+#include "library.h"
 
-// FEATURE render+createGraphicsContext-desktop/Include
-// FEATURE render+createGraphicsContext-ios/Include
-// FEATURE render+createShaderProgram/Include
-// FEATURE render+setupCamera/Include
+// library+Ex01 Start
+auto appName = "Ex01";
+// library+Ex01 End
+// Application instance.
+osgcpe::Application app(appName);
 
-namespace osgcpe
+namespace library
 {
-namespace render
+
+UIView *init(int width, int height, float scale, UIView *parentView)
 {
+    return app.setupWindow(width, height, scale, parentView);
+}
 
-// FEATURE render+createGraphicsContext-desktop/Impl
-// FEATURE render+createGraphicsContext-ios/Impl
-// FEATURE render+createShaderProgram/Impl
-// FEATURE render+setupCamera/Impl
+void frame()
+{
+    app.frame();
+}
 
-// FEATURE render+shaders/Impl
-
-} // namespace render
-} // namespace osgcpe
-
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
+} // namespace library.
 

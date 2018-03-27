@@ -22,28 +22,40 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
 
-// FEATURE render+createGraphicsContext-desktop/Include
-// FEATURE render+createGraphicsContext-ios/Include
-// FEATURE render+createShaderProgram/Include
-// FEATURE render+setupCamera/Include
+#include <string>
 
 namespace osgcpe
 {
-namespace render
+
+//! Resource container.
+struct Resource
 {
+    Resource(
+        const std::string &group,
+        const std::string &name,
+        unsigned char *contents,
+        unsigned int len
+    ) :
+        group(group),
+        name(name),
+        contents(contents),
+        len(len)
+    { }
 
-// FEATURE render+createGraphicsContext-desktop/Impl
-// FEATURE render+createGraphicsContext-ios/Impl
-// FEATURE render+createShaderProgram/Impl
-// FEATURE render+setupCamera/Impl
+    std::string group;
+    std::string name;
+    unsigned char *contents;
+    unsigned int len;
+};
 
-// FEATURE render+shaders/Impl
-
-} // namespace render
 } // namespace osgcpe
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
+// Resource+stub Start
+// Stub.
+// Resource+stub End
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
 
