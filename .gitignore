@@ -1,2 +1,4 @@
 build*
+# iOS.
 .DS_Store
+*.xcuserdatad
