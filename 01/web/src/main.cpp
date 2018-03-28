@@ -122,6 +122,11 @@ int main(int argc, char *argv[])
     app->setupWindow(width, height);
     
     // main-web End
+    // main+ReaderWriterDebug Start
+    auto registry = osgDB::Registry::instance();
+    auto list = registry->getReaderWriterList();
+    OSGCPE_MAIN_LOG("ReaderWriterList size: '%d'", list.size());
+    // main+ReaderWriterDebug End
     // main+BoxScene Start
     osgcpe::Resource box("models", "box.osgt", box_osgt, box_osgt_len);
     auto scene = osgcpe::resources::node(box);
