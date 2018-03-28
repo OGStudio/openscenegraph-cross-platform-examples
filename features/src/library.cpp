@@ -24,22 +24,45 @@ freely, subject to the following restrictions:
 
 #include "Application.h"
 #include "library.h"
+#include "scene.h"
+// FEATURE library+BoxScene/Include
+// FEATURE library+VBO/Include
 
-// FEATURE library+Ex01/Name
-// Application instance.
-osgcpe::Application app(appName);
+// FEATURE library+OSGCPE_LIBRARY_LOG/Impl
+// FEATURE library+StaticPluginOSG/Impl
+
+struct LibraryApplication
+{
+    osgcpe::Application *app;
+
+    LibraryApplication()
+    {
+        // FEATURE library+Ex01/Name
+        this->app = new osgcpe::Application(appName);
+        // FEATURE library+BoxScene/Impl
+        if (scene.valid())
+        {
+            // FEATURE library+VBO/Impl
+            osgcpe::scene::paintScene(scene);
+            this->app->setScene(scene);
+        }
+    }
+};
+
+// Library application instance.
+LibraryApplication libapp;
 
 namespace library
 {
 
 UIView *init(int width, int height, float scale, UIView *parentView)
 {
-    return app.setupWindow(width, height, scale, parentView);
+    return libapp.app->setupWindow(width, height, scale, parentView);
 }
 
 void frame()
 {
-    app.frame();
+    libapp.app->frame();
 }
 
 } // namespace library.

@@ -60,8 +60,11 @@ int main(int argc, char *argv[])
         OSGCPE_MAIN_LOG("ERROR Could not load scene");
     }
     // main+BoxScene End
-    osgcpe::scene::paintScene(scene);
-    app->setScene(scene);
+    if (scene.valid())
+    {
+        osgcpe::scene::paintScene(scene);
+        app->setScene(scene);
+    }
     // main-desktop Start
     app->run();
     delete app;

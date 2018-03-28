@@ -20,11 +20,10 @@ Application+Rendering
 
 scene+paintScene
 
-#?main+OSGCPE_MAIN_LOG
-#?main+BoxScene
-#?main+StaticPluginOSG
-#?main+VBO
-
 VBOSetupVisitor+stub
 
 library+Ex01
+library+OSGCPE_LIBRARY_LOG
+library+BoxScene
+library+StaticPluginOSG
+library+VBO

@@ -130,14 +130,17 @@ int main(int argc, char *argv[])
         OSGCPE_MAIN_LOG("ERROR Could not load scene");
     }
     // main+BoxScene End
-    // main+VBO Start
-    // Use VBO and EBO instead of display lists. CRITICAL for web (Emscripten)
-    // to skip FULL_ES2 emulation flag.
-    osgcpe::VBOSetupVisitor vbo;
-    scene->accept(vbo);
-    // main+VBO End
-    osgcpe::scene::paintScene(scene);
-    app->setScene(scene);
+    if (scene.valid())
+    {
+        // main+VBO Start
+        // Use VBO and EBO instead of display lists. CRITICAL for web (Emscripten)
+        // to skip FULL_ES2 emulation flag.
+        osgcpe::VBOSetupVisitor vbo;
+        scene->accept(vbo);
+        // main+VBO End
+        osgcpe::scene::paintScene(scene);
+        app->setScene(scene);
+    }
     // main-web Start
     // Render asynchronously.
     emscripten_set_main_loop(loop, -1, 0);
