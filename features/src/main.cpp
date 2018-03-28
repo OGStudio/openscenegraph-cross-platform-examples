@@ -38,6 +38,7 @@ int main(int argc, char *argv[])
 
     // FEATURE main-desktop/Setup
     // FEATURE main-web/Setup
+    // FEATURE main+ReaderWriterDebug/Impl
     // FEATURE main+BoxScene/Impl
     if (scene.valid())
     {

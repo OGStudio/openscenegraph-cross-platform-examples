@@ -39,6 +39,7 @@ struct LibraryApplication
     {
         // FEATURE library+Ex01/Name
         this->app = new osgcpe::Application(appName);
+        // FEATURE library+ReaderWriterDebug/Impl
         // FEATURE library+BoxScene/Impl
         if (scene.valid())
         {

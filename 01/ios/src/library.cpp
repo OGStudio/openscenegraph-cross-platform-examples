@@ -61,6 +61,11 @@ struct LibraryApplication
         auto appName = "Ex01";
         // library+Ex01 End
         this->app = new osgcpe::Application(appName);
+        // library+ReaderWriterDebug Start
+        auto registry = osgDB::Registry::instance();
+        auto list = registry->getReaderWriterList();
+        OSGCPE_LIBRARY_LOG("ReaderWriterList size: '%d'", list.size());
+        // library+ReaderWriterDebug End
         // library+BoxScene Start
         osgcpe::Resource box("models", "box.osgt", box_osgt, box_osgt_len);
         auto scene = osgcpe::resources::node(box);

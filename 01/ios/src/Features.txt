@@ -27,3 +27,5 @@ library+OSGCPE_LIBRARY_LOG
 library+BoxScene
 library+StaticPluginOSG
 library+VBO
+
+library+ReaderWriterDebug
