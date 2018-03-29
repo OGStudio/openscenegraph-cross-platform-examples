@@ -51,19 +51,26 @@ struct LibraryApplication
 };
 
 // Library application instance.
-LibraryApplication libapp;
+LibraryApplication *libapp = 0;
 
 namespace library
 {
 
 UIView *init(int width, int height, float scale, UIView *parentView)
 {
-    return libapp.app->setupWindow(width, height, scale, parentView);
+    // Create library application only once.
+    // If we create library application at stack, the instance might get initialized
+    // before plugin readers/writers are available, which would break everything.
+    if (!libapp)
+    {
+        libapp = new LibraryApplication;
+    }
+    return libapp->app->setupWindow(width, height, scale, parentView);
 }
 
 void frame()
 {
-    libapp.app->frame();
+    libapp->app->frame();
 }
 
 } // namespace library.
