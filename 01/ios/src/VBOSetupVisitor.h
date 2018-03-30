@@ -56,9 +56,9 @@ class VBOSetupVisitor : public osg::NodeVisitor
 
 } // namespace osgcpe
 
-// VBOSetupVisitor+stub Start
+// VBOSetupVisitor+Stub Start
 // Stub.
-// VBOSetupVisitor+stub End
+// VBOSetupVisitor+Stub End
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_SETUP_VISITOR_H
 

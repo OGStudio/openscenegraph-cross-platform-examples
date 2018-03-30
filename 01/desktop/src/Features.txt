@@ -2,7 +2,7 @@ log+printfString
 log+log-default
 log+logprintf
 log+logLevelToString
-Logger+stub
+Logger+Stub
 
 render+setupCamera
 render+createGraphicsContext-desktop
@@ -11,8 +11,8 @@ render+createShaderProgram
 resources+OSGCPE_RESOURCES_LOG
 resources+node
 resources+extension
-Resource+stub
-ResourceStreamBuffer+stub
+Resource+Stub
+ResourceStreamBuffer+Stub
 
 Application+run
 Application+setupWindow-desktop

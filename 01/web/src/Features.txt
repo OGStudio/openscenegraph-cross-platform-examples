@@ -2,7 +2,7 @@ log+printfString
 log+log-default
 log+logprintf
 log+logLevelToString
-Logger+stub
+Logger+Stub
 
 render+setupCamera
 render+createShaderProgram
@@ -10,8 +10,8 @@ render+createShaderProgram
 resources+OSGCPE_RESOURCES_LOG
 resources+node
 resources+extension
-Resource+stub
-ResourceStreamBuffer+stub
+Resource+Stub
+ResourceStreamBuffer+Stub
 
 Application+setupWindow-embedded
 Application+Logging
@@ -25,6 +25,6 @@ main+Ex01
 
 main+StaticPluginOSG
 main+VBO
-VBOSetupVisitor+stub
+VBOSetupVisitor+Stub
 
 main+ReaderWriterDebug

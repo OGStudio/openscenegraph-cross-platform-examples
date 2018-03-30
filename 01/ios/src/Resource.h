@@ -53,9 +53,9 @@ struct Resource
 
 } // namespace osgcpe
 
-// Resource+stub Start
+// Resource+Stub Start
 // Stub.
-// Resource+stub End
+// Resource+Stub End
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
 

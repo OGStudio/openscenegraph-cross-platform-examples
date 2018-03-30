@@ -2,7 +2,7 @@ log+printfString
 log+log-default
 log+logprintf
 log+logLevelToString
-Logger+stub
+Logger+Stub
 
 render+setupCamera
 render+createGraphicsContext-ios
@@ -11,8 +11,8 @@ render+createShaderProgram
 resources+OSGCPE_RESOURCES_LOG
 resources+node
 resources+extension
-Resource+stub
-ResourceStreamBuffer+stub
+Resource+Stub
+ResourceStreamBuffer+Stub
 
 Application+setupWindow-ios
 Application+Logging
@@ -20,7 +20,7 @@ Application+Rendering
 
 scene+paintScene
 
-VBOSetupVisitor+stub
+VBOSetupVisitor+Stub
 
 library+Ex01
 library+OSGCPE_LIBRARY_LOG

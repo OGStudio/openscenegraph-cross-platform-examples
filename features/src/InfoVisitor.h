@@ -93,7 +93,7 @@ class InfoVisitor : public osg::NodeVisitor
 
 } // namespace osgcpe
 
-// FEATURE InfoVisitor+stub/Impl
+// FEATURE InfoVisitor+Stub/Impl
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_INFO_VISITOR_H
 

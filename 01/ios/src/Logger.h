@@ -54,9 +54,9 @@ class Logger : public osg::NotifyHandler
 
 } // namespace osgcpe
 
-// Logger+stub Start
+// Logger+Stub Start
 // Stub.
-// Logger+stub End
+// Logger+Stub End
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
 

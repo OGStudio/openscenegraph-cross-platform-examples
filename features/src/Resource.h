@@ -53,7 +53,7 @@ struct Resource
 
 } // namespace osgcpe
 
-// FEATURE Resource+stub/Impl
+// FEATURE Resource+Stub/Impl
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
 
