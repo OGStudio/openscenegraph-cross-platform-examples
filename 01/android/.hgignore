@@ -1,11 +1,11 @@
-build
+syntax: glob
 # Mac.
 .DS_Store
-# Xcode.
-*.xcuserdatad
-# Android Studio.
+
+# Android.
 build
 .gradle
 .idea
 .externalNativeBuild
 local.properties
+
