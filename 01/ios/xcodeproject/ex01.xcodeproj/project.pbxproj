@@ -335,8 +335,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
-				"OTHER_LDFLAGS[sdk=iphoneos*]" = "\"$(SRCROOT)/../build-device/libex01.a\"";
-				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = "\"$(SRCROOT)/../build-simulator/libex01.a\"";
+				"OTHER_LDFLAGS[sdk=iphoneos*]" = "\"$(SRCROOT)/../build/Device/libex01.a\"";
+				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = "\"$(SRCROOT)/../build/Simulator/libex01.a\"";
 				PRODUCT_BUNDLE_IDENTIFIER = org.opengamestudio.ex01;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../src";
@@ -354,8 +354,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
-				"OTHER_LDFLAGS[sdk=iphoneos*]" = "\"$(SRCROOT)/player/build/Device/libplayer.a\"";
-				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = "\"$(SRCROOT)/../build-simulator/libex01.a\"";
+				"OTHER_LDFLAGS[sdk=iphoneos*]" = "\"$(SRCROOT)/../build/Device/libex01.a\"";
+				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = "\"$(SRCROOT)/../build/Simulator/libex01.a\"";
 				PRODUCT_BUNDLE_IDENTIFIER = org.opengamestudio.ex01;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../src";
