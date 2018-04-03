@@ -12,6 +12,8 @@ android {
         externalNativeBuild {
             cmake {
                 cppFlags "-std=c++11 -frtti -fexceptions"
+                arguments "-DCMAKE_BUILD_TYPE=Release"
+                abiFilters "armeabi-v7a"
             }
         }
     }

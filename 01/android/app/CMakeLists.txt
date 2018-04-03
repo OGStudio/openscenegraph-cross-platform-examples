@@ -22,6 +22,11 @@ INCLUDE_DIRECTORIES(${OSG_BUILD_DIR}/include)
 # Reference OpenSceneGraph libraries.
 LINK_DIRECTORIES(${OSG_BUILD_DIR}/lib)
 
+# Reference library headers.
+INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/src/main/cpp)
+# Reference resource headers.
+INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/../../../data)
+
 ADD_LIBRARY(library SHARED src/main/cpp/library.cpp)
 FIND_LIBRARY(log-lib log)
 # Libraries must be linked in the specified order.

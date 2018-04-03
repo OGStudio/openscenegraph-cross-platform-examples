@@ -24,6 +24,10 @@ freely, subject to the following restrictions:
 
 #include "Application.h"
 #include "scene.h"
+// library-android Start
+#include <jni.h>
+
+// library-android End
 // library+BoxScene Start
 #include "box.osgt.h"
 #include "resources.h"

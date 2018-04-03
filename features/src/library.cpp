@@ -24,6 +24,7 @@ freely, subject to the following restrictions:
 
 #include "Application.h"
 #include "scene.h"
+// FEATURE library-android/Include
 // FEATURE library-ios/Include
 // FEATURE library+BoxScene/Include
 // FEATURE library+VBO/Include
