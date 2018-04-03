@@ -24,10 +24,6 @@ freely, subject to the following restrictions:
 
 #include "Application.h"
 #include "scene.h"
-// library-ios Start
-#include "library.h"
-
-// library-ios End
 // library+BoxScene Start
 #include "box.osgt.h"
 #include "resources.h"
@@ -89,14 +85,18 @@ struct LibraryApplication
 // Library application instance.
 LibraryApplication *libapp = 0;
 
-// library-ios Start
-namespace library
-{
+// library-android Start
+#define OSGCPE_JNI(FUNC_NAME) \
+    JNIEXPORT void JNICALL Java_org_opengamestudio_ex01_library_ ## FUNC_NAME
+#define OSGCPE_JNI_ARG JNIEnv *env, jobject /* this */
 
-// library-ios End
+extern "C" {
 
-// library+init-ios Start
-UIView *init(int width, int height, float scale, UIView *parentView)
+// library-android End
+
+// library+init-android Start
+// Setup graphics context.
+OSGCPE_JNI(init)(OSGCPE_JNI_ARG, jint width, jint height)
 {
     // Create library application only once.
     // If we create library application at stack, the instance might get initialized
@@ -105,17 +105,20 @@ UIView *init(int width, int height, float scale, UIView *parentView)
     {
         libapp = new LibraryApplication;
     }
-    return libapp->app->setupWindow(width, height, scale, parentView);
+    return libapp->app->setupWindow(width, height);
 }
-// library+init-ios End
-// library+frame-ios Start
-void frame()
+// library+init-android End
+// library+frame-android Start
+// Rendering.
+OSGCPE_JNI(frame)(OSGCPE_JNI_ARG)
 {
     libapp->app->frame();
 }
-// library+frame-ios End
 
-// library-ios Start
-} // namespace library.
-// library-ios End
+// library+frame-android End
+
+// library-android Start
+} // extern "C".
+
+// library-android End
 

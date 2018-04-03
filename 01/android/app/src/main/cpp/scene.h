@@ -22,18 +22,36 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 
-// FEATURE library+init-ios/Decl
-
-namespace library
+namespace osgcpe
+{
+namespace scene
 {
 
-// FEATURE library+init-ios/Impl
-// FEATURE library+frame-ios/Impl
+// scene+paintScene Start
+void paintScene(osg::Node *scene)
+{
+    // Fragment shader to display everything in red colour.
+    const char shaderFragment[] = R"(
+        void main() {
+          gl_FragColor = vec4(0.5, 0.3, 0.3, 1.0);
+        }
+    )";
+    // Vertex shader to pass geometry vertices to fragment shader.
+    const char shaderVertex[] = R"(
+        void main() {
+          gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
+        }
+    )";
+    auto prog = render::createShaderProgram(shaderVertex, shaderFragment);
+    scene->getOrCreateStateSet()->setAttribute(prog);
+}
+// scene+paintScene End
 
-} // namespace library.
+} // namespace scene
+} // namespace osgcpe
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_H
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 

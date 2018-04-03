@@ -22,18 +22,38 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
 
-// FEATURE library+init-ios/Decl
+// render+createShaderProgram Start
+#include <osg/Program>
 
-namespace library
+// render+createShaderProgram End
+
+namespace osgcpe
+{
+namespace render
 {
 
-// FEATURE library+init-ios/Impl
-// FEATURE library+frame-ios/Impl
+// render+createShaderProgram Start
+osg::Program *createShaderProgram(
+    const std::string &vertexShader,
+    const std::string &fragmentShader
+) {
+    // Load shaders.
+    osg::Shader *vs = new osg::Shader(osg::Shader::VERTEX, vertexShader);
+    osg::Shader *fs = new osg::Shader(osg::Shader::FRAGMENT, fragmentShader);
+    // Compile shaders and compose shader program.
+    osg::ref_ptr<osg::Program> prog = new osg::Program;
+    prog->addShader(vs);
+    prog->addShader(fs);
+    return prog.release();
+}
+// render+createShaderProgram End
 
-} // namespace library.
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_H
+} // namespace render
+} // namespace osgcpe
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
 

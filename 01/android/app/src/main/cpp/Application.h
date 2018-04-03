@@ -66,6 +66,13 @@ class Application
             // Application+Logging End
         }
 
+        // Application+setupWindow-android Start
+        public:
+            void setupWindow(int width, int height)
+            {
+                this->viewer->setUpViewerAsEmbeddedInWindow(0, 0, width, height);
+            }
+        // Application+setupWindow-android End
 
         // Application+Logging Start
         private:

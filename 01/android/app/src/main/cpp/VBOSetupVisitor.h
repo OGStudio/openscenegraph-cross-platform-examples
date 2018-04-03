@@ -22,45 +22,43 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "Application.h"
-#include "scene.h"
-// FEATURE library-ios/Include
-// FEATURE library+BoxScene/Include
-// FEATURE library+VBO/Include
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_SETUP_VISITOR_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_SETUP_VISITOR_H
 
-// FEATURE library+OSGCPE_LIBRARY_LOG/Impl
-// FEATURE library+StaticPluginOSG/Impl
+#include <osg/Geode>
+#include <osg/Geometry>
+#include <osg/NodeVisitor>
 
-struct LibraryApplication
+namespace osgcpe
 {
-    osgcpe::Application *app;
 
-    LibraryApplication()
-    {
-        // FEATURE library+Ex01/Name
-        this->app = new osgcpe::Application(appName);
-        // FEATURE library+ReaderWriterDebug/Impl
-        // FEATURE library+BoxScene/Impl
-        if (scene.valid())
+// This class forces the use of VBO.
+class VBOSetupVisitor : public osg::NodeVisitor
+{
+    public:
+        VBOSetupVisitor() :
+            osg::NodeVisitor(osg::NodeVisitor::TRAVERSE_ALL_CHILDREN) { }
+
+        virtual void apply(osg::Geode &geode)
         {
-            // FEATURE library+VBO/Impl
-            osgcpe::scene::paintScene(scene);
-            this->app->setScene(scene);
+            for (unsigned int i = 0; i < geode.getNumDrawables(); ++i)
+            {
+                osg::Geometry *geom =
+                    dynamic_cast<osg::Geometry*>(geode.getDrawable(i));
+                if (geom)
+                {
+                    geom->setUseVertexBufferObjects(true);
+                }
+            }
+            NodeVisitor::apply(geode);
         }
-    }
 };
 
-// Library application instance.
-LibraryApplication *libapp = 0;
+} // namespace osgcpe
 
-// FEATURE library-android/NamespaceStart
-// FEATURE library-ios/NamespaceStart
+// VBOSetupVisitor+Stub Start
+// Stub.
+// VBOSetupVisitor+Stub End
 
-// FEATURE library+init-android/Impl
-// FEATURE library+init-ios/Impl
-// FEATURE library+frame-android/Impl
-// FEATURE library+frame-ios/Impl
-
-// FEATURE library-android/NamespaceEnd
-// FEATURE library-ios/NamespaceEnd
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_SETUP_VISITOR_H
 

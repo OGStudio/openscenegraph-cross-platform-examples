@@ -25,6 +25,7 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_H
 
+// library+init-ios Start
 // Forward declare UIView for Objective-C++ and C++.
 #ifdef __OBJC__
     @class UIView;
@@ -32,18 +33,21 @@ freely, subject to the following restrictions:
     class UIView;
 #endif
 
+// library+init-ios End
+
 namespace library
 {
 
+// library+init-ios Start
 // Initialization.
 UIView *init(int width, int height, float scale, UIView *parentView);
 
+// library+init-ios End
+// library+frame-ios Start
 // Rendering.
 void frame();
 
-// library+Ex01 Start
-// Stub.
-// library+Ex01 End
+// library+frame-ios End
 
 } // namespace library.
 

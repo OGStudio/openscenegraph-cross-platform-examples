@@ -6,20 +6,32 @@ dir=`dirname $0`
 
 max_version_id=1
 
+# Android platform is processed separately.
 platforms="
 desktop
 web
 ios
 "
 
+processPlatformFeatures()
+{
+    PATH_TO_FEATURES_TXT=$1
+    PATH_TO_FEATURES=$2
+    echo "feature-tool $PATH_TO_FEATURES_TXT $PATH_TO_FEATURES"
+    feature-tool $PATH_TO_FEATURES_TXT $PATH_TO_FEATURES
+}
 
-for id in $(seq 1 $max_version_id); do
-    example=$(printf '%02d' "$id")
-    echo "Generating example '$example'"
-    for platform in $platforms; do
-        featuresSpec=$dir/$example/$platform/src/Features.txt
-        echo "feature-tool $featuresSpec $dir/features"
-        feature-tool $featuresSpec $dir/features
+main()
+{
+    for id in $(seq 1 $max_version_id); do
+        example=$(printf '%02d' "$id")
+        echo "Generating example '$example'"
+        for platform in $platforms; do
+            processPlatformFeatures $dir/$example/$platform/src/Features.txt $dir/features
+        done
+        processPlatformFeatures $dir/$example/android/app/src/main/cpp/Features.txt $dir/features
     done
-done
+}
+
+main
 

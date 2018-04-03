@@ -22,18 +22,40 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
 
-// FEATURE library+init-ios/Decl
+#include <string>
 
-namespace library
+namespace osgcpe
 {
 
-// FEATURE library+init-ios/Impl
-// FEATURE library+frame-ios/Impl
+//! Resource container.
+struct Resource
+{
+    Resource(
+        const std::string &group,
+        const std::string &name,
+        unsigned char *contents,
+        unsigned int len
+    ) :
+        group(group),
+        name(name),
+        contents(contents),
+        len(len)
+    { }
 
-} // namespace library.
+    std::string group;
+    std::string name;
+    unsigned char *contents;
+    unsigned int len;
+};
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_H
+} // namespace osgcpe
+
+// Resource+Stub Start
+// Stub.
+// Resource+Stub End
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
 

@@ -47,7 +47,7 @@ class Application
 
         // FEATURE Application+run/Impl
         // FEATURE Application+setupWindow-desktop/Impl
-        // FEATURE Application+setupWindow-embedded/Impl
+        // FEATURE Application+setupWindow-android/Impl
         // FEATURE Application+setupWindow-ios/Impl
 
         // FEATURE Application+Logging/Impl
