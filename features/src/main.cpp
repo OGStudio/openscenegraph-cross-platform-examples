@@ -22,30 +22,15 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "Application.h"
-#include "scene.h"
+#include "Example.h"
 // FEATURE main-web/Include
-// FEATURE main+BoxScene/Include
-// FEATURE main+VBO/Include
 
-// FEATURE main+OSGCPE_MAIN_LOG/Impl
-// FEATURE main+StaticPluginOSG/Impl
 // FEATURE main-web/Loop
 
 int main(int argc, char *argv[])
 {
-    // FEATURE main+Ex01/Name
-
     // FEATURE main-desktop/Setup
     // FEATURE main-web/Setup
-    // FEATURE main+ReaderWriterDebug/Impl
-    // FEATURE main+BoxScene/Impl
-    if (scene.valid())
-    {
-        // FEATURE main+VBO/Impl
-        osgcpe::scene::paintScene(scene);
-        app->setScene(scene);
-    }
     // FEATURE main-desktop/Run
     // FEATURE main-web/Run
     return 0;

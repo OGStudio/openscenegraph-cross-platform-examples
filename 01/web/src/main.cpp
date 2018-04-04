@@ -22,38 +22,13 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "Application.h"
-#include "scene.h"
+#include "Example.h"
 // main-web Start
 #include <emscripten.h>
 #include <SDL2/SDL.h>
 
 // main-web End
-// main+BoxScene Start
-#include "box.osgt.h"
-#include "resources.h"
 
-// main+BoxScene End
-// main+VBO Start
-#include "VBOSetupVisitor.h"
-
-// main+VBO End
-
-// main+OSGCPE_MAIN_LOG Start
-#include "log.h"
-#define OSGCPE_MAIN_LOG_PREFIX "osgcpe-main %s"
-#define OSGCPE_MAIN_LOG(...) \
-    osgcpe::log::logprintf( \
-        OSGCPE_MAIN_LOG_PREFIX, \
-        osgcpe::log::printfString(__VA_ARGS__).c_str() \
-    )
-
-// main+OSGCPE_MAIN_LOG End
-// main+StaticPluginOSG Start
-// Reference plugins to read `osgt` file statically.
-USE_OSGPLUGIN(osg2)
-USE_SERIALIZER_WRAPPER_LIBRARY(osg)
-// main+StaticPluginOSG End
 // main-web Start
 // We use app global variable in loop() function.
 osgcpe::Application *app = 0;
@@ -81,10 +56,6 @@ void loop()
 
 int main(int argc, char *argv[])
 {
-    // main+Ex01 Start
-    auto appName = "Ex01";
-    // main+Ex01 End
-
     // main-web Start
     // Make sure SDL is working.
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -122,25 +93,6 @@ int main(int argc, char *argv[])
     app->setupWindow(width, height);
     
     // main-web End
-    // main+BoxScene Start
-    osgcpe::Resource box("models", "box.osgt", box_osgt, box_osgt_len);
-    auto scene = osgcpe::resources::node(box);
-    if (!scene.valid())
-    {
-        OSGCPE_MAIN_LOG("ERROR Could not load scene");
-    }
-    // main+BoxScene End
-    if (scene.valid())
-    {
-        // main+VBO Start
-        // Use VBO and EBO instead of display lists. CRITICAL for web (Emscripten)
-        // to skip FULL_ES2 emulation flag.
-        osgcpe::VBOSetupVisitor vbo;
-        scene->accept(vbo);
-        // main+VBO End
-        osgcpe::scene::paintScene(scene);
-        app->setScene(scene);
-    }
     // main-web Start
     // Render asynchronously.
     emscripten_set_main_loop(loop, -1, 0);

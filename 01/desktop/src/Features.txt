@@ -20,8 +20,10 @@ Application+Logging
 Application+Rendering
 
 scene+paintScene
-main+OSGCPE_MAIN_LOG
-main+BoxScene
+
+Example+01
+Example+OSGCPE_EXAMPLE_LOG
+Example+BoxScene
+
 main-desktop
-main+Ex01
 

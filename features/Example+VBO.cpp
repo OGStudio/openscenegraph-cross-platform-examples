@@ -1,7 +1,7 @@
-FEATURE main.cpp/Include
+FEATURE Example.h/Include
 #include "VBOSetupVisitor.h"
 
-FEATURE main.cpp/Impl
+FEATURE Example.h/Impl
 // Use VBO and EBO instead of display lists. CRITICAL for web (Emscripten)
 // to skip FULL_ES2 emulation flag.
 osgcpe::VBOSetupVisitor vbo;
