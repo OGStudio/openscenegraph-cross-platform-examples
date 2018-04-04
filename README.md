@@ -35,9 +35,9 @@ Each example is a complete application that runs on the following platforms:
 
 <a name="examples-embed-resources"/>
 
-### [01. Embed resources into executable](01.EmbedResourcesIntoExecutable)
+### [01. Embed resources into executable](01/README.md)
 
-  ![Screenshot](01.EmbedResourcesIntoExecutable/shot.png)
+  ![Screenshot](01/shot.png)
 
   Learn how to use `xxd` Unix utility to convert any binary file (in our case,
   it's box.osgt model) into
