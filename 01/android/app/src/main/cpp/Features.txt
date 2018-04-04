@@ -12,7 +12,7 @@ resources+extension
 Resource+Stub
 ResourceStreamBuffer+Stub
 
-Application+setupWindow-android
+Application+setupWindow-embedded
 Application+Logging
 Application+Rendering
 

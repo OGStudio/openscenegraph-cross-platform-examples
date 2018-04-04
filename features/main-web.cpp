@@ -3,8 +3,8 @@ FEATURE main.cpp/Include
 #include <SDL2/SDL.h>
 
 FEATURE main.cpp/Loop
-// We use app global variable in loop() function.
-osgcpe::Application *app = 0;
+// We use Example global variable in loop() function.
+osgcpe::Example *example = 0;
 
 // Stand alone function that is called by Emscripten to run the app.
 void loop()
@@ -13,15 +13,15 @@ void loop()
     while (SDL_PollEvent(&e))
     {
         /*
-        if (app)
+        if (example)
         {
-            app->handleEvent(e);
+            example->app->handleEvent(e);
         }
         */
     }
-    if (app)
+    if (example)
     {
-        app->frame();
+        example->app->frame();
     }
 }
 
@@ -29,7 +29,7 @@ FEATURE main.cpp/Setup
 // Make sure SDL is working.
 if (SDL_Init(SDL_INIT_VIDEO) < 0)
 {
-    OSGCPE_MAIN_LOG("Could not init SDL: '%s'\n", SDL_GetError());
+    printf("Could not init SDL: '%s'\n", SDL_GetError());
     return 1;
 }
 // Clean SDL up at exit.
@@ -45,7 +45,7 @@ int width = 800;
 int height = 600;
 SDL_Window* window =
     SDL_CreateWindow(
-        appName,
+        osgcpe::EXAMPLE_TITLE,
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
         width,
@@ -53,13 +53,13 @@ SDL_Window* window =
         SDL_WINDOW_OPENGL);
 if (!window)
 {
-    OSGCPE_MAIN_LOG("Could not create window: '%s'\n", SDL_GetError());
+    printf("Could not create window: '%s'\n", SDL_GetError());
     return 1;
 }
 SDL_GL_CreateContext(window);
-// Create application.
-app = new osgcpe::Application(appName);
-app->setupWindow(width, height);
+// Create example.
+example = new osgcpe::Example;
+example->app->setupWindow(width, height);
 
 FEATURE main.cpp/Run
 // Render asynchronously.

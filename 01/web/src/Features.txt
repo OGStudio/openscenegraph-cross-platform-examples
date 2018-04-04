@@ -18,11 +18,13 @@ Application+Logging
 Application+Rendering
 
 scene+paintScene
-main+OSGCPE_MAIN_LOG
-main+BoxScene
-main-web
-main+Ex01
 
-main+StaticPluginOSG
-main+VBO
+Example+01
+Example+OSGCPE_EXAMPLE_LOG
+Example+BoxScene
+Example+StaticPluginOSG
+Example+VBO
+
 VBOSetupVisitor+Stub
+
+main-web
