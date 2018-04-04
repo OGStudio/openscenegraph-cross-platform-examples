@@ -5,5 +5,5 @@ void frame();
 FEATURE library.cpp/Impl
 void frame()
 {
-    libapp->app->frame();
+    example->app->frame();
 }

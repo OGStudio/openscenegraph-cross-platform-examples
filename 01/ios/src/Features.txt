@@ -20,13 +20,15 @@ Application+Rendering
 
 scene+paintScene
 
+Example+01
+Example+OSGCPE_EXAMPLE_LOG
+Example+BoxScene
+Example+StaticPluginOSG
+Example+VBO
+
 VBOSetupVisitor+Stub
 
 library-ios
 library+init-ios
 library+frame-ios
-library+Ex01
-library+OSGCPE_LIBRARY_LOG
-library+BoxScene
-library+StaticPluginOSG
-library+VBO
+

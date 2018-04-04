@@ -22,72 +22,14 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "Application.h"
-#include "scene.h"
+#include "Example.h"
 // library-ios Start
 #include "library.h"
 
 // library-ios End
-// library+BoxScene Start
-#include "box.osgt.h"
-#include "resources.h"
 
-// library+BoxScene End
-// library+VBO Start
-#include "VBOSetupVisitor.h"
-
-// library+VBO End
-
-// library+OSGCPE_LIBRARY_LOG Start
-#include "log.h"
-#define OSGCPE_LIBRARY_LOG_PREFIX "osgcpe-library %s"
-#define OSGCPE_LIBRARY_LOG(...) \
-    osgcpe::log::logprintf( \
-        OSGCPE_LIBRARY_LOG_PREFIX, \
-        osgcpe::log::printfString(__VA_ARGS__).c_str() \
-    )
-
-// library+OSGCPE_LIBRARY_LOG End
-// library+StaticPluginOSG Start
-// Reference plugins to read `osgt` files.
-USE_OSGPLUGIN(osg2)
-USE_SERIALIZER_WRAPPER_LIBRARY(osg)
-// library+StaticPluginOSG End
-
-struct LibraryApplication
-{
-    osgcpe::Application *app;
-
-    LibraryApplication()
-    {
-        // library+Ex01 Start
-        auto appName = "Ex01";
-        // library+Ex01 End
-        this->app = new osgcpe::Application(appName);
-        // library+BoxScene Start
-        osgcpe::Resource box("models", "box.osgt", box_osgt, box_osgt_len);
-        auto scene = osgcpe::resources::node(box);
-        if (!scene.valid())
-        {
-            OSGCPE_LIBRARY_LOG("ERROR Could not load scene");
-        }
-        // library+BoxScene End
-        if (scene.valid())
-        {
-            // library+VBO Start
-            // Use VBO and EBO instead of display lists. CRITICAL for web (Emscripten)
-            // to skip FULL_ES2 emulation flag.
-            osgcpe::VBOSetupVisitor vbo;
-            scene->accept(vbo);
-            // library+VBO End
-            osgcpe::scene::paintScene(scene);
-            this->app->setScene(scene);
-        }
-    }
-};
-
-// Library application instance.
-LibraryApplication *libapp = 0;
+// Example instance.
+osgcpe::Example *example = 0;
 
 // library-ios Start
 namespace library
@@ -98,20 +40,20 @@ namespace library
 // library+init-ios Start
 UIView *init(int width, int height, float scale, UIView *parentView)
 {
-    // Create library application only once.
-    // If we create library application at stack, the instance might get initialized
+    // Create example only once.
+    // If we create example at stack, the instance might get initialized
     // before plugin readers/writers are available, which would break everything.
-    if (!libapp)
+    if (!example)
     {
-        libapp = new LibraryApplication;
+        example = new osgcpe::Example;
     }
-    return libapp->app->setupWindow(width, height, scale, parentView);
+    return example->app->setupWindow(width, height, scale, parentView);
 }
 // library+init-ios End
 // library+frame-ios Start
 void frame()
 {
-    libapp->app->frame();
+    example->app->frame();
 }
 // library+frame-ios End
 

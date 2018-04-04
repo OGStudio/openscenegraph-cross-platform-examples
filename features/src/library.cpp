@@ -22,37 +22,12 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "Application.h"
-#include "scene.h"
+#include "Example.h"
 // FEATURE library-android/Include
 // FEATURE library-ios/Include
-// FEATURE library+BoxScene/Include
-// FEATURE library+VBO/Include
 
-// FEATURE library+OSGCPE_LIBRARY_LOG/Impl
-// FEATURE library+StaticPluginOSG/Impl
-
-struct LibraryApplication
-{
-    osgcpe::Application *app;
-
-    LibraryApplication()
-    {
-        // FEATURE library+Ex01/Name
-        this->app = new osgcpe::Application(appName);
-        // FEATURE library+ReaderWriterDebug/Impl
-        // FEATURE library+BoxScene/Impl
-        if (scene.valid())
-        {
-            // FEATURE library+VBO/Impl
-            osgcpe::scene::paintScene(scene);
-            this->app->setScene(scene);
-        }
-    }
-};
-
-// Library application instance.
-LibraryApplication *libapp = 0;
+// Example instance.
+osgcpe::Example *example = 0;
 
 // FEATURE library-android/NamespaceStart
 // FEATURE library-ios/NamespaceStart
