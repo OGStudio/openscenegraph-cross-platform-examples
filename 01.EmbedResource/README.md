@@ -5,8 +5,8 @@
 * [Steps to embed a resource](#steps)
     * [1.1. Generate C header file from a binary resource](#generate)
     * [1.2. Reference `box.osgt.h`](#reference)
-    * [1.3. Provide `box_osgt` as `std::stream`](#stream)
-    * [1.4. Load the node from `std::stream`](#load)
+    * [1.3. Provide `box_osgt` as `std::istream`](#stream)
+    * [1.4. Load the node from `std::istream`](#load)
 
 <a name="overview"/>
 
@@ -62,27 +62,42 @@ Both variables start with `box_osgt`, which is derived from `box.osgt` filename.
 
 <a name="reference"/>
 
-# 1.2. Reference `box.osgt.h`
+## 1.2. Reference `box.osgt.h`
 
 First, reference `box.osgt.h` by simply including it in the sources ([desktop version][ref_res_src]):
 ```
 #include "box.osgt.h"
 ```
 
-Second, make sure CMakeLists.txt includes the directory with `box.osgt.h` ([desktop version][ref_res_cmake]):
+Second, make sure `CMakeLists.txt` includes the directory with `box.osgt.h` ([desktop version][ref_res_cmake]):
 ```
 INCLUDE_DIRECTORIES(/path/to/the/directory)
 ```
 
 <a name="stream"/>
 
-# 1.3. Provide `box_osgt` as `std::stream`
+## 1.3. Provide `box_osgt` as `std::istream`
 
-In order to let OpenSceneGraph access the data from a C array, we have to represent it as `std::stream`.
+In order to let OpenSceneGraph access the data from a C array, we have to
+represent it as `std::istream`.
+
+To simplify resource management in code, introduce two classes:
+
+* [`Resource`][Resource.h] to hold generated contents
+* [`ResourceStreamBuffer`][ResourceStreamBuffer.h] to provide C array contents as `std::streambuf`, which can be converted to `std::istream`
+
+*Note*: `ResourceStreamBuffer::seekoff()` implementation is crucial for
+OpenSceneGraph plugins to correctly load resources.
+
+<a name="load"/>
+
+## 1.4. Load the node from `std::istream`
 
 [osgcpe]: https://github.com/OGStudio/openscenegraph-cross-platform-examples
 [osgcpg]: https://github.com/OGStudio/openscenegraph-cross-platform-guide
 [box.osgt.h]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/data/box.osgt.h
 [ref_res_src]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/Example.h#L31
 [ref_res_cmake]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/CMakeLists.txt#L16
+[Resource.h]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/Resource.h
+[ResourceStreamBuffer.h]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/ResourceStreamBuffer.h
 
