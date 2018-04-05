@@ -4,7 +4,10 @@
 
 dir=`dirname $0`
 
-max_version_id=1
+# List of examples.
+examples="
+01.EmbedResource
+"
 
 # Android platform is processed separately.
 platforms="
@@ -23,8 +26,7 @@ processPlatformFeatures()
 
 main()
 {
-    for id in $(seq 1 $max_version_id); do
-        example=$(printf '%02d' "$id")
+    for example in $examples; do
         echo "Generating example '$example'"
         for platform in $platforms; do
             processPlatformFeatures $dir/$example/$platform/src/Features.txt $dir/features
