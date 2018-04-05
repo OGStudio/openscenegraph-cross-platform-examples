@@ -6,7 +6,8 @@
     * [1.1. Generate C header file from a binary resource](#generate)
     * [1.2. Reference `box.osgt.h`](#reference)
     * [1.3. Provide `box_osgt` as `std::istream`](#stream)
-    * [1.4. Load the node from `std::istream`](#load)
+    * [1.4. Load the model from `std::istream`](#load)
+* [Application](#app)
 
 <a name="overview"/>
 
@@ -86,12 +87,42 @@ To simplify resource management in code, introduce two classes:
 * [`Resource`][Resource.h] to hold generated contents
 * [`ResourceStreamBuffer`][ResourceStreamBuffer.h] to provide C array contents as `std::streambuf`, which can be converted to `std::istream`
 
-*Note*: `ResourceStreamBuffer::seekoff()` implementation is crucial for
+**Note**: `ResourceStreamBuffer::seekoff()` implementation is crucial for
 OpenSceneGraph plugins to correctly load resources.
 
 <a name="load"/>
 
-## 1.4. Load the node from `std::istream`
+## 1.4. Load the model from `std::istream`
+
+To load the model from `std::istream`, we have to:
+
+* find a correct reader to read the stream by providing original file extension
+* let the reader create the node with the model
+
+Here's how the crucial part of the implementation looks like ([complete version][resources_node]):
+
+```
+- - - -
+ auto reader = osgDB::Registry::instance()->getReaderWriterForExtension(extension);
+ if (reader)
+ {
+     ResourceStreamBuffer buf(resource);
+     std::istream in(&buf);
+     auto result = reader->readNode(in, 0);
+     if (result.success())
+     {
+         node = result.getNode();
+     }
+- - - -
+```
+
+<a name="app"/>
+
+# Application
+
+TODO link to the web
+TODO link to desktop, android versions?
+TODO screenshots of desktop, ios, android, web versions?
 
 [osgcpe]: https://github.com/OGStudio/openscenegraph-cross-platform-examples
 [osgcpg]: https://github.com/OGStudio/openscenegraph-cross-platform-guide
@@ -100,4 +131,5 @@ OpenSceneGraph plugins to correctly load resources.
 [ref_res_cmake]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/CMakeLists.txt#L16
 [Resource.h]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/Resource.h
 [ResourceStreamBuffer.h]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/ResourceStreamBuffer.h
+[resources_node]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/resources.h#L68
 
