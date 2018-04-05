@@ -29,6 +29,12 @@ Each example is a complete application that runs on the following platforms:
 * iOS
 * Web
 
+**Note**: all examples require:
+
+* knowledge of [OpenSceneGraph cross-platform guide][osgcpg]
+* OpenSceneGraph installation for desktop builds
+* OpenSceneGraph sources (located alongside this repository clone) for other platforms
+
 <a name="examples"/>
 
 # Examples
