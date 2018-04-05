@@ -1,11 +1,12 @@
 
-Table of contents =================
+# Table of contents
 
 * [Overview](#overview)
-* [Steps](#steps)
+* [Steps to embed a resource](#steps)
     * [1.1. Generate C header file from a binary resource](#generate)
-    * [1.2. Reference the generated C header file](#reference)
-    * [1.3. Load a node from the resource](#?)
+    * [1.2. Reference `box.osgt.h`](#reference)
+    * [1.3. Provide `box_osgt` as `std::stream`](#stream)
+    * [1.4. Load the node from `std::stream`](#load)
 
 <a name="overview"/>
 
@@ -19,7 +20,7 @@ system requirements and constraints like desktop, Android, iOS, and web.
 
 <a name="steps"/>
 
-# Steps
+# Steps to embed a resource
 
 <a name="generate"/>
 
@@ -63,17 +64,21 @@ Both variables start with `box_osgt`, which is derived from `box.osgt` filename.
 
 # 1.2. Reference `box.osgt.h`
 
-* Reference `box.osgt.h` by simply including it in the sources:
-    ```
-    #include "box.osgt.h"
-    ```
-    [Here's how desktop version does it][ref_res_src]
-* Make sure CMakeLists.txt includes the directory with `box.osgt.h`:
-    ```
-    INCLUDE_DIRECTORIES(/path/to/the/directory)
-    ```
-    [Here's how desktop version does it][ref_res_cmake]
+First, reference `box.osgt.h` by simply including it in the sources ([desktop version][ref_res_src]):
+```
+#include "box.osgt.h"
+```
 
+Second, make sure CMakeLists.txt includes the directory with `box.osgt.h` ([desktop version][ref_res_cmake]):
+```
+INCLUDE_DIRECTORIES(/path/to/the/directory)
+```
+
+<a name="stream"/>
+
+# 1.3. Provide `box_osgt` as `std::stream`
+
+In order to let OpenSceneGraph access the data from a C array, we have to represent it as `std::stream`.
 
 [osgcpe]: https://github.com/OGStudio/openscenegraph-cross-platform-examples
 [osgcpg]: https://github.com/OGStudio/openscenegraph-cross-platform-guide
