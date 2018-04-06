@@ -73,6 +73,7 @@ To launch the first example, run the following command:
 `./ex01-embed-resource`
 
 <a name="build-android"/>
+
 ## Android
 
   ![Screenshot](readme/shot-android.png)
@@ -91,7 +92,27 @@ To build and run `01.EmbedResource` example for Android, you open
 
   ![Screenshot](readme/shot-ios.png)
 
-TODO
+**Note**: you must have OpenSceneGraph sources alongside this repository clone (see [OpenSceneGraph cross-platform guide][osgcpg] for details)
+
+First, you build example library (for each example) for Simulator and Device:
+
+```
+cd 01.EmbedResource/ios
+
+# Simulator.
+mkdir -p build/Simulator
+cd build/Simulator
+cmake -G Xcode -DIPHONE_ENABLE_BITCODE=YES ../..
+cmake --build . --config Release
+
+# Device.
+mkdir -p build/Device
+cd build/Device
+cmake -G Xcode -DIPHONE_ENABLE_BITCODE=YES -DBUILD_SIMULATOR=NO ../..
+cmake --build . --config Release
+```
+
+Second, you open Xcode project...
 
 <a name="build-web"/>
 
