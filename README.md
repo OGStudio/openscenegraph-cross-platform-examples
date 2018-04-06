@@ -2,6 +2,10 @@
 
 * [Overview](#overview)
 * [How to build](#build)
+    * [Desktop](#build-desktop)
+    * [Android](#build-android)
+    * [iOS](#build-ios)
+    * [Web](#build-web)
 * [Examples](#examples)
   * [01. Embed resource into executable](#examples-embed-resource)
   * [02. Load PNG images with PNG/ImageIO plugins](#examples-images)
@@ -46,6 +50,8 @@ Each example contains four implementations to cover all supported platforms:
 * ios
 * web
 
+<a name="build-desktop"/>
+
 ## Desktop
 
   ![Screenshot](readme/shot-desktop.png)
@@ -66,6 +72,7 @@ To launch the first example, run the following command:
 
 `./ex01-embed-resource`
 
+<a name="build-android"/>
 ## Android
 
   ![Screenshot](readme/shot-android.png)
@@ -78,6 +85,21 @@ To launch the first example, run the following command:
 To build and run `01.EmbedResource` example for Android, you open
 `01.EmbedResource/android` in Android Studio and run the project.
 
+<a name="build-ios"/>
+
+## iOS
+
+  ![Screenshot](readme/shot-ios.png)
+
+TODO
+
+<a name="build-web"/>
+
+## Web
+
+  ![Screenshot](readme/shot-web.png)
+
+TODO
 
 **Note**: all examples require:
 
