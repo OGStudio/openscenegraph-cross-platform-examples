@@ -1,9 +1,10 @@
 # Table of contents
 
 * [Overview](#overview)
+* [How to build](#build)
 * [Examples](#examples)
-  * [01. Embed resources into executable](#examples-embed-resources)
-  * [02. Use images with PNG/ImageIO plugins](#examples-images)
+  * [01. Embed resource into executable](#examples-embed-resource)
+  * [02. Load PNG images with PNG/ImageIO plugins](#examples-images)
 * [Help](#help)
 
 <a name="overview"/>
@@ -14,13 +15,15 @@
 3D graphics toolkit, used by application developers in fields such as visual
 simulation, games, virtual reality, scientific visualization and modelling.
 
-This document is a collection of examples that take you from where
-[OpenSceneGraph cross-platform guide][osgcpg] left you.
+This document is a collection of examples to perform specific tasks. This
+document is a logical continuation of [OpenSceneGraph cross-platform guide][osgcpg], which
+can be seen as an introduction to working with OpenSceneGraph.
 
-Please note that these are only examples, not tutorials. As such, there are no videos and
-explanations are much shorter and with less screenshots.
+This document, unlike [OpenSceneGraph cross-platform guide][osgcpg], only contains examples,
+not tutorials with screenshots and videos. Here, you find a solution for a specific
+problem only.
 
-Each example is a complete application that runs on the following platforms:
+Examples run on the following platforms:
 
 * Linux
 * macOS
@@ -28,6 +31,51 @@ Each example is a complete application that runs on the following platforms:
 * Android
 * iOS
 * Web
+
+**Note**: please, make yourself familiar with [OpenSceneGraph cross-platform guide][osgcpg]
+before trying examples.
+
+<a name="build"/>
+
+# How to build
+
+Each example contains four implementations to cover all supported platforms:
+
+* desktop (Linux, macOS, Windows)
+* android
+* ios
+* web
+
+## Desktop
+
+  ![Screenshot](shot-desktop.png)
+
+**Note**: you must have OpenSceneGraph installation. See [OpenSceneGraph cross-platform guide][osgcpg] for details.
+
+To build `01.EmbedResource` example for desktop, run the following commands:
+
+```
+cd 01.EmbedResource/desktop
+mkdir build
+cd build
+cmake ..
+make
+```
+
+To launch the first example, run the following command:
+
+`./ex01-embed-resource`
+
+## Android
+
+**Notes**:
+
+* You must have OpenSceneGraph sources alongside this repository clone (see [OpenSceneGraph cross-platform guide][osgcpg] for details)
+* Android project is built for `armeabi-v7a` architecture by default (update `abiFilters` value in `android/app/build.gradle` if you want other platforms)
+
+To build and run `01.EmbedResource` example for Android, you open
+`01.EmbedResource/android` in Android Studio and run the project.
+
 
 **Note**: all examples require:
 

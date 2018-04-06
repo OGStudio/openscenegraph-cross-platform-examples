@@ -102,7 +102,7 @@ Resource box("models", "box.osgt", box_osgt, box_osgt_len);
 Second, load the model. To load the model from `std::istream`, we:
 
 * find a reader that is capable of reading the model (such a reader can be located by providing file extension)
-* let the reader create the node with the model
+* let the reader create a node with the model
 
 Here's how the crucial part of the implementation looks like ([complete version][resources_node]):
 
