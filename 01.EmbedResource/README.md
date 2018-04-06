@@ -2,7 +2,7 @@
 # Table of contents
 
 * [Overview](#overview)
-* [Steps to embed a resource](#steps)
+* [Steps](#steps)
     * [1.1. Generate C header file from a binary resource](#generate)
     * [1.2. Reference `box.osgt.h`](#reference)
     * [1.3. Provide `box_osgt` as `std::istream`](#stream)
@@ -21,7 +21,7 @@ system requirements and constraints like desktop, Android, iOS, and web.
 
 <a name="steps"/>
 
-# Steps to embed a resource
+# Steps
 
 <a name="generate"/>
 
@@ -56,7 +56,7 @@ unsigned int box_osgt_len = 32058;
 
 As you can see, `xxd` created two variables:
 
-* `unsigned char box_osgt[]`, an array of raw bites
+* `unsigned char box_osgt[]`, an array of raw bytes
 * `unsigned int box_osgt_len`, size of the array
 
 Both variables start with `box_osgt`, which is derived from `box.osgt` filename.
@@ -82,7 +82,7 @@ INCLUDE_DIRECTORIES(/path/to/the/directory)
 In order to let OpenSceneGraph access the data from a C array, we have to
 represent it as `std::istream`.
 
-To simplify resource management in code, introduce two classes:
+To simplify resource management in code, we introduce two classes:
 
 * [`Resource`][Resource.h] to hold generated contents
 * [`ResourceStreamBuffer`][ResourceStreamBuffer.h] to provide C array contents as `std::streambuf`, which can be converted to `std::istream`
@@ -94,25 +94,30 @@ OpenSceneGraph plugins to correctly load resources.
 
 ## 1.4. Load the model from `std::istream`
 
-To load the model from `std::istream`, we have to:
+First, create `Resource` instance to work with ([desktop version][box_res]):
+```
+Resource box("models", "box.osgt", box_osgt, box_osgt_len);
+```
 
-* find a correct reader to read the stream by providing original file extension
+Second, load the model. To load the model from `std::istream`, we:
+
+* find a reader that is capable of reading the model by providing extension of the original file
 * let the reader create the node with the model
 
 Here's how the crucial part of the implementation looks like ([complete version][resources_node]):
 
 ```
 - - - -
- auto reader = osgDB::Registry::instance()->getReaderWriterForExtension(extension);
- if (reader)
- {
-     ResourceStreamBuffer buf(resource);
-     std::istream in(&buf);
-     auto result = reader->readNode(in, 0);
-     if (result.success())
-     {
-         node = result.getNode();
-     }
+auto reader = osgDB::Registry::instance()->getReaderWriterForExtension(extension);
+if (reader)
+{
+    ResourceStreamBuffer buf(resource);
+    std::istream in(&buf);
+    auto result = reader->readNode(in, 0);
+    if (result.success())
+    {
+        node = result.getNode();
+    }
 - - - -
 ```
 
@@ -132,4 +137,4 @@ TODO screenshots of desktop, ios, android, web versions?
 [Resource.h]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/Resource.h
 [ResourceStreamBuffer.h]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/ResourceStreamBuffer.h
 [resources_node]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/resources.h#L68
-
+[box_res]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/Example.h#L64
