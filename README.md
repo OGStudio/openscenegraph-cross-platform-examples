@@ -48,7 +48,7 @@ Each example contains four implementations to cover all supported platforms:
 
 ## Desktop
 
-  ![Screenshot](shot-desktop.png)
+  ![Screenshot](readme/shot-desktop.png)
 
 **Note**: you must have OpenSceneGraph installation. See [OpenSceneGraph cross-platform guide][osgcpg] for details.
 
@@ -67,6 +67,8 @@ To launch the first example, run the following command:
 `./ex01-embed-resource`
 
 ## Android
+
+  ![Screenshot](readme/shot-android.png)
 
 **Notes**:
 
