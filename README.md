@@ -94,7 +94,7 @@ To build and run `01.EmbedResource` example for Android, you open
 
 **Note**: you must have OpenSceneGraph sources alongside this repository clone (see [OpenSceneGraph cross-platform guide][osgcpg] for details)
 
-First, you build example library (for each example) for Simulator and Device:
+First, build example library (for each example) for Simulator and Device:
 
 ```
 cd 01.EmbedResource/ios
@@ -105,6 +105,8 @@ cd build/Simulator
 cmake -G Xcode -DIPHONE_ENABLE_BITCODE=YES ../..
 cmake --build . --config Release
 
+cd ../..
+
 # Device.
 mkdir -p build/Device
 cd build/Device
@@ -112,7 +114,7 @@ cmake -G Xcode -DIPHONE_ENABLE_BITCODE=YES -DBUILD_SIMULATOR=NO ../..
 cmake --build . --config Release
 ```
 
-Second, you open Xcode project...
+Second, open `01.EmbedResource/ios/xcodeproject/ex01.xcodeproj` Xcode project and run it.
 
 <a name="build-web"/>
 
