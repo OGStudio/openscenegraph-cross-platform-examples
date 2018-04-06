@@ -101,7 +101,7 @@ Resource box("models", "box.osgt", box_osgt, box_osgt_len);
 
 Second, load the model. To load the model from `std::istream`, we:
 
-* find a reader that is capable of reading the model by providing extension of the original file
+* find a reader that is capable of reading the model (such a reader can be located by providing file extension)
 * let the reader create the node with the model
 
 Here's how the crucial part of the implementation looks like ([complete version][resources_node]):
@@ -111,7 +111,7 @@ Here's how the crucial part of the implementation looks like ([complete version]
 auto reader = osgDB::Registry::instance()->getReaderWriterForExtension(extension);
 if (reader)
 {
-    ResourceStreamBuffer buf(resource);
+    ResourceStreamBuffer buf(box);
     std::istream in(&buf);
     auto result = reader->readNode(in, 0);
     if (result.success())
