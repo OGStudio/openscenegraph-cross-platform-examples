@@ -103,7 +103,7 @@ cd 01.EmbedResource/ios
 mkdir -p build/Simulator
 cd build/Simulator
 cmake -G Xcode -DIPHONE_ENABLE_BITCODE=YES ../..
-cmake --build . --config Release
+cmake --build . --config Release -- -IDEBuildOperationMaxNumberOfConcurrentCompileTasks=8
 
 cd ../..
 
@@ -111,7 +111,7 @@ cd ../..
 mkdir -p build/Device
 cd build/Device
 cmake -G Xcode -DIPHONE_ENABLE_BITCODE=YES -DBUILD_SIMULATOR=NO ../..
-cmake --build . --config Release
+cmake --build . --config Release -- -IDEBuildOperationMaxNumberOfConcurrentCompileTasks=8
 ```
 
 Second, open `01.EmbedResource/ios/xcodeproject/ex01.xcodeproj` Xcode project and run it.
