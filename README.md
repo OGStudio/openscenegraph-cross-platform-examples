@@ -127,13 +127,30 @@ Second, open `01.EmbedResource/ios/xcodeproject/ex01.xcodeproj` Xcode project an
 
   ![Screenshot](readme/shot-web.png)
 
-TODO
+**Note**: you must have OpenSceneGraph sources alongside this repository clone (see [OpenSceneGraph cross-platform guide][osgcpg] for details)
 
-**Note**: all examples require:
+To build `01.EmbedResource` example for web, run the following commands:
 
-* knowledge of [OpenSceneGraph cross-platform guide][osgcpg]
-* OpenSceneGraph installation for desktop builds
-* OpenSceneGraph sources (located alongside this repository clone) for other platforms
+```
+cd 01.EmbedResource/web
+mkdir build
+cd build
+cmake -DCMAKE_TOOLCHAIN_FILE=/path/to/emsdk-portable/emscripten/<version>/cmake/Modules/Platform/Emscripten.cmake ..
+make -j8
+```
+
+**Notes**: the first time you build might take a while because OpenSceneGraph needs to be built, too
+
+To launch the first example, run the following command:
+
+`firefox ./ex01-embed-resource.html`
+
+To launch examples with any browser, you need to serve the files with a web browser. 
+
+To check serving locally:
+
+* run `python -m SimpleHTTPServer`
+* open `localhost:8000` in any web browser
 
 <a name="examples"/>
 
