@@ -7,7 +7,7 @@
     * [1.2. Reference `box.osgt.h`](#reference)
     * [1.3. Provide `box_osgt` as `std::istream`](#stream)
     * [1.4. Load the model from `std::istream`](#load)
-* [Application](#app)
+* [Result](#result)
 
 <a name="overview"/>
 
@@ -121,9 +121,9 @@ if (reader)
 - - - -
 ```
 
-<a name="app"/>
+<a name="result"/>
 
-# Application
+# Result
 
 ![Screenshot](shot.png)
 
