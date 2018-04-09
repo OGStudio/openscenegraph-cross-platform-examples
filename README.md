@@ -8,7 +8,7 @@
     * [Web](#build-web)
 * [Examples](#examples)
   * [01. Embed resource into executable](#examples-embed-resource)
-  * [02. Load PNG images with PNG/ImageIO plugins](#examples-images)
+  * [02. Use PNG images with PNG plugins](#examples-images)
 * [Help](#help)
 
 <a name="overview"/>
@@ -159,22 +159,20 @@ E.g., you can serve locally like this:
 
 <a name="examples-embed-resources"/>
 
-### [01. Embed resources into executable](01.EmbedResource/README.md)
+### [01. Embed resource into executable](01.EmbedResource/README.md)
 
   ![Screenshot](01.EmbedResource/shot.png)
 
-  Learn how to use `xxd` Unix utility to convert any binary file (in our case,
-  it's box.osgt model) into
-  C header file and use it across platforms with OpenSceneGraph.
+  Learn how to embed a binary resource into application with `xxd` Unix utility
+  and use the resource across platforms.
 
 <a name="examples-images"/>
 
-### [02. Use images with PNG/ImageIO plugins](02.Images)
+### [02. Use PNG images with PNG plugins](02.Images)
 
   ![Screenshot](02.Images/shot.png)
 
-  Learn how to build PNG/ImageIO plugins across platforms and reference built-in
-  PNG images using simple shaders.
+  Learn how to use PNG images across platforms with PNG plugins.
 
 <a name="help"/>
 

@@ -125,9 +125,9 @@ if (reader)
 
 # Application
 
-TODO link to the web
-TODO link to desktop, android versions?
-TODO screenshots of desktop, ios, android, web versions?
+![Screenshot](shot.png)
+
+Here's a [web build of the example][web_build].
 
 [osgcpe]: https://github.com/OGStudio/openscenegraph-cross-platform-examples
 [osgcpg]: https://github.com/OGStudio/openscenegraph-cross-platform-guide
@@ -138,3 +138,4 @@ TODO screenshots of desktop, ios, android, web versions?
 [ResourceStreamBuffer.h]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/ResourceStreamBuffer.h
 [resources_node]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/resources.h#L68
 [box_res]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/Example.h#L64
+[web_build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/01/ex01-embed-resource.html
