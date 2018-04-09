@@ -114,8 +114,10 @@ cmake -G Xcode -DIPHONE_ENABLE_BITCODE=YES -DBUILD_SIMULATOR=NO ../..
 cmake --build . --config Release -- -IDEBuildOperationMaxNumberOfConcurrentCompileTasks=8
 ```
 
-**Note**: the process of building for Device might fail for some plugins, don't worry:
-the necessary libraries has already been built by that time.
+**Notes**:
+
+* the first time you build might take a while because OpenSceneGraph needs to be built, too
+* the process of building for Device might fail for some plugins, don't worry: the necessary libraries has already been built by that time
 
 Second, open `01.EmbedResource/ios/xcodeproject/ex01.xcodeproj` Xcode project and run it.
 
