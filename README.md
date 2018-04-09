@@ -136,19 +136,17 @@ cd 01.EmbedResource/web
 mkdir build
 cd build
 cmake -DCMAKE_TOOLCHAIN_FILE=/path/to/emsdk-portable/emscripten/<version>/cmake/Modules/Platform/Emscripten.cmake ..
-make -j8
+make -j8 ex01-embed-resource
 ```
 
 **Notes**: the first time you build might take a while because OpenSceneGraph needs to be built, too
 
-To launch the first example, run the following command:
+To launch the first example, open `ex01-embed-resource.html` file in Firefox.
 
-`firefox ./ex01-embed-resource.html`
+To launch examples in any web browser, you need to serve the files with a web server.
+E.g., you can serve locally like this:
 
-To launch examples with any browser, you need to serve the files with a web server.
-E.g., to server locally:
-
-* run the following commands:
+* serve with the following commands:
     ```
     cd 01.EmbedResource/web/build
     python -m SimpleHTTPServer
