@@ -19,11 +19,12 @@ Application+setupWindow-desktop
 Application+Logging
 Application+Rendering
 
-#?scene+paintScene
+scene+textureImageScene
 
 Example+02
 Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
+Example+TextureImageScene
 
 main-desktop
 

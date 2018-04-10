@@ -31,6 +31,7 @@ namespace scene
 {
 
 // FEATURE scene+paintScene/Impl
+// FEATURE scene+textureImageScene/Impl
 
 } // namespace scene
 } // namespace osgcpe

@@ -22,48 +22,30 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_EXAMPLE_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_EXAMPLE_H
-        
-#include "Application.h"
-#include "scene.h"
-// FEATURE Example+BoxScene/Include
-// FEATURE Example+VBO/Include
-
-// FEATURE Example+OSGCPE_EXAMPLE_LOG/Impl
-// FEATURE Example+StaticPluginOSG/Impl
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 
 namespace osgcpe
 {
-
-// FEATURE Example+01/Title
-// FEATURE Example+02/Title
-
-struct Example
+namespace scene
 {
 
-    osgcpe::Application *app;
+// scene+textureImageScene Start
+void textureImageScene(osg::Node *scene)
+{
+    /*
+    // Fragment shader to display everything in red colour.
+    const char shaderFragment[] = "void main() { gl_FragColor = vec4(0.5, 0.3, 0.3, 1.0); }";
+    // Vertex shader to pass geometry vertices to fragment shader.
+    const char shaderVertex[] = "void main() { gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex; }";
+    auto prog = render::createShaderProgram(shaderVertex, shaderFragment);
+    scene->getOrCreateStateSet()->setAttribute(prog);
+    */
+}
+// scene+textureImageScene End
 
-    Example()
-    {
-        this->app = new osgcpe::Application(EXAMPLE_TITLE);
-        // FEATURE Example+BoxScene/Impl
-        if (scene.valid())
-        {
-            // FEATURE Example+VBO/Impl
-            // FEATURE Example+SingleColorScene/Impl
-            // FEATURE Example+TextureImageScene/Impl
-            this->app->setScene(scene);
-        }
-    }
-    ~Example()
-    {
-        delete this->app;
-    }
-
-};
-
+} // namespace scene
 } // namespace osgcpe
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_EXAMPLE_H
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 

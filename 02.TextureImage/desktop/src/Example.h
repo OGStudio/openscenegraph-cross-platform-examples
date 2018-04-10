@@ -70,6 +70,9 @@ struct Example
         // Example+BoxScene End
         if (scene.valid())
         {
+            // Example+TextureImageScene Start
+            osgcpe::scene::textureImageScene(scene);
+            // Example+TextureImageScene End
             this->app->setScene(scene);
         }
     }
