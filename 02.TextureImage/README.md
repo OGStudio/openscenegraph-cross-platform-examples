@@ -3,7 +3,7 @@
 
 * [Overview](#overview)
 * [Steps](#steps)
-    * [1.1. ](#generate)
+    * [1.1. Generate resources](#generate)
     * [1.2. ](#reference)
     * [1.3. ](#stream)
     * [1.4. ](#load)
@@ -15,17 +15,8 @@
 
 This example is part of [OpenSceneGraph cross-platform examples][osgcpe].
 
-TODO
-
-In this example we 
-
-embed model, image, and shaders into executable
-
-use image as a texture for the loaded model
-
-
-NOTE Make sure to read 01.EmbedResource example, it explains how to embed resources
-
+In this example we use PNG image as a texture for a model. All resources are
+embedded into application.
 
 <a name="steps"/>
 
@@ -33,8 +24,15 @@ NOTE Make sure to read 01.EmbedResource example, it explains how to embed resour
 
 <a name="generate"/>
 
-## 1.1. ...
+## 1.1. Generate resources
 
+We need to have the following files generated:
+
+* `ppl.frag.h`: per-pixel lighting fragment shader
+* `ppl.vert.h`: per-pixel lighting vertex shader
+* `digit.png.h`: image to use as a texture
+
+**Note**: see [01.EmbedResource][ex01] for details on resource embedding.
 
 <a name="reference"/>
 
@@ -61,3 +59,4 @@ Here's a [web build of the example][web_build].
 
 [osgcpe]: https://github.com/OGStudio/openscenegraph-cross-platform-examples
 [osgcpg]: https://github.com/OGStudio/openscenegraph-cross-platform-guide
+[ex01]: ../01.EmbedResource/README.md
