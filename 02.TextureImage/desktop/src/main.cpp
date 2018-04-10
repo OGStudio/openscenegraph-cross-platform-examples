@@ -22,47 +22,20 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_EXAMPLE_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_EXAMPLE_H
-        
-#include "Application.h"
-#include "scene.h"
-// FEATURE Example+BoxScene/Include
-// FEATURE Example+VBO/Include
+#include "Example.h"
 
-// FEATURE Example+OSGCPE_EXAMPLE_LOG/Impl
-// FEATURE Example+StaticPluginOSG/Impl
 
-namespace osgcpe
+int main(int argc, char *argv[])
 {
-
-// FEATURE Example+01/Title
-// FEATURE Example+02/Title
-
-struct Example
-{
-
-    osgcpe::Application *app;
-
-    Example()
-    {
-        this->app = new osgcpe::Application(EXAMPLE_TITLE);
-        // FEATURE Example+BoxScene/Impl
-        if (scene.valid())
-        {
-            // FEATURE Example+VBO/Impl
-            // FEATURE Example+SingleColorScene/Impl
-            this->app->setScene(scene);
-        }
-    }
-    ~Example()
-    {
-        delete this->app;
-    }
-
-};
-
-} // namespace osgcpe
-
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_EXAMPLE_H
+    // main-desktop Start
+    auto example = new osgcpe::Example();
+    example->app->setupWindow(osgcpe::EXAMPLE_TITLE, 100, 100, 1024, 768);
+    
+    // main-desktop End
+    // main-desktop Start
+    example->app->run();
+    delete example;
+    // main-desktop End
+    return 0;
+}
 

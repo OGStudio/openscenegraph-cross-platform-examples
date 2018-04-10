@@ -27,17 +27,30 @@ freely, subject to the following restrictions:
         
 #include "Application.h"
 #include "scene.h"
-// FEATURE Example+BoxScene/Include
-// FEATURE Example+VBO/Include
+// Example+BoxScene Start
+#include "box.osgt.h"
+#include "resources.h"
 
-// FEATURE Example+OSGCPE_EXAMPLE_LOG/Impl
-// FEATURE Example+StaticPluginOSG/Impl
+// Example+BoxScene End
+
+// Example+OSGCPE_EXAMPLE_LOG Start
+#include "log.h"
+#define OSGCPE_EXAMPLE_LOG_PREFIX "osgcpe-example(%p) %s"
+#define OSGCPE_EXAMPLE_LOG(...) \
+    osgcpe::log::logprintf( \
+        OSGCPE_EXAMPLE_LOG_PREFIX, \
+        this, \
+        osgcpe::log::printfString(__VA_ARGS__).c_str() \
+    )
+
+// Example+OSGCPE_EXAMPLE_LOG End
 
 namespace osgcpe
 {
 
-// FEATURE Example+01/Title
-// FEATURE Example+02/Title
+// Example+02 Start
+const auto EXAMPLE_TITLE = "Ex02";
+// Example+02 End
 
 struct Example
 {
@@ -47,11 +60,16 @@ struct Example
     Example()
     {
         this->app = new osgcpe::Application(EXAMPLE_TITLE);
-        // FEATURE Example+BoxScene/Impl
+        // Example+BoxScene Start
+        osgcpe::Resource box("models", "box.osgt", box_osgt, box_osgt_len);
+        auto scene = osgcpe::resources::node(box);
+        if (!scene.valid())
+        {
+            OSGCPE_EXAMPLE_LOG("ERROR Could not load scene");
+        }
+        // Example+BoxScene End
         if (scene.valid())
         {
-            // FEATURE Example+VBO/Impl
-            // FEATURE Example+SingleColorScene/Impl
             this->app->setScene(scene);
         }
     }

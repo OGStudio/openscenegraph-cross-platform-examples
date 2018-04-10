@@ -22,47 +22,41 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_EXAMPLE_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_EXAMPLE_H
-        
-#include "Application.h"
-#include "scene.h"
-// FEATURE Example+BoxScene/Include
-// FEATURE Example+VBO/Include
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
 
-// FEATURE Example+OSGCPE_EXAMPLE_LOG/Impl
-// FEATURE Example+StaticPluginOSG/Impl
+#include "log.h"
 
 namespace osgcpe
 {
 
-// FEATURE Example+01/Title
-// FEATURE Example+02/Title
-
-struct Example
+//! Print OpenSceneGraph notifications to console.
+class Logger : public osg::NotifyHandler
 {
+    public:
+        Logger(const std::string &domain = "") : domain(domain) { }
+        virtual ~Logger() { }
 
-    osgcpe::Application *app;
-
-    Example()
-    {
-        this->app = new osgcpe::Application(EXAMPLE_TITLE);
-        // FEATURE Example+BoxScene/Impl
-        if (scene.valid())
+        // Override NotifyHandler::notify() to receive OpenSceneGraph notifications.
+        void notify(osg::NotifySeverity severity, const char *message) override
         {
-            // FEATURE Example+VBO/Impl
-            // FEATURE Example+SingleColorScene/Impl
-            this->app->setScene(scene);
+            log::logprintf(
+                "%s OSG/%s %s",
+                domain.c_str(),
+                log::logLevelToString(severity).c_str(),
+                message
+            );
         }
-    }
-    ~Example()
-    {
-        delete this->app;
-    }
 
+    private:
+        const std::string domain;
 };
 
 } // namespace osgcpe
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_EXAMPLE_H
+// Logger+Stub Start
+// Stub.
+// Logger+Stub End
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
 

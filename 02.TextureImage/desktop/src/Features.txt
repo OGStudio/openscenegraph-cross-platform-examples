@@ -1,9 +1,11 @@
 log+printfString
-log+log-android
+log+log-default
 log+logprintf
 log+logLevelToString
 Logger+Stub
 
+render+setupCamera
+render+createGraphicsContext-desktop
 render+createShaderProgram
 
 resources+OSGCPE_RESOURCES_LOG
@@ -12,22 +14,16 @@ resources+extension
 Resource+Stub
 ResourceStreamBuffer+Stub
 
-Application+setupWindow-embedded
+Application+run
+Application+setupWindow-desktop
 Application+Logging
 Application+Rendering
 
-scene+paintScene
+#?scene+paintScene
 
-Example+01
+Example+02
 Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
-Example+SingleColorScene
-Example+StaticPluginOSG
-Example+VBO
 
-VBOSetupVisitor+Stub
-
-library-android
-library+init-android
-library+frame-android
+main-desktop
 

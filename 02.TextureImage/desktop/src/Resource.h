@@ -22,47 +22,40 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_EXAMPLE_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_EXAMPLE_H
-        
-#include "Application.h"
-#include "scene.h"
-// FEATURE Example+BoxScene/Include
-// FEATURE Example+VBO/Include
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
 
-// FEATURE Example+OSGCPE_EXAMPLE_LOG/Impl
-// FEATURE Example+StaticPluginOSG/Impl
+#include <string>
 
 namespace osgcpe
 {
 
-// FEATURE Example+01/Title
-// FEATURE Example+02/Title
-
-struct Example
+//! Resource container.
+struct Resource
 {
+    Resource(
+        const std::string &group,
+        const std::string &name,
+        unsigned char *contents,
+        unsigned int len
+    ) :
+        group(group),
+        name(name),
+        contents(contents),
+        len(len)
+    { }
 
-    osgcpe::Application *app;
-
-    Example()
-    {
-        this->app = new osgcpe::Application(EXAMPLE_TITLE);
-        // FEATURE Example+BoxScene/Impl
-        if (scene.valid())
-        {
-            // FEATURE Example+VBO/Impl
-            // FEATURE Example+SingleColorScene/Impl
-            this->app->setScene(scene);
-        }
-    }
-    ~Example()
-    {
-        delete this->app;
-    }
-
+    std::string group;
+    std::string name;
+    unsigned char *contents;
+    unsigned int len;
 };
 
 } // namespace osgcpe
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_EXAMPLE_H
+// Resource+Stub Start
+// Stub.
+// Resource+Stub End
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
 

@@ -7,6 +7,7 @@ dir=`dirname $0`
 # List of examples.
 examples="
 01.EmbedResource
+02.TextureImage
 "
 
 # Android platform is processed separately.

@@ -70,7 +70,9 @@ struct Example
         // Example+BoxScene End
         if (scene.valid())
         {
+            // Example+SingleColorScene Start
             osgcpe::scene::paintScene(scene);
+            // Example+SingleColorScene End
             this->app->setScene(scene);
         }
     }

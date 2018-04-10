@@ -22,6 +22,7 @@ scene+paintScene
 Example+01
 Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
+Example+SingleColorScene
 Example+StaticPluginOSG
 Example+VBO
 

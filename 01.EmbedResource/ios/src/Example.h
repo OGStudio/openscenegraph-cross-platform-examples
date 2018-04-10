@@ -85,7 +85,9 @@ struct Example
             osgcpe::VBOSetupVisitor vbo;
             scene->accept(vbo);
             // Example+VBO End
+            // Example+SingleColorScene Start
             osgcpe::scene::paintScene(scene);
+            // Example+SingleColorScene End
             this->app->setScene(scene);
         }
     }

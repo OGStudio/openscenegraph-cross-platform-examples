@@ -24,6 +24,7 @@ scene+paintScene
 Example+01
 Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
+Example+SingleColorScene
 
 main-desktop
 
