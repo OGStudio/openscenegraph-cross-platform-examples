@@ -25,22 +25,35 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 
+// scene+textureImageScene Start
+#include "resources.h"
+
+// scene+textureImageScene End
+
 namespace osgcpe
 {
 namespace scene
 {
 
 // scene+textureImageScene Start
-void textureImageScene(osg::Node *scene)
-{
-    /*
-    // Fragment shader to display everything in red colour.
-    const char shaderFragment[] = "void main() { gl_FragColor = vec4(0.5, 0.3, 0.3, 1.0); }";
-    // Vertex shader to pass geometry vertices to fragment shader.
-    const char shaderVertex[] = "void main() { gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex; }";
-    auto prog = render::createShaderProgram(shaderVertex, shaderFragment);
-    scene->getOrCreateStateSet()->setAttribute(prog);
-    */
+void textureImageScene(
+    const Resource &shaderFrag,
+    const Resource &shaderVert,
+    const Resource &textureImage,
+    osg::Node *scene
+) {
+    // Create shader program.
+    auto prog =
+        render::createShaderProgram(
+            resources::string(shaderVert),
+            resources::string(shaderFrag)
+        );
+    // Apply the program.
+    auto material = scene->getOrCreateStateSet();
+    material->setAttribute(prog);
+    // Set image.
+    material->setTextureAttributeAndModes(0, resources::createTexture(textureImage));
+    material->addUniform(new osg::Uniform("image", 0));
 }
 // scene+textureImageScene End
 

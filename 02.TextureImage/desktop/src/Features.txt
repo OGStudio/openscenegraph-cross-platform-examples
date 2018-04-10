@@ -11,6 +11,10 @@ render+createShaderProgram
 resources+OSGCPE_RESOURCES_LOG
 resources+node
 resources+extension
+resources+string
+resources+setTextureImage
+resources+createTexture
+
 Resource+Stub
 ResourceStreamBuffer+Stub
 

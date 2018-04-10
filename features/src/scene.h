@@ -25,6 +25,8 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 
+// FEATURE scene+textureImageScene/Include
+
 namespace osgcpe
 {
 namespace scene

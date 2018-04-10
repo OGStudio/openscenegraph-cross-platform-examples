@@ -27,8 +27,9 @@ freely, subject to the following restrictions:
         
 #include "Application.h"
 #include "scene.h"
-// FEATURE Example+BoxScene/Include
 // FEATURE Example+VBO/Include
+// FEATURE Example+BoxScene/Include
+// FEATURE Example+TextureImageScene/Include
 
 // FEATURE Example+OSGCPE_EXAMPLE_LOG/Impl
 // FEATURE Example+StaticPluginOSG/Impl

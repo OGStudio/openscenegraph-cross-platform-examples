@@ -27,15 +27,15 @@ freely, subject to the following restrictions:
         
 #include "Application.h"
 #include "scene.h"
+// Example+VBO Start
+#include "VBOSetupVisitor.h"
+
+// Example+VBO End
 // Example+BoxScene Start
 #include "box.osgt.h"
 #include "resources.h"
 
 // Example+BoxScene End
-// Example+VBO Start
-#include "VBOSetupVisitor.h"
-
-// Example+VBO End
 
 // Example+OSGCPE_EXAMPLE_LOG Start
 #include "log.h"

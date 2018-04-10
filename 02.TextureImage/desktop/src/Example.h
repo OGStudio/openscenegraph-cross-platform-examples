@@ -32,6 +32,13 @@ freely, subject to the following restrictions:
 #include "resources.h"
 
 // Example+BoxScene End
+// Example+TextureImageScene Start
+#include "resources.h"
+#include "ppl.frag.h"
+#include "ppl.vert.h"
+#include "digit.png.h"
+
+// Example+TextureImageScene End
 
 // Example+OSGCPE_EXAMPLE_LOG Start
 #include "log.h"
@@ -71,7 +78,10 @@ struct Example
         if (scene.valid())
         {
             // Example+TextureImageScene Start
-            osgcpe::scene::textureImageScene(scene);
+            osgcpe::Resource shaderFrag("shaders", "ppl.frag", ppl_frag, ppl_frag_len);
+            osgcpe::Resource shaderVert("shaders", "ppl.vert", ppl_vert, ppl_vert_len);
+            osgcpe::Resource textureImage("images", "digit.png", digit_png, digit_png_len);
+            osgcpe::scene::textureImageScene(shaderFrag, shaderVert, textureImage, scene);
             // Example+TextureImageScene End
             this->app->setScene(scene);
         }

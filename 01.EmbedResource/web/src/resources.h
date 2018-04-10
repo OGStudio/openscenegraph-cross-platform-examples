@@ -33,7 +33,7 @@ freely, subject to the following restrictions:
 // resources+node End
 
 // resources+OSGCPE_RESOURCES_LOG Start
-#define OSGCPE_RESOURCES_LOG_PREFIX "osgcpe-resource %s"
+#define OSGCPE_RESOURCES_LOG_PREFIX "osgcpe-resources %s"
 #define OSGCPE_RESOURCES_LOG(...) \
     osgcpe::log::logprintf( \
         OSGCPE_RESOURCES_LOG_PREFIX, \
@@ -103,8 +103,9 @@ osg::ref_ptr<osg::Node> node(Resource &resource, const std::string ext = "")
     else
     {
         OSGCPE_RESOURCES_LOG(
-            "ERROR Could not read node of '%s' resource because "
+            "ERROR Could not read node of '%s/%s' resource because "
             "node reader for extension '%s' is absent.",
+            resource.group.c_str(),
             resource.name.c_str(),
             ex.c_str()
         );

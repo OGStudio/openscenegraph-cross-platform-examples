@@ -28,6 +28,8 @@ freely, subject to the following restrictions:
 #include "Resource.h"
 #include "ResourceStreamBuffer.h"
 // FEATURE resources+node/Include
+// FEATURE resources+setTextureImage/Include
+// FEATURE resources+createTexture/Include
 
 // FEATURE resources+OSGCPE_RESOURCES_LOG/Impl
 
@@ -38,6 +40,9 @@ namespace resources
 
 // FEATURE resources+extension/Impl
 // FEATURE resources+node/Impl
+// FEATURE resources+string/Impl
+// FEATURE resources+setTextureImage/Impl
+// FEATURE resources+createTexture/Impl
 
 } // namespace resources
 } // namespace osgcpe
