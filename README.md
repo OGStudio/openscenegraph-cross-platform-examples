@@ -168,9 +168,9 @@ E.g., you can serve locally like this:
 
 <a name="examples-images"/>
 
-### [02. Use PNG images with PNG plugins](02.Images)
+### [02. Use PNG images with PNG plugins](02.TextureImage)
 
-  ![Screenshot](02.Images/shot.png)
+  ![Screenshot](02.TextureImage/shot.png)
 
   Learn how to use PNG images across platforms with PNG plugins.
 
