@@ -4,7 +4,7 @@
 * [Overview](#overview)
 * [Steps](#steps)
     * [1.1. Generate resources](#generate)
-    * [1.2. ](#reference)
+    * [1.2. ](#rebuild)
     * [1.3. ](#stream)
     * [1.4. ](#load)
 * [Result](#result)
@@ -34,9 +34,33 @@ We need to have the following files generated:
 
 **Note**: see [01.EmbedResource][ex01] for details on resource embedding.
 
-<a name="reference"/>
+<a name="rebuild"/>
 
-## 1.2. ...
+## 1.2. Rebuild OpenSceneGraph with PNG support
+
+OpenSceneGraph has two plugins capable of loading PNG images:
+
+* `png`
+    * uses [libpng][libpng] library
+    * available for all platforms
+* `imageio`
+    * uses Apple's [Image I/O][imageio] library
+    * only available for Apple platforms
+
+### Linux, Windows
+
+You should generally use package managers ([MSYS2][msys2] for Windows) to install
+OpenSceneGraph because they provide OpenSceneGraph with `png` plugin by default.
+
+If you build OpenSceneGraph from sources, you need to make sure `libpng` is found
+by `CMake` during configuration stage. Consult `CMake`'s [FindPNG][find_png] documentation
+for details.
+
+### macOS, iOS
+
+### Android
+
+### Web
 
 
 <a name="stream"/>
@@ -60,3 +84,7 @@ Here's a [web build of the example][web_build].
 [osgcpe]: https://github.com/OGStudio/openscenegraph-cross-platform-examples
 [osgcpg]: https://github.com/OGStudio/openscenegraph-cross-platform-guide
 [ex01]: ../01.EmbedResource/README.md
+[libpng]: http://www.libpng.org/pub/png/libpng.html
+[imageio]: https://developer.apple.com/documentation/imageio
+[msys2]: https://www.msys2.org/
+[find_png]: https://cmake.org/cmake/help/v3.0/module/FindPNG.html
