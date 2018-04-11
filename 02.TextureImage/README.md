@@ -91,14 +91,14 @@ TODO Describe build flags to enable PNG support during OSG rebuilding.
 
 ## 1.3. Provide shader resources as strings
 
-[01.EmbedResource][ex01] example provided shaders with simple [`std::string` variables][ex01_shaders].
+[01.EmbedResource][ex01] example provided shaders as simple [strings][ex01_shaders].
 This worked fine for single line shaders. 
 
-However, now we need more complicated shaders to apply textures. That's why
-we now have shaders as resources. Let's see how to convert `Resource` to
-`std::string`.
+Now that we need more complex shaders to apply textures, it's easier to manage
+them separately from application's source code. That's why shaders are now
+resources.
 
-Here's how a convertion function looks like ([source code][resources_string]):
+Let's see how to convert a resource to a string ([source code][resources_string]):
 
 ```
 std::string string(const Resource &resource)
@@ -108,10 +108,11 @@ std::string string(const Resource &resource)
 }
 ```
 
-We simply casted `unsigned char *` (originally provided by `xxd`) to
+**Note**: we casted `unsigned char *` (originally provided by `xxd`) to
 `const char *`.
 
-The convertion function is used like this
+
+Let's see how to provide shader resources as strings to other functions
 ([source code][resources_string_usage]):
 
 ```
