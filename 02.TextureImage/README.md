@@ -95,7 +95,7 @@ TODO Describe build flags to enable PNG support during OSG rebuilding.
 This worked fine for single line shaders. 
 
 Now that we need more complex shaders to apply textures, it's easier to manage
-them separately from application's source code. That's why shaders are now
+shaders separately from application's source code. That's why shaders are now
 resources.
 
 Let's see how to convert a resource to a string ([source code][resources_string]):
@@ -132,9 +132,48 @@ osgcpe::Resource shaderFrag("shaders", "ppl.frag", ppl_frag, ppl_frag_len);
 osgcpe::Resource shaderVert("shaders", "ppl.vert", ppl_vert, ppl_vert_len);
 ```
 
-<a name="load"/>
+<a name="image"/>
 
-## 1.4. ...
+## 1.4. Provide image resource as a texture
+
+First, we need to read an image from a resource. Here's how the crucial part
+of the implementation looks like ([complete version][resources_setTextureImage]):
+
+```
+auto reader =
+    osgDB::Registry::instance()->getReaderWriterForExtension(ex);
+if (reader)
+{
+    ResourceStreamBuffer buf(resource);
+    std::istream in(&buf);
+    auto result = reader->readImage(in, 0);
+    if (result.success())
+    {
+        // NOTE I could not get resulting osg::Image outside the function.
+        // NOTE Somehow just returning result.getImage() does not work.
+        texture->setImage(result.getImage());
+    }
+```
+
+**Note**: we do not return the image outside the function because the image
+gets deallocated by that time, that's we use the image before leaving the scope.
+
+Second, we need to create a texture from that image
+([source code][resources_createTexture]):
+
+```
+osg::Texture2D *createTexture(const Resource &resource)
+{
+    osg::ref_ptr<osg::Texture2D> tex = new osg::Texture2D;
+    setTextureImage(tex, resource);
+    tex->setWrap(osg::Texture2D::WRAP_S, osg::Texture2D::REPEAT);
+    tex->setWrap(osg::Texture2D::WRAP_T, osg::Texture2D::REPEAT);
+    tex->setFilter(osg::Texture::MIN_FILTER, osg::Texture::LINEAR_MIPMAP_LINEAR);
+    tex->setFilter(osg::Texture::MAG_FILTER, osg::Texture::LINEAR);
+    return tex.release();
+}
+
+```
 
 TODO:
 
@@ -163,3 +202,5 @@ Here's a [web build of the example][web_build].
 [resources_string]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/resources.h#L126
 [resources_string_usage]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/scene.h#L45
 [shaders_definition]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/Example.h#L81
+[resources_setTextureImage]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/resources.h#L138
+[resources_createTexture]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/resources.h#L192
