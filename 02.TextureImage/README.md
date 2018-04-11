@@ -5,8 +5,9 @@
 * [Steps](#steps)
     * [1.1. Generate resources](#generate)
     * [1.2. Rebuild OpenSceneGraph with PNG support](#rebuild)
-    * [1.3. ](#stream)
-    * [1.4. ](#load)
+    * [1.3. Provide shader resources as strings](#shaders)
+    * [1.4. Provide image resource as a texture](#image)
+    * [1.5. Apply shaders and image to texture the scene](#scene)
 * [Result](#result)
 
 <a name="overview"/>
@@ -43,9 +44,11 @@ OpenSceneGraph has two plugins capable of loading PNG images:
 * `png`
     * uses [libpng][libpng] library
     * available for all platforms
+    * plugin file: `osgdb_png.so` or `osgdb_png.a`
 * `imageio`
     * uses [Image I/O][imageio] library
     * only available for Apple platforms
+    * plugin file: `osgdb_imageio.so` or `osgdb_imageio.a`
 
 **macOS, iOS note**: since Apple provides [Image I/O][imageio] library to work
 with popular image formats, you don't need to use any additional dependency to
@@ -84,15 +87,60 @@ TODO Describe `libpng-android` library building and installation, OSG rebuilding
 TODO Describe build flags to enable PNG support during OSG rebuilding.
 
 
-<a name="stream"/>
+<a name="shaders"/>
 
-## 1.3. ...
+## 1.3. Provide shader resources as strings
 
+[01.EmbedResource][ex01] example provided shaders with simple [`std::string` variables][ex01_shaders].
+This worked fine for single line shaders. 
+
+However, now we need more complicated shaders to apply textures. That's why
+we now have shaders as resources. Let's see how to convert `Resource` to
+`std::string`.
+
+Here's how a convertion function looks like ([source code][resources_string]):
+
+```
+std::string string(const Resource &resource)
+{
+    const char *contents = reinterpret_cast<const char *>(resource.contents);
+    return std::string(contents, resource.len);
+}
+```
+
+We simply casted `unsigned char *` (originally provided by `xxd`) to
+`const char *`.
+
+The convertion function is used like this
+([source code][resources_string_usage]):
+
+```
+// Create shader program.
+auto prog =
+    render::createShaderProgram(
+        resources::string(shaderVert),
+        resources::string(shaderFrag)
+    );
+```
+
+Finally, `shaderVert` and `shaderFrag` are defined like this
+([source code][shaders_definition]):
+
+```
+osgcpe::Resource shaderFrag("shaders", "ppl.frag", ppl_frag, ppl_frag_len);
+osgcpe::Resource shaderVert("shaders", "ppl.vert", ppl_vert, ppl_vert_len);
+```
 
 <a name="load"/>
 
 ## 1.4. ...
 
+TODO:
+
+* describe resources::setTextureImage
+* describe resources::createTexture
+* describe scene::textureImageScene
+* describe Example+TextureImageScene
 
 <a name="result"/>
 
@@ -110,3 +158,7 @@ Here's a [web build of the example][web_build].
 [msys2]: https://www.msys2.org/
 [find_png]: https://cmake.org/cmake/help/v3.0/module/FindPNG.html
 [brew]: https://brew.sh/
+[ex01_shaders]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/scene.h#L37
+[resources_string]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/resources.h#L126
+[resources_string_usage]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/scene.h#L45
+[shaders_definition]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/Example.h#L81
