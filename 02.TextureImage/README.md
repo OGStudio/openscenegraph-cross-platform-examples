@@ -44,11 +44,11 @@ OpenSceneGraph has two plugins capable of loading PNG images:
 * `png`
     * uses [libpng][libpng] library
     * available for all platforms
-    * plugin file: `osgdb_png.so` or `osgdb_png.a`
+    * plugin file: `osgdb_png.so` or `libosgdb_png.a`
 * `imageio`
     * uses [Image I/O][imageio] library
     * only available for Apple platforms
-    * plugin file: `osgdb_imageio.so` or `osgdb_imageio.a`
+    * plugin file: `osgdb_imageio.so` or `libosgdb_imageio.a`
 
 **macOS, iOS note**: since Apple provides [Image I/O][imageio] library to work
 with popular image formats, you don't need to use any additional dependency to
@@ -84,8 +84,40 @@ TODO Describe `libpng-android` library building and installation, OSG rebuilding
 
 ### Web
 
-TODO Describe build flags to enable PNG support during OSG rebuilding.
+[Emscripten][emscripten] ships `libpng` itself. However, to use it, we need to
+perform several compile time tricks.
 
+First, provide `USE_LIBPNG` and `USE_ZLIB` flags at compile and link times
+([source code][cmake_png]):
+
+```
+- - - -
+SET(BUILD_FLAGS "-O3 -s USE_SDL=2 -s ALLOW_MEMORY_GROWTH=1 -s USE_LIBPNG=1 -s USE_ZLIB=1")
+ADD_DEFINITIONS(${BUILD_FLAGS})
+- - - -
+SET_TARGET_PROPERTIES(ex02-texture-image PROPERTIES LINK_FLAGS ${BUILD_FLAGS})
+- - - -
+```
+
+Second, link the application with OpenSceneGraph's PNG plugin, too
+([source code][cmake_png_plugin]):
+```
+TARGET_LINK_LIBRARIES(
+    ex02-texture-image
+    - - - -
+    osgdb_png
+    - - - -
+)
+```
+
+Third, force PNG detection ([source code][cmake_force_png]):
+```
+SET(PNG_PNG_INCLUDE_DIR "whatever" CACHE STRING "Force PNG detection")
+SET(PNG_LIBRARY "libpng" CACHE STRING "Force PNG detection")
+SET(ZLIB_INCLUDE_DIR "whatever" CACHE STRING "Force ZLIB detection")
+SET(ZLIB_LIBRARY "zlib" CACHE STRING "Force ZLIB detection")
+SET(OSG_CPP_EXCEPTIONS_AVAILABLE ON CACHE BOOL "Force PNG plugin building")
+```
 
 <a name="shaders"/>
 
@@ -220,3 +252,6 @@ Here's a [web build of the example][web_build].
 [resources_setTextureImage]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/resources.h#L138
 [resources_createTexture]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/resources.h#L192
 [scene_textureImageScene]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/scene.h#L39
+[emscripten]: http://emscripten.org/
+[cmake_png]: TODO
+[cmake_png_plugin]: TODO

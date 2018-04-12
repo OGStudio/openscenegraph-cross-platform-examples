@@ -31,4 +31,3 @@ Example+BoxScene
 Example+TextureImageScene
 
 main-desktop
-

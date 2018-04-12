@@ -1,4 +1,4 @@
-PROJECT(EX01_EMBED_RESOURCE)
+PROJECT(EX02_TEXTURE_IMAGE)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 # Path to external projects:
@@ -21,15 +21,22 @@ SET(_OPENTHREADS_ATOMIC_USE_GCC_BUILTINS_EXITCODE "0" CACHE STRING "Prevent cfg 
 # * -O3: make compact binary, critical for web
 # * -s USE_SDL=2: provide SDL2
 # * -s ALLOW_MEMORY_GROWTH=1: allow total memory used to increase when necessary
-SET(BUILD_FLAGS "-O3 -s USE_SDL=2 -s ALLOW_MEMORY_GROWTH=1")
+SET(BUILD_FLAGS "-O3 -s USE_SDL=2 -s ALLOW_MEMORY_GROWTH=1 -s USE_LIBPNG=1 -s USE_ZLIB=1")
 ADD_DEFINITIONS(${BUILD_FLAGS})
 # Use C++11.
 ADD_DEFINITIONS("-std=c++11")
 
+# Force PNG detection.
+SET(PNG_PNG_INCLUDE_DIR "whatever" CACHE STRING "Force PNG detection")
+SET(PNG_LIBRARY "libpng" CACHE STRING "Force PNG detection")
+SET(ZLIB_INCLUDE_DIR "whatever" CACHE STRING "Force ZLIB detection")
+SET(ZLIB_LIBRARY "zlib" CACHE STRING "Force ZLIB detection")
+SET(OSG_CPP_EXCEPTIONS_AVAILABLE ON CACHE BOOL "Force PNG plugin building")
+
 SET(OSG_SOURCE_DIR "${EXT_PROJ_DIR}/OpenSceneGraph")
 SET(OSG_BUILD_DIR "${OSG_SOURCE_DIR}/build/Emscripten")
 # Only build OpenSceneGraph if it has not yet been built.
-IF (NOT EXISTS "${OSG_BUILD_DIR}/lib/libosg.a")
+IF (NOT EXISTS "${OSG_BUILD_DIR}/lib/libosgdb_png.a")
     FILE(MAKE_DIRECTORY ${OSG_BUILD_DIR})
     ADD_SUBDIRECTORY(${OSG_SOURCE_DIR} ${OSG_BUILD_DIR})
 ENDIF ()
@@ -44,16 +51,17 @@ INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/src)
 # Reference resource headers.
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/../../data)
 # Create executable (aka HTML page).
-ADD_EXECUTABLE(ex01-embed-resource src/main.cpp)
+ADD_EXECUTABLE(ex02-texture-image src/main.cpp)
 # Link with OpenSceneGraph libraries in specific order.
 # Otherwise you may get unsatisified linker errors.
 TARGET_LINK_LIBRARIES(
-    ex01-embed-resource
+    ex02-texture-image
     osgViewer
     osgDB
     # osgDB plugins start.
     osgdb_osg
     osgdb_serializers_osg
+    osgdb_png
     # osgDB plugins end.
     osgGA
     osgText
@@ -65,4 +73,4 @@ TARGET_LINK_LIBRARIES(
 # Make Emscripten generate ready-to-open HTML page.
 SET(CMAKE_EXECUTABLE_SUFFIX ".html")
 # Link with special build flags.
-SET_TARGET_PROPERTIES(ex01-embed-resource PROPERTIES LINK_FLAGS ${BUILD_FLAGS})
+SET_TARGET_PROPERTIES(ex02-texture-image PROPERTIES LINK_FLAGS ${BUILD_FLAGS})
