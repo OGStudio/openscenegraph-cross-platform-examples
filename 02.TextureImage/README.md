@@ -7,7 +7,7 @@
     * [1.2. Rebuild OpenSceneGraph with PNG support](#rebuild)
     * [1.3. Provide shader resources as strings](#shaders)
     * [1.4. Provide image resource as a texture](#image)
-    * [1.5. Apply shaders and image to texture the scene](#scene)
+    * [1.5. Apply shaders and texture to the scene](#scene)
 * [Result](#result)
 
 <a name="overview"/>
@@ -140,6 +140,7 @@ First, we need to read an image from a resource. Here's how the crucial part
 of the implementation looks like ([complete version][resources_setTextureImage]):
 
 ```
+- - - -
 auto reader =
     osgDB::Registry::instance()->getReaderWriterForExtension(ex);
 if (reader)
@@ -153,12 +154,13 @@ if (reader)
         // NOTE Somehow just returning result.getImage() does not work.
         texture->setImage(result.getImage());
     }
+- - - -
 ```
 
 **Note**: we do not return the image outside the function because the image
 gets deallocated by that time, that's we use the image before leaving the scope.
 
-Second, we need to create a texture from that image
+Second, we need to create a texture with that image
 ([source code][resources_createTexture]):
 
 ```
@@ -172,15 +174,28 @@ osg::Texture2D *createTexture(const Resource &resource)
     tex->setFilter(osg::Texture::MAG_FILTER, osg::Texture::LINEAR);
     return tex.release();
 }
-
 ```
 
-TODO:
+<a name="scene"/>
 
-* describe resources::setTextureImage
-* describe resources::createTexture
-* describe scene::textureImageScene
-* describe Example+TextureImageScene
+# 1.5. Apply shaders and texture to the scene
+
+The last step is to get scene's material and apply shaders with texture to the material ([source code][scene_textureImageScene]):
+
+```
+// Create shader program.
+auto prog =
+    render::createShaderProgram(
+        resources::string(shaderVert),
+        resources::string(shaderFrag)
+    );
+// Apply the program.
+auto material = scene->getOrCreateStateSet();
+material->setAttribute(prog);
+// Set texture image.
+material->setTextureAttributeAndModes(0, resources::createTexture(textureImage));
+material->addUniform(new osg::Uniform("image", 0));
+```
 
 <a name="result"/>
 
@@ -204,3 +219,4 @@ Here's a [web build of the example][web_build].
 [shaders_definition]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/Example.h#L81
 [resources_setTextureImage]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/resources.h#L138
 [resources_createTexture]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/resources.h#L192
+[scene_textureImageScene]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/scene.h#L39

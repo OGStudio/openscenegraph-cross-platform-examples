@@ -51,7 +51,7 @@ void textureImageScene(
     // Apply the program.
     auto material = scene->getOrCreateStateSet();
     material->setAttribute(prog);
-    // Set image.
+    // Set texture image.
     material->setTextureAttributeAndModes(0, resources::createTexture(textureImage));
     material->addUniform(new osg::Uniform("image", 0));
 }
