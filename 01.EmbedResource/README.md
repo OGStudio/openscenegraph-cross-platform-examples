@@ -19,6 +19,8 @@ In this example we embed `box.osgt` model (a binary resource) into application.
 Embedding binary resources unifies data loading for platforms with different file
 system requirements and constraints like desktop, Android, iOS, and web.
 
+**Non-desktop platforms' note**: don't forget to reference OpenSceneGraph plugins with `USE_OSGPLUGIN` macro.
+
 <a name="steps"/>
 
 # Steps

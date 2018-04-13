@@ -24,6 +24,8 @@ This example is part of [OpenSceneGraph cross-platform examples][osgcpe].
 In this example we use PNG image as a texture for a model. All resources are
 embedded into application.
 
+**Non-desktop platforms' note**: don't forget to reference OpenSceneGraph plugins with `USE_OSGPLUGIN` macro.
+
 <a name="steps"/>
 
 # Steps
