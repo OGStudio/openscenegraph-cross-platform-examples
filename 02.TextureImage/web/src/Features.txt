@@ -28,6 +28,7 @@ Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
 Example+TextureImageScene
 Example+StaticPluginOSG
+Example+StaticPluginPNG
 Example+VBO
 
 VBOSetupVisitor+Stub

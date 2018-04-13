@@ -5,6 +5,11 @@
 * [Steps](#steps)
     * [1.1. Generate resources](#generate)
     * [1.2. Rebuild OpenSceneGraph with PNG support](#rebuild)
+        * [Linux, Windows](#linuxwindows)
+        * [macOS](#macos)
+        * [iOS](#ios)
+        * [Android](#android)
+        * [Web](#web)
     * [1.3. Provide shader resources as strings](#shaders)
     * [1.4. Provide image resource as a texture](#image)
     * [1.5. Apply shaders and texture to the scene](#scene)
@@ -54,6 +59,8 @@ OpenSceneGraph has two plugins capable of loading PNG images:
 with popular image formats, you don't need to use any additional dependency to
 work with PNG.
 
+<a name="linuxwindows"/>
+
 ### Linux, Windows
 
 You should generally use package managers ([MSYS2][msys2] for Windows) to install
@@ -63,6 +70,8 @@ If you build OpenSceneGraph from sources, you need to make sure `libpng` is foun
 by `CMake` during configuration stage. Consult `CMake`'s [FindPNG][find_png] documentation
 for details.
 
+<a name="macos"/>
+
 ### macOS
 
 If you installed OpenSceneGraph with [brew][brew], you already have
@@ -71,6 +80,8 @@ If you installed OpenSceneGraph with [brew][brew], you already have
 If you built OpenSceneGraph from sources, `CMake` should have found `Image I/O`
 during configuration stage.
 
+<a name="ios"/>
+
 ### iOS
 
 To use `Image I/O` on iOS, you need to link your application with
@@ -78,9 +89,13 @@ To use `Image I/O` on iOS, you need to link your application with
 
 TODO Verify
 
+<a name="android"/>
+
 ### Android
 
 TODO Describe `libpng-android` library building and installation, OSG rebuilding.
+
+<a name="web"/>
 
 ### Web
 
@@ -118,6 +133,11 @@ SET(ZLIB_INCLUDE_DIR "whatever" CACHE STRING "Force ZLIB detection")
 SET(ZLIB_LIBRARY "zlib" CACHE STRING "Force ZLIB detection")
 SET(OSG_CPP_EXCEPTIONS_AVAILABLE ON CACHE BOOL "Force PNG plugin building")
 ```
+
+**Notes**:
+
+* ignore `WARNING:root:emcc: cannot find library "libpng"` errors, because `libpng` and `zlib` are linked by Emscripten from ports, so they are not used like other libraries
+* make sure there are no `warning: unresolved symbol: png_read_info` errors, because they mean `libpng` have not been linked with
 
 <a name="shaders"/>
 
