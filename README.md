@@ -56,8 +56,7 @@ Each example contains four implementations to cover all supported platforms:
     * OpenSceneGraph plugins are referenced at run-time
     * plugins should be located in a directory where dynamic linker looks for libraries
 * non-desktop builds
-    * OpenSceneGraph plugins are referenced at build time
-    * plugins are compiled into an application
+    * OpenSceneGraph plugins are linked with at build time
     * plugins should be explicitely referenced in code with `USE_OSGPLUGIN` macro
 
 <a name="build-desktop"/>
