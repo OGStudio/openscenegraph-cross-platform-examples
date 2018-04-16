@@ -26,6 +26,9 @@ freely, subject to the following restrictions:
 // FEATURE library-android/Include
 // FEATURE library-ios/Include
 
+// FEATURE library+Ex01+OSGCPE_JNI-android/Impl
+// FEATURE library+Ex02+OSGCPE_JNI-android/Impl
+
 // Example instance.
 osgcpe::Example *example = 0;
 

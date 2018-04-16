@@ -22,43 +22,29 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "Example.h"
-// library-ios Start
-#include "library.h"
-
-// library-ios End
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 
 
-// Example instance.
-osgcpe::Example *example = 0;
-
-// library-ios Start
-namespace library
+namespace osgcpe
+{
+namespace scene
 {
 
-// library-ios End
-
-// library+init-ios Start
-UIView *init(int width, int height, float scale, UIView *parentView)
+// scene+paintScene Start
+void paintScene(osg::Node *scene)
 {
-    // Create example only once.
-    // If we create example at stack, the instance might get initialized
-    // before plugin readers/writers are available, which would break everything.
-    if (!example)
-    {
-        example = new osgcpe::Example;
-    }
-    return example->app->setupWindow(width, height, scale, parentView);
+    // Fragment shader to display everything in red colour.
+    const char shaderFragment[] = "void main() { gl_FragColor = vec4(0.5, 0.3, 0.3, 1.0); }";
+    // Vertex shader to pass geometry vertices to fragment shader.
+    const char shaderVertex[] = "void main() { gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex; }";
+    auto prog = render::createShaderProgram(shaderVertex, shaderFragment);
+    scene->getOrCreateStateSet()->setAttribute(prog);
 }
-// library+init-ios End
-// library+frame-ios Start
-void frame()
-{
-    example->app->frame();
-}
-// library+frame-ios End
+// scene+paintScene End
 
-// library-ios Start
-} // namespace library.
-// library-ios End
+} // namespace scene
+} // namespace osgcpe
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 

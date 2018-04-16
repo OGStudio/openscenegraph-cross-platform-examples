@@ -22,43 +22,40 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "Example.h"
-// library-ios Start
-#include "library.h"
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
 
-// library-ios End
+#include <string>
 
-
-// Example instance.
-osgcpe::Example *example = 0;
-
-// library-ios Start
-namespace library
+namespace osgcpe
 {
 
-// library-ios End
-
-// library+init-ios Start
-UIView *init(int width, int height, float scale, UIView *parentView)
+//! Resource container.
+struct Resource
 {
-    // Create example only once.
-    // If we create example at stack, the instance might get initialized
-    // before plugin readers/writers are available, which would break everything.
-    if (!example)
-    {
-        example = new osgcpe::Example;
-    }
-    return example->app->setupWindow(width, height, scale, parentView);
-}
-// library+init-ios End
-// library+frame-ios Start
-void frame()
-{
-    example->app->frame();
-}
-// library+frame-ios End
+    Resource(
+        const std::string &group,
+        const std::string &name,
+        unsigned char *contents,
+        unsigned int len
+    ) :
+        group(group),
+        name(name),
+        contents(contents),
+        len(len)
+    { }
 
-// library-ios Start
-} // namespace library.
-// library-ios End
+    std::string group;
+    std::string name;
+    unsigned char *contents;
+    unsigned int len;
+};
+
+} // namespace osgcpe
+
+// Resource+Stub Start
+// Stub.
+// Resource+Stub End
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
 

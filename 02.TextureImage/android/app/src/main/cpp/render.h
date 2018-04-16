@@ -22,43 +22,38 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "Example.h"
-// library-ios Start
-#include "library.h"
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
 
-// library-ios End
+// render+createShaderProgram Start
+#include <osg/Program>
 
+// render+createShaderProgram End
 
-// Example instance.
-osgcpe::Example *example = 0;
-
-// library-ios Start
-namespace library
+namespace osgcpe
+{
+namespace render
 {
 
-// library-ios End
-
-// library+init-ios Start
-UIView *init(int width, int height, float scale, UIView *parentView)
-{
-    // Create example only once.
-    // If we create example at stack, the instance might get initialized
-    // before plugin readers/writers are available, which would break everything.
-    if (!example)
-    {
-        example = new osgcpe::Example;
-    }
-    return example->app->setupWindow(width, height, scale, parentView);
+// render+createShaderProgram Start
+osg::Program *createShaderProgram(
+    const std::string &vertexShader,
+    const std::string &fragmentShader
+) {
+    // Load shaders.
+    osg::Shader *vs = new osg::Shader(osg::Shader::VERTEX, vertexShader);
+    osg::Shader *fs = new osg::Shader(osg::Shader::FRAGMENT, fragmentShader);
+    // Compile shaders and compose shader program.
+    osg::ref_ptr<osg::Program> prog = new osg::Program;
+    prog->addShader(vs);
+    prog->addShader(fs);
+    return prog.release();
 }
-// library+init-ios End
-// library+frame-ios Start
-void frame()
-{
-    example->app->frame();
-}
-// library+frame-ios End
+// render+createShaderProgram End
 
-// library-ios Start
-} // namespace library.
-// library-ios End
+
+} // namespace render
+} // namespace osgcpe
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
 

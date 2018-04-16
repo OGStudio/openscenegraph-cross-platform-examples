@@ -27,6 +27,8 @@ Example+VBO
 
 VBOSetupVisitor+Stub
 
+library+Ex01+OSGCPE_JNI-android
+
 library-android
 library+init-android
 library+frame-android

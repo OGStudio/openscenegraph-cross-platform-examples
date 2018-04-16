@@ -22,43 +22,41 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "Example.h"
-// library-ios Start
-#include "library.h"
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
 
-// library-ios End
+#include "log.h"
 
-
-// Example instance.
-osgcpe::Example *example = 0;
-
-// library-ios Start
-namespace library
+namespace osgcpe
 {
 
-// library-ios End
-
-// library+init-ios Start
-UIView *init(int width, int height, float scale, UIView *parentView)
+//! Print OpenSceneGraph notifications to console.
+class Logger : public osg::NotifyHandler
 {
-    // Create example only once.
-    // If we create example at stack, the instance might get initialized
-    // before plugin readers/writers are available, which would break everything.
-    if (!example)
-    {
-        example = new osgcpe::Example;
-    }
-    return example->app->setupWindow(width, height, scale, parentView);
-}
-// library+init-ios End
-// library+frame-ios Start
-void frame()
-{
-    example->app->frame();
-}
-// library+frame-ios End
+    public:
+        Logger(const std::string &domain = "") : domain(domain) { }
+        virtual ~Logger() { }
 
-// library-ios Start
-} // namespace library.
-// library-ios End
+        // Override NotifyHandler::notify() to receive OpenSceneGraph notifications.
+        void notify(osg::NotifySeverity severity, const char *message) override
+        {
+            log::logprintf(
+                "%s OSG/%s %s",
+                domain.c_str(),
+                log::logLevelToString(severity).c_str(),
+                message
+            );
+        }
+
+    private:
+        const std::string domain;
+};
+
+} // namespace osgcpe
+
+// Logger+Stub Start
+// Stub.
+// Logger+Stub End
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
 
