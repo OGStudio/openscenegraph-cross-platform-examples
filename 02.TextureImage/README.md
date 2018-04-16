@@ -95,7 +95,43 @@ TODO Verify
 
 ### Android
 
-TODO Describe `libpng-android` library building and installation, OSG rebuilding.
+First, download [libpng-android][libpng-android] and place it alongside this
+repository (next to OpenSceneGraph).
+
+Second, reference `libpng-android` from `CMakeLists.txt` ([source code][cmake_libpng]):
+
+```
+- - - -
+# Reference libpng-android.
+SET(PNG_SOURCE_DIR "${EXT_PROJ_DIR}/libpng-android")
+SET(PNG_BUILD_DIR "${PNG_SOURCE_DIR}/build/${ANDROID_ABI}")
+# Only build libpng-android if it has not yet been built.
+IF (NOT EXISTS "${PNG_BUILD_DIR}/libpng.a")
+    FILE(MAKE_DIRECTORY ${PNG_BUILD_DIR})
+    ADD_SUBDIRECTORY(${PNG_SOURCE_DIR} ${PNG_BUILD_DIR})
+ENDIF ()
+# Reference libpng-android includes.
+INCLUDE_DIRECTORIES(${PNG_SOURCE_DIR}/jni)
+# Reference libpng-android libraries.
+LINK_DIRECTORIES(${PNG_BUILD_DIR})
+# Force PNG specific flags for OSG.
+SET(PNG_FOUND ON CACHE BOOL "PNG is found")
+SET(OSG_CPP_EXCEPTIONS_AVAILABLE ON CACHE BOOL "Enable exceptions to build PNG")
+SET(PNG_INCLUDE_DIR ${PNG_SOURCE_DIR}/jni)
+- - - -
+```
+
+Third, link with OpenSceneGraph PNG plugin and `libpng` ([source code][cmake_link_libpng]):
+
+```
+- - - -
+TARGET_LINK_LIBRARIES(
+    library
+- - - -
+    osgdb_png
+    png
+- - - -
+```
 
 <a name="web"/>
 
@@ -279,3 +315,6 @@ Here's a [web build of the example][web_build].
 [cmake_png_plugin]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/web/CMakeLists.txt#L66
 [cmake_force_png]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/web/CMakeLists.txt#L31
 [web_build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/02/ex02-texture-image.html
+[libpng-android]: https://github.com/julienr/libpng-android
+[cmake_libpng]: TODO
+[cmake_link_libpng]: TODO

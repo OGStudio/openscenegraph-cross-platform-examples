@@ -91,6 +91,7 @@ To launch the first example, run the following command:
 
 * You must have OpenSceneGraph sources alongside this repository clone (see [OpenSceneGraph cross-platform guide][osgcpg] for details)
 * Android project is built for `armeabi-v7a` architecture by default (update `abiFilters` value in `android/app/build.gradle` if you want other platforms)
+* Make sure to run `Tools -> Android -> Sync Project with Gradle Files` in Android Studio after opening each example, this is necessary for Android Studio to create internal project files
 
 To build and run `01.EmbedResource` example for Android, you open
 `01.EmbedResource/android` in Android Studio and run the project.
