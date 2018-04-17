@@ -9,6 +9,9 @@ render+createShaderProgram
 resources+OSGCPE_RESOURCES_LOG
 resources+node
 resources+extension
+resources+string
+resources+setTextureImage
+resources+createTexture
 Resource+Stub
 ResourceStreamBuffer+Stub
 
@@ -16,13 +19,14 @@ Application+setupWindow-embedded
 Application+Logging
 Application+Rendering
 
-scene+paintScene
+scene+textureImageScene
 
-Example+01
+Example+02
 Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
-Example+SingleColorScene
+Example+TextureImageScene
 Example+StaticPluginOSG
+Example+StaticPluginPNG
 Example+VBO
 
 VBOSetupVisitor+Stub

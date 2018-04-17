@@ -31,6 +31,15 @@ freely, subject to the following restrictions:
 #include <osgDB/Registry>
 
 // resources+node End
+// resources+setTextureImage Start
+#include <osg/Texture2D>
+#include <osgDB/Registry>
+
+// resources+setTextureImage End
+// resources+createTexture Start
+#include <osg/Texture2D>
+
+// resources+createTexture End
 
 // resources+OSGCPE_RESOURCES_LOG Start
 #define OSGCPE_RESOURCES_LOG_PREFIX "osgcpe-resources %s"
@@ -113,6 +122,84 @@ osg::ref_ptr<osg::Node> node(Resource &resource, const std::string ext = "")
     return node.release();
 }
 // resources+node End
+// resources+string Start
+std::string string(const Resource &resource)
+{
+    const char *contents = reinterpret_cast<const char *>(resource.contents);
+    return std::string(contents, resource.len);
+}
+// resources+string End
+// resources+setTextureImage Start
+//! Set image for texture.
+
+// \param texture Texture to set image for.
+// \param resource Resource to take image from.
+// \param ext (optional) If extension is present it won't be autodetected from the resource's name
+void setTextureImage(
+    osg::Texture2D *texture,
+    const Resource &resource,
+    const std::string ext = ""
+) {
+    // Get extension from resource's name if extension is not specified.
+    std::string ex = ext.empty() ?  extension(resource) : ext;
+    // Do nothing if extension is absent.
+    if (ex.empty())
+    {
+        OSGCPE_RESOURCES_LOG(
+            "ERROR Could not read image of '%s/%s' resource "
+            "because extension is absent",
+            resource.group.c_str(),
+            resource.name.c_str()
+        );
+        return;
+    }
+    auto reader =
+        osgDB::Registry::instance()->getReaderWriterForExtension(ex);
+    if (reader)
+    {
+        ResourceStreamBuffer buf(resource);
+        std::istream in(&buf);
+        auto result = reader->readImage(in, 0);
+        if (result.success())
+        {
+            // NOTE I could not get resulting osg::Image outside the function.
+            // NOTE Somehow just returning result.getImage() does not work.
+            texture->setImage(result.getImage());
+        }
+        else
+        {
+            OSGCPE_RESOURCES_LOG(
+                "ERROR Could not read image of '%s/%s' resource from buffer.",
+                resource.group.c_str(),
+                resource.name.c_str()
+            );
+        }
+    }
+    else
+    {
+        OSGCPE_RESOURCES_LOG(
+            "ERROR Could not read image of '%s/%s' resource because "
+            "image reader for extension '%s' is absent.",
+            resource.group.c_str(),
+            resource.name.c_str(),
+            ex.c_str()
+        );
+    }
+}
+// resources+setTextureImage End
+// resources+createTexture Start
+//! Create texture from a resource.
+osg::Texture2D *createTexture(const Resource &resource)
+{
+    osg::ref_ptr<osg::Texture2D> tex = new osg::Texture2D;
+    setTextureImage(tex, resource);
+    tex->setWrap(osg::Texture2D::WRAP_S, osg::Texture2D::REPEAT);
+    tex->setWrap(osg::Texture2D::WRAP_T, osg::Texture2D::REPEAT);
+    tex->setFilter(osg::Texture::MIN_FILTER, osg::Texture::LINEAR_MIPMAP_LINEAR);
+    tex->setFilter(osg::Texture::MAG_FILTER, osg::Texture::LINEAR);
+    return tex.release();
+}
+// resources+createTexture End
 
 } // namespace resources
 } // namespace osgcpe

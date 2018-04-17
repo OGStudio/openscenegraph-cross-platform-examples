@@ -36,6 +36,13 @@ freely, subject to the following restrictions:
 #include "resources.h"
 
 // Example+BoxScene End
+// Example+TextureImageScene Start
+#include "resources.h"
+#include "ppl.frag.h"
+#include "ppl.vert.h"
+#include "digit.png.h"
+
+// Example+TextureImageScene End
 
 // Example+OSGCPE_EXAMPLE_LOG Start
 #include "log.h"
@@ -53,13 +60,17 @@ freely, subject to the following restrictions:
 USE_OSGPLUGIN(osg2)
 USE_SERIALIZER_WRAPPER_LIBRARY(osg)
 // Example+StaticPluginOSG End
+// Example+StaticPluginPNG Start
+// Reference (statically) plugins to read `png` file.
+USE_OSGPLUGIN(png)
+// Example+StaticPluginPNG End
 
 namespace osgcpe
 {
 
-// Example+01 Start
-const auto EXAMPLE_TITLE = "Ex01";
-// Example+01 End
+// Example+02 Start
+const auto EXAMPLE_TITLE = "Ex02";
+// Example+02 End
 
 struct Example
 {
@@ -85,9 +96,12 @@ struct Example
             osgcpe::VBOSetupVisitor vbo;
             scene->accept(vbo);
             // Example+VBO End
-            // Example+SingleColorScene Start
-            osgcpe::scene::paintScene(scene);
-            // Example+SingleColorScene End
+            // Example+TextureImageScene Start
+            osgcpe::Resource shaderFrag("shaders", "ppl.frag", ppl_frag, ppl_frag_len);
+            osgcpe::Resource shaderVert("shaders", "ppl.vert", ppl_vert, ppl_vert_len);
+            osgcpe::Resource textureImage("images", "digit.png", digit_png, digit_png_len);
+            osgcpe::scene::textureImageScene(shaderFrag, shaderVert, textureImage, scene);
+            // Example+TextureImageScene End
             this->app->setScene(scene);
         }
     }
