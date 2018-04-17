@@ -86,10 +86,7 @@ during configuration stage.
 
 ### iOS
 
-To use `Image I/O` on iOS, you need to link your application with
-`ImageIO.framework`.
-
-TODO Verify
+OpenSceneGraph should have detected and built `Image I/O` plugin. So you should have no problems.
 
 <a name="android"/>
 
