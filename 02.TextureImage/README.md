@@ -313,5 +313,5 @@ Here's a [web build of the example][web_build].
 [cmake_force_png]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/web/CMakeLists.txt#L31
 [web_build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/02/ex02-texture-image.html
 [libpng-android]: https://github.com/julienr/libpng-android
-[cmake_libpng]: TODO
-[cmake_link_libpng]: TODO
+[cmake_libpng]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/android/app/CMakeLists.txt#L8
+[cmake_link_libpng]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/android/app/CMakeLists.txt#L60
