@@ -34,6 +34,7 @@ freely, subject to the following restrictions:
 // FEATURE Example+OSGCPE_EXAMPLE_LOG/Impl
 // FEATURE Example+StaticPluginOSG/Impl
 // FEATURE Example+StaticPluginPNG/Impl
+// FEATURE Example+StaticPluginImageIO/Impl
 
 namespace osgcpe
 {
