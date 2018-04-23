@@ -22,52 +22,43 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_EXAMPLE_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_EXAMPLE_H
-        
-#include "Application.h"
-#include "scene.h"
-// FEATURE Example+VBO/Include
-// FEATURE Example+BoxScene/Include
-// FEATURE Example+TextureImageScene/Include
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_SETUP_VISITOR_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_SETUP_VISITOR_H
 
-// FEATURE Example+OSGCPE_EXAMPLE_LOG/Impl
-// FEATURE Example+StaticPluginOSG/Impl
-// FEATURE Example+StaticPluginPNG/Impl
-// FEATURE Example+StaticPluginImageIO/Impl
+#include <osg/Geode>
+#include <osg/Geometry>
+#include <osg/NodeVisitor>
 
 namespace osgcpe
 {
 
-// FEATURE Example+01/Title
-// FEATURE Example+02/Title
-// FEATURE Example+03/Title
-
-struct Example
+// This class forces the use of VBO.
+class VBOSetupVisitor : public osg::NodeVisitor
 {
+    public:
+        VBOSetupVisitor() :
+            osg::NodeVisitor(osg::NodeVisitor::TRAVERSE_ALL_CHILDREN) { }
 
-    osgcpe::Application *app;
-
-    Example()
-    {
-        this->app = new osgcpe::Application(EXAMPLE_TITLE);
-        // FEATURE Example+BoxScene/Impl
-        if (scene.valid())
+        virtual void apply(osg::Geode &geode)
         {
-            // FEATURE Example+VBO/Impl
-            // FEATURE Example+SingleColorScene/Impl
-            // FEATURE Example+TextureImageScene/Impl
-            this->app->setScene(scene);
+            for (unsigned int i = 0; i < geode.getNumDrawables(); ++i)
+            {
+                osg::Geometry *geom =
+                    dynamic_cast<osg::Geometry*>(geode.getDrawable(i));
+                if (geom)
+                {
+                    geom->setUseVertexBufferObjects(true);
+                }
+            }
+            NodeVisitor::apply(geode);
         }
-    }
-    ~Example()
-    {
-        delete this->app;
-    }
-
 };
 
 } // namespace osgcpe
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_EXAMPLE_H
+// VBOSetupVisitor+Stub Start
+// Stub.
+// VBOSetupVisitor+Stub End
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_SETUP_VISITOR_H
 
