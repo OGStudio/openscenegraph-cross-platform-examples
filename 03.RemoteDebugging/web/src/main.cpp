@@ -65,6 +65,21 @@ void downloadSucceeded(emscripten_fetch_t *fetch)
         fetch->numBytes,
         fetch->url
     );
+
+    const int BUF_SIZE = 100;
+    // Get the body.
+    if (fetch->numBytes < BUF_SIZE)
+    {
+        char buf[BUF_SIZE];
+        strncpy(buf, fetch->data, fetch->numBytes);
+        buf[fetch->numBytes + 1] = '\0';
+        std::string body(buf);
+        printf("FetchOnce. Received body: '%s'\n", body.c_str());
+    }
+    else
+    {
+        printf("FetchOnce. Too much data. Cannot parse\n");
+    }
     emscripten_fetch_close(fetch);
 }
 
