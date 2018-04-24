@@ -10,6 +10,8 @@ function returnValue(response)
 {
     response.statusCode = 200;
     response.setHeader("Content-Type", "text/plain");
+    // Allow CORS.
+    response.setHeader("Access-Control-Allow-Origin", "*");
     response.end(`${value}`);
 }
 

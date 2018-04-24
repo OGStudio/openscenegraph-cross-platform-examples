@@ -23,7 +23,8 @@ SET(_OPENTHREADS_ATOMIC_USE_GCC_BUILTINS_EXITCODE "0" CACHE STRING "Prevent cfg 
 # * -s ALLOW_MEMORY_GROWTH=1: allow total memory used to increase when necessary
 # * -s USE_LIBPNG=1: use libpng
 # * -s USE_ZLIB=1: use zlib, necessary for libpng
-SET(BUILD_FLAGS "-O3 -s USE_SDL=2 -s ALLOW_MEMORY_GROWTH=1 -s USE_LIBPNG=1 -s USE_ZLIB=1")
+# * -s FETCH=1: use FetchAPI
+SET(BUILD_FLAGS "-O3 -s USE_SDL=2 -s ALLOW_MEMORY_GROWTH=1 -s USE_LIBPNG=1 -s USE_ZLIB=1 -s FETCH=1")
 ADD_DEFINITIONS(${BUILD_FLAGS})
 # Use C++11.
 ADD_DEFINITIONS("-std=c++11")

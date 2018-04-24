@@ -34,3 +34,4 @@ Example+VBO
 VBOSetupVisitor+Stub
 
 main-web
+main+FetchOnce-web

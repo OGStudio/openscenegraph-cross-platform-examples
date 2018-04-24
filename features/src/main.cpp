@@ -24,8 +24,10 @@ freely, subject to the following restrictions:
 
 #include "Example.h"
 // FEATURE main-web/Include
+// FEATURE main+FetchOnce-web/Include
 
 // FEATURE main-web/Loop
+// FEATURE main+FetchOnce-web/Callbacks
 
 int main(int argc, char *argv[])
 {
@@ -33,6 +35,7 @@ int main(int argc, char *argv[])
     // FEATURE main-web/Setup
     // FEATURE main-desktop/Run
     // FEATURE main-web/Run
+    // FEATURE main+FetchOnce-web/Run
     return 0;
 }
 
