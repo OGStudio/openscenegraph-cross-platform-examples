@@ -28,10 +28,10 @@ freely, subject to the following restrictions:
 #include <SDL2/SDL.h>
 
 // main-web End
-// main+FetchOnce-web Start
+// main+FetchRegularly-web Start
 #include <emscripten/fetch.h>
 
-// main+FetchOnce-web End
+// main+FetchRegularly-web End
 
 // main-web Start
 // We use Example global variable in loop() function.
@@ -57,11 +57,14 @@ void loop()
 }
 
 // main-web End
-// main+FetchOnce-web Start
-void downloadSucceeded(emscripten_fetch_t *fetch)
+// main+FetchRegularly-web Start
+// Forward declaration.
+void fetchValue();
+
+void fetchSucceeded(emscripten_fetch_t *fetch)
 {
     printf(
-        "FetchOnce. Finished downloading '%llu' bytes from '%s'\n",
+        "Fetch. Finished downloading '%llu' bytes from '%s'\n",
         fetch->numBytes,
         fetch->url
     );
@@ -74,26 +77,45 @@ void downloadSucceeded(emscripten_fetch_t *fetch)
         strncpy(buf, fetch->data, fetch->numBytes);
         buf[fetch->numBytes + 1] = '\0';
         std::string body(buf);
-        printf("FetchOnce. Received body: '%s'\n", body.c_str());
+        printf("Fetch. Received value: '%s'\n", body.c_str());
     }
     else
     {
-        printf("FetchOnce. Too much data. Cannot parse\n");
+        printf("Fetch. Too much data. Cannot parse\n");
     }
     emscripten_fetch_close(fetch);
+    // Perform new fetch.
+    fetchValue();
 }
 
-void downloadFailed(emscripten_fetch_t *fetch)
+void fetchFailed(emscripten_fetch_t *fetch)
 {
     printf(
-        "FetchOnce. Failed to download '%s'. HTTP status code: '%d'\n",
+        "Fetch. Failed to download '%s'. HTTP status code: '%d'\n",
         fetch->url,
         fetch->status
     );
     emscripten_fetch_close(fetch);
+    // Do not perform new fetches?
 }
 
-// main+FetchOnce-web End
+void fetchValue()
+{
+    // Create a request for a resource over HTTP.
+    emscripten_fetch_attr_t attr;
+    emscripten_fetch_attr_init(&attr);
+    strcpy(attr.requestMethod, "GET");
+    attr.attributes = EMSCRIPTEN_FETCH_LOAD_TO_MEMORY;
+    attr.onsuccess = fetchSucceeded;
+    attr.onerror = fetchFailed;
+    // Resource URL.
+    auto url = "http://127.0.0.1:7999";
+    // Perform the request.
+    emscripten_fetch(&attr, url);
+    printf("Fetch. Request value from '%s'\n", url);
+}
+
+// main+FetchRegularly-web End
 
 int main(int argc, char *argv[])
 {
@@ -138,20 +160,10 @@ int main(int argc, char *argv[])
     // Render asynchronously.
     emscripten_set_main_loop(loop, -1, 0);
     // main-web End
-    // main+FetchOnce-web Start
-    // Create a request for a resource over HTTP.
-    emscripten_fetch_attr_t attr;
-    emscripten_fetch_attr_init(&attr);
-    strcpy(attr.requestMethod, "GET");
-    attr.attributes = EMSCRIPTEN_FETCH_LOAD_TO_MEMORY;
-    attr.onsuccess = downloadSucceeded;
-    attr.onerror = downloadFailed;
-    // Resource URL.
-    auto url = "http://127.0.0.1:7999";
-    // Perform the request.
-    emscripten_fetch(&attr, url);
-    printf("FetchOnce. Request resource at '%s'\n", url);
-    // main+FetchOnce-web End
+    // main+FetchRegularly-web Start
+    // Start regular fetching.
+    fetchValue();
+    // main+FetchRegularly-web End
     return 0;
 }
 
