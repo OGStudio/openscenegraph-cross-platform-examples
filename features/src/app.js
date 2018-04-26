@@ -1,7 +1,6 @@
 
 const http = require("http");
-const hostname = "127.0.0.1";
-const port = 7999;
+const port = process.env.PORT || 7999;
 
 // Mnaged global value.
 var value = 1;
@@ -47,8 +46,8 @@ function processRequest(request, response)
 
 const server = http.createServer()
 server.on("request", processRequest)
-server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}`);
+server.listen(port, () => {
+    console.log(`Server listening at port ${port}`);
 })
 
 // FEATURE app+Stub/Impl

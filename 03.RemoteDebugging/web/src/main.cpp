@@ -109,7 +109,7 @@ void fetchValue()
     attr.onsuccess = fetchSucceeded;
     attr.onerror = fetchFailed;
     // Resource URL.
-    auto url = "http://127.0.0.1:7999";
+    auto url = "https://remote-debugger.herokuapp.com";
     // Perform the request.
     emscripten_fetch(&attr, url);
     printf("Fetch. Request value from '%s'\n", url);
