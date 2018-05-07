@@ -47,9 +47,11 @@ struct Example
 {
 
     osgcpe::Application *app;
+    // FEATURE Example+Debugger/Instance
 
     Example()
     {
+        // FEATURE Example+Debugger/Setup
         this->app = new osgcpe::Application(EXAMPLE_TITLE);
         // FEATURE Example+BoxScene/Impl
         if (scene.valid())
@@ -63,7 +65,10 @@ struct Example
     ~Example()
     {
         delete this->app;
+        // FEATURE Example+Debugger/TearDown
     }
+
+    // FEATURE Example+Debugger/Impl
 
 };
 

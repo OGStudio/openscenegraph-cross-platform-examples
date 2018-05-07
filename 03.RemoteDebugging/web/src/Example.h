@@ -76,9 +76,32 @@ struct Example
 {
 
     osgcpe::Application *app;
+    osgcpe::Debugger *dbg;
 
     Example()
     {
+        this->dbg = new osgcpe::Debugger(EXAMPLE_TITLE);
+        this->dbg->setConsoleURL("https://remote-debugger.herokuapp.com");
+
+        this->fpsCounter = new osgcpe::FPSCounter;
+        // TODO: Run FPS counter.
+
+        auto fps =
+            osgcpe::debugger::createProvider(
+                "FPS",
+                [this] { return this->fpsCounter->fps(); }
+            );
+        auto localTime =
+            osgcpe::debugger::createProvider(
+                "Local time",
+                [this] {
+                    auto tm = time(0);
+                    auto now = localtime(&tm);
+                    return asctime(now);
+                }
+            );
+        //this->dbg->registerProvider("scene", "
+
         this->app = new osgcpe::Application(EXAMPLE_TITLE);
         // Example+BoxScene Start
         osgcpe::Resource box("models", "box.osgt", box_osgt, box_osgt_len);
