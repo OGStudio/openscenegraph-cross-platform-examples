@@ -25,18 +25,20 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
 
+// FEATURE Debugger+Items/Include
+
 namespace osgcpe
 {
 
 class Debugger
 {
-    Debugger()
+    Debugger(const std::string &title)
     {
         // FEATURE Debugger+init/Run
     }
     // FEATURE Debugger+init/Impl
     // FEATURE Debugger+setConsoleURL/Impl
-    // FEATURE Debugger+addGroup/Impl
+    // FEATURE Debugger+Items/Impl
 
 };
 
