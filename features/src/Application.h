@@ -49,6 +49,8 @@ class Application
         // FEATURE Application+setupWindow-desktop/Impl
         // FEATURE Application+setupWindow-embedded/Impl
         // FEATURE Application+setupWindow-ios/Impl
+        // FEATURE Application+bgColor/Impl
+        // FEATURE Application+setBGColor/Impl
 
         // FEATURE Application+Logging/Impl
         // FEATURE Application+Rendering/Impl
