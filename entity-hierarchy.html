@@ -5,6 +5,7 @@
     table
     {
         border-collapse: collapse;
+        margin: 10px;
     }
     td
     {
@@ -36,7 +37,7 @@
                 <ol class="description">
                     <li>Use built-in resources</li>
                     <li>Create <strong>Application</strong> instance</li>
-                    <li>Create Debugger?</li>
+                    <li>Create <strong>Debugger</strong> instance</li>
                     <li>(android, ios, web) Use <strong>VBOSetupVisitor</strong> to enable VBO for GLES</li>
                     <li>(android, ios, web) Reference OpenSceneGraph plugins</li>
                 </ol>
@@ -48,6 +49,7 @@
                             <li>Create <strong>osgGA::TrackballManipulator</strong> instance</li>
                             <li>Create <strong>osg::Viewer</strong> instance</li>
                             <li>Create <strong>Logger</strong> instance and set it as OpenSceneGraph's logger</li>
+                            <li>Create <strong>DebugPage</strong> instance to debug <strong>Application</strong>'s camera</li>
                         </ol>
 
                         <table border="1"><tr><td>
@@ -55,7 +57,24 @@
                             <ol class="description">
                                 <li>Forward OpenSceneGraph log messages to stdout</li>
                             </ol>
+                        </td></tr></table>
 
+                    </td></tr></table>
+
+                    <table border="1"><tr><td>
+                        <p class="title">Debugger</p>
+                        <ol class="description">
+                            <li>Create <strong>HTTPClient</strong> instances</li>
+                            <li>Publish <strong>DebugPage</strong> instances to a remote debug console</li>
+                        </ol>
+
+                        <table border="1"><tr><td>
+                            <p class="title">HTTPClient</p>
+                            <ol class="description">
+                                <li>Perform HTTP GET requests to retrieve values from the remote debug console</li>
+                                <li>Perform HTTP POST requests to publish debugged items to the remote debug console</li>
+                                <li>Use FetchAPI (web) or Mongoose (desktop, android, ios) as HTTP(s) client</li>
+                            </ol>
                         </td></tr></table>
 
                     </td></tr></table>
