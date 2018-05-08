@@ -1,0 +1,66 @@
+<head>
+    <title>OpenSceneGraph cross-platform examples' entity hierarchy in the source code</title>
+</head>
+<style>
+    table
+    {
+        border-collapse: collapse;
+    }
+    td
+    {
+        border: 1px solid #2ba6e3;
+        padding: 10px;
+    }
+    .title
+    {
+        color: #2ba6e3;
+        font-weight: bold;
+    }
+    .description
+    {
+        color: #555555;
+    }
+</style>
+<body>
+    <table border="1"><tr><td>
+        <p class="title">executable / library</p>
+        <ol class="description">
+            <li>Provide platform-specific main loop</li>
+            <li>Create <strong>Example</strong> instance</li>
+            <li>(android, web) Convert platform-specific events into OpenSceneGraph ones</li>
+            <li>(web) Create SDL graphics context</li>
+        </ol>
+
+            <table border="1"><tr><td>
+                <p class="title">Example</p>
+                <ol class="description">
+                    <li>Use built-in resources</li>
+                    <li>Create <strong>Application</strong> instance</li>
+                    <li>Create Debugger?</li>
+                    <li>(android, ios, web) Use <strong>VBOSetupVisitor</strong> to enable VBO for GLES</li>
+                    <li>(android, ios, web) Reference OpenSceneGraph plugins</li>
+                </ol>
+
+                    <table border="1"><tr><td>
+                        <p class="title">Application</p>
+                        <ol class="description">
+                            <li>Configure render window and camera</li>
+                            <li>Create <strong>osgGA::TrackballManipulator</strong> instance</li>
+                            <li>Create <strong>osg::Viewer</strong> instance</li>
+                            <li>Create <strong>Logger</strong> instance and set it as OpenSceneGraph's logger</li>
+                        </ol>
+
+                        <table border="1"><tr><td>
+                            <p class="title">Logger</p>
+                            <ol class="description">
+                                <li>Forward OpenSceneGraph log messages to stdout</li>
+                            </ol>
+
+                        </td></tr></table>
+
+                    </td></tr></table>
+
+            </td></tr></table>
+
+    </td></tr></table>
+</body>
