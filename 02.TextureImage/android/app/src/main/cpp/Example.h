@@ -110,6 +110,7 @@ struct Example
         delete this->app;
     }
 
+
 };
 
 } // namespace osgcpe

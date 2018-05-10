@@ -51,7 +51,14 @@ class Debugger
             this->pages.push_back(page);
         }
 
-    // FEATURE Debugger+process-web/Impl
+    // Debugger+process-web Start
+    public:
+        void process()
+        {
+            // TODO process with FetchAPI.
+    
+        }
+    // Debugger+process-web End
 
 };
 

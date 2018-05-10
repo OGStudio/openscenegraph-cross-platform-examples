@@ -27,6 +27,7 @@ freely, subject to the following restrictions:
 
 // FEATURE Application+Logging/Include
 // FEATURE Application+Rendering/Include
+// FEATURE Application+Debugging/Include
 
 namespace osgcpe
 {
@@ -38,22 +39,26 @@ class Application
         {
             // FEATURE Application+Logging/Setup
             // FEATURE Application+Rendering/Setup
+            // FEATURE Application+Debugging/Setup
+            // FEATURE Application+RedBGColorDebugging/Setup
         }
         ~Application()
         {
             // FEATURE Application+Rendering/TearDown
             // FEATURE Application+Logging/TearDown
+            // FEATURE Application+Debugging/TearDown
+            // FEATURE Application+RedBGColorDebugging/TearDown
         }
 
         // FEATURE Application+run/Impl
         // FEATURE Application+setupWindow-desktop/Impl
         // FEATURE Application+setupWindow-embedded/Impl
         // FEATURE Application+setupWindow-ios/Impl
-        // FEATURE Application+bgColor/Impl
-        // FEATURE Application+setBGColor/Impl
 
         // FEATURE Application+Logging/Impl
         // FEATURE Application+Rendering/Impl
+        // FEATURE Application+Debugging/Impl
+        // FEATURE Application+RedBGColorDebugging/Impl
 };
 
 } // namespace osgcpe

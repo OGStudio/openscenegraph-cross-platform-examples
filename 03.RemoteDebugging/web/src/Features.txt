@@ -20,6 +20,8 @@ ResourceStreamBuffer+Stub
 Application+setupWindow-embedded
 Application+Logging
 Application+Rendering
+Application+Debugging
+Application+RedBGColorDebugging
 
 scene+textureImageScene
 
@@ -30,8 +32,11 @@ Example+TextureImageScene
 Example+StaticPluginOSG
 Example+StaticPluginPNG
 Example+VBO
+Example+Debugging
 
 VBOSetupVisitor+Stub
 
 main-web
-main+FetchRegularly-web
+
+DebugPage+Stub
+Debugger+process-web

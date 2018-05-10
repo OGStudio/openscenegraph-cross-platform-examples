@@ -30,6 +30,7 @@ freely, subject to the following restrictions:
 // FEATURE Example+VBO/Include
 // FEATURE Example+BoxScene/Include
 // FEATURE Example+TextureImageScene/Include
+// FEATURE Example+Debugging/Include
 
 // FEATURE Example+OSGCPE_EXAMPLE_LOG/Impl
 // FEATURE Example+StaticPluginOSG/Impl
@@ -47,11 +48,9 @@ struct Example
 {
 
     osgcpe::Application *app;
-    // FEATURE Example+Debugger/Instance
 
     Example()
     {
-        // FEATURE Example+Debugger/Setup
         this->app = new osgcpe::Application(EXAMPLE_TITLE);
         // FEATURE Example+BoxScene/Impl
         if (scene.valid())
@@ -61,14 +60,15 @@ struct Example
             // FEATURE Example+TextureImageScene/Impl
             this->app->setScene(scene);
         }
+        // FEATURE Example+Debugging/Setup
     }
     ~Example()
     {
+        // FEATURE Example+Debugging/TearDown
         delete this->app;
-        // FEATURE Example+Debugger/TearDown
     }
 
-    // FEATURE Example+Debugger/Impl
+    // FEATURE Example+Debugging/Impl
 
 };
 

@@ -22,40 +22,50 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_PAGE_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_PAGE_H
 
-#include "DebugPage.h"
+#include <functional>
 
 namespace osgcpe
 {
 
-class Debugger
+struct DebugPage
 {
-    public:
-        Debugger() { }
 
-    private:
-        std::string consoleURL;
-    public:
-        void setConsoleURL(const std::string &url)
-        {
-            this->consoleURL = url;
-        }
+    // SETUP.
 
-    private:
-        std::vector<DebugPage> pages;
-    public:
-        void addDebugPage(DebugPage page)
-        {
-            this->pages.push_back(page);
-        }
+    std::string title;
 
-    // FEATURE Debugger+process-web/Impl
+    DebugPage(const std::string &title = "") : title(title) { }
+
+    // ITEMS.
+
+    typedef std::function<std::string()> GetterCallback;
+    typedef std::function<void(const std::string &)> SetterCallback;
+
+    struct Item
+    {
+        std::string title;
+        GetterCallback getter;
+        SetterCallback setter;
+    };
+    std::vector<Item> items;
+
+    //! Convenience function to add items.
+    void addItem(
+        const std::string &title,
+        GetterCallback getter,
+        SetterCallback setter = nullptr
+    ) {
+        this->items.push_back({title, getter, setter});
+    }
 
 };
 
 } // namespace osgcpe
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
+// FEATURE DebugPage+Stub/Impl
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_PAGE_H
 
