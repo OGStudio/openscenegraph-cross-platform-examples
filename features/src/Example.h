@@ -61,14 +61,17 @@ struct Example
             this->app->setScene(scene);
         }
         // FEATURE Example+Debugging/Setup
+        // FEATURE Example+DebugApplication/Setup
     }
     ~Example()
     {
         // FEATURE Example+Debugging/TearDown
+        // FEATURE Example+DebugApplication/TearDown
         delete this->app;
     }
 
     // FEATURE Example+Debugging/Impl
+    // FEATURE Example+DebugApplication/Impl
 
 };
 

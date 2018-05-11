@@ -15,7 +15,6 @@ private:
     {
         this->dbg = new osgcpe::Debugger;
         this->dbg->setConsoleURL("https://remote-debugger.herokuapp.com");
-        // TODO: add debugger to polling or global queue...
     }
     void tearDebuggingDown()
     {

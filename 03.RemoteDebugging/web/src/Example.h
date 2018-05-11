@@ -112,6 +112,10 @@ struct Example
         this->setupDebugging();
         
         // Example+Debugging End
+        // Example+DebugApplication Start
+        this->setupApplicationDebugging();
+        
+        // Example+DebugApplication End
     }
     ~Example()
     {
@@ -119,6 +123,10 @@ struct Example
         this->tearDebuggingDown();
         
         // Example+Debugging End
+        // Example+DebugApplication Start
+        this->tearApplicationDebuggingDown();
+        
+        // Example+DebugApplication End
         delete this->app;
     }
 
@@ -130,7 +138,6 @@ struct Example
         {
             this->dbg = new osgcpe::Debugger;
             this->dbg->setConsoleURL("https://remote-debugger.herokuapp.com");
-            // TODO: add debugger to polling or global queue...
         }
         void tearDebuggingDown()
         {
@@ -138,6 +145,24 @@ struct Example
         }
     
     // Example+Debugging End
+    // Example+DebugApplication Start
+    private:
+        void setupApplicationDebugging()
+        {
+            this->app->frameReporter.addCallback(
+                [&] {
+                    this->dbg->process();
+                },
+                "Debug"
+            );
+            this->dbg->addDebugPage(this->app->debugPage);
+        }
+        void tearApplicationDebuggingDown()
+        {
+            this->app->frameReporter.removeCallback("Debug");
+        }
+    
+    // Example+DebugApplication End
 
 };
 

@@ -26,6 +26,7 @@ freely, subject to the following restrictions:
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
 
 #include "DebugPage.h"
+// FEATURE Debugger+process-web/Include
 
 namespace osgcpe
 {

@@ -25,14 +25,58 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_H
 
-// FEATURE debug+pageToJSON/Include
+// debug+pageToJSON Start
+#include "DebugPage.h"
+
+// debug+pageToJSON End
 
 namespace osgcpe
 {
 namespace debug
 {
 
-// FEATURE debug+pageToJSON/Impl
+// debug+pageToJSON Start
+std::string pageToJSON(DebugPage page)
+{
+    // Format items.
+    std::string format;
+    format += "{";
+    format += "\"title\":\"%s\",";
+    format += "\"value\":\"%s\",";
+    format += "\"isWritable\":%d,";
+    format += "}";
+    std::string itemsJSON = "";
+    for (auto item = page.items.begin(); item != page.items.end(); ++item)
+    {
+        // Add comma if we're adding second and later items.
+        if (!itemsJSON.empty())
+        {
+            itemsJSON += ",";
+        }
+        // Add item.
+        auto value = item->getter();
+        bool isWritable = (item->setter != nullptr);
+        itemsJSON +=
+            log::printfString(format.c_str(), value.c_str(), isWritable);
+    }
+
+    // Format page.
+    std::string json;
+    json += "{";
+
+    json += "\"title\":\"";
+    json += page.title;
+    json += "\",";
+
+    json += "\"items\":[";
+    json += itemsJSON;
+    json += "]";
+
+    json += "}";
+    return json;
+}
+
+// debug+pageToJSON End
 
 } // namespace debug
 } // namespace osgcpe
