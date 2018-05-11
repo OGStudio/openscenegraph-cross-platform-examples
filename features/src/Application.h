@@ -28,6 +28,7 @@ freely, subject to the following restrictions:
 // FEATURE Application+Logging/Include
 // FEATURE Application+Rendering/Include
 // FEATURE Application+Debugging/Include
+// FEATURE Application+frame+Reporting/Include
 
 namespace osgcpe
 {
@@ -50,6 +51,8 @@ class Application
             // FEATURE Application+RedBGColorDebugging/TearDown
         }
 
+        // FEATURE Application+frame/Impl
+        // FEATURE Application+frame+Reporting/Impl
         // FEATURE Application+run/Impl
         // FEATURE Application+setupWindow-desktop/Impl
         // FEATURE Application+setupWindow-embedded/Impl

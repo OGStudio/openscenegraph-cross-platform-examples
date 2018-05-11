@@ -66,6 +66,13 @@ class Application
             // Application+Logging End
         }
 
+        // Application+frame Start
+        public:
+            void frame()
+            {
+                this->viewer->frame();
+            }
+        // Application+frame End
         // Application+run Start
         public:
             void run()
@@ -113,10 +120,6 @@ class Application
         // Application+Logging End
         // Application+Rendering Start
         public:
-            void frame()
-            {
-                this->viewer->frame();
-            }
             void setScene(osg::Node *scene)
             {
                 this->viewer->setSceneData(scene);

@@ -18,6 +18,7 @@ resources+createTexture
 Resource+Stub
 ResourceStreamBuffer+Stub
 
+Application+frame
 Application+setupWindow-ios
 Application+Logging
 Application+Rendering

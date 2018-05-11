@@ -40,6 +40,10 @@ freely, subject to the following restrictions:
 #include "DebugPage.h"
 
 // Application+Debugging End
+// Application+frame+Reporting Start
+#include "Reporter.h"
+
+// Application+frame+Reporting End
 
 namespace osgcpe
 {
@@ -78,6 +82,15 @@ class Application
             // Application+Logging End
         }
 
+        // Application+frame+Reporting Start
+        public:
+            Reporter frameReporter;
+            void frame()
+            {
+                this->viewer->frame();
+                this->frameReporter.report();
+            }
+        // Application+frame+Reporting End
         // Application+setupWindow-embedded Start
         public:
             void setupWindow(int width, int height)
@@ -109,10 +122,6 @@ class Application
         // Application+Logging End
         // Application+Rendering Start
         public:
-            void frame()
-            {
-                this->viewer->frame();
-            }
             void setScene(osg::Node *scene)
             {
                 this->viewer->setSceneData(scene);

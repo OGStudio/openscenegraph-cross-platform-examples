@@ -28,8 +28,6 @@ freely, subject to the following restrictions:
 // FEATURE main+FetchRegularly-web/Include
 
 // FEATURE main-web/Loop
-// FEATURE main+FetchOnce-web/Callbacks
-// FEATURE main+FetchRegularly-web/Impl
 
 int main(int argc, char *argv[])
 {
@@ -37,8 +35,6 @@ int main(int argc, char *argv[])
     // FEATURE main-web/Setup
     // FEATURE main-desktop/Run
     // FEATURE main-web/Run
-    // FEATURE main+FetchOnce-web/Run
-    // FEATURE main+FetchRegularly-web/Run
     return 0;
 }
 

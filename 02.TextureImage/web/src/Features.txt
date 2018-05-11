@@ -17,6 +17,7 @@ resources+createTexture
 Resource+Stub
 ResourceStreamBuffer+Stub
 
+Application+frame
 Application+setupWindow-embedded
 Application+Logging
 Application+Rendering

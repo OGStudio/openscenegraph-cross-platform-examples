@@ -12,10 +12,6 @@ this->tearRenderingDown();
 
 FEATURE Application.h/Impl
 public:
-    void frame()
-    {
-        this->viewer->frame();
-    }
     void setScene(osg::Node *scene)
     {
         this->viewer->setSceneData(scene);

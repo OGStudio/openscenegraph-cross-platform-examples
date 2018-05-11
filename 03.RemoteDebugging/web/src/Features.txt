@@ -17,11 +17,13 @@ resources+createTexture
 Resource+Stub
 ResourceStreamBuffer+Stub
 
+Application+frame+Reporting
 Application+setupWindow-embedded
 Application+Logging
 Application+Rendering
 Application+Debugging
 Application+RedBGColorDebugging
+Reporter+Stub
 
 scene+textureImageScene
 
@@ -40,3 +42,4 @@ main-web
 
 DebugPage+Stub
 Debugger+process-web
+
