@@ -1,8 +1,8 @@
 {
-  "name": "debugger",
+  "name": "debug-broker",
   "version": "0.0.1",
-  "description": "Remote debugging",
-  "main": "app.js",
+  "description": "Debug broker for remote debugging of OpenSceneGraph applications",
+  "main": "broker.js",
   "engines": {
     "node": "9.11.1"
   },
@@ -11,7 +11,8 @@
   },
   "keywords": [
     "mjin",
-    "mahjong"
+    "mahjong",
+    "openscenegraph"
   ],
   "author": "Michael Kapelko <kornerr@gmail.com>",
   "license": "Zlib"

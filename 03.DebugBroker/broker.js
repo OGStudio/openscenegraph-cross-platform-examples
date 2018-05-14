@@ -2,8 +2,22 @@
 const http = require("http");
 const port = process.env.PORT || 7999;
 
-// Mnaged global value.
-var value = 1;
+// Managed array of debuggers and their hierarchy of pages.
+// Structure:
+// * Debugger(s)
+//     * Page(s)
+//         * Item(s)
+var debuggers = new Array();
+
+
+CONTINUE
+
+
+
+
+
+
+
 
 function returnValue(response)
 {
@@ -49,6 +63,4 @@ server.on("request", processRequest)
 server.listen(port, () => {
     console.log(`Server listening at port ${port}`);
 })
-
-// FEATURE app+Stub/Impl
 
