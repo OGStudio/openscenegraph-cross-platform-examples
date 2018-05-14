@@ -43,7 +43,7 @@ std::string pageToJSON(DebugPage page)
     format += "{";
     format += "\"title\":\"%s\",";
     format += "\"value\":\"%s\",";
-    format += "\"isWritable\":%d,";
+    format += "\"isWritable\":%d"; // Note the absent comma.
     format += "}";
     std::string itemsJSON = "";
     for (auto item = page.items.begin(); item != page.items.end(); ++item)
@@ -54,10 +54,16 @@ std::string pageToJSON(DebugPage page)
             itemsJSON += ",";
         }
         // Add item.
+        auto title = item->title;
         auto value = item->getter();
         bool isWritable = (item->setter != nullptr);
         itemsJSON +=
-            log::printfString(format.c_str(), value.c_str(), isWritable);
+            log::printfString(
+                format.c_str(),
+                title.c_str(),
+                value.c_str(),
+                isWritable
+            );
     }
 
     // Format page.
@@ -70,7 +76,7 @@ std::string pageToJSON(DebugPage page)
 
     json += "\"items\":[";
     json += itemsJSON;
-    json += "]";
+    json += "]"; // Note the absent comma.
 
     json += "}";
     return json;

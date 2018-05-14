@@ -34,7 +34,9 @@ namespace osgcpe
 class Debugger
 {
     public:
-        Debugger() { }
+        const std::string title;
+
+        Debugger(const std::string &title) : title(title) { }
 
     private:
         std::string consoleURL;

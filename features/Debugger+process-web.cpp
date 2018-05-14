@@ -14,14 +14,35 @@ public:
         runOnce = false;
         log::log("process-web");
 
+        std::string pagesJSON = "";
+
         auto page = this->pages.begin();
         for (; page != this->pages.end(); ++page)
         {
-            log::log("Page");
-            auto json = debug::pageToJSON(*page);
-            log::log(json.c_str());
+            // Add comma if we're adding the second and following pages.
+            if (!pagesJSON.empty())
+            {
+                pagesJSON += ",";
+            }
+            pagesJSON += debug::pageToJSON(*page);
         }
-        // TODO construct JSON out of all pages.
+
+        // Format pages.
+        std::string json;
+        json += "{";
+
+        json += "\"title\":\"";
+        json += this->title;
+        json += "\",";
+
+        json += "\"pages\":[";
+        json += pagesJSON;
+        json += "]"; // Note the absent comma.
+
+        json += "}";
+
+        log::log("All pages");
+        log::log(json.c_str());
         // TODO send JSON.
     }
     // TODO process with FetchAPI.

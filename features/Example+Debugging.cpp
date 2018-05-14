@@ -13,7 +13,7 @@ private:
 
     void setupDebugging()
     {
-        this->dbg = new osgcpe::Debugger;
+        this->dbg = new osgcpe::Debugger(EXAMPLE_TITLE);
         this->dbg->setConsoleURL("https://remote-debugger.herokuapp.com");
     }
     void tearDebuggingDown()
