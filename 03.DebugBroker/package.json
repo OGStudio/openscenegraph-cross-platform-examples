@@ -2,7 +2,7 @@
   "name": "debug-broker",
   "version": "0.0.1",
   "description": "Debug broker for remote debugging of OpenSceneGraph applications",
-  "main": "broker.js",
+  "main": "index.js",
   "engines": {
     "node": "9.11.1"
   },
