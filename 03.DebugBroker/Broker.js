@@ -15,27 +15,24 @@ class Broker
         this.debuggers = {}
     }
 
+    // Process Application or UI initiated requests.
     process(json)
     {
         var string = JSON.stringify(json, null, 2);
         BROKER_LOG(`process: ${string}`);
 
+        // Convert incoming JSON to DebugPages.
         const title = parsing.debuggerTitle(json);
         const pages = parsing.debugPages(json);
         var dbg = this.debugger(title);
+        // Process DebugPages.
         for (var id in pages)
         {
-            var page = pages[id];
-            BROKER_LOG(`page title: ${page.title}`);
-            var items = page.items;
-            for (var itemId in items)
-            {
-                var item = items[itemId];
-                BROKER_LOG(`item title: ${item.title}`);
-            }
-            //dbg.setDebugPage(pageTitle, items, app/ui flag/priority);
-            // TODO isWritable detect UI/app side
+            const page = pages[id];
+            dbg.processDebugPage(page);
         }
+        // TODO Return updated Debugger state as JSON.
+        return "TODO JSON";
     }
 
     // Get or create Debugger instance.
