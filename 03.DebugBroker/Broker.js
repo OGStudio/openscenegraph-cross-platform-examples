@@ -1,4 +1,12 @@
 
+const Debugger = require("./Debugger.js");
+const parsing = require("./parsing.js");
+
+function BROKER_LOG(message)
+{
+    console.log(`Broker ${message}`);
+}
+
 module.exports =
 class Broker
 {
@@ -10,18 +18,35 @@ class Broker
     process(json)
     {
         var string = JSON.stringify(json, null, 2);
-        console.log(`Broker.process: ${string}`);
-        // Make sure debugger title exists.
-        if (!json.hasOwnProperty("title")) {
-            return "ERROR: Debugger title is missing";
-        }
-        // Create new debugger if does not yet exist.
-        var title = json["title"];
-        if (!(title in this.debuggers))
+        BROKER_LOG(`process: ${string}`);
+
+        const title = parsing.debuggerTitle(json);
+        const pages = parsing.debugPages(json);
+        var dbg = this.debugger(title);
+        for (var id in pages)
         {
-            console.log(`Created debugger titled ${title}`);
-            this.debuggers[title] = {}
+            var page = pages[id];
+            BROKER_LOG(`page title: ${page.title}`);
+            var items = page.items;
+            for (var itemId in items)
+            {
+                var item = items[itemId];
+                BROKER_LOG(`item title: ${item.title}`);
+            }
+            //dbg.setDebugPage(pageTitle, items, app/ui flag/priority);
+            // TODO isWritable detect UI/app side
         }
     }
+
+    // Get or create Debugger instance.
+    debugger(title)
+    {
+        if (!(title in this.debuggers))
+        {
+            this.debuggers[title] = new Debugger();
+        }
+        return this.debuggers[title];
+    }
+
 }
 
