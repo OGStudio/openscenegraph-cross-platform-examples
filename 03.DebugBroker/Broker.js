@@ -22,8 +22,8 @@ class Broker
         BROKER_LOG(`process: ${string}`);
 
         // Convert incoming JSON to DebugPages.
-        const title = parsing.debuggerTitle(json);
-        const pages = parsing.debugPages(json);
+        const title = parsing.jsonToDebuggerTitle(json);
+        const pages = parsing.jsonToDebugPages(json);
         var dbg = this.debugger(title);
         // Process DebugPages.
         for (var id in pages)
@@ -31,8 +31,8 @@ class Broker
             const page = pages[id];
             dbg.processDebugPage(page);
         }
-        // TODO Return updated Debugger state as JSON.
-        return "TODO JSON";
+        // Return updated Debugger state as JSON.
+        return parsing.debuggerToJSON(title, dbg.pages);
     }
 
     // Get or create Debugger instance.

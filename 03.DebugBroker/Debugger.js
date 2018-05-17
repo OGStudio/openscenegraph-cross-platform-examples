@@ -1,4 +1,9 @@
 
+function DEBUGGER_LOG(message)
+{
+    console.log(`Debugger ${message}`);
+}
+
 module.exports =
 class Debugger
 {
@@ -32,8 +37,9 @@ class Debugger
         else
         {
             var storedPage = this.pages[page.title];
-            for (item in page.items)
+            for (var id in page.items)
             {
+                const item = page.items[id];
                 const itemExists = storedPage.itemExists(item.title);
                 if (!itemExists)
                 {
@@ -54,8 +60,9 @@ class Debugger
         }
         var storedPage = this.pages[page.title];
         // Accept new values for existing items.
-        for (item in page.items)
+        for (var id in page.items)
         {
+            const item = page.items[id];
             var storedItem = storedPage.item(item.title);
             // Item exists.
             if (storedItem != null)

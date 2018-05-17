@@ -10,17 +10,58 @@ function PARSING_LOG(message)
     console.log(`PARSING ${message}`);
 }
 
-function debuggerTitle(json)
+function debugPageItemToJSON(item)
 {
-    if (!json.hasOwnProperty("title"))
-    {
-        PARSING_LOG("ERROR Debugger title is missing");
-        return "";
-    }
-    return json["title"];
+    return `{"title":"${item.title}","value":"${item.value}","isWritable":${item.isWritable}}`;
 }
 
-function debugPageItem(json)
+function debugPageItemsToJSON(items)
+{
+    var itemsJSON = "";
+    for (var id in items)
+    {
+        // Add comma before adding second and following items.
+        if (itemsJSON.length)
+        {
+            itemsJSON += ",";
+        }
+        const item = items [id];
+        const itemJSON = debugPageItemToJSON(item);
+        itemsJSON += itemJSON;
+    }
+    return "[" + itemsJSON + "]";
+}
+
+function debugPageToJSON(page)
+{
+    const itemsJSON = debugPageItemsToJSON(page.items);
+    return `{"title":"${page.title}","items":${itemsJSON}}`;
+}
+
+function debugPagesToJSON(pages)
+{
+    var pagesJSON = "";
+    for (var id in pages)
+    {
+        // Add comma before adding second and following items.
+        if (pagesJSON.length)
+        {
+            pagesJSON += ",";
+        }
+        const page = pages[id];
+        const pageJSON = debugPageToJSON(page);
+        pagesJSON += pageJSON;
+    }
+    return "[" + pagesJSON + "]";
+}
+
+function debuggerToJSON(title, pages)
+{
+    const pagesJSON = debugPagesToJSON(pages);
+    return `{"title":"${title}","pages":${pagesJSON}}`
+}
+
+function jsonToDebugPageItem(json)
 {
     if (!json.hasOwnProperty("title"))
     {
@@ -43,7 +84,7 @@ function debugPageItem(json)
     return a;
 }
 
-function debugPageItems(json)
+function jsonToDebugPageItems(json)
 {
     var items = [];
     if (!json.hasOwnProperty("items"))
@@ -54,7 +95,7 @@ function debugPageItems(json)
     for (var id in json["items"])
     {
         const itemJSON = json["items"][id];
-        const item = debugPageItem(itemJSON);
+        const item = jsonToDebugPageItem(itemJSON);
         if (item != null)
         {
             items.push(item);
@@ -63,7 +104,7 @@ function debugPageItems(json)
     return items;
 }
 
-function debugPage(json)
+function jsonToDebugPage(json)
 {
     if (!json.hasOwnProperty("title"))
     {
@@ -71,11 +112,11 @@ function debugPage(json)
         return null;
     }
     const title = json["title"];
-    const items = debugPageItems(json);
+    const items = jsonToDebugPageItems(json);
     return new DebugPage(title, items);
 }
 
-function debugPages(json)
+function jsonToDebugPages(json)
 {
     var pages = [];
     if (!json.hasOwnProperty("pages"))
@@ -86,7 +127,7 @@ function debugPages(json)
     for (var id in json["pages"])
     {
         const pageJSON = json["pages"][id];
-        const page = debugPage(pageJSON);
+        const page = jsonToDebugPage(pageJSON);
         if (page != null)
         {
             pages.push(page);
@@ -96,13 +137,21 @@ function debugPages(json)
     return pages;
 }
 
+function jsonToDebuggerTitle(json)
+{
+    if (!json.hasOwnProperty("title"))
+    {
+        PARSING_LOG("ERROR Debugger title is missing");
+        return "";
+    }
+    return json["title"];
+}
+
 
 module.exports =
 {
-    debuggerTitle,
-    debugPageItem,
-    debugPageItems,
-    debugPage,
-    debugPages,
+    debuggerToJSON,
+    jsonToDebugPages,
+    jsonToDebuggerTitle,
 };
 
