@@ -59,11 +59,16 @@ class Debugger
             return;
         }
         var storedPage = this.pages[page.title];
-        // Accept new values for existing items.
+        // Accept new values for existing items that have 'isWritable = 1'.
         for (var id in page.items)
         {
             const item = page.items[id];
             var storedItem = storedPage.item(item.title);
+            // Do nothing for items that are not writable.
+            if (storedItem.isWritable != 1)
+            {
+                continue;
+            }
             // Item exists.
             if (storedItem != null)
             {

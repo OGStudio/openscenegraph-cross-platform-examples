@@ -18,8 +18,8 @@ class Broker
     // Process Application or UI initiated requests.
     process(json)
     {
-        var string = JSON.stringify(json, null, 2);
-        BROKER_LOG(`process: ${string}`);
+        //var string = JSON.stringify(json, null, 2);
+        //BROKER_LOG(`process: ${string}`);
 
         // Convert incoming JSON to DebugPages.
         const title = parsing.jsonToDebuggerTitle(json);

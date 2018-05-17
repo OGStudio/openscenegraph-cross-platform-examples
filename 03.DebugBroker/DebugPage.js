@@ -16,8 +16,9 @@ class DebugPage
     // Return item by title.
     item(title)
     {
-        for (var item in this.items)
+        for (var id in this.items)
         {
+            var item = this.items[id];
             if (item.title == title)
             {
                 return item;
