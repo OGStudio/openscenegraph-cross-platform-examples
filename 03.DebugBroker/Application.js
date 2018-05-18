@@ -47,6 +47,7 @@ class Application
         response.setHeader("Content-Type", "application/json");
         // Allow CORS.
         response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
         response.end(data);
     }
 

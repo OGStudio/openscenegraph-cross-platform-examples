@@ -1,4 +1,9 @@
 
+function INDEX_LOG(message)
+{
+    console.log(`Index ${message}`);
+}
+
 // Load dependencies upon page load.
 // Call 'main' once dependencies have been loaded.
 $(function() {
@@ -23,34 +28,78 @@ function main()
 {
     const params = new URLSearchParams(window.location.search);
 
-    // Report missing broker.
-    if (!params.has("broker"))
+    const brokerURL = params.get("broker");
+    setupBroker(brokerURL);
+    const debuggerName = params.get("debugger");
+    setupDebugger(brokerURL, debuggerName);
+
+    if (brokerURL && debuggerName)
     {
-        const message = messageBrokerIsMissing(window.location);
-        $("div.broker").html(message);
-        return;
+        requestDebugPages(brokerURL, debuggerName);
     }
-    // Display broker address.
-    $("div.broker").html(`Broker: ${params.get("broker")}`);
-
-    //$("div.navigation").html("Here will be pages to select from");
-    //$("div.navigation").html(`Has 'broker' param: ${params.has("broker")}`);
-    //$("div.contents").html("Here will be selected page items to alter");
-    //var navigation = new Navigation();
-    //$("div.contents").html(navigation.value);
-
 }
 
-function messageBrokerIsMissing(host)
+function setupBroker(url)
 {
-    const brokerURL = "localhost:7999";
-    const expectedURL = host + "?broker=" + brokerURL;
-    const message =
-        "Broker: ERROR, broker is missing!" +
-        "<br>" +
-        `You should open this page as <a href=${expectedURL}>${expectedURL}</a>, where ` +
-        `<strong>${brokerURL}</strong> should have <strong>DebugBroker</strong> running`
-        ;
-    return message;
+    var message = "";
+    // Report missing broker.
+    if (!url)
+    {
+        const urlSample = "http://localhost:7999";
+        message =
+            `ERROR: missing. Add 'broker=${urlSample}' parameter, where ` +
+            `<strong>${urlSample}</strong> should have <strong>DebugBroker</strong> instance running`
+            ;
+    }
+    else
+    {
+        message = url;
+    }
+    // Display broker.
+    $("div.broker").html(`<strong>Broker:</strong> ${message}`);
+}
+
+function setupDebugger(brokerURL, debuggerName)
+{
+    var message = "";
+    // Report missing debugger.
+    if (!debuggerName)
+    {
+        const nameSample = "your-game-title";
+        message =
+            `ERROR: missing. Add 'debugger=${nameSample}' parameter, where ` +
+            `<strong>${nameSample}</strong> should be Debugger instance name you used in your game`
+            ;
+    }
+    else
+    {
+        message = debuggerName;
+    }
+    // Display debugger.
+    $("div.debugger").html(`<strong>Debugger:</strong> ${message}`);
+}
+
+function requestDebugPages(brokerURL, debuggerName)
+{
+    const data = `{"title":"${debuggerName}"}`;
+    var success = function(response) {
+        INDEX_LOG(`successful response: ${response}`);
+    }
+    var failure = function(response) {
+        INDEX_LOG(`failed response: ${response}`);
+    }
+
+    $.ajax(
+        {
+            url: brokerURL,
+            type: "POST",
+            dataType: "text",
+            contentType: "application/json",
+            processData: false,
+            data: data,
+            success: success,
+            error: failure
+        }
+    );
 }
 

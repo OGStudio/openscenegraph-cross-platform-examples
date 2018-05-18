@@ -121,7 +121,8 @@ function jsonToDebugPages(json)
     var pages = [];
     if (!json.hasOwnProperty("pages"))
     {
-        PARSING_LOG("ERROR Debug pages are missing");
+        // NOTE Not really an error if UI simply requests fields to display.
+        //PARSING_LOG("ERROR Debug pages are missing");
         return pages;
     }
     for (var id in json["pages"])
