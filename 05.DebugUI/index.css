@@ -1,0 +1,24 @@
+
+table 
+{
+    border-collapse: collapse;
+    margin: 5px;
+}
+
+th, td
+{
+    border: 1px solid #2ba6e3;
+    padding: 5px;
+}
+
+th
+{
+    color: #2ba6e3;
+    font-weight: bold;
+}
+
+td
+{
+    color: #555555;
+}
+

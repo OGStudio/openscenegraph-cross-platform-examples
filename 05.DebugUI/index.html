@@ -2,18 +2,42 @@
     <head>
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
         <meta content="utf-8" http-equiv="encoding">
+        <link rel="stylesheet" href="index.css">
         <title>Debug UI for OpenSceneGraph cross-platform examples</title>
     </head>
     <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
     <body>
-        <div class="broker">
-        </div>
-        <div class="debugger">
-        </div>
-        <div class="page">
-        </div>
-        <div class="items">
-        </div>
+        <table>
+            <tr>
+                <th>Broker</th>
+                <td>
+                    <ul class="broker"></ul>
+                </td>
+            </tr>
+
+            <tr>
+                <th>Debugger</th>
+                <td>
+                    <ul class="debugger"></ul>
+                </td>
+            </tr>
+
+            <tr>
+                <th>Pages</th>
+                <td>
+                    <ul class="pages"></ul>
+                </td>
+            </tr>
+
+            <tr>
+                <th>Items</th>
+                <td>
+                    <div class="items"></div>
+                </td>
+            </tr>
+
+        </table>
+
     </body>
 </html>

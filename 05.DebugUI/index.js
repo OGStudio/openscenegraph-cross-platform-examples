@@ -41,42 +41,40 @@ function main()
 
 function setupBroker(url)
 {
-    var message = "";
+    list = "ul.broker";
     // Report missing broker.
     if (!url)
     {
         const urlSample = "http://localhost:7999";
-        message =
-            `ERROR: missing. Add 'broker=${urlSample}' parameter, where ` +
+        const note = 
+            `Add 'broker=${urlSample}' parameter, where ` +
             `<strong>${urlSample}</strong> should have <strong>DebugBroker</strong> instance running`
             ;
+        addListItem(list, "ERROR", "broker parameter is missing");
+        addListItem(list, "NOTE", note);
+        return;
     }
-    else
-    {
-        message = url;
-    }
-    // Display broker.
-    $("div.broker").html(`<strong>Broker:</strong> ${message}`);
+    // Display broker URL.
+    addListItem(list, "URL", url);
 }
 
 function setupDebugger(brokerURL, debuggerName)
 {
-    var message = "";
+    list = "ul.debugger";
     // Report missing debugger.
     if (!debuggerName)
     {
-        const nameSample = "your-game-title";
-        message =
-            `ERROR: missing. Add 'debugger=${nameSample}' parameter, where ` +
-            `<strong>${nameSample}</strong> should be Debugger instance name you used in your game`
+        const nameSample = "app-title";
+        const note =
+            `Add 'debugger=${nameSample}' parameter, where ` +
+            `<strong>${nameSample}</strong> should be Debugger instance name used by app`
             ;
+        addListItem(list, "ERROR", "debugger parameter is missing");
+        addListItem(list, "NOTE", note);
+        return;
     }
-    else
-    {
-        message = debuggerName;
-    }
-    // Display debugger.
-    $("div.debugger").html(`<strong>Debugger:</strong> ${message}`);
+    // Display debugger name.
+    addListItem(list, "Title", debuggerName);
 }
 
 function requestDebugPages(brokerURL, debuggerName)
@@ -101,5 +99,12 @@ function requestDebugPages(brokerURL, debuggerName)
             error: failure
         }
     );
+}
+
+function addListItem(list, title, value)
+{
+    var contents = $(list).html();
+    contents += `<li><strong>${title}:</strong> ${value}</li>`;
+    $(list).html(contents);
 }
 
