@@ -38,7 +38,7 @@ function main()
     {
         return;
     }
-    // Request data otherwise.
+    // Success callback.
     var success = function(response) {
         INDEX_LOG(`successful response: ${response}`);
         const reply = JSON.parse(response);
@@ -46,12 +46,32 @@ function main()
         const list = "ul.pages";
         const selectedPage = params.get("page");
         listPages(list, reply.pages, selectedPage);
+        // Display selected page items. 
+        if (selectedPage != null)
+        {
+            for (var id in reply.pages)
+            {
+                const page = reply.pages[id];
+                INDEX_LOG(`page: '${page}'`);
+                if (page.title == selectedPage)
+                {
+                    const list = "ul.items";
+                    listItems(list, page.items);
+                }
+            }
+        }
+        else
+        {
+            addListItem("ul.items", "NOTE", "Select page to see its items");
+        }
     }
+    // Failure callback.
     var failure = function(response) {
         var string = JSON.stringify(response, null, 2);
         //addListItem(list, "ERROR", `Failed response: '${string}'`);
         INDEX_LOG(`failed response: '${string}'`);
     }
+    // Perform request.
     requestData(brokerURL, debuggerName, success, failure);
 }
 
@@ -124,6 +144,13 @@ function addListPage(list, title, url)
     $(list).html(contents);
 }
 
+function addListPageItem(list, title, value, isWritable)
+{
+    var contents = $(list).html();
+    contents += `<table><tr><th>${title}</th><td>${value}</td></tr></table>`;
+    $(list).html(contents);
+}
+
 function listPages(list, pages, selectedPage)
 {
     // Get URL base without possible 'page' parameter.
@@ -144,3 +171,14 @@ function listPages(list, pages, selectedPage)
         addListPage(list, title, url);
     }
 }
+
+function listItems(list, items)
+{
+    for (var id in items)
+    {
+        const item = items[id];
+        // TODO: Make sure we don't just pass list.
+        addListPageItem(list, item.title, item.value, item.isWritable);
+    }
+}
+
