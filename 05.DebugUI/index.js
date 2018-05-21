@@ -33,10 +33,26 @@ function main()
     const debuggerName = params.get("debugger");
     setupDebugger(brokerURL, debuggerName);
 
-    if (brokerURL && debuggerName)
+    // Do not proceed if both required parameters are missing.
+    if (!(brokerURL && debuggerName))
     {
-        listPages(brokerURL, debuggerName);
+        return;
     }
+    // Request data otherwise.
+    var success = function(response) {
+        INDEX_LOG(`successful response: ${response}`);
+        const reply = JSON.parse(response);
+        // Display list of pages.
+        const list = "ul.pages";
+        const selectedPage = params.get("page");
+        listPages(list, reply.pages, selectedPage);
+    }
+    var failure = function(response) {
+        var string = JSON.stringify(response, null, 2);
+        //addListItem(list, "ERROR", `Failed response: '${string}'`);
+        INDEX_LOG(`failed response: '${string}'`);
+    }
+    requestData(brokerURL, debuggerName, success, failure);
 }
 
 function setupBroker(url)
@@ -77,25 +93,9 @@ function setupDebugger(brokerURL, debuggerName)
     addListItem(list, "Title", debuggerName);
 }
 
-function listPages(brokerURL, debuggerName)
+function requestData(brokerURL, debuggerName, successCallback, failureCallback)
 {
     const data = `{"title":"${debuggerName}"}`;
-    const list = "ul.pages";
-    var success = function(response) {
-        INDEX_LOG(`successful response: ${response}`);
-        const reply = JSON.parse(response);
-        for (var id in reply.pages)
-        {
-            const page = reply.pages[id];
-            const url = window.location.search + `&page=${page.title}`;
-            addListPage(list, page.title, url);
-        }
-    }
-    var failure = function(response) {
-        var string = JSON.stringify(response, null, 2);
-        addListItem(list, "ERROR", `Failed response: '${string}'`);
-    }
-
     $.ajax(
         {
             url: brokerURL,
@@ -104,8 +104,8 @@ function listPages(brokerURL, debuggerName)
             contentType: "application/json",
             processData: false,
             data: data,
-            success: success,
-            error: failure
+            success: successCallback,
+            error: failureCallback
         }
     );
 }
@@ -124,3 +124,23 @@ function addListPage(list, title, url)
     $(list).html(contents);
 }
 
+function listPages(list, pages, selectedPage)
+{
+    // Get URL base without possible 'page' parameter.
+    const params = new URLSearchParams(window.location.search);
+    params.delete("page");
+    const urlBase = window.location.pathname + "?" + params.toString();
+    // Loop through pages.
+    for (var id in pages)
+    {
+        const page = pages[id];
+        const url = urlBase + `&page=${page.title}`;
+        var title = page.title;
+        // Explicitely mark selected page.
+        if (selectedPage && selectedPage == page.title)
+        {
+            title += " (selected)";
+        }
+        addListPage(list, title, url);
+    }
+}
