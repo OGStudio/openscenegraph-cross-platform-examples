@@ -35,13 +35,13 @@ function main()
 
     if (brokerURL && debuggerName)
     {
-        requestDebugPages(brokerURL, debuggerName);
+        listPages(brokerURL, debuggerName);
     }
 }
 
 function setupBroker(url)
 {
-    list = "ul.broker";
+    const list = "ul.broker";
     // Report missing broker.
     if (!url)
     {
@@ -60,7 +60,7 @@ function setupBroker(url)
 
 function setupDebugger(brokerURL, debuggerName)
 {
-    list = "ul.debugger";
+    const list = "ul.debugger";
     // Report missing debugger.
     if (!debuggerName)
     {
@@ -77,14 +77,23 @@ function setupDebugger(brokerURL, debuggerName)
     addListItem(list, "Title", debuggerName);
 }
 
-function requestDebugPages(brokerURL, debuggerName)
+function listPages(brokerURL, debuggerName)
 {
     const data = `{"title":"${debuggerName}"}`;
+    const list = "ul.pages";
     var success = function(response) {
         INDEX_LOG(`successful response: ${response}`);
+        const reply = JSON.parse(response);
+        for (var id in reply.pages)
+        {
+            const page = reply.pages[id];
+            const url = window.location.search + `&page=${page.title}`;
+            addListPage(list, page.title, url);
+        }
     }
     var failure = function(response) {
-        INDEX_LOG(`failed response: ${response}`);
+        var string = JSON.stringify(response, null, 2);
+        addListItem(list, "ERROR", `Failed response: '${string}'`);
     }
 
     $.ajax(
@@ -105,6 +114,13 @@ function addListItem(list, title, value)
 {
     var contents = $(list).html();
     contents += `<li><strong>${title}:</strong> ${value}</li>`;
+    $(list).html(contents);
+}
+
+function addListPage(list, title, url)
+{
+    var contents = $(list).html();
+    contents += `<li><a href=${url}>${title}</a></li>`;
     $(list).html(contents);
 }
 
