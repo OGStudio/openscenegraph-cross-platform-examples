@@ -55,8 +55,7 @@ function main()
                 INDEX_LOG(`page: '${page}'`);
                 if (page.title == selectedPage)
                 {
-                    const list = "ul.items";
-                    listItems(list, page.items);
+                    listItems(page.items);
                 }
             }
         }
@@ -144,11 +143,11 @@ function addListPage(list, title, url)
     $(list).html(contents);
 }
 
-function addListPageItem(list, title, value, isWritable)
+function addTablePageItem(table, title, value, isWritable)
 {
-    var contents = $(list).html();
-    contents += `<table><tr><th>${title}</th><td>${value}</td></tr></table>`;
-    $(list).html(contents);
+    var contents = $(table).html();
+    contents += `<tr><th>${title}</th><td>${value}</td></tr>`;
+    $(table).html(contents);
 }
 
 function listPages(list, pages, selectedPage)
@@ -172,13 +171,13 @@ function listPages(list, pages, selectedPage)
     }
 }
 
-function listItems(list, items)
+function listItems(items)
 {
+    const table = "table.items";
     for (var id in items)
     {
         const item = items[id];
-        // TODO: Make sure we don't just pass list.
-        addListPageItem(list, item.title, item.value, item.isWritable);
+        addTablePageItem(table, item.title, item.value, item.isWritable);
     }
 }
 

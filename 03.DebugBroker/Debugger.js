@@ -40,8 +40,8 @@ class Debugger
             for (var id in page.items)
             {
                 const item = page.items[id];
-                const itemExists = storedPage.itemExists(item.title);
-                if (!itemExists)
+                const storedItem = storedPage.item(item.title);
+                if (!storedItem)
                 {
                     storedPage.addItem(item);
                 }
