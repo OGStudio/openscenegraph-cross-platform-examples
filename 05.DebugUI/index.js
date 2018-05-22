@@ -38,6 +38,7 @@ function main()
     {
         return;
     }
+
     // Success callback.
     var success = function(response) {
         INDEX_LOG(`successful response: ${response}`);
@@ -52,10 +53,15 @@ function main()
             for (var id in reply.pages)
             {
                 const page = reply.pages[id];
-                INDEX_LOG(`page: '${page}'`);
                 if (page.title == selectedPage)
                 {
-                    listItems(page.items);
+                    const table = "table.items";
+                    for (var id in page.items)
+                    {
+                        const item = page.items[id];
+                        const itemId = `${debuggerName}${page.title}${item.title}`;
+                        addTablePageItem(table, itemId, item.title, item.value, item.isWritable);
+                    }
                 }
             }
         }
@@ -112,6 +118,20 @@ function setupDebugger(brokerURL, debuggerName)
     addListItem(list, "Title", debuggerName);
 }
 
+/*
+function setupSending()
+{
+    setupSendButton();
+
+    $("#send").click(
+        function() {
+            alert("TODO send");
+        }
+    );
+
+}
+*/
+
 function requestData(brokerURL, debuggerName, successCallback, failureCallback)
 {
     const data = `{"title":"${debuggerName}"}`;
@@ -143,13 +163,6 @@ function addListPage(list, title, url)
     $(list).html(contents);
 }
 
-function addTablePageItem(table, title, value, isWritable)
-{
-    var contents = $(table).html();
-    contents += `<tr><th>${title}</th><td>${value}</td></tr>`;
-    $(table).html(contents);
-}
-
 function listPages(list, pages, selectedPage)
 {
     // Get URL base without possible 'page' parameter.
@@ -171,13 +184,30 @@ function listPages(list, pages, selectedPage)
     }
 }
 
-function listItems(items)
+function addTablePageItem(table, id, title, value, isWritable)
 {
-    const table = "table.items";
-    for (var id in items)
+    var contents = $(table).html();
+    const itemTitle = `<td><strong>${title}</strong></td>`;
+    var itemValue = `<td>${value}</td>`;
+    var itemApplication = "";
+    if (isWritable)
     {
-        const item = items[id];
-        addTablePageItem(table, item.title, item.value, item.isWritable);
+        // Use text field.
+        itemValue = `<td><input id="${id}" type="text" value="${value}"></input></td>`;
+        // Provide application button.
+        const buttonId = `${id}send`;
+        itemApplication = `<td><input id="abccameraRedBGColorsend" type="button" value="Apply"></input></td>`;
+        // Add click reaction.
+        const buttonStrId = `#${buttonId}`;
+        INDEX_LOG(`button str id: '${buttonStrId}'`);
+        $("#abccameraRedBGColorsend").click(
+            function() {
+                const id = $(buttonStrId).attr("valueId");
+                alert(`TODO send value of '${id}'`);
+            }
+        );
     }
+    contents += `<tr>${itemTitle}${itemValue}${itemApplication}</tr>`;
+    $(table).html(contents);
 }
 

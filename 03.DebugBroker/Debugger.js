@@ -33,7 +33,7 @@ class Debugger
         {
             this.pages[page.title] = page;
         }
-        // Only accept new items for existing pages. Leave old items intact.
+        // Accept new items or new values for existing pages.
         else
         {
             var storedPage = this.pages[page.title];
@@ -41,9 +41,15 @@ class Debugger
             {
                 const item = page.items[id];
                 const storedItem = storedPage.item(item.title);
+                // Accept new item.
                 if (!storedItem)
                 {
                     storedPage.addItem(item);
+                }
+                // Accept new value.
+                else
+                {
+                    storedItem.value = item.value;
                 }
             }
         }
@@ -64,14 +70,14 @@ class Debugger
         {
             const item = page.items[id];
             var storedItem = storedPage.item(item.title);
-            // Do nothing for items that are not writable.
-            if (storedItem.isWritable != 1)
-            {
-                continue;
-            }
             // Item exists.
             if (storedItem != null)
             {
+                // Do nothing for items that are not writable.
+                if (storedItem.isWritable != 1)
+                {
+                    continue;
+                }
                 // Accept new value.
                 storedItem.value = item.value;
             }
