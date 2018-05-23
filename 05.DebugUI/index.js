@@ -10,8 +10,7 @@ $(function() {
     // Topic: How to include multiple js files using jQuery $.getScript() method
     // Source: https://stackoverflow.com/a/11803418
     $.when(
-        $.getScript("Debugger.js"),
-        $.getScript("Navigation.js"),
+        $.getScript("ItemLocation.js"),
         $.Deferred(
             (deferred) => {
                 deferred.resolve();
@@ -59,8 +58,9 @@ function main()
                     for (var id in page.items)
                     {
                         const item = page.items[id];
-                        const itemId = `${debuggerName}${page.title}${item.title}`;
-                        addTablePageItem(table, itemId, item.title, item.value, item.isWritable);
+                        //const itemId = `${debuggerName}${page.title}${item.title}`;
+                        const itemLocation = new ItemLocation(debuggerName, page.title, item.title);
+                        addTablePageItem(table, item.title, item.value, item.isWritable, itemLocation);
                     }
                 }
             }
@@ -184,7 +184,7 @@ function listPages(list, pages, selectedPage)
     }
 }
 
-function addTablePageItem(table, id, title, value, isWritable)
+function addTablePageItem(table, title, value, isWritable, itemLocation)
 {
     var contents = $(table).html();
     const itemTitle = `<td><strong>${title}</strong></td>`;
@@ -192,36 +192,25 @@ function addTablePageItem(table, id, title, value, isWritable)
     var itemApplication = "";
     if (isWritable)
     {
+        const id = `${itemLocation.debuggerTitle}-${itemLocation.pageTitle}-${itemLocation.itemTitle}`;
+        const valueId = `${id}-value`;
         // Use text field.
-        itemValue = `<td><input id="${id}" type="text" value="${value}"/></td>`;
+        itemValue = `<td><input id="${valueId}" type="text" value="${value}"/></td>`;
         // Provide application button.
-        /*
-        const buttonId = `${id}send`;
-        itemApplication = `<td><input id="abccameraRedBGColorsend" type="button" value="Apply"></input></td>`;
-        // Add click reaction.
-        const buttonStrId = `#${buttonId}`;
-        INDEX_LOG(`button str id: '${buttonStrId}'`);
-        $("#abccameraRedBGColorsend").click(
-            function() {
-                const id = $(buttonStrId).attr("valueId");
-                alert(`TODO send value of '${id}'`);
-            }
-        );
-        */
-        itemApplication = `<td><input class="myid" type="button" value="Apply"/></td>`;
+        itemApplication = `<td><button id="${id}" onClick="apply(this.id)">Apply</button></td>`;
+        // NOTE Reaction is implement by apply() function.
     }
     contents += `<tr>${itemTitle}${itemValue}${itemApplication}</tr>`;
     $(table).html(contents);
-    if (isWritable)
-    {
-        // Add click reaction.
-        INDEX_LOG("Assign myid click handler");
-        $("#items").on("click", "tr.td.input.myid",
-            function() {
-                INDEX_LOG("myid click");
-                alert(`TODO send value`);
-            }
-        );
-    }
+}
+
+function apply(id)
+{
+    const valueId = `${id}-value`;
+    INDEX_LOG(`valueId: '${valueId}'`);
+    const idid = `#${valueId}`;
+    const value = $(idid).attr("value")
+    INDEX_LOG(`#value id: '${idid}'`);
+    INDEX_LOG(`TODO send value '${value}' for id: '${id}'`);
 }
 
