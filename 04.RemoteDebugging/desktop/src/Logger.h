@@ -22,45 +22,41 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
 
-#include "DebugPage.h"
-// FEATURE Debugger+process-web/Include
-// FEATURE Debugger+process-desktop/Include
+#include "log.h"
 
 namespace osgcpe
 {
 
-class Debugger
+//! Print OpenSceneGraph notifications to console.
+class Logger : public osg::NotifyHandler
 {
     public:
-        const std::string title;
+        Logger(const std::string &domain = "") : domain(domain) { }
+        virtual ~Logger() { }
 
-        Debugger(const std::string &title) : title(title) { }
-
-    private:
-        std::string consoleURL;
-    public:
-        void setConsoleURL(const std::string &url)
+        // Override NotifyHandler::notify() to receive OpenSceneGraph notifications.
+        void notify(osg::NotifySeverity severity, const char *message) override
         {
-            this->consoleURL = url;
+            log::logprintf(
+                "%s OSG/%s %s",
+                domain.c_str(),
+                log::logLevelToString(severity).c_str(),
+                message
+            );
         }
 
     private:
-        std::vector<DebugPage> pages;
-    public:
-        void addDebugPage(DebugPage page)
-        {
-            this->pages.push_back(page);
-        }
-
-    // FEATURE Debugger+process-web/Impl
-    // FEATURE Debugger+process-desktop/Impl
-
+        const std::string domain;
 };
 
 } // namespace osgcpe
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
+// Logger+Stub Start
+// Stub.
+// Logger+Stub End
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
 

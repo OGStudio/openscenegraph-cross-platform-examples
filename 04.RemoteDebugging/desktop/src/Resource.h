@@ -22,45 +22,40 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
 
-#include "DebugPage.h"
-// FEATURE Debugger+process-web/Include
-// FEATURE Debugger+process-desktop/Include
+#include <string>
 
 namespace osgcpe
 {
 
-class Debugger
+//! Resource container.
+struct Resource
 {
-    public:
-        const std::string title;
+    Resource(
+        const std::string &group,
+        const std::string &name,
+        unsigned char *contents,
+        unsigned int len
+    ) :
+        group(group),
+        name(name),
+        contents(contents),
+        len(len)
+    { }
 
-        Debugger(const std::string &title) : title(title) { }
-
-    private:
-        std::string consoleURL;
-    public:
-        void setConsoleURL(const std::string &url)
-        {
-            this->consoleURL = url;
-        }
-
-    private:
-        std::vector<DebugPage> pages;
-    public:
-        void addDebugPage(DebugPage page)
-        {
-            this->pages.push_back(page);
-        }
-
-    // FEATURE Debugger+process-web/Impl
-    // FEATURE Debugger+process-desktop/Impl
-
+    std::string group;
+    std::string name;
+    unsigned char *contents;
+    unsigned int len;
 };
 
 } // namespace osgcpe
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
+// Resource+Stub Start
+// Stub.
+// Resource+Stub End
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
 

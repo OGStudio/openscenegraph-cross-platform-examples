@@ -22,45 +22,43 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 
-#include "DebugPage.h"
-// FEATURE Debugger+process-web/Include
-// FEATURE Debugger+process-desktop/Include
+// scene+textureImageScene Start
+#include "resources.h"
+
+// scene+textureImageScene End
 
 namespace osgcpe
 {
-
-class Debugger
+namespace scene
 {
-    public:
-        const std::string title;
 
-        Debugger(const std::string &title) : title(title) { }
+// scene+textureImageScene Start
+void textureImageScene(
+    const Resource &shaderFrag,
+    const Resource &shaderVert,
+    const Resource &textureImage,
+    osg::Node *scene
+) {
+    // Create shader program.
+    auto prog =
+        render::createShaderProgram(
+            resources::string(shaderVert),
+            resources::string(shaderFrag)
+        );
+    // Apply the program.
+    auto material = scene->getOrCreateStateSet();
+    material->setAttribute(prog);
+    // Set texture image.
+    material->setTextureAttributeAndModes(0, resources::createTexture(textureImage));
+    material->addUniform(new osg::Uniform("image", 0));
+}
+// scene+textureImageScene End
 
-    private:
-        std::string consoleURL;
-    public:
-        void setConsoleURL(const std::string &url)
-        {
-            this->consoleURL = url;
-        }
-
-    private:
-        std::vector<DebugPage> pages;
-    public:
-        void addDebugPage(DebugPage page)
-        {
-            this->pages.push_back(page);
-        }
-
-    // FEATURE Debugger+process-web/Impl
-    // FEATURE Debugger+process-desktop/Impl
-
-};
-
+} // namespace scene
 } // namespace osgcpe
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 

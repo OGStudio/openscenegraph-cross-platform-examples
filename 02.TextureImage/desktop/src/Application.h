@@ -77,7 +77,10 @@ class Application
         public:
             void run()
             {
-                this->viewer->run();
+                while (!this->viewer->done())
+                {
+                    this->frame();
+                }
             }
         // Application+run End
         // Application+setupWindow-desktop Start
@@ -108,8 +111,8 @@ class Application
                 osg::setNotifyHandler(this->logger);
                 // Only accept notifications of Info level or higher
                 // like warnings and errors.
-                osg::setNotifyLevel(osg::INFO);
-                //osg::setNotifyLevel(osg::WARN);
+                //osg::setNotifyLevel(osg::INFO);
+                osg::setNotifyLevel(osg::WARN);
             }
             void tearLoggingDown()
             {

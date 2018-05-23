@@ -12,7 +12,7 @@ public:
             return;
         }
         runOnce = false;
-        log::log("process-web");
+        log::log("process-desktop");
 
         std::string pagesJSON = "";
 

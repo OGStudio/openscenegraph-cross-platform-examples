@@ -22,45 +22,20 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
+#include "Example.h"
 
-#include "DebugPage.h"
-// FEATURE Debugger+process-web/Include
-// FEATURE Debugger+process-desktop/Include
 
-namespace osgcpe
+int main(int argc, char *argv[])
 {
-
-class Debugger
-{
-    public:
-        const std::string title;
-
-        Debugger(const std::string &title) : title(title) { }
-
-    private:
-        std::string consoleURL;
-    public:
-        void setConsoleURL(const std::string &url)
-        {
-            this->consoleURL = url;
-        }
-
-    private:
-        std::vector<DebugPage> pages;
-    public:
-        void addDebugPage(DebugPage page)
-        {
-            this->pages.push_back(page);
-        }
-
-    // FEATURE Debugger+process-web/Impl
-    // FEATURE Debugger+process-desktop/Impl
-
-};
-
-} // namespace osgcpe
-
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
+    // main-desktop Start
+    auto example = new osgcpe::Example();
+    example->app->setupWindow(osgcpe::EXAMPLE_TITLE, 100, 100, 1024, 768);
+    
+    // main-desktop End
+    // main-desktop Start
+    example->app->run();
+    delete example;
+    // main-desktop End
+    return 0;
+}
 

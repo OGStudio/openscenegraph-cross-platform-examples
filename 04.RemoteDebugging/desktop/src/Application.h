@@ -36,6 +36,14 @@ freely, subject to the following restrictions:
 #include <osgGA/TrackballManipulator>
 
 // Application+Rendering End
+// Application+Debugging Start
+#include "DebugPage.h"
+
+// Application+Debugging End
+// Application+frame+Reporting Start
+#include "Reporter.h"
+
+// Application+frame+Reporting End
 
 namespace osgcpe
 {
@@ -53,6 +61,14 @@ class Application
             this->setupRendering();
             
             // Application+Rendering End
+            // Application+Debugging Start
+            this->setupDebugging();
+            
+            // Application+Debugging End
+            // Application+RedBGColorDebugging Start
+            this->setupRedBGColorDebugging();
+            
+            // Application+RedBGColorDebugging End
         }
         ~Application()
         {
@@ -66,20 +82,41 @@ class Application
             // Application+Logging End
         }
 
-        // Application+frame Start
+        // Application+frame+Reporting Start
         public:
+            Reporter frameReporter;
             void frame()
             {
                 this->viewer->frame();
+                this->frameReporter.report();
             }
-        // Application+frame End
-        // Application+setupWindow-embedded Start
+        // Application+frame+Reporting End
+        // Application+run Start
         public:
-            void setupWindow(int width, int height)
+            void run()
             {
-                this->viewer->setUpViewerAsEmbeddedInWindow(0, 0, width, height);
+                while (!this->viewer->done())
+                {
+                    this->frame();
+                }
             }
-        // Application+setupWindow-embedded End
+        // Application+run End
+        // Application+setupWindow-desktop Start
+        public:
+            void setupWindow(
+                const std::string &title,
+                int x,
+                int y,
+                int width,
+                int height
+            ) {
+                osg::GraphicsContext *gc =
+                    render::createGraphicsContext(title, x, y, width, height);
+                // Configure viewer's camera with FOVY and window size.
+                osg::Camera *cam = this->viewer->getCamera();
+                render::setupCamera(cam, gc, 30, width, height);
+            }
+        // Application+setupWindow-desktop End
 
         // Application+Logging Start
         private:
@@ -124,6 +161,37 @@ class Application
                 delete this->viewer;
             }
         // Application+Rendering End
+        // Application+Debugging Start
+        public:
+            DebugPage debugPage;
+        
+            void setupDebugging()
+            {
+                this->debugPage.title = "camera";
+            }
+        // Application+Debugging End
+        // Application+RedBGColorDebugging Start
+        private:
+            void setupRedBGColorDebugging()
+            {
+                this->debugPage.addItem(
+                    "RedBGColor",
+                    [&] {
+                        auto cam = this->viewer->getCamera();
+                        auto color = cam->getClearColor();
+                        int value = color.r() * 255.0;
+                        return log::printfString("%d", value);
+                    },
+                    [&](const std::string &value) {
+                        auto cam = this->viewer->getCamera();
+                        auto color = cam->getClearColor();
+                        color.r() = static_cast<float>(atoi(value.c_str())) / 255.0;
+                        cam->setClearColor(color);
+                    }
+                );
+            }
+        
+        // Application+RedBGColorDebugging End
 };
 
 } // namespace osgcpe

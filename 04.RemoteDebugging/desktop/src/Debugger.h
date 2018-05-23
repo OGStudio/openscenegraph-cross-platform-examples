@@ -26,10 +26,10 @@ freely, subject to the following restrictions:
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
 
 #include "DebugPage.h"
-// Debugger+process-web Start
+// Debugger+process-desktop Start
 #include "debug.h"
 
-// Debugger+process-web End
+// Debugger+process-desktop End
 
 namespace osgcpe
 {
@@ -57,7 +57,7 @@ class Debugger
             this->pages.push_back(page);
         }
 
-    // Debugger+process-web Start
+    // Debugger+process-desktop Start
     public:
         void process()
         {
@@ -68,7 +68,7 @@ class Debugger
                 return;
             }
             runOnce = false;
-            log::log("process-web");
+            log::log("process-desktop");
     
             std::string pagesJSON = "";
     
@@ -103,7 +103,7 @@ class Debugger
         }
         // TODO send JSON?
         // TODO receive JSON?
-    // Debugger+process-web End
+    // Debugger+process-desktop End
 
 };
 

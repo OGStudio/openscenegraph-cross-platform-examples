@@ -2,5 +2,8 @@ FEATURE Application.h/Impl
 public:
     void run()
     {
-        this->viewer->run();
+        while (!this->viewer->done())
+        {
+            this->frame();
+        }
     }
