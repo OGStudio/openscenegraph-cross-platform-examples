@@ -10,3 +10,14 @@ class ItemLocation
 
 }
 
+function itemLocationToId(itemloc)
+{
+    return `${itemloc.debuggerTitle}-${itemloc.pageTitle}-${itemloc.itemTitle}`;
+}
+
+function idToItemLocation(id)
+{
+    const titles = id.split("-");
+    return new ItemLocation(titles[0], titles[1], titles[2]);
+}
+

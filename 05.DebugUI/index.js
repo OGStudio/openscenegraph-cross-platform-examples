@@ -11,6 +11,7 @@ $(function() {
     // Source: https://stackoverflow.com/a/11803418
     $.when(
         $.getScript("ItemLocation.js"),
+        $.getScript("parsing.js"),
         $.Deferred(
             (deferred) => {
                 deferred.resolve();
@@ -192,25 +193,30 @@ function addTablePageItem(table, title, value, isWritable, itemLocation)
     var itemApplication = "";
     if (isWritable)
     {
-        const id = `${itemLocation.debuggerTitle}-${itemLocation.pageTitle}-${itemLocation.itemTitle}`;
-        const valueId = `${id}-value`;
+        const id = itemLocationToId(itemLocation);
+        const valueId = itemLocationToValueId(id);
         // Use text field.
         itemValue = `<td><input id="${valueId}" type="text" value="${value}"/></td>`;
         // Provide application button.
         itemApplication = `<td><button id="${id}" onClick="apply(this.id)">Apply</button></td>`;
-        // NOTE Reaction is implement by apply() function.
     }
     contents += `<tr>${itemTitle}${itemValue}${itemApplication}</tr>`;
     $(table).html(contents);
 }
 
-function apply(id)
+function apply(itemLocationId)
 {
-    const valueId = `${id}-value`;
-    INDEX_LOG(`valueId: '${valueId}'`);
-    const idid = `#${valueId}`;
-    const value = $(idid).attr("value")
-    INDEX_LOG(`#value id: '${idid}'`);
-    INDEX_LOG(`TODO send value '${value}' for id: '${id}'`);
+    const itemLocation = idToItemLocation(itemLocationId);
+    const valueId = itemLocationToValueId(itemLocationId);
+    const selector = `#${valueId}`;
+    const value = $(selector).attr("value");
+    const json = itemJSON(itemLocation, value);
+
+    INDEX_LOG(`TODO send JSON '${json}' for item: '${itemLocationId}'`);
 }
 
+function itemLocationToValueId(itemLocation)
+{
+    const id = itemLocationToId(itemLocation);
+    return `${id}-value`;
+}
