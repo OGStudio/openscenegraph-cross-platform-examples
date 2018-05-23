@@ -211,17 +211,12 @@ function apply(itemLocationId)
 
 function sendData(brokerURL, data)
 {
-    // Success callback.
-    var success = function(response) {
+    // Success/Failure callback.
+    var callback = function(response) {
         var string = JSON.stringify(response, null, 2);
-        INDEX_LOG(`successful sending response: ${string}`);
+        INDEX_LOG(`Success/Failure response: ${string}`);
         // Reload page.
         location.reload();
-    }
-    // Failure callback.
-    var failure = function(response) {
-        var string = JSON.stringify(response, null, 2);
-        INDEX_LOG(`FAILED sending response: ${string}`);
     }
 
     $.ajax(
@@ -232,8 +227,8 @@ function sendData(brokerURL, data)
             contentType: "application/json",
             processData: false,
             data: data,
-            success: success,
-            error: failure
+            success: callback,
+            error: callback
         }
     );
 }
