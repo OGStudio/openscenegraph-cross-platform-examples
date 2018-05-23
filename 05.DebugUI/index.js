@@ -193,8 +193,9 @@ function addTablePageItem(table, id, title, value, isWritable)
     if (isWritable)
     {
         // Use text field.
-        itemValue = `<td><input id="${id}" type="text" value="${value}"></input></td>`;
+        itemValue = `<td><input id="${id}" type="text" value="${value}"/></td>`;
         // Provide application button.
+        /*
         const buttonId = `${id}send`;
         itemApplication = `<td><input id="abccameraRedBGColorsend" type="button" value="Apply"></input></td>`;
         // Add click reaction.
@@ -206,8 +207,21 @@ function addTablePageItem(table, id, title, value, isWritable)
                 alert(`TODO send value of '${id}'`);
             }
         );
+        */
+        itemApplication = `<td><input class="myid" type="button" value="Apply"/></td>`;
     }
     contents += `<tr>${itemTitle}${itemValue}${itemApplication}</tr>`;
     $(table).html(contents);
+    if (isWritable)
+    {
+        // Add click reaction.
+        INDEX_LOG("Assign myid click handler");
+        $("#items").on("click", "tr.td.input.myid",
+            function() {
+                INDEX_LOG("myid click");
+                alert(`TODO send value`);
+            }
+        );
+    }
 }
 
