@@ -119,20 +119,6 @@ function setupDebugger(brokerURL, debuggerName)
     addListItem(list, "Title", debuggerName);
 }
 
-/*
-function setupSending()
-{
-    setupSendButton();
-
-    $("#send").click(
-        function() {
-            alert("TODO send");
-        }
-    );
-
-}
-*/
-
 function requestData(brokerURL, debuggerName, successCallback, failureCallback)
 {
     const data = `{"title":"${debuggerName}"}`;
@@ -209,10 +195,47 @@ function apply(itemLocationId)
     const itemLocation = idToItemLocation(itemLocationId);
     const valueId = itemLocationToValueId(itemLocationId);
     const selector = `#${valueId}`;
-    const value = $(selector).attr("value");
-    const json = itemJSON(itemLocation, value);
+    const value = $(selector).val();
+    const data = itemJSON(itemLocation, value);
+    INDEX_LOG(`Sending data '${data}'`);
 
-    INDEX_LOG(`TODO send JSON '${json}' for item: '${itemLocationId}'`);
+    // Send data.
+    const params = new URLSearchParams(window.location.search);
+    const brokerURL = params.get("broker");
+    // Do not proceed if both required parameters are missing.
+    if (brokerURL)
+    {
+        sendData(brokerURL, data);
+    }
+}
+
+function sendData(brokerURL, data)
+{
+    // Success callback.
+    var success = function(response) {
+        var string = JSON.stringify(response, null, 2);
+        INDEX_LOG(`successful sending response: ${string}`);
+        // Reload page.
+        location.reload();
+    }
+    // Failure callback.
+    var failure = function(response) {
+        var string = JSON.stringify(response, null, 2);
+        INDEX_LOG(`FAILED sending response: ${string}`);
+    }
+
+    $.ajax(
+        {
+            url: brokerURL,
+            type: "POST",
+            dataType: "text",
+            contentType: "application/json",
+            processData: false,
+            data: data,
+            success: success,
+            error: failure
+        }
+    );
 }
 
 function itemLocationToValueId(itemLocation)
