@@ -26,27 +26,37 @@ freely, subject to the following restrictions:
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
 
 #include "DebugPage.h"
-// Debugger+process-desktop Start
+// Debugger+process-default Start
 #include "debug.h"
+// TODO REMOVE after testing
+#include <ctime>
 
-// Debugger+process-desktop End
+// Debugger+process-default End
 
 namespace osgcpe
 {
 
 class Debugger
 {
+    private:
+        HTTPClient *httpClient;
     public:
         const std::string title;
 
-        Debugger(const std::string &title) : title(title) { }
+        Debugger(
+            HTTPClient *httpClient,
+            const std::string &title
+        ) :
+            httpClient(httpClient),
+            title(title)
+        { }
 
     private:
-        std::string consoleURL;
+        std::string brokerURL;
     public:
-        void setConsoleURL(const std::string &url)
+        void setBrokerURL(const std::string &url)
         {
-            this->consoleURL = url;
+            this->brokerURL = url;
         }
 
     private:
@@ -57,19 +67,33 @@ class Debugger
             this->pages.push_back(page);
         }
 
-    // Debugger+process-desktop Start
+    // Debugger+process-default Start
     public:
         void process()
         {
-            // Only run once to debug first.
-            static bool runOnce = true;
-            if (!runOnce)
+            // TODO REMOVE after testing
+            // Only report once in 5 seconds.
+            static std::time_t lastProcessDt = 0;
+            auto now = std::time(0);
+            if (now - lastProcessDt < 5)
             {
                 return;
             }
-            runOnce = false;
-            log::log("process-desktop");
+            lastProcessDt = now;
     
+            log::log("process-default");
+            std::string json = this->stateAsJSON();
+            auto callback = [&](std::string response){
+                log::logprintf("process callback response: '%s'", response.c_str());
+            };
+            httpClient->post(this->brokerURL, json, callback, callback);
+        }
+        // TODO receive JSON?
+    // Debugger+process-default End
+    // Debugger+stateAsJSON Start
+    private:
+        std::string stateAsJSON()
+        {
             std::string pagesJSON = "";
     
             auto page = this->pages.begin();
@@ -83,7 +107,7 @@ class Debugger
                 pagesJSON += debug::pageToJSON(*page);
             }
     
-            // Format pages.
+            // Format debugger.
             std::string json;
             json += "{";
     
@@ -97,13 +121,9 @@ class Debugger
     
             json += "}";
     
-            log::log("All pages");
-            log::log(json.c_str());
-            // TODO send JSON.
+            return json;
         }
-        // TODO send JSON?
-        // TODO receive JSON?
-    // Debugger+process-desktop End
+    // Debugger+stateAsJSON End
 
 };
 

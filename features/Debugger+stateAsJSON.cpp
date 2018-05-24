@@ -1,19 +1,7 @@
-FEATURE Debugger.h/Include
-#include "debug.h"
-
 FEATURE Debugger.h/Impl
-public:
-    void process()
+private:
+    std::string stateAsJSON()
     {
-        // Only run once to debug first.
-        static bool runOnce = true;
-        if (!runOnce)
-        {
-            return;
-        }
-        runOnce = false;
-        log::log("process-desktop");
-
         std::string pagesJSON = "";
 
         auto page = this->pages.begin();
@@ -27,7 +15,7 @@ public:
             pagesJSON += debug::pageToJSON(*page);
         }
 
-        // Format pages.
+        // Format debugger.
         std::string json;
         json += "{";
 
@@ -41,9 +29,5 @@ public:
 
         json += "}";
 
-        log::log("All pages");
-        log::log(json.c_str());
-        // TODO send JSON.
+        return json;
     }
-    // TODO send JSON?
-    // TODO receive JSON?

@@ -44,6 +44,7 @@ freely, subject to the following restrictions:
 
 // Example+TextureImageScene End
 // Example+Debugging Start
+#include "HTTPClient.h"
 #include "Debugger.h"
 
 // Example+Debugging End
@@ -133,15 +134,19 @@ struct Example
     // Example+Debugging Start
     private:
         osgcpe::Debugger *dbg;
+        osgcpe::HTTPClient *dbgHTTPClient;
     
         void setupDebugging()
         {
-            this->dbg = new osgcpe::Debugger(EXAMPLE_TITLE);
-            this->dbg->setConsoleURL("https://remote-debugger.herokuapp.com");
+            this->dbgHTTPClient = new osgcpe::HTTPClient;
+            this->dbg = new osgcpe::Debugger(this->dbgHTTPClient, EXAMPLE_TITLE);
+            // TODO Heroku?
+            this->dbg->setBrokerURL("http://localhost:7999");
         }
         void tearDebuggingDown()
         {
             delete this->dbg;
+            delete this->dbgHTTPClient;
         }
     
     // Example+Debugging End

@@ -36,17 +36,25 @@ namespace osgcpe
 
 class Debugger
 {
+    private:
+        HTTPClient *httpClient;
     public:
         const std::string title;
 
-        Debugger(const std::string &title) : title(title) { }
+        Debugger(
+            HTTPClient *httpClient,
+            const std::string &title
+        ) :
+            httpClient(httpClient),
+            title(title)
+        { }
 
     private:
-        std::string consoleURL;
+        std::string brokerURL;
     public:
-        void setConsoleURL(const std::string &url)
+        void setBrokerURL(const std::string &url)
         {
-            this->consoleURL = url;
+            this->brokerURL = url;
         }
 
     private:

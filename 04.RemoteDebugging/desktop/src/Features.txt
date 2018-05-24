@@ -36,8 +36,12 @@ Example+TextureImageScene
 Example+Debugging
 Example+DebugApplication
 
+HTTPClient+Stub
+HTTPClientMongoose+Stub
+
 DebugPage+Stub
-Debugger+process-desktop
+Debugger+process-default
+Debugger+stateAsJSON
 debug+pageToJSON
 
 main-desktop

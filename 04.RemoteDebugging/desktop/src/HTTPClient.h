@@ -111,7 +111,9 @@ class HTTPClient
 
 } // namespace osgcpe
 
-// FEATURE HTTPClient+Stub/Impl
+// HTTPClient+Stub Start
+// Stub.
+// HTTPClient+Stub End
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_HTTP_CLIENT_H
 

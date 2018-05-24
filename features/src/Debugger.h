@@ -26,25 +26,33 @@ freely, subject to the following restrictions:
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
 
 #include "DebugPage.h"
+// FEATURE Debugger+process-default/Include
 // FEATURE Debugger+process-web/Include
-// FEATURE Debugger+process-desktop/Include
 
 namespace osgcpe
 {
 
 class Debugger
 {
+    private:
+        HTTPClient *httpClient;
     public:
         const std::string title;
 
-        Debugger(const std::string &title) : title(title) { }
+        Debugger(
+            HTTPClient *httpClient,
+            const std::string &title
+        ) :
+            httpClient(httpClient),
+            title(title)
+        { }
 
     private:
-        std::string consoleURL;
+        std::string brokerURL;
     public:
-        void setConsoleURL(const std::string &url)
+        void setBrokerURL(const std::string &url)
         {
-            this->consoleURL = url;
+            this->brokerURL = url;
         }
 
     private:
@@ -55,8 +63,9 @@ class Debugger
             this->pages.push_back(page);
         }
 
+    // FEATURE Debugger+process-default/Impl
     // FEATURE Debugger+process-web/Impl
-    // FEATURE Debugger+process-desktop/Impl
+    // FEATURE Debugger+stateAsJSON/Impl
 
 };
 
