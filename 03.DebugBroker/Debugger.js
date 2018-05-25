@@ -33,7 +33,10 @@ class Debugger
         {
             this.pages[page.title] = page;
         }
-        // Accept new items or new values for existing pages.
+        // Accept new items for existing pages.
+        // Only accept new values if
+        // * they are different now
+        // * they were changed by App, not UI
         else
         {
             var storedPage = this.pages[page.title];
@@ -46,10 +49,23 @@ class Debugger
                 {
                     storedPage.addItem(item);
                 }
-                // Accept new value.
+                // Accept value if new.
                 else
                 {
-                    storedItem.value = item.value;
+                    var appValue = storedItem.appValue;
+
+                    var appValueString = JSON.stringify(appValue, null, 2);
+                    DEBUGGER_LOG(`01.processAppDebugPage. appValue: '${appValueString}'`);
+                    DEBUGGER_LOG(`02.processAppDebugPage. appValue.value: '${appValue.value}'`);
+
+                    if (item.latestValue() != appValue.value)
+                    {
+                        DEBUGGER_LOG(`03.1.processAppDebugPage. assign appValue`);
+                        appValue.value = item.latestValue();
+                    }
+
+                    appValueString = JSON.stringify(appValue, null, 2);
+                    DEBUGGER_LOG(`04.processAppDebugPage. appValue: '${appValueString}'`);
                 }
             }
         }
@@ -78,8 +94,12 @@ class Debugger
                 {
                     continue;
                 }
-                // Accept new value.
-                storedItem.value = item.value;
+                // Accept value if new.
+                var uiValue = storedItem.uiValue;
+                if (item.latestValue() != uiValue.value)
+                {
+                    uiValue.value = item.latestValue();
+                }
             }
         }
     }

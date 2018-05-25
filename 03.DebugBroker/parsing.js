@@ -12,7 +12,11 @@ function PARSING_LOG(message)
 
 function debugPageItemToJSON(item)
 {
-    return `{"title":"${item.title}","value":"${item.value}","isWritable":${item.isWritable}}`;
+    var string = JSON.stringify(item, null, 2);
+    PARSING_LOG(`debugPageItemToJSON. item: '${string}'`);
+    // Get latest value.
+    const value = item.latestValue();
+    return `{"title":"${item.title}","value":"${value}","isWritable":${item.isWritable}}`;
 }
 
 function debugPageItemsToJSON(items)
