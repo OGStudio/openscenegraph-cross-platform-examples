@@ -17,7 +17,7 @@ private:
     {
         this->dbgHTTPClient = new osgcpe::HTTPClient;
         this->dbg = new osgcpe::Debugger(this->dbgHTTPClient, EXAMPLE_TITLE);
-        // TODO Heroku?
+        // TODO Heroku? Parametrize.
         this->dbg->setBrokerURL("http://localhost:7999");
     }
     void tearDebuggingDown()

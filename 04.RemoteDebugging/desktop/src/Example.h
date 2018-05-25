@@ -121,7 +121,7 @@ struct Example
         {
             this->dbgHTTPClient = new osgcpe::HTTPClient;
             this->dbg = new osgcpe::Debugger(this->dbgHTTPClient, EXAMPLE_TITLE);
-            // TODO Heroku?
+            // TODO Heroku? Parametrize.
             this->dbg->setBrokerURL("http://localhost:7999");
         }
         void tearDebuggingDown()
@@ -138,6 +138,10 @@ struct Example
             this->app->frameReporter.addCallback(
                 [&] {
                     this->dbg->process();
+                    if (this->dbgHTTPClient->needsProcessing())
+                    {
+                        this->dbgHTTPClient->process();
+                    }
                 },
                 "Debug"
             );

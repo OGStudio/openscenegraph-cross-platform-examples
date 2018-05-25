@@ -11,6 +11,10 @@ private:
         this->app->frameReporter.addCallback(
             [&] {
                 this->dbg->process();
+                if (this->dbgHTTPClient->needsProcessing())
+                {
+                    this->dbgHTTPClient->process();
+                }
             },
             "Debug"
         );
