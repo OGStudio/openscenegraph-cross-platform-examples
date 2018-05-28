@@ -80,6 +80,7 @@ class Debugger
                 return;
             }
             lastProcessDt = now;
+            // TODO Provide non-static flag.
             // 2. Only make new request once previous one has been completed.
             static bool finishedRequest = true;
             if (!finishedRequest)
@@ -93,45 +94,11 @@ class Debugger
                 finishedRequest = true;
             };
             log::log("process-default");
-            std::string json = this->stateAsJSON();
+            std::string json = debug::debuggerToJSON(this->title, this->pages);
             httpClient->post(this->brokerURL, json, callback, callback);
         }
         // TODO receive JSON?
     // Debugger+process-default End
-    // Debugger+stateAsJSON Start
-    private:
-        std::string stateAsJSON()
-        {
-            std::string pagesJSON = "";
-    
-            auto page = this->pages.begin();
-            for (; page != this->pages.end(); ++page)
-            {
-                // Add comma if we're adding the second and following pages.
-                if (!pagesJSON.empty())
-                {
-                    pagesJSON += ",";
-                }
-                pagesJSON += debug::pageToJSON(*page);
-            }
-    
-            // Format debugger.
-            std::string json;
-            json += "{";
-    
-            json += "\"title\":\"";
-            json += this->title;
-            json += "\",";
-    
-            json += "\"pages\":[";
-            json += pagesJSON;
-            json += "]"; // Note the absent comma.
-    
-            json += "}";
-    
-            return json;
-        }
-    // Debugger+stateAsJSON End
 
 };
 

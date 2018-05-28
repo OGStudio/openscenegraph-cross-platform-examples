@@ -16,6 +16,7 @@ public:
             return;
         }
         lastProcessDt = now;
+        // TODO Provide non-static flag.
         // 2. Only make new request once previous one has been completed.
         static bool finishedRequest = true;
         if (!finishedRequest)
@@ -29,7 +30,7 @@ public:
             finishedRequest = true;
         };
         log::log("process-default");
-        std::string json = this->stateAsJSON();
+        std::string json = debug::debuggerToJSON(this->title, this->pages);
         httpClient->post(this->brokerURL, json, callback, callback);
     }
     // TODO receive JSON?

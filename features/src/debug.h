@@ -26,6 +26,7 @@ freely, subject to the following restrictions:
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_H
 
 // FEATURE debug+pageToJSON/Include
+// FEATURE debug+debuggerToJSON/Include
 
 namespace osgcpe
 {
@@ -33,6 +34,7 @@ namespace debug
 {
 
 // FEATURE debug+pageToJSON/Impl
+// FEATURE debug+debuggerToJSON/Impl
 
 } // namespace debug
 } // namespace osgcpe
