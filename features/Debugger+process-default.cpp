@@ -25,12 +25,12 @@ public:
         }
         finishedRequest = false;
            
-        auto callback = [&](std::string response){
-            log::logprintf("process callback response: '%s'", response.c_str());
+        auto callback = [&](std::string response) {
+            // Process incoming JSON response.
+            this->processJSON(response);
             finishedRequest = true;
         };
         log::log("process-default");
-        std::string json = debug::debuggerToJSON(this->title, this->pages);
-        httpClient->post(this->brokerURL, json, callback, callback);
+        std::string data = debug::debuggerToJSON(this->title, this->pages);
+        httpClient->post(this->brokerURL, data, callback, callback);
     }
-    // TODO receive JSON?

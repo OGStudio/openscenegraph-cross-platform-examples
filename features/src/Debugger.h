@@ -28,6 +28,7 @@ freely, subject to the following restrictions:
 #include "DebugPage.h"
 // FEATURE Debugger+process-default/Include
 // FEATURE Debugger+process-web/Include
+// FEATURE Debugger+processJSON/Include
 
 namespace osgcpe
 {
@@ -65,7 +66,7 @@ class Debugger
 
     // FEATURE Debugger+process-default/Impl
     // FEATURE Debugger+process-web/Impl
-    // FEATURE Debugger+stateAsJSON/Impl
+    // FEATURE Debugger+processJSON/Impl
 
 };
 

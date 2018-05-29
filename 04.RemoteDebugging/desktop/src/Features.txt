@@ -41,6 +41,7 @@ HTTPClientMongoose+Stub
 
 DebugPage+Stub
 Debugger+process-default
+Debugger+processJSON
 debug+debuggerToJSON
 debug+pageToJSON
 

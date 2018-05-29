@@ -3,6 +3,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 # Path to external projects:
 # * mongoose
+# * NLohmann's json
 SET(EXT_PROJ_DIR "${CMAKE_SOURCE_DIR}/../../..")
 
 # OpenSceneGraph directories.
@@ -17,6 +18,9 @@ ADD_DEFINITIONS("-std=c++11")
 # Build mongoose statically (for distribution simplicity).
 INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/mongoose)
 ADD_LIBRARY(mongoose STATIC ${EXT_PROJ_DIR}/mongoose/mongoose.c)
+
+# Reference NLohmann's json.
+INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/json/single_include)
 
 # Reference headers.
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/src)
