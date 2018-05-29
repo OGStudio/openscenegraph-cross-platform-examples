@@ -19,29 +19,11 @@ public:
         auto jpages = jdata["pages"];
         for (auto jpage : jpages)
         {
-            auto pageTitle = jpage["title"].get<std::string>();
-            log::logprintf("processJSON. page title: '%s'", pageTitle.c_str());
-            auto jitems = jpage["items"];
-            for (auto jitem : jitems)
+            auto pageDesc = debug::jsonToPageDesc(jpage);
+            auto page = this->page(pageDesc.title);
+            if (page)
             {
-                auto itemTitle = jitem["title"].get<std::string>();
-                log::logprintf("processJSON. item title: '%s'", itemTitle.c_str());
-
-            }
-
-        }
-        
-        /*
-        auto incomingPages = debug::jsonToDebugPages(this->title);
-        for (auto incomingPage : incomingPages)
-        {
-            for (auto page : this->pages)
-            {
-                if (page.title == incomingPage.title)
-                {
-                    page.processItems(page.items);
-                }
+                page->setDesc(pageDesc);
             }
         }
-        */
     }

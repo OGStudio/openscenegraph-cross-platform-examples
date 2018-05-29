@@ -26,6 +26,10 @@ freely, subject to the following restrictions:
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_PAGE_H
 
 #include <functional>
+// DebugPage+setDesc Start
+#include "DebugPageDesc.h"
+
+// DebugPage+setDesc End
 
 namespace osgcpe
 {
@@ -61,13 +65,36 @@ struct DebugPage
         this->items.push_back({title, getter, setter});
     }
 
+    // DebugPage+item Start
+    Item *item(const std::string &title)
+    {
+        auto itemCount = this->items.size();
+        for (auto i = 0; i < itemCount; ++i)
+        {
+            Item *item = &this->items[i];
+            return item;
+        }
+        return 0;
+    }
+    // DebugPage+item End
+    // DebugPage+setDesc Start
+    void setDesc(const DebugPageDesc& desc)
+    {
+        for (auto descItem : desc.items)
+        {
+            auto item = this->item(descItem.title);
+            if (item)
+            {
+                item->setter(descItem.value);
+            }
+        }
+    }
+    // DebugPage+setDesc End
+
 };
 
 } // namespace osgcpe
 
-// DebugPage+Stub Start
-// Stub.
-// DebugPage+Stub End
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_PAGE_H
 

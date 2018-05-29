@@ -63,6 +63,7 @@ class Debugger
         {
             this->pages.push_back(page);
         }
+    // FEATURE Debugger+page/Impl
 
     // FEATURE Debugger+process-default/Impl
     // FEATURE Debugger+process-web/Impl

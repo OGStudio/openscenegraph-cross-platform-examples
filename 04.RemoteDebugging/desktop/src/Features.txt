@@ -39,10 +39,14 @@ Example+DebugApplication
 HTTPClient+Stub
 HTTPClientMongoose+Stub
 
-DebugPage+Stub
+DebugPage+item
+DebugPage+setDesc
+DebugPageDesc+Stub
+Debugger+page
 Debugger+process-default
 Debugger+processJSON
 debug+debuggerToJSON
 debug+pageToJSON
+debug+jsonToPageDesc
 
 main-desktop

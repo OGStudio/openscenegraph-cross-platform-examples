@@ -70,6 +70,22 @@ class Debugger
         {
             this->pages.push_back(page);
         }
+    // Debugger+page Start
+    public:
+        DebugPage *page(const std::string &title)
+        {
+            auto pageCount = this->pages.size();
+            for (auto i = 0; i < pageCount; ++i)
+            {
+                DebugPage *page = &this->pages[i];
+                if (page->title == title)
+                {
+                    return page;
+                }
+            }
+            return 0;
+        }
+    // Debugger+page End
 
     // Debugger+process-default Start
     public:
@@ -121,31 +137,13 @@ class Debugger
             auto jpages = jdata["pages"];
             for (auto jpage : jpages)
             {
-                auto pageTitle = jpage["title"].get<std::string>();
-                log::logprintf("processJSON. page title: '%s'", pageTitle.c_str());
-                auto jitems = jpage["items"];
-                for (auto jitem : jitems)
+                auto pageDesc = debug::jsonToPageDesc(jpage);
+                auto page = this->page(pageDesc.title);
+                if (page)
                 {
-                    auto itemTitle = jitem["title"].get<std::string>();
-                    log::logprintf("processJSON. item title: '%s'", itemTitle.c_str());
-    
-                }
-    
-            }
-            
-            /*
-            auto incomingPages = debug::jsonToDebugPages(this->title);
-            for (auto incomingPage : incomingPages)
-            {
-                for (auto page : this->pages)
-                {
-                    if (page.title == incomingPage.title)
-                    {
-                        page.processItems(page.items);
-                    }
+                    page->setDesc(pageDesc);
                 }
             }
-            */
         }
     // Debugger+processJSON End
 

@@ -22,53 +22,31 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_PAGE_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_PAGE_H
-
-#include <functional>
-// FEATURE DebugPage+setDesc/Include
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_PAGE_DESC_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_PAGE_DESC_H
 
 namespace osgcpe
 {
 
-struct DebugPage
+struct DebugPageDesc
 {
 
-    // SETUP.
-
     std::string title;
-
-    DebugPage(const std::string &title = "") : title(title) { }
-
-    // ITEMS.
-
-    typedef std::function<std::string()> GetterCallback;
-    typedef std::function<void(const std::string &)> SetterCallback;
 
     struct Item
     {
         std::string title;
-        GetterCallback getter;
-        SetterCallback setter;
+        std::string value;
     };
     std::vector<Item> items;
-
-    //! Convenience function to add items.
-    void addItem(
-        const std::string &title,
-        GetterCallback getter,
-        SetterCallback setter = nullptr
-    ) {
-        this->items.push_back({title, getter, setter});
-    }
-
-    // FEATURE DebugPage+item/Impl
-    // FEATURE DebugPage+setDesc/Impl
 
 };
 
 } // namespace osgcpe
 
+// DebugPageDesc+Stub Start
+// Stub.
+// DebugPageDesc+Stub End
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_PAGE_H
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_PAGE_DESC_H
 
