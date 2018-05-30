@@ -1,7 +1,7 @@
-FEATURE log.h/Include
+FEATURE format.h/Include
 #include <cstdarg>
 
-FEATURE log.h/Impl
+FEATURE format.h/Impl
 //! Construct a string using printf-like syntax.
 std::string printfString(const char *fmt, ...)
 {

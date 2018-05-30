@@ -45,6 +45,7 @@ freely, subject to the following restrictions:
 
 // Application+frame+Reporting End
 
+
 namespace osgcpe
 {
 
@@ -61,14 +62,6 @@ class Application
             this->setupRendering();
             
             // Application+Rendering End
-            // Application+Debugging Start
-            this->setupDebugging();
-            
-            // Application+Debugging End
-            // Application+RedBGColorDebugging Start
-            this->setupRedBGColorDebugging();
-            
-            // Application+RedBGColorDebugging End
         }
         ~Application()
         {
@@ -145,34 +138,7 @@ class Application
         // Application+Debugging Start
         public:
             DebugPage debugPage;
-        
-            void setupDebugging()
-            {
-                this->debugPage.title = "camera";
-            }
         // Application+Debugging End
-        // Application+RedBGColorDebugging Start
-        private:
-            void setupRedBGColorDebugging()
-            {
-                this->debugPage.addItem(
-                    "RedBGColor",
-                    [&] {
-                        auto cam = this->viewer->getCamera();
-                        auto color = cam->getClearColor();
-                        int value = color.r() * 255.0;
-                        return log::printfString("%d", value);
-                    },
-                    [&](const std::string &value) {
-                        auto cam = this->viewer->getCamera();
-                        auto color = cam->getClearColor();
-                        color.r() = static_cast<float>(atoi(value.c_str())) / 255.0;
-                        cam->setClearColor(color);
-                    }
-                );
-            }
-        
-        // Application+RedBGColorDebugging End
 };
 
 } // namespace osgcpe

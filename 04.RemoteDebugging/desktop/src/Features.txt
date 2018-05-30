@@ -1,4 +1,6 @@
-log+printfString
+format+printfString
+format+splitString
+
 log+log-default
 log+logprintf
 log+logLevelToString
@@ -18,13 +20,14 @@ resources+createTexture
 Resource+Stub
 ResourceStreamBuffer+Stub
 
+Application+OSGCPE_APPLICATION_LOG
 Application+frame+Reporting
 Application+run
 Application+setupWindow-desktop
 Application+Logging
 Application+Rendering
 Application+Debugging
-Application+RedBGColorDebugging
+Application+DebugCamera
 Reporter+Stub
 
 scene+textureImageScene

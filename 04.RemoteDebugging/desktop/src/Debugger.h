@@ -39,12 +39,13 @@ freely, subject to the following restrictions:
 
 // Debugger+OSGCPE_DEBUGGER_LOG Start
 #include "log.h"
+#include "format.h"
 #define OSGCPE_DEBUGGER_LOG_PREFIX "osgcpe-Debugger(%p) %s"
 #define OSGCPE_DEBUGGER_LOG(...) \
     osgcpe::log::logprintf( \
         OSGCPE_DEBUGGER_LOG_PREFIX, \
         this, \
-        osgcpe::log::printfString(__VA_ARGS__).c_str() \
+        osgcpe::format::printfString(__VA_ARGS__).c_str() \
     )
 
 // Debugger+OSGCPE_DEBUGGER_LOG End

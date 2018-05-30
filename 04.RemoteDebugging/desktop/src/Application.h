@@ -45,6 +45,19 @@ freely, subject to the following restrictions:
 
 // Application+frame+Reporting End
 
+// Application+OSGCPE_APPLICATION_LOG Start
+#include "log.h"
+#include "format.h"
+#define OSGCPE_APPLICATION_LOG_PREFIX "osgcpe-Application(%p) %s"
+#define OSGCPE_APPLICATION_LOG(...) \
+    osgcpe::log::logprintf( \
+        OSGCPE_APPLICATION_LOG_PREFIX, \
+        this, \
+        osgcpe::format::printfString(__VA_ARGS__).c_str() \
+    )
+
+// Application+OSGCPE_APPLICATION_LOG End
+
 namespace osgcpe
 {
 
@@ -61,14 +74,10 @@ class Application
             this->setupRendering();
             
             // Application+Rendering End
-            // Application+Debugging Start
-            this->setupDebugging();
+            // Application+DebugCamera Start
+            this->setupDebugCamera();
             
-            // Application+Debugging End
-            // Application+RedBGColorDebugging Start
-            this->setupRedBGColorDebugging();
-            
-            // Application+RedBGColorDebugging End
+            // Application+DebugCamera End
         }
         ~Application()
         {
@@ -164,34 +173,43 @@ class Application
         // Application+Debugging Start
         public:
             DebugPage debugPage;
-        
-            void setupDebugging()
-            {
-                this->debugPage.title = "camera";
-            }
         // Application+Debugging End
-        // Application+RedBGColorDebugging Start
+        // Application+DebugCamera Start
         private:
-            void setupRedBGColorDebugging()
+            osg::Camera *camera;
+        public:
+            void setupDebugCamera()
             {
+                this->camera = this->viewer->getCamera();
+                this->debugPage.title = "camera";
+        
                 this->debugPage.addItem(
-                    "RedBGColor",
+                    "BGColor",
+                    // Getter.
                     [&] {
-                        auto cam = this->viewer->getCamera();
-                        auto color = cam->getClearColor();
-                        int value = color.r() * 255.0;
-                        return log::printfString("%d", value);
+                        auto color = this->camera->getClearColor();
+                        int r = color.r() * 255.0;
+                        int g = color.g() * 255.0;
+                        int b = color.b() * 255.0;
+                        return format::printfString("%d,%d,%d", r, g, b);
                     },
+                    // Setter.
                     [&](const std::string &value) {
-                        auto cam = this->viewer->getCamera();
-                        auto color = cam->getClearColor();
-                        color.r() = static_cast<float>(atoi(value.c_str())) / 255.0;
-                        cam->setClearColor(color);
+                        auto colorComponents = format::splitString(value, ",");
+                        if (colorComponents.size() != 3)
+                        {
+                            OSGCPE_APPLICATION_LOG("WARNING Skipping camera color application due to wrong value format");
+                            return;
+                        }
+                        auto color = this->camera->getClearColor();
+                        color.r() = static_cast<float>(atoi(colorComponents[0].c_str())) / 255.0;
+                        color.g() = static_cast<float>(atoi(colorComponents[1].c_str())) / 255.0;
+                        color.b() = static_cast<float>(atoi(colorComponents[2].c_str())) / 255.0;
+                        this->camera->setClearColor(color);
                     }
                 );
             }
-        
-        // Application+RedBGColorDebugging End
+        // Application+DebugCamera End
 };
 
 } // namespace osgcpe

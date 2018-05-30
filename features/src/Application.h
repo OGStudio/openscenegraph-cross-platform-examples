@@ -30,6 +30,8 @@ freely, subject to the following restrictions:
 // FEATURE Application+Debugging/Include
 // FEATURE Application+frame+Reporting/Include
 
+// FEATURE Application+OSGCPE_APPLICATION_LOG/Impl
+
 namespace osgcpe
 {
 
@@ -40,15 +42,12 @@ class Application
         {
             // FEATURE Application+Logging/Setup
             // FEATURE Application+Rendering/Setup
-            // FEATURE Application+Debugging/Setup
-            // FEATURE Application+RedBGColorDebugging/Setup
+            // FEATURE Application+DebugCamera/Setup
         }
         ~Application()
         {
             // FEATURE Application+Rendering/TearDown
             // FEATURE Application+Logging/TearDown
-            // FEATURE Application+Debugging/TearDown
-            // FEATURE Application+RedBGColorDebugging/TearDown
         }
 
         // FEATURE Application+frame/Impl
@@ -61,7 +60,7 @@ class Application
         // FEATURE Application+Logging/Impl
         // FEATURE Application+Rendering/Impl
         // FEATURE Application+Debugging/Impl
-        // FEATURE Application+RedBGColorDebugging/Impl
+        // FEATURE Application+DebugCamera/Impl
 };
 
 } // namespace osgcpe

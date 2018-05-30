@@ -37,6 +37,7 @@ freely, subject to the following restrictions:
 
 // Application+Rendering End
 
+
 namespace osgcpe
 {
 

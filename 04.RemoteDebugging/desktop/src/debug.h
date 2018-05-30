@@ -83,7 +83,7 @@ std::string pageToJSON(DebugPage page)
         auto value = item.getter();
         bool isWritable = (item.setter != nullptr);
         itemsJSON +=
-            log::printfString(
+            format::printfString(
                 format.c_str(),
                 title.c_str(),
                 value.c_str(),
