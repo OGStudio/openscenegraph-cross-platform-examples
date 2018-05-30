@@ -44,7 +44,6 @@ freely, subject to the following restrictions:
 
 // Example+TextureImageScene End
 // Example+Debugging Start
-#include "HTTPClient.h"
 #include "Debugger.h"
 
 // Example+Debugging End
@@ -124,29 +123,33 @@ struct Example
         this->tearDebuggingDown();
         
         // Example+Debugging End
-        // Example+DebugApplication Start
-        this->tearApplicationDebuggingDown();
-        
-        // Example+DebugApplication End
         delete this->app;
     }
 
     // Example+Debugging Start
     private:
         osgcpe::Debugger *dbg;
-        osgcpe::HTTPClient *dbgHTTPClient;
+        const std::string debuggerCallbackName = "Debugger";
     
         void setupDebugging()
         {
-            this->dbgHTTPClient = new osgcpe::HTTPClient;
-            this->dbg = new osgcpe::Debugger(this->dbgHTTPClient, EXAMPLE_TITLE);
+            this->dbg = new osgcpe::Debugger(this->httpClient, EXAMPLE_TITLE);
             // TODO Heroku? Parametrize.
             this->dbg->setBrokerURL("http://localhost:7999");
+    
+            // Subscribe debugger to be processed each frame.
+            this->app->frameReporter.addCallback(
+                [&] {
+                    this->dbg->process();
+                },
+                this->debuggerCallbackName
+            );
         }
         void tearDebuggingDown()
         {
+            // Unsubscribe debugger.
+            this->app->frameReporter.removeCallback(this->debuggerCallbackName);
             delete this->dbg;
-            delete this->dbgHTTPClient;
         }
     
     // Example+Debugging End
@@ -154,23 +157,8 @@ struct Example
     private:
         void setupApplicationDebugging()
         {
-            this->app->frameReporter.addCallback(
-                [&] {
-                    this->dbg->process();
-                    if (this->dbgHTTPClient->needsProcessing())
-                    {
-                        this->dbgHTTPClient->process();
-                    }
-                },
-                "Debug"
-            );
             this->dbg->addDebugPage(this->app->debugPage);
         }
-        void tearApplicationDebuggingDown()
-        {
-            this->app->frameReporter.removeCallback("Debug");
-        }
-    
     // Example+DebugApplication End
 
 };

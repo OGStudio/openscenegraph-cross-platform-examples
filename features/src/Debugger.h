@@ -26,6 +26,7 @@ freely, subject to the following restrictions:
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
 
 #include "DebugPage.h"
+#include "HTTPClient.h"
 // FEATURE Debugger+process-default/Include
 // FEATURE Debugger+process-web/Include
 // FEATURE Debugger+processJSON/Include

@@ -33,6 +33,7 @@ Example+03
 Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
 Example+TextureImageScene
+Example+HTTPClient
 Example+Debugging
 Example+DebugApplication
 

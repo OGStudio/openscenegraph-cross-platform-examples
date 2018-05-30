@@ -31,6 +31,7 @@ freely, subject to the following restrictions:
 // FEATURE Example+BoxScene/Include
 // FEATURE Example+TextureImageScene/Include
 // FEATURE Example+Debugging/Include
+// FEATURE Example+HTTPClient/Include
 
 // FEATURE Example+OSGCPE_EXAMPLE_LOG/Impl
 // FEATURE Example+StaticPluginOSG/Impl
@@ -60,16 +61,18 @@ struct Example
             // FEATURE Example+TextureImageScene/Impl
             this->app->setScene(scene);
         }
+        // FEATURE Example+HTTPClient/Setup
         // FEATURE Example+Debugging/Setup
         // FEATURE Example+DebugApplication/Setup
     }
     ~Example()
     {
         // FEATURE Example+Debugging/TearDown
-        // FEATURE Example+DebugApplication/TearDown
+        // FEATURE Example+HTTPClient/TearDown
         delete this->app;
     }
 
+    // FEATURE Example+HTTPClient/Impl
     // FEATURE Example+Debugging/Impl
     // FEATURE Example+DebugApplication/Impl
 
