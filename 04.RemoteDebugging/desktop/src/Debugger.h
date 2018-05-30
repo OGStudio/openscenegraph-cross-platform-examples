@@ -28,7 +28,6 @@ freely, subject to the following restrictions:
 #include "DebugPage.h"
 // Debugger+process-default Start
 #include "debug.h"
-// TODO REMOVE after testing
 #include <ctime>
 
 // Debugger+process-default End
@@ -36,6 +35,18 @@ freely, subject to the following restrictions:
 #include <nlohmann/json.hpp>
 
 // Debugger+processJSON End
+
+// Debugger+OSGCPE_DEBUGGER_LOG Start
+#include "log.h"
+#define OSGCPE_DEBUGGER_LOG_PREFIX "osgcpe-Debugger(%p) %s"
+#define OSGCPE_DEBUGGER_LOG(...) \
+    osgcpe::log::logprintf( \
+        OSGCPE_DEBUGGER_LOG_PREFIX, \
+        this, \
+        osgcpe::log::printfString(__VA_ARGS__).c_str() \
+    )
+
+// Debugger+OSGCPE_DEBUGGER_LOG End
 
 namespace osgcpe
 {
@@ -88,37 +99,39 @@ class Debugger
     // Debugger+page End
 
     // Debugger+process-default Start
+    private:
+        // Request frequency control.
+        std::time_t lastProcessDt = 0;
+        const int processPause = 1; // In seconds.
+        // Request sequencing.
+        bool isProcessing = false;
     public:
         void process()
         {
-            // TODO REMOVE after testing
-            // 1. Make 5s pause between consequent requests.
-            static std::time_t lastProcessDt = 0;
+            // 1. Make sure `processPause` number of seconds passed since last `process()` execution.
             auto now = std::time(0);
-            if (now - lastProcessDt < 5)
+            if (now - this->lastProcessDt < this->processPause)
             {
                 return;
             }
-            lastProcessDt = now;
-            // TODO Provide non-static flag.
+            this->lastProcessDt = now;
+    
             // 2. Only make new request once previous one has been completed.
-            static bool finishedRequest = true;
-            if (!finishedRequest)
+            if (this->isProcessing)
             {
                 return;
             }
-            finishedRequest = false;
+            this->isProcessing = true;
                
             auto success = [&](std::string response) {
                 // Process incoming JSON response.
                 this->processJSON(response);
-                finishedRequest = true;
+                this->isProcessing = false;
             };
             auto failure = [&](std::string reason) {
-                log::log(reason.c_str());
-                finishedRequest = true;
+                OSGCPE_DEBUGGER_LOG(reason.c_str());
+                this->isProcessing = false;
             };
-            log::log("process-default");
             std::string data = debug::debuggerToJSON(this->title, this->pages);
             httpClient->post(this->brokerURL, data, success, failure);
         }
@@ -127,15 +140,13 @@ class Debugger
     public:
         void processJSON(const std::string &data)
         {
-            // TODO Introduce debug page protocol to only deal with internal representation,
-            // TODO not explict JSON parsing.
+            // TODO Work with DebugPageDesc here instead of raw JSON?
             auto jdata = nlohmann::json::parse(data);
             auto debuggerTitle = jdata["title"].get<std::string>();
-            log::logprintf("processJSON. debugger title: '%s'", debuggerTitle.c_str());
             // Ignore different debuggers.
             if (debuggerTitle != this->title)
             {
-                // TODO Report different debugger.
+                OSGCPE_DEBUGGER_LOG("WARNING Ignoring debugger with different title");
                 return;
             }
             auto jpages = jdata["pages"];

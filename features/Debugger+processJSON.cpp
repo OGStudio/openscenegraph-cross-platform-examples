@@ -5,15 +5,13 @@ FEATURE Debugger.h/Impl
 public:
     void processJSON(const std::string &data)
     {
-        // TODO Introduce debug page protocol to only deal with internal representation,
-        // TODO not explict JSON parsing.
+        // TODO Work with DebugPageDesc here instead of raw JSON?
         auto jdata = nlohmann::json::parse(data);
         auto debuggerTitle = jdata["title"].get<std::string>();
-        log::logprintf("processJSON. debugger title: '%s'", debuggerTitle.c_str());
         // Ignore different debuggers.
         if (debuggerTitle != this->title)
         {
-            // TODO Report different debugger.
+            OSGCPE_DEBUGGER_LOG("WARNING Ignoring debugger with different title");
             return;
         }
         auto jpages = jdata["pages"];

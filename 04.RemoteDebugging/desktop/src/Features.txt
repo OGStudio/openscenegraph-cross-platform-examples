@@ -42,6 +42,7 @@ HTTPClientMongoose+Stub
 DebugPage+item
 DebugPage+setDesc
 DebugPageDesc+Stub
+Debugger+OSGCPE_DEBUGGER_LOG
 Debugger+page
 Debugger+process-default
 Debugger+processJSON

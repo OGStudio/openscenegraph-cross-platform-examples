@@ -31,6 +31,7 @@ freely, subject to the following restrictions:
 
 // Debugger+process-web End
 
+
 namespace osgcpe
 {
 
@@ -76,7 +77,7 @@ class Debugger
                 return;
             }
             runOnce = false;
-            log::log("process-web");
+            OSGCPE_DEBUGGER_LOG("process-web");
     
             std::string pagesJSON = "";
     
@@ -105,8 +106,8 @@ class Debugger
     
             json += "}";
     
-            log::log("All pages");
-            log::log(json.c_str());
+            OSGCPE_DEBUGGER_LOG("All pages");
+            OSGCPE_DEBUGGER_LOG(json.c_str());
             // TODO send JSON.
         }
         // TODO send JSON?

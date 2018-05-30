@@ -30,6 +30,8 @@ freely, subject to the following restrictions:
 // FEATURE Debugger+process-web/Include
 // FEATURE Debugger+processJSON/Include
 
+// FEATURE Debugger+OSGCPE_DEBUGGER_LOG/Impl
+
 namespace osgcpe
 {
 

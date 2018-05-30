@@ -1,40 +1,41 @@
 FEATURE Debugger.h/Include
 #include "debug.h"
-// TODO REMOVE after testing
 #include <ctime>
 
 FEATURE Debugger.h/Impl
+private:
+    // Request frequency control.
+    std::time_t lastProcessDt = 0;
+    const int processPause = 1; // In seconds.
+    // Request sequencing.
+    bool isProcessing = false;
 public:
     void process()
     {
-        // TODO REMOVE after testing
-        // 1. Make 5s pause between consequent requests.
-        static std::time_t lastProcessDt = 0;
+        // 1. Make sure `processPause` number of seconds passed since last `process()` execution.
         auto now = std::time(0);
-        if (now - lastProcessDt < 5)
+        if (now - this->lastProcessDt < this->processPause)
         {
             return;
         }
-        lastProcessDt = now;
-        // TODO Provide non-static flag.
+        this->lastProcessDt = now;
+
         // 2. Only make new request once previous one has been completed.
-        static bool finishedRequest = true;
-        if (!finishedRequest)
+        if (this->isProcessing)
         {
             return;
         }
-        finishedRequest = false;
+        this->isProcessing = true;
            
         auto success = [&](std::string response) {
             // Process incoming JSON response.
             this->processJSON(response);
-            finishedRequest = true;
+            this->isProcessing = false;
         };
         auto failure = [&](std::string reason) {
-            log::log(reason.c_str());
-            finishedRequest = true;
+            OSGCPE_DEBUGGER_LOG(reason.c_str());
+            this->isProcessing = false;
         };
-        log::log("process-default");
         std::string data = debug::debuggerToJSON(this->title, this->pages);
         httpClient->post(this->brokerURL, data, success, failure);
     }
