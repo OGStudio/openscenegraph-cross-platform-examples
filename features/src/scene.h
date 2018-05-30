@@ -33,6 +33,7 @@ namespace scene
 {
 
 // FEATURE scene+paintScene/Impl
+// FEATURE scene+quaternionToDegrees/Impl
 // FEATURE scene+textureImageScene/Impl
 
 } // namespace scene

@@ -1,3 +1,6 @@
+FEATURE Application.h/Include
+#include "scene.h"
+
 FEATURE Application.h/Setup
 this->setupDebugCamera();
 
@@ -9,7 +12,12 @@ public:
     {
         this->camera = this->viewer->getCamera();
         this->debugPage.title = "camera";
-
+        this->setupDebugBGColor();
+        this->setupDebugCameraOrientation();
+    }
+private:
+    void setupDebugBGColor()
+    {
         this->debugPage.addItem(
             "BGColor",
             // Getter.
@@ -26,6 +34,7 @@ public:
                 if (colorComponents.size() != 3)
                 {
                     OSGCPE_APPLICATION_LOG("WARNING Skipping camera color application due to wrong value format");
+                    OSGCPE_APPLICATION_LOG("WARNING compoents number: '%d'", colorComponents.size());
                     return;
                 }
                 auto color = this->camera->getClearColor();
@@ -33,6 +42,27 @@ public:
                 color.g() = static_cast<float>(atoi(colorComponents[1].c_str())) / 255.0;
                 color.b() = static_cast<float>(atoi(colorComponents[2].c_str())) / 255.0;
                 this->camera->setClearColor(color);
+            }
+        );
+    }
+
+    void setupDebugCameraOrientation()
+    {
+        // TODO Use camera manipulator.
+        this->debugPage.addItem(
+            "Position/Rotation",
+            // Getter.
+            [&] {
+                osg::Vec3d pos;
+                osg::Quat q;
+                this->cameraManipulator->getTransformation(pos, q);
+                auto rot = scene::quaternionToDegrees(q);
+                return
+                    format::printfString(
+                        "%f,%f,%f/%f,%f,%f",
+                        pos.x(), pos.y(), pos.z(),
+                        rot.x(), rot.y(), rot.z()
+                    );
             }
         );
     }

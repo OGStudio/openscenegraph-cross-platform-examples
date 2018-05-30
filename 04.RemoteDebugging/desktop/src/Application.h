@@ -36,10 +36,18 @@ freely, subject to the following restrictions:
 #include <osgGA/TrackballManipulator>
 
 // Application+Rendering End
+// Application+CameraManipulator Start
+#include <osgGA/TrackballManipulator>
+
+// Application+CameraManipulator End
 // Application+Debugging Start
 #include "DebugPage.h"
 
 // Application+Debugging End
+// Application+DebugCamera Start
+#include "scene.h"
+
+// Application+DebugCamera End
 // Application+frame+Reporting Start
 #include "Reporter.h"
 
@@ -74,6 +82,10 @@ class Application
             this->setupRendering();
             
             // Application+Rendering End
+            // Application+CameraManipulator Start
+            this->setupCameraManipulator();
+            
+            // Application+CameraManipulator End
             // Application+DebugCamera Start
             this->setupDebugCamera();
             
@@ -170,6 +182,16 @@ class Application
                 delete this->viewer;
             }
         // Application+Rendering End
+        // Application+CameraManipulator Start
+        private:
+            osg::ref_ptr<osgGA::TrackballManipulator> cameraManipulator;
+            void setupCameraManipulator()
+            {
+                // Create manipulator: CRITICAL for mobile and web.
+                this->cameraManipulator = new osgGA::TrackballManipulator;
+                this->viewer->setCameraManipulator(this->cameraManipulator);
+            }
+        // Application+CameraManipulator End
         // Application+Debugging Start
         public:
             DebugPage debugPage;
@@ -182,7 +204,12 @@ class Application
             {
                 this->camera = this->viewer->getCamera();
                 this->debugPage.title = "camera";
-        
+                this->setupDebugBGColor();
+                this->setupDebugCameraOrientation();
+            }
+        private:
+            void setupDebugBGColor()
+            {
                 this->debugPage.addItem(
                     "BGColor",
                     // Getter.
@@ -199,6 +226,7 @@ class Application
                         if (colorComponents.size() != 3)
                         {
                             OSGCPE_APPLICATION_LOG("WARNING Skipping camera color application due to wrong value format");
+                            OSGCPE_APPLICATION_LOG("WARNING compoents number: '%d'", colorComponents.size());
                             return;
                         }
                         auto color = this->camera->getClearColor();
@@ -206,6 +234,27 @@ class Application
                         color.g() = static_cast<float>(atoi(colorComponents[1].c_str())) / 255.0;
                         color.b() = static_cast<float>(atoi(colorComponents[2].c_str())) / 255.0;
                         this->camera->setClearColor(color);
+                    }
+                );
+            }
+        
+            void setupDebugCameraOrientation()
+            {
+                // TODO Use camera manipulator.
+                this->debugPage.addItem(
+                    "Position/Rotation",
+                    // Getter.
+                    [&] {
+                        osg::Vec3d pos;
+                        osg::Quat q;
+                        this->cameraManipulator->getTransformation(pos, q);
+                        auto rot = scene::quaternionToDegrees(q);
+                        return
+                            format::printfString(
+                                "%f,%f,%f/%f,%f,%f",
+                                pos.x(), pos.y(), pos.z(),
+                                rot.x(), rot.y(), rot.z()
+                            );
                     }
                 );
             }

@@ -27,7 +27,9 @@ freely, subject to the following restrictions:
 
 // FEATURE Application+Logging/Include
 // FEATURE Application+Rendering/Include
+// FEATURE Application+CameraManipulator/Include
 // FEATURE Application+Debugging/Include
+// FEATURE Application+DebugCamera/Include
 // FEATURE Application+frame+Reporting/Include
 
 // FEATURE Application+OSGCPE_APPLICATION_LOG/Impl
@@ -42,6 +44,7 @@ class Application
         {
             // FEATURE Application+Logging/Setup
             // FEATURE Application+Rendering/Setup
+            // FEATURE Application+CameraManipulator/Setup
             // FEATURE Application+DebugCamera/Setup
         }
         ~Application()
@@ -59,6 +62,7 @@ class Application
 
         // FEATURE Application+Logging/Impl
         // FEATURE Application+Rendering/Impl
+        // FEATURE Application+CameraManipulator/Impl
         // FEATURE Application+Debugging/Impl
         // FEATURE Application+DebugCamera/Impl
 };

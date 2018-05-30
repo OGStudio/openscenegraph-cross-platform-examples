@@ -26,10 +26,12 @@ Application+run
 Application+setupWindow-desktop
 Application+Logging
 Application+Rendering
+Application+CameraManipulator
 Application+Debugging
 Application+DebugCamera
 Reporter+Stub
 
+scene+quaternionToDegrees
 scene+textureImageScene
 
 Example+03
