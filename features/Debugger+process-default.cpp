@@ -25,12 +25,16 @@ public:
         }
         finishedRequest = false;
            
-        auto callback = [&](std::string response) {
+        auto success = [&](std::string response) {
             // Process incoming JSON response.
             this->processJSON(response);
             finishedRequest = true;
         };
+        auto failure = [&](std::string reason) {
+            log::log(reason.c_str());
+            finishedRequest = true;
+        };
         log::log("process-default");
         std::string data = debug::debuggerToJSON(this->title, this->pages);
-        httpClient->post(this->brokerURL, data, callback, callback);
+        httpClient->post(this->brokerURL, data, success, failure);
     }
