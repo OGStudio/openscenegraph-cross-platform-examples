@@ -28,7 +28,7 @@ public:
         this->isProcessing = true;
            
         auto success = [&](std::string response) {
-            OSGCPE_DEBUGGER_LOG("Process JSON: '%s'", response.c_str());
+            //OSGCPE_DEBUGGER_LOG("Process JSON: '%s'", response.c_str());
             // Process incoming JSON response.
             this->processJSON(response);
             this->isProcessing = false;
