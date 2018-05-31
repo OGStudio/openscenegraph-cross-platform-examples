@@ -62,6 +62,7 @@ class Debugger
                     {
                         DEBUGGER_LOG(`03.1.processAppDebugPage. assign appValue`);
                         appValue.value = item.latestValue();
+                        appValue.dt = new Date();
                     }
 
                     appValueString = JSON.stringify(appValue, null, 2);
@@ -99,6 +100,7 @@ class Debugger
                 if (item.latestValue() != uiValue.value)
                 {
                     uiValue.value = item.latestValue();
+                    uiValue.dt = new Date();
                 }
             }
         }

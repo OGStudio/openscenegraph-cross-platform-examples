@@ -28,6 +28,8 @@ freely, subject to the following restrictions:
 #include <functional>
 // FEATURE DebugPage+setDesc/Include
 
+// FEATURE DebugPage+OSGCPE_DEBUG_PAGE_LOG/Impl
+
 namespace osgcpe
 {
 

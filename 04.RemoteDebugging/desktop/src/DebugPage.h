@@ -31,6 +31,7 @@ freely, subject to the following restrictions:
 
 // DebugPage+setDesc End
 
+
 namespace osgcpe
 {
 
@@ -72,7 +73,10 @@ struct DebugPage
         for (auto i = 0; i < itemCount; ++i)
         {
             Item *item = &this->items[i];
-            return item;
+            if (item->title == title)
+            {
+                return item;
+            }
         }
         return 0;
     }
@@ -83,7 +87,7 @@ struct DebugPage
         for (auto descItem : desc.items)
         {
             auto item = this->item(descItem.title);
-            if (item)
+            if (item && item->setter)
             {
                 item->setter(descItem.value);
             }

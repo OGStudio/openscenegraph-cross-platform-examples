@@ -5,7 +5,10 @@ Item *item(const std::string &title)
     for (auto i = 0; i < itemCount; ++i)
     {
         Item *item = &this->items[i];
-        return item;
+        if (item->title == title)
+        {
+            return item;
+        }
     }
     return 0;
 }
