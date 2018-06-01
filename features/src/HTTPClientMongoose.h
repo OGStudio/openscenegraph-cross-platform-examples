@@ -25,7 +25,7 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_HTTP_CLIENT_MONGOOSE_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_HTTP_CLIENT_MONGOOSE_H
 
-#include <mongoose.h>
+#include "library-mongoose.h"
 
 namespace osgcpe
 {

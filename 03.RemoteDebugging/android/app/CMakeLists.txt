@@ -24,13 +24,10 @@ SET(PNG_FOUND ON CACHE BOOL "PNG is found")
 SET(OSG_CPP_EXCEPTIONS_AVAILABLE ON CACHE BOOL "Enable exceptions to build PNG")
 SET(PNG_INCLUDE_DIR ${PNG_SOURCE_DIR}/jni)
 
-# Force C++ compiler on Mongoose to work around '-std=c++11',
-# which stops building C sources under macOS.
-SET(MONGOOSE_SRC ${EXT_PROJ_DIR}/mongoose/mongoose.c)
-SET_SOURCE_FILES_PROPERTIES(${MONGOOSE_SRC} PROPERTIES LANGUAGE CXX)
+# Reference Mongoose HTTP client library.
 INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/mongoose)
 # Build mongoose statically (for distribution simplicity).
-ADD_LIBRARY(mongoose STATIC ${MONGOOSE_SRC})
+ADD_LIBRARY(mongoose STATIC src/main/cpp/library-mongoose.cpp)
 
 # Reference NLohmann's json.
 INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/json/single_include)

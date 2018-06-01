@@ -40,6 +40,8 @@ Example+DebugApplication
 
 HTTPClient+Stub
 HTTPClientMongoose+Stub
+library-mongoose+Stub
+library-mongoose+fseeko-android
 
 DebugPage+item
 DebugPage+setDesc
