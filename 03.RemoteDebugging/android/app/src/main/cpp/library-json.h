@@ -25,13 +25,19 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_JSON_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_JSON_H
 
-// library-json+to_string-android Start
-// Work around Android not having std::to_string implementation.
+// library-json+STL-android Start
+// Work around Android not having several STL function in std.
+
 #include <string>
 #include <sstream>
 
 namespace std
 {
+using ::strtof;
+using ::strtold;
+using ::strtoll;
+using ::strtoull;
+using ::snprintf;
 
 template <typename T>
 inline std::string to_string(T value)
@@ -41,60 +47,20 @@ inline std::string to_string(T value)
     return os.str();
 }
 
-} // namespace std
-// library-json+to_string-android End
-// library-json+strtof-android Start
-// Work around Android not having std::strtof implementation.
-
-namespace std
+inline int stoi(const std::string &s, size_t *idx = 0, int base = 10)
 {
-
-float strtof(const char *str, char **endptr)
-{
-    return ::strtof(str, endptr);
+    char *endptr = 0;
+    int result = strtol(s.c_str(), &endptr, base);
+    if (idx)
+	{
+        *idx = endptr - s.c_str();
+    }
+    return result;
 }
 
-} // namespace std
-// library-json+strtof-android End
-// library-json+strtold-android Start
-// Work around Android not having std::strtold implementation.
-
-namespace std
-{
-
-long double strtold(const char *str, char **endptr)
-{
-    return ::strtold(str, endptr);
 }
 
-} // namespace std
-// library-json+strtold-android End
-// library-json+strtoull-android Start
-// Work around Android not having std::strtoull implementation.
-
-namespace std
-{
-
-unsigned long long strtoull(const char *str, char **endptr, int base)
-{
-    return ::strtoull(str, endptr, base);
-}
-
-} // namespace std
-// library-json+strtoull-android End
-// library-json+strtoll-android Start
-// Work around Android not having std::strtoll implementation.
-
-namespace std
-{
-
-long long strtoll(const char *str, char **endptr, int base)
-{
-    return ::strtoll(str, endptr, base);
-}
-
-} // namespace std
-// library-json+strtoll-android End
+// library-json+STL-android End
 
 #include <nlohmann/json.hpp>
 
