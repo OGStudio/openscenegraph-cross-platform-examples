@@ -26,7 +26,7 @@ freely, subject to the following restrictions:
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_H
 
 // debug+jsonToPageDesc Start
-#include <nlohmann/json.hpp>
+#include "library-json.h"
 
 // debug+jsonToPageDesc End
 // debug+pageToJSON Start

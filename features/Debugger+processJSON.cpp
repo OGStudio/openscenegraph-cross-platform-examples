@@ -1,5 +1,5 @@
 FEATURE Debugger.h/Include
-#include <nlohmann/json.hpp>
+#include "library-json.h"
 
 FEATURE Debugger.h/Impl
 public:

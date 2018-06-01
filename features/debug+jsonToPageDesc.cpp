@@ -1,5 +1,5 @@
 FEATURE debug.h/Include
-#include <nlohmann/json.hpp>
+#include "library-json.h"
 
 FEATURE debug.h/Impl
 DebugPageDesc jsonToPageDesc(const nlohmann::json &data)

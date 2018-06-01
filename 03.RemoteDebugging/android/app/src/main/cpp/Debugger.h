@@ -33,7 +33,7 @@ freely, subject to the following restrictions:
 
 // Debugger+process-default End
 // Debugger+processJSON Start
-#include <nlohmann/json.hpp>
+#include "library-json.h"
 
 // Debugger+processJSON End
 

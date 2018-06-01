@@ -53,6 +53,8 @@ Debugger+processJSON
 debug+debuggerToJSON
 debug+pageToJSON
 debug+jsonToPageDesc
+library-json+Stub
+library-json+to_string-android
 
 Example+StaticPluginOSG
 Example+StaticPluginPNG
