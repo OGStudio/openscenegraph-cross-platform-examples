@@ -1,11 +1,11 @@
 FEATURE library-json.h/Impl
+// Work around Android not having std::to_string implementation.
 #include <string>
 #include <sstream>
 
 namespace std
 {
 
-// Work around Android not having std::to_string implementation.
 template <typename T>
 inline std::string to_string(T value)
 {

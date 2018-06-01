@@ -26,13 +26,13 @@ freely, subject to the following restrictions:
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_JSON_H
 
 // library-json+to_string-android Start
+// Work around Android not having std::to_string implementation.
 #include <string>
 #include <sstream>
 
 namespace std
 {
 
-// Work around Android not having std::to_string implementation.
 template <typename T>
 inline std::string to_string(T value)
 {
@@ -43,6 +43,58 @@ inline std::string to_string(T value)
 
 } // namespace std
 // library-json+to_string-android End
+// library-json+strtof-android Start
+// Work around Android not having std::strtof implementation.
+
+namespace std
+{
+
+float strtof(const char *str, char **endptr)
+{
+    return ::strtof(str, endptr);
+}
+
+} // namespace std
+// library-json+strtof-android End
+// library-json+strtold-android Start
+// Work around Android not having std::strtold implementation.
+
+namespace std
+{
+
+long double strtold(const char *str, char **endptr)
+{
+    return ::strtold(str, endptr);
+}
+
+} // namespace std
+// library-json+strtold-android End
+// library-json+strtoull-android Start
+// Work around Android not having std::strtoull implementation.
+
+namespace std
+{
+
+unsigned long long strtoull(const char *str, char **endptr, int base)
+{
+    return ::strtoull(str, endptr, base);
+}
+
+} // namespace std
+// library-json+strtoull-android End
+// library-json+strtoll-android Start
+// Work around Android not having std::strtoll implementation.
+
+namespace std
+{
+
+long long strtoll(const char *str, char **endptr, int base)
+{
+    return ::strtoll(str, endptr, base);
+}
+
+} // namespace std
+// library-json+strtoll-android End
 
 #include <nlohmann/json.hpp>
 
