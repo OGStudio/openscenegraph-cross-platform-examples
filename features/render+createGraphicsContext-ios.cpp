@@ -23,6 +23,7 @@ osg::GraphicsContext *createGraphicsContext(
     osg::ref_ptr<osgViewer::GraphicsWindowIOS::WindowData> dat =
         new osgViewer::GraphicsWindowIOS::WindowData(
             parentView,
+            0,
             osgViewer::GraphicsWindowIOS::WindowData::IGNORE_ORIENTATION
         );
     dat->setViewContentScaleFactor(scale);

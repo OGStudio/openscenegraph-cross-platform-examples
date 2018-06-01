@@ -117,6 +117,6 @@ ADD_CUSTOM_COMMAND(
         "${OSG_BUILD_DIR}/lib/libosgUtil.a"
         "${OSG_BUILD_DIR}/lib/libosgViewer.a"
         "${OSG_BUILD_DIR}/lib/libOpenThreads.a"
-        "${OSG_BUILD_DIR}/lib/libmongoose.a"
+        "${CMAKE_BINARY_DIR}/${BUILD_SUFFIX}/libmongoose.a"
 )
 
