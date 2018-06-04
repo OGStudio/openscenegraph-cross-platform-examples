@@ -3,6 +3,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 # Path to external projects:
 # * OpenSceneGraph
+# * NLohmann's json
 SET(EXT_PROJ_DIR "${CMAKE_SOURCE_DIR}/../../..")
 
 # Specify critical OpenSceneGraph build variables.
@@ -48,6 +49,9 @@ INCLUDE_DIRECTORIES(${OSG_SOURCE_DIR}/include)
 INCLUDE_DIRECTORIES(${OSG_BUILD_DIR}/include)
 # Reference OpenSceneGraph libraries.
 LINK_DIRECTORIES(${OSG_BUILD_DIR}/lib)
+
+# Reference NLohmann's json.
+INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/json/single_include)
 
 # Reference headers.
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/src)

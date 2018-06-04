@@ -2,21 +2,20 @@
 # NOTE We use Feature Tool ( https://bitbucket.org/ogstudio/feature-tool )
 # NOTE to generate different versions from the same source code
 
-dir=`dirname $0`
+DIR=`dirname $0`
 
 # List of examples.
-examples="
+EXAMPLES="
 01.EmbedResource
 02.TextureImage
 03.RemoteDebugging
 "
 
-# Android platform is processed separately.
-platforms="
-desktop
-web
-ios
-"
+declare -A PLATFORMS
+PLATFORMS["android"]="app/src/main/cpp"
+PLATFORMS["desktop"]="src"
+PLATFORMS["ios"]="src"
+PLATFORMS["web"]="src"
 
 processPlatformFeatures()
 {
@@ -28,12 +27,12 @@ processPlatformFeatures()
 
 main()
 {
-    for example in $examples; do
+    for example in $EXAMPLES; do
         echo "Generating example '$example'"
-        for platform in $platforms; do
-            processPlatformFeatures $dir/$example/$platform/src/Features.txt $dir/features
+        for platform in "${!PLATFORMS[@]}"; do
+            featuresPath=${PLATFORMS[$platform]}
+            processPlatformFeatures $DIR/$example/$platform/$featuresPath/Features.txt $DIR/features
         done
-        processPlatformFeatures $dir/$example/android/app/src/main/cpp/Features.txt $dir/features
     done
 }
 
