@@ -38,12 +38,10 @@ Example+03
 Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
 Example+TextureImageScene
-Example+HTTPClient
 Example+Debugging
 Example+DebugApplication
-
-HTTPClient+Stub
-HTTPClientMongoose+Stub
+# network.
+Example+HTTPClient
 
 DebugPage+item
 DebugPage+setDesc
@@ -55,5 +53,12 @@ Debugger+processJSON
 debug+debuggerToJSON
 debug+pageToJSON
 debug+jsonToPageDesc
+library-json+Stub
 
 main-desktop
+
+# network
+network+HTTPClient
+HTTPClient+Stub
+HTTPClientMongoose+Stub
+library-mongoose+Stub

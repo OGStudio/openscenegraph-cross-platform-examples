@@ -11,6 +11,7 @@ EXAMPLES="
 03.RemoteDebugging
 "
 
+# Platform -> Path to Features.txt
 declare -A PLATFORMS
 PLATFORMS["android"]="app/src/main/cpp"
 PLATFORMS["desktop"]="src"
@@ -30,8 +31,11 @@ main()
     for example in $EXAMPLES; do
         echo "Generating example '$example'"
         for platform in "${!PLATFORMS[@]}"; do
-            featuresPath=${PLATFORMS[$platform]}
-            processPlatformFeatures $DIR/$example/$platform/$featuresPath/Features.txt $DIR/features
+            dirFeatures=${PLATFORMS[$platform]}
+            # Default features.
+            processPlatformFeatures $DIR/$example/$platform/$dirFeatures/Features.txt $DIR/features
+            # Network features.
+            processPlatformFeatures $DIR/$example/$platform/$dirFeatures/Features.txt $DIR/features/network
         done
     done
 }

@@ -1,5 +1,5 @@
 FEATURE Example.h/Include
-#include "HTTPClient.h"
+#include "network.h"
 
 FEATURE Example.h/Setup
 this->setupHTTPClient();
@@ -9,12 +9,12 @@ this->tearHTTPClientDown();
 
 FEATURE Example.h/Impl
 private:
-    osgcpe::HTTPClient *httpClient;
+    network::HTTPClient *httpClient;
     const std::string httpClientCallbackName = "HTTPClient";
 
     void setupHTTPClient()
     {
-        this->httpClient = new osgcpe::HTTPClient;
+        this->httpClient = new network::HTTPClient;
 
         // Subscribe HTTP client to be processed each frame.
         this->app->frameReporter.addCallback(

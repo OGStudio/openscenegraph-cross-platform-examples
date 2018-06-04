@@ -27,9 +27,6 @@ freely, subject to the following restrictions:
 
 #include "library-mongoose.h"
 
-namespace osgcpe
-{
-
 class HTTPClientMongoose
 {
     public:
@@ -133,8 +130,6 @@ class HTTPClientMongoose
         }
 
 };
-
-} // namespace osgcpe
 
 // HTTPClientMongoose+Stub Start
 // Stub.

@@ -25,11 +25,6 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_HTTP_CLIENT_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_HTTP_CLIENT_H
 
-#include "HTTPClientMongoose.h"
-
-namespace osgcpe
-{
-
 class HTTPClient
 {
     public:
@@ -108,8 +103,6 @@ class HTTPClient
     private:
         std::vector<HTTPClientMongoose *> clients;
 };
-
-} // namespace osgcpe
 
 // HTTPClient+Stub Start
 // Stub.

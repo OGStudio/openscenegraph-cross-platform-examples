@@ -26,7 +26,7 @@ freely, subject to the following restrictions:
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
 
 #include "DebugPage.h"
-#include "HTTPClient.h"
+#include "network.h"
 // Debugger+process-web Start
 #include "debug.h"
 
@@ -39,12 +39,12 @@ namespace osgcpe
 class Debugger
 {
     private:
-        HTTPClient *httpClient;
+        network::HTTPClient *httpClient;
     public:
         const std::string title;
 
         Debugger(
-            HTTPClient *httpClient,
+            network::HTTPClient *httpClient,
             const std::string &title
         ) :
             httpClient(httpClient),

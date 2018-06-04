@@ -48,7 +48,7 @@ freely, subject to the following restrictions:
 
 // Example+Debugging End
 // Example+HTTPClient Start
-#include "HTTPClient.h"
+#include "network.h"
 
 // Example+HTTPClient End
 
@@ -141,12 +141,12 @@ struct Example
 
     // Example+HTTPClient Start
     private:
-        osgcpe::HTTPClient *httpClient;
+        network::HTTPClient *httpClient;
         const std::string httpClientCallbackName = "HTTPClient";
     
         void setupHTTPClient()
         {
-            this->httpClient = new osgcpe::HTTPClient;
+            this->httpClient = new network::HTTPClient;
     
             // Subscribe HTTP client to be processed each frame.
             this->app->frameReporter.addCallback(
