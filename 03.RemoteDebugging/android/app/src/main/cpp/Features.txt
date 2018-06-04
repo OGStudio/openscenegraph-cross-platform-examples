@@ -55,6 +55,7 @@ debug+pageToJSON
 debug+jsonToPageDesc
 library-json+Stub
 library-json+STL-android
+library-json+localeconv-android
 
 Example+StaticPluginOSG
 Example+StaticPluginPNG

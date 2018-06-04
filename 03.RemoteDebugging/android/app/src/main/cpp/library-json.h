@@ -61,6 +61,17 @@ inline int stoi(const std::string &s, size_t *idx = 0, int base = 10)
 }
 
 // library-json+STL-android End
+// library-json+localeconv-android Start
+// Work around Android not having localeconv() prior SDK 21.
+#include <clocale>
+
+lconv *localeconv()
+{
+    static lconv lc;
+    return &lc;
+}
+
+// library-json+localeconv-android End
 
 #include <nlohmann/json.hpp>
 

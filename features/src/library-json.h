@@ -26,6 +26,7 @@ freely, subject to the following restrictions:
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_JSON_H
 
 // FEATURE library-json+STL-android/Impl
+// FEATURE library-json+localeconv-android/Impl
 
 #include <nlohmann/json.hpp>
 
