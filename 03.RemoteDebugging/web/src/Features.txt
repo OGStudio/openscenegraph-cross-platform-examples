@@ -48,7 +48,9 @@ DebugPage+setDesc
 DebugPageDesc+Stub
 Debugger+OSGCPE_DEBUGGER_LOG
 Debugger+page
-Debugger+process-web
+Debugger+process
+Debugger+processJSON
+debug+debuggerToJSON
 debug+pageToJSON
 debug+jsonToPageDesc
 library-json+Stub

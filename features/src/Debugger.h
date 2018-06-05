@@ -27,8 +27,7 @@ freely, subject to the following restrictions:
 
 #include "DebugPage.h"
 #include "network.h"
-// FEATURE Debugger+process-default/Include
-// FEATURE Debugger+process-web/Include
+// FEATURE Debugger+process/Include
 // FEATURE Debugger+processJSON/Include
 
 // FEATURE Debugger+OSGCPE_DEBUGGER_LOG/Impl
@@ -68,8 +67,7 @@ class Debugger
         }
     // FEATURE Debugger+page/Impl
 
-    // FEATURE Debugger+process-default/Impl
-    // FEATURE Debugger+process-web/Impl
+    // FEATURE Debugger+process/Impl
     // FEATURE Debugger+processJSON/Impl
 
 };

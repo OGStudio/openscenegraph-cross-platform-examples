@@ -27,10 +27,15 @@ freely, subject to the following restrictions:
 
 #include "DebugPage.h"
 #include "network.h"
-// Debugger+process-web Start
+// Debugger+process Start
 #include "debug.h"
+#include <ctime>
 
-// Debugger+process-web End
+// Debugger+process End
+// Debugger+processJSON Start
+#include "library-json.h"
+
+// Debugger+processJSON End
 
 // Debugger+OSGCPE_DEBUGGER_LOG Start
 #include "log.h"
@@ -95,53 +100,70 @@ class Debugger
         }
     // Debugger+page End
 
-    // Debugger+process-web Start
+    // Debugger+process Start
+    private:
+        // Request frequency control.
+        std::time_t lastProcessDt = 0;
+        const int processPause = 1; // In seconds.
+        // Request sequencing.
+        bool isProcessing = false;
     public:
         void process()
         {
-            // Only run once to debug first.
-            static bool runOnce = true;
-            if (!runOnce)
+            // 1. Make sure `processPause` number of seconds passed since last `process()` execution.
+            auto now = std::time(0);
+            if (now - this->lastProcessDt < this->processPause)
             {
                 return;
             }
-            runOnce = false;
-            OSGCPE_DEBUGGER_LOG("process-web");
+            this->lastProcessDt = now;
     
-            std::string pagesJSON = "";
-    
-            auto page = this->pages.begin();
-            for (; page != this->pages.end(); ++page)
+            // 2. Only make new request once previous one has been completed.
+            if (this->isProcessing)
             {
-                // Add comma if we're adding the second and following pages.
-                if (!pagesJSON.empty())
-                {
-                    pagesJSON += ",";
-                }
-                pagesJSON += debug::pageToJSON(*page);
+                return;
             }
-    
-            // Format pages.
-            std::string json;
-            json += "{";
-    
-            json += "\"title\":\"";
-            json += this->title;
-            json += "\",";
-    
-            json += "\"pages\":[";
-            json += pagesJSON;
-            json += "]"; // Note the absent comma.
-    
-            json += "}";
-    
-            OSGCPE_DEBUGGER_LOG("All pages");
-            OSGCPE_DEBUGGER_LOG(json.c_str());
-            // TODO send JSON.
+            this->isProcessing = true;
+               
+            auto success = [&](std::string response) {
+                //OSGCPE_DEBUGGER_LOG("Process JSON: '%s'", response.c_str());
+                // Process incoming JSON response.
+                this->processJSON(response);
+                this->isProcessing = false;
+            };
+            auto failure = [&](std::string reason) {
+                OSGCPE_DEBUGGER_LOG(reason.c_str());
+                this->isProcessing = false;
+            };
+            std::string data = debug::debuggerToJSON(this->title, this->pages);
+            httpClient->post(this->brokerURL, data, success, failure);
         }
-        // TODO send JSON?
-        // TODO receive JSON?
-    // Debugger+process-web End
+    // Debugger+process End
+    // Debugger+processJSON Start
+    public:
+        void processJSON(const std::string &data)
+        {
+            // TODO Work with DebugPageDesc here instead of raw JSON?
+            auto jdata = nlohmann::json::parse(data);
+            auto debuggerTitle = jdata["title"].get<std::string>();
+            // Ignore different debuggers.
+            if (debuggerTitle != this->title)
+            {
+                OSGCPE_DEBUGGER_LOG("WARNING Ignoring debugger with different title");
+                return;
+            }
+            auto jpages = jdata["pages"];
+            for (auto jpage : jpages)
+            {
+                auto pageDesc = debug::jsonToPageDesc(jpage);
+                auto page = this->page(pageDesc.title);
+                if (page)
+                {
+                    page->setDesc(pageDesc);
+                }
+            }
+        }
+    // Debugger+processJSON End
 
 };
 
