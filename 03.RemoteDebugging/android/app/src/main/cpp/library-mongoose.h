@@ -22,9 +22,6 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_MONGOOSE_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_MONGOOSE_H
-
 // library-mongoose+fseeko-android Start
 // Work around Android headers' bug.
 #define fseeko fseek
@@ -35,6 +32,4 @@ freely, subject to the following restrictions:
 // library-mongoose+Stub Start
 // Stub.
 // library-mongoose+Stub End
-
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_MONGOOSE_H
 

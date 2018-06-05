@@ -1,5 +1,5 @@
-FEATURE network.h/IncludeMongoose
+FEATURE network.h/Include
 #include "HTTPClientMongoose.h"
 
-FEATURE network.h/Include
+FEATURE network.h/Impl
 #include "HTTPClient.h"

@@ -22,14 +22,9 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_MONGOOSE_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_MONGOOSE_H
-
 // FEATURE library-mongoose+fseeko-android/Impl
 
 #include <mongoose.h>
 
 // FEATURE library-mongoose+Stub/Impl
-
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_MONGOOSE_H
 

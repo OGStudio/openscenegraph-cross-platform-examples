@@ -22,9 +22,6 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_HTTP_CLIENT_MONGOOSE_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_HTTP_CLIENT_MONGOOSE_H
-
 #include "library-mongoose.h"
 
 class HTTPClientMongoose
@@ -134,6 +131,4 @@ class HTTPClientMongoose
 // HTTPClientMongoose+Stub Start
 // Stub.
 // HTTPClientMongoose+Stub End
-
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_HTTP_CLIENT_MONGOOSE_H
 

@@ -22,9 +22,6 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_HTTP_CLIENT_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_HTTP_CLIENT_H
-
 class HTTPClient
 {
     public:
@@ -107,6 +104,4 @@ class HTTPClient
 // HTTPClient+Stub Start
 // Stub.
 // HTTPClient+Stub End
-
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_HTTP_CLIENT_H
 

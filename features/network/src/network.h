@@ -25,14 +25,14 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
 
-// FEATURE network+HTTPClient/IncludeMongoose
+// FEATURE network+HTTPClient/Include
 
 namespace osgcpe
 {
 namespace network
 {
 
-// FEATURE network+HTTPClient/Include
+// FEATURE network+HTTPClient/Impl
 
 } // namespace network
 } // namespace osgcpe
