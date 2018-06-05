@@ -98,8 +98,9 @@ class HTTPClient
         }
 
     private:
-        // FEATURE HTTPClient+Fetch/Impl
-        // FEATURE HTTPClient+Mongoose/Impl
+        // HTTPClient+Fetch Start
+        typedef HTTPClientFetch HTTPClientImpl;
+        // HTTPClient+Fetch End
         std::vector<HTTPClientImpl *> clients;
 
         HTTPClientImpl *createHTTPClient(

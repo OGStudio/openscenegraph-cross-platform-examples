@@ -22,8 +22,6 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "library-mongoose.h"
-
 class HTTPClientMongoose
 {
     public:
@@ -54,7 +52,7 @@ class HTTPClientMongoose
             this->request(url, data.c_str());
         }
 
-        bool needsProcessing()
+        bool needsProcessing() const
         {
             return this->inProgress;
         }

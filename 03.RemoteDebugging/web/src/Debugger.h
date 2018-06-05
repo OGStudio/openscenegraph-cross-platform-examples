@@ -32,6 +32,18 @@ freely, subject to the following restrictions:
 
 // Debugger+process-web End
 
+// Debugger+OSGCPE_DEBUGGER_LOG Start
+#include "log.h"
+#include "format.h"
+#define OSGCPE_DEBUGGER_LOG_PREFIX "osgcpe-Debugger(%p) %s"
+#define OSGCPE_DEBUGGER_LOG(...) \
+    osgcpe::log::logprintf( \
+        OSGCPE_DEBUGGER_LOG_PREFIX, \
+        this, \
+        osgcpe::format::printfString(__VA_ARGS__).c_str() \
+    )
+
+// Debugger+OSGCPE_DEBUGGER_LOG End
 
 namespace osgcpe
 {
@@ -66,6 +78,22 @@ class Debugger
         {
             this->pages.push_back(page);
         }
+    // Debugger+page Start
+    public:
+        DebugPage *page(const std::string &title)
+        {
+            auto pageCount = this->pages.size();
+            for (auto i = 0; i < pageCount; ++i)
+            {
+                DebugPage *page = &this->pages[i];
+                if (page->title == title)
+                {
+                    return page;
+                }
+            }
+            return 0;
+        }
+    // Debugger+page End
 
     // Debugger+process-web Start
     public:

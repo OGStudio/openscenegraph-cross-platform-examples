@@ -25,15 +25,20 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
 
+// network+HTTPClient-fetch Start
+#include "library-fetch.h"
+
+// network+HTTPClient-fetch End
 
 namespace osgcpe
 {
 namespace network
 {
 
-// network+HTTPClient Start
+// network+HTTPClient-fetch Start
+#include "HTTPClientFetch.h"
 #include "HTTPClient.h"
-// network+HTTPClient End
+// network+HTTPClient-fetch End
 
 } // namespace network
 } // namespace osgcpe

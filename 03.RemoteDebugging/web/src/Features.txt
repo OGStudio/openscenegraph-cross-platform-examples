@@ -1,4 +1,6 @@
-log+printfString
+format+printfString
+format+splitString
+
 log+log-default
 log+logprintf
 log+logLevelToString
@@ -17,14 +19,17 @@ resources+createTexture
 Resource+Stub
 ResourceStreamBuffer+Stub
 
+Application+OSGCPE_APPLICATION_LOG
 Application+frame+Reporting
 Application+setupWindow-embedded
 Application+Logging
 Application+Rendering
+Application+CameraManipulator
 Application+Debugging
-Application+RedBGColorDebugging
+Application+DebugCamera
 Reporter+Stub
 
+scene+quaternionToDegrees
 scene+textureImageScene
 
 Example+03
@@ -36,12 +41,24 @@ Example+StaticPluginPNG
 Example+VBO
 Example+Debugging
 Example+DebugApplication
+Example+HTTPClient
 
-VBOSetupVisitor+Stub
+DebugPage+item
+DebugPage+setDesc
+DebugPageDesc+Stub
+Debugger+OSGCPE_DEBUGGER_LOG
+Debugger+page
+Debugger+process-web
+debug+pageToJSON
+debug+jsonToPageDesc
+library-json+Stub
 
 main-web
 
-DebugPage+Stub
-Debugger+process-web
-debug+pageToJSON
+VBOSetupVisitor+Stub
 
+# network
+network+HTTPClient-fetch
+HTTPClient+Fetch
+HTTPClientFetch+Stub
+library-fetch+Stub

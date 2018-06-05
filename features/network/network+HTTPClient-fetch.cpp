@@ -1,5 +1,6 @@
 FEATURE network.h/Include
-#include "HTTPClientMongoose.h"
+#include "library-fetch.h"
 
 FEATURE network.h/Impl
+#include "HTTPClientFetch.h"
 #include "HTTPClient.h"

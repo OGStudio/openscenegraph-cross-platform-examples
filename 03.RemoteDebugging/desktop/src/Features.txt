@@ -40,7 +40,6 @@ Example+BoxScene
 Example+TextureImageScene
 Example+Debugging
 Example+DebugApplication
-# network.
 Example+HTTPClient
 
 DebugPage+item

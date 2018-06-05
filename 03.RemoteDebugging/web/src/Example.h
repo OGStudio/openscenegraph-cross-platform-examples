@@ -47,6 +47,10 @@ freely, subject to the following restrictions:
 #include "Debugger.h"
 
 // Example+Debugging End
+// Example+HTTPClient Start
+#include "network.h"
+
+// Example+HTTPClient End
 
 // Example+OSGCPE_EXAMPLE_LOG Start
 #include "log.h"
@@ -109,6 +113,10 @@ struct Example
             // Example+TextureImageScene End
             this->app->setScene(scene);
         }
+        // Example+HTTPClient Start
+        this->setupHTTPClient();
+        
+        // Example+HTTPClient End
         // Example+Debugging Start
         this->setupDebugging();
         
@@ -124,9 +132,40 @@ struct Example
         this->tearDebuggingDown();
         
         // Example+Debugging End
+        // Example+HTTPClient Start
+        this->tearHTTPClientDown();
+        
+        // Example+HTTPClient End
         delete this->app;
     }
 
+    // Example+HTTPClient Start
+    private:
+        network::HTTPClient *httpClient;
+        const std::string httpClientCallbackName = "HTTPClient";
+    
+        void setupHTTPClient()
+        {
+            this->httpClient = new network::HTTPClient;
+    
+            // Subscribe HTTP client to be processed each frame.
+            this->app->frameReporter.addCallback(
+                [&] {
+                    if (this->httpClient->needsProcessing())
+                    {
+                        this->httpClient->process();
+                    }
+                },
+                this->httpClientCallbackName
+            );
+        }
+        void tearHTTPClientDown()
+        {
+            // Unsubscribe HTTP client.
+            this->app->frameReporter.removeCallback(this->httpClientCallbackName);
+            delete this->httpClient;
+        }
+    // Example+HTTPClient End
     // Example+Debugging Start
     private:
         osgcpe::Debugger *dbg;

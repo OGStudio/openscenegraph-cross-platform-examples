@@ -22,21 +22,31 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
-
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_PAGE_DESC_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_PAGE_DESC_H
 
 namespace osgcpe
 {
-namespace network
+
+struct DebugPageDesc
 {
 
-// network+HTTPClient Start
-#include "HTTPClient.h"
-// network+HTTPClient End
+    std::string title;
 
-} // namespace network
+    struct Item
+    {
+        std::string title;
+        std::string value;
+    };
+    std::vector<Item> items;
+
+};
+
 } // namespace osgcpe
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
+// DebugPageDesc+Stub Start
+// Stub.
+// DebugPageDesc+Stub End
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_PAGE_DESC_H
 
