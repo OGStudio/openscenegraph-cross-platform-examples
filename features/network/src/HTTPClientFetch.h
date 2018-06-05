@@ -87,6 +87,15 @@ class HTTPClientFetch
             if (data)
             {
                 method = "POST";
+                // Set headers.
+                const char *headers[] = {
+                    "Content-Type", "text/plain",
+                    0
+                };
+                this->client.requestHeaders = headers;
+                // Set body.
+                this->client.requestData = data;
+                this->client.requestDataSize = strlen(data);
             }
             strcpy(this->client.requestMethod, method.c_str());
 
