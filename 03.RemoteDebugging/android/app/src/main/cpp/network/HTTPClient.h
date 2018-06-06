@@ -40,7 +40,7 @@ class HTTPClient
 
         void get(const std::string &url, Callback success, Callback failure)
         {
-            auto client = new HTTPClientMongoose(success, failure);
+            auto client = this->createHTTPClient(success, failure);
             client->get(url);
             this->clients.push_back(client);
         }
@@ -51,7 +51,7 @@ class HTTPClient
             Callback success,
             Callback failure
         ) {
-            auto client = new HTTPClientMongoose(success, failure);
+            auto client = this->createHTTPClient(success, failure);
             client->post(url, data);
             this->clients.push_back(client);
         }
@@ -98,10 +98,16 @@ class HTTPClient
         }
 
     private:
-        std::vector<HTTPClientMongoose *> clients;
-};
+        // HTTPClient+Mongoose Start
+        typedef HTTPClientMongoose HTTPClientImpl;
+        // HTTPClient+Mongoose End
+        std::vector<HTTPClientImpl *> clients;
 
-// HTTPClient+Stub Start
-// Stub.
-// HTTPClient+Stub End
+        HTTPClientImpl *createHTTPClient(
+            Callback success,
+            Callback failure
+        ) {
+            return new HTTPClientImpl(success, failure);
+        }
+};
 

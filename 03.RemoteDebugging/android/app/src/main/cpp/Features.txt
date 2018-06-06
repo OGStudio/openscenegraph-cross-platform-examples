@@ -34,21 +34,16 @@ Example+03
 Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
 Example+TextureImageScene
-Example+HTTPClient
 Example+Debugging
 Example+DebugApplication
-
-HTTPClient+Stub
-HTTPClientMongoose+Stub
-library-mongoose+Stub
-library-mongoose+fseeko-android
+Example+HTTPClient
 
 DebugPage+item
 DebugPage+setDesc
 DebugPageDesc+Stub
 Debugger+OSGCPE_DEBUGGER_LOG
 Debugger+page
-Debugger+process-default
+Debugger+process
 Debugger+processJSON
 debug+debuggerToJSON
 debug+pageToJSON
@@ -69,3 +64,9 @@ library-android
 library+init-android
 library+frame-android
 
+# network
+network+HTTPClient-mongoose
+HTTPClient+Mongoose
+HTTPClientMongoose+Stub
+library-mongoose+Stub
+library-mongoose+fseeko-android

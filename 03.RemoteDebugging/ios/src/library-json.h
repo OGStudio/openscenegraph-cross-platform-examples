@@ -22,21 +22,15 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_JSON_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_JSON_H
 
 
-namespace osgcpe
-{
-namespace network
-{
+#include <nlohmann/json.hpp>
 
-// network+HTTPClient Start
-#include "HTTPClient.h"
-// network+HTTPClient End
+// library-json+Stub Start
+// Stub.
+// library-json+Stub End
 
-} // namespace network
-} // namespace osgcpe
-
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_JSON_H
 

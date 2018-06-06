@@ -37,23 +37,21 @@ Example+03
 Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
 Example+TextureImageScene
-Example+HTTPClient
 Example+Debugging
 Example+DebugApplication
-
-HTTPClient+Stub
-HTTPClientMongoose+Stub
+Example+HTTPClient
 
 DebugPage+item
 DebugPage+setDesc
 DebugPageDesc+Stub
 Debugger+OSGCPE_DEBUGGER_LOG
 Debugger+page
-Debugger+process-default
+Debugger+process
 Debugger+processJSON
 debug+debuggerToJSON
 debug+pageToJSON
 debug+jsonToPageDesc
+library-json+Stub
 
 Example+StaticPluginOSG
 Example+StaticPluginImageIO
@@ -64,3 +62,9 @@ VBOSetupVisitor+Stub
 library-ios
 library+init-ios
 library+frame-ios
+
+# network
+network+HTTPClient-mongoose
+HTTPClient+Mongoose
+HTTPClientMongoose+Stub
+library-mongoose+Stub

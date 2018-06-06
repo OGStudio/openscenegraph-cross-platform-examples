@@ -47,7 +47,7 @@ DebugPage+setDesc
 DebugPageDesc+Stub
 Debugger+OSGCPE_DEBUGGER_LOG
 Debugger+page
-Debugger+process-default
+Debugger+process
 Debugger+processJSON
 debug+debuggerToJSON
 debug+pageToJSON
@@ -57,7 +57,7 @@ library-json+Stub
 main-desktop
 
 # network
-network+HTTPClient
-HTTPClient+Stub
+network+HTTPClient-mongoose
+HTTPClient+Mongoose
 HTTPClientMongoose+Stub
 library-mongoose+Stub

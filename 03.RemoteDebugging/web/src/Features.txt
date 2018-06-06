@@ -59,7 +59,7 @@ main-web
 
 VBOSetupVisitor+Stub
 
-# network
+# network.
 network+HTTPClient-fetch
 HTTPClient+Fetch
 HTTPClientFetch+OSGCPE_NETWORK_HTTP_CLIENT_FETCH_LOG

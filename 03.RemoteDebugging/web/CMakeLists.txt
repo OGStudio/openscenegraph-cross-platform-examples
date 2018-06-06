@@ -53,8 +53,11 @@ LINK_DIRECTORIES(${OSG_BUILD_DIR}/lib)
 # Reference NLohmann's json.
 INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/json/single_include)
 
-# Reference headers.
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/src)
+# Reference source headers.
+INCLUDE_DIRECTORIES(
+    src
+    src/network
+)
 # Reference resource headers.
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/../../data)
 # Create executable (aka HTML page).
