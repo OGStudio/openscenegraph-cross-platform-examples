@@ -1,6 +1,11 @@
 
 const Broker = require("./Broker.js");
 
+function APPLICATION_LOG(message)
+{
+    console.log(`Application ${message}`);
+}
+
 module.exports =
 class Application
 {
@@ -12,6 +17,15 @@ class Application
     processRequest(request, response)
     {
         const { method, url } = request;
+
+        /*
+         * Headers.
+        for (var id in request.headers)
+        {
+            const header = request.headers[id];
+            APPLICATION_LOG(`received header: '${id}=${header}'`)
+        }
+        */
 
         // Process "POST" requests.
         if (method === "POST")
@@ -26,9 +40,18 @@ class Application
             ).on(
                 "end",
                 () => {
-                    body = Buffer.concat(body).toString();
-                    var json = JSON.parse(body);
-                    var data = this.broker.process(json);
+                    var sbody = Buffer.concat(body).toString();
+                    APPLICATION_LOG(`body length: '${sbody.length}' body: '${sbody}'`);
+                    var data = "nothing"
+                    try
+                    {
+                        var json = JSON.parse(sbody);
+                        data = this.broker.process(json);
+                    }
+                    catch (error)
+                    {
+                        APPLICATION_LOG(`Error: '${error}'`)
+                    }
                     this.reply(response, data);
                 }
             );
