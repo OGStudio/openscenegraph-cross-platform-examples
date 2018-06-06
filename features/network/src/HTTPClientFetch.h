@@ -22,6 +22,8 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
+// FEATURE HTTPClientFetch+OSGCPE_NETWORK_HTTP_CLIENT_FETCH_LOG/Impl
+
 class HTTPClientFetch
 {
     public:
@@ -46,13 +48,13 @@ class HTTPClientFetch
         // Perform GET request.
         void get(const std::string &url)
         {
-            this->request(url, 0);
+            this->request(url, "");
         }
 
         // Perform POST request.
         void post(const std::string &url, const std::string &data)
         {
-            this->request(url, data.c_str());
+            this->request(url, data);
         }
 
         bool needsProcessing() const
@@ -71,8 +73,9 @@ class HTTPClientFetch
         Callback success;
         Callback failure;
         bool inProgress;
+        std::string data;
 
-        void request(const std::string &url, const char *data)
+        void request(const std::string &url, const std::string &data)
         {
             // Ignore new requests if already in progress.
             if (this->inProgress)
@@ -81,29 +84,44 @@ class HTTPClientFetch
             }
 
             this->inProgress = true;
+            // Keep sent data because FetchAPI needs it outside this scope.
+            this->data = data;
 
             // Set request method.
             std::string method = "GET";
-            if (data)
+            if (this->data.length())
             {
                 method = "POST";
+            }
+            strcpy(this->client.requestMethod, method.c_str());
+            // Set body.
+            if (this->data.length())
+            {
+                /*
                 // Set headers.
                 const char *headers[] = {
-                    "Content-Type", "text/plain",
+                    "Content-Type", "text/plain; charset=utf-8",
                     0
                 };
                 this->client.requestHeaders = headers;
+                */
                 // Set body.
-                this->client.requestData = data;
-                this->client.requestDataSize = strlen(data);
+                this->client.requestData = this->data.c_str();
+                this->client.requestDataSize = strlen(this->data.c_str());
+                /*
+                OSGCPE_NETWORK_HTTP_CLIENT_FETCH_LOG(
+                    "request data: '%s' len: '%d'",
+                    this->client.requestData,
+                    this->client.requestDataSize
+                );
+                */
             }
-            strcpy(this->client.requestMethod, method.c_str());
 
             // Set callbacks.
             this->client.onsuccess = handleSuccess;
             this->client.onerror = handleFailure;
 
-            // Perform the request.
+            // Perform request.
             emscripten_fetch(&this->client, url.c_str());
         }
 
@@ -148,6 +166,4 @@ class HTTPClientFetch
             emscripten_fetch_close(fetch);
         }
 };
-
-// FEATURE HTTPClientFetch+Stub/Impl
 

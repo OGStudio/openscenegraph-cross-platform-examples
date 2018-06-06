@@ -62,5 +62,5 @@ VBOSetupVisitor+Stub
 # network
 network+HTTPClient-fetch
 HTTPClient+Fetch
-HTTPClientFetch+Stub
+HTTPClientFetch+OSGCPE_NETWORK_HTTP_CLIENT_FETCH_LOG
 library-fetch+Stub
