@@ -24,7 +24,7 @@ SET(_OPENTHREADS_ATOMIC_USE_GCC_BUILTINS_EXITCODE "0" CACHE STRING "Prevent cfg 
 # * -s ALLOW_MEMORY_GROWTH=1: allow total memory used to increase when necessary
 # * -s USE_LIBPNG=1: use libpng
 # * -s USE_ZLIB=1: use zlib, necessary for libpng
-# * -s FETCH=1: use FetchAPI
+# * -s FETCH=1: use FetchAPI for HTTP(s) requests
 SET(BUILD_FLAGS "-O3 -s USE_SDL=2 -s ALLOW_MEMORY_GROWTH=1 -s USE_LIBPNG=1 -s USE_ZLIB=1 -s FETCH=1")
 ADD_DEFINITIONS(${BUILD_FLAGS})
 # Use C++11.
@@ -50,7 +50,7 @@ INCLUDE_DIRECTORIES(${OSG_BUILD_DIR}/include)
 # Reference OpenSceneGraph libraries.
 LINK_DIRECTORIES(${OSG_BUILD_DIR}/lib)
 
-# Reference NLohmann's json.
+# Reference NLohmann's JSON parsing library.
 INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/json/single_include)
 
 # Reference source headers.

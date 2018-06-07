@@ -54,19 +54,19 @@ SET(DEV_PLATFORMS "/Applications/Xcode.app/Contents/Developer/Platforms")
 SET(SDK_ROOT "${DEV_PLATFORMS}/${IOS_PLATFORM}.platform/Developer/SDKs/${IOS_PLATFORM}.sdk")
 SET(CMAKE_OSX_SYSROOT ${SDK_ROOT} CACHE STRING "Make sure we build for iOS" FORCE)
 
-# Force C++ compiler on Mongoose to work around '-std=c++11',
-# which stops building C sources under macOS.
-SET(MONGOOSE_SRC ${EXT_PROJ_DIR}/mongoose/mongoose.c)
-SET_SOURCE_FILES_PROPERTIES(${MONGOOSE_SRC} PROPERTIES LANGUAGE CXX)
-INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/mongoose)
-# Build mongoose statically (for distribution simplicity).
-ADD_LIBRARY(mongoose STATIC ${MONGOOSE_SRC})
 
-# Reference NLohmann's json.
+# Reference Mongoose HTTP client library.
+INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/mongoose)
+ADD_LIBRARY(mongoose STATIC src/network/library-mongoose.cpp)
+
+# Reference NLohmann's JSON parsing library.
 INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/json/single_include)
 
-# Reference headers.
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/src)
+# Reference source headers.
+INCLUDE_DIRECTORIES(
+    src
+    src/network
+)
 # Reference resource headers.
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/../../data)
 # Build example library.

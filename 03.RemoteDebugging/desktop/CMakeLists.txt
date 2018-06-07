@@ -15,15 +15,11 @@ LINK_DIRECTORIES(${OSG_LIB_DIR})
 # Use C++11.
 ADD_DEFINITIONS("-std=c++11")
 
-# Force C++ compiler on Mongoose to work around '-std=c++11',
-# which stops building C sources under macOS.
-SET(MONGOOSE_SRC ${EXT_PROJ_DIR}/mongoose/mongoose.c)
-SET_SOURCE_FILES_PROPERTIES(${MONGOOSE_SRC} PROPERTIES LANGUAGE CXX)
+# Reference Mongoose HTTP client library.
 INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/mongoose)
-# Build mongoose statically (for distribution simplicity).
-ADD_LIBRARY(mongoose STATIC ${MONGOOSE_SRC})
+ADD_LIBRARY(mongoose STATIC src/network/library-mongoose.cpp)
 
-# Reference NLohmann's json.
+# Reference NLohmann's JSON parsing library.
 INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/json/single_include)
 
 # Reference source headers.

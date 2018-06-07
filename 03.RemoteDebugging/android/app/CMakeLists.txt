@@ -24,14 +24,6 @@ SET(PNG_FOUND ON CACHE BOOL "PNG is found")
 SET(OSG_CPP_EXCEPTIONS_AVAILABLE ON CACHE BOOL "Enable exceptions to build PNG")
 SET(PNG_INCLUDE_DIR ${PNG_SOURCE_DIR}/jni)
 
-# Reference Mongoose HTTP client library.
-INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/mongoose)
-# Build mongoose statically (for distribution simplicity).
-ADD_LIBRARY(mongoose STATIC src/main/cpp/library-mongoose.cpp)
-
-# Reference NLohmann's json.
-INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/json/single_include)
-
 # Specify critical OpenSceneGraph build variables.
 SET(OPENGL_PROFILE "GLES2" CACHE STRING "OpenGL variant to use")
 SET(DYNAMIC_OPENTHREADS OFF CACHE BOOL "Link OpenThreads statically")
@@ -50,8 +42,18 @@ INCLUDE_DIRECTORIES(${OSG_BUILD_DIR}/include)
 # Reference OpenSceneGraph libraries.
 LINK_DIRECTORIES(${OSG_BUILD_DIR}/lib)
 
-# Reference library headers.
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/src/main/cpp)
+# Reference Mongoose HTTP client library.
+INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/mongoose)
+ADD_LIBRARY(mongoose STATIC src/network/library-mongoose.cpp)
+
+# Reference NLohmann's JSON parsing library.
+INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/json/single_include)
+
+# Reference source headers.
+INCLUDE_DIRECTORIES(
+    src/main/cpp
+    src/main/cpp/network
+)
 # Reference resource headers.
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/../../../data)
 
