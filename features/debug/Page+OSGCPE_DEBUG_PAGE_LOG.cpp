@@ -1,7 +1,7 @@
-FEATURE DebugPage.h/Impl
+FEATURE Page.h/Impl
 #include "log.h"
 #include "format.h"
-#define OSGCPE_DEBUG_PAGE_LOG_PREFIX "osgcpe-DebugPage(%p) %s"
+#define OSGCPE_DEBUG_PAGE_LOG_PREFIX "osgcpe::debug::Page(%p) %s"
 #define OSGCPE_DEBUG_PAGE_LOG(...) \
     osgcpe::log::logprintf( \
         OSGCPE_DEBUG_PAGE_LOG_PREFIX, \

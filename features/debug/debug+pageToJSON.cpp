@@ -1,8 +1,5 @@
-FEATURE debug.h/Include
-#include "DebugPage.h"
-
 FEATURE debug.h/Impl
-std::string pageToJSON(DebugPage page)
+std::string pageToJSON(Page page)
 {
     // Format items.
     std::string format;
@@ -47,4 +44,3 @@ std::string pageToJSON(DebugPage page)
     json += "}";
     return json;
 }
-

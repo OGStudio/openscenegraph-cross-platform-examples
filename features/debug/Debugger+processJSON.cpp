@@ -1,6 +1,3 @@
-FEATURE Debugger.h/Include
-#include "library-json.h"
-
 FEATURE Debugger.h/Impl
 public:
     void processJSON(const std::string &data)
@@ -11,7 +8,7 @@ public:
         // Ignore different debuggers.
         if (debuggerTitle != this->title)
         {
-            OSGCPE_DEBUGGER_LOG("WARNING Ignoring debugger with different title");
+            OSGCPE_DEBUG_DEBUGGER_LOG("WARNING Ignoring debugger with different title");
             return;
         }
         auto jpages = jdata["pages"];

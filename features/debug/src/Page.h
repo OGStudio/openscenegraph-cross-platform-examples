@@ -22,29 +22,41 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_PAGE_DESC_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_PAGE_DESC_H
+// FEATURE Page+OSGCPE_DEBUG_PAGE_LOG/Impl
 
-namespace osgcpe
+struct Page
 {
 
-struct DebugPageDesc
-{
+    // SETUP.
 
     std::string title;
+
+    Page(const std::string &title = "") : title(title) { }
+
+    // ITEMS.
+
+    typedef std::function<std::string()> GetterCallback;
+    typedef std::function<void(const std::string &)> SetterCallback;
 
     struct Item
     {
         std::string title;
-        std::string value;
+        GetterCallback getter;
+        SetterCallback setter;
     };
     std::vector<Item> items;
 
+    //! Convenience function to add items.
+    void addItem(
+        const std::string &title,
+        GetterCallback getter,
+        SetterCallback setter = nullptr
+    ) {
+        this->items.push_back({title, getter, setter});
+    }
+
+    // FEATURE Page+item/Impl
+    // FEATURE Page+setDesc/Impl
+
 };
-
-} // namespace osgcpe
-
-// FEATURE DebugPageDesc+Stub/Impl
-
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_PAGE_DESC_H
 

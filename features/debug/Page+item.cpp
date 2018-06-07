@@ -1,4 +1,4 @@
-FEATURE DebugPage.h/Impl
+FEATURE Page.h/Impl
 Item *item(const std::string &title)
 {
     auto itemCount = this->items.size();

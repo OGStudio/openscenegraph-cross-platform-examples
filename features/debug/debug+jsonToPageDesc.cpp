@@ -1,10 +1,7 @@
-FEATURE debug.h/Include
-#include "library-json.h"
-
 FEATURE debug.h/Impl
-DebugPageDesc jsonToPageDesc(const nlohmann::json &data)
+PageDesc jsonToPageDesc(const nlohmann::json &data)
 {
-    DebugPageDesc desc;
+    PageDesc desc;
 
     // Title.
     desc.title = data["title"].get<std::string>();
@@ -20,4 +17,3 @@ DebugPageDesc jsonToPageDesc(const nlohmann::json &data)
 
     return desc;
 }
-

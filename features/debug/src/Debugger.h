@@ -22,18 +22,13 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
-
+// TODO Move includes to debug.h
 #include "DebugPage.h"
 #include "network.h"
 // FEATURE Debugger+process/Include
 // FEATURE Debugger+processJSON/Include
 
-// FEATURE Debugger+OSGCPE_DEBUGGER_LOG/Impl
-
-namespace osgcpe
-{
+// FEATURE Debugger+OSGCPE_DEBUG_DEBUGGER_LOG/Impl
 
 class Debugger
 {
@@ -59,9 +54,9 @@ class Debugger
         }
 
     private:
-        std::vector<DebugPage> pages;
+        std::vector<Page> pages;
     public:
-        void addDebugPage(DebugPage page)
+        void addPage(Page page)
         {
             this->pages.push_back(page);
         }
@@ -71,8 +66,4 @@ class Debugger
     // FEATURE Debugger+processJSON/Impl
 
 };
-
-} // namespace osgcpe
-
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
 

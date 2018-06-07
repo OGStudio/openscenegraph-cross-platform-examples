@@ -42,18 +42,6 @@ Example+Debugging
 Example+DebugApplication
 Example+HTTPClient
 
-DebugPage+item
-DebugPage+setDesc
-DebugPageDesc+Stub
-Debugger+OSGCPE_DEBUGGER_LOG
-Debugger+page
-Debugger+process
-Debugger+processJSON
-debug+debuggerToJSON
-debug+pageToJSON
-debug+jsonToPageDesc
-library-json+Stub
-
 main-desktop
 
 # network
@@ -61,3 +49,19 @@ network+HTTPClient-mongoose
 HTTPClient+Mongoose
 HTTPClientMongoose+Stub
 library-mongoose+Stub
+
+# debug
+debug+debuggerToJSON
+debug+pageToJSON
+debug+jsonToPageDesc
+debug+Page
+debug+PageDesc
+debug+Debugger
+Page+item
+Page+setDesc
+PageDesc+Stub
+Debugger+OSGCPE_DEBUG_DEBUGGER_LOG
+Debugger+page
+Debugger+process
+Debugger+processJSON
+library-json+Stub

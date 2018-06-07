@@ -22,10 +22,27 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_H
 
-#include <mongoose.h>
+// FEATURE debug+Page/Include
+// FEATURE debug+Debugger/Include
 
-// library-mongoose+Stub Start
-// Stub.
-// library-mongoose+Stub End
+namespace osgcpe
+{
+namespace debug
+{
+
+// FEATURE debug+debuggerToJSON/Impl
+// FEATURE debug+jsonToPageDesc/Impl
+// FEATURE debug+pageToJSON/Impl
+
+// FEATURE debug+PageDesc/Impl
+// FEATURE debug+Page/Impl
+// FEATURE debug+Debugger/Impl
+
+} // namespace debug
+} // namespace osgcpe
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_H
 

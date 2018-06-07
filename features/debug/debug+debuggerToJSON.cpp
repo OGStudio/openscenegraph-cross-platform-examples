@@ -1,7 +1,7 @@
 FEATURE debug.h/Impl
 std::string debuggerToJSON(
     const std::string &debuggerTitle, 
-    const std::vector<DebugPage> &pages
+    const std::vector<Page> &pages
 ) {
     std::string pagesJSON = "";
     for (auto page : pages)
@@ -11,7 +11,7 @@ std::string debuggerToJSON(
         {
             pagesJSON += ",";
         }
-        pagesJSON += debug::pageToJSON(page);
+        pagesJSON += pageToJSON(page);
     }
 
     // Format debugger.
@@ -30,4 +30,3 @@ std::string debuggerToJSON(
 
     return json;
 }
-

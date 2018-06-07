@@ -1,8 +1,5 @@
-FEATURE DebugPage.h/Include
-#include "DebugPageDesc.h"
-
-FEATURE DebugPage.h/Impl
-void setDesc(const DebugPageDesc& desc)
+FEATURE Page.h/Impl
+void setDesc(const PageDesc& desc)
 {
     for (auto descItem : desc.items)
     {
