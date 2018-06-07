@@ -1,6 +1,6 @@
 FEATURE Application.h/Include
-#include "DebugPage.h"
+#include "debug.h"
 
 FEATURE Application.h/Impl
 public:
-    DebugPage debugPage;
+    debug::Page debugPage;

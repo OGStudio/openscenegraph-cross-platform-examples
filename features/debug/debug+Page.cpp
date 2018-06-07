@@ -1,5 +1,5 @@
 FEATURE debug.h/Include
-#include <functional>
+//#include <functional>
 
 FEATURE debug.h/Impl
 #include "Page.h"

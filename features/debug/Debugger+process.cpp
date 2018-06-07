@@ -34,5 +34,5 @@ public:
             this->isProcessing = false;
         };
         std::string data = debuggerToJSON(this->title, this->pages);
-        httpClient->post(this->brokerURL, data, success, failure);
+        this->httpClient->post(this->brokerURL, data, success, failure);
     }

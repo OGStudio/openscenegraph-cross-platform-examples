@@ -14,7 +14,7 @@ public:
         auto jpages = jdata["pages"];
         for (auto jpage : jpages)
         {
-            auto pageDesc = debug::jsonToPageDesc(jpage);
+            auto pageDesc = jsonToPageDesc(jpage);
             auto page = this->page(pageDesc.title);
             if (page)
             {

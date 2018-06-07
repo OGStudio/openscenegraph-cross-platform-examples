@@ -25,6 +25,8 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_H
 
+// FEATURE debug+debuggerToJSON/Include
+
 // FEATURE debug+Page/Include
 // FEATURE debug+Debugger/Include
 

@@ -41,7 +41,7 @@ freely, subject to the following restrictions:
 
 // Application+CameraManipulator End
 // Application+Debugging Start
-#include "DebugPage.h"
+#include "debug.h"
 
 // Application+Debugging End
 // Application+DebugCamera Start
@@ -186,7 +186,7 @@ class Application
         // Application+CameraManipulator End
         // Application+Debugging Start
         public:
-            DebugPage debugPage;
+            debug::Page debugPage;
         // Application+Debugging End
         // Application+DebugCamera Start
         private:

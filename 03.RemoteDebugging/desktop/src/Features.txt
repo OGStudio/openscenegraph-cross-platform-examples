@@ -27,8 +27,8 @@ Application+setupWindow-desktop
 Application+Logging
 Application+Rendering
 Application+CameraManipulator
-Application+Debugging
-Application+DebugCamera
+#Application+Debugging
+#Application+DebugCamera
 Reporter+Stub
 
 scene+quaternionToDegrees
@@ -38,8 +38,8 @@ Example+03
 Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
 Example+TextureImageScene
-Example+Debugging
-Example+DebugApplication
+#Example+Debugging
+#Example+DebugApplication
 Example+HTTPClient
 
 main-desktop
@@ -51,17 +51,17 @@ HTTPClientMongoose+Stub
 library-mongoose+Stub
 
 # debug
-debug+debuggerToJSON
-debug+pageToJSON
-debug+jsonToPageDesc
-debug+Page
-debug+PageDesc
-debug+Debugger
-Page+item
-Page+setDesc
-PageDesc+Stub
-Debugger+OSGCPE_DEBUG_DEBUGGER_LOG
-Debugger+page
-Debugger+process
-Debugger+processJSON
-library-json+Stub
+#debug+debuggerToJSON
+#debug+pageToJSON
+#debug+jsonToPageDesc
+#debug+Page
+#debug+PageDesc
+#debug+Debugger
+#Page+item
+#Page+setDesc
+#PageDesc+Stub
+#Debugger+OSGCPE_DEBUG_DEBUGGER_LOG
+#Debugger+page
+#Debugger+process
+#Debugger+processJSON
+#library-json+Stub

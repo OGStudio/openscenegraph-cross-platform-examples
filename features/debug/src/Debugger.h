@@ -22,12 +22,6 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-// TODO Move includes to debug.h
-#include "DebugPage.h"
-#include "network.h"
-// FEATURE Debugger+process/Include
-// FEATURE Debugger+processJSON/Include
-
 // FEATURE Debugger+OSGCPE_DEBUG_DEBUGGER_LOG/Impl
 
 class Debugger
