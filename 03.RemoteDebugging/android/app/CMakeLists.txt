@@ -44,7 +44,7 @@ LINK_DIRECTORIES(${OSG_BUILD_DIR}/lib)
 
 # Reference Mongoose HTTP client library.
 INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/mongoose)
-ADD_LIBRARY(mongoose STATIC src/network/library-mongoose.cpp)
+ADD_LIBRARY(mongoose STATIC src/main/cpp/network/library-mongoose.cpp)
 
 # Reference NLohmann's JSON parsing library.
 INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/json/single_include)
