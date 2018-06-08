@@ -45,10 +45,10 @@ Example+HTTPClient
 main-desktop
 
 # network
-network+HTTPClient-mongoose
+HTTPClient
 HTTPClient+Mongoose
-HTTPClientMongoose+Stub
-library-mongoose+Stub
+HTTPClientMongoose
+extlib-mongoose
 
 # debug
 #debug+debuggerToJSON

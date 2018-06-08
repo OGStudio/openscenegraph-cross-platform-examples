@@ -17,16 +17,13 @@ ADD_DEFINITIONS("-std=c++11")
 
 # Reference Mongoose HTTP client library.
 INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/mongoose)
-ADD_LIBRARY(mongoose STATIC src/network/library-mongoose.cpp)
+ADD_LIBRARY(network-extlib STATIC src/network-extlib.cpp)
 
 # Reference NLohmann's JSON parsing library.
 INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/json/single_include)
 
 # Reference source headers.
-INCLUDE_DIRECTORIES(
-    src
-    src/network
-)
+INCLUDE_DIRECTORIES(src)
 # Reference resource headers.
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/../../data)
 # Create executable.
@@ -39,5 +36,5 @@ TARGET_LINK_LIBRARIES(
     osgGA
     osg
     OpenThreads
-    mongoose
+    network-extlib
 )

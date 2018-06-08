@@ -22,26 +22,14 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_EXTLIB_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_EXTLIB_H
 
-// network+HTTPClient-mongoose Start
-#include "library-mongoose.h"
 
-// network+HTTPClient-mongoose End
+// extlib-mongoose Start
+#include <mongoose.h>
 
-namespace osgcpe
-{
-namespace network
-{
+// extlib-mongoose End
 
-// network+HTTPClient-mongoose Start
-#include "HTTPClientMongoose.h"
-#include "HTTPClient.h"
-// network+HTTPClient-mongoose End
-
-} // namespace network
-} // namespace osgcpe
-
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_EXTLIB_H
 
