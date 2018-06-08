@@ -22,9 +22,7 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "library-mongoose.h"
+#include "network-extlib.h"
 
-#include <mongoose.c>
-
-// FEATURE library-mongoose+Stub/Impl
+// FEATURE extlib-mongoose/Impl
 
