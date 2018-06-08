@@ -1,4 +1,5 @@
 FEATURE network.h/Impl
+//! Internal class to implement HTTP GET/POST requests to HTTP(s) with Emscripten's FetchAPI.
 class HTTPClientFetch
 {
     public:

@@ -1,4 +1,9 @@
 FEATURE network.h/Begin
+//! Perform HTTP GET/POST request to HTTP(s).
+
+//! Notes:
+//! - Uses HTTPClientFetch internal class under web.
+//! - Uses HTTPClientMongoose internal class under desktop and mobile.
 class HTTPClient
 {
     public:

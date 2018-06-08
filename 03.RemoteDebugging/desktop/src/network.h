@@ -35,6 +35,7 @@ namespace network
 
 
 // HTTPClientMongoose Start
+//! Internal class to implement HTTP GET/POST requests to HTTP(s) with Mongoose.
 class HTTPClientMongoose
 {
     public:
@@ -141,6 +142,11 @@ class HTTPClientMongoose
 // HTTPClientMongoose End
 
 // HTTPClient Start
+//! Perform HTTP GET/POST request to HTTP(s).
+
+//! Notes:
+//! - Uses HTTPClientFetch internal class under web.
+//! - Uses HTTPClientMongoose internal class under desktop and mobile.
 class HTTPClient
 {
     public:
