@@ -25,19 +25,18 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
 
-// FEATURE library-fetch/Include
-// FEATURE library-mongoose/Include
+#include "network-extlib.h"
+
+// FEATURE OSGCPE_NETWORK_HTTP_CLIENT_FETCH_LOG/Impl
 
 namespace osgcpe
 {
 namespace network
 {
 
-// FEATURE HTTPClientFetch/Begin
-// FEATURE HTTPClientFetch+OSGCPE_NETWORK_HTTP_CLIENT_FETCH_LOG/Impl
-// FEATURE HTTPClientFetch/End
+// FEATURE HTTPClientFetch/Impl
 
-// FEATURE HTTPClientMongoose
+// FEATURE HTTPClientMongoose/Impl
 
 // FEATURE HTTPClient/Begin
 // FEATURE HTTPClient+Fetch/Impl

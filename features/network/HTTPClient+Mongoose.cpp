@@ -1,2 +1,3 @@
-FEATURE HTTPClient.h/Impl
-typedef HTTPClientMongoose HTTPClientImpl;
+FEATURE network.h/Impl
+private:
+    typedef HTTPClientMongoose HTTPClientImpl;

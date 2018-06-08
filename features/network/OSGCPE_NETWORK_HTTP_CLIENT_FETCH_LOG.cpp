@@ -1,4 +1,4 @@
-FEATURE HTTPClientFetch.h/Impl
+FEATURE network.h/Impl
 #include "log.h"
 #include "format.h"
 #define OSGCPE_NETWORK_HTTP_CLIENT_FETCH_LOG_PREFIX "osgcpe::network::HTTPClientFetch(%p) %s"
@@ -8,4 +8,3 @@ FEATURE HTTPClientFetch.h/Impl
         this, \
         osgcpe::format::printfString(__VA_ARGS__).c_str() \
     )
-

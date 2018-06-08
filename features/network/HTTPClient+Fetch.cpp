@@ -1,2 +1,3 @@
-FEATURE HTTPClient.h/Impl
-typedef HTTPClientFetch HTTPClientImpl;
+FEATURE network.h/Impl
+private:
+    typedef HTTPClientFetch HTTPClientImpl;
