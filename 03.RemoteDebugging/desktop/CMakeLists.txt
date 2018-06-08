@@ -25,7 +25,6 @@ INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/json/single_include)
 # Reference source headers.
 INCLUDE_DIRECTORIES(
     src
-    src/debug
     src/network
 )
 # Reference resource headers.

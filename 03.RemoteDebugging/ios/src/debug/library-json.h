@@ -22,30 +22,15 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_JSON_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_JSON_H
 
-// FEATURE debug+debuggerToJSON/Include
 
-// FEATURE debug+PageDesc/Include
-// FEATURE debug+Page/Include
-// FEATURE debug+Debugger/Include
+#include <nlohmann/json.hpp>
 
-namespace osgcpe
-{
-namespace debug
-{
+// library-json+Stub Start
+// Stub.
+// library-json+Stub End
 
-// FEATURE debug+debuggerToJSON/Impl
-// FEATURE debug+jsonToPageDesc/Impl
-// FEATURE debug+pageToJSON/Impl
-
-// FEATURE debug+PageDesc/Impl
-// FEATURE debug+Page/Impl
-// FEATURE debug+Debugger/Impl
-
-} // namespace debug
-} // namespace osgcpe
-
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_H
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_JSON_H
 
