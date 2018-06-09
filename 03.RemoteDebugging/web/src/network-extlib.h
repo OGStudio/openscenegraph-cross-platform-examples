@@ -22,9 +22,13 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include <emscripten/fetch.h>
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_EXTLIB_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_EXTLIB_H
 
-// library-fetch+Stub Start
-// Stub.
-// library-fetch+Stub End
+// extlib-fetch Start
+#include <emscripten/fetch.h>
+// extlib-fetch End
+
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_EXTLIB_H
 

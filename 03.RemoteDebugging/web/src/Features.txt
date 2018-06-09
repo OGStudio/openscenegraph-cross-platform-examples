@@ -43,24 +43,28 @@ Example+Debugging
 Example+DebugApplication
 Example+HTTPClient
 
-DebugPage+item
-DebugPage+setDesc
-DebugPageDesc+Stub
-Debugger+OSGCPE_DEBUGGER_LOG
-Debugger+page
-Debugger+process
-Debugger+processJSON
-debug+debuggerToJSON
-debug+pageToJSON
-debug+jsonToPageDesc
-library-json+Stub
-
 main-web
 
 VBOSetupVisitor+Stub
 
-# network.
-network+HTTPClient-fetch
+# network
+HTTPClient
 HTTPClient+Fetch
-HTTPClientFetch+OSGCPE_NETWORK_HTTP_CLIENT_FETCH_LOG
-library-fetch+Stub
+HTTPClientFetch
+extlib-fetch
+OSGCPE_NETWORK_HTTP_CLIENT_FETCH_LOG
+
+# debug
+PageDesc
+Page
+Page+item
+Page+setDesc
+OSGCPE_DEBUG_DEBUGGER_LOG
+Debugger
+Debugger+page
+Debugger+process
+Debugger+processJSON
+debuggerToJSON
+pageToJSON
+jsonToPageDesc
+extlib-json

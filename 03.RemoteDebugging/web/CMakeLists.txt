@@ -54,10 +54,7 @@ LINK_DIRECTORIES(${OSG_BUILD_DIR}/lib)
 INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/json/single_include)
 
 # Reference source headers.
-INCLUDE_DIRECTORIES(
-    src
-    src/network
-)
+INCLUDE_DIRECTORIES(src)
 # Reference resource headers.
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/../../data)
 # Create executable (aka HTML page).
