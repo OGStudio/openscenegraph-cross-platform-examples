@@ -33,6 +33,7 @@ freely, subject to the following restrictions:
 
 // PageDesc End
 
+
 namespace osgcpe
 {
 namespace debug
@@ -52,6 +53,72 @@ struct PageDesc
     std::vector<Item> items;
 };
 // PageDesc End
+
+// Page Start
+//! Provides debug page with items to alter.
+struct Page
+{
+
+    // SETUP.
+
+    std::string title;
+
+    Page(const std::string &title = "") : title(title) { }
+
+    // ITEMS.
+
+    typedef std::function<std::string()> GetterCallback;
+    typedef std::function<void(const std::string &)> SetterCallback;
+
+    struct Item
+    {
+        std::string title;
+        GetterCallback getter;
+        SetterCallback setter;
+    };
+    std::vector<Item> items;
+
+    //! Convenience function to add items.
+    void addItem(
+        const std::string &title,
+        GetterCallback getter,
+        SetterCallback setter = nullptr
+    ) {
+        this->items.push_back({title, getter, setter});
+    }
+
+// Page End
+    // Page+item Start
+    Item *item(const std::string &title)
+    {
+        auto itemCount = this->items.size();
+        for (auto i = 0; i < itemCount; ++i)
+        {
+            Item *item = &this->items[i];
+            if (item->title == title)
+            {
+                return item;
+            }
+        }
+        return 0;
+    }
+    // Page+item End
+    // Page+setDesc Start
+    void setDesc(const PageDesc& desc)
+    {
+        for (auto descItem : desc.items)
+        {
+            auto item = this->item(descItem.title);
+            if (item && item->setter)
+            {
+                item->setter(descItem.value);
+            }
+        }
+    }
+    // Page+setDesc End
+// Page Start
+};
+// Page End
 
 } // namespace debug
 } // namespace osgcpe

@@ -25,6 +25,7 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_EXTLIB_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_EXTLIB_H
 
+
 // extlib-json Start
 // TODO Move to debug.h
 // FEATURE library-json+STL-android/Impl

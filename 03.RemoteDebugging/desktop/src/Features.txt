@@ -52,15 +52,15 @@ extlib-mongoose
 
 # debug
 PageDesc
+Page
+Page+item
+Page+setDesc
 extlib-json
+#OSGCPE_DEBUG_DEBUGGER_LOG
 #debug+debuggerToJSON
 #debug+pageToJSON
 #debug+jsonToPageDesc
-#debug+Page
 #debug+Debugger
-#Page+item
-#Page+setDesc
-#Debugger+OSGCPE_DEBUG_DEBUGGER_LOG
 #Debugger+page
 #Debugger+process
 #Debugger+processJSON

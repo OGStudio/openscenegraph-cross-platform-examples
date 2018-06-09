@@ -28,10 +28,12 @@ freely, subject to the following restrictions:
 #include "debug-extlib.h"
 
 
+
 namespace osgcpe
 {
 namespace debug
 {
+
 
 
 } // namespace debug

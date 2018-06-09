@@ -1,5 +1,5 @@
-FEATURE library-json.h/Impl
-// Work around Android not having several STL function in std.
+FEATURE debug-extlib.h/Impl
+// Work around Android not having several STL functions in std.
 
 #include <string>
 #include <sstream>
@@ -32,4 +32,3 @@ inline int stoi(const std::string &s, size_t *idx = 0, int base = 10)
 }
 
 }
-

@@ -1,4 +1,4 @@
-FEATURE Page.h/Impl
+FEATURE debug.h/Impl
 #include "log.h"
 #include "format.h"
 #define OSGCPE_DEBUG_PAGE_LOG_PREFIX "osgcpe::debug::Page(%p) %s"

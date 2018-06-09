@@ -29,12 +29,19 @@ freely, subject to the following restrictions:
 
 // FEATURE PageDesc/Include
 
+// FEATURE OSGCPE_DEBUG_PAGE_LOG/Impl
+
 namespace osgcpe
 {
 namespace debug
 {
 
 // FEATURE PageDesc/Impl
+
+// FEATURE Page/Begin
+    // FEATURE Page+item/Impl
+    // FEATURE Page+setDesc/Impl
+// FEATURE Page/End
 
 } // namespace debug
 } // namespace osgcpe

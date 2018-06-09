@@ -1,4 +1,4 @@
-FEATURE Page.h/Impl
+FEATURE debug.h/Impl
 void setDesc(const PageDesc& desc)
 {
     for (auto descItem : desc.items)

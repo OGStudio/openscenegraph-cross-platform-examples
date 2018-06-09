@@ -25,6 +25,9 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_EXTLIB_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_EXTLIB_H
 
+// FEATURE extlib-json+localeconv-android/Impl
+// FEATURE extlib-json+STL-android/Impl
+
 // FEATURE extlib-json/Impl
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_EXTLIB_H
