@@ -1,4 +1,4 @@
-FEATURE Debugger.h/Impl
+FEATURE debug.h/Impl
 #include "log.h"
 #include "format.h"
 #define OSGCPE_DEBUG_DEBUGGER_LOG_PREFIX "osgcpe::debug::Debugger(%p) %s"

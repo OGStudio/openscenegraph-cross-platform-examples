@@ -1,3 +1,6 @@
+FEATURE debug.h/Include
+#include <functional>
+
 FEATURE debug.h/Begin
 //! Provides debug page with items to alter.
 struct Page

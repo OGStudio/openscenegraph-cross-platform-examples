@@ -1,4 +1,4 @@
-FEATURE Debugger.h/Impl
+FEATURE debug.h/Impl
 private:
     // Request frequency control.
     std::time_t lastProcessDt = 0;

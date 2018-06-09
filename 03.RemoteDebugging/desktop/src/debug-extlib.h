@@ -27,9 +27,6 @@ freely, subject to the following restrictions:
 
 
 // extlib-json Start
-// TODO Move to debug.h
-// FEATURE library-json+STL-android/Impl
-// FEATURE library-json+localeconv-android/Impl
 #include <nlohmann/json.hpp>
 // extlib-json End
 

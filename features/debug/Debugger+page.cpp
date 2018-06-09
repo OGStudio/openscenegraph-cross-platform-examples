@@ -1,4 +1,4 @@
-FEATURE Debugger.h/Impl
+FEATURE debug.h/Impl
 public:
     Page *page(const std::string &title)
     {

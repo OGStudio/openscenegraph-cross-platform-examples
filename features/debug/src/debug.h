@@ -28,7 +28,10 @@ freely, subject to the following restrictions:
 #include "debug-extlib.h"
 
 // FEATURE PageDesc/Include
+// FEATURE Page/Include
+// FEATURE Debugger/Include
 
+// FEATURE OSGCPE_DEBUG_DEBUGGER_LOG/Impl
 // FEATURE OSGCPE_DEBUG_PAGE_LOG/Impl
 
 namespace osgcpe
@@ -42,6 +45,16 @@ namespace debug
     // FEATURE Page+item/Impl
     // FEATURE Page+setDesc/Impl
 // FEATURE Page/End
+
+// FEATURE Debugger/Begin
+    // FEATURE Debugger+page/Impl
+    // FEATURE Debugger+process/Impl
+    // FEATURE Debugger+processJSON/Impl
+// FEATURE Debugger/End
+
+// FEATURE debuggerToJSON/Impl
+// FEATURE pageToJSON/Impl
+// FEATURE jsonToPageDesc/Impl
 
 } // namespace debug
 } // namespace osgcpe

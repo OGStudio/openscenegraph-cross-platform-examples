@@ -1,7 +1,3 @@
-FEATURE debug.h/Include
-#include <string>
-#include <vector>
-
 FEATURE debug.h/Impl
 std::string debuggerToJSON(
     const std::string &debuggerTitle, 

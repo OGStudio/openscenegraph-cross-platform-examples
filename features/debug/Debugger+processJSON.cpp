@@ -1,8 +1,8 @@
-FEATURE Debugger.h/Impl
+FEATURE debug.h/Impl
 public:
     void processJSON(const std::string &data)
     {
-        // TODO Work with DebugPageDesc here instead of raw JSON?
+        // TODO Work with PageDesc here instead of raw JSON?
         auto jdata = nlohmann::json::parse(data);
         auto debuggerTitle = jdata["title"].get<std::string>();
         // Ignore different debuggers.
