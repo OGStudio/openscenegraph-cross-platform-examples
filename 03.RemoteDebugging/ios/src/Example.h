@@ -44,7 +44,7 @@ freely, subject to the following restrictions:
 
 // Example+TextureImageScene End
 // Example+Debugging Start
-#include "Debugger.h"
+#include "debug.h"
 
 // Example+Debugging End
 // Example+HTTPClient Start
@@ -168,12 +168,12 @@ struct Example
     // Example+HTTPClient End
     // Example+Debugging Start
     private:
-        osgcpe::Debugger *dbg;
+        debug::Debugger *dbg;
         const std::string debuggerCallbackName = "Debugger";
     
         void setupDebugging()
         {
-            this->dbg = new osgcpe::Debugger(this->httpClient, EXAMPLE_TITLE);
+            this->dbg = new debug::Debugger(this->httpClient, EXAMPLE_TITLE);
             // TODO Heroku? Parametrize.
             this->dbg->setBrokerURL("http://localhost:7999");
     
@@ -191,13 +191,12 @@ struct Example
             this->app->frameReporter.removeCallback(this->debuggerCallbackName);
             delete this->dbg;
         }
-    
     // Example+Debugging End
     // Example+DebugApplication Start
     private:
         void setupApplicationDebugging()
         {
-            this->dbg->addDebugPage(this->app->debugPage);
+            this->dbg->addPage(this->app->debugPage);
         }
     // Example+DebugApplication End
 

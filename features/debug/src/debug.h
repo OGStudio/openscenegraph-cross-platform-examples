@@ -41,20 +41,21 @@ namespace debug
 
 // FEATURE PageDesc/Impl
 
+// FEATURE jsonToPageDesc/Impl
+
 // FEATURE Page/Begin
     // FEATURE Page+item/Impl
     // FEATURE Page+setDesc/Impl
 // FEATURE Page/End
+
+// FEATURE pageToJSON/Impl
+// FEATURE debuggerToJSON/Impl
 
 // FEATURE Debugger/Begin
     // FEATURE Debugger+page/Impl
     // FEATURE Debugger+process/Impl
     // FEATURE Debugger+processJSON/Impl
 // FEATURE Debugger/End
-
-// FEATURE debuggerToJSON/Impl
-// FEATURE pageToJSON/Impl
-// FEATURE jsonToPageDesc/Impl
 
 } // namespace debug
 } // namespace osgcpe

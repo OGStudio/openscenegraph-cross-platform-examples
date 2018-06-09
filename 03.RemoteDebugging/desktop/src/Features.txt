@@ -27,8 +27,8 @@ Application+setupWindow-desktop
 Application+Logging
 Application+Rendering
 Application+CameraManipulator
-#Application+Debugging
-#Application+DebugCamera
+Application+Debugging
+Application+DebugCamera
 Reporter+Stub
 
 scene+quaternionToDegrees
@@ -38,8 +38,8 @@ Example+03
 Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
 Example+TextureImageScene
-#Example+Debugging
-#Example+DebugApplication
+Example+Debugging
+Example+DebugApplication
 Example+HTTPClient
 
 main-desktop

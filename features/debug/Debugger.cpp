@@ -1,4 +1,5 @@
 FEATURE debug.h/Include
+#include "network.h"
 #include <ctime>
 
 FEATURE debug.h/Begin

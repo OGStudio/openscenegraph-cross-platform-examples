@@ -37,6 +37,7 @@ freely, subject to the following restrictions:
 
 // Page End
 // Debugger Start
+#include "network.h"
 #include <ctime>
 
 // Debugger End
@@ -72,6 +73,27 @@ struct PageDesc
     std::vector<Item> items;
 };
 // PageDesc End
+
+// jsonToPageDesc Start
+PageDesc jsonToPageDesc(const nlohmann::json &data)
+{
+    PageDesc desc;
+
+    // Title.
+    desc.title = data["title"].get<std::string>();
+
+    // Convert JSON items to DebugPageDesc items.
+    auto items = data["items"];
+    for (auto item : items)
+    {
+        auto title = item["title"].get<std::string>();
+        auto value = item["value"].get<std::string>();
+        desc.items.push_back({ title, value });
+    }
+
+    return desc;
+}
+// jsonToPageDesc End
 
 // Page Start
 //! Provides debug page with items to alter.
@@ -138,6 +160,87 @@ struct Page
 // Page Start
 };
 // Page End
+
+// pageToJSON Start
+std::string pageToJSON(Page page)
+{
+    // Format items.
+    std::string format;
+    format += "{";
+    format += "\"title\":\"%s\",";
+    format += "\"value\":\"%s\",";
+    format += "\"isWritable\":%d"; // Note the absent comma.
+    format += "}";
+    std::string itemsJSON = "";
+    for (auto item : page.items)
+    {
+        // Add comma if we're adding second and later items.
+        if (!itemsJSON.empty())
+        {
+            itemsJSON += ",";
+        }
+        // Add item.
+        auto title = item.title;
+        auto value = item.getter();
+        bool isWritable = (item.setter != nullptr);
+        itemsJSON +=
+            format::printfString(
+                format.c_str(),
+                title.c_str(),
+                value.c_str(),
+                isWritable
+            );
+    }
+
+    // Format page.
+    std::string json;
+    json += "{";
+
+    json += "\"title\":\"";
+    json += page.title;
+    json += "\",";
+
+    json += "\"items\":[";
+    json += itemsJSON;
+    json += "]"; // Note the absent comma.
+
+    json += "}";
+    return json;
+}
+// pageToJSON End
+// debuggerToJSON Start
+std::string debuggerToJSON(
+    const std::string &debuggerTitle, 
+    const std::vector<Page> &pages
+) {
+    std::string pagesJSON = "";
+    for (auto page : pages)
+    {
+        // Add comma if we're adding the second and following pages.
+        if (!pagesJSON.empty())
+        {
+            pagesJSON += ",";
+        }
+        pagesJSON += pageToJSON(page);
+    }
+
+    // Format debugger.
+    std::string json;
+    json += "{";
+
+    json += "\"title\":\"";
+    json += debuggerTitle;
+    json += "\",";
+
+    json += "\"pages\":[";
+    json += pagesJSON;
+    json += "]"; // Note the absent comma.
+
+    json += "}";
+
+    return json;
+}
+// debuggerToJSON End
 
 // Debugger Start
 //! Accumulates and processes DebugPages with the help of network::HTTPClient.
@@ -256,107 +359,6 @@ class Debugger
 // Debugger Start
 };
 // Debugger End
-
-// debuggerToJSON Start
-std::string debuggerToJSON(
-    const std::string &debuggerTitle, 
-    const std::vector<Page> &pages
-) {
-    std::string pagesJSON = "";
-    for (auto page : pages)
-    {
-        // Add comma if we're adding the second and following pages.
-        if (!pagesJSON.empty())
-        {
-            pagesJSON += ",";
-        }
-        pagesJSON += pageToJSON(page);
-    }
-
-    // Format debugger.
-    std::string json;
-    json += "{";
-
-    json += "\"title\":\"";
-    json += debuggerTitle;
-    json += "\",";
-
-    json += "\"pages\":[";
-    json += pagesJSON;
-    json += "]"; // Note the absent comma.
-
-    json += "}";
-
-    return json;
-}
-// debuggerToJSON End
-// pageToJSON Start
-std::string pageToJSON(Page page)
-{
-    // Format items.
-    std::string format;
-    format += "{";
-    format += "\"title\":\"%s\",";
-    format += "\"value\":\"%s\",";
-    format += "\"isWritable\":%d"; // Note the absent comma.
-    format += "}";
-    std::string itemsJSON = "";
-    for (auto item : page.items)
-    {
-        // Add comma if we're adding second and later items.
-        if (!itemsJSON.empty())
-        {
-            itemsJSON += ",";
-        }
-        // Add item.
-        auto title = item.title;
-        auto value = item.getter();
-        bool isWritable = (item.setter != nullptr);
-        itemsJSON +=
-            format::printfString(
-                format.c_str(),
-                title.c_str(),
-                value.c_str(),
-                isWritable
-            );
-    }
-
-    // Format page.
-    std::string json;
-    json += "{";
-
-    json += "\"title\":\"";
-    json += page.title;
-    json += "\",";
-
-    json += "\"items\":[";
-    json += itemsJSON;
-    json += "]"; // Note the absent comma.
-
-    json += "}";
-    return json;
-}
-// pageToJSON End
-// jsonToPageDesc Start
-PageDesc jsonToPageDesc(const nlohmann::json &data)
-{
-    PageDesc desc;
-
-    // Title.
-    desc.title = data["title"].get<std::string>();
-
-    // Convert JSON items to DebugPageDesc items.
-    auto items = data["items"];
-    for (auto item : items)
-    {
-        auto title = item["title"].get<std::string>();
-        auto value = item["value"].get<std::string>();
-        desc.items.push_back({ title, value });
-    }
-
-    return desc;
-}
-// jsonToPageDesc End
 
 } // namespace debug
 } // namespace osgcpe

@@ -36,6 +36,8 @@ namespace debug
 
 
 
+
+
     // Debugger+page Start
     public:
         Page *page(const std::string &title)
@@ -116,7 +118,6 @@ namespace debug
             }
         }
     // Debugger+processJSON End
-
 
 } // namespace debug
 } // namespace osgcpe

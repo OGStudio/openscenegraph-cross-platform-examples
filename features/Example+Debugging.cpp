@@ -1,5 +1,5 @@
 FEATURE Example.h/Include
-#include "Debugger.h"
+#include "debug.h"
 
 FEATURE Example.h/Setup
 this->setupDebugging();
@@ -9,12 +9,12 @@ this->tearDebuggingDown();
 
 FEATURE Example.h/Impl
 private:
-    osgcpe::Debugger *dbg;
+    debug::Debugger *dbg;
     const std::string debuggerCallbackName = "Debugger";
 
     void setupDebugging()
     {
-        this->dbg = new osgcpe::Debugger(this->httpClient, EXAMPLE_TITLE);
+        this->dbg = new debug::Debugger(this->httpClient, EXAMPLE_TITLE);
         // TODO Heroku? Parametrize.
         this->dbg->setBrokerURL("http://localhost:7999");
 
@@ -32,4 +32,3 @@ private:
         this->app->frameReporter.removeCallback(this->debuggerCallbackName);
         delete this->dbg;
     }
-

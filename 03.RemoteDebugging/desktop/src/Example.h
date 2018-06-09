@@ -39,6 +39,10 @@ freely, subject to the following restrictions:
 #include "digit.png.h"
 
 // Example+TextureImageScene End
+// Example+Debugging Start
+#include "debug.h"
+
+// Example+Debugging End
 // Example+HTTPClient Start
 #include "network.h"
 
@@ -94,9 +98,21 @@ struct Example
         this->setupHTTPClient();
         
         // Example+HTTPClient End
+        // Example+Debugging Start
+        this->setupDebugging();
+        
+        // Example+Debugging End
+        // Example+DebugApplication Start
+        this->setupApplicationDebugging();
+        
+        // Example+DebugApplication End
     }
     ~Example()
     {
+        // Example+Debugging Start
+        this->tearDebuggingDown();
+        
+        // Example+Debugging End
         // Example+HTTPClient Start
         this->tearHTTPClientDown();
         
@@ -131,6 +147,39 @@ struct Example
             delete this->httpClient;
         }
     // Example+HTTPClient End
+    // Example+Debugging Start
+    private:
+        debug::Debugger *dbg;
+        const std::string debuggerCallbackName = "Debugger";
+    
+        void setupDebugging()
+        {
+            this->dbg = new debug::Debugger(this->httpClient, EXAMPLE_TITLE);
+            // TODO Heroku? Parametrize.
+            this->dbg->setBrokerURL("http://localhost:7999");
+    
+            // Subscribe debugger to be processed each frame.
+            this->app->frameReporter.addCallback(
+                [&] {
+                    this->dbg->process();
+                },
+                this->debuggerCallbackName
+            );
+        }
+        void tearDebuggingDown()
+        {
+            // Unsubscribe debugger.
+            this->app->frameReporter.removeCallback(this->debuggerCallbackName);
+            delete this->dbg;
+        }
+    // Example+Debugging End
+    // Example+DebugApplication Start
+    private:
+        void setupApplicationDebugging()
+        {
+            this->dbg->addPage(this->app->debugPage);
+        }
+    // Example+DebugApplication End
 
 };
 
