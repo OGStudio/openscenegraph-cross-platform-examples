@@ -44,16 +44,13 @@ LINK_DIRECTORIES(${OSG_BUILD_DIR}/lib)
 
 # Reference Mongoose HTTP client library.
 INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/mongoose)
-ADD_LIBRARY(mongoose STATIC src/main/cpp/network/library-mongoose.cpp)
+ADD_LIBRARY(network-extlib STATIC src/main/cpp/network-extlib.cpp)
 
 # Reference NLohmann's JSON parsing library.
 INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/json/single_include)
 
 # Reference source headers.
-INCLUDE_DIRECTORIES(
-    src/main/cpp
-    src/main/cpp/network
-)
+INCLUDE_DIRECTORIES(src/main/cpp)
 # Reference resource headers.
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/../../../data)
 
@@ -80,6 +77,6 @@ TARGET_LINK_LIBRARIES(
     osgUtil
     osg
     OpenThreads
-    mongoose
+    network-extlib
 )
 

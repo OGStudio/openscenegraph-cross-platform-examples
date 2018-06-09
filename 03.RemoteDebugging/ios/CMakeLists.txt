@@ -32,6 +32,9 @@ ENDIF()
 SET(BUILD_FLAGS "-O3 -mios-simulator-version-min=9.0")
 ADD_DEFINITIONS(${BUILD_FLAGS})
 
+# Use C++11.
+ADD_DEFINITIONS("-std=c++11")
+
 # Build and reference OpenSceneGraph.
 IF(BUILD_SIMULATOR)
     SET(BUILD_VARIANT "Simulator")
@@ -57,16 +60,13 @@ SET(CMAKE_OSX_SYSROOT ${SDK_ROOT} CACHE STRING "Make sure we build for iOS" FORC
 
 # Reference Mongoose HTTP client library.
 INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/mongoose)
-ADD_LIBRARY(mongoose STATIC src/network/library-mongoose.cpp)
+ADD_LIBRARY(network-extlib STATIC src/network-extlib.cpp)
 
 # Reference NLohmann's JSON parsing library.
 INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/json/single_include)
 
 # Reference source headers.
-INCLUDE_DIRECTORIES(
-    src
-    src/network
-)
+INCLUDE_DIRECTORIES(src)
 # Reference resource headers.
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/../../data)
 # Build example library.
@@ -88,7 +88,7 @@ TARGET_LINK_LIBRARIES(
     osgUtil
     osg
     OpenThreads
-    mongoose
+    network-extlib
 )
 
 IF(BUILD_SIMULATOR)
@@ -117,6 +117,6 @@ ADD_CUSTOM_COMMAND(
         "${OSG_BUILD_DIR}/lib/libosgUtil.a"
         "${OSG_BUILD_DIR}/lib/libosgViewer.a"
         "${OSG_BUILD_DIR}/lib/libOpenThreads.a"
-        "${CMAKE_BINARY_DIR}/${BUILD_SUFFIX}/libmongoose.a"
+        "${CMAKE_BINARY_DIR}/${BUILD_SUFFIX}/libnetwork-extlib.a"
 )
 
