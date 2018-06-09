@@ -22,15 +22,39 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_JSON_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_JSON_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_H
 
+#include "debug-extlib.h"
 
-#include <nlohmann/json.hpp>
+// PageDesc Start
+#include <string>
+#include <vector>
 
-// library-json+Stub Start
-// Stub.
-// library-json+Stub End
+// PageDesc End
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_JSON_H
+namespace osgcpe
+{
+namespace debug
+{
+
+// PageDesc Start
+//! Provides serializable representation of a Page instance.
+struct PageDesc
+{
+    std::string title;
+
+    struct Item
+    {
+        std::string title;
+        std::string value;
+    };
+    std::vector<Item> items;
+};
+// PageDesc End
+
+} // namespace debug
+} // namespace osgcpe
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_H
 

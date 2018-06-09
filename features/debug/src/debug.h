@@ -25,24 +25,16 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_H
 
-// FEATURE debug+debuggerToJSON/Include
+#include "debug-extlib.h"
 
-// FEATURE debug+PageDesc/Include
-// FEATURE debug+Page/Include
-// FEATURE debug+Debugger/Include
+// FEATURE PageDesc/Include
 
 namespace osgcpe
 {
 namespace debug
 {
 
-// FEATURE debug+debuggerToJSON/Impl
-// FEATURE debug+jsonToPageDesc/Impl
-// FEATURE debug+pageToJSON/Impl
-
-// FEATURE debug+PageDesc/Impl
-// FEATURE debug+Page/Impl
-// FEATURE debug+Debugger/Impl
+// FEATURE PageDesc/Impl
 
 } // namespace debug
 } // namespace osgcpe

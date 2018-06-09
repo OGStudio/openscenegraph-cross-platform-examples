@@ -22,36 +22,6 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
-
-#include "DebugPage.h"
-#include "network.h"
-// Debugger+process Start
-#include "debug.h"
-#include <ctime>
-
-// Debugger+process End
-// Debugger+processJSON Start
-#include "library-json.h"
-
-// Debugger+processJSON End
-
-// Debugger+OSGCPE_DEBUGGER_LOG Start
-#include "log.h"
-#include "format.h"
-#define OSGCPE_DEBUGGER_LOG_PREFIX "osgcpe-Debugger(%p) %s"
-#define OSGCPE_DEBUGGER_LOG(...) \
-    osgcpe::log::logprintf( \
-        OSGCPE_DEBUGGER_LOG_PREFIX, \
-        this, \
-        osgcpe::format::printfString(__VA_ARGS__).c_str() \
-    )
-
-// Debugger+OSGCPE_DEBUGGER_LOG End
-
-namespace osgcpe
-{
 
 class Debugger
 {
@@ -77,20 +47,20 @@ class Debugger
         }
 
     private:
-        std::vector<DebugPage> pages;
+        std::vector<Page> pages;
     public:
-        void addDebugPage(DebugPage page)
+        void addPage(Page page)
         {
             this->pages.push_back(page);
         }
     // Debugger+page Start
     public:
-        DebugPage *page(const std::string &title)
+        Page *page(const std::string &title)
         {
             auto pageCount = this->pages.size();
             for (auto i = 0; i < pageCount; ++i)
             {
-                DebugPage *page = &this->pages[i];
+                Page *page = &this->pages[i];
                 if (page->title == title)
                 {
                     return page;
@@ -126,17 +96,17 @@ class Debugger
             this->isProcessing = true;
                
             auto success = [&](std::string response) {
-                //OSGCPE_DEBUGGER_LOG("Process JSON: '%s'", response.c_str());
+                //OSGCPE_DEBUG_DEBUGGER_LOG("Process JSON: '%s'", response.c_str());
                 // Process incoming JSON response.
                 this->processJSON(response);
                 this->isProcessing = false;
             };
             auto failure = [&](std::string reason) {
-                OSGCPE_DEBUGGER_LOG(reason.c_str());
+                OSGCPE_DEBUG_DEBUGGER_LOG(reason.c_str());
                 this->isProcessing = false;
             };
-            std::string data = debug::debuggerToJSON(this->title, this->pages);
-            httpClient->post(this->brokerURL, data, success, failure);
+            std::string data = debuggerToJSON(this->title, this->pages);
+            this->httpClient->post(this->brokerURL, data, success, failure);
         }
     // Debugger+process End
     // Debugger+processJSON Start
@@ -149,13 +119,13 @@ class Debugger
             // Ignore different debuggers.
             if (debuggerTitle != this->title)
             {
-                OSGCPE_DEBUGGER_LOG("WARNING Ignoring debugger with different title");
+                OSGCPE_DEBUG_DEBUGGER_LOG("WARNING Ignoring debugger with different title");
                 return;
             }
             auto jpages = jdata["pages"];
             for (auto jpage : jpages)
             {
-                auto pageDesc = debug::jsonToPageDesc(jpage);
+                auto pageDesc = jsonToPageDesc(jpage);
                 auto page = this->page(pageDesc.title);
                 if (page)
                 {
@@ -166,8 +136,4 @@ class Debugger
     // Debugger+processJSON End
 
 };
-
-} // namespace osgcpe
-
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUGGER_H
 

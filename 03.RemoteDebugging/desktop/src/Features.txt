@@ -51,17 +51,17 @@ HTTPClientMongoose
 extlib-mongoose
 
 # debug
+PageDesc
+extlib-json
 #debug+debuggerToJSON
 #debug+pageToJSON
 #debug+jsonToPageDesc
 #debug+Page
-#debug+PageDesc
 #debug+Debugger
 #Page+item
 #Page+setDesc
-#PageDesc+Stub
 #Debugger+OSGCPE_DEBUG_DEBUGGER_LOG
 #Debugger+page
 #Debugger+process
 #Debugger+processJSON
-library-json+Stub
+#library-json+Stub

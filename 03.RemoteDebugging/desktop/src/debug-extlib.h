@@ -22,20 +22,15 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-//! Provides serialized state of Page.
-struct PageDesc
-{
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_EXTLIB_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_EXTLIB_H
 
-    std::string title;
+// extlib-json Start
+// TODO Move to debug.h
+// FEATURE library-json+STL-android/Impl
+// FEATURE library-json+localeconv-android/Impl
+#include <nlohmann/json.hpp>
+// extlib-json End
 
-    struct Item
-    {
-        std::string title;
-        std::string value;
-    };
-    std::vector<Item> items;
-
-};
-
-// FEATURE PageDesc+Stub/Impl
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_EXTLIB_H
 
