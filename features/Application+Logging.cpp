@@ -1,5 +1,5 @@
 FEATURE Application.h/Include
-#include "Logger.h"
+#include "log.h"
 
 FEATURE Application.h/Setup
 this->setupLogging(name);
@@ -9,11 +9,11 @@ this->tearLoggingDown();
 
 FEATURE Application.h/Impl
 private:
-    Logger *logger;
+    log::Logger *logger;
     void setupLogging(const std::string &appName)
     {
         // Create custom logger.
-        this->logger = new Logger(appName);
+        this->logger = new log::Logger(appName);
         // Provide the logger to OpenSceneGraph.
         osg::setNotifyHandler(this->logger);
         // Only accept notifications of Info level or higher

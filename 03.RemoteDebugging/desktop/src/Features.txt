@@ -1,11 +1,6 @@
 format+printfString
 format+splitString
 
-log+log-default
-log+logprintf
-log+logLevelToString
-Logger+Stub
-
 render+setupCamera
 render+createGraphicsContext-desktop
 render+createShaderProgram
@@ -43,6 +38,12 @@ Example+DebugApplication
 Example+HTTPClient
 
 main-desktop
+
+# log
+log-default
+logprintf
+logLevelToString
+Logger
 
 # network
 HTTPClient

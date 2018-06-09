@@ -51,6 +51,8 @@ main()
             processPlatformFeatures $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features/network
             # Debug features.
             processPlatformFeatures $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features/debug
+            # Log features.
+            processPlatformFeatures $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features/log
         done
     done
 }

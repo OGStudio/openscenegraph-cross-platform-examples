@@ -22,39 +22,28 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOG_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOG_H
 
-#include "log.h"
+// FEATURE log-android/Include
+// FEATURE log-default/Include
+// FEATURE logLevelToString/Include
+// FEATURE logprintf/Include
 
 namespace osgcpe
 {
-
-//! Print OpenSceneGraph notifications to console.
-class Logger : public osg::NotifyHandler
+namespace log
 {
-    public:
-        Logger(const std::string &domain = "") : domain(domain) { }
-        virtual ~Logger() { }
 
-        // Override NotifyHandler::notify() to receive OpenSceneGraph notifications.
-        void notify(osg::NotifySeverity severity, const char *message) override
-        {
-            log::logprintf(
-                "%s OSG/%s %s",
-                domain.c_str(),
-                log::logLevelToString(severity).c_str(),
-                message
-            );
-        }
+// FEATURE log-android/Impl
+// FEATURE log-default/Impl
+// FEATURE logLevelToString/Impl
+// FEATURE logprintf/Impl
 
-    private:
-        const std::string domain;
-};
+// FEATURE Logger/Impl
 
+} // namespace log
 } // namespace osgcpe
 
-// FEATURE Logger+Stub/Impl
-
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOGGER_H
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOG_H
 
