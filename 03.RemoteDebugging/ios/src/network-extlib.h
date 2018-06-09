@@ -22,14 +22,14 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-// library-mongoose+fseeko-android Start
-// Work around Android headers' bug.
-#define fseeko fseek
-// library-mongoose+fseeko-android End
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_EXTLIB_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_EXTLIB_H
 
+
+// extlib-mongoose Start
 #include <mongoose.h>
 
-// library-mongoose+Stub Start
-// Stub.
-// library-mongoose+Stub End
+// extlib-mongoose End
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_EXTLIB_H
 

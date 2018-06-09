@@ -37,26 +37,9 @@ Example+TextureImageScene
 Example+Debugging
 Example+DebugApplication
 Example+HTTPClient
-
-DebugPage+item
-DebugPage+setDesc
-DebugPageDesc+Stub
-Debugger+OSGCPE_DEBUGGER_LOG
-Debugger+page
-Debugger+process
-Debugger+processJSON
-debug+debuggerToJSON
-debug+pageToJSON
-debug+jsonToPageDesc
-library-json+Stub
-library-json+STL-android
-library-json+localeconv-android
-
 Example+StaticPluginOSG
 Example+StaticPluginPNG
 Example+VBO
-
-VBOSetupVisitor+Stub
 
 library+Ex03+OSGCPE_JNI-android
 
@@ -64,9 +47,28 @@ library-android
 library+init-android
 library+frame-android
 
+VBOSetupVisitor+Stub
+
 # network
-network+HTTPClient-mongoose
+HTTPClient
 HTTPClient+Mongoose
-HTTPClientMongoose+Stub
-library-mongoose+Stub
-library-mongoose+fseeko-android
+HTTPClientMongoose
+extlib-mongoose
+extlib-mongoose+fseeko-android
+
+# debug
+PageDesc
+Page
+Page+item
+Page+setDesc
+OSGCPE_DEBUG_DEBUGGER_LOG
+Debugger
+Debugger+page
+Debugger+process
+Debugger+processJSON
+debuggerToJSON
+pageToJSON
+jsonToPageDesc
+extlib-json
+extlib-json+localeconv-android
+extlib-json+STL-android

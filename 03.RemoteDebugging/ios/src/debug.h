@@ -27,17 +27,255 @@ freely, subject to the following restrictions:
 
 #include "debug-extlib.h"
 
+// PageDesc Start
+#include <string>
+#include <vector>
 
+// PageDesc End
+// Page Start
+#include <functional>
+
+// Page End
+// Debugger Start
+#include "network.h"
+#include <ctime>
+
+// Debugger End
+
+// OSGCPE_DEBUG_DEBUGGER_LOG Start
+#include "log.h"
+#include "format.h"
+#define OSGCPE_DEBUG_DEBUGGER_LOG_PREFIX "osgcpe::debug::Debugger(%p) %s"
+#define OSGCPE_DEBUG_DEBUGGER_LOG(...) \
+    osgcpe::log::logprintf( \
+        OSGCPE_DEBUG_DEBUGGER_LOG_PREFIX, \
+        this, \
+        osgcpe::format::printfString(__VA_ARGS__).c_str() \
+    )
+// OSGCPE_DEBUG_DEBUGGER_LOG End
 
 namespace osgcpe
 {
 namespace debug
 {
 
+// PageDesc Start
+//! Provides serializable representation of a Page instance.
+struct PageDesc
+{
+    std::string title;
 
+    struct Item
+    {
+        std::string title;
+        std::string value;
+    };
+    std::vector<Item> items;
+};
+// PageDesc End
 
+// jsonToPageDesc Start
+PageDesc jsonToPageDesc(const nlohmann::json &data)
+{
+    PageDesc desc;
 
+    // Title.
+    desc.title = data["title"].get<std::string>();
 
+    // Convert JSON items to DebugPageDesc items.
+    auto items = data["items"];
+    for (auto item : items)
+    {
+        auto title = item["title"].get<std::string>();
+        auto value = item["value"].get<std::string>();
+        desc.items.push_back({ title, value });
+    }
+
+    return desc;
+}
+// jsonToPageDesc End
+
+// Page Start
+//! Provides debug page with items to alter.
+struct Page
+{
+
+    // SETUP.
+
+    std::string title;
+
+    Page(const std::string &title = "") : title(title) { }
+
+    // ITEMS.
+
+    typedef std::function<std::string()> GetterCallback;
+    typedef std::function<void(const std::string &)> SetterCallback;
+
+    struct Item
+    {
+        std::string title;
+        GetterCallback getter;
+        SetterCallback setter;
+    };
+    std::vector<Item> items;
+
+    //! Convenience function to add items.
+    void addItem(
+        const std::string &title,
+        GetterCallback getter,
+        SetterCallback setter = nullptr
+    ) {
+        this->items.push_back({title, getter, setter});
+    }
+
+// Page End
+    // Page+item Start
+    Item *item(const std::string &title)
+    {
+        auto itemCount = this->items.size();
+        for (auto i = 0; i < itemCount; ++i)
+        {
+            Item *item = &this->items[i];
+            if (item->title == title)
+            {
+                return item;
+            }
+        }
+        return 0;
+    }
+    // Page+item End
+    // Page+setDesc Start
+    void setDesc(const PageDesc& desc)
+    {
+        for (auto descItem : desc.items)
+        {
+            auto item = this->item(descItem.title);
+            if (item && item->setter)
+            {
+                item->setter(descItem.value);
+            }
+        }
+    }
+    // Page+setDesc End
+// Page Start
+};
+// Page End
+
+// pageToJSON Start
+std::string pageToJSON(Page page)
+{
+    // Format items.
+    std::string format;
+    format += "{";
+    format += "\"title\":\"%s\",";
+    format += "\"value\":\"%s\",";
+    format += "\"isWritable\":%d"; // Note the absent comma.
+    format += "}";
+    std::string itemsJSON = "";
+    for (auto item : page.items)
+    {
+        // Add comma if we're adding second and later items.
+        if (!itemsJSON.empty())
+        {
+            itemsJSON += ",";
+        }
+        // Add item.
+        auto title = item.title;
+        auto value = item.getter();
+        bool isWritable = (item.setter != nullptr);
+        itemsJSON +=
+            format::printfString(
+                format.c_str(),
+                title.c_str(),
+                value.c_str(),
+                isWritable
+            );
+    }
+
+    // Format page.
+    std::string json;
+    json += "{";
+
+    json += "\"title\":\"";
+    json += page.title;
+    json += "\",";
+
+    json += "\"items\":[";
+    json += itemsJSON;
+    json += "]"; // Note the absent comma.
+
+    json += "}";
+    return json;
+}
+// pageToJSON End
+// debuggerToJSON Start
+std::string debuggerToJSON(
+    const std::string &debuggerTitle, 
+    const std::vector<Page> &pages
+) {
+    std::string pagesJSON = "";
+    for (auto page : pages)
+    {
+        // Add comma if we're adding the second and following pages.
+        if (!pagesJSON.empty())
+        {
+            pagesJSON += ",";
+        }
+        pagesJSON += pageToJSON(page);
+    }
+
+    // Format debugger.
+    std::string json;
+    json += "{";
+
+    json += "\"title\":\"";
+    json += debuggerTitle;
+    json += "\",";
+
+    json += "\"pages\":[";
+    json += pagesJSON;
+    json += "]"; // Note the absent comma.
+
+    json += "}";
+
+    return json;
+}
+// debuggerToJSON End
+
+// Debugger Start
+//! Accumulates and processes DebugPages with the help of network::HTTPClient.
+class Debugger
+{
+    private:
+        network::HTTPClient *httpClient;
+    public:
+        const std::string title;
+
+        Debugger(
+            network::HTTPClient *httpClient,
+            const std::string &title
+        ) :
+            httpClient(httpClient),
+            title(title)
+        { }
+
+    private:
+        std::string brokerURL;
+    public:
+        void setBrokerURL(const std::string &url)
+        {
+            this->brokerURL = url;
+        }
+
+    private:
+        std::vector<Page> pages;
+    public:
+        void addPage(Page page)
+        {
+            this->pages.push_back(page);
+        }
+
+// Debugger End
     // Debugger+page Start
     public:
         Page *page(const std::string &title)
@@ -118,6 +356,9 @@ namespace debug
             }
         }
     // Debugger+processJSON End
+// Debugger Start
+};
+// Debugger End
 
 } // namespace debug
 } // namespace osgcpe

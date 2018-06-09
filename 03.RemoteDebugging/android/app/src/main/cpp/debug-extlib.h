@@ -22,11 +22,22 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_JSON_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_JSON_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_EXTLIB_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_EXTLIB_H
 
-// library-json+STL-android Start
-// Work around Android not having several STL function in std.
+// extlib-json+localeconv-android Start
+// Work around Android not having localeconv() before API 21.
+// We target API 14.
+#include <clocale>
+
+lconv *localeconv()
+{
+    static lconv lc;
+    return &lc;
+}
+// extlib-json+localeconv-android End
+// extlib-json+STL-android Start
+// Work around Android not having several STL functions in std.
 
 #include <string>
 #include <sstream>
@@ -59,25 +70,11 @@ inline int stoi(const std::string &s, size_t *idx = 0, int base = 10)
 }
 
 }
+// extlib-json+STL-android End
 
-// library-json+STL-android End
-// library-json+localeconv-android Start
-// Work around Android not having localeconv() prior SDK 21.
-#include <clocale>
-
-lconv *localeconv()
-{
-    static lconv lc;
-    return &lc;
-}
-
-// library-json+localeconv-android End
-
+// extlib-json Start
 #include <nlohmann/json.hpp>
+// extlib-json End
 
-// library-json+Stub Start
-// Stub.
-// library-json+Stub End
-
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_JSON_H
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_EXTLIB_H
 

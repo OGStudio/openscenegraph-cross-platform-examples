@@ -40,31 +40,33 @@ Example+TextureImageScene
 Example+Debugging
 Example+DebugApplication
 Example+HTTPClient
-
-DebugPage+item
-DebugPage+setDesc
-DebugPageDesc+Stub
-Debugger+OSGCPE_DEBUGGER_LOG
-Debugger+page
-Debugger+process
-Debugger+processJSON
-debug+debuggerToJSON
-debug+pageToJSON
-debug+jsonToPageDesc
-library-json+Stub
-
 Example+StaticPluginOSG
 Example+StaticPluginImageIO
 Example+VBO
-
-VBOSetupVisitor+Stub
 
 library-ios
 library+init-ios
 library+frame-ios
 
+VBOSetupVisitor+Stub
+
 # network
-network+HTTPClient-mongoose
+HTTPClient
 HTTPClient+Mongoose
-HTTPClientMongoose+Stub
-library-mongoose+Stub
+HTTPClientMongoose
+extlib-mongoose
+
+# debug
+PageDesc
+Page
+Page+item
+Page+setDesc
+OSGCPE_DEBUG_DEBUGGER_LOG
+Debugger
+Debugger+page
+Debugger+process
+Debugger+processJSON
+debuggerToJSON
+pageToJSON
+jsonToPageDesc
+extlib-json

@@ -22,15 +22,9 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_JSON_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_JSON_H
+#include "network-extlib.h"
 
-
-#include <nlohmann/json.hpp>
-
-// library-json+Stub Start
-// Stub.
-// library-json+Stub End
-
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_JSON_H
+// extlib-mongoose Start
+#include <mongoose.c>
+// extlib-mongoose End
 

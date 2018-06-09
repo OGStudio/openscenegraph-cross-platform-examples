@@ -22,15 +22,18 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_JSON_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_JSON_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_EXTLIB_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_EXTLIB_H
 
 
-#include <nlohmann/json.hpp>
+// extlib-mongoose+fseeko-android Start
+// Work around Android headers' bug.
+#define fseeko fseek
+// extlib-mongoose+fseeko-android End
+// extlib-mongoose Start
+#include <mongoose.h>
 
-// library-json+Stub Start
-// Stub.
-// library-json+Stub End
+// extlib-mongoose End
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_JSON_H
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_EXTLIB_H
 
