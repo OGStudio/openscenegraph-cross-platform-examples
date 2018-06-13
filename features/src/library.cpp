@@ -44,3 +44,4 @@ osgcpe::Example *example = 0;
 // FEATURE library-android/NamespaceEnd
 // FEATURE library-ios/NamespaceEnd
 
+// FEATURE library-openscenegraph/Impl
