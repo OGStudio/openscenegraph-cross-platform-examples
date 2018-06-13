@@ -25,15 +25,15 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_FORMAT_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_FORMAT_H
 
-// FEATURE format+printfString/Include
+// FEATURE printfString/Include
 
 namespace osgcpe
 {
 namespace format
 {
 
-// FEATURE format+printfString/Impl
-// FEATURE format+splitString/Impl
+// FEATURE printfString/Impl
+// FEATURE splitString/Impl
 
 } // namespace format
 } // namespace osgcpe

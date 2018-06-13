@@ -24,8 +24,6 @@ freely, subject to the following restrictions:
 
 #include "Example.h"
 // FEATURE main-web/Include
-// FEATURE main+FetchOnce-web/Include
-// FEATURE main+FetchRegularly-web/Include
 
 // FEATURE main-web/Loop
 

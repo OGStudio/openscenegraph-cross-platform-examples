@@ -25,17 +25,17 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_FORMAT_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_FORMAT_H
 
-// format+printfString Start
+// printfString Start
 #include <cstdarg>
 
-// format+printfString End
+// printfString End
 
 namespace osgcpe
 {
 namespace format
 {
 
-// format+printfString Start
+// printfString Start
 //! Construct a string using printf-like syntax.
 std::string printfString(const char *fmt, ...)
 {
@@ -47,8 +47,8 @@ std::string printfString(const char *fmt, ...)
     va_end(args);
     return msg;
 }
-// format+printfString End
-// format+splitString Start
+// printfString End
+// splitString Start
 //! Split a string into a list of strings using a single character.
 std::vector<std::string> splitString(const std::string &s, const char *c)
 {
@@ -69,12 +69,13 @@ std::vector<std::string> splitString(const std::string &s, const char *c)
         {
             result.push_back(s.substr(pos, s.length() - 1));
             proceed = false;
-            // If delimiting char has not been found, the result should only contain original string.
+            // If delimiting char has not been found,
+            // the result should only contain original string.
         }
     }
     return result;
 }
-// format+splitString End
+// splitString End
 
 } // namespace format
 } // namespace osgcpe
