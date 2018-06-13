@@ -5,16 +5,6 @@ render+setupCamera
 render+createGraphicsContext-desktop
 render+createShaderProgram
 
-resources+OSGCPE_RESOURCES_LOG
-resources+node
-resources+extension
-resources+string
-resources+setTextureImage
-resources+createTexture
-
-Resource+Stub
-ResourceStreamBuffer+Stub
-
 Application+OSGCPE_APPLICATION_LOG
 Application+frame+Reporting
 Application+run
@@ -41,9 +31,19 @@ main-desktop
 
 # log
 log-default
-logprintf
 logLevelToString
+logprintf
 Logger
+
+# resource
+OSGCPE_RESOURCE_LOG
+createTexture
+extension
+node
+setTextureImage
+string
+Resource
+ResourceStreamBuffer
 
 # network
 HTTPClient

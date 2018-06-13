@@ -33,11 +33,11 @@ freely, subject to the following restrictions:
 // Example+VBO End
 // Example+BoxScene Start
 #include "box.osgt.h"
-#include "resources.h"
+#include "resource.h"
 
 // Example+BoxScene End
 // Example+TextureImageScene Start
-#include "resources.h"
+#include "resource.h"
 #include "ppl.frag.h"
 #include "ppl.vert.h"
 #include "digit.png.h"
@@ -82,8 +82,8 @@ struct Example
     {
         this->app = new osgcpe::Application(EXAMPLE_TITLE);
         // Example+BoxScene Start
-        osgcpe::Resource box("models", "box.osgt", box_osgt, box_osgt_len);
-        auto scene = osgcpe::resources::node(box);
+        osgcpe::resource::Resource box("models", "box.osgt", box_osgt, box_osgt_len);
+        auto scene = osgcpe::resource::node(box);
         if (!scene.valid())
         {
             OSGCPE_EXAMPLE_LOG("ERROR Could not load scene");
@@ -98,9 +98,9 @@ struct Example
             scene->accept(vbo);
             // Example+VBO End
             // Example+TextureImageScene Start
-            osgcpe::Resource shaderFrag("shaders", "ppl.frag", ppl_frag, ppl_frag_len);
-            osgcpe::Resource shaderVert("shaders", "ppl.vert", ppl_vert, ppl_vert_len);
-            osgcpe::Resource textureImage("images", "digit.png", digit_png, digit_png_len);
+            osgcpe::resource::Resource shaderFrag("shaders", "ppl.frag", ppl_frag, ppl_frag_len);
+            osgcpe::resource::Resource shaderVert("shaders", "ppl.vert", ppl_vert, ppl_vert_len);
+            osgcpe::resource::Resource textureImage("images", "digit.png", digit_png, digit_png_len);
             osgcpe::scene::textureImageScene(shaderFrag, shaderVert, textureImage, scene);
             // Example+TextureImageScene End
             this->app->setScene(scene);

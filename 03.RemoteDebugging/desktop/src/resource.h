@@ -22,50 +22,99 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCES_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCES_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
 
-#include "Resource.h"
-#include "ResourceStreamBuffer.h"
-// resources+node Start
+// node Start
 #include <osgDB/Registry>
 
-// resources+node End
-// resources+setTextureImage Start
+// node End
+// setTextureImage Start
 #include <osg/Texture2D>
 #include <osgDB/Registry>
 
-// resources+setTextureImage End
-// resources+createTexture Start
+// setTextureImage End
+// createTexture Start
 #include <osg/Texture2D>
 
-// resources+createTexture End
+// createTexture End
 
-// resources+OSGCPE_RESOURCES_LOG Start
+// OSGCPE_RESOURCE_LOG Start
 #include "log.h"
 #include "format.h"
-#define OSGCPE_RESOURCES_LOG_PREFIX "osgcpe-resources %s"
-#define OSGCPE_RESOURCES_LOG(...) \
+#define OSGCPE_RESOURCE_LOG_PREFIX "osgcpe::resource %s"
+#define OSGCPE_RESOURCE_LOG(...) \
     osgcpe::log::logprintf( \
-        OSGCPE_RESOURCES_LOG_PREFIX, \
+        OSGCPE_RESOURCE_LOG_PREFIX, \
         osgcpe::format::printfString(__VA_ARGS__).c_str() \
     )
 
-// resources+OSGCPE_RESOURCES_LOG End
+// OSGCPE_RESOURCE_LOG End
 
 namespace osgcpe
 {
-namespace resources
+namespace resource
 {
 
-// resources+extension Start
+// Resource Start
+//! Resource container.
+struct Resource
+{
+    Resource(
+        const std::string &group,
+        const std::string &name,
+        unsigned char *contents,
+        unsigned int len
+    ) :
+        group(group),
+        name(name),
+        contents(contents),
+        len(len)
+    { }
+
+    std::string group;
+    std::string name;
+    unsigned char *contents;
+    unsigned int len;
+};
+// Resource End
+// ResourceStreamBuffer Start
+//! Work with Resource contents as with any stream.
+struct ResourceStreamBuffer : std::streambuf
+{
+    ResourceStreamBuffer(const Resource &resource)
+    {
+        char *contents = reinterpret_cast<char *>(resource.contents);
+        this->setg(contents, contents, contents + resource.len);
+    }
+    // Implement 'seekoff()' to support 'seekg()' calls.
+    // OpenSceneGraph plugins like OSG and ImageIO use 'seekg()'.
+    // Topic: How to implement custom std::streambuf's seekoff()?
+    // Source: https://stackoverflow.com/a/46068920
+    std::streampos seekoff(
+        std::streamoff off,
+        std::ios_base::seekdir dir,
+        std::ios_base::openmode which = std::ios_base::in
+    ) {
+        if (dir == std::ios_base::cur)
+            this->gbump(off);
+        else if (dir == std::ios_base::end)
+            this->setg(this->eback(), this->egptr() + off, this->egptr());
+        else if (dir == std::ios_base::beg)
+            this->setg(this->eback(), this->eback() + off, this->egptr());
+        return this->gptr() - this->eback();
+    }
+};
+// ResourceStreamBuffer End
+
+// extension Start
 std::string extension(const Resource &resource)
 {
     auto dotPosition = resource.name.rfind(".");
     // Return empty extension if we cannot detect it.
     if (dotPosition == std::string::npos)
     {
-        OSGCPE_RESOURCES_LOG(
+        OSGCPE_RESOURCE_LOG(
             "ERROR Could not detect file extension for '%s/%s' resource",
             resource.group.c_str(),
             resource.name.c_str()
@@ -74,8 +123,8 @@ std::string extension(const Resource &resource)
     }
     return resource.name.substr(dotPosition + 1);
 }
-// resources+extension End
-// resources+node Start
+// extension End
+// node Start
 osg::ref_ptr<osg::Node> node(Resource &resource, const std::string ext = "")
 {
     osg::ref_ptr<osg::Node> node;
@@ -84,7 +133,7 @@ osg::ref_ptr<osg::Node> node(Resource &resource, const std::string ext = "")
     // Return empty node if extention is absent.
     if (ex.empty())
     {
-        OSGCPE_RESOURCES_LOG(
+        OSGCPE_RESOURCE_LOG(
             "ERROR Could not read node of '%s/%s' resource "
             "because extension is absent",
             resource.group.c_str(),
@@ -104,7 +153,7 @@ osg::ref_ptr<osg::Node> node(Resource &resource, const std::string ext = "")
         }
         else
         {
-            OSGCPE_RESOURCES_LOG(
+            OSGCPE_RESOURCE_LOG(
                 "ERROR Could not read node of '%s/%s' resource from buffer.",
                 resource.group.c_str(),
                 resource.name.c_str()
@@ -113,7 +162,7 @@ osg::ref_ptr<osg::Node> node(Resource &resource, const std::string ext = "")
     }
     else
     {
-        OSGCPE_RESOURCES_LOG(
+        OSGCPE_RESOURCE_LOG(
             "ERROR Could not read node of '%s/%s' resource because "
             "node reader for extension '%s' is absent.",
             resource.group.c_str(),
@@ -123,15 +172,15 @@ osg::ref_ptr<osg::Node> node(Resource &resource, const std::string ext = "")
     }
     return node.release();
 }
-// resources+node End
-// resources+string Start
+// node End
+// string Start
 std::string string(const Resource &resource)
 {
     const char *contents = reinterpret_cast<const char *>(resource.contents);
     return std::string(contents, resource.len);
 }
-// resources+string End
-// resources+setTextureImage Start
+// string End
+// setTextureImage Start
 //! Set image for texture.
 
 // \param texture Texture to set image for.
@@ -147,7 +196,7 @@ void setTextureImage(
     // Do nothing if extension is absent.
     if (ex.empty())
     {
-        OSGCPE_RESOURCES_LOG(
+        OSGCPE_RESOURCE_LOG(
             "ERROR Could not read image of '%s/%s' resource "
             "because extension is absent",
             resource.group.c_str(),
@@ -170,7 +219,7 @@ void setTextureImage(
         }
         else
         {
-            OSGCPE_RESOURCES_LOG(
+            OSGCPE_RESOURCE_LOG(
                 "ERROR Could not read image of '%s/%s' resource from buffer.",
                 resource.group.c_str(),
                 resource.name.c_str()
@@ -179,7 +228,7 @@ void setTextureImage(
     }
     else
     {
-        OSGCPE_RESOURCES_LOG(
+        OSGCPE_RESOURCE_LOG(
             "ERROR Could not read image of '%s/%s' resource because "
             "image reader for extension '%s' is absent.",
             resource.group.c_str(),
@@ -188,8 +237,8 @@ void setTextureImage(
         );
     }
 }
-// resources+setTextureImage End
-// resources+createTexture Start
+// setTextureImage End
+// createTexture Start
 //! Create texture from a resource.
 osg::Texture2D *createTexture(const Resource &resource)
 {
@@ -201,10 +250,10 @@ osg::Texture2D *createTexture(const Resource &resource)
     tex->setFilter(osg::Texture::MAG_FILTER, osg::Texture::LINEAR);
     return tex.release();
 }
-// resources+createTexture End
+// createTexture End
 
-} // namespace resources
+} // namespace resource
 } // namespace osgcpe
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCES_H
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
 

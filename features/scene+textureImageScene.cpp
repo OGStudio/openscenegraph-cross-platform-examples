@@ -1,23 +1,23 @@
 FEATURE scene.h/Include
-#include "resources.h"
+#include "resource.h"
 
 FEATURE scene.h/Impl
 void textureImageScene(
-    const Resource &shaderFrag,
-    const Resource &shaderVert,
-    const Resource &textureImage,
+    const resource::Resource &shaderFrag,
+    const resource::Resource &shaderVert,
+    const resource::Resource &textureImage,
     osg::Node *scene
 ) {
     // Create shader program.
     auto prog =
         render::createShaderProgram(
-            resources::string(shaderVert),
-            resources::string(shaderFrag)
+            resource::string(shaderVert),
+            resource::string(shaderFrag)
         );
     // Apply the program.
     auto material = scene->getOrCreateStateSet();
     material->setAttribute(prog);
     // Set texture image.
-    material->setTextureAttributeAndModes(0, resources::createTexture(textureImage));
+    material->setTextureAttributeAndModes(0, resource::createTexture(textureImage));
     material->addUniform(new osg::Uniform("image", 0));
 }

@@ -25,35 +25,28 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
 
-#include <string>
+// FEATURE node/Include
+// FEATURE setTextureImage/Include
+// FEATURE createTexture/Include
+
+// FEATURE OSGCPE_RESOURCE_LOG/Impl
 
 namespace osgcpe
 {
-
-//! Resource container.
-struct Resource
+namespace resource
 {
-    Resource(
-        const std::string &group,
-        const std::string &name,
-        unsigned char *contents,
-        unsigned int len
-    ) :
-        group(group),
-        name(name),
-        contents(contents),
-        len(len)
-    { }
 
-    std::string group;
-    std::string name;
-    unsigned char *contents;
-    unsigned int len;
-};
+// FEATURE Resource/Impl
+// FEATURE ResourceStreamBuffer/Impl
 
+// FEATURE extension/Impl
+// FEATURE node/Impl
+// FEATURE string/Impl
+// FEATURE setTextureImage/Impl
+// FEATURE createTexture/Impl
+
+} // namespace resource
 } // namespace osgcpe
-
-// FEATURE Resource+Stub/Impl
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RESOURCE_H
 

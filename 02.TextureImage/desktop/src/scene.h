@@ -26,7 +26,7 @@ freely, subject to the following restrictions:
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 
 // scene+textureImageScene Start
-#include "resources.h"
+#include "resource.h"
 
 // scene+textureImageScene End
 
@@ -37,22 +37,22 @@ namespace scene
 
 // scene+textureImageScene Start
 void textureImageScene(
-    const Resource &shaderFrag,
-    const Resource &shaderVert,
-    const Resource &textureImage,
+    const resource::Resource &shaderFrag,
+    const resource::Resource &shaderVert,
+    const resource::Resource &textureImage,
     osg::Node *scene
 ) {
     // Create shader program.
     auto prog =
         render::createShaderProgram(
-            resources::string(shaderVert),
-            resources::string(shaderFrag)
+            resource::string(shaderVert),
+            resource::string(shaderFrag)
         );
     // Apply the program.
     auto material = scene->getOrCreateStateSet();
     material->setAttribute(prog);
     // Set texture image.
-    material->setTextureAttributeAndModes(0, resources::createTexture(textureImage));
+    material->setTextureAttributeAndModes(0, resource::createTexture(textureImage));
     material->addUniform(new osg::Uniform("image", 0));
 }
 // scene+textureImageScene End

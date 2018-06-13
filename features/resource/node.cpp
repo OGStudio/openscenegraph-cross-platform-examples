@@ -1,7 +1,7 @@
-FEATURE resources.h/Include
+FEATURE resource.h/Include
 #include <osgDB/Registry>
 
-FEATURE resources.h/Impl
+FEATURE resource.h/Impl
 osg::ref_ptr<osg::Node> node(Resource &resource, const std::string ext = "")
 {
     osg::ref_ptr<osg::Node> node;
@@ -10,7 +10,7 @@ osg::ref_ptr<osg::Node> node(Resource &resource, const std::string ext = "")
     // Return empty node if extention is absent.
     if (ex.empty())
     {
-        OSGCPE_RESOURCES_LOG(
+        OSGCPE_RESOURCE_LOG(
             "ERROR Could not read node of '%s/%s' resource "
             "because extension is absent",
             resource.group.c_str(),
@@ -30,7 +30,7 @@ osg::ref_ptr<osg::Node> node(Resource &resource, const std::string ext = "")
         }
         else
         {
-            OSGCPE_RESOURCES_LOG(
+            OSGCPE_RESOURCE_LOG(
                 "ERROR Could not read node of '%s/%s' resource from buffer.",
                 resource.group.c_str(),
                 resource.name.c_str()
@@ -39,7 +39,7 @@ osg::ref_ptr<osg::Node> node(Resource &resource, const std::string ext = "")
     }
     else
     {
-        OSGCPE_RESOURCES_LOG(
+        OSGCPE_RESOURCE_LOG(
             "ERROR Could not read node of '%s/%s' resource because "
             "node reader for extension '%s' is absent.",
             resource.group.c_str(),

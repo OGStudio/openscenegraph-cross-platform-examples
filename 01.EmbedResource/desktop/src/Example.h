@@ -29,7 +29,7 @@ freely, subject to the following restrictions:
 #include "scene.h"
 // Example+BoxScene Start
 #include "box.osgt.h"
-#include "resources.h"
+#include "resource.h"
 
 // Example+BoxScene End
 
@@ -62,8 +62,8 @@ struct Example
     {
         this->app = new osgcpe::Application(EXAMPLE_TITLE);
         // Example+BoxScene Start
-        osgcpe::Resource box("models", "box.osgt", box_osgt, box_osgt_len);
-        auto scene = osgcpe::resources::node(box);
+        osgcpe::resource::Resource box("models", "box.osgt", box_osgt, box_osgt_len);
+        auto scene = osgcpe::resource::node(box);
         if (!scene.valid())
         {
             OSGCPE_EXAMPLE_LOG("ERROR Could not load scene");

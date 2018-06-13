@@ -1,7 +1,7 @@
-FEATURE resources.h/Include
+FEATURE resource.h/Include
 #include <osg/Texture2D>
 
-FEATURE resources.h/Impl
+FEATURE resource.h/Impl
 //! Create texture from a resource.
 osg::Texture2D *createTexture(const Resource &resource)
 {

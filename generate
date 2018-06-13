@@ -40,12 +40,14 @@ main()
             dirFeatures=${PLATFORMS[$platform]}
             # Default features.
             process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features
-            # Network features.
-            process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features/network
-            # Debug features.
-            process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features/debug
-            # Log features.
+            # log
             process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features/log
+            # resource
+            process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features/resource
+            # network
+            process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features/network
+            # debug
+            process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features/debug
         done
     done
 }
