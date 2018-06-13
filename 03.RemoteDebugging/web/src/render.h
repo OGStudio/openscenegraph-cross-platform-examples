@@ -25,21 +25,27 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
 
-// render+createShaderProgram Start
+// createShaderProgram Start
 #include <osg/Program>
 
-// render+createShaderProgram End
-// render+setupCamera Start
+// createShaderProgram End
+// setupCamera Start
 #include <osg/Camera>
 
-// render+setupCamera End
+// setupCamera End
+// VBOSetupVisitor Start
+#include <osg/Geode>
+#include <osg/Geometry>
+#include <osg/NodeVisitor>
+
+// VBOSetupVisitor End
 
 namespace osgcpe
 {
 namespace render
 {
 
-// render+createShaderProgram Start
+// createShaderProgram Start
 osg::Program *createShaderProgram(
     const std::string &vertexShader,
     const std::string &fragmentShader
@@ -53,8 +59,8 @@ osg::Program *createShaderProgram(
     prog->addShader(fs);
     return prog.release();
 }
-// render+createShaderProgram End
-// render+setupCamera Start
+// createShaderProgram End
+// setupCamera Start
 // Configure camera with common defaults.
 void setupCamera(
     osg::Camera *cam,
@@ -74,8 +80,32 @@ void setupCamera(
     // Configure projection.
     cam->setProjectionMatrixAsPerspective(fovy, aspect, 1, 1000);
 }
-// render+setupCamera End
+// setupCamera End
 
+
+// VBOSetupVisitor Start
+//! This class forces the use of VBO.
+class VBOSetupVisitor : public osg::NodeVisitor
+{
+    public:
+        VBOSetupVisitor() :
+            osg::NodeVisitor(osg::NodeVisitor::TRAVERSE_ALL_CHILDREN) { }
+
+        virtual void apply(osg::Geode &geode)
+        {
+            for (auto i = 0; i < geode.getNumDrawables(); ++i)
+            {
+                osg::Geometry *geom =
+                    dynamic_cast<osg::Geometry*>(geode.getDrawable(i));
+                if (geom)
+                {
+                    geom->setUseVertexBufferObjects(true);
+                }
+            }
+            NodeVisitor::apply(geode);
+        }
+};
+// VBOSetupVisitor End
 
 } // namespace render
 } // namespace osgcpe

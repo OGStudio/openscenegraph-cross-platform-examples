@@ -1,8 +1,6 @@
 format+printfString
 format+splitString
 
-render+createShaderProgram
-
 Application+OSGCPE_APPLICATION_LOG
 Application+frame+Reporting
 Application+setupWindow-embedded
@@ -33,8 +31,6 @@ library-android
 library+init-android
 library+frame-android
 
-VBOSetupVisitor+Stub
-
 # log
 log-android
 logprintf
@@ -50,6 +46,10 @@ setTextureImage
 string
 Resource
 ResourceStreamBuffer
+
+# render
+createShaderProgram
+VBOSetupVisitor
 
 # network
 HTTPClient

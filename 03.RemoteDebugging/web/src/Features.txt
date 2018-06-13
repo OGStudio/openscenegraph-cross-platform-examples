@@ -1,9 +1,6 @@
 format+printfString
 format+splitString
 
-render+setupCamera
-render+createShaderProgram
-
 Application+OSGCPE_APPLICATION_LOG
 Application+frame+Reporting
 Application+setupWindow-embedded
@@ -30,8 +27,6 @@ Example+HTTPClient
 
 main-web
 
-VBOSetupVisitor+Stub
-
 # log
 log-default
 logprintf
@@ -47,6 +42,11 @@ setTextureImage
 string
 Resource
 ResourceStreamBuffer
+
+# render
+createShaderProgram
+setupCamera
+VBOSetupVisitor
 
 # network
 HTTPClient

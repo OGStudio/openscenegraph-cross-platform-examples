@@ -22,43 +22,31 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_SETUP_VISITOR_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_SETUP_VISITOR_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
 
-#include <osg/Geode>
-#include <osg/Geometry>
-#include <osg/NodeVisitor>
+// FEATURE createGraphicsContext-desktop/Include
+// FEATURE createGraphicsContext-ios/Include
+// FEATURE createShaderProgram/Include
+// FEATURE setupCamera/Include
+// FEATURE VBOSetupVisitor/Include
 
 namespace osgcpe
 {
-
-// This class forces the use of VBO.
-class VBOSetupVisitor : public osg::NodeVisitor
+namespace render
 {
-    public:
-        VBOSetupVisitor() :
-            osg::NodeVisitor(osg::NodeVisitor::TRAVERSE_ALL_CHILDREN) { }
 
-        virtual void apply(osg::Geode &geode)
-        {
-            for (unsigned int i = 0; i < geode.getNumDrawables(); ++i)
-            {
-                osg::Geometry *geom =
-                    dynamic_cast<osg::Geometry*>(geode.getDrawable(i));
-                if (geom)
-                {
-                    geom->setUseVertexBufferObjects(true);
-                }
-            }
-            NodeVisitor::apply(geode);
-        }
-};
+// FEATURE createGraphicsContext-desktop/Impl
+// FEATURE createGraphicsContext-ios/Impl
+// FEATURE createShaderProgram/Impl
+// FEATURE setupCamera/Impl
 
+// FEATURE shaders/Impl
+
+// FEATURE VBOSetupVisitor/Impl
+
+} // namespace render
 } // namespace osgcpe
 
-// VBOSetupVisitor+Stub Start
-// Stub.
-// VBOSetupVisitor+Stub End
-
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_SETUP_VISITOR_H
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
 

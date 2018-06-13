@@ -1,10 +1,6 @@
 format+printfString
 format+splitString
 
-render+setupCamera
-render+createGraphicsContext-desktop
-render+createShaderProgram
-
 Application+OSGCPE_APPLICATION_LOG
 Application+frame+Reporting
 Application+run
@@ -44,6 +40,11 @@ setTextureImage
 string
 Resource
 ResourceStreamBuffer
+
+# render
+createGraphicsContext-desktop
+createShaderProgram
+setupCamera
 
 # network
 HTTPClient

@@ -28,7 +28,7 @@ freely, subject to the following restrictions:
 #include "Application.h"
 #include "scene.h"
 // Example+VBO Start
-#include "VBOSetupVisitor.h"
+#include "render.h"
 
 // Example+VBO End
 // Example+BoxScene Start
@@ -83,7 +83,7 @@ struct Example
             // Example+VBO Start
             // Use VBO and EBO instead of display lists. CRITICAL for web (Emscripten)
             // to skip FULL_ES2 emulation flag.
-            osgcpe::VBOSetupVisitor vbo;
+            osgcpe::render::VBOSetupVisitor vbo;
             scene->accept(vbo);
             // Example+VBO End
             // Example+SingleColorScene Start

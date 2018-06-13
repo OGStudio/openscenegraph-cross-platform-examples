@@ -1,10 +1,6 @@
 format+printfString
 format+splitString
 
-render+setupCamera
-render+createGraphicsContext-ios
-render+createShaderProgram
-
 Application+OSGCPE_APPLICATION_LOG
 Application+frame+Reporting
 Application+setupWindow-ios
@@ -33,8 +29,6 @@ library-ios
 library+init-ios
 library+frame-ios
 
-VBOSetupVisitor+Stub
-
 # log
 log-default
 logprintf
@@ -50,6 +44,12 @@ setTextureImage
 string
 Resource
 ResourceStreamBuffer
+
+# render
+createGraphicsContext-ios
+createShaderProgram
+setupCamera
+VBOSetupVisitor
 
 # network
 HTTPClient

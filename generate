@@ -44,6 +44,8 @@ main()
             process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features/log
             # resource
             process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features/resource
+            # render
+            process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features/render
             # network
             process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features/network
             # debug
