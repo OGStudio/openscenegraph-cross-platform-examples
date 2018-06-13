@@ -11,9 +11,6 @@ Application+Debugging
 Application+DebugCamera
 Reporter+Stub
 
-scene+quaternionToDegrees
-scene+textureImageScene
-
 Example+03
 Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
@@ -50,6 +47,10 @@ ResourceStreamBuffer
 # render
 createShaderProgram
 VBOSetupVisitor
+
+# scene
+quaternionToDegrees
+textureImageScene
 
 # network
 HTTPClient

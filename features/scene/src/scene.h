@@ -25,16 +25,19 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 
-// FEATURE scene+textureImageScene/Include
+// FEATURE textureImageScene/Include
+// FEATURE PrintGraphVisitor/Include
 
 namespace osgcpe
 {
 namespace scene
 {
 
-// FEATURE scene+paintScene/Impl
-// FEATURE scene+quaternionToDegrees/Impl
-// FEATURE scene+textureImageScene/Impl
+// FEATURE paintScene/Impl
+// FEATURE quaternionToDegrees/Impl
+// FEATURE textureImageScene/Impl
+
+// FEATURE PrintGraphVisitor/Impl
 
 } // namespace scene
 } // namespace osgcpe
