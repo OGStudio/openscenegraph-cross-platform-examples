@@ -1,0 +1,54 @@
+#!/bin/bash
+# This script generats complete source code for each example
+# by using the same source base with the help of
+# Feature Tool ( https://bitbucket.org/ogstudio/feature-tool )
+
+DIR=`dirname $0`
+FEATURES_FILENAME=Features.txt
+
+# List of examples.
+EXAMPLES="
+01.EmbedResource
+02.TextureImage
+03.RemoteDebugging
+"
+
+# Platform -> Path to Features.txt
+declare -A PLATFORMS
+PLATFORMS["android"]="app/src/main/cpp"
+PLATFORMS["desktop"]="src"
+PLATFORMS["ios"]="src"
+PLATFORMS["web"]="src"
+
+process()
+{
+    PATH_TO_FEATURES_FILENAME=$1
+    FEATURES_FILENAME=$2
+    PATH_TO_FEATURES=$3
+
+    PATH_TO_FEATURES_TXT=$PATH_TO_FEATURES_FILENAME/$FEATURES_FILENAME
+
+    echo "feature-tool $PATH_TO_FEATURES_TXT $PATH_TO_FEATURES"
+    feature-tool $PATH_TO_FEATURES_TXT $PATH_TO_FEATURES
+}
+
+main()
+{
+    for example in $EXAMPLES; do
+        echo "Generating example '$example'"
+        for platform in "${!PLATFORMS[@]}"; do
+            dirFeatures=${PLATFORMS[$platform]}
+            # Default features.
+            process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features
+            # Network features.
+            process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features/network
+            # Debug features.
+            process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features/debug
+            # Log features.
+            process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features/log
+        done
+    done
+}
+
+main
+

@@ -1,11 +1,6 @@
 format+printfString
 format+splitString
 
-log+log-default
-log+logprintf
-log+logLevelToString
-Logger+Stub
-
 render+setupCamera
 render+createShaderProgram
 
@@ -46,6 +41,12 @@ Example+HTTPClient
 main-web
 
 VBOSetupVisitor+Stub
+
+# log
+log-default
+logprintf
+logLevelToString
+Logger
 
 # network
 HTTPClient

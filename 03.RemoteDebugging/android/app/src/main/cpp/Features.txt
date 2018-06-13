@@ -1,11 +1,6 @@
 format+printfString
 format+splitString
 
-log+log-android
-log+logprintf
-log+logLevelToString
-Logger+Stub
-
 render+createShaderProgram
 
 resources+OSGCPE_RESOURCES_LOG
@@ -48,6 +43,12 @@ library+init-android
 library+frame-android
 
 VBOSetupVisitor+Stub
+
+# log
+log-android
+logprintf
+logLevelToString
+Logger
 
 # network
 HTTPClient
