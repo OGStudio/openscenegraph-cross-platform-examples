@@ -130,6 +130,7 @@ cmake --build . --config Release -- -IDEBuildOperationMaxNumberOfConcurrentCompi
 * the first time you build might take a while because OpenSceneGraph needs to be built, too
 * the process of building for Device might fail for some plugins, don't worry: the necessary libraries have already been built by that time
 * if you encounter `Undefined symbols for architecture X` errors with `library::`, rebuild OpenSceneGraph
+* if Simulator build failes to build necessary targets, you can build missing targets manually by using `--target` like this: `--target osgdb_osg`
 
 Second, open `01.EmbedResource/ios/xcodeproject/ex01.xcodeproj` Xcode project and run it.
 

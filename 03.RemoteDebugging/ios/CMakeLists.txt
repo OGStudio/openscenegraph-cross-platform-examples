@@ -9,6 +9,15 @@ SET(BUILD_SIMULATOR YES CACHE BOOL "Build for simulator. Set to `false` to build
 # * NLohmann's json
 SET(EXT_PROJ_DIR "${CMAKE_SOURCE_DIR}/../../..")
 
+# Set special build flags:
+# * -O3: make compact binary, critical for iOS
+# * -mios-simulator-version-min=9.0: specify minimal target iOS version, critical for 32-bit builds
+SET(BUILD_FLAGS "-O3 -mios-simulator-version-min=9.0")
+ADD_DEFINITIONS(${BUILD_FLAGS})
+
+# Use C++11.
+ADD_DEFINITIONS("-std=c++11")
+
 # Specify critical OpenSceneGraph build variables.
 SET(OPENGL_PROFILE "GLES2" CACHE STRING "OpenGL variant to use")
 SET(DYNAMIC_OPENTHREADS OFF CACHE BOOL "Link OpenThreads statically")
@@ -26,15 +35,6 @@ ELSE()
     SET(IPHONE_VERSION_MIN "9.0")
     SET(IOS_PLATFORM "iPhoneOS")
 ENDIF()
-# Set special build flags:
-# * -O3: make compact binary, critical for iOS
-# * -mios-simulator-version-min=9.0: specify minimal target iOS version, critical for 32-bit builds
-SET(BUILD_FLAGS "-O3 -mios-simulator-version-min=9.0")
-ADD_DEFINITIONS(${BUILD_FLAGS})
-
-# Use C++11.
-ADD_DEFINITIONS("-std=c++11")
-
 # Build and reference OpenSceneGraph.
 IF(BUILD_SIMULATOR)
     SET(BUILD_VARIANT "Simulator")
@@ -42,7 +42,7 @@ ELSE()
     SET(BUILD_VARIANT "Device")
 ENDIF()
 SET(OSG_SOURCE_DIR "${EXT_PROJ_DIR}/OpenSceneGraph" CACHE PATH "Path to OpenSceneGraph source directory")
-SET(OSG_BUILD_DIR "${OSG_SOURCE_DIR}/build/${BUILD_VARIANT}")
+SET(OSG_BUILD_DIR "${OSG_SOURCE_DIR}/build/Ex03/${BUILD_VARIANT}")
 # Only build OpenSceneGraph if it has not yet been built.
 IF (NOT EXISTS "${OSG_BUILD_DIR}/lib/libosgdb_imageio.a")
     FILE(MAKE_DIRECTORY ${OSG_BUILD_DIR})
