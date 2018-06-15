@@ -4,7 +4,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 # Path to external projects:
 # * mongoose
 # * NLohmann's json
-SET(EXT_PROJ_DIR "${CMAKE_SOURCE_DIR}/../../..")
+SET(EXT_PROJ_DIR "../../..")
 
 # OpenSceneGraph directories.
 SET(OSG_INC_DIR "" CACHE PATH "Path to OpenSceneGraph include directory")
@@ -25,7 +25,7 @@ INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/json/single_include)
 # Reference source headers.
 INCLUDE_DIRECTORIES(src)
 # Reference resource headers.
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/../../data)
+INCLUDE_DIRECTORIES(../../data)
 # Create executable.
 ADD_EXECUTABLE(ex03-remote-debugging src/main.cpp)
 # Link executable with OpenSceneGraph libraries.

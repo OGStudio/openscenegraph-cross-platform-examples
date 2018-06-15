@@ -5,7 +5,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.4.1)
 # * OpenSceneGraph
 # * mongoose
 # * NLohmann's json
-SET(EXT_PROJ_DIR "${CMAKE_SOURCE_DIR}/../../../..")
+SET(EXT_PROJ_DIR "../../../..")
 
 # Reference libpng-android.
 SET(PNG_SOURCE_DIR "${EXT_PROJ_DIR}/libpng-android")

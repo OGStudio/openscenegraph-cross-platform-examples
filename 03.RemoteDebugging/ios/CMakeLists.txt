@@ -7,7 +7,7 @@ SET(BUILD_SIMULATOR YES CACHE BOOL "Build for simulator. Set to `false` to build
 # * OpenSceneGraph
 # * mongoose
 # * NLohmann's json
-SET(EXT_PROJ_DIR "${CMAKE_SOURCE_DIR}/../../..")
+SET(EXT_PROJ_DIR "../../..")
 
 # Set special build flags:
 # * -O3: make compact binary, critical for iOS
@@ -68,7 +68,7 @@ INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/json/single_include)
 # Reference source headers.
 INCLUDE_DIRECTORIES(src)
 # Reference resource headers.
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/../../data)
+INCLUDE_DIRECTORIES(../../data)
 # Build example library.
 ADD_LIBRARY(rawex03 STATIC src/library.cpp)
 # NOTE This does not actually link anything. However, this command

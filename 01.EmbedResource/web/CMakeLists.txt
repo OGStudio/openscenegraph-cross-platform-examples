@@ -3,7 +3,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 # Path to external projects:
 # * OpenSceneGraph
-SET(EXT_PROJ_DIR "${CMAKE_SOURCE_DIR}/../../..")
+SET(EXT_PROJ_DIR "../../..")
 
 # Specify critical OpenSceneGraph build variables.
 SET(BUILD_OSG_APPLICATIONS NO CACHE BOOL "Do not build applications")
@@ -39,10 +39,10 @@ INCLUDE_DIRECTORIES(${OSG_BUILD_DIR}/include)
 # Reference OpenSceneGraph libraries.
 LINK_DIRECTORIES(${OSG_BUILD_DIR}/lib)
 
-# Reference headers.
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/src)
+# Reference source headers.
+INCLUDE_DIRECTORIES(src)
 # Reference resource headers.
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/../../data)
+INCLUDE_DIRECTORIES(../../data)
 # Create executable (aka HTML page).
 ADD_EXECUTABLE(ex01-embed-resource src/main.cpp)
 # Link with OpenSceneGraph libraries in specific order.
