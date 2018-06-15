@@ -1,26 +1,8 @@
-log+printfString
-log+log-default
-log+logprintf
-log+logLevelToString
-Logger+Stub
-
-render+setupCamera
-render+createGraphicsContext-desktop
-render+createShaderProgram
-
-resources+OSGCPE_RESOURCES_LOG
-resources+node
-resources+extension
-Resource+Stub
-ResourceStreamBuffer+Stub
-
 Application+frame
 Application+run
 Application+setupWindow-desktop
 Application+Logging
 Application+Rendering
-
-scene+paintScene
 
 Example+01
 Example+OSGCPE_EXAMPLE_LOG
@@ -29,3 +11,27 @@ Example+SingleColorScene
 
 main-desktop
 
+# log
+log-default
+logLevelToString
+logprintf
+Logger
+
+# format
+printfString
+splitString
+
+# resource
+OSGCPE_RESOURCE_LOG
+extension
+node
+Resource
+ResourceStreamBuffer
+
+# render
+createGraphicsContext-desktop
+createShaderProgram
+setupCamera
+
+# scene
+paintScene

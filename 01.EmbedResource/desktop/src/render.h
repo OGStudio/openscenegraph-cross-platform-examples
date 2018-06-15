@@ -25,21 +25,21 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_RENDER_H
 
-// render+createShaderProgram Start
+// createShaderProgram Start
 #include <osg/Program>
 
-// render+createShaderProgram End
-// render+setupCamera Start
+// createShaderProgram End
+// setupCamera Start
 #include <osg/Camera>
 
-// render+setupCamera End
+// setupCamera End
 
 namespace osgcpe
 {
 namespace render
 {
 
-// render+createGraphicsContext-desktop Start
+// createGraphicsContext-desktop Start
 // Create graphics context for Linux, macOS, Windows.
 osg::GraphicsContext *createGraphicsContext(
     const std::string &title,
@@ -65,8 +65,8 @@ osg::GraphicsContext *createGraphicsContext(
     // Create GC.
     return osg::GraphicsContext::createGraphicsContext(traits);
 }
-// render+createGraphicsContext-desktop End
-// render+createShaderProgram Start
+// createGraphicsContext-desktop End
+// createShaderProgram Start
 osg::Program *createShaderProgram(
     const std::string &vertexShader,
     const std::string &fragmentShader
@@ -80,8 +80,8 @@ osg::Program *createShaderProgram(
     prog->addShader(fs);
     return prog.release();
 }
-// render+createShaderProgram End
-// render+setupCamera Start
+// createShaderProgram End
+// setupCamera Start
 // Configure camera with common defaults.
 void setupCamera(
     osg::Camera *cam,
@@ -101,7 +101,8 @@ void setupCamera(
     // Configure projection.
     cam->setProjectionMatrixAsPerspective(fovy, aspect, 1, 1000);
 }
-// render+setupCamera End
+// setupCamera End
+
 
 
 } // namespace render
