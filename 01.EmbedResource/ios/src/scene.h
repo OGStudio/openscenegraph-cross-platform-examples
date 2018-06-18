@@ -31,7 +31,7 @@ namespace osgcpe
 namespace scene
 {
 
-// scene+paintScene Start
+// paintScene Start
 void paintScene(osg::Node *scene)
 {
     // Fragment shader to display everything in red colour.
@@ -41,7 +41,8 @@ void paintScene(osg::Node *scene)
     auto prog = render::createShaderProgram(shaderVertex, shaderFragment);
     scene->getOrCreateStateSet()->setAttribute(prog);
 }
-// scene+paintScene End
+// paintScene End
+
 
 } // namespace scene
 } // namespace osgcpe

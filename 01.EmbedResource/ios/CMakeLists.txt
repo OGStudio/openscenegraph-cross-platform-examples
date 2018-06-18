@@ -5,7 +5,7 @@ SET(BUILD_SIMULATOR YES CACHE BOOL "Build for simulator. Set to `false` to build
 
 # Path to external projects:
 # * OpenSceneGraph
-SET(EXT_PROJ_DIR "../../..")
+SET(EXT_PROJ_DIR "${CMAKE_SOURCE_DIR}/../../..")
 
 # Set special build flags:
 # * -O3: make compact binary, critical for iOS
@@ -47,6 +47,8 @@ IF (NOT EXISTS "${OSG_BUILD_DIR}/lib/libosgViewer.a")
     ADD_SUBDIRECTORY(${OSG_SOURCE_DIR} ${OSG_BUILD_DIR})
 ENDIF ()
 # Reference OpenSceneGraph includes.
+MESSAGE(${OSG_SOURCE_DIR}/include)
+MESSAGE(${OSG_BUILD_DIR}/include)
 INCLUDE_DIRECTORIES(${OSG_SOURCE_DIR}/include)
 INCLUDE_DIRECTORIES(${OSG_BUILD_DIR}/include)
 

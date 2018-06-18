@@ -3,6 +3,13 @@
 # by using the same source base with the help of
 # Feature Tool ( https://bitbucket.org/ogstudio/feature-tool )
 
+# Make sure we have at least Bash 3.
+# NOTE Why not Bash 4? Because Apple sucks: https://apple.stackexchange.com/a/197172
+if ((BASH_VERSINFO[0] < 3)); then
+    echo "ERROR You need to have Bash 3+"
+    exit 1
+fi
+
 DIR=`dirname $0`
 FEATURES_FILENAME=Features.txt
 
@@ -14,11 +21,18 @@ EXAMPLES="
 "
 
 # Platform -> Path to Features.txt
-declare -A PLATFORMS
-PLATFORMS["android"]="app/src/main/cpp"
-PLATFORMS["desktop"]="src"
-PLATFORMS["ios"]="src"
-PLATFORMS["web"]="src"
+PLATFORMS=(
+    "android"
+    "desktop"
+    "ios"
+    "web"
+)
+FEATURES=(
+    "app/src/main/cpp"
+    "src" 
+    "src"
+    "src"
+)
 
 process()
 {
@@ -36,8 +50,9 @@ main()
 {
     for example in $EXAMPLES; do
         echo "Generating example '$example'"
-        for platform in "${!PLATFORMS[@]}"; do
-            dirFeatures=${PLATFORMS[$platform]}
+        for ((i=0; i < ${#PLATFORMS[@]}; i++)); do
+            platform=${PLATFORMS[$i]}
+            dirFeatures=${FEATURES[$i]}
             # Default features.
             process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features
             # log

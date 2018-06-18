@@ -3,7 +3,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 # Path to external projects:
 # * OpenSceneGraph
-SET(EXT_PROJ_DIR "../../..")
+SET(EXT_PROJ_DIR "${CMAKE_SOURCE_DIR}/../../..")
 
 # Specify critical OpenSceneGraph build variables.
 SET(BUILD_OSG_APPLICATIONS NO CACHE BOOL "Do not build applications")
