@@ -22,43 +22,35 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_SETUP_VISITOR_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_SETUP_VISITOR_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_FORMAT_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_FORMAT_H
 
-#include <osg/Geode>
-#include <osg/Geometry>
-#include <osg/NodeVisitor>
+// printfString Start
+#include <cstdarg>
+
+// printfString End
 
 namespace osgcpe
 {
-
-// This class forces the use of VBO.
-class VBOSetupVisitor : public osg::NodeVisitor
+namespace format
 {
-    public:
-        VBOSetupVisitor() :
-            osg::NodeVisitor(osg::NodeVisitor::TRAVERSE_ALL_CHILDREN) { }
 
-        virtual void apply(osg::Geode &geode)
-        {
-            for (unsigned int i = 0; i < geode.getNumDrawables(); ++i)
-            {
-                osg::Geometry *geom =
-                    dynamic_cast<osg::Geometry*>(geode.getDrawable(i));
-                if (geom)
-                {
-                    geom->setUseVertexBufferObjects(true);
-                }
-            }
-            NodeVisitor::apply(geode);
-        }
-};
+// printfString Start
+//! Construct a string using printf-like syntax.
+std::string printfString(const char *fmt, ...)
+{
+    const int PRINTF_STRING_MAX_STRLEN = 1024;
+    va_list args;
+    char msg[PRINTF_STRING_MAX_STRLEN];
+    va_start(args, fmt);
+    vsnprintf(msg, PRINTF_STRING_MAX_STRLEN, fmt, args);
+    va_end(args);
+    return msg;
+}
+// printfString End
 
+} // namespace format
 } // namespace osgcpe
 
-// VBOSetupVisitor+Stub Start
-// Stub.
-// VBOSetupVisitor+Stub End
-
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_VBO_SETUP_VISITOR_H
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_FORMAT_H
 
