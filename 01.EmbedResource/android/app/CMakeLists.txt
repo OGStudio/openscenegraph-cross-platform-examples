@@ -10,7 +10,7 @@ SET(DYNAMIC_OPENTHREADS OFF CACHE BOOL "Link OpenThreads statically")
 SET(DYNAMIC_OPENSCENEGRAPH OFF CACHE BOOL "Link OpenSceneGraph statically")
 # Reference OpenSceneGraph.
 SET(OSG_SOURCE_DIR "${EXT_PROJ_DIR}/OpenSceneGraph")
-SET(OSG_BUILD_DIR "${OSG_SOURCE_DIR}/build/Android-${ANDROID_ABI}")
+SET(OSG_BUILD_DIR "${OSG_SOURCE_DIR}/build/Android-${ANDROID_ABI}/Ex01")
 # Only build OpenSceneGraph if it has not yet been built.
 IF (NOT EXISTS "${OSG_BUILD_DIR}/lib/libosgViewer.a")
     FILE(MAKE_DIRECTORY ${OSG_BUILD_DIR})
