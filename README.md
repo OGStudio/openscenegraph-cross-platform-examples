@@ -127,11 +127,12 @@ cmake --build . --config Release -- -IDEBuildOperationMaxNumberOfConcurrentCompi
 
 **Notes**:
 
-* the first time you build might take a while because OpenSceneGraph needs to be built, too
-* if you encounter `Undefined symbols for architecture X` errors with `library::`, rebuild OpenSceneGraph
+* each example uses exclusive OpenSceneGraph build in `/path/to/OpenSceneGraph/build/<Device|Simulator>/Ex<Number>` because different Xcode projects don't work with single OpenSceneGraph build for some reason
+* if you encounter `Undefined symbols for architecture <Arch>` errors with `library::`, remove OpenSceneGraph build and retry
 * the build process may fail for some plugins and prevent other parts of OpenSceneGraph to be built
-    * restart to see if iOS library has been built
-    * if not, you can build missing targets manually by appending `--target` like this: `--target osgdb_osg` to `cmake` command
+    * retry the build command to see if iOS library has been built
+    * if not, you can build each missing target manually by appending `--target` to `cmake` command
+        * for example: `--target osgdb_osg` 
 
 Second, open `01.EmbedResource/ios/xcodeproject/ex01.xcodeproj` Xcode project and run it.
 

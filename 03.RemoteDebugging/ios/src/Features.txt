@@ -12,12 +12,12 @@ Example+03
 Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
 Example+TextureImageScene
+Example+StaticPluginOSG
+Example+VBO
 Example+Debugging
 Example+DebugApplication
 Example+HTTPClient
-Example+StaticPluginOSG
 Example+StaticPluginImageIO
-Example+VBO
 
 library-ios
 library+init-ios
@@ -25,8 +25,8 @@ library+frame-ios
 
 # log
 log-default
-logprintf
 logLevelToString
+logprintf
 Logger
 
 # format

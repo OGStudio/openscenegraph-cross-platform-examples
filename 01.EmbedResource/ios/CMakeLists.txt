@@ -1,5 +1,5 @@
 PROJECT(EX01_EMBED_RESOURCE)
-CMAKE_MINIMUM_REQUIRED(VERSION 3.4.0)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 SET(BUILD_SIMULATOR YES CACHE BOOL "Build for simulator. Set to `false` to build for real device")
 
@@ -88,7 +88,6 @@ ENDIF()
 ADD_CUSTOM_COMMAND(
     TARGET rawex01
     POST_BUILD
-    #COMMAND "${CMAKE_SOURCE_DIR}/create_single_osglib" "." "${OSG_BUILD_DIR}"
     COMMAND
         "libtool"
         "-static" 

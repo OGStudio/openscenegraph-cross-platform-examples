@@ -1,25 +1,7 @@
-log+printfString
-log+log-default
-log+logprintf
-log+logLevelToString
-Logger+Stub
-
-render+setupCamera
-render+createGraphicsContext-ios
-render+createShaderProgram
-
-resources+OSGCPE_RESOURCES_LOG
-resources+node
-resources+extension
-Resource+Stub
-ResourceStreamBuffer+Stub
-
 Application+frame
 Application+setupWindow-ios
 Application+Logging
 Application+Rendering
-
-scene+paintScene
 
 Example+01
 Example+OSGCPE_EXAMPLE_LOG
@@ -28,9 +10,31 @@ Example+SingleColorScene
 Example+StaticPluginOSG
 Example+VBO
 
-VBOSetupVisitor+Stub
-
 library-ios
 library+init-ios
 library+frame-ios
 
+# log
+log-default
+logLevelToString
+logprintf
+Logger
+
+# format
+printfString
+
+# resource
+OSGCPE_RESOURCE_LOG
+extension
+node
+Resource
+ResourceStreamBuffer
+
+# render
+createGraphicsContext-ios
+createShaderProgram
+setupCamera
+VBOSetupVisitor
+
+# scene
+paintScene

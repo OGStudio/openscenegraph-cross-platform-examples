@@ -1,5 +1,5 @@
 PROJECT(EX03_REMOTE_DEBUGGING)
-CMAKE_MINIMUM_REQUIRED(VERSION 3.4.0)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 SET(BUILD_SIMULATOR YES CACHE BOOL "Build for simulator. Set to `false` to build for real device")
 
@@ -42,7 +42,7 @@ ELSE()
     SET(BUILD_VARIANT "Device")
 ENDIF()
 SET(OSG_SOURCE_DIR "${EXT_PROJ_DIR}/OpenSceneGraph" CACHE PATH "Path to OpenSceneGraph source directory")
-SET(OSG_BUILD_DIR "${OSG_SOURCE_DIR}/build/Ex03/${BUILD_VARIANT}")
+SET(OSG_BUILD_DIR "${OSG_SOURCE_DIR}/build/${BUILD_VARIANT}/Ex03")
 # Only build OpenSceneGraph if it has not yet been built.
 IF (NOT EXISTS "${OSG_BUILD_DIR}/lib/libosgdb_imageio.a")
     FILE(MAKE_DIRECTORY ${OSG_BUILD_DIR})
