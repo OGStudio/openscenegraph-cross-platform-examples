@@ -7,8 +7,8 @@
     * [iOS](#build-ios)
     * [Web](#build-web)
 * [Examples](#examples)
-    * [01. Embed resource into executable](#examples-embed-resource)
-    * [02. Use PNG images with PNG plugins](#examples-images)
+    * [01. Embed resource into executable](#ex01)
+    * [02. Use PNG images with PNG plugins](#ex02)
 * [Help](#help)
 
 <a name="overview"/>
@@ -176,7 +176,7 @@ E.g., you can serve locally like this:
 
 # Examples
 
-<a name="examples-embed-resources"/>
+<a name="ex01"/>
 
 ### [01. Embed resource into executable][ex01]
 
@@ -185,7 +185,7 @@ E.g., you can serve locally like this:
   Learn how to embed a binary resource into application with `xxd` Unix utility
   and use the resource across platforms.
 
-<a name="examples-images"/>
+<a name="ex02"/>
 
 ### [02. Use PNG images with PNG plugins][ex02]
 
