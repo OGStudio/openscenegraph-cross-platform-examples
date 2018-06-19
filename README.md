@@ -9,7 +9,6 @@
 * [Examples](#examples)
     * [01. Embed resource into executable](#examples-embed-resource)
     * [02. Use PNG images with PNG plugins](#examples-images)
-* [Entity hierarchy](#hierarchy)
 * [Help](#help)
 
 <a name="overview"/>
@@ -194,12 +193,6 @@ E.g., you can serve locally like this:
 
   Learn how to use PNG images across platforms with PNG plugins.
 
-<a name="hierarchy"/>
-
-# Entity hierarchy
-
-Here's an overview of parent-child relationship among source code entities along with brief description of their responsibilities: [Entity hierarchy][entity-hierarchy].
-
 <a name="help"/>
 
 Help
@@ -211,7 +204,6 @@ improve examples.
 [osg]: http://openscenegraph.org
 [osgcpg]: https://github.com/OGStudio/openscenegraph-cross-platform-guide
 [issues]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/issues
-[entity-hierarchy]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/entity-hierarchy.html
 [screenshot-desktop]: readme/shot-desktop.png
 [screenshot-android]: readme/shot-android.png
 [screenshot-ios]: readme/shot-ios.png
