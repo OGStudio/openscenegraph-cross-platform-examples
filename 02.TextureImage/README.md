@@ -296,11 +296,11 @@ Here's a [web build of the example][web-build].
 [find-png]: https://cmake.org/cmake/help/v3.0/module/FindPNG.html
 [brew]: https://brew.sh/
 [ex01-shaders]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/scene.h#L37
-[resource-string]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/resource.h#L126
-[resources-string-usage]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/scene.h#L45
+[resource-string]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/resource.h#L177
+[resource-string-usage]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/scene.h#L45
 [shaders-definition]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/Example.h#L81
-[resource-setTextureImage]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/resource.h#L138
-[resource-createTexture]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/resource.h#L192
+[resource-setTextureImage]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/resource.h#L184
+[resource-createTexture]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/resource.h#L242
 [scene-textureImageScene]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/scene.h#L39
 [emscripten]: http://emscripten.org/
 [web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/02/ex02-texture-image.html
