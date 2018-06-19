@@ -10,10 +10,10 @@ LINK_DIRECTORIES(${OSG_LIB_DIR})
 # Use C++11.
 ADD_DEFINITIONS("-std=c++11")
 
-# Reference headers.
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/src)
+# Reference source headers.
+INCLUDE_DIRECTORIES(src)
 # Reference resource headers.
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/../../data)
+INCLUDE_DIRECTORIES(../../data)
 # Create executable.
 ADD_EXECUTABLE(ex02-texture-image src/main.cpp)
 # Link executable with OpenSceneGraph libraries.

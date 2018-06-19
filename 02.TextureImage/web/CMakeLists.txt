@@ -48,10 +48,10 @@ INCLUDE_DIRECTORIES(${OSG_BUILD_DIR}/include)
 # Reference OpenSceneGraph libraries.
 LINK_DIRECTORIES(${OSG_BUILD_DIR}/lib)
 
-# Reference headers.
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/src)
+# Reference source headers.
+INCLUDE_DIRECTORIES(src)
 # Reference resource headers.
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/../../data)
+INCLUDE_DIRECTORIES(../../data)
 # Create executable (aka HTML page).
 ADD_EXECUTABLE(ex02-texture-image src/main.cpp)
 # Link with OpenSceneGraph libraries in specific order.

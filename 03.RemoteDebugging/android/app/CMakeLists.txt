@@ -5,7 +5,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.4.1)
 # * OpenSceneGraph
 # * mongoose
 # * NLohmann's json
-SET(EXT_PROJ_DIR "../../../..")
+SET(EXT_PROJ_DIR "${CMAKE_SOURCE_DIR}/../../../..")
 
 # Reference libpng-android.
 SET(PNG_SOURCE_DIR "${EXT_PROJ_DIR}/libpng-android")
@@ -30,7 +30,7 @@ SET(DYNAMIC_OPENTHREADS OFF CACHE BOOL "Link OpenThreads statically")
 SET(DYNAMIC_OPENSCENEGRAPH OFF CACHE BOOL "Link OpenSceneGraph statically")
 # Reference OpenSceneGraph.
 SET(OSG_SOURCE_DIR "${EXT_PROJ_DIR}/OpenSceneGraph")
-SET(OSG_BUILD_DIR "${OSG_SOURCE_DIR}/build/Android-${ANDROID_ABI}")
+SET(OSG_BUILD_DIR "${OSG_SOURCE_DIR}/build/Android-${ANDROID_ABI}/Ex03")
 # Only build OpenSceneGraph if it has not yet been built.
 IF (NOT EXISTS "${OSG_BUILD_DIR}/lib/libosgdb_png.a")
     FILE(MAKE_DIRECTORY ${OSG_BUILD_DIR})
@@ -52,7 +52,7 @@ INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/json/single_include)
 # Reference source headers.
 INCLUDE_DIRECTORIES(src/main/cpp)
 # Reference resource headers.
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/../../../data)
+INCLUDE_DIRECTORIES(../../../data)
 
 ADD_LIBRARY(library SHARED src/main/cpp/library.cpp)
 FIND_LIBRARY(log-lib log)
@@ -79,4 +79,3 @@ TARGET_LINK_LIBRARIES(
     OpenThreads
     network-extlib
 )
-

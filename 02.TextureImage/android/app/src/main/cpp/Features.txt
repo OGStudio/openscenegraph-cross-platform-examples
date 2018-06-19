@@ -1,26 +1,7 @@
-log+printfString
-log+log-android
-log+logprintf
-log+logLevelToString
-Logger+Stub
-
-render+createShaderProgram
-
-resources+OSGCPE_RESOURCES_LOG
-resources+node
-resources+extension
-resources+string
-resources+setTextureImage
-resources+createTexture
-Resource+Stub
-ResourceStreamBuffer+Stub
-
 Application+frame
 Application+setupWindow-embedded
 Application+Logging
 Application+Rendering
-
-scene+textureImageScene
 
 Example+02
 Example+OSGCPE_EXAMPLE_LOG
@@ -30,11 +11,34 @@ Example+StaticPluginOSG
 Example+StaticPluginPNG
 Example+VBO
 
-VBOSetupVisitor+Stub
-
 library+Ex02+OSGCPE_JNI-android
 
 library-android
 library+init-android
 library+frame-android
 
+# log
+log-android
+logprintf
+logLevelToString
+Logger
+
+# format
+printfString
+
+# resource
+OSGCPE_RESOURCE_LOG
+createTexture
+extension
+node
+setTextureImage
+string
+Resource
+ResourceStreamBuffer
+
+# render
+createShaderProgram
+VBOSetupVisitor
+
+# scene
+textureImageScene

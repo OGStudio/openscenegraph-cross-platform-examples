@@ -4,7 +4,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 # Path to external projects:
 # * mongoose
 # * NLohmann's json
-SET(EXT_PROJ_DIR "../../..")
+SET(EXT_PROJ_DIR "${CMAKE_SOURCE_DIR}/../../..")
 
 # OpenSceneGraph directories.
 SET(OSG_INC_DIR "" CACHE PATH "Path to OpenSceneGraph include directory")

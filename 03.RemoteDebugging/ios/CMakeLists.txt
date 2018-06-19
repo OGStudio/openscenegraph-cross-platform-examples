@@ -7,7 +7,7 @@ SET(BUILD_SIMULATOR YES CACHE BOOL "Build for simulator. Set to `false` to build
 # * OpenSceneGraph
 # * mongoose
 # * NLohmann's json
-SET(EXT_PROJ_DIR "../../..")
+SET(EXT_PROJ_DIR "${CMAKE_SOURCE_DIR}/../../..")
 
 # Set special build flags:
 # * -O3: make compact binary, critical for iOS
