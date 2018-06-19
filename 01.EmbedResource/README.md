@@ -86,8 +86,8 @@ represent it as `std::istream`.
 
 To simplify resource management in code, we introduce two classes:
 
-* [`Resource`][Resource.h] to hold generated contents
-* [`ResourceStreamBuffer`][ResourceStreamBuffer.h] to provide C array contents as `std::streambuf`, which can be converted to `std::istream`
+* [Resource][Resource] to hold generated contents
+* [ResourceStreamBuffer][ResourceStreamBuffer] to provide C array contents as `std::streambuf`, which can be converted to `std::istream`
 
 **Note**: `ResourceStreamBuffer::seekoff()` implementation is crucial for
 OpenSceneGraph plugins to correctly load resources.
@@ -106,7 +106,7 @@ Second, load the model. To load the model from `std::istream`, we:
 * find a reader that is capable of reading the model (such a reader can be located by providing file extension)
 * let the reader create a node with the model
 
-Here's how the crucial part of the implementation looks like ([complete version][resources_node]):
+Here's how the crucial part of the implementation looks like ([complete version][resource_node]):
 
 ```
 - - - -
@@ -136,8 +136,8 @@ Here's a [web build of the example][web_build].
 [box.osgt.h]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/data/box.osgt.h
 [ref_res_src]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/Example.h#L31
 [ref_res_cmake]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/CMakeLists.txt#L16
-[Resource.h]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/Resource.h
-[ResourceStreamBuffer.h]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/ResourceStreamBuffer.h
-[resources_node]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/resources.h#L68
+[Resource]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/resource.h#L52
+[ResourceStreamBuffer]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/resource.h#L74
+[resource_node]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/resource.h#L119
 [box_res]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/Example.h#L64
 [web_build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/01/ex01-embed-resource.html
