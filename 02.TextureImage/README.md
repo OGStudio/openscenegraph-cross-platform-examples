@@ -201,8 +201,8 @@ Let's see how to provide shader resources as strings to other functions
 // Create shader program.
 auto prog =
     render::createShaderProgram(
-        resources::string(shaderVert),
-        resources::string(shaderFrag)
+        resource::string(shaderVert),
+        resource::string(shaderFrag)
     );
 ```
 
@@ -210,8 +210,8 @@ Finally, `shaderVert` and `shaderFrag` are defined like this
 ([source code][shaders-definition]):
 
 ```
-osgcpe::Resource shaderFrag("shaders", "ppl.frag", ppl_frag, ppl_frag_len);
-osgcpe::Resource shaderVert("shaders", "ppl.vert", ppl_vert, ppl_vert_len);
+osgcpe::resource::Resource shaderFrag("shaders", "ppl.frag", ppl_frag, ppl_frag_len);
+osgcpe::resource::Resource shaderVert("shaders", "ppl.vert", ppl_vert, ppl_vert_len);
 ```
 
 <a name="image"/>
@@ -268,14 +268,14 @@ The last step is to get scene's material and apply shaders with texture to the m
 // Create shader program.
 auto prog =
     render::createShaderProgram(
-        resources::string(shaderVert),
-        resources::string(shaderFrag)
+        resource::string(shaderVert),
+        resource::string(shaderFrag)
     );
 // Apply the program.
 auto material = scene->getOrCreateStateSet();
 material->setAttribute(prog);
 // Set texture image.
-material->setTextureAttributeAndModes(0, resources::createTexture(textureImage));
+material->setTextureAttributeAndModes(0, resource::createTexture(textureImage));
 material->addUniform(new osg::Uniform("image", 0));
 ```
 
