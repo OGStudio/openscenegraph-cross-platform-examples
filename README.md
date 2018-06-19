@@ -66,7 +66,10 @@ Each example contains four implementations to cover all supported platforms:
 
   ![Screenshot](readme/shot-desktop.png)
 
-**Note**: you must have OpenSceneGraph installation. See [OpenSceneGraph cross-platform guide][osgcpg] for details.
+**Notes**:
+
+* you must have OpenSceneGraph installation (see [OpenSceneGraph cross-platform guide][osgcpg] for details)
+* you may need to specify OpenSceneGraph include and library directories with `-DOSG_INC_DIR=/path/to/OSG/includes` and `-DOSG_LIB_DIR=/path/to/OSG/libs` during `cmake` invocation if OpenSceneGraph is located in non-standard location
 
 To build `01.EmbedResource` example for desktop, run the following commands:
 
@@ -90,9 +93,10 @@ To launch the first example, run the following command:
 
 **Notes**:
 
-* You must have OpenSceneGraph sources alongside this repository clone (see [OpenSceneGraph cross-platform guide][osgcpg] for details)
+* you must have OpenSceneGraph sources alongside this repository clone (see [OpenSceneGraph cross-platform guide][osgcpg] for details)
 * Android project is built for `armeabi-v7a` architecture by default (update `abiFilters` value in `android/app/build.gradle` if you want other platforms)
-* Make sure to run `Tools -> Android -> Sync Project with Gradle Files` in Android Studio after opening each example, this is necessary for Android Studio to create internal project files
+* make sure to run `Tools -> Android -> Sync Project with Gradle Files` in Android Studio after opening each example, this is necessary for Android Studio to create internal project files
+* each example builds its own version of OpenSceneGraph under `/path/to/OpenSceneGraph/build/Android-<ABI_VERSION>/Ex<Number>` because different examples require different OpenSceneGrah plugins
 
 To build and run `01.EmbedResource` example for Android, you open
 `01.EmbedResource/android` in Android Studio and run the project.
@@ -102,8 +106,6 @@ To build and run `01.EmbedResource` example for Android, you open
 ## iOS
 
   ![Screenshot](readme/shot-ios.png)
-
-**Note**: you must have OpenSceneGraph sources alongside this repository clone (see [OpenSceneGraph cross-platform guide][osgcpg] for details)
 
 First, build example library (for each example) for Simulator and Device:
 
@@ -127,13 +129,14 @@ cmake --build . --config Release -- -IDEBuildOperationMaxNumberOfConcurrentCompi
 
 **Notes**:
 
-* each example uses exclusive OpenSceneGraph build in `/path/to/OpenSceneGraph/build/<Device|Simulator>/Ex<Number>` because different Xcode projects don't work with single OpenSceneGraph build for some reason
-* if you encounter `Undefined symbols for architecture <Arch>` errors with `library::`, remove OpenSceneGraph build and retry
-* the build process may fail for some plugins and prevent other parts of OpenSceneGraph to be built
-    * rerun `cmake .` to refresh dependent file existence checks
-    * rerun the build command to see if iOS library has been built
-    * if not, you can build each missing target manually by appending `-target` to `cmake` command
-        * for example: `-target osgdb_osg` 
+* you must have OpenSceneGraph sources alongside this repository clone (see [OpenSceneGraph cross-platform guide][osgcpg] for details)
+* each example builds its own version of OpenSceneGraph under `/path/to/OpenSceneGraph/build/<Device|Simulator>/Ex<Number>` because different examples require different OpenSceneGrah plugins
+* you may encounter quite a few build errors
+    * `Undefined symbols for architecture <Arch>` errors with `library::`: remove OpenSceneGraph build and retry
+    * failure to build some plugins either due to missing headers (like curl), or wrong `-std=c++11` directive:
+        * rerun `cmake .` to refresh CMake cache files
+        * retry the build command to make sure iOS library (rawex01/02/etc) has been built
+    * if some plugins are not built and above steps don't work, you may try to build missing libraries manually by appending `-target` to `cmake` command, e.g., `-target osgdb_osg` 
 
 Second, open `01.EmbedResource/ios/xcodeproject/ex01.xcodeproj` Xcode project and run it.
 
@@ -142,8 +145,6 @@ Second, open `01.EmbedResource/ios/xcodeproject/ex01.xcodeproj` Xcode project an
 ## Web
 
   ![Screenshot](readme/shot-web.png)
-
-**Note**: you must have OpenSceneGraph sources alongside this repository clone (see [OpenSceneGraph cross-platform guide][osgcpg] for details)
 
 To build `01.EmbedResource` example for web, run the following commands:
 
@@ -155,7 +156,7 @@ cmake -DCMAKE_TOOLCHAIN_FILE=/path/to/emsdk-portable/emscripten/<version>/cmake/
 make -j8 ex01-embed-resource
 ```
 
-**Notes**: the first time you build might take a while because OpenSceneGraph needs to be built, too
+**Note**: you must have OpenSceneGraph sources alongside this repository clone (see [OpenSceneGraph cross-platform guide][osgcpg] for details)
 
 To launch the first example, open `ex01-embed-resource.html` file in Firefox.
 
