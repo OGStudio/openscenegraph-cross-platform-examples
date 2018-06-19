@@ -96,7 +96,7 @@ To launch the first example, run the following command:
 * you must have OpenSceneGraph sources alongside this repository clone (see [OpenSceneGraph cross-platform guide][osgcpg] for details)
 * Android project is built for `armeabi-v7a` architecture by default (update `abiFilters` value in `android/app/build.gradle` if you want other platforms)
 * make sure to run `Tools -> Android -> Sync Project with Gradle Files` in Android Studio after opening each example, this is necessary for Android Studio to create internal project files
-* each example builds its own version of OpenSceneGraph under `/path/to/OpenSceneGraph/build/Android-<ABI_VERSION>/Ex<Number>` because different examples require different OpenSceneGrah plugins
+* each example builds its own version of OpenSceneGraph under `/path/to/OpenSceneGraph/build/Android-<ABI>/Ex<Number>` because different examples require different OpenSceneGrah plugins
 
 To build and run `01.EmbedResource` example for Android, you open
 `01.EmbedResource/android` in Android Studio and run the project.
@@ -111,12 +111,6 @@ To build and run `01.EmbedResource` example for Android, you open
 
 * you must have OpenSceneGraph sources alongside this repository clone (see [OpenSceneGraph cross-platform guide][osgcpg] for details)
 * each example builds its own version of OpenSceneGraph under `/path/to/OpenSceneGraph/build/<Device|Simulator>/Ex<Number>` because different examples require different OpenSceneGrah plugins
-* you may encounter quite a few build errors
-    * `Undefined symbols for architecture <Arch>` errors with `library::`: remove OpenSceneGraph build and retry
-    * failure to build some plugins either due to missing headers (like curl), or wrong `-std=c++11` directive:
-        * rerun `cmake .` to refresh CMake cache files
-        * retry the build command to make sure iOS library (rawex01/02/etc) has been built
-    * if some plugins are not built and above steps don't work, you may try to build missing libraries manually by appending `-target` to `cmake` command, e.g., `-target osgdb_osg` 
 
 First, build example library (for each example) for Simulator and Device:
 
@@ -137,6 +131,15 @@ cd build/Device
 cmake -G Xcode -DIPHONE_ENABLE_BITCODE=YES -DBUILD_SIMULATOR=NO ../..
 cmake --build . --config Release -- -IDEBuildOperationMaxNumberOfConcurrentCompileTasks=8
 ```
+
+**Build issues**:
+
+* if you encounter `Undefined symbols for architecture <Arch>` errors with `library::`
+    * remove OpenSceneGraph build and retry
+* if some plugins cannot be built either due to missing headers (like curl), or wrong `-std=c++11` directive
+    * rerun `cmake .` to refresh CMake cache files
+    * retry the build command to make sure `rawex` iOS library has been built
+* you may also build missing libraries and plugins manually by appending `-target` to `cmake` command, e.g., `-target osgdb_osg` 
 
 Second, open `01.EmbedResource/ios/xcodeproject/ex01.xcodeproj` Xcode project and run it.
 
