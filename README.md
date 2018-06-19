@@ -16,7 +16,7 @@
 
 # Overview
 
-[OpenSceneGraph](http://openscenegraph.org) is an open source high performance
+[OpenSceneGraph][osg] is an open source high performance
 3D graphics toolkit, used by application developers in fields such as visual
 simulation, games, virtual reality, scientific visualization and modelling.
 
@@ -64,7 +64,7 @@ Each example contains four implementations to cover all supported platforms:
 
 ## Desktop
 
-  ![Screenshot](readme/shot-desktop.png)
+  ![Screenshot][screenshot-desktop]
 
 **Notes**:
 
@@ -89,7 +89,7 @@ To launch the first example, run the following command:
 
 ## Android
 
-  ![Screenshot](readme/shot-android.png)
+  ![Screenshot][screenshot-android]
 
 **Notes**:
 
@@ -105,7 +105,7 @@ To build and run `01.EmbedResource` example for Android, you open
 
 ## iOS
 
-  ![Screenshot](readme/shot-ios.png)
+  ![Screenshot][screenshot-ios]
 
 **Notes**:
 
@@ -147,7 +147,7 @@ Second, open `01.EmbedResource/ios/xcodeproject/ex01.xcodeproj` Xcode project an
 
 ## Web
 
-  ![Screenshot](readme/shot-web.png)
+  ![Screenshot][screenshot-web]
 
 **Note**: you must have OpenSceneGraph sources alongside this repository clone (see [OpenSceneGraph cross-platform guide][osgcpg] for details)
 
@@ -179,18 +179,18 @@ E.g., you can serve locally like this:
 
 <a name="examples-embed-resources"/>
 
-### [01. Embed resource into executable](01.EmbedResource/README.md)
+### [01. Embed resource into executable][ex01]
 
-  ![Screenshot](01.EmbedResource/shot.png)
+  ![Screenshot][ex01-screenshot]
 
   Learn how to embed a binary resource into application with `xxd` Unix utility
   and use the resource across platforms.
 
 <a name="examples-images"/>
 
-### [02. Use PNG images with PNG plugins](02.TextureImage)
+### [02. Use PNG images with PNG plugins][ex02]
 
-  ![Screenshot](02.TextureImage/shot.png)
+  ![Screenshot][ex02-screenshot]
 
   Learn how to use PNG images across platforms with PNG plugins.
 
@@ -208,7 +208,15 @@ Help
 Feel free to [ask questions][issues] in the issues. Your questions help us
 improve examples.
 
+[osg]: http://openscenegraph.org
 [osgcpg]: https://github.com/OGStudio/openscenegraph-cross-platform-guide
 [issues]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/issues
 [entity-hierarchy]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/entity-hierarchy.html
-
+[screenshot-desktop]: readme/shot-desktop.png
+[screenshot-android]: readme/shot-android.png
+[screenshot-ios]: readme/shot-ios.png
+[screenshot-web]: readme/shot-web.png
+[ex01]: 01.EmbedResource
+[ex01-screenshot]: 01.EmbedResource/shot.png
+[ex02]: 02.TextureImage
+[ex02-screenshot]: 02.TextureImage/shot.png
