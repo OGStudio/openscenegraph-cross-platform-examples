@@ -4,7 +4,7 @@
 * [Overview](#overview)
 * [Steps](#steps)
     * [1.1. Generate resources](#generate)
-    * [1.2. Rebuild OpenSceneGraph with PNG support](#rebuild)
+    * [1.2. Build OpenSceneGraph with PNG support](#plugins)
         * [Linux, Windows](#linuxwindows)
         * [macOS](#macos)
         * [iOS](#ios)
@@ -42,9 +42,9 @@ We need to have the following files generated:
 
 **Note**: see [01.EmbedResource][ex01] for details on resource generation and embedding.
 
-<a name="rebuild"/>
+<a name="plugins"/>
 
-## 1.2. Rebuild OpenSceneGraph with PNG support
+## 1.2. Build OpenSceneGraph with PNG support
 
 OpenSceneGraph has two plugins capable of loading PNG images:
 
@@ -52,10 +52,28 @@ OpenSceneGraph has two plugins capable of loading PNG images:
     * uses [libpng][libpng] library
     * available for all platforms
     * plugin file: `osgdb_png.so` or `libosgdb_png.a`
+    * linking in CMakeLists.txt:
+        ```
+        - - - -
+        TARGET_LINK_LIBRARIES(
+        - - - -
+            osgdb_png
+            png
+        - - - -
+        ```
 * `imageio`
     * uses [Image I/O][imageio] library
     * only available for Apple platforms
     * plugin file: `osgdb_imageio.so` or `libosgdb_imageio.a`
+    * linking in CMakeLists.txt:
+        ```
+        - - - -
+        TARGET_LINK_LIBRARIES(
+        - - - -
+            osgdb_imageio
+            imageio
+        - - - -
+        ```
 
 **macOS, iOS note**: since Apple provides [Image I/O][imageio] library to work
 with popular image formats, you don't need to use any additional dependency to
@@ -115,18 +133,6 @@ LINK_DIRECTORIES(${PNG_BUILD_DIR})
 SET(PNG_FOUND ON CACHE BOOL "PNG is found")
 SET(OSG_CPP_EXCEPTIONS_AVAILABLE ON CACHE BOOL "Enable exceptions to build PNG")
 SET(PNG_INCLUDE_DIR ${PNG_SOURCE_DIR}/jni)
-- - - -
-```
-
-Third, link with OpenSceneGraph PNG plugin and `libpng` ([source code][cmake_link_libpng]):
-
-```
-- - - -
-TARGET_LINK_LIBRARIES(
-    library
-- - - -
-    osgdb_png
-    png
 - - - -
 ```
 
@@ -294,7 +300,7 @@ Here's a [web build of the example][web_build].
 
 [osgcpe]: https://github.com/OGStudio/openscenegraph-cross-platform-examples
 [osgcpg]: https://github.com/OGStudio/openscenegraph-cross-platform-guide
-[ex01]: ../01.EmbedResource/README.md
+[ex01]: ../01.EmbedResource
 [libpng]: http://www.libpng.org/pub/png/libpng.html
 [imageio]: https://developer.apple.com/documentation/imageio
 [msys2]: https://www.msys2.org/
@@ -314,4 +320,3 @@ Here's a [web build of the example][web_build].
 [web_build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/02/ex02-texture-image.html
 [libpng-android]: https://github.com/julienr/libpng-android
 [cmake_libpng]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/android/app/CMakeLists.txt#L8
-[cmake_link_libpng]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/android/app/CMakeLists.txt#L60
