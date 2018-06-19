@@ -25,17 +25,17 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 
-// scene+textureImageScene Start
+// textureImageScene Start
 #include "resource.h"
 
-// scene+textureImageScene End
+// textureImageScene End
 
 namespace osgcpe
 {
 namespace scene
 {
 
-// scene+textureImageScene Start
+// textureImageScene Start
 void textureImageScene(
     const resource::Resource &shaderFrag,
     const resource::Resource &shaderVert,
@@ -55,7 +55,8 @@ void textureImageScene(
     material->setTextureAttributeAndModes(0, resource::createTexture(textureImage));
     material->addUniform(new osg::Uniform("image", 0));
 }
-// scene+textureImageScene End
+// textureImageScene End
+
 
 } // namespace scene
 } // namespace osgcpe

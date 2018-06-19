@@ -22,44 +22,35 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_FORMAT_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_FORMAT_H
 
-// textureImageScene Start
-#include "resource.h"
+// printfString Start
+#include <cstdarg>
 
-// textureImageScene End
+// printfString End
 
 namespace osgcpe
 {
-namespace scene
+namespace format
 {
 
-// textureImageScene Start
-void textureImageScene(
-    const resource::Resource &shaderFrag,
-    const resource::Resource &shaderVert,
-    const resource::Resource &textureImage,
-    osg::Node *scene
-) {
-    // Create shader program.
-    auto prog =
-        render::createShaderProgram(
-            resource::string(shaderVert),
-            resource::string(shaderFrag)
-        );
-    // Apply the program.
-    auto material = scene->getOrCreateStateSet();
-    material->setAttribute(prog);
-    // Set texture image.
-    material->setTextureAttributeAndModes(0, resource::createTexture(textureImage));
-    material->addUniform(new osg::Uniform("image", 0));
+// printfString Start
+//! Construct a string using printf-like syntax.
+std::string printfString(const char *fmt, ...)
+{
+    const int PRINTF_STRING_MAX_STRLEN = 1024;
+    va_list args;
+    char msg[PRINTF_STRING_MAX_STRLEN];
+    va_start(args, fmt);
+    vsnprintf(msg, PRINTF_STRING_MAX_STRLEN, fmt, args);
+    va_end(args);
+    return msg;
 }
-// textureImageScene End
+// printfString End
 
-
-} // namespace scene
+} // namespace format
 } // namespace osgcpe
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_FORMAT_H
 

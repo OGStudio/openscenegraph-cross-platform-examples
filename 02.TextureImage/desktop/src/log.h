@@ -25,32 +25,32 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOG_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LOG_H
 
-// log+log-default Start
+// log-default Start
 #include <iostream>
 
-// log+log-default End
-// log+logLevelToString Start
+// log-default End
+// logLevelToString Start
 #include <osg/Notify>
 
-// log+logLevelToString End
-// log+logprintf Start
+// logLevelToString End
+// logprintf Start
 #include <cstdarg>
 
-// log+logprintf End
+// logprintf End
 
 namespace osgcpe
 {
 namespace log
 {
 
-// log+log-default Start
+// log-default Start
 //! Cross-platform logging function.
 void log(const char *message)
 {
     std::cout << message << std::endl;
 }
-// log+log-default End
-// log+logLevelToString Start
+// log-default End
+// logLevelToString Start
 //! Convert OpenSceneGraph log level to string.
 std::string logLevelToString(osg::NotifySeverity severity)
 {
@@ -75,8 +75,8 @@ std::string logLevelToString(osg::NotifySeverity severity)
             return "E";
     }
 }
-// log+logLevelToString End
-// log+logprintf Start
+// logLevelToString End
+// logprintf Start
 //! Cross-platform logging function with printf-like syntax.
 void logprintf(const char *fmt, ...)
 {
@@ -88,7 +88,31 @@ void logprintf(const char *fmt, ...)
     va_end(args);
     log(msg);
 }
-// log+logprintf End
+// logprintf End
+
+// Logger Start
+//! Print OpenSceneGraph notifications to console.
+class Logger : public osg::NotifyHandler
+{
+    public:
+        Logger(const std::string &domain = "") : domain(domain) { }
+        virtual ~Logger() { }
+
+        // Override NotifyHandler::notify() to receive OpenSceneGraph notifications.
+        void notify(osg::NotifySeverity severity, const char *message) override
+        {
+            logprintf(
+                "%s OSG/%s %s",
+                domain.c_str(),
+                logLevelToString(severity).c_str(),
+                message
+            );
+        }
+
+    private:
+        const std::string domain;
+};
+// Logger End
 
 } // namespace log
 } // namespace osgcpe
