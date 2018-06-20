@@ -4,6 +4,9 @@
 * [Overview](#overview)
 * [Steps](#steps)
     * [3.1. HTTP(s) support](#http)
+        * [Technologies](#http-tech)
+        * [Internal representation](#http-representation)
+        * [Usage](#http-usage)
 * [Result](#result)
 
 TODO:
