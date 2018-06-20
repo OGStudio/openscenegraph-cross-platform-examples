@@ -85,7 +85,6 @@ These technologies are mapped to the following classes:
 Client code should:
 
 * create `HTTPClient` instance ([complete version][src-HTTPClient-create]):
-
     ```
     this->httpClient = new network::HTTPClient;
     ```
@@ -96,8 +95,7 @@ Client code should:
         this->httpClient->process();
     }
     ```
-* make requests when necessary
-    * in this example only [Debugger][src-Debugger] does requests
+* make requests when necessary (only [Debugger][src-Debugger] does requests in this examle)
 
 
 <a name="result"/>
