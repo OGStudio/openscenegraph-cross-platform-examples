@@ -98,7 +98,7 @@ OpenSceneGraph plugins to correctly load resources.
 
 First, create `Resource` instance to work with ([desktop version][box_res]):
 ```
-Resource box("models", "box.osgt", box_osgt, box_osgt_len);
+resource::Resource box("models", "box.osgt", box_osgt, box_osgt_len);
 ```
 
 Second, load the model. To load the model from `std::istream`, we:
