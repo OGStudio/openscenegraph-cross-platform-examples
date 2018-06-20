@@ -3,16 +3,16 @@
 
 * [Overview](#overview)
 * [Steps](#steps)
-    * [1.1. Generate resources](#generate)
-    * [1.2. Build OpenSceneGraph with PNG support](#plugins)
+    * [2.1. Generate resources](#generate)
+    * [2.2. Build OpenSceneGraph with PNG support](#plugins)
         * [Linux, Windows](#linuxwindows)
         * [macOS](#macos)
         * [iOS](#ios)
         * [Android](#android)
         * [Web](#web)
-    * [1.3. Provide shader resources as strings](#shaders)
-    * [1.4. Provide image resource as a texture](#image)
-    * [1.5. Apply shaders and texture to the scene](#scene)
+    * [2.3. Provide shader resources as strings](#shaders)
+    * [2.4. Provide image resource as a texture](#image)
+    * [2.5. Apply shaders and texture to the scene](#scene)
 * [Result](#result)
 
 <a name="overview"/>
@@ -32,7 +32,7 @@ embedded into application.
 
 <a name="generate"/>
 
-## 1.1. Generate resources
+## 2.1. Generate resources
 
 We need to have the following files generated:
 
@@ -44,7 +44,7 @@ We need to have the following files generated:
 
 <a name="plugins"/>
 
-## 1.2. Build OpenSceneGraph with PNG support
+## 2.2. Build OpenSceneGraph with PNG support
 
 OpenSceneGraph has two plugins capable of loading PNG images:
 
@@ -171,7 +171,7 @@ SET(OSG_CPP_EXCEPTIONS_AVAILABLE ON CACHE BOOL "Force PNG plugin building")
 
 <a name="shaders"/>
 
-## 1.3. Provide shader resources as strings
+## 2.3. Provide shader resources as strings
 
 [01.EmbedResource][ex01] example provides shaders as simple [strings][ex01-shaders].
 This worked fine for single line shaders. 
@@ -216,7 +216,7 @@ resource::Resource shaderVert("shaders", "ppl.vert", ppl_vert, ppl_vert_len);
 
 <a name="image"/>
 
-## 1.4. Provide image resource as a texture
+## 2.4. Provide image resource as a texture
 
 First, we need to read an image from a resource. Here's how the crucial part
 of the implementation looks like ([complete version][resource-setTextureImage]):
@@ -260,7 +260,7 @@ osg::Texture2D *createTexture(const Resource &resource)
 
 <a name="scene"/>
 
-# 1.5. Apply shaders and texture to the scene
+# 2.5. Apply shaders and texture to the scene
 
 The last step is to get scene's material and apply shaders with texture to the material ([source code][scene-textureImageScene]):
 
