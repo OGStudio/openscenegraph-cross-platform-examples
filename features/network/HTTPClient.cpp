@@ -75,7 +75,11 @@ class HTTPClient
             for (; it != clientIdsToRemove.rend(); ++it)
             {
                 auto clientId = *it;
+                auto client = this->clients[clientId];
+                // Erase client entry.
                 this->clients.erase(this->clients.begin() + clientId);
+                // Deallocate the client.
+                delete client;
             }
         }
 

@@ -3,7 +3,7 @@
 
 * [Overview](#overview)
 * [Steps](#steps)
-    * [3.1. HTTP client](#http)
+    * [3.1. HTTP(s) support](#http)
 * [Result](#result)
 
 TODO:
@@ -15,6 +15,8 @@ Application+DebugCamera
 Reporter+Stub 
 Example+Debugging                                    
 Example+DebugApplication                             
+
+
 Example+HTTPClient  
 
 HTTPClient
@@ -45,7 +47,7 @@ debugging across platforms.
 
 <a name="http"/>
 
-## 3.1. HTTP client
+## 3.1. HTTP(s) support
 
 Remote debugging assumes application and debug UI are located at different
 machines. The most widespread way to communicate between remote machines
@@ -53,20 +55,24 @@ nowadays is to use HTTP(s) over TCP/IP.
 
 We use the following technologies to have HTTP(s) support across platforms:
 
-* [FetchAPI][fetch-api] is [Emscripten][emscripten]'s way to make us of [XHR][xhr]
-* [Mongoose][mongoose] is used for desktop and mobile due to intergration simplicity and TLS support
+* [FetchAPI][fetch-api]
+    * is only used under web
+    * is [Emscripten][emscripten]'s way to make us of [XHR][xhr]
+* [Mongoose][mongoose]
+    * is used under desktop and mobile
+    * is easy to integrate and supports TLS
 
-<a name="http-fetch-api"/>
+These technologies are mapped into the following classes:
 
-### FetchAPI HTTP client implementation
-
-<a name="http-mongoose"/>
-
-### Mongoose HTTP client implementation
-
-<a name="http-cp"/>
-
-### Cross-platform HTTP client implementation
+* [HTTPClientFetch][http-fetch]
+    * supports only single request per instance
+    * currently only handles responses up to 1024 characters
+* [HTTPClientMongoose][http-mongoose]
+    * supports only single request per instance
+    * requires client code to call its `process()` function regularly to process the request
+* [HTTPClient][http-common]
+    * supports any number of requests per instance by creating and destroying as many HTTPClientFetch/Mongoose instances as necessary
+    * requires client code to call its `process()` function regularly to process requests
 
 <a name="result"/>
 
@@ -82,3 +88,6 @@ Here's a [web build of the example][web-build].
 [emscripten]: http://emscripten.org
 [xhr]: https://en.wikipedia.org/wiki/XMLHttpRequest
 [mongoose]: https://github.com/cesanta/mongoose
+[http-fetch]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/web/src/network.h#L48
+[http-mongoose]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/network.h#L38
+[http-common]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/network.h#L145
