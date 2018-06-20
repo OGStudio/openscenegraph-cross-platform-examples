@@ -3,11 +3,32 @@
 
 * [Overview](#overview)
 * [Steps](#steps)
-    * [3.1. ](#generate)
-    * [3.2. network?](#plugins)
-        * [](#)
-    * [3.3. ](#shaders)
+    * [3.1. HTTP client](#http)
 * [Result](#result)
+
+TODO:
+
+Application+frame+Reporting
+Application+CameraManipulator                        
+Application+Debugging                                
+Application+DebugCamera                              
+Reporter+Stub 
+Example+Debugging                                    
+Example+DebugApplication                             
+Example+HTTPClient  
+
+HTTPClient
+
+* Mongoose
+* FetchAPI
+
+Debug
+
+* PageDesc
+* Page
+* Debugger
+* JSON nlohmann's
+
 
 <a name="overview"/>
 
@@ -15,26 +36,37 @@
 
 This example is part of [OpenSceneGraph cross-platform examples][osgcpe].
 
-In this example we use PNG image as a texture for a model. All resources are
-embedded into application.
-
-**Non-desktop platforms' note**: don't forget to reference OpenSceneGraph plugins with `USE_OSGPLUGIN` macro.
+In this example we implement [debug-broker][debug-broker]'s protocol to support remote
+debugging across platforms.
 
 <a name="steps"/>
 
 # Steps
 
-<a name="generate"/>
+<a name="http"/>
 
-## 2.1. Generate resources
+## 3.1. HTTP client
 
-We need to have the following files generated:
+Remote debugging assumes application and debug UI are located at different
+machines. The most widespread way to communicate between remote machines
+nowadays is to use HTTP(s) over TCP/IP.
 
-* `ppl.frag.h`: per-pixel lighting fragment shader
-* `ppl.vert.h`: per-pixel lighting vertex shader
-* `digit.png.h`: image to use as a texture
+We use the following technologies to have HTTP(s) support across platforms:
 
-**Note**: see [01.EmbedResource][ex01] for details on resource generation and embedding.
+* [FetchAPI][fetch-api] is [Emscripten][emscripten]'s way to make us of [XHR][xhr]
+* [Mongoose][mongoose] is used for desktop and mobile due to intergration simplicity and TLS support
+
+<a name="http-fetch-api"/>
+
+### FetchAPI HTTP client implementation
+
+<a name="http-mongoose"/>
+
+### Mongoose HTTP client implementation
+
+<a name="http-cp"/>
+
+### Cross-platform HTTP client implementation
 
 <a name="result"/>
 
@@ -45,3 +77,8 @@ We need to have the following files generated:
 Here's a [web build of the example][web-build].
 
 [osgcpe]: https://github.com/OGStudio/openscenegraph-cross-platform-examples
+[debug-broker]: https://github.com/OGStudio/debug-broker
+[fetch-api]: https://kripken.github.io/emscripten-site/docs/api_reference/fetch.html
+[emscripten]: http://emscripten.org
+[xhr]: https://en.wikipedia.org/wiki/XMLHttpRequest
+[mongoose]: https://github.com/cesanta/mongoose
