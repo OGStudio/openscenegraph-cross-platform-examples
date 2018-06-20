@@ -210,8 +210,8 @@ Finally, `shaderVert` and `shaderFrag` are defined like this
 ([source code][shaders-definition]):
 
 ```
-osgcpe::resource::Resource shaderFrag("shaders", "ppl.frag", ppl_frag, ppl_frag_len);
-osgcpe::resource::Resource shaderVert("shaders", "ppl.vert", ppl_vert, ppl_vert_len);
+resource::Resource shaderFrag("shaders", "ppl.frag", ppl_frag, ppl_frag_len);
+resource::Resource shaderVert("shaders", "ppl.vert", ppl_vert, ppl_vert_len);
 ```
 
 <a name="image"/>
