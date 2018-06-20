@@ -17,13 +17,6 @@ Example+Debugging
 Example+DebugApplication                             
 
 
-Example+HTTPClient  
-
-HTTPClient
-
-* Mongoose
-* FetchAPI
-
 Debug
 
 * PageDesc
@@ -53,26 +46,56 @@ Remote debugging assumes application and debug UI are located at different
 machines. The most widespread way to communicate between remote machines
 nowadays is to use HTTP(s) over TCP/IP.
 
+<a name="http-tech"/>
+
+### Technologies
+
 We use the following technologies to have HTTP(s) support across platforms:
 
-* [FetchAPI][fetch-api]
+* [Fetch API][fetch-api]
     * is only used under web
     * is [Emscripten][emscripten]'s way to make us of [XHR][xhr]
 * [Mongoose][mongoose]
     * is used under desktop and mobile
     * is easy to integrate and supports TLS
 
-These technologies are mapped into the following classes:
+<a name="http-representation"/>
 
-* [HTTPClientFetch][http-fetch]
+### Internal representation
+
+These technologies are mapped to the following classes:
+
+* [HTTPClientFetch][src-HTTPClientFetch]
     * supports only single request per instance
     * currently only handles responses up to 1024 characters
-* [HTTPClientMongoose][http-mongoose]
+* [HTTPClientMongoose][src-HTTPClientMongoose]
     * supports only single request per instance
     * requires client code to call its `process()` function regularly to process the request
-* [HTTPClient][http-common]
-    * supports any number of requests per instance by creating and destroying as many HTTPClientFetch/Mongoose instances as necessary
+* [HTTPClient][src-HTTPClient]
+    * supports any number of requests per instance by creating and destroying as many `HTTPClientFetch`/`HTTPClientMongoose` instances as necessary
     * requires client code to call its `process()` function regularly to process requests
+
+<a name="http-usage"/>
+
+### Usage
+
+Client code should:
+
+* create `HTTPClient` instance ([complete version][src-HTTPClient-create]):
+
+    ```
+    this->httpClient = new network::HTTPClient;
+    ```
+* regularly call its `process()` function ([complete version][src-HTTPClient-process]):
+    ```
+    if (this->httpClient->needsProcessing())
+    {
+        this->httpClient->process();
+    }
+    ```
+* make requests when necessary
+    * in this example only [Debugger][src-Debugger] does requests
+
 
 <a name="result"/>
 
@@ -88,6 +111,10 @@ Here's a [web build of the example][web-build].
 [emscripten]: http://emscripten.org
 [xhr]: https://en.wikipedia.org/wiki/XMLHttpRequest
 [mongoose]: https://github.com/cesanta/mongoose
-[http-fetch]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/web/src/network.h#L48
-[http-mongoose]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/network.h#L38
-[http-common]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/network.h#L145
+
+[src-HTTPClientFetch]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/web/src/network.h#L48
+[src-HTTPClientMongoose]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/network.h#L38
+[src-HTTPClient]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/network.h#L145
+[src-Debugger]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/debug.h#L246
+[src-HTTPClient-create]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L130
+[src-HTTPClient-process]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L132
