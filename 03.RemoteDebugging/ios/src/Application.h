@@ -232,7 +232,6 @@ class Application
         
             void setupDebugCameraOrientation()
             {
-                // TODO Use camera manipulator.
                 this->debugPage.addItem(
                     "Position/Rotation",
                     // Getter.

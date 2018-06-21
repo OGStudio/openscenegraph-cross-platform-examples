@@ -3,7 +3,7 @@
 
 * [Overview](#overview)
 * [Steps](#steps)
-    * [3.1. Introduce HTTP(s) client](#http)
+    * [3.1. Introduce HTTP(s) support](#http)
         * [3.1.1. Technologies](#http-tech)
         * [3.1.2. Internal representation](#http-representation)
         * [3.1.3. Usage](#http-usage)
@@ -11,6 +11,12 @@
         * [3.2.1. Technologies](#debug-tech)
         * [3.2.2. Internal representation](#debug-representation)
         * [3.2.3. Usage](#debug-usage)
+    * [3.3. Debug camera](#debug-camera)
+        * [3.3.1. Install camera manipulator](#debug-camera-manipulator)
+        * [3.3.2. Create debug page for camera](#debug-camera-page)
+        * [3.3.3. Retrieve position and rotation](#debug-camera-posrot)
+        * [3.3.4. Alter background color](#debug-camera-bgcolor)
+        * [3.3.5. Add camera's debug page to Debugger](#debug-camera-debugger)
 * [Result](#result)
 
 <a name="overview"/>
@@ -28,7 +34,7 @@ debugging across platforms.
 
 <a name="http"/>
 
-## 3.1. Introduce HTTP(s) client
+## 3.1. Introduce HTTP(s) support
 
 Remote debugging assumes application and debug UI are located at different
 machines. The most widespread way to communicate between remote machines
@@ -73,7 +79,7 @@ Client code:
     ```
     this->httpClient = new network::HTTPClient;
     ```
-* regularly calls its `process()` function ([complete version][src-HTTPClient-process]):
+* regularly calls `HTTPClient`'s `process()` function ([complete version][src-HTTPClient-process]):
     ```
     if (this->httpClient->needsProcessing())
     {
@@ -100,7 +106,7 @@ debug UI (source of user input).
 * Debugger
     * is a container of so-called debug pages
     * usually represents a single application
-    * requires client code to call its `process()` function regularly to perform requests when necessary
+    * requires client code to call its `process()` function regularly to perform requests
 * Page
     * is a container of so-called debug items
     * usually represents a set of related items, e.g., `Camera` properties
@@ -144,7 +150,7 @@ Client code:
     ```
     this->dbg->setBrokerURL("http://localhost:7999");
     ```
-* regularly calls its `process()` function ([complete version][src-Debugger-process]):
+* regularly calls `Debugger`'s `process()` function ([complete version][src-Debugger-process]):
     ```
     this->dbg->process();
     ```
@@ -153,21 +159,95 @@ Client code:
 
 ## 3.3. Debug camera
 
-Now that we covered prerequisites, it's finally time to see how to debug something.
+Now that we covered prerequisites, it's time to debug.
 
-Let's alter camera's background color and also print its current position + rotation.
+Let's debug camera:
 
-TODO:
+* alter background color
+* retrieve camera's position and rotation
 
-Application+CameraManipulator                        
-Application+Debugging                                
-Application+DebugCamera                              
+<a name="debug-camera-manipulator"/>
 
-Example+Debugging                                    
-Example+DebugApplication                             
+### 3.3.1. Install camera manipulator
 
+We can only get camera's position from camera manipulator.
+Install one ([complete version][src-camera-manipulator]):
+```
+this->cameraManipulator = new osgGA::TrackballManipulator;
+this->viewer->setCameraManipulator(this->cameraManipulator);
+```
 
+<a name="debug-camera-page"/>
 
+### 3.3.2. Create debug page for camera
+
+Create debug page to collect camera related items
+([complete version][src-camera-page]):
+```
+- - - -
+debug::Page debugPage;
+- - - -
+this->debugPage.title = "camera";
+- - - -
+```
+
+<a name="debug-camera-posrot"/>
+
+### 3.3.3. Retrieve position and rotation
+
+To retrieve camera's position and rotation, we need to register
+`Postion/Rotation` item with getter only
+([complete version][src-camera-posrot]):
+```
+this->debugPage.addItem(
+    "Position/Rotation",
+    // Getter.
+    [&] {
+        - - - -
+        return
+            format::printfString(
+                "%f,%f,%f/%f,%f,%f",
+                pos.x(), pos.y(), pos.z(),
+                rot.x(), rot.y(), rot.z()
+            );
+    }
+);
+
+```
+
+<a name="debug-camera-bgcolor"/>
+
+### 3.3.4. Alter background color
+
+To alter background camera's background color, we need to register
+`BGColor` item with both getter and setter
+([complete version][src-camera-bgcolor]):
+```
+this->debugPage.addItem(
+    "BGColor",
+    // Getter.
+    [&] {
+        - - - -
+        return format::printfString("%d,%d,%d", r, g, b);
+    },
+    // Setter.
+    [&](const std::string &value) {
+        - - - -
+        this->camera->setClearColor(color);
+    }
+);
+
+```
+
+<a name="debug-camera-debugger"/>
+
+### 3.3.5. Add camera's debug page to Debugger
+
+Finally, add camera's debug page to `Debugger`
+([complete version][src-camera-debugger]):
+```
+this->dbg->addPage(this->app->debugPage);
+```
 
 <a name="result"/>
 
@@ -176,6 +256,10 @@ Example+DebugApplication
 ![Screenshot](shot.png)
 
 Here's a [web build of the example][web-build].
+
+TODO 
+
+describe how to this web-build with debug UI and locally running debug-broker
 
 [osgcpe]: https://github.com/OGStudio/openscenegraph-cross-platform-examples
 [debug-broker]: https://github.com/OGStudio/debug-broker
@@ -198,3 +282,9 @@ Here's a [web build of the example][web-build].
 [src-Debugger-create]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L157
 [src-Debugger-address]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L159
 [src-Debugger-process]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L164
+
+[src-camera-manipulator]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Application.h#L188
+[src-camera-page]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Application.h#L206
+[src-camera-posrot]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Application.h#L241
+[src-camera-bgcolor]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Application.h#L211
+[src-camera-debugger]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L178
