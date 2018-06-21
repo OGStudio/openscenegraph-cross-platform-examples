@@ -7,30 +7,11 @@
         * [3.1.1. Technologies](#http-tech)
         * [3.1.2. Internal representation](#http-representation)
         * [3.1.3. Usage](#http-usage)
-    * [3.2. Implement debug-broker's protocol](#debug)
+    * [3.2. Introduce debugging support](#debug)
         * [3.2.1. Technologies](#debug-tech)
         * [3.2.2. Internal representation](#debug-representation)
         * [3.2.3. Usage](#debug-usage)
 * [Result](#result)
-
-TODO:
-
-Application+frame+Reporting
-Application+CameraManipulator                        
-Application+Debugging                                
-Application+DebugCamera                              
-Reporter+Stub 
-Example+Debugging                                    
-Example+DebugApplication                             
-
-
-Debug
-
-* PageDesc
-* Page
-* Debugger
-* JSON nlohmann's
-
 
 <a name="overview"/>
 
@@ -86,24 +67,24 @@ These technologies are mapped to the following classes:
 
 ### 3.1.3. Usage
 
-Client code should:
+Client code:
 
-* create `HTTPClient` instance ([complete version][src-HTTPClient-create]):
+* creates `HTTPClient` instance ([complete version][src-HTTPClient-create]):
     ```
     this->httpClient = new network::HTTPClient;
     ```
-* regularly call its `process()` function ([complete version][src-HTTPClient-process]):
+* regularly calls its `process()` function ([complete version][src-HTTPClient-process]):
     ```
     if (this->httpClient->needsProcessing())
     {
         this->httpClient->process();
     }
     ```
-* make requests when necessary (only [Debugger][src-Debugger] does requests in this examle)
+* makes HTTP(s) requests when necessary (only [Debugger][src-Debugger] does requests in this examle)
 
 <a name="debug"/>
 
-## 3.2. Introduce remote debugging
+## 3.2. Introduce debugging support
 
 We use [debug-broker][debug-broker]'s protocol to implement remote debugging.
 
@@ -119,6 +100,7 @@ debug UI (source of user input).
 * Debugger
     * is a container of so-called debug pages
     * usually represents a single application
+    * requires client code to call its `process()` function regularly to perform requests when necessary
 * Page
     * is a container of so-called debug items
     * usually represents a set of related items, e.g., `Camera` properties
@@ -145,14 +127,45 @@ is currently composed manually.
         * only after previous request has been completed
 * [Page][src-Page]
     * is a container for `Page::Item`s
-* [PageDesc][src-PageDesc]
-    * is a serialized representation of `Page`
 * [Page::Item][src-PageItem]
-    * is a titled entry with alterable value
+    * is an entry with alterable value
 
 <a name="debug-usage"/>
 
 ### 3.2.3. Usage
+
+Client code:
+
+* creates `Debugger` instance ([complete version][src-Debugger-create]):
+    ```
+    this->dbg = new debug::Debugger(this->httpClient, EXAMPLE_TITLE);
+    ```
+* provides `debug-broker`'s address ([complete version][src-Debugger-address]):
+    ```
+    this->dbg->setBrokerURL("http://localhost:7999");
+    ```
+* regularly calls its `process()` function ([complete version][src-Debugger-process]):
+    ```
+    this->dbg->process();
+    ```
+
+<a name="debug-camera"/>
+
+## 3.3. Debug camera
+
+Now that we covered prerequisites, it's finally time to see how to debug something.
+
+Let's alter camera's background color and also print its current position + rotation.
+
+TODO:
+
+Application+CameraManipulator                        
+Application+Debugging                                
+Application+DebugCamera                              
+
+Example+Debugging                                    
+Example+DebugApplication                             
+
 
 
 
@@ -181,6 +194,7 @@ Here's a [web build of the example][web-build].
 
 [src-Debugger]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/debug.h#L246
 [src-Page]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/debug.h#L99
-[src-PageDesc]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/debug.h#L63
 [src-PageItem]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/debug.h#L114
-
+[src-Debugger-create]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L157
+[src-Debugger-address]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L159
+[src-Debugger-process]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L164
