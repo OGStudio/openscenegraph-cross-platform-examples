@@ -9,6 +9,7 @@
 * [Examples](#examples)
     * [01. Embed resource into executable](#ex01)
     * [02. Use PNG images with PNG plugins](#ex02)
+    * [03. Remotely debug application](#ex03)
 * [Help](#help)
 
 <a name="overview"/>
@@ -193,6 +194,14 @@ E.g., you can serve locally like this:
 
   Learn how to use PNG images across platforms with PNG plugins.
 
+<a name="ex03"/>
+
+### [03. Debug application remotely][ex03]
+
+  ![Screenshot][ex03-screenshot]
+
+  Learn how to work with debug-broker to perform remote debugging.
+
 <a name="help"/>
 
 Help
@@ -208,7 +217,12 @@ improve examples.
 [screenshot-android]: readme/shot-android.png
 [screenshot-ios]: readme/shot-ios.png
 [screenshot-web]: readme/shot-web.png
+
 [ex01]: 01.EmbedResource
 [ex01-screenshot]: 01.EmbedResource/shot.png
+
 [ex02]: 02.TextureImage
 [ex02-screenshot]: 02.TextureImage/shot.png
+
+[ex03]: 03.RemoteDebugging
+[ex03-screenshot]: 03.RemoteDebugging/shot.png

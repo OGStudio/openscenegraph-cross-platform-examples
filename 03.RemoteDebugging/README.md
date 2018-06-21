@@ -257,7 +257,7 @@ this->dbg->addPage(this->app->debugPage);
 
 Here's a [web build of the example][web-build].
 
-Now open [debug UI][debug-ui] and change background color.
+Now open [debug UI][debug-ui] and change background color to `255,0,0`.
 
 [osgcpe]: https://github.com/OGStudio/openscenegraph-cross-platform-examples
 [debug-broker]: https://github.com/OGStudio/debug-broker
