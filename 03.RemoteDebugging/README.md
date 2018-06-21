@@ -278,13 +278,13 @@ Now open [debug UI][debug-ui] and change background color to `255,0,0`.
 [src-Page]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/debug.h#L99
 [src-PageItem]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/debug.h#L114
 [src-Debugger-create]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L157
-[src-Debugger-address]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L159
+[src-Debugger-address]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L158
 [src-Debugger-process]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L164
 
 [src-camera-manipulator]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Application.h#L188
 [src-camera-page]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Application.h#L206
 [src-camera-posrot]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Application.h#L241
 [src-camera-bgcolor]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Application.h#L211
-[src-camera-debugger]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L178
+[src-camera-debugger]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L177
 [web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/03/ex03-remote-debugging.html
 [debug-ui]: https://ogstudio.github.io/debug-ui/?broker=https%3A%2F%2Fosgcpe-debug-broker.herokuapp.com&debugger=Ex03&page=camera
