@@ -3,10 +3,14 @@
 
 * [Overview](#overview)
 * [Steps](#steps)
-    * [3.1. HTTP(s) support](#http)
-        * [Technologies](#http-tech)
-        * [Internal representation](#http-representation)
-        * [Usage](#http-usage)
+    * [3.1. Introduce HTTP(s) client](#http)
+        * [3.1.1. Technologies](#http-tech)
+        * [3.1.2. Internal representation](#http-representation)
+        * [3.1.3. Usage](#http-usage)
+    * [3.2. Implement debug-broker's protocol](#debug)
+        * [3.2.1. Technologies](#debug-tech)
+        * [3.2.2. Internal representation](#debug-representation)
+        * [3.2.3. Usage](#debug-usage)
 * [Result](#result)
 
 TODO:
@@ -43,7 +47,7 @@ debugging across platforms.
 
 <a name="http"/>
 
-## 3.1. HTTP(s) support
+## 3.1. Introduce HTTP(s) client
 
 Remote debugging assumes application and debug UI are located at different
 machines. The most widespread way to communicate between remote machines
@@ -51,7 +55,7 @@ nowadays is to use HTTP(s) over TCP/IP.
 
 <a name="http-tech"/>
 
-### Technologies
+### 3.1.1. Technologies
 
 We use the following technologies to have HTTP(s) support across platforms:
 
@@ -64,7 +68,7 @@ We use the following technologies to have HTTP(s) support across platforms:
 
 <a name="http-representation"/>
 
-### Internal representation
+### 3.1.2. Internal representation
 
 These technologies are mapped to the following classes:
 
@@ -80,7 +84,7 @@ These technologies are mapped to the following classes:
 
 <a name="http-usage"/>
 
-### Usage
+### 3.1.3. Usage
 
 Client code should:
 
@@ -97,6 +101,60 @@ Client code should:
     ```
 * make requests when necessary (only [Debugger][src-Debugger] does requests in this examle)
 
+<a name="debug"/>
+
+## 3.2. Introduce remote debugging
+
+We use [debug-broker][debug-broker]'s protocol to implement remote debugging.
+
+`debug-broker` is a mediator between debugged application (this example) and
+debug UI (source of user input).
+
+<a name="debug-tech"/>
+
+### 3.2.1. Technologies
+
+`debug-broker` has the following concepts:
+
+* Debugger
+    * is a container of so-called debug pages
+    * usually represents a single application
+* Page
+    * is a container of so-called debug items
+    * usually represents a set of related items, e.g., `Camera` properties
+* Item
+    * contains alterable entries
+    * usually represents properties, e.g., `BackgroundColor` item for `Camera` page
+    * can be read-only or read-write
+
+`debug-broker` accepts and replies in JSON format. We use
+[NLohmann's JSON][nlohmann-json] to parse incoming JSON. Outgoing JSON
+is currently composed manually.
+
+<a name="debug-representation"/>
+
+### 3.2.2. Internal representation
+
+`debug-broker` concepts are mapped to the following classes:
+
+* [Debugger][src-Debugger]
+    * is a container for `Page`s
+    * uses `HTTPClient` instance to communicate with `debug-broker`
+    * makes new request
+        * each second
+        * only after previous request has been completed
+* [Page][src-Page]
+    * is a container for `Page::Item`s
+* [PageDesc][src-PageDesc]
+    * is a serialized representation of `Page`
+* [Page::Item][src-PageItem]
+    * is a titled entry with alterable value
+
+<a name="debug-usage"/>
+
+### 3.2.3. Usage
+
+
 
 <a name="result"/>
 
@@ -112,6 +170,7 @@ Here's a [web build of the example][web-build].
 [emscripten]: http://emscripten.org
 [xhr]: https://en.wikipedia.org/wiki/XMLHttpRequest
 [mongoose]: https://github.com/cesanta/mongoose
+[nlohmann-json]: https://github.com/nlohmann/json
 
 [src-HTTPClientFetch]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/web/src/network.h#L48
 [src-HTTPClientMongoose]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/network.h#L38
@@ -119,3 +178,9 @@ Here's a [web build of the example][web-build].
 [src-Debugger]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/debug.h#L246
 [src-HTTPClient-create]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L130
 [src-HTTPClient-process]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L132
+
+[src-Debugger]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/debug.h#L246
+[src-Page]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/debug.h#L99
+[src-PageDesc]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/debug.h#L63
+[src-PageItem]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/debug.h#L114
+
