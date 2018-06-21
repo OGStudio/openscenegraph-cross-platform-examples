@@ -9,7 +9,7 @@
 * [Examples](#examples)
     * [01. Embed resource into executable](#ex01)
     * [02. Use PNG images with PNG plugins](#ex02)
-    * [03. Remotely debug application](#ex03)
+    * [03. Debug application remotely](#ex03)
 * [Help](#help)
 
 <a name="overview"/>
