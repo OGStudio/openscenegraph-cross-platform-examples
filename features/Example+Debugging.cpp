@@ -15,8 +15,7 @@ private:
     void setupDebugging()
     {
         this->dbg = new debug::Debugger(this->httpClient, EXAMPLE_TITLE);
-        // TODO Heroku? Parametrize.
-        this->dbg->setBrokerURL("http://localhost:7999");
+        this->dbg->setBrokerURL("https://osgcpe-debug-broker.herokuapp.com");
 
         // Subscribe debugger to be processed each frame.
         this->app->frameReporter.addCallback(

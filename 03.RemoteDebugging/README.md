@@ -257,9 +257,7 @@ this->dbg->addPage(this->app->debugPage);
 
 Here's a [web build of the example][web-build].
 
-TODO 
-
-describe how to this web-build with debug UI and locally running debug-broker
+Now open [debug UI][debug-ui] and change background color.
 
 [osgcpe]: https://github.com/OGStudio/openscenegraph-cross-platform-examples
 [debug-broker]: https://github.com/OGStudio/debug-broker
@@ -288,3 +286,5 @@ describe how to this web-build with debug UI and locally running debug-broker
 [src-camera-posrot]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Application.h#L241
 [src-camera-bgcolor]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Application.h#L211
 [src-camera-debugger]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L178
+[web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/03/ex03-remote-debugging.html
+[debug-ui]: https://ogstudio.github.io/debug-ui/?broker=https%3A%2F%2Fosgcpe-debug-broker.herokuapp.com&debugger=Ex03&page=camera
