@@ -22,20 +22,35 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "Example.h"
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_FORMAT_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_FORMAT_H
 
+// printfString Start
+#include <cstdarg>
 
-int main(int argc, char *argv[])
+// printfString End
+
+namespace osgcpe
 {
-    // main-desktop Start
-    auto example = new osgcpe::Example();
-    example->app->setupWindow(osgcpe::EXAMPLE_TITLE, 100, 100, 480, 320);
-    
-    // main-desktop End
-    // main-desktop Start
-    example->app->run();
-    delete example;
-    // main-desktop End
-    return 0;
+namespace format
+{
+
+// printfString Start
+//! Construct a string using printf-like syntax.
+std::string printfString(const char *fmt, ...)
+{
+    const int PRINTF_STRING_MAX_STRLEN = 1024;
+    va_list args;
+    char msg[PRINTF_STRING_MAX_STRLEN];
+    va_start(args, fmt);
+    vsnprintf(msg, PRINTF_STRING_MAX_STRLEN, fmt, args);
+    va_end(args);
+    return msg;
 }
+// printfString End
+
+} // namespace format
+} // namespace osgcpe
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_FORMAT_H
 

@@ -22,20 +22,44 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "Example.h"
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 
+// textureImageScene Start
+#include "resource.h"
 
-int main(int argc, char *argv[])
+// textureImageScene End
+
+namespace osgcpe
 {
-    // main-desktop Start
-    auto example = new osgcpe::Example();
-    example->app->setupWindow(osgcpe::EXAMPLE_TITLE, 100, 100, 480, 320);
-    
-    // main-desktop End
-    // main-desktop Start
-    example->app->run();
-    delete example;
-    // main-desktop End
-    return 0;
+namespace scene
+{
+
+// textureImageScene Start
+void textureImageScene(
+    const resource::Resource &shaderFrag,
+    const resource::Resource &shaderVert,
+    const resource::Resource &textureImage,
+    osg::Node *scene
+) {
+    // Create shader program.
+    auto prog =
+        render::createShaderProgram(
+            resource::string(shaderVert),
+            resource::string(shaderFrag)
+        );
+    // Apply the program.
+    auto material = scene->getOrCreateStateSet();
+    material->setAttribute(prog);
+    // Set texture image.
+    material->setTextureAttributeAndModes(0, resource::createTexture(textureImage));
+    material->addUniform(new osg::Uniform("image", 0));
 }
+// textureImageScene End
+
+
+} // namespace scene
+} // namespace osgcpe
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 

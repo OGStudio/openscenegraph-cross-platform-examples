@@ -18,6 +18,7 @@ EXAMPLES="
 01.EmbedResource
 02.TextureImage
 03.RemoteDebugging
+04.NodeSelection
 "
 
 # Platform -> Path to Features.txt
