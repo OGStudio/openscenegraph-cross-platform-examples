@@ -4,7 +4,7 @@ Application+setupWindow-desktop
 Application+Logging
 Application+Rendering
 
-Example+02
+Example+04
 Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
 Example+TextureImageScene
@@ -37,3 +37,8 @@ setupCamera
 
 # scene
 textureImageScene
+
+# input
+Mouse
+MouseButtons
+OSGCPE_INPUT_MOUSE_LOG

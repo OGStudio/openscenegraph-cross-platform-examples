@@ -44,6 +44,7 @@ namespace osgcpe
 // FEATURE Example+01/Title
 // FEATURE Example+02/Title
 // FEATURE Example+03/Title
+// FEATURE Example+04/Title
 
 struct Example
 {

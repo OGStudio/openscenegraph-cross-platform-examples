@@ -56,9 +56,9 @@ freely, subject to the following restrictions:
 namespace osgcpe
 {
 
-// Example+02 Start
-const auto EXAMPLE_TITLE = "Ex02";
-// Example+02 End
+// Example+04 Start
+const auto EXAMPLE_TITLE = "Ex04";
+// Example+04 End
 
 struct Example
 {
