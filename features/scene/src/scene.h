@@ -33,6 +33,7 @@ namespace osgcpe
 namespace scene
 {
 
+// FEATURE nodeAtPosition/Impl
 // FEATURE paintScene/Impl
 // FEATURE quaternionToDegrees/Impl
 // FEATURE textureImageScene/Impl

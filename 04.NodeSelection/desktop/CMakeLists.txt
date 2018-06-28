@@ -22,6 +22,7 @@ TARGET_LINK_LIBRARIES(
     osgViewer
     osgDB
     osgGA
+    osgUtil
     osg
     OpenThreads
 )

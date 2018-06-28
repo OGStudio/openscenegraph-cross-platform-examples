@@ -39,6 +39,7 @@ createShaderProgram
 setupCamera
 
 # scene
+nodeAtPosition
 textureImageScene
 
 # input

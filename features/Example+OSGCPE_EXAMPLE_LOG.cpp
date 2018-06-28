@@ -1,7 +1,7 @@
 FEATURE Example.h/Impl
 #include "log.h"
 #include "format.h"
-#define OSGCPE_EXAMPLE_LOG_PREFIX "osgcpe-example(%p) %s"
+#define OSGCPE_EXAMPLE_LOG_PREFIX "osgcpe::Example(%p) %s"
 #define OSGCPE_EXAMPLE_LOG(...) \
     osgcpe::log::logprintf( \
         OSGCPE_EXAMPLE_LOG_PREFIX, \

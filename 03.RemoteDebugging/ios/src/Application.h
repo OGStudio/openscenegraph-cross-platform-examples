@@ -56,7 +56,7 @@ freely, subject to the following restrictions:
 // Application+OSGCPE_APPLICATION_LOG Start
 #include "log.h"
 #include "format.h"
-#define OSGCPE_APPLICATION_LOG_PREFIX "osgcpe-Application(%p) %s"
+#define OSGCPE_APPLICATION_LOG_PREFIX "osgcpe::Application(%p) %s"
 #define OSGCPE_APPLICATION_LOG(...) \
     osgcpe::log::logprintf( \
         OSGCPE_APPLICATION_LOG_PREFIX, \
