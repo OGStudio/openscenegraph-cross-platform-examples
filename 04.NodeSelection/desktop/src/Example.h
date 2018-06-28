@@ -85,6 +85,10 @@ struct Example
             scene::textureImageScene(shaderFrag, shaderVert, textureImage, scene);
             // Example+TextureImageScene End
             this->app->setScene(scene);
+            // Example+BoxSelection Start
+            this->setupBoxSelection();
+            
+            // Example+BoxSelection End
         }
     }
     ~Example()
@@ -92,6 +96,30 @@ struct Example
         delete this->app;
     }
 
+    // Example+BoxSelection Start
+    private:
+        const std::string boxSelectionCallbackName = "BoxSelection";
+        void setupBoxSelection()
+        {
+            // Listen to mouse clicks.
+            this->app->mouse->pressedButtonsChanged.addCallback(
+                [&] {
+                    bool clicked = this->app->mouse->pressedButtons.empty();
+                    if (clicked)
+                    {
+                        OSGCPE_EXAMPLE_LOG("Clicked");
+                    }
+                },
+                this->boxSelectionCallbackName
+            );
+        }
+        void tearBoxSelectionDown()
+        {
+            this->app->mouse->pressedButtonsChanged.removeCallback(
+                this->boxSelectionCallbackName
+            );
+        }
+    // Example+BoxSelection End
 
 };
 

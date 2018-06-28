@@ -36,6 +36,10 @@ freely, subject to the following restrictions:
 #include <osgGA/TrackballManipulator>
 
 // Application+Rendering End
+// Application+Mouse Start
+#include "input.h"
+
+// Application+Mouse End
 
 
 namespace osgcpe
@@ -54,6 +58,10 @@ class Application
             this->setupRendering();
             
             // Application+Rendering End
+            // Application+Mouse Start
+            this->setupMouse();
+            
+            // Application+Mouse End
         }
         ~Application()
         {
@@ -61,6 +69,10 @@ class Application
             this->tearRenderingDown();
             
             // Application+Rendering End
+            // Application+Mouse Start
+            this->tearMouseDown();
+            
+            // Application+Mouse End
             // Application+Logging Start
             this->tearLoggingDown();
             
@@ -144,6 +156,23 @@ class Application
                 delete this->viewer;
             }
         // Application+Rendering End
+        // Application+Mouse Start
+        public:
+            input::Mouse *mouse;
+        private:
+            void setupMouse()
+            {
+                // Create mouse events' handler.
+                this->mouse = new input::Mouse;
+                // Register it.
+                this->viewer->addEventHandler(this->mouse);
+            }
+            void tearMouseDown()
+            {
+                // This also removes Mouse instance.
+                this->viewer->removeEventHandler(this->mouse);
+            }
+        // Application+Mouse End
 };
 
 } // namespace osgcpe

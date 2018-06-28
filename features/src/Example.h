@@ -61,6 +61,7 @@ struct Example
             // FEATURE Example+SingleColorScene/Impl
             // FEATURE Example+TextureImageScene/Impl
             this->app->setScene(scene);
+            // FEATURE Example+BoxSelection/Setup
         }
         // FEATURE Example+HTTPClient/Setup
         // FEATURE Example+Debugging/Setup
@@ -73,6 +74,7 @@ struct Example
         delete this->app;
     }
 
+    // FEATURE Example+BoxSelection/Impl
     // FEATURE Example+HTTPClient/Impl
     // FEATURE Example+Debugging/Impl
     // FEATURE Example+DebugApplication/Impl

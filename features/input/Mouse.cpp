@@ -29,7 +29,7 @@ class Mouse : public osgGA::GUIEventHandler
             {
                 this->position = pos;
                 this->positionChanged.report();
-                OSGCPE_MOUSE_INPUT_LOG("Position: '%f x %f'", pos.x(), pos.y());
+                //OSGCPE_INPUT_MOUSE_LOG("Position: '%f x %f'", pos.x(), pos.y());
             }
 
             // Process pressed buttons.
@@ -67,7 +67,7 @@ class Mouse : public osgGA::GUIEventHandler
                         buttons.end()
                     );
                     this->pressedButtonsChanged.report();
-                    OSGCPE_INPUT_MOUSE_LOG("Released button '%d'", button);
+                    //OSGCPE_INPUT_MOUSE_LOG("Released button '%d'", button);
                 }
             }
             // Button is not pressed.
@@ -78,8 +78,8 @@ class Mouse : public osgGA::GUIEventHandler
                 {
                     buttons.push_back(button);
                     this->pressedButtonsChanged.report();
-                    OSGCPE_INPUT_MOUSE_LOG("Pressed button '%d'", button);
+                    //OSGCPE_INPUT_MOUSE_LOG("Pressed button '%d'", button);
                 }
             }
         }
-}
+};
