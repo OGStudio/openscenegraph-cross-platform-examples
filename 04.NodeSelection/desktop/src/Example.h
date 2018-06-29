@@ -105,8 +105,17 @@ struct Example
     // Example+BoxRotation Start
     private:
         const std::string boxRotationCallbackName = "BoxRotation";
+        osg::Vec3f boxRotation;
         void setupBoxRotation()
         {
+            // Do nothing for an empty scene.
+            if (!this->scene.valid())
+            {
+                return;
+            }
+    
+            // Record current box rotation.
+            this->boxRotation = scene::simpleRotation(this->scene);
             // Listen to box selection.
             this->boxSelected.addCallback(
                 [&] {
@@ -122,16 +131,32 @@ struct Example
         void rotateBox()
         {
             OSGCPE_EXAMPLE_LOG("TODO rotateBox");
+            this->boxRotation.x() += 10;
+            scene::setSimpleRotation(this->scene, this->boxRotation);
+    
+            auto rot = scene::simpleRotation(this->scene);
+            OSGCPE_EXAMPLE_LOG(
+                "Current rotation: '%f, %f, %f'",
+                rot.x(),
+                rot.y(),
+                rot.z()
+            );
         }
     // Example+BoxRotation End
     // Example+BoxScene Start
     private:
-        osg::ref_ptr<osg::Node> scene;
+        osg::ref_ptr<osg::MatrixTransform> scene;
     
         void setupBoxScene()
         {
             resource::Resource box("models", "box.osgt", box_osgt, box_osgt_len);
-            this->scene = resource::node(box);
+            auto node = resource::node(box);
+            // Use MatrixTransform to allow box transformations.
+            if (node)
+            {
+                this->scene = new osg::MatrixTransform;
+                this->scene->addChild(node);
+            }
             if (this->scene.valid())
             {
                 this->app->setScene(scene);

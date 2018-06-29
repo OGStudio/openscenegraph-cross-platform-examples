@@ -105,12 +105,18 @@ struct Example
 
     // Example+BoxScene Start
     private:
-        osg::ref_ptr<osg::Node> scene;
+        osg::ref_ptr<osg::MatrixTransform> scene;
     
         void setupBoxScene()
         {
             resource::Resource box("models", "box.osgt", box_osgt, box_osgt_len);
-            this->scene = resource::node(box);
+            auto node = resource::node(box);
+            // Use MatrixTransform to allow box transformations.
+            if (node)
+            {
+                this->scene = new osg::MatrixTransform;
+                this->scene->addChild(node);
+            }
             if (this->scene.valid())
             {
                 this->app->setScene(scene);
