@@ -6,6 +6,7 @@ this->tearBoxSelectionDown();
 
 FEATURE Example.h/Impl
 private:
+    Reporter boxSelected;
     const std::string boxSelectionCallbackName = "BoxSelection";
     const unsigned int selectionNodeMask = 0x00000004;
     void setupBoxSelection()
@@ -45,6 +46,6 @@ private:
         {
             // Since we don't have other nodes in the scene,
             // we are sure it's the box.
-            OSGCPE_EXAMPLE_LOG("Selected box");
+            this->boxSelected.report();
         }
     }

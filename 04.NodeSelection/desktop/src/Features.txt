@@ -10,8 +10,9 @@ Reporter+Stub
 Example+04
 Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
-Example+BoxSelection
 Example+TextureImageScene
+Example+BoxSelection
+Example+BoxRotation
 
 main-desktop
 

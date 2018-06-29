@@ -81,11 +81,19 @@ struct Example
         this->setupBoxSelection();
         
         // Example+BoxSelection End
+        // Example+BoxRotation Start
+        this->setupBoxRotation();
+        
+        // Example+BoxRotation End
 
     }
     ~Example()
     {
 
+        // Example+BoxRotation Start
+        this->tearBoxRotationDown();
+        
+        // Example+BoxRotation End
         // Example+BoxSelection Start
         this->tearBoxSelectionDown();
         
@@ -94,6 +102,28 @@ struct Example
         delete this->app;
     }
 
+    // Example+BoxRotation Start
+    private:
+        const std::string boxRotationCallbackName = "BoxRotation";
+        void setupBoxRotation()
+        {
+            // Listen to box selection.
+            this->boxSelected.addCallback(
+                [&] {
+                    this->rotateBox();
+                },
+                this->boxRotationCallbackName
+            );
+        }
+        void tearBoxRotationDown()
+        {
+            this->boxSelected.removeCallback(this->boxRotationCallbackName);
+        }
+        void rotateBox()
+        {
+            OSGCPE_EXAMPLE_LOG("TODO rotateBox");
+        }
+    // Example+BoxRotation End
     // Example+BoxScene Start
     private:
         osg::ref_ptr<osg::Node> scene;
@@ -114,6 +144,7 @@ struct Example
     // Example+BoxScene End
     // Example+BoxSelection Start
     private:
+        Reporter boxSelected;
         const std::string boxSelectionCallbackName = "BoxSelection";
         const unsigned int selectionNodeMask = 0x00000004;
         void setupBoxSelection()
@@ -126,15 +157,11 @@ struct Example
             // Listen to mouse clicks.
             this->app->mouse->pressedButtonsChanged.addCallback(
                 [&] {
-                /*
                     bool clicked = !this->app->mouse->pressedButtons.empty();
                     if (clicked)
                     {
-                    */
                         this->tryToSelectBox();
-                        /*
                     }
-                    */
                 },
                 this->boxSelectionCallbackName
             );
@@ -157,7 +184,7 @@ struct Example
             {
                 // Since we don't have other nodes in the scene,
                 // we are sure it's the box.
-                OSGCPE_EXAMPLE_LOG("Selected box");
+                this->boxSelected.report();
             }
         }
     // Example+BoxSelection End

@@ -60,6 +60,7 @@ struct Example
         // FEATURE Example+SingleColorScene/Setup
         // FEATURE Example+TextureImageScene/Setup
         // FEATURE Example+BoxSelection/Setup
+        // FEATURE Example+BoxRotation/Setup
 
         // FEATURE Example+HTTPClient/Setup
         // FEATURE Example+Debugging/Setup
@@ -70,11 +71,13 @@ struct Example
         // FEATURE Example+Debugging/TearDown
         // FEATURE Example+HTTPClient/TearDown
 
+        // FEATURE Example+BoxRotation/TearDown
         // FEATURE Example+BoxSelection/TearDown
 
         delete this->app;
     }
 
+    // FEATURE Example+BoxRotation/Impl
     // FEATURE Example+BoxScene/Impl
     // FEATURE Example+BoxSelection/Impl
     // FEATURE Example+SingleColorScene/Impl
