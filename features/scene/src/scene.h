@@ -25,6 +25,7 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 
+// FEATURE simpleRotation/Include
 // FEATURE textureImageScene/Include
 // FEATURE PrintGraphVisitor/Include
 
@@ -33,9 +34,14 @@ namespace osgcpe
 namespace scene
 {
 
-// FEATURE nodeAtPosition/Impl
-// FEATURE paintScene/Impl
+// FEATURE degreesToQuaternion/Impl
 // FEATURE quaternionToDegrees/Impl
+// FEATURE setSimpleRotation/Impl
+// FEATURE simpleRotation/Impl
+
+// FEATURE nodeAtPosition/Impl
+
+// FEATURE paintScene/Impl
 // FEATURE textureImageScene/Impl
 
 // FEATURE PrintGraphVisitor/Impl

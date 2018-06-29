@@ -31,6 +31,8 @@ namespace osgcpe
 namespace scene
 {
 
+
+
 // paintScene Start
 void paintScene(osg::Node *scene)
 {

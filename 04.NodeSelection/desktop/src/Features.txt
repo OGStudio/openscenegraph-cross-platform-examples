@@ -41,7 +41,13 @@ createShaderProgram
 setupCamera
 
 # scene
+degreesToQuaternion
+quaternionToDegrees
+setSimpleRotation
+simpleRotation
+
 nodeAtPosition
+
 textureImageScene
 
 # input

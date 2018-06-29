@@ -35,6 +35,8 @@ namespace osgcpe
 namespace scene
 {
 
+
+
 // textureImageScene Start
 void textureImageScene(
     osg::Node *scene,

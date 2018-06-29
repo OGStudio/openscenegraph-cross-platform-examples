@@ -69,6 +69,8 @@ osg::Vec3f quaternionToDegrees(const osg::Quat &quaternion)
     return result;
 }
 // quaternionToDegrees End
+
+
 // textureImageScene Start
 void textureImageScene(
     osg::Node *scene,

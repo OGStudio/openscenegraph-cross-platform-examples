@@ -25,6 +25,10 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 
+// simpleRotation Start
+#include <osg/MatrixTransform>
+
+// simpleRotation End
 // textureImageScene Start
 #include "resource.h"
 
@@ -34,6 +38,74 @@ namespace osgcpe
 {
 namespace scene
 {
+
+// degreesToQuaternion Start
+//! Convert from degrees to quaternion.
+osg::Quat degreesToQuaternion(const osg::Vec3f &degrees)
+{
+    osg::Quat q;
+    q.makeRotate(
+        osg::DegreesToRadians(degrees.x()), osg::Vec3(1, 0, 0),
+        osg::DegreesToRadians(degrees.y()), osg::Vec3(0, 1, 0),
+        osg::DegreesToRadians(degrees.z()), osg::Vec3(0, 0, 1)
+    );
+    return q;
+}
+// degreesToQuaternion End
+// quaternionToDegrees Start
+osg::Vec3f quaternionToDegrees(const osg::Quat &quaternion)
+{
+    double q0 = quaternion.x();
+    double q1 = quaternion.y();
+    double q2 = quaternion.z();
+    double q3 = quaternion.w();
+    
+    //double sq0 = q0 * q0;
+    double sq1 = q1 * q1;
+    double sq2 = q2 * q2;
+    double sq3 = q3 * q3;
+    
+    double term1 = 2*(q0*q1 + q2*q3);
+    double term2 = 1 - 2 * (sq1 + sq2);
+    double term3 = 2 * (q0*q2 - q3*q1);
+    double term4 = 2 * (q0*q3 + q1*q2);
+    double term5 = 1 - 2 * (sq2 + sq3);
+
+    double z = atan2(term1, term2);
+    double y = asin(term3);
+    double x = atan2(term4, term5);
+
+    osg::Vec3f result(x * 180.0 / M_PI, y * 180.0 / M_PI, z * 180.0 / M_PI);
+    // Fix for X when Y = 0.
+    result.x() = 180 - result.x();
+    // Fix for Z when Y = 0.
+    if (result.z() < 0)
+    {
+        result.z() = 360 + result.z();
+    }
+    return result;
+}
+// quaternionToDegrees End
+// setSimpleRotation Start
+//! Set node rotation.
+void setSimpleRotation(osg::MatrixTransform *node, const osg::Vec3f &rotation)
+{
+    osg::Quat quat = degreesToQuaternion(rotation);
+    node->setMatrix(
+        osg::Matrix::scale(node->getMatrix().getScale()) *
+        osg::Matrix::rotate(quat) *
+        osg::Matrix::translate(node->getMatrix().getTrans())
+    );
+}
+// setSimpleRotation End
+// simpleRotation Start
+//! Get node rotation.
+osg::Vec3f simpleRotation(osg::MatrixTransform *node)
+{
+    auto quat = node->getMatrix().getRotate();
+    return quaternionToDegrees(quat);
+}
+// simpleRotation End
 
 // nodeAtPosition Start
 //! Pick node at the specified position using camera's point of view
@@ -74,6 +146,7 @@ osg::Node *nodeAtPosition(
     return 0;
 }
 // nodeAtPosition End
+
 // textureImageScene Start
 void textureImageScene(
     osg::Node *scene,
