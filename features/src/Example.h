@@ -54,15 +54,13 @@ struct Example
     Example()
     {
         this->app = new osgcpe::Application(EXAMPLE_TITLE);
-        // FEATURE Example+BoxScene/Impl
-        if (scene.valid())
-        {
-            // FEATURE Example+VBO/Impl
-            // FEATURE Example+SingleColorScene/Impl
-            // FEATURE Example+TextureImageScene/Impl
-            this->app->setScene(scene);
-            // FEATURE Example+BoxSelection/Setup
-        }
+
+        // FEATURE Example+BoxScene/Setup
+        // FEATURE Example+VBO/Setup
+        // FEATURE Example+SingleColorScene/Setup
+        // FEATURE Example+TextureImageScene/Setup
+        // FEATURE Example+BoxSelection/Setup
+
         // FEATURE Example+HTTPClient/Setup
         // FEATURE Example+Debugging/Setup
         // FEATURE Example+DebugApplication/Setup
@@ -71,10 +69,18 @@ struct Example
     {
         // FEATURE Example+Debugging/TearDown
         // FEATURE Example+HTTPClient/TearDown
+
+        // FEATURE Example+BoxSelection/TearDown
+
         delete this->app;
     }
 
+    // FEATURE Example+BoxScene/Impl
     // FEATURE Example+BoxSelection/Impl
+    // FEATURE Example+SingleColorScene/Impl
+    // FEATURE Example+TextureImageScene/Impl
+    // FEATURE Example+VBO/Impl
+
     // FEATURE Example+HTTPClient/Impl
     // FEATURE Example+Debugging/Impl
     // FEATURE Example+DebugApplication/Impl

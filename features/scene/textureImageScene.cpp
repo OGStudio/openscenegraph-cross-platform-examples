@@ -3,10 +3,10 @@ FEATURE scene.h/Include
 
 FEATURE scene.h/Impl
 void textureImageScene(
+    osg::Node *scene,
     const resource::Resource &shaderFrag,
     const resource::Resource &shaderVert,
-    const resource::Resource &textureImage,
-    osg::Node *scene
+    const resource::Resource &textureImage
 ) {
     // Create shader program.
     auto prog =

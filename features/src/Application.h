@@ -56,6 +56,7 @@ class Application
             // FEATURE Application+Logging/TearDown
         }
 
+        // FEATURE Application+camera/Impl
         // FEATURE Application+frame/Impl
         // FEATURE Application+frame+Reporting/Impl
         // FEATURE Application+run/Impl

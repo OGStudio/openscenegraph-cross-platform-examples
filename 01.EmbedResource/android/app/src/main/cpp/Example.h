@@ -70,32 +70,76 @@ struct Example
     Example()
     {
         this->app = new osgcpe::Application(EXAMPLE_TITLE);
+
         // Example+BoxScene Start
-        resource::Resource box("models", "box.osgt", box_osgt, box_osgt_len);
-        auto scene = resource::node(box);
-        if (!scene.valid())
-        {
-            OSGCPE_EXAMPLE_LOG("ERROR Could not load scene");
-        }
+        this->setupBoxScene();
+        
         // Example+BoxScene End
-        if (scene.valid())
-        {
-            // Example+VBO Start
-            // Use VBO and EBO instead of display lists. CRITICAL for web (Emscripten)
-            // to skip FULL_ES2 emulation flag.
-            osgcpe::render::VBOSetupVisitor vbo;
-            scene->accept(vbo);
-            // Example+VBO End
-            // Example+SingleColorScene Start
-            osgcpe::scene::paintScene(scene);
-            // Example+SingleColorScene End
-            this->app->setScene(scene);
-        }
+        // Example+VBO Start
+        this->setupSceneVBO();
+        
+        // Example+VBO End
+        // Example+SingleColorScene Start
+        this->setupSceneTexturing();
+        
+        // Example+SingleColorScene End
+
     }
     ~Example()
     {
+
+
         delete this->app;
     }
+
+    // Example+BoxScene Start
+    private:
+        osg::ref_ptr<osg::Node> scene;
+    
+        void setupBoxScene()
+        {
+            resource::Resource box("models", "box.osgt", box_osgt, box_osgt_len);
+            this->scene = resource::node(box);
+            if (this->scene.valid())
+            {
+                this->app->setScene(scene);
+            }
+            else
+            {
+                OSGCPE_EXAMPLE_LOG("ERROR Could not load scene");
+            }
+        }
+    // Example+BoxScene End
+    // Example+SingleColorScene Start
+    private:
+        void setupSceneTexturing()
+        {
+            // Do nothing for an empty scene.
+            if (!this->scene.valid())
+            {
+                return;
+            }
+    
+            osgcpe::scene::paintScene(this->scene);
+        }
+    // Example+SingleColorScene End
+    // Example+VBO Start
+    private:
+        void setupSceneVBO()
+        {
+            // Do nothing for an empty scene.
+            if (!this->scene.valid())
+            {
+                return;
+            }
+            // Use VBO and EBO instead of display lists.
+            // CRITICAL for:
+            // * mobile
+            // * web (Emscripten) to skip FULL_ES2 emulation flag
+            osgcpe::render::VBOSetupVisitor vbo;
+            this->scene->accept(vbo);
+        }
+    // Example+VBO End
 
 
 };

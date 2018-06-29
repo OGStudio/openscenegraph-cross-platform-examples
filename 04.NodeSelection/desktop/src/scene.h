@@ -76,10 +76,10 @@ osg::Node *nodeAtPosition(
 // nodeAtPosition End
 // textureImageScene Start
 void textureImageScene(
+    osg::Node *scene,
     const resource::Resource &shaderFrag,
     const resource::Resource &shaderVert,
-    const resource::Resource &textureImage,
-    osg::Node *scene
+    const resource::Resource &textureImage
 ) {
     // Create shader program.
     auto prog =

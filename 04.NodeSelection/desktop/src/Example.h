@@ -68,47 +68,73 @@ struct Example
     Example()
     {
         this->app = new osgcpe::Application(EXAMPLE_TITLE);
+
         // Example+BoxScene Start
-        resource::Resource box("models", "box.osgt", box_osgt, box_osgt_len);
-        auto scene = resource::node(box);
-        if (!scene.valid())
-        {
-            OSGCPE_EXAMPLE_LOG("ERROR Could not load scene");
-        }
+        this->setupBoxScene();
+        
         // Example+BoxScene End
-        if (scene.valid())
-        {
-            // Example+TextureImageScene Start
-            resource::Resource shaderFrag("shaders", "ppl.frag", ppl_frag, ppl_frag_len);
-            resource::Resource shaderVert("shaders", "ppl.vert", ppl_vert, ppl_vert_len);
-            resource::Resource textureImage("images", "digit.png", digit_png, digit_png_len);
-            scene::textureImageScene(shaderFrag, shaderVert, textureImage, scene);
-            // Example+TextureImageScene End
-            this->app->setScene(scene);
-            // Example+BoxSelection Start
-            this->setupBoxSelection();
-            
-            // Example+BoxSelection End
-        }
+        // Example+TextureImageScene Start
+        this->setupSceneTexturing();
+        
+        // Example+TextureImageScene End
+        // Example+BoxSelection Start
+        this->setupBoxSelection();
+        
+        // Example+BoxSelection End
+
     }
     ~Example()
     {
+
+        // Example+BoxSelection Start
+        this->tearBoxSelectionDown();
+        
+        // Example+BoxSelection End
+
         delete this->app;
     }
 
+    // Example+BoxScene Start
+    private:
+        osg::ref_ptr<osg::Node> scene;
+    
+        void setupBoxScene()
+        {
+            resource::Resource box("models", "box.osgt", box_osgt, box_osgt_len);
+            this->scene = resource::node(box);
+            if (this->scene.valid())
+            {
+                this->app->setScene(scene);
+            }
+            else
+            {
+                OSGCPE_EXAMPLE_LOG("ERROR Could not load scene");
+            }
+        }
+    // Example+BoxScene End
     // Example+BoxSelection Start
     private:
         const std::string boxSelectionCallbackName = "BoxSelection";
+        const unsigned int selectionNodeMask = 0x00000004;
         void setupBoxSelection()
         {
+            // Make box node selectable by excluding specific node mask.
+            this->scene->setNodeMask(
+                this->scene->getNodeMask() & ~this->selectionNodeMask
+            );
+    
             // Listen to mouse clicks.
             this->app->mouse->pressedButtonsChanged.addCallback(
                 [&] {
-                    bool clicked = this->app->mouse->pressedButtons.empty();
+                /*
+                    bool clicked = !this->app->mouse->pressedButtons.empty();
                     if (clicked)
                     {
-                        OSGCPE_EXAMPLE_LOG("Clicked");
+                    */
+                        this->tryToSelectBox();
+                        /*
                     }
+                    */
                 },
                 this->boxSelectionCallbackName
             );
@@ -119,7 +145,38 @@ struct Example
                 this->boxSelectionCallbackName
             );
         }
+        void tryToSelectBox()
+        {
+            auto node =
+                scene::nodeAtPosition(
+                    this->app->mouse->position,
+                    this->app->camera(),
+                    this->selectionNodeMask
+                );
+            if (node)
+            {
+                // Since we don't have other nodes in the scene,
+                // we are sure it's the box.
+                OSGCPE_EXAMPLE_LOG("Selected box");
+            }
+        }
     // Example+BoxSelection End
+    // Example+TextureImageScene Start
+    private:
+        void setupSceneTexturing()
+        {
+            // Do nothing for an empty scene.
+            if (!this->scene.valid())
+            {
+                return;
+            }
+            resource::Resource shaderFrag("shaders", "ppl.frag", ppl_frag, ppl_frag_len);
+            resource::Resource shaderVert("shaders", "ppl.vert", ppl_vert, ppl_vert_len);
+            resource::Resource texture("images", "digit.png", digit_png, digit_png_len);
+            scene::textureImageScene(this->scene, shaderFrag, shaderVert, texture);
+        }
+    // Example+TextureImageScene End
+
 
 };
 

@@ -4,8 +4,20 @@ FEATURE Example.h/Include
 #include "ppl.vert.h"
 #include "digit.png.h"
 
+FEATURE Example.h/Setup
+this->setupSceneTexturing();
+
 FEATURE Example.h/Impl
-resource::Resource shaderFrag("shaders", "ppl.frag", ppl_frag, ppl_frag_len);
-resource::Resource shaderVert("shaders", "ppl.vert", ppl_vert, ppl_vert_len);
-resource::Resource textureImage("images", "digit.png", digit_png, digit_png_len);
-scene::textureImageScene(shaderFrag, shaderVert, textureImage, scene);
+private:
+    void setupSceneTexturing()
+    {
+        // Do nothing for an empty scene.
+        if (!this->scene.valid())
+        {
+            return;
+        }
+        resource::Resource shaderFrag("shaders", "ppl.frag", ppl_frag, ppl_frag_len);
+        resource::Resource shaderVert("shaders", "ppl.vert", ppl_vert, ppl_vert_len);
+        resource::Resource texture("images", "digit.png", digit_png, digit_png_len);
+        scene::textureImageScene(this->scene, shaderFrag, shaderVert, texture);
+    }
