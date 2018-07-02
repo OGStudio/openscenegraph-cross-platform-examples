@@ -123,6 +123,20 @@ struct Example
                 },
                 this->boxRotationCallbackName
             );
+    
+            // TODO CHECK INTERPOLATION BEFORE ANIMATING
+    
+            scene::LinearInterpolator interpolator;
+            interpolator.keyValues = {
+                {0, 0},
+                {2, 10},
+            };
+    
+            float key = 0.5;
+            float value = interpolator.valueFor(key);
+    
+            OSGCPE_EXAMPLE_LOG("key: '%f' interpolated value: '%f'", key, value);
+    
         }
         void tearBoxRotationDown()
         {

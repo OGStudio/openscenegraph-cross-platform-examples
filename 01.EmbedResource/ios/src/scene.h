@@ -26,6 +26,7 @@ freely, subject to the following restrictions:
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 
 
+
 namespace osgcpe
 {
 namespace scene

@@ -30,6 +30,7 @@ freely, subject to the following restrictions:
 
 // textureImageScene End
 
+
 namespace osgcpe
 {
 namespace scene

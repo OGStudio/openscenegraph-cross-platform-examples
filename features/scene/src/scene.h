@@ -29,6 +29,8 @@ freely, subject to the following restrictions:
 // FEATURE textureImageScene/Include
 // FEATURE PrintGraphVisitor/Include
 
+// FEATURE OSGCPE_SCENE_LINEAR_INTERPOLATOR_LOG/Impl
+
 namespace osgcpe
 {
 namespace scene
@@ -44,6 +46,7 @@ namespace scene
 // FEATURE paintScene/Impl
 // FEATURE textureImageScene/Impl
 
+// FEATURE LinearInterpolator/Impl
 // FEATURE PrintGraphVisitor/Impl
 
 } // namespace scene

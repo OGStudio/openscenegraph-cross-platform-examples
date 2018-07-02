@@ -50,6 +50,8 @@ nodeAtPosition
 
 textureImageScene
 
+LinearInterpolator
+
 # input
 Mouse
 MouseButtons
