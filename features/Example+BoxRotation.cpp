@@ -7,7 +7,6 @@ this->tearBoxRotationDown();
 FEATURE Example.h/Impl
 private:
     const std::string boxRotationCallbackName = "BoxRotation";
-    osg::Vec3f boxRotation;
     void setupBoxRotation()
     {
         // Do nothing for an empty scene.
@@ -16,45 +15,78 @@ private:
             return;
         }
 
-        // Record current box rotation.
-        this->boxRotation = scene::simpleRotation(this->scene);
-        // Listen to box selection.
+        // Start box rotation upon box selection.
         this->boxSelected.addCallback(
             [&] {
                 this->rotateBox();
             },
             this->boxRotationCallbackName
         );
-
-        // TODO CHECK INTERPOLATION BEFORE ANIMATING
-
-        scene::LinearInterpolator interpolator;
-        interpolator.keyValues = {
-            {0, 0},
-            {2, 10},
-        };
-
-        float key = 0.5;
-        float value = interpolator.valueFor(key);
-
-        OSGCPE_EXAMPLE_LOG("key: '%f' interpolated value: '%f'", key, value);
-
     }
     void tearBoxRotationDown()
     {
         this->boxSelected.removeCallback(this->boxRotationCallbackName);
+        this->stopBoxRotationAnimation();
     }
+    scene::LinearInterpolator interpolator;
+    osg::Timer rotationTimer;
     void rotateBox()
     {
         OSGCPE_EXAMPLE_LOG("TODO rotateBox");
-        this->boxRotation.x() += 10;
-        scene::setSimpleRotation(this->scene, this->boxRotation);
 
+        // Get current box rotation along X.
+        // This is now interpolation starting point: source.
         auto rot = scene::simpleRotation(this->scene);
-        OSGCPE_EXAMPLE_LOG(
-            "Current rotation: '%f, %f, %f'",
-            rot.x(),
-            rot.y(),
-            rot.z()
+        auto srcX = rot.x();
+        // Calculate desired box rotation along X.
+        // This is now interpolation finish point: destination.
+        auto dstX = srcX + 45;
+
+        // Configure interpolation.
+        this->interpolator.keyValues = {
+            {0, srcX},
+            {1, dstX},
+        };
+
+        this->startBoxRotationAnimation();
+    }
+    void animateBoxRotation()
+    {
+        float elapsed = this->rotationTimer.time_s();
+        auto lastKeyValue = this->interpolator.keyValues.back();
+        float stopTime = lastKeyValue.key;
+        // Stop animation.
+        if (elapsed > stopTime)
+        {
+            this->setBoxRotationX(lastKeyValue.value);
+            this->stopBoxRotationAnimation();
+            OSGCPE_EXAMPLE_LOG("stop animation");
+            return;
+        }
+        // Animate.
+        auto value = this->interpolator.valueFor(elapsed);
+        this->setBoxRotationX(value);
+    }
+    void setBoxRotationX(float x)
+    {
+        auto rot = scene::simpleRotation(this->scene);
+        rot.x() = x;
+        scene::setSimpleRotation(this->scene, rot);
+    }
+    void startBoxRotationAnimation()
+    {
+        // Reset timer.
+        this->rotationTimer.setStartTick();
+        // Subscribe to frame ticks.
+        this->app->frameReporter.addCallback(
+            [&] {
+                this->animateBoxRotation();
+            },
+            this->boxRotationCallbackName
         );
+    }
+    void stopBoxRotationAnimation()
+    {
+        // Unsubscribe from frame ticks.
+        this->app->frameReporter.removeCallback(this->boxRotationCallbackName);
     }

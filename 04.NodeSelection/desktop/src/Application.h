@@ -40,6 +40,10 @@ freely, subject to the following restrictions:
 #include "input.h"
 
 // Application+Mouse End
+// Application+frame+Reporting Start
+#include "Reporter.h"
+
+// Application+frame+Reporting End
 
 
 namespace osgcpe
@@ -86,13 +90,15 @@ class Application
                 return this->viewer->getCamera();
             }
         // Application+camera End
-        // Application+frame Start
+        // Application+frame+Reporting Start
         public:
+            Reporter frameReporter;
             void frame()
             {
                 this->viewer->frame();
+                this->frameReporter.report();
             }
-        // Application+frame End
+        // Application+frame+Reporting End
         // Application+run Start
         public:
             void run()
