@@ -1,0 +1,59 @@
+Application+camera
+Application+frame+Reporting
+Application+setupWindow-embedded
+Application+Logging
+Application+Rendering
+Application+Mouse
+Reporter+Stub
+
+Example+04
+Example+OSGCPE_EXAMPLE_LOG
+Example+BoxScene
+Example+TextureImageScene
+Example+BoxSelection
+Example+BoxRotation
+Example+StaticPluginOSG
+Example+StaticPluginPNG
+Example+VBO
+
+main-web
+
+# log
+log-default
+logLevelToString
+logprintf
+Logger
+
+# format
+printfString
+
+# resource
+OSGCPE_RESOURCE_LOG
+createTexture
+extension
+node
+setTextureImage
+string
+Resource
+ResourceStreamBuffer
+
+# render
+createShaderProgram
+setupCamera
+VBOSetupVisitor
+
+# scene
+degreesToQuaternion
+quaternionToDegrees
+setSimpleRotation
+simpleRotation
+
+nodeAtPosition
+
+textureImageScene
+
+LinearInterpolator
+
+# input
+Mouse
+MouseButtons

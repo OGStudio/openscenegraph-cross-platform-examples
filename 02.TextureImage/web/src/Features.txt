@@ -11,13 +11,12 @@ Example+StaticPluginOSG
 Example+StaticPluginPNG
 Example+VBO
 
-
 main-web
 
 # log
 log-default
-logprintf
 logLevelToString
+logprintf
 Logger
 
 # format
