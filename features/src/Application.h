@@ -32,6 +32,7 @@ freely, subject to the following restrictions:
 // FEATURE Application+Debugging/Include
 // FEATURE Application+DebugCamera/Include
 // FEATURE Application+frame+Reporting/Include
+// FEATURE Application+handleEvent-web/Include
 
 // FEATURE Application+OSGCPE_APPLICATION_LOG/Impl
 
@@ -59,6 +60,7 @@ class Application
         // FEATURE Application+camera/Impl
         // FEATURE Application+frame/Impl
         // FEATURE Application+frame+Reporting/Impl
+        // FEATURE Application+handleEvent-web/Impl
         // FEATURE Application+run/Impl
         // FEATURE Application+setupWindow-desktop/Impl
         // FEATURE Application+setupWindow-embedded/Impl

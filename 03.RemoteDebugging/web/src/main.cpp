@@ -36,18 +36,13 @@ osgcpe::Example *example = 0;
 // Stand alone function that is called by Emscripten to run the app.
 void loop()
 {
-    SDL_Event e;
-    while (SDL_PollEvent(&e))
+    if (example)
     {
-        /*
-        if (example)
+        SDL_Event e;
+        while (SDL_PollEvent(&e))
         {
             example->app->handleEvent(e);
         }
-        */
-    }
-    if (example)
-    {
         example->app->frame();
     }
 }
