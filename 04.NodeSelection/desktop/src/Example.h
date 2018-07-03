@@ -130,20 +130,15 @@ struct Example
         osg::Timer rotationTimer;
         void rotateBox()
         {
-            OSGCPE_EXAMPLE_LOG("TODO rotateBox");
-    
             // Get current box rotation along X.
-            // This is now interpolation starting point: source.
             auto rot = scene::simpleRotation(this->scene);
             auto srcX = rot.x();
-            // Calculate desired box rotation along X.
-            // This is now interpolation finish point: destination.
-            auto dstX = srcX + 45;
     
             // Configure interpolation.
             this->interpolator.keyValues = {
                 {0, srcX},
-                {1, dstX},
+                {0.5, srcX + 45}, // Rotate by 45 degrees in 0.5 seconds.
+                {2, srcX}, // Rotate back in 2 - 0.5 = 1.5 seconds.
             };
     
             this->startBoxRotationAnimation();
@@ -158,7 +153,6 @@ struct Example
             {
                 this->setBoxRotationX(lastKeyValue.value);
                 this->stopBoxRotationAnimation();
-                OSGCPE_EXAMPLE_LOG("stop animation");
                 return;
             }
             // Animate.

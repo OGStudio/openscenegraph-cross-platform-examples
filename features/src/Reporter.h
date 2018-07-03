@@ -27,6 +27,8 @@ freely, subject to the following restrictions:
 
 #include <functional>
 
+// FEATURE Reporter+OSGCPE_REPORTER_LOG/Impl
+
 namespace osgcpe
 {
 
@@ -37,6 +39,8 @@ class Reporter
 
     public:
         Reporter() { }
+
+        std::string name;
 
         void addCallback(Callback callback, const std::string &name = "")
         {
@@ -97,6 +101,8 @@ class Reporter
                     }
                 }
             }
+            // Clear the list of inactive callbacks.
+            this->inactiveCallbackNames.clear();
         }
 
 };
