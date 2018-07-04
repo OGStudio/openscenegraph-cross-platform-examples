@@ -6,12 +6,14 @@ this->setupDebugCamera();
 
 FEATURE Application.h/Impl
 private:
+    debug::Page debugPage;
     osg::Camera *camera;
 public:
     void setupDebugCamera()
     {
-        this->camera = this->viewer->getCamera();
         this->debugPage.title = "camera";
+        this->debugger->addPage(this->debugPage);
+        this->camera = this->viewer->getCamera();
         this->setupDebugBGColor();
         this->setupDebugCameraOrientation();
     }

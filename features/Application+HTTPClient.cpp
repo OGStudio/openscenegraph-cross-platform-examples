@@ -1,15 +1,16 @@
-FEATURE Example.h/Include
+FEATURE Application.h/Include
 #include "network.h"
 
-FEATURE Example.h/Setup
+FEATURE Application.h/Setup
 this->setupHTTPClient();
 
-FEATURE Example.h/TearDown
+FEATURE Application.h/TearDown
 this->tearHTTPClientDown();
 
-FEATURE Example.h/Impl
-private:
+FEATURE Application.h/Impl
+public:
     network::HTTPClient *httpClient;
+private:
     const std::string httpClientCallbackName = "HTTPClient";
 
     void setupHTTPClient()
@@ -17,7 +18,7 @@ private:
         this->httpClient = new network::HTTPClient;
 
         // Subscribe HTTP client to be processed each frame.
-        this->app->frameReporter.addCallback(
+        this->frameReporter.addCallback(
             [&] {
                 if (this->httpClient->needsProcessing())
                 {
@@ -30,6 +31,6 @@ private:
     void tearHTTPClientDown()
     {
         // Unsubscribe HTTP client.
-        this->app->frameReporter.removeCallback(this->httpClientCallbackName);
+        this->frameReporter.removeCallback(this->httpClientCallbackName);
         delete this->httpClient;
     }

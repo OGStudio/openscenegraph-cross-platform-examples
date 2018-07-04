@@ -1,4 +1,5 @@
 FEATURE scene.h/Include
+#include "render.h"
 #include "resource.h"
 
 FEATURE scene.h/Impl

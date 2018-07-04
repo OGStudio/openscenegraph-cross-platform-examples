@@ -26,6 +26,7 @@ freely, subject to the following restrictions:
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 
 // textureImageScene Start
+#include "render.h"
 #include "resource.h"
 
 // textureImageScene End

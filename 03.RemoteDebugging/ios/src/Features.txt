@@ -1,11 +1,12 @@
 Application+OSGCPE_APPLICATION_LOG
 Application+frame+Reporting
 Application+setupWindow-ios
-Application+Logging
-Application+Rendering
 Application+CameraManipulator
 Application+Debugging
 Application+DebugCamera
+Application+HTTPClient
+Application+Logging
+Application+Rendering
 Reporter+Stub
 
 Example+03
@@ -14,9 +15,6 @@ Example+BoxScene
 Example+TextureImageScene
 Example+StaticPluginOSG
 Example+VBO
-Example+Debugging
-Example+DebugApplication
-Example+HTTPClient
 Example+StaticPluginImageIO
 
 library-ios

@@ -79,11 +79,9 @@ struct Example
         this->setupSceneTexturing();
         
         // Example+TextureImageScene End
-
     }
     ~Example()
     {
-
 
         delete this->app;
     }
@@ -127,7 +125,6 @@ struct Example
             scene::textureImageScene(this->scene, shaderFrag, shaderVert, texture);
         }
     // Example+TextureImageScene End
-
 
 };
 

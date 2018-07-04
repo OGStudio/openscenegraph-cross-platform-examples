@@ -30,6 +30,7 @@ freely, subject to the following restrictions:
 
 // simpleRotation End
 // textureImageScene Start
+#include "render.h"
 #include "resource.h"
 
 // textureImageScene End

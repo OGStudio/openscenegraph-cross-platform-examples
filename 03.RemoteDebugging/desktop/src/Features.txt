@@ -2,20 +2,18 @@ Application+OSGCPE_APPLICATION_LOG
 Application+frame+Reporting
 Application+run
 Application+setupWindow-desktop
-Application+Logging
-Application+Rendering
 Application+CameraManipulator
 Application+Debugging
 Application+DebugCamera
+Application+HTTPClient
+Application+Logging
+Application+Rendering
 Reporter+Stub
 
 Example+03
 Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
 Example+TextureImageScene
-Example+Debugging
-Example+DebugApplication
-Example+HTTPClient
 
 main-desktop
 

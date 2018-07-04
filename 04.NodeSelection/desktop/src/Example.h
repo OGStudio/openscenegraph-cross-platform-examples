@@ -87,11 +87,9 @@ struct Example
         this->setupBoxRotation();
         
         // Example+BoxRotation End
-
     }
     ~Example()
     {
-
         // Example+BoxRotation Start
         this->tearBoxRotationDown();
         
@@ -270,7 +268,6 @@ struct Example
             scene::textureImageScene(this->scene, shaderFrag, shaderVert, texture);
         }
     // Example+TextureImageScene End
-
 
 };
 

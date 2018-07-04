@@ -29,6 +29,10 @@ freely, subject to the following restrictions:
 #include "log.h"
 
 // Application+Logging End
+// Application+Mouse Start
+#include "input.h"
+
+// Application+Mouse End
 // Application+Rendering Start
 #include "render.h"
 
@@ -36,10 +40,6 @@ freely, subject to the following restrictions:
 #include <osgGA/TrackballManipulator>
 
 // Application+Rendering End
-// Application+Mouse Start
-#include "input.h"
-
-// Application+Mouse End
 // Application+frame+Reporting Start
 #include "Reporter.h"
 

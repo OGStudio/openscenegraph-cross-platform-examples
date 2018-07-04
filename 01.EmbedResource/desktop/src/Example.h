@@ -72,11 +72,9 @@ struct Example
         this->setupSceneTexturing();
         
         // Example+SingleColorScene End
-
     }
     ~Example()
     {
-
 
         delete this->app;
     }
@@ -118,7 +116,6 @@ struct Example
             osgcpe::scene::paintScene(this->scene);
         }
     // Example+SingleColorScene End
-
 
 };
 

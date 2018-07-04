@@ -96,11 +96,9 @@ struct Example
         this->setupSceneTexturing();
         
         // Example+TextureImageScene End
-
     }
     ~Example()
     {
-
 
         delete this->app;
     }
@@ -161,7 +159,6 @@ struct Example
             this->scene->accept(vbo);
         }
     // Example+VBO End
-
 
 };
 

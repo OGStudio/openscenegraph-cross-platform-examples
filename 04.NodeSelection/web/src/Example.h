@@ -104,11 +104,9 @@ struct Example
         this->setupBoxRotation();
         
         // Example+BoxRotation End
-
     }
     ~Example()
     {
-
         // Example+BoxRotation Start
         this->tearBoxRotationDown();
         
@@ -304,7 +302,6 @@ struct Example
             this->scene->accept(vbo);
         }
     // Example+VBO End
-
 
 };
 

@@ -25,17 +25,6 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_APPLICATION_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_APPLICATION_H
 
-// Application+Logging Start
-#include "log.h"
-
-// Application+Logging End
-// Application+Rendering Start
-#include "render.h"
-
-#include <osgViewer/Viewer>
-#include <osgGA/TrackballManipulator>
-
-// Application+Rendering End
 // Application+CameraManipulator Start
 #include <osgGA/TrackballManipulator>
 
@@ -48,6 +37,21 @@ freely, subject to the following restrictions:
 #include "scene.h"
 
 // Application+DebugCamera End
+// Application+HTTPClient Start
+#include "network.h"
+
+// Application+HTTPClient End
+// Application+Logging Start
+#include "log.h"
+
+// Application+Logging End
+// Application+Rendering Start
+#include "render.h"
+
+#include <osgViewer/Viewer>
+#include <osgGA/TrackballManipulator>
+
+// Application+Rendering End
 // Application+frame+Reporting Start
 #include "Reporter.h"
 
@@ -86,6 +90,14 @@ class Application
             this->setupCameraManipulator();
             
             // Application+CameraManipulator End
+            // Application+HTTPClient Start
+            this->setupHTTPClient();
+            
+            // Application+HTTPClient End
+            // Application+Debugging Start
+            this->setupDebugging(name);
+            
+            // Application+Debugging End
             // Application+DebugCamera Start
             this->setupDebugCamera();
             
@@ -93,6 +105,14 @@ class Application
         }
         ~Application()
         {
+            // Application+Debugging Start
+            this->tearDebuggingDown();
+            
+            // Application+Debugging End
+            // Application+HTTPClient Start
+            this->tearHTTPClientDown();
+            
+            // Application+HTTPClient End
             // Application+Rendering Start
             this->tearRenderingDown();
             
@@ -125,6 +145,34 @@ class Application
             }
         // Application+setupWindow-embedded End
 
+        // Application+HTTPClient Start
+        public:
+            network::HTTPClient *httpClient;
+        private:
+            const std::string httpClientCallbackName = "HTTPClient";
+        
+            void setupHTTPClient()
+            {
+                this->httpClient = new network::HTTPClient;
+        
+                // Subscribe HTTP client to be processed each frame.
+                this->frameReporter.addCallback(
+                    [&] {
+                        if (this->httpClient->needsProcessing())
+                        {
+                            this->httpClient->process();
+                        }
+                    },
+                    this->httpClientCallbackName
+                );
+            }
+            void tearHTTPClientDown()
+            {
+                // Unsubscribe HTTP client.
+                this->frameReporter.removeCallback(this->httpClientCallbackName);
+                delete this->httpClient;
+            }
+        // Application+HTTPClient End
         // Application+Logging Start
         private:
             log::Logger *logger;
@@ -180,16 +228,40 @@ class Application
         // Application+CameraManipulator End
         // Application+Debugging Start
         public:
-            debug::Page debugPage;
+            debug::Debugger *debugger;
+        private:
+            const std::string debuggerCallbackName = "Debugger";
+        
+            void setupDebugging(const std::string &name)
+            {
+                this->debugger = new debug::Debugger(this->httpClient, name);
+                this->debugger->setBrokerURL("https://osgcpe-debug-broker.herokuapp.com");
+        
+                // Subscribe debugger to be processed each frame.
+                this->frameReporter.addCallback(
+                    [&] {
+                        this->debugger->process();
+                    },
+                    this->debuggerCallbackName
+                );
+            }
+            void tearDebuggingDown()
+            {
+                // Unsubscribe debugger.
+                this->frameReporter.removeCallback(this->debuggerCallbackName);
+                delete this->debugger;
+            }
         // Application+Debugging End
         // Application+DebugCamera Start
         private:
+            debug::Page debugPage;
             osg::Camera *camera;
         public:
             void setupDebugCamera()
             {
-                this->camera = this->viewer->getCamera();
                 this->debugPage.title = "camera";
+                this->debugger->addPage(this->debugPage);
+                this->camera = this->viewer->getCamera();
                 this->setupDebugBGColor();
                 this->setupDebugCameraOrientation();
             }

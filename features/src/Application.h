@@ -25,12 +25,13 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_APPLICATION_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_APPLICATION_H
 
-// FEATURE Application+Logging/Include
-// FEATURE Application+Rendering/Include
-// FEATURE Application+Mouse/Include
 // FEATURE Application+CameraManipulator/Include
 // FEATURE Application+Debugging/Include
 // FEATURE Application+DebugCamera/Include
+// FEATURE Application+HTTPClient/Include
+// FEATURE Application+Logging/Include
+// FEATURE Application+Mouse/Include
+// FEATURE Application+Rendering/Include
 // FEATURE Application+frame+Reporting/Include
 // FEATURE Application+handleEvent-web/Include
 
@@ -48,10 +49,14 @@ class Application
             // FEATURE Application+Rendering/Setup
             // FEATURE Application+Mouse/Setup
             // FEATURE Application+CameraManipulator/Setup
+            // FEATURE Application+HTTPClient/Setup
+            // FEATURE Application+Debugging/Setup
             // FEATURE Application+DebugCamera/Setup
         }
         ~Application()
         {
+            // FEATURE Application+Debugging/TearDown
+            // FEATURE Application+HTTPClient/TearDown
             // FEATURE Application+Rendering/TearDown
             // FEATURE Application+Mouse/TearDown
             // FEATURE Application+Logging/TearDown
@@ -67,6 +72,7 @@ class Application
         // FEATURE Application+setupWindow-embedded/Impl
         // FEATURE Application+setupWindow-ios/Impl
 
+        // FEATURE Application+HTTPClient/Impl
         // FEATURE Application+Logging/Impl
         // FEATURE Application+Rendering/Impl
         // FEATURE Application+Mouse/Impl
