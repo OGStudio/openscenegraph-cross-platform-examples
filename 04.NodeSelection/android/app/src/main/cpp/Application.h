@@ -99,6 +99,22 @@ class Application
                 this->frameReporter.report();
             }
         // Application+frame+Reporting End
+        // Application+handleMousePress-android Start
+        public:
+            void handleMousePress(bool down, float x, float y)
+            {
+                auto queue = this->viewer->getEventQueue();
+                float correctedY = (this->windowHeight - y);
+                if (down)
+                {
+                    queue->mouseButtonPress(x, correctedY, 1 /* LMB */);
+                }
+                else
+                {
+                    queue->mouseButtonRelease(x, correctedY, 1 /* LMB */);
+                }
+            }
+        // Application+handleMousePress-android End
         // Application+setupWindow-embedded Start
         private:
             int windowWidth;

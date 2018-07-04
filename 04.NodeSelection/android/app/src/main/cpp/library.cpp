@@ -64,6 +64,13 @@ OSGCPE_JNI(frame)(OSGCPE_JNI_ARG)
 }
 
 // library+frame-android End
+// library+handleMousePress-android Start
+// Handle mouse press and release events.
+OSGCPE_JNI(handleMousePress)(OSGCPE_JNI_ARG, jboolean down, jfloat x, jfloat y)
+{
+    example->app->handleMousePress(down == JNI_TRUE, x, y);
+}
+// library+handleMousePress-android End
 
 // library-android Start
 } // extern "C".

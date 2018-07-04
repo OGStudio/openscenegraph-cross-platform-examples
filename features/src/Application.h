@@ -61,6 +61,7 @@ class Application
         // FEATURE Application+frame/Impl
         // FEATURE Application+frame+Reporting/Impl
         // FEATURE Application+handleEvent-web/Impl
+        // FEATURE Application+handleMousePress-android/Impl
         // FEATURE Application+run/Impl
         // FEATURE Application+setupWindow-desktop/Impl
         // FEATURE Application+setupWindow-embedded/Impl

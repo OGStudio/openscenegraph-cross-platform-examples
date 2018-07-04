@@ -1,5 +1,6 @@
 Application+camera
 Application+frame+Reporting
+Application+handleMousePress-android
 Application+setupWindow-embedded
 Application+Logging
 Application+Rendering
@@ -21,6 +22,7 @@ library+Ex04+OSGCPE_JNI-android
 library-android
 library+init-android
 library+frame-android
+library+handleMousePress-android
 
 # log
 log-android

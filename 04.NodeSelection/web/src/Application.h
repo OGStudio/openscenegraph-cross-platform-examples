@@ -109,15 +109,7 @@ class Application
         public:
             bool handleEvent(const SDL_Event &e)
             {
-                // Get event queue.
-                osgViewer::GraphicsWindow *gw =
-                    dynamic_cast<osgViewer::GraphicsWindow *>(
-                        this->viewer->getCamera()->getGraphicsContext());
-                if (!gw)
-                {
-                    return false;
-                }
-                osgGA::EventQueue &queue = *(gw->getEventQueue());
+                auto queue = this->viewer->getEventQueue();
         
                 // Detect finger events.
                 if (
@@ -130,10 +122,10 @@ class Application
                 // Handle mouse events unless finger events are detected.
                 if (!fingerEventsDetected)
                 {
-                    return handleMouseEvent(e, queue);
+                    return handleMouseEvent(e, *queue);
                 }
                 // Handle finger events.
-                return handleFingerEvent(e, queue);
+                return handleFingerEvent(e, *queue);
             }
         
         private:
