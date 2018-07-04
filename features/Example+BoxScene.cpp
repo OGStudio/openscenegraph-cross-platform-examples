@@ -2,6 +2,8 @@ FEATURE Example.h/Include
 #include "box.osgt.h"
 #include "resource.h"
 
+#include <osg/MatrixTransform>
+
 FEATURE Example.h/Setup
 this->setupBoxScene();
 
