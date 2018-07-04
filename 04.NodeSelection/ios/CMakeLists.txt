@@ -1,4 +1,4 @@
-PROJECT(EX02_TEXTURE_IMAGE)
+PROJECT(EX04_NODE_SELECTION)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 SET(BUILD_SIMULATOR YES CACHE BOOL "Build for simulator. Set to `false` to build for real device")
@@ -40,7 +40,7 @@ ELSE()
     SET(BUILD_VARIANT "Device")
 ENDIF()
 SET(OSG_SOURCE_DIR "${EXT_PROJ_DIR}/OpenSceneGraph" CACHE PATH "Path to OpenSceneGraph source directory")
-SET(OSG_BUILD_DIR "${OSG_SOURCE_DIR}/build/${BUILD_VARIANT}/Ex02")
+SET(OSG_BUILD_DIR "${OSG_SOURCE_DIR}/build/${BUILD_VARIANT}/Ex04")
 # Only build OpenSceneGraph if it has not yet been built.
 IF (NOT EXISTS "${OSG_BUILD_DIR}/lib/libosgdb_imageio.a")
     FILE(MAKE_DIRECTORY ${OSG_BUILD_DIR})
@@ -60,11 +60,11 @@ INCLUDE_DIRECTORIES(src)
 # Reference resource headers.
 INCLUDE_DIRECTORIES(../../data)
 # Build example library.
-ADD_LIBRARY(rawex02 STATIC src/library.cpp)
+ADD_LIBRARY(rawex04 STATIC src/library.cpp)
 # NOTE This does not actually link anything. However, this command
 # NOTE makes sure all necessary libraries are built.
 TARGET_LINK_LIBRARIES(
-    rawex02
+    rawex04
     osgViewer
     osgDB
     # osgDB plugins start.
@@ -85,16 +85,16 @@ IF(BUILD_SIMULATOR)
 ELSE()
     SET(BUILD_SUFFIX "Release-iphoneos")
 ENDIF()
-# Generate single ex02 library once rawex02 one has been built.
+# Generate single ex04 library once rawex02 one has been built.
 ADD_CUSTOM_COMMAND(
-    TARGET rawex02
+    TARGET rawex04
     POST_BUILD
     COMMAND
         "libtool"
         "-static" 
         "-o"
-        "libex02.a"
-        "${CMAKE_BINARY_DIR}/${BUILD_SUFFIX}/librawex02.a"
+        "libex04.a"
+        "${CMAKE_BINARY_DIR}/${BUILD_SUFFIX}/librawex04.a"
         "${OSG_BUILD_DIR}/lib/libosg.a"
         "${OSG_BUILD_DIR}/lib/libosgDB.a"
         "${OSG_BUILD_DIR}/lib/libosgdb_imageio.a"
