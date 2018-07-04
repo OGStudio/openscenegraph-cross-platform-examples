@@ -1,3 +1,4 @@
+Application+camera
 Application+frame+Reporting
 Application+setupWindow-embedded
 Application+Logging
