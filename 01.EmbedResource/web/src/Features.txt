@@ -1,4 +1,5 @@
 Application+frame
+Application+handleEvent-web
 Application+setupWindow-embedded
 Application+Logging
 Application+Rendering
