@@ -25,8 +25,15 @@ public:
            
         auto success = [&](std::string response) {
             //OSGCPE_DEBUG_DEBUGGER_LOG("Process JSON: '%s'", response.c_str());
-            // Process incoming JSON response.
-            this->processJSON(response);
+            // Only process incoming JSON response if there's response
+            if (response.length())
+            {
+                this->processJSON(response);
+            }
+            else
+            {
+                OSGCPE_DEBUG_DEBUGGER_LOG("ERROR Received empty response");
+            }
             this->isProcessing = false;
         };
         auto failure = [&](std::string reason) {
