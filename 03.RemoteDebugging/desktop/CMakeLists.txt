@@ -15,9 +15,20 @@ LINK_DIRECTORIES(${OSG_LIB_DIR})
 # Use C++11.
 ADD_DEFINITIONS("-std=c++11")
 
+# Reference OpenSSL (necessary for Mongoose).
+SET(OPENSSL_INC_DIR "" CACHE PATH "Path to OpenSSL include directory")
+SET(OPENSSL_LIB_DIR "" CACHE PATH "Path to OpenSSL lib directory")
+INCLUDE_DIRECTORIES(${OPENSSL_INC_DIR})
+LINK_DIRECTORIES(${OPENSSL_LIB_DIR})
+
 # Reference Mongoose HTTP client library.
 INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/mongoose)
 ADD_LIBRARY(network-extlib STATIC src/network-extlib.cpp)
+TARGET_LINK_LIBRARIES(
+    network-extlib
+    ssl
+    crypto
+)
 
 # Reference NLohmann's JSON parsing library.
 INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/json/single_include)

@@ -27,7 +27,9 @@ freely, subject to the following restrictions:
 
 #include "network-extlib.h"
 
+// FEATURE OSGCPE_NETWORK_HTTP_CLIENT_LOG/Impl
 // FEATURE OSGCPE_NETWORK_HTTP_CLIENT_FETCH_LOG/Impl
+// FEATURE OSGCPE_NETWORK_HTTP_CLIENT_MONGOOSE_LOG/Impl
 
 namespace osgcpe
 {

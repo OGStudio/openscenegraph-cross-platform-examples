@@ -31,6 +31,7 @@ freely, subject to the following restrictions:
 #define fseeko fseek
 // extlib-mongoose+fseeko-android End
 // extlib-mongoose Start
+#define MG_ENABLE_SSL 1
 #include <mongoose.h>
 
 // extlib-mongoose End
