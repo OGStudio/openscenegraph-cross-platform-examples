@@ -24,7 +24,7 @@ public:
         this->isProcessing = true;
            
         auto success = [&](std::string response) {
-            //OSGCPE_DEBUG_DEBUGGER_LOG("Process JSON: '%s'", response.c_str());
+            //OSGCPE_DEBUG_DEBUGGER_LOG("Process received JSON: '%s'", response.c_str());
             // Only process incoming JSON response if there's response
             if (response.length())
             {
@@ -41,5 +41,6 @@ public:
             this->isProcessing = false;
         };
         std::string data = debuggerToJSON(this->title, this->pages);
+        //OSGCPE_DEBUG_DEBUGGER_LOG("POST JSON: '%s'", data.c_str());
         this->httpClient->post(this->brokerURL, data, success, failure);
     }

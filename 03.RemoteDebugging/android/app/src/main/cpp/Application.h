@@ -260,10 +260,10 @@ class Application
             void setupDebugCamera()
             {
                 this->debugPage.title = "camera";
-                this->debugger->addPage(this->debugPage);
                 this->camera = this->viewer->getCamera();
                 this->setupDebugBGColor();
                 this->setupDebugCameraOrientation();
+                this->debugger->addPage(this->debugPage);
             }
         private:
             void setupDebugBGColor()
