@@ -160,23 +160,9 @@ class HTTPClientFetch
             if (self)
             {
                 self->inProgress = false;
-                // TODO Come up with a way to receive response not limited in size.
-                const int BUF_SIZE = 1024;
-                // Get the body.
-                if (fetch->numBytes < BUF_SIZE)
-                {
-                    char buf[BUF_SIZE];
-                    strncpy(buf, fetch->data, fetch->numBytes);
-                    buf[fetch->numBytes + 1] = '\0';
-                    std::string body(buf);
-                    // Report success.
-                    self->success(body);
-                }
-                else
-                {
-                    // Report failure.
-                    self->failure("Failed due to incoming data overflow");
-                }
+                std::string body(fetch->data, fetch->numBytes);
+                // Report success.
+                self->success(body);
             }
             // Free data associated with this request.
             emscripten_fetch_close(fetch);
