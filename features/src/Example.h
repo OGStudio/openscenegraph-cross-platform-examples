@@ -27,14 +27,15 @@ freely, subject to the following restrictions:
         
 #include "Application.h"
 #include "scene.h"
-// FEATURE Example+VBO/Include
 // FEATURE Example+BoxScene/Include
 // FEATURE Example+TextureImageScene/Include
+// FEATURE Example+HTTPSGet/Include
+// FEATURE Example+VBO/Include
 
 // FEATURE Example+OSGCPE_EXAMPLE_LOG/Impl
+// FEATURE Example+StaticPluginImageIO/Impl
 // FEATURE Example+StaticPluginOSG/Impl
 // FEATURE Example+StaticPluginPNG/Impl
-// FEATURE Example+StaticPluginImageIO/Impl
 
 namespace osgcpe
 {
@@ -59,6 +60,7 @@ struct Example
         // FEATURE Example+TextureImageScene/Setup
         // FEATURE Example+BoxSelection/Setup
         // FEATURE Example+BoxRotation/Setup
+        // FEATURE Example+HTTPSGet/Setup
     }
     ~Example()
     {
@@ -71,6 +73,7 @@ struct Example
     // FEATURE Example+BoxRotation/Impl
     // FEATURE Example+BoxScene/Impl
     // FEATURE Example+BoxSelection/Impl
+    // FEATURE Example+HTTPSGet/Impl
     // FEATURE Example+SingleColorScene/Impl
     // FEATURE Example+TextureImageScene/Impl
     // FEATURE Example+VBO/Impl

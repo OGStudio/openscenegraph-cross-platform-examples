@@ -27,10 +27,6 @@ freely, subject to the following restrictions:
         
 #include "Application.h"
 #include "scene.h"
-// Example+VBO Start
-#include "render.h"
-
-// Example+VBO End
 // Example+BoxScene Start
 #include "box.osgt.h"
 #include "resource.h"
@@ -45,6 +41,10 @@ freely, subject to the following restrictions:
 #include "digit.png.h"
 
 // Example+TextureImageScene End
+// Example+VBO Start
+#include "render.h"
+
+// Example+VBO End
 
 // Example+OSGCPE_EXAMPLE_LOG Start
 #include "log.h"
@@ -58,15 +58,15 @@ freely, subject to the following restrictions:
     )
 
 // Example+OSGCPE_EXAMPLE_LOG End
+// Example+StaticPluginImageIO Start
+// Reference (statically) plugins to read `png` file.
+USE_OSGPLUGIN(imageio)
+// Example+StaticPluginImageIO End
 // Example+StaticPluginOSG Start
 // Reference (statically) plugins to read `osgt` file.
 USE_OSGPLUGIN(osg2)
 USE_SERIALIZER_WRAPPER_LIBRARY(osg)
 // Example+StaticPluginOSG End
-// Example+StaticPluginImageIO Start
-// Reference (statically) plugins to read `png` file.
-USE_OSGPLUGIN(imageio)
-// Example+StaticPluginImageIO End
 
 namespace osgcpe
 {

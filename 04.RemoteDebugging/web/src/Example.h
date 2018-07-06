@@ -27,10 +27,6 @@ freely, subject to the following restrictions:
         
 #include "Application.h"
 #include "scene.h"
-// Example+VBO Start
-#include "render.h"
-
-// Example+VBO End
 // Example+BoxScene Start
 #include "box.osgt.h"
 #include "resource.h"
@@ -45,6 +41,10 @@ freely, subject to the following restrictions:
 #include "digit.png.h"
 
 // Example+TextureImageScene End
+// Example+VBO Start
+#include "render.h"
+
+// Example+VBO End
 
 // Example+OSGCPE_EXAMPLE_LOG Start
 #include "log.h"

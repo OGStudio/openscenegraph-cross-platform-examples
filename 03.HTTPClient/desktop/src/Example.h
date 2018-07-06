@@ -41,6 +41,10 @@ freely, subject to the following restrictions:
 #include "digit.png.h"
 
 // Example+TextureImageScene End
+// Example+HTTPSGet Start
+#include "network.h"
+
+// Example+HTTPSGet End
 
 // Example+OSGCPE_EXAMPLE_LOG Start
 #include "log.h"
@@ -79,6 +83,10 @@ struct Example
         this->setupSceneTexturing();
         
         // Example+TextureImageScene End
+        // Example+HTTPSGet Start
+        this->setupHTTPSGet();
+        
+        // Example+HTTPSGet End
     }
     ~Example()
     {
@@ -110,6 +118,21 @@ struct Example
             }
         }
     // Example+BoxScene End
+    // Example+HTTPSGet Start
+    private:
+        void setupHTTPSGet()
+        {
+            auto success = [&](std::string response) {
+                // Set background color to green on success.
+                this->app->camera()->setClearColor({ 0, 1, 0, 0 });
+            };
+            auto failure = [&](std::string reason) {
+                // Set background color to red on failure.
+                this->app->camera()->setClearColor({ 1, 0, 0, 0 });
+            };
+            this->app->httpClient->get("https://github.com/OGStudio", success, failure);
+        }
+    // Example+HTTPSGet End
     // Example+TextureImageScene Start
     private:
         void setupSceneTexturing()
