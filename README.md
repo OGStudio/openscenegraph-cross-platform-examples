@@ -9,7 +9,7 @@
 * [Examples](#examples)
     * [01. Embed resource into executable](#ex01)
     * [02. Use PNG images with PNG plugins](#ex02)
-    * [03. Debug application remotely](#ex03)
+    * [04. Debug application remotely](#ex04)
 * [Help](#help)
 
 <a name="overview"/>
@@ -194,11 +194,11 @@ E.g., you can serve locally like this:
 
   Learn how to use PNG images across platforms with PNG plugins.
 
-<a name="ex03"/>
+<a name="ex04"/>
 
-### [03. Debug application remotely][ex03]
+### [04. Debug application remotely][ex04]
 
-  ![Screenshot][ex03-screenshot]
+  ![Screenshot][ex04-screenshot]
 
   Learn how to work with debug-broker to perform remote debugging.
 
@@ -224,5 +224,5 @@ improve examples.
 [ex02]: 02.TextureImage
 [ex02-screenshot]: 02.TextureImage/shot.png
 
-[ex03]: 03.RemoteDebugging
-[ex03-screenshot]: 03.RemoteDebugging/shot.png
+[ex04]: 04.RemoteDebugging
+[ex04-screenshot]: 04.RemoteDebugging/shot.png
