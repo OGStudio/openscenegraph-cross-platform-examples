@@ -131,7 +131,7 @@ struct Example
                 this->app->camera()->setClearColor({ 1, 0, 0, 0 });
                 OSGCPE_EXAMPLE_LOG(reason.c_str());
             };
-            auto url = "https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds";
+            auto url = "https://raw.githubusercontent.com/OGStudio/openscenegraph-cross-platform-examples/master/.gitignore";
             this->app->httpClient->get(url, success, failure);
         }
     // Example+HTTPSGet End
