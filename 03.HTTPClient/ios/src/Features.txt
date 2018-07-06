@@ -1,0 +1,53 @@
+Application+OSGCPE_APPLICATION_LOG
+Application+camera
+Application+frame+Reporting
+Application+setupWindow-ios
+#Application+HTTPClient
+Application+Logging
+Application+Rendering
+Reporter+Stub
+
+Example+03
+Example+OSGCPE_EXAMPLE_LOG
+Example+BoxScene
+#Example+HTTPSGet
+Example+TextureImageScene
+Example+StaticPluginOSG
+Example+StaticPluginImageIO
+Example+VBO
+
+library-ios
+library+init-ios
+library+frame-ios
+
+# log
+log-default
+logLevelToString
+logprintf
+Logger
+
+# format
+printfString
+splitString
+
+# resource
+OSGCPE_RESOURCE_LOG
+createTexture
+extension
+node
+setTextureImage
+string
+Resource
+ResourceStreamBuffer
+
+# render
+createGraphicsContext-ios
+createShaderProgram
+setupCamera
+VBOSetupVisitor
+
+# scene
+textureImageScene
+
+# network
+#HTTPClient

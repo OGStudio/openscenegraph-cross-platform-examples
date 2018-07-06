@@ -14,8 +14,8 @@ Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
 Example+TextureImageScene
 Example+StaticPluginOSG
-Example+VBO
 Example+StaticPluginImageIO
+Example+VBO
 
 library-ios
 library+init-ios
