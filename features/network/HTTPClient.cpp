@@ -1,3 +1,8 @@
+FEATURE network.h/Include
+#include <functional>
+#include <string>
+#include <vector>
+
 FEATURE network.h/Begin
 //! Perform HTTP GET/POST request to HTTP(s).
 

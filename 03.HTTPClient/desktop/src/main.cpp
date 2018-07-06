@@ -22,33 +22,20 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
+#include "Example.h"
 
-#include "network-extlib.h"
 
-// FEATURE HTTPClient/Include
-
-// FEATURE OSGCPE_NETWORK_HTTP_CLIENT_LOG/Impl
-// FEATURE OSGCPE_NETWORK_HTTP_CLIENT_FETCH_LOG/Impl
-// FEATURE OSGCPE_NETWORK_HTTP_CLIENT_MONGOOSE_LOG/Impl
-
-namespace osgcpe
+int main(int argc, char *argv[])
 {
-namespace network
-{
-
-// FEATURE HTTPClientFetch/Impl
-
-// FEATURE HTTPClientMongoose/Impl
-
-// FEATURE HTTPClient/Begin
-    // FEATURE HTTPClient+Fetch/Impl
-    // FEATURE HTTPClient+Mongoose/Impl
-// FEATURE HTTPClient/End
-
-} // namespace network
-} // namespace osgcpe
-
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
+    // main-desktop Start
+    auto example = new osgcpe::Example();
+    example->app->setupWindow(osgcpe::EXAMPLE_TITLE, 100, 100, 480, 320);
+    
+    // main-desktop End
+    // main-desktop Start
+    example->app->run();
+    delete example;
+    // main-desktop End
+    return 0;
+}
 

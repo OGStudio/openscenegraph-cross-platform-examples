@@ -22,33 +22,48 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 
-#include "network-extlib.h"
+// textureImageScene Start
+#include "render.h"
+#include "resource.h"
 
-// FEATURE HTTPClient/Include
+// textureImageScene End
 
-// FEATURE OSGCPE_NETWORK_HTTP_CLIENT_LOG/Impl
-// FEATURE OSGCPE_NETWORK_HTTP_CLIENT_FETCH_LOG/Impl
-// FEATURE OSGCPE_NETWORK_HTTP_CLIENT_MONGOOSE_LOG/Impl
 
 namespace osgcpe
 {
-namespace network
+namespace scene
 {
 
-// FEATURE HTTPClientFetch/Impl
 
-// FEATURE HTTPClientMongoose/Impl
 
-// FEATURE HTTPClient/Begin
-    // FEATURE HTTPClient+Fetch/Impl
-    // FEATURE HTTPClient+Mongoose/Impl
-// FEATURE HTTPClient/End
+// textureImageScene Start
+void textureImageScene(
+    osg::Node *scene,
+    const resource::Resource &shaderFrag,
+    const resource::Resource &shaderVert,
+    const resource::Resource &textureImage
+) {
+    // Create shader program.
+    auto prog =
+        render::createShaderProgram(
+            resource::string(shaderVert),
+            resource::string(shaderFrag)
+        );
+    // Apply the program.
+    auto material = scene->getOrCreateStateSet();
+    material->setAttribute(prog);
+    // Set texture image.
+    material->setTextureAttributeAndModes(0, resource::createTexture(textureImage));
+    material->addUniform(new osg::Uniform("image", 0));
+}
+// textureImageScene End
 
-} // namespace network
+
+} // namespace scene
 } // namespace osgcpe
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_SCENE_H
 

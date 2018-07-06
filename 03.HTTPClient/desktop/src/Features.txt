@@ -2,15 +2,12 @@ Application+OSGCPE_APPLICATION_LOG
 Application+frame+Reporting
 Application+run
 Application+setupWindow-desktop
-Application+CameraManipulator
-Application+Debugging
-Application+DebugCamera
 Application+HTTPClient
 Application+Logging
 Application+Rendering
 Reporter+Stub
 
-Example+04
+Example+03
 Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
 Example+TextureImageScene
@@ -43,7 +40,6 @@ createShaderProgram
 setupCamera
 
 # scene
-quaternionToDegrees
 textureImageScene
 
 # network
@@ -52,17 +48,3 @@ HTTPClient+Mongoose
 HTTPClientMongoose
 extlib-mongoose
 
-# debug
-PageDesc
-Page
-Page+item
-Page+setDesc
-OSGCPE_DEBUG_DEBUGGER_LOG
-Debugger
-Debugger+page
-Debugger+process
-Debugger+processJSON
-debuggerToJSON
-pageToJSON
-jsonToPageDesc
-extlib-json

@@ -27,6 +27,13 @@ freely, subject to the following restrictions:
 
 #include "network-extlib.h"
 
+// HTTPClient Start
+#include <functional>
+#include <string>
+#include <vector>
+
+// HTTPClient End
+
 // OSGCPE_NETWORK_HTTP_CLIENT_FETCH_LOG Start
 #include "log.h"
 #include "format.h"
