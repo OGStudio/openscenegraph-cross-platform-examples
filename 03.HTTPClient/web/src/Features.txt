@@ -1,0 +1,55 @@
+Application+OSGCPE_APPLICATION_LOG
+Application+camera
+Application+frame+Reporting
+Application+handleEvent-web
+Application+setupWindow-embedded
+Application+HTTPClient
+Application+Logging
+Application+Rendering
+Reporter+Stub
+
+Example+03
+Example+OSGCPE_EXAMPLE_LOG
+Example+BoxScene
+Example+HTTPSGet
+Example+TextureImageScene
+Example+StaticPluginOSG
+Example+StaticPluginPNG
+Example+VBO
+
+main-web
+
+# log
+log-default
+logLevelToString
+logprintf
+Logger
+
+# format
+printfString
+splitString
+
+# resource
+OSGCPE_RESOURCE_LOG
+createTexture
+extension
+node
+setTextureImage
+string
+Resource
+ResourceStreamBuffer
+
+# render
+createShaderProgram
+setupCamera
+VBOSetupVisitor
+
+# scene
+textureImageScene
+
+# network
+HTTPClient
+HTTPClient+Fetch
+HTTPClientFetch
+extlib-fetch
+OSGCPE_NETWORK_HTTP_CLIENT_FETCH_LOG

@@ -135,8 +135,8 @@ class HTTPClientFetch
             if (self)
             {
                 self->inProgress = false;
-                // TODO Report status code? fetch->status
-                self->failure("Failed");
+                auto msg = format::printfString("Failed. Status code: '%d'", fetch->status);
+                self->failure(msg);
             }
             // Free data associated with this request.
             emscripten_fetch_close(fetch);

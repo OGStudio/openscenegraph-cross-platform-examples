@@ -45,6 +45,10 @@ freely, subject to the following restrictions:
 #include "network.h"
 
 // Example+HTTPSGet End
+// Example+VBO Start
+#include "render.h"
+
+// Example+VBO End
 
 // Example+OSGCPE_EXAMPLE_LOG Start
 #include "log.h"
@@ -58,6 +62,15 @@ freely, subject to the following restrictions:
     )
 
 // Example+OSGCPE_EXAMPLE_LOG End
+// Example+StaticPluginOSG Start
+// Reference (statically) plugins to read `osgt` file.
+USE_OSGPLUGIN(osg2)
+USE_SERIALIZER_WRAPPER_LIBRARY(osg)
+// Example+StaticPluginOSG End
+// Example+StaticPluginPNG Start
+// Reference (statically) plugins to read `png` file.
+USE_OSGPLUGIN(png)
+// Example+StaticPluginPNG End
 
 namespace osgcpe
 {
@@ -79,6 +92,10 @@ struct Example
         this->setupBoxScene();
         
         // Example+BoxScene End
+        // Example+VBO Start
+        this->setupSceneVBO();
+        
+        // Example+VBO End
         // Example+TextureImageScene Start
         this->setupSceneTexturing();
         
@@ -150,6 +167,23 @@ struct Example
             scene::textureImageScene(this->scene, shaderFrag, shaderVert, texture);
         }
     // Example+TextureImageScene End
+    // Example+VBO Start
+    private:
+        void setupSceneVBO()
+        {
+            // Do nothing for an empty scene.
+            if (!this->scene.valid())
+            {
+                return;
+            }
+            // Use VBO and EBO instead of display lists.
+            // CRITICAL for:
+            // * mobile
+            // * web (Emscripten) to skip FULL_ES2 emulation flag
+            osgcpe::render::VBOSetupVisitor vbo;
+            this->scene->accept(vbo);
+        }
+    // Example+VBO End
 
 };
 
