@@ -22,36 +22,7 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_H
+#include "network-ios.h"
 
-// library+init-ios Start
-// Forward declare UIView for Objective-C++ and C++.
-#ifdef __OBJC__
-    @class UIView;
-#else
-    class UIView;
-#endif
-
-// library+init-ios End
-
-
-namespace library
-{
-
-
-// library+init-ios Start
-// Initialization.
-UIView *init(int width, int height, float scale, UIView *parentView);
-
-// library+init-ios End
-// library+frame-ios Start
-// Rendering.
-void frame();
-
-// library+frame-ios End
-
-} // namespace library.
-
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_H
+// FEATURE HTTPClientIOS/Impl
 

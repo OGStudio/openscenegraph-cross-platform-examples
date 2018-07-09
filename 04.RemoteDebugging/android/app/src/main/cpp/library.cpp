@@ -34,6 +34,7 @@ freely, subject to the following restrictions:
 #define OSGCPE_JNI_ARG JNIEnv *env, jobject /* this */
 // library+Ex03+OSGCPE_JNI-android End
 
+
 // Example instance.
 osgcpe::Example *example = 0;
 
@@ -41,6 +42,7 @@ osgcpe::Example *example = 0;
 extern "C" {
 
 // library-android End
+
 
 // library+init-android Start
 // Setup graphics context.

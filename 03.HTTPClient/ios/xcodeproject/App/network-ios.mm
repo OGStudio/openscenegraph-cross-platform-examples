@@ -22,36 +22,27 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_H
+#include "network-ios.h"
 
-// library+init-ios Start
-// Forward declare UIView for Objective-C++ and C++.
-#ifdef __OBJC__
-    @class UIView;
-#else
-    class UIView;
-#endif
-
-// library+init-ios End
+// HTTPClientIOS Start
 
 
-namespace library
+void performGetRequest(NSString *url)
 {
 
-
-// library+init-ios Start
-// Initialization.
-UIView *init(int width, int height, float scale, UIView *parentView);
-
-// library+init-ios End
-// library+frame-ios Start
-// Rendering.
-void frame();
-
-// library+frame-ios End
-
-} // namespace library.
-
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_H
+    // TODO Check for URL validity.
+    NSURL *address = [NSURL URLWithString:url];
+    NSLog(@"TODO performGetRequest. address: '%@'", address);
+    NSURLSession *session = NSURLSession.sharedSession;
+    // Define completion handler.
+    auto handler = ^void(NSData *data, NSURLResponse *response, NSError *error) {
+        NSLog(@"Completion handler invoked");
+    };
+    // Perform request.
+    auto task = [session
+        dataTaskWithURL:address
+        completionHandler:handler];
+    [task resume];
+}
+// HTTPClientIOS End
 

@@ -35,8 +35,21 @@ freely, subject to the following restrictions:
 
 // library+init-ios End
 
+// library+HTTP-ios Start
+#ifdef __OBJC__
+@interface HTTPClientIOS
+@end
+#endif
+
+// library+HTTP-ios End
+
 namespace library
 {
+
+// library+HTTP-ios Start
+void researchHTTP();
+
+// library+HTTP-ios End
 
 // library+init-ios Start
 // Initialization.

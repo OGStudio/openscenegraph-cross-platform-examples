@@ -25,6 +25,7 @@ freely, subject to the following restrictions:
 #import "ViewController.h"
 
 #import "library.h"
+#import "network-ios.h"
 
 @interface ViewController ()
 
@@ -68,6 +69,12 @@ freely, subject to the following restrictions:
             self.parentView
         );
     [self.view sendSubviewToBack:self.renderView];
+
+
+    // TODO Decide this http thing.
+    performGetRequest(@"https://github.com");
+
+
 }
 
 - (void)step
