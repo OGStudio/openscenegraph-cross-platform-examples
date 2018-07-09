@@ -1,0 +1,26 @@
+#!/bin/bash
+# This script builds only necessary OpenSceneGraph targets for iOS.
+# Only use it if `cmake --build . ...` is not enough for you.
+# NOTE Run it from within `build/Simulator` or `build/Device` directory.
+
+targets="
+osg
+osgDB
+osgdb_imageio
+osgdb_osg
+osgdb_serializers_osg
+osgGA
+osgShadow
+osgText
+osgUtil
+osgViewer
+OpenThreads
+"
+
+for target in ${targets}; do
+    cmd="cmake --build . --config Release --target $target -- -IDEBuildOperationMaxNumberOfConcurrentCompileTasks=8"
+    echo "Build OpenSceneGraph target '$target'"
+    echo $cmd
+    $cmd
+done
+
