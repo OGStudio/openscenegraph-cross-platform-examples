@@ -1,37 +1,26 @@
 FEATURE network.h/Include
-#include <functional>
 #include <string>
 #include <vector>
 
-FEATURE network.h/Begin
-//! Perform HTTP GET/POST request to HTTP(s).
-
-//! Notes:
-//! - Uses HTTPClientFetch internal class under web.
-//! - Uses HTTPClientMongoose internal class under desktop
-//! - TODO mobile
+FEATURE network.h/Impl
+//! Perform HTTP(s) GET/POST requests by place HTTP requests processed by other entity.
 class HTTPClient
 {
     public:
         HTTPClient()
-        {
-        }
+        { }
         ~HTTPClient()
-        {
-            for (auto client : this->clients)
-            {
-                delete client;
-            }
-        }
+        { }
+
+        typedef std::vector<HTTPRequest *> Requests;
 
         void get(
             const std::string &url,
             HTTPRequest::Callback success,
             HTTPRequest::Callback failure
         ) {
-            auto client = this->createHTTPClient(success, failure);
-            client->get(url);
-            this->clients.push_back(client);
+            auto request = new HTTPRequest(url, "", success, failure);
+            this->requests.push_back(request);
         }
 
         void post(
@@ -40,64 +29,54 @@ class HTTPClient
             HTTPRequest::Callback success,
             HTTPRequest::Callback failure
         ) {
-            auto client = this->createHTTPClient(success, failure);
-            client->post(url, data);
-            this->clients.push_back(client);
+            auto request = new HTTPRequest(url, data, success, failure);
+            this->requests.push_back(request);
         }
 
-        bool needsProcessing()
+        Requests pendingRequests()
         {
-            for (auto client : this->clients)
+            this->removeCompletedRequests();
+
+            Requests pending;
+            for (auto request : this->requests)
             {
-                if (client->needsProcessing())
+                if (request.status == HTTPRequest::PENDING)
                 {
-                    return true;
+                    pending.push_back(request);
                 }
             }
-            return false;
+            return pending;
         }
 
-        void process()
-        {
-            std::vector<ssize_t> clientIdsToRemove;
-
-            ssize_t id = 0;
-            for (auto client : this->clients)
-            {
-                // Process.
-                if (client->needsProcessing())
-                {
-                    client->process();
-                }
-                // Schedule client for removal if it no longer needs processing.
-                else
-                {
-                    clientIdsToRemove.push_back(id);
-                }
-                ++id;
-            }
-
-            // Remove scheduled clients. Loop in reverse order.
-            auto it = clientIdsToRemove.rbegin();
-            for (; it != clientIdsToRemove.rend(); ++it)
-            {
-                auto clientId = *it;
-                auto client = this->clients[clientId];
-                // Erase client entry.
-                this->clients.erase(this->clients.begin() + clientId);
-                // Deallocate the client.
-                delete client;
-            }
-        }
-
-FEATURE network.h/End
     private:
-        std::vector<HTTPClientImpl *> clients;
+        Requests requests;
 
-        HTTPClientImpl *createHTTPClient(
-            Callback success,
-            Callback failure
-        ) {
-            return new HTTPClientImpl(success, failure);
+        void removeCompletedRequests()
+        {
+            // Collect ids of requests to remove.
+            std::vector<ssize_t> idsToRemove;
+            {
+                ssize_t id = 0;
+                for (auto request : this->requests)
+                {
+                    if (request.status == COMPLETED)
+                    {
+                        idsToRemove.push_back(id);
+                    }
+                    ++id;
+                }
+            }
+
+            // Remove completed requests. Loop in reverse order.
+            auto it = idsToRemove.rbegin();
+            for (; it != idsToRemove.rend(); ++it)
+            {
+                auto id = *it;
+                auto request = this->requests[id];
+                // Erase request entry.
+                this->requests.erase(this->requests.begin() + id);
+                // Delete request.
+                delete request;
+            }
         }
 };

@@ -28,24 +28,15 @@ freely, subject to the following restrictions:
 #include "network-extlib.h"
 
 // FEATURE HTTPClient/Include
-
-// FEATURE OSGCPE_NETWORK_HTTP_CLIENT_LOG/Impl
-// FEATURE OSGCPE_NETWORK_HTTP_CLIENT_FETCH_LOG/Impl
-// FEATURE OSGCPE_NETWORK_HTTP_CLIENT_MONGOOSE_LOG/Impl
+// FEATURE HTTPRequest/Include
 
 namespace osgcpe
 {
 namespace network
 {
 
-// FEATURE HTTPClientFetch/Impl
-
-// FEATURE HTTPClientMongoose/Impl
-
-// FEATURE HTTPClient/Begin
-    // FEATURE HTTPClient+Fetch/Impl
-    // FEATURE HTTPClient+Mongoose/Impl
-// FEATURE HTTPClient/End
+// FEATURE HTTPRequest/Impl
+// FEATURE HTTPClient/Impl
 
 } // namespace network
 } // namespace osgcpe

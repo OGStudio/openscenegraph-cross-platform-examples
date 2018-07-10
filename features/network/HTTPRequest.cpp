@@ -11,7 +11,7 @@ class HTTPRequest
 
         enum STATUS
         {
-            NONE,
+            PENDING,
             IN_PROGRESS,
             COMPLETED
         };
@@ -28,7 +28,7 @@ class HTTPRequest
             data(data),
             success(success),
             failure(failure),
-            status(NONE)
+            status(PENDING)
         { }
 
         const std::string url;
