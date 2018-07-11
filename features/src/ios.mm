@@ -22,27 +22,7 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#import "AppDelegate.h"
-#import "ios.h"
+#include "ios.h"
 
-@interface AppDelegate ()
-
-@end
-
-@implementation AppDelegate
-
-- (BOOL)application:(UIApplication *)application
-    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    self.window =
-        [[UIWindow alloc]
-            initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [ViewController new];
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-
-    return YES;
-}
-
-@end
+// FEATURE ios+ViewController/Impl
 

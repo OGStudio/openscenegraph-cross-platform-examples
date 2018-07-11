@@ -22,27 +22,16 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#import "AppDelegate.h"
-#import "ios.h"
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_IOS_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_IOS_H
 
-@interface AppDelegate ()
+// ios+ViewController Start
+#import <UIKit/UIKit.h>
 
+@interface ViewController: UIViewController
 @end
 
-@implementation AppDelegate
+// ios+ViewController End
 
-- (BOOL)application:(UIApplication *)application
-    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    self.window =
-        [[UIWindow alloc]
-            initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [ViewController new];
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-
-    return YES;
-}
-
-@end
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_IOS_H
 

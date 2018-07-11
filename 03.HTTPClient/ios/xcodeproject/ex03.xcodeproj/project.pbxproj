@@ -7,21 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2F1DEE0020F35BBA0014365E /* network-ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F1DEDFF20F35BBA0014365E /* network-ios.mm */; };
+		2F0BE5D620F60158008127F6 /* ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F0BE5D520F60158008127F6 /* ios.mm */; };
 		2F4EB962202B07390019AD8B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4EB95C202B06590019AD8B /* MobileCoreServices.framework */; };
 		2F4EB97D202B07A70019AD8B /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4EB96F202B074D0019AD8B /* Accelerate.framework */; };
 		2F7788931F530562008378D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7788921F530562008378D5 /* main.m */; };
 		2F7788961F530562008378D5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7788951F530562008378D5 /* AppDelegate.m */; };
 		2F77889E1F530562008378D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F77889D1F530562008378D5 /* Assets.xcassets */; };
 		2F7788A11F530562008378D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F77889F1F530562008378D5 /* LaunchScreen.storyboard */; };
-		2F7788A91F5306EF008378D5 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F7788A81F5306EF008378D5 /* ViewController.mm */; };
-		2F7788AB1F5306FD008378D5 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7788AA1F5306FD008378D5 /* ViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F0BE5D420F60158008127F6 /* ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios.h; sourceTree = "<group>"; };
+		2F0BE5D520F60158008127F6 /* ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ios.mm; sourceTree = "<group>"; };
 		2F17CA1C1F6B1AF500629C05 /* mjin-player.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "mjin-player.xcodeproj"; sourceTree = "<group>"; };
-		2F1DEDFE20F35BBA0014365E /* network-ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "network-ios.h"; sourceTree = "<group>"; };
-		2F1DEDFF20F35BBA0014365E /* network-ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "network-ios.mm"; sourceTree = "<group>"; };
 		2F4EB958202B05F40019AD8B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		2F4EB95A202B06090019AD8B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2F4EB95C202B06590019AD8B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -44,12 +42,9 @@
 		2F7788921F530562008378D5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2F7788941F530562008378D5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2F7788951F530562008378D5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2F7788971F530562008378D5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		2F77889D1F530562008378D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F7788A01F530562008378D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F7788A21F530562008378D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2F7788A81F5306EF008378D5 /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
-		2F7788AA1F5306FD008378D5 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,11 +87,8 @@
 			children = (
 				2F7788941F530562008378D5 /* AppDelegate.h */,
 				2F7788951F530562008378D5 /* AppDelegate.m */,
-				2F7788971F530562008378D5 /* ViewController.h */,
-				2F7788A81F5306EF008378D5 /* ViewController.mm */,
-				2F7788AA1F5306FD008378D5 /* ViewController.xib */,
-				2F1DEDFE20F35BBA0014365E /* network-ios.h */,
-				2F1DEDFF20F35BBA0014365E /* network-ios.mm */,
+				2F0BE5D420F60158008127F6 /* ios.h */,
+				2F0BE5D520F60158008127F6 /* ios.mm */,
 				2F77889D1F530562008378D5 /* Assets.xcassets */,
 				2F77889F1F530562008378D5 /* LaunchScreen.storyboard */,
 				2F7788A21F530562008378D5 /* Info.plist */,
@@ -205,7 +197,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F7788A11F530562008378D5 /* LaunchScreen.storyboard in Resources */,
-				2F7788AB1F5306FD008378D5 /* ViewController.xib in Resources */,
 				2F77889E1F530562008378D5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,10 +208,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F1DEE0020F35BBA0014365E /* network-ios.mm in Sources */,
+				2F0BE5D620F60158008127F6 /* ios.mm in Sources */,
 				2F7788961F530562008378D5 /* AppDelegate.m in Sources */,
 				2F7788931F530562008378D5 /* main.m in Sources */,
-				2F7788A91F5306EF008378D5 /* ViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

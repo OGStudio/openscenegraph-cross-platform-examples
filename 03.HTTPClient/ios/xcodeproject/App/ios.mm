@@ -22,15 +22,34 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_IOS_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_IOS_H
+#include "ios.h"
 
-// HTTPClientIOS Start
-#import <Foundation/Foundation.h>
+// ios+ViewController Start
+//#import "library.h"
 
-void performGetRequest(NSString *url);
+@interface ViewController ()
 
-// HTTPClientIOS End
+/*
+@property (nonatomic, strong) CADisplayLink *displayLink;
+@property (nonatomic, strong) UIView *renderView;
+@property (nonatomic, strong) IBOutlet UIView *parentView;
+*/
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_IOS_H
+@end
+
+@implementation ViewController
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    // NOTE This must be done exactly once!
+    NSLog(@"TODO setup render view");
+    //[self setupRenderView];
+    // TODO REMOVE
+    self.view.backgroundColor = UIColor.redColor;
+}
+
+@end
+
+// ios+ViewController End
 
