@@ -33,7 +33,7 @@ class HTTPRequest
 
         const std::string url;
         const std::string data;
-        Callback success,
-        Callback failure
+        Callback success;
+        Callback failure;
         STATUS status;
 };

@@ -234,27 +234,12 @@ class Application
         public:
             network::HTTPClient *httpClient;
         private:
-            const std::string httpClientCallbackName = "HTTPClient";
-        
             void setupHTTPClient()
             {
                 this->httpClient = new network::HTTPClient;
-        
-                // Subscribe HTTP client to be processed each frame.
-                this->frameReporter.addCallback(
-                    [&] {
-                        if (this->httpClient->needsProcessing())
-                        {
-                            this->httpClient->process();
-                        }
-                    },
-                    this->httpClientCallbackName
-                );
             }
             void tearHTTPClientDown()
             {
-                // Unsubscribe HTTP client.
-                this->frameReporter.removeCallback(this->httpClientCallbackName);
                 delete this->httpClient;
             }
         // Application+HTTPClient End

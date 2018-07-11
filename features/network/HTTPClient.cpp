@@ -40,7 +40,7 @@ class HTTPClient
             Requests pending;
             for (auto request : this->requests)
             {
-                if (request.status == HTTPRequest::PENDING)
+                if (request->status == HTTPRequest::PENDING)
                 {
                     pending.push_back(request);
                 }
@@ -59,7 +59,7 @@ class HTTPClient
                 ssize_t id = 0;
                 for (auto request : this->requests)
                 {
-                    if (request.status == COMPLETED)
+                    if (request->status == HTTPRequest::COMPLETED)
                     {
                         idsToRemove.push_back(id);
                     }

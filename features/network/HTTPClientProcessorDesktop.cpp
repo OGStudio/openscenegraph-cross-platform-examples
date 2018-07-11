@@ -3,7 +3,7 @@ FEATURE network.h/Impl
 class HTTPClientProcessorDesktop
 {
     public:
-        HTTPClientProcessorDekstop(HTTPClient *client) : client(client) { }
+        HTTPClientProcessorDesktop(HTTPClient *client) : client(client) { }
 
         void process()
         {
@@ -42,7 +42,7 @@ class HTTPClientProcessorDesktop
             for (auto request : pendingRequests)
             {
                 auto processor = new HTTPRequestProcessorMongoose(request);
-                this->processors.append(processor);
+                this->processors.push_back(processor);
             }
         }
 

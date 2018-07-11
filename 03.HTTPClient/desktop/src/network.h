@@ -76,8 +76,8 @@ class HTTPRequest
 
         const std::string url;
         const std::string data;
-        Callback success,
-        Callback failure
+        Callback success;
+        Callback failure;
         STATUS status;
 };
 // HTTPRequest End
@@ -220,7 +220,7 @@ class HTTPClient
             Requests pending;
             for (auto request : this->requests)
             {
-                if (request.status == HTTPRequest::PENDING)
+                if (request->status == HTTPRequest::PENDING)
                 {
                     pending.push_back(request);
                 }
@@ -239,7 +239,7 @@ class HTTPClient
                 ssize_t id = 0;
                 for (auto request : this->requests)
                 {
-                    if (request.status == COMPLETED)
+                    if (request->status == HTTPRequest::COMPLETED)
                     {
                         idsToRemove.push_back(id);
                     }
@@ -266,7 +266,7 @@ class HTTPClient
 class HTTPClientProcessorDesktop
 {
     public:
-        HTTPClientProcessorDekstop(HTTPClient *client) : client(client) { }
+        HTTPClientProcessorDesktop(HTTPClient *client) : client(client) { }
 
         void process()
         {
@@ -305,7 +305,7 @@ class HTTPClientProcessorDesktop
             for (auto request : pendingRequests)
             {
                 auto processor = new HTTPRequestProcessorMongoose(request);
-                this->processors.append(processor);
+                this->processors.push_back(processor);
             }
         }
 

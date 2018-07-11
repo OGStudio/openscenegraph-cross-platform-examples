@@ -4,6 +4,7 @@ Application+frame+Reporting
 Application+run
 Application+setupWindow-desktop
 Application+HTTPClient
+Application+HTTPClientProcessorDesktop
 Application+Logging
 Application+Rendering
 Reporter+Stub

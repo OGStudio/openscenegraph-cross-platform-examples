@@ -78,9 +78,17 @@ class Application
             this->setupHTTPClient();
             
             // Application+HTTPClient End
+            // Application+HTTPClientProcessorDesktop Start
+            this->setupHTTPClientProcessor();
+            
+            // Application+HTTPClientProcessorDesktop End
         }
         ~Application()
         {
+            // Application+HTTPClientProcessorDesktop Start
+            this->tearHTTPClientProcessorDown();
+            
+            // Application+HTTPClientProcessorDesktop End
             // Application+HTTPClient Start
             this->tearHTTPClientDown();
             
@@ -142,30 +150,38 @@ class Application
         public:
             network::HTTPClient *httpClient;
         private:
-            const std::string httpClientCallbackName = "HTTPClient";
-        
             void setupHTTPClient()
             {
                 this->httpClient = new network::HTTPClient;
-        
-                // Subscribe HTTP client to be processed each frame.
-                this->frameReporter.addCallback(
-                    [&] {
-                        if (this->httpClient->needsProcessing())
-                        {
-                            this->httpClient->process();
-                        }
-                    },
-                    this->httpClientCallbackName
-                );
             }
             void tearHTTPClientDown()
             {
-                // Unsubscribe HTTP client.
-                this->frameReporter.removeCallback(this->httpClientCallbackName);
                 delete this->httpClient;
             }
         // Application+HTTPClient End
+        // Application+HTTPClientProcessorDesktop Start
+        public:
+            network::HTTPClientProcessorDesktop *httpClientProcessor;
+        private:
+            const std::string httpClientProcessorCallbackName = "HTTPClientProcessor";
+        
+            void setupHTTPClientProcessor()
+            {
+                this->httpClientProcessor = new network::HTTPClientProcessorDesktop(this->httpClient);
+                // Subscribe processor to be processed each frame.
+                this->frameReporter.addCallback(
+                    [&] {
+                        this->httpClientProcessor->process();
+                    },
+                    this->httpClientProcessorCallbackName
+                );
+            }
+            void tearHTTPClientProcessorDown()
+            {
+                this->frameReporter.removeCallback(this->httpClientProcessorCallbackName);
+                delete this->httpClientProcessor;
+            }
+        // Application+HTTPClientProcessorDesktop End
         // Application+Logging Start
         private:
             log::Logger *logger;
