@@ -29,14 +29,6 @@ freely, subject to the following restrictions:
 // library-ios End
 
 
-// library+HTTP-ios Start
-@implementation HTTPClientIOS
-
-@end
-
-
-// library+HTTP-ios End
-
 // Example instance.
 osgcpe::Example *example = 0;
 
@@ -45,15 +37,6 @@ namespace library
 {
 
 // library-ios End
-
-// library+HTTP-ios Start
-void researchHTTP()
-{
-    HTTPClientIOS *httpClient = [HTTPClientIOS new];
-    // TODO
-
-}
-// library+HTTP-ios End
 
 // library+init-ios Start
 UIView *init(int width, int height, float scale, UIView *parentView)

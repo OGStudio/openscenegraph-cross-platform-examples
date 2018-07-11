@@ -29,7 +29,6 @@ freely, subject to the following restrictions:
 // library-ios End
 
 
-
 // Example instance.
 osgcpe::Example *example = 0;
 
@@ -38,7 +37,6 @@ namespace library
 {
 
 // library-ios End
-
 
 // library+init-ios Start
 UIView *init(int width, int height, float scale, UIView *parentView)

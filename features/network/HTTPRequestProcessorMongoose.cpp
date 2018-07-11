@@ -1,33 +1,19 @@
 FEATURE network.h/Impl
-//! Internal class to implement HTTP GET/POST requests to HTTP(s) with Mongoose.
-class HTTPClientMongoose
+//! Internal class to process HTTP GET/POST requests with Mongoose.
+class HTTPRequestProcessorMongoose
 {
     public:
-        typedef std::function<void(std::string)> Callback;
-
-        HTTPClientMongoose(Callback success, Callback failure) :
-            success(success),
-            failure(failure),
+        HTTPRequestProcessorMongoose(HTTPRequest *request) :
+            request(request),
             inProgress(false)
         {
             mg_mgr_init(&this->client, 0);
+            this->processRequest();
         }
 
-        ~HTTPClientMongoose()
+        ~HTTPRequestProcessorMongoose()
         {
             mg_mgr_free(&this->client);
-        }
-
-        // Perform GET request.
-        void get(const std::string &url)
-        {
-            this->request(url, 0);
-        }
-
-        // Perform POST request.
-        void post(const std::string &url, const std::string &data)
-        {
-            this->request(url, data.c_str());
         }
 
         bool needsProcessing() const
@@ -43,30 +29,36 @@ class HTTPClientMongoose
 
     private:
         mg_mgr client;
-        Callback success;
-        Callback failure;
+        HTTPRequest *request;
         bool inProgress;
 
-        void request(const std::string &url, const char *data)
+        void processRequest()
         {
-            // Ignore new requests if already in progress.
-            if (this->inProgress)
-            {
-                return;
-            }
-
             this->inProgress = true;
+            this->request->status = HTTPRequest::IN_PROGRESS;
 
+            auto url = this->request->url.c_str();
+            const char *data =
+                this->request->data.length() ?
+                this->request->data.c_str() :
+                0;
             // Perform request.
-            auto connection = mg_connect_http(&this->client, handleEvent, url.c_str(), 0, data);
+            auto connection =
+                mg_connect_http(&this->client, this->handleEvent, url, 0, data);
             // Save 'this' pointer to reference it in callbacks.
             connection->user_data = this;
         }
 
-        static void handleEvent(mg_connection *connection, int event, void *data)
-        {
+        static void handleEvent(
+            mg_connection *connection,
+            int event,
+            void *data
+        ) {
             auto self =
-                reinterpret_cast<HTTPClientMongoose *>(connection->user_data);
+                reinterpret_cast<HTTPRequestProcessorMongoose *>(
+                    connection->user_data
+                );
+            auto request = self->request;
             switch (event)
             {
                 case MG_EV_CONNECT:
@@ -74,8 +66,9 @@ class HTTPClientMongoose
                         auto status = *static_cast<int *>(data);
                         if (status != 0)
                         {
-                            //self->failure(strerror(status));
-                            self->failure("Failed to connect");
+                            request->status = HTTPRequest::COMPLETED;
+                            request->failure("Failed to connect");
+                            //failure(strerror(status));
                             self->inProgress = false;
                         }
                     }
@@ -85,15 +78,17 @@ class HTTPClientMongoose
                         connection->flags |= MG_F_CLOSE_IMMEDIATELY;
                         auto msg = static_cast<http_message *>(data);
                         auto body = std::string(msg->body.p, msg->body.len);
+                        request->status = HTTPRequest::COMPLETED;
+                        request->success(body);
                         self->inProgress = false;
-                        self->success(body);
                     }
                     break;
                 case MG_EV_CLOSE:
                     // Only report failure if CLOSE event precedes REPLY one.
                     if (self->inProgress)
                     {
-                        self->failure("Server closed connection");
+                        request->status = HTTPRequest::COMPLETED;
+                        request->failure("Server closed connection");
                     }
                     self->inProgress = false;
                     break;
@@ -101,5 +96,4 @@ class HTTPClientMongoose
                     break;
             }
         }
-
 };

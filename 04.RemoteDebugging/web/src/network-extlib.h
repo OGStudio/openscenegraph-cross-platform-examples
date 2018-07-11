@@ -29,6 +29,5 @@ freely, subject to the following restrictions:
 #include <emscripten/fetch.h>
 // extlib-fetch End
 
-
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_EXTLIB_H
 

@@ -25,8 +25,7 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
 
-#include "network-extlib.h"
-
+// FEATURE extlib-mongoose/Include
 // FEATURE HTTPClient/Include
 // FEATURE HTTPRequest/Include
 
@@ -36,7 +35,10 @@ namespace network
 {
 
 // FEATURE HTTPRequest/Impl
+// FEATURE HTTPRequestProcessorMongoose/Impl
+
 // FEATURE HTTPClient/Impl
+// FEATURE HTTPClientProcessorDesktop/Impl
 
 } // namespace network
 } // namespace osgcpe

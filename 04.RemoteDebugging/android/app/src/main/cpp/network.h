@@ -25,15 +25,15 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
 
+// extlib-mongoose Start
 #include "network-extlib.h"
 
+// extlib-mongoose End
 // HTTPClient Start
-#include <functional>
 #include <string>
 #include <vector>
 
 // HTTPClient End
-
 
 namespace osgcpe
 {
@@ -41,212 +41,82 @@ namespace network
 {
 
 
-// HTTPClientMongoose Start
-//! Internal class to implement HTTP GET/POST requests to HTTP(s) with Mongoose.
-class HTTPClientMongoose
-{
-    public:
-        typedef std::function<void(std::string)> Callback;
-
-        HTTPClientMongoose(Callback success, Callback failure) :
-            success(success),
-            failure(failure),
-            inProgress(false)
-        {
-            mg_mgr_init(&this->client, 0);
-        }
-
-        ~HTTPClientMongoose()
-        {
-            mg_mgr_free(&this->client);
-        }
-
-        // Perform GET request.
-        void get(const std::string &url)
-        {
-            this->request(url, 0);
-        }
-
-        // Perform POST request.
-        void post(const std::string &url, const std::string &data)
-        {
-            this->request(url, data.c_str());
-        }
-
-        bool needsProcessing() const
-        {
-            return this->inProgress;
-        }
-
-        void process()
-        {
-            const int delay = 100;
-            mg_mgr_poll(&this->client, delay);
-        }
-
-    private:
-        mg_mgr client;
-        Callback success;
-        Callback failure;
-        bool inProgress;
-
-        void request(const std::string &url, const char *data)
-        {
-            // Ignore new requests if already in progress.
-            if (this->inProgress)
-            {
-                return;
-            }
-
-            this->inProgress = true;
-
-            // Perform request.
-            auto connection = mg_connect_http(&this->client, handleEvent, url.c_str(), 0, data);
-            // Save 'this' pointer to reference it in callbacks.
-            connection->user_data = this;
-        }
-
-        static void handleEvent(mg_connection *connection, int event, void *data)
-        {
-            auto self =
-                reinterpret_cast<HTTPClientMongoose *>(connection->user_data);
-            switch (event)
-            {
-                case MG_EV_CONNECT:
-                    {
-                        auto status = *static_cast<int *>(data);
-                        if (status != 0)
-                        {
-                            //self->failure(strerror(status));
-                            self->failure("Failed to connect");
-                            self->inProgress = false;
-                        }
-                    }
-                    break;
-                case MG_EV_HTTP_REPLY:
-                    {
-                        connection->flags |= MG_F_CLOSE_IMMEDIATELY;
-                        auto msg = static_cast<http_message *>(data);
-                        auto body = std::string(msg->body.p, msg->body.len);
-                        self->inProgress = false;
-                        self->success(body);
-                    }
-                    break;
-                case MG_EV_CLOSE:
-                    // Only report failure if CLOSE event precedes REPLY one.
-                    if (self->inProgress)
-                    {
-                        self->failure("Server closed connection");
-                    }
-                    self->inProgress = false;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-};
-// HTTPClientMongoose End
-
 // HTTPClient Start
-//! Perform HTTP GET/POST request to HTTP(s).
-
-//! Notes:
-//! - Uses HTTPClientFetch internal class under web.
-//! - Uses HTTPClientMongoose internal class under desktop and mobile.
+//! Perform HTTP(s) GET/POST requests by place HTTP requests processed by other entity.
 class HTTPClient
 {
     public:
-        typedef std::function<void(std::string)> Callback;
-
         HTTPClient()
-        {
-        }
+        { }
         ~HTTPClient()
-        {
-            for (auto client : this->clients)
-            {
-                delete client;
-            }
-        }
+        { }
 
-        void get(const std::string &url, Callback success, Callback failure)
-        {
-            auto client = this->createHTTPClient(success, failure);
-            client->get(url);
-            this->clients.push_back(client);
+        typedef std::vector<HTTPRequest *> Requests;
+
+        void get(
+            const std::string &url,
+            HTTPRequest::Callback success,
+            HTTPRequest::Callback failure
+        ) {
+            auto request = new HTTPRequest(url, "", success, failure);
+            this->requests.push_back(request);
         }
 
         void post(
             const std::string &url,
             const std::string &data,
-            Callback success,
-            Callback failure
+            HTTPRequest::Callback success,
+            HTTPRequest::Callback failure
         ) {
-            auto client = this->createHTTPClient(success, failure);
-            client->post(url, data);
-            this->clients.push_back(client);
+            auto request = new HTTPRequest(url, data, success, failure);
+            this->requests.push_back(request);
         }
 
-        bool needsProcessing()
+        Requests pendingRequests()
         {
-            for (auto client : this->clients)
+            this->removeCompletedRequests();
+
+            Requests pending;
+            for (auto request : this->requests)
             {
-                if (client->needsProcessing())
+                if (request.status == HTTPRequest::PENDING)
                 {
-                    return true;
+                    pending.push_back(request);
                 }
             }
-            return false;
+            return pending;
         }
 
-        void process()
+    private:
+        Requests requests;
+
+        void removeCompletedRequests()
         {
-            std::vector<ssize_t> clientIdsToRemove;
-
-            ssize_t id = 0;
-            for (auto client : this->clients)
+            // Collect ids of requests to remove.
+            std::vector<ssize_t> idsToRemove;
             {
-                // Process.
-                if (client->needsProcessing())
+                ssize_t id = 0;
+                for (auto request : this->requests)
                 {
-                    client->process();
+                    if (request.status == COMPLETED)
+                    {
+                        idsToRemove.push_back(id);
+                    }
+                    ++id;
                 }
-                // Schedule client for removal if it no longer needs processing.
-                else
-                {
-                    clientIdsToRemove.push_back(id);
-                }
-                ++id;
             }
 
-            // Remove scheduled clients. Loop in reverse order.
-            auto it = clientIdsToRemove.rbegin();
-            for (; it != clientIdsToRemove.rend(); ++it)
+            // Remove completed requests. Loop in reverse order.
+            auto it = idsToRemove.rbegin();
+            for (; it != idsToRemove.rend(); ++it)
             {
-                auto clientId = *it;
-                auto client = this->clients[clientId];
-                // Erase client entry.
-                this->clients.erase(this->clients.begin() + clientId);
-                // Deallocate the client.
-                delete client;
+                auto id = *it;
+                auto request = this->requests[id];
+                // Erase request entry.
+                this->requests.erase(this->requests.begin() + id);
+                // Delete request.
+                delete request;
             }
-        }
-
-// HTTPClient End
-    // HTTPClient+Mongoose Start
-    private:
-        typedef HTTPClientMongoose HTTPClientImpl;
-    // HTTPClient+Mongoose End
-// HTTPClient Start
-    private:
-        std::vector<HTTPClientImpl *> clients;
-
-        HTTPClientImpl *createHTTPClient(
-            Callback success,
-            Callback failure
-        ) {
-            return new HTTPClientImpl(success, failure);
         }
 };
 // HTTPClient End

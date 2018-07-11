@@ -25,11 +25,6 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_EXTLIB_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_EXTLIB_H
 
-
-// extlib-mongoose+fseeko-android Start
-// Work around Android headers' bug.
-#define fseeko fseek
-// extlib-mongoose+fseeko-android End
 // extlib-mongoose Start
 #define MG_ENABLE_SSL 1
 #include <mongoose.h>

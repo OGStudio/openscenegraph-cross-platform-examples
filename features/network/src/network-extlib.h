@@ -26,8 +26,6 @@ freely, subject to the following restrictions:
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_EXTLIB_H
 
 // FEATURE extlib-fetch/Impl
-
-// FEATURE extlib-mongoose+fseeko-android/Impl
 // FEATURE extlib-mongoose/Impl
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_EXTLIB_H

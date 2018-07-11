@@ -46,7 +46,7 @@ textureImageScene
 
 # network
 HTTPClient
-HTTPClient+Mongoose
-HTTPClientMongoose
+HTTPClientProcessorDesktop
+HTTPRequest
+HTTPRequestProcessorMongoose
 extlib-mongoose
-

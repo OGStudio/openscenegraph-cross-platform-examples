@@ -35,10 +35,8 @@ freely, subject to the following restrictions:
 
 // library+init-ios End
 
-
 namespace library
 {
-
 
 // library+init-ios Start
 // Initialization.

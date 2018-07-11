@@ -25,264 +25,94 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
 
-#include "network-extlib.h"
-
 // HTTPClient Start
-#include <functional>
 #include <string>
 #include <vector>
 
 // HTTPClient End
-
-// OSGCPE_NETWORK_HTTP_CLIENT_FETCH_LOG Start
-#include "log.h"
-#include "format.h"
-#define OSGCPE_NETWORK_HTTP_CLIENT_FETCH_LOG_PREFIX "osgcpe::network::HTTPClientFetch(%p) %s"
-#define OSGCPE_NETWORK_HTTP_CLIENT_FETCH_LOG(...) \
-    osgcpe::log::logprintf( \
-        OSGCPE_NETWORK_HTTP_CLIENT_FETCH_LOG_PREFIX, \
-        this, \
-        osgcpe::format::printfString(__VA_ARGS__).c_str() \
-    )
-// OSGCPE_NETWORK_HTTP_CLIENT_FETCH_LOG End
 
 namespace osgcpe
 {
 namespace network
 {
 
-// HTTPClientFetch Start
-//! Internal class to implement HTTP GET/POST requests to HTTP(s) with Emscripten's FetchAPI.
-class HTTPClientFetch
-{
-    public:
-        typedef std::function<void(std::string)> Callback;
-
-        HTTPClientFetch(Callback success, Callback failure) :
-            success(success),
-            failure(failure),
-            inProgress(false)
-        {
-            emscripten_fetch_attr_init(&this->client);
-            this->client.attributes = EMSCRIPTEN_FETCH_LOAD_TO_MEMORY;
-            // Save 'this' pointer to reference it in callbacks.
-            this->client.userData = this;
-        }
-
-        ~HTTPClientFetch()
-        {
-            this->client.userData = 0;
-        }
-
-        // Perform GET request.
-        void get(const std::string &url)
-        {
-            this->request(url, "");
-        }
-
-        // Perform POST request.
-        void post(const std::string &url, const std::string &data)
-        {
-            this->request(url, data);
-        }
-
-        bool needsProcessing() const
-        {
-            return this->inProgress;
-        }
-
-        void process()
-        {
-            // Do nothing.
-            // Emscripten's Fetch API does actual polling.
-        }
-
-    private:
-        emscripten_fetch_attr_t client;
-        Callback success;
-        Callback failure;
-        bool inProgress;
-        std::string data;
-
-        void request(const std::string &url, const std::string &data)
-        {
-            // Ignore new requests if already in progress.
-            if (this->inProgress)
-            {
-                return;
-            }
-
-            this->inProgress = true;
-            // Keep sent data because FetchAPI needs it outside this scope.
-            this->data = data;
-
-            // Set request method.
-            std::string method = "GET";
-            if (this->data.length())
-            {
-                method = "POST";
-            }
-            strcpy(this->client.requestMethod, method.c_str());
-            // Set body.
-            if (this->data.length())
-            {
-                /*
-                // Set headers.
-                const char *headers[] = {
-                    "Content-Type", "text/plain; charset=utf-8",
-                    0
-                };
-                this->client.requestHeaders = headers;
-                */
-                // Set body.
-                this->client.requestData = this->data.c_str();
-                this->client.requestDataSize = strlen(this->data.c_str());
-                /*
-                OSGCPE_NETWORK_HTTP_CLIENT_FETCH_LOG(
-                    "request data: '%s' len: '%d'",
-                    this->client.requestData,
-                    this->client.requestDataSize
-                );
-                */
-            }
-
-            // Set callbacks.
-            this->client.onsuccess = handleSuccess;
-            this->client.onerror = handleFailure;
-
-            // Perform request.
-            emscripten_fetch(&this->client, url.c_str());
-        }
-
-        static void handleSuccess(emscripten_fetch_t *fetch)
-        {
-            auto self = reinterpret_cast<HTTPClientFetch *>(fetch->userData);
-            if (self)
-            {
-                self->inProgress = false;
-                std::string body(fetch->data, fetch->numBytes);
-                // Report success.
-                self->success(body);
-            }
-            // Free data associated with this request.
-            emscripten_fetch_close(fetch);
-        }
-
-        static void handleFailure(emscripten_fetch_t *fetch)
-        {
-            auto self = reinterpret_cast<HTTPClientFetch *>(fetch->userData);
-            if (self)
-            {
-                self->inProgress = false;
-                auto msg = format::printfString("Failed. Status code: '%d'", fetch->status);
-                self->failure(msg);
-            }
-            // Free data associated with this request.
-            emscripten_fetch_close(fetch);
-        }
-};
-// HTTPClientFetch End
-
 
 // HTTPClient Start
-//! Perform HTTP GET/POST request to HTTP(s).
-
-//! Notes:
-//! - Uses HTTPClientFetch internal class under web.
-//! - Uses HTTPClientMongoose internal class under desktop and mobile.
+//! Perform HTTP(s) GET/POST requests by place HTTP requests processed by other entity.
 class HTTPClient
 {
     public:
-        typedef std::function<void(std::string)> Callback;
-
         HTTPClient()
-        {
-        }
+        { }
         ~HTTPClient()
-        {
-            for (auto client : this->clients)
-            {
-                delete client;
-            }
-        }
+        { }
 
-        void get(const std::string &url, Callback success, Callback failure)
-        {
-            auto client = this->createHTTPClient(success, failure);
-            client->get(url);
-            this->clients.push_back(client);
+        typedef std::vector<HTTPRequest *> Requests;
+
+        void get(
+            const std::string &url,
+            HTTPRequest::Callback success,
+            HTTPRequest::Callback failure
+        ) {
+            auto request = new HTTPRequest(url, "", success, failure);
+            this->requests.push_back(request);
         }
 
         void post(
             const std::string &url,
             const std::string &data,
-            Callback success,
-            Callback failure
+            HTTPRequest::Callback success,
+            HTTPRequest::Callback failure
         ) {
-            auto client = this->createHTTPClient(success, failure);
-            client->post(url, data);
-            this->clients.push_back(client);
+            auto request = new HTTPRequest(url, data, success, failure);
+            this->requests.push_back(request);
         }
 
-        bool needsProcessing()
+        Requests pendingRequests()
         {
-            for (auto client : this->clients)
+            this->removeCompletedRequests();
+
+            Requests pending;
+            for (auto request : this->requests)
             {
-                if (client->needsProcessing())
+                if (request.status == HTTPRequest::PENDING)
                 {
-                    return true;
+                    pending.push_back(request);
                 }
             }
-            return false;
+            return pending;
         }
 
-        void process()
+    private:
+        Requests requests;
+
+        void removeCompletedRequests()
         {
-            std::vector<ssize_t> clientIdsToRemove;
-
-            ssize_t id = 0;
-            for (auto client : this->clients)
+            // Collect ids of requests to remove.
+            std::vector<ssize_t> idsToRemove;
             {
-                // Process.
-                if (client->needsProcessing())
+                ssize_t id = 0;
+                for (auto request : this->requests)
                 {
-                    client->process();
+                    if (request.status == COMPLETED)
+                    {
+                        idsToRemove.push_back(id);
+                    }
+                    ++id;
                 }
-                // Schedule client for removal if it no longer needs processing.
-                else
-                {
-                    clientIdsToRemove.push_back(id);
-                }
-                ++id;
             }
 
-            // Remove scheduled clients. Loop in reverse order.
-            auto it = clientIdsToRemove.rbegin();
-            for (; it != clientIdsToRemove.rend(); ++it)
+            // Remove completed requests. Loop in reverse order.
+            auto it = idsToRemove.rbegin();
+            for (; it != idsToRemove.rend(); ++it)
             {
-                auto clientId = *it;
-                auto client = this->clients[clientId];
-                // Erase client entry.
-                this->clients.erase(this->clients.begin() + clientId);
-                // Deallocate the client.
-                delete client;
+                auto id = *it;
+                auto request = this->requests[id];
+                // Erase request entry.
+                this->requests.erase(this->requests.begin() + id);
+                // Delete request.
+                delete request;
             }
-        }
-
-// HTTPClient End
-    // HTTPClient+Fetch Start
-    private:
-        typedef HTTPClientFetch HTTPClientImpl;
-    // HTTPClient+Fetch End
-// HTTPClient Start
-    private:
-        std::vector<HTTPClientImpl *> clients;
-
-        HTTPClientImpl *createHTTPClient(
-            Callback success,
-            Callback failure
-        ) {
-            return new HTTPClientImpl(success, failure);
         }
 };
 // HTTPClient End
