@@ -23,6 +23,7 @@ freely, subject to the following restrictions:
 */
 
 #include "ios.h"
+
 #include "library.h"
 
 // ios+AppDelegate Start
@@ -39,6 +40,10 @@ freely, subject to the following restrictions:
     self.window.rootViewController = [RenderVC new];
     
     // ios+RenderVC End
+    // ios+HTTPClientProcessor Start
+    [self setupHTTPClientProcessor];
+    
+    // ios+HTTPClientProcessor End
 // ios+AppDelegate Start
     self.window.backgroundColor = UIColor.whiteColor;
     [self.window makeKeyAndVisible];
@@ -46,9 +51,74 @@ freely, subject to the following restrictions:
     return YES;
 }
 
+// ios+AppDelegate End
+    // ios+HTTPClientProcessor Start
+    - (void)setupHTTPClientProcessor
+    {
+        // TODO Pass actual HTTP client from library::.
+        self.httpClientProcessor = [[HTTPClientProcessor alloc] initWithHTTPClient:0];
+        // Regularly process the processor.
+        self.httpClientProcessorTimer =
+            [NSTimer
+                scheduledTimerWithTimeInterval:0
+                target:self
+                selector:@selector(processHTTPClientProcessor)
+                userInfo:nil
+                repeats:YES
+            ];
+    }
+    
+    - (void)processHTTPClientProcessor
+    {
+        [self.httpClientProcessor process];
+    }
+    
+    // ios+HTTPClientProcessor End
+// ios+AppDelegate Start
 @end
 // ios+AppDelegate End
 
+// ios+HTTPClientProcessor Start
+@interface HTTPClientProcessor ()
+@property (nonatomic, strong) HTTPClient *client;
+// TODO processors
+@end
+
+@implementation HTTPClientProcessor
+
+- (instancetype)initWithHTTPClient:(HTTPClient *)client
+{
+    self = [super init];
+
+    self.client = client;
+
+    return self;
+}
+
+- (void)process
+{
+    // TODO
+    NSLog(@"HTTPClientProcessor.process");
+}
+
+@end
+
+/*
+    // TODO Check for URL validity.
+    NSURL *address = [NSURL URLWithString:url];
+    NSLog(@"TODO performGetRequest. address: '%@'", address);
+    NSURLSession *session = NSURLSession.sharedSession;
+    // Define completion handler.
+    auto handler = ^void(NSData *data, NSURLResponse *response, NSError *error) {
+        NSLog(@"Completion handler invoked");
+    };
+    // Perform request.
+    auto task = [session
+        dataTaskWithURL:address
+        completionHandler:handler];
+    [task resume];
+*/
+// ios+HTTPClientProcessor End
 // ios+RenderVC Start
 @interface RenderVC ()
 @property (nonatomic, strong) CADisplayLink *displayLink;

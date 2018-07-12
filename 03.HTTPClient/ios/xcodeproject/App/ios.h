@@ -27,17 +27,37 @@ freely, subject to the following restrictions:
 
 #import <UIKit/UIKit.h>
 
-// ios+AppDelegate Start
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-@property (nonatomic, strong) UIWindow *window;
+// ios+HTTPClientProcessor Start
+@class HTTPClient;
+
+@interface HTTPClientProcessor : NSObject
+
+- (instancetype)initWithHTTPClient:(HTTPClient *)client;
+- (void)process;
+
 @end
 
-// ios+AppDelegate End
+// ios+HTTPClientProcessor End
 // ios+RenderVC Start
 @interface RenderVC : UIViewController
 @end
 
 // ios+RenderVC End
+
+// ios+AppDelegate Start
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@property (nonatomic, strong) UIWindow *window;
+
+// ios+AppDelegate End
+    // ios+HTTPClientProcessor Start
+    @property (nonatomic, strong) HTTPClientProcessor *httpClientProcessor;
+    @property (nonatomic, strong) NSTimer *httpClientProcessorTimer;
+    
+    // ios+HTTPClientProcessor End
+// ios+AppDelegate Start
+@end
+
+// ios+AppDelegate End
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_IOS_H
 
