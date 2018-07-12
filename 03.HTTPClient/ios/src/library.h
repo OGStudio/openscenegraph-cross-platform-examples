@@ -34,6 +34,16 @@ freely, subject to the following restrictions:
 #endif
 
 // library+init-ios End
+// library+httpClient-ios Start
+namespace osgcpe
+{
+namespace network
+{
+class HTTPClient;
+}
+}
+
+// library+httpClient-ios End
 
 namespace library
 {
@@ -48,6 +58,11 @@ UIView *init(int width, int height, float scale, UIView *parentView);
 void frame();
 
 // library+frame-ios End
+// library+httpClient-ios Start
+// Return HTTP client for host to poll.
+osgcpe::network::HTTPClient *httpClient();
+
+// library+httpClient-ios End
 
 } // namespace library.
 

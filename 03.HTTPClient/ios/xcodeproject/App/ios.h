@@ -28,11 +28,9 @@ freely, subject to the following restrictions:
 #import <UIKit/UIKit.h>
 
 // ios+HTTPClientProcessor Start
-@class HTTPClient;
-
 @interface HTTPClientProcessor : NSObject
 
-- (instancetype)initWithHTTPClient:(HTTPClient *)client;
+- (instancetype)initWithHTTPClient:(void *)client;
 - (void)process;
 
 @end

@@ -57,6 +57,13 @@ void frame()
     example->app->frame();
 }
 // library+frame-ios End
+// library+httpClient-ios Start
+osgcpe::network::HTTPClient *httpClient()
+{
+    return 0;
+    // TODO return example->app->httpClient;
+}
+// library+httpClient-ios End
 
 // library-ios Start
 } // namespace library.

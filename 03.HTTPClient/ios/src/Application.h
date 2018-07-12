@@ -25,6 +25,10 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_APPLICATION_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_APPLICATION_H
 
+// Application+HTTPClient Start
+#include "network.h"
+
+// Application+HTTPClient End
 // Application+Logging Start
 #include "log.h"
 
@@ -70,9 +74,17 @@ class Application
             this->setupRendering();
             
             // Application+Rendering End
+            // Application+HTTPClient Start
+            this->setupHTTPClient();
+            
+            // Application+HTTPClient End
         }
         ~Application()
         {
+            // Application+HTTPClient Start
+            this->tearHTTPClientDown();
+            
+            // Application+HTTPClient End
             // Application+Rendering Start
             this->tearRenderingDown();
             
@@ -118,6 +130,19 @@ class Application
         }
         // Application+setupWindow-ios End
 
+        // Application+HTTPClient Start
+        public:
+            network::HTTPClient *httpClient;
+        private:
+            void setupHTTPClient()
+            {
+                this->httpClient = new network::HTTPClient;
+            }
+            void tearHTTPClientDown()
+            {
+                delete this->httpClient;
+            }
+        // Application+HTTPClient End
         // Application+Logging Start
         private:
             log::Logger *logger;

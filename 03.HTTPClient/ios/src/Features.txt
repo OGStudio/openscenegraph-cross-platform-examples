@@ -2,7 +2,7 @@ Application+OSGCPE_APPLICATION_LOG
 Application+camera
 Application+frame+Reporting
 Application+setupWindow-ios
-#Application+HTTPClient
+Application+HTTPClient
 Application+Logging
 Application+Rendering
 Reporter+Stub
@@ -19,6 +19,7 @@ Example+VBO
 library-ios
 library+init-ios
 library+frame-ios
+library+httpClient-ios
 
 # log
 log-default
@@ -50,5 +51,6 @@ VBOSetupVisitor
 textureImageScene
 
 # network
-#HTTPClient
+HTTPClient
+HTTPRequest
 

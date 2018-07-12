@@ -55,8 +55,8 @@ freely, subject to the following restrictions:
     // ios+HTTPClientProcessor Start
     - (void)setupHTTPClientProcessor
     {
-        // TODO Pass actual HTTP client from library::.
-        self.httpClientProcessor = [[HTTPClientProcessor alloc] initWithHTTPClient:0];
+        auto client = library::httpClient();
+        self.httpClientProcessor = [[HTTPClientProcessor alloc] initWithHTTPClient:client];
         // Regularly process the processor.
         self.httpClientProcessorTimer =
             [NSTimer
@@ -80,13 +80,13 @@ freely, subject to the following restrictions:
 
 // ios+HTTPClientProcessor Start
 @interface HTTPClientProcessor ()
-@property (nonatomic, strong) HTTPClient *client;
+@property (nonatomic, assign) void *client;
 // TODO processors
 @end
 
 @implementation HTTPClientProcessor
 
-- (instancetype)initWithHTTPClient:(HTTPClient *)client
+- (instancetype)initWithHTTPClient:(void *)client
 {
     self = [super init];
 

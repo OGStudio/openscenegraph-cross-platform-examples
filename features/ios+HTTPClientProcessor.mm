@@ -8,8 +8,8 @@ FEATURE ios.mm/Setup
 FEATURE ios.mm/SetupImpl
 - (void)setupHTTPClientProcessor
 {
-    // TODO Pass actual HTTP client from library::.
-    self.httpClientProcessor = [[HTTPClientProcessor alloc] initWithHTTPClient:0];
+    auto client = library::httpClient();
+    self.httpClientProcessor = [[HTTPClientProcessor alloc] initWithHTTPClient:client];
     // Regularly process the processor.
     self.httpClientProcessorTimer =
         [NSTimer
@@ -27,24 +27,22 @@ FEATURE ios.mm/SetupImpl
 }
 
 FEATURE ios.h/Impl
-@class HTTPClient;
-
 @interface HTTPClientProcessor : NSObject
 
-- (instancetype)initWithHTTPClient:(HTTPClient *)client;
+- (instancetype)initWithHTTPClient:(void *)client;
 - (void)process;
 
 @end
 
 FEATURE ios.mm/Impl
 @interface HTTPClientProcessor ()
-@property (nonatomic, strong) HTTPClient *client;
+@property (nonatomic, assign) void *client;
 // TODO processors
 @end
 
 @implementation HTTPClientProcessor
 
-- (instancetype)initWithHTTPClient:(HTTPClient *)client
+- (instancetype)initWithHTTPClient:(void *)client
 {
     self = [super init];
 
