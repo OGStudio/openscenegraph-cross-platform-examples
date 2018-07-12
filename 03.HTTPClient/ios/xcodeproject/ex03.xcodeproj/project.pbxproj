@@ -11,7 +11,6 @@
 		2F4EB962202B07390019AD8B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4EB95C202B06590019AD8B /* MobileCoreServices.framework */; };
 		2F4EB97D202B07A70019AD8B /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4EB96F202B074D0019AD8B /* Accelerate.framework */; };
 		2F7788931F530562008378D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7788921F530562008378D5 /* main.m */; };
-		2F7788961F530562008378D5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7788951F530562008378D5 /* AppDelegate.m */; };
 		2F77889E1F530562008378D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F77889D1F530562008378D5 /* Assets.xcassets */; };
 		2F7788A11F530562008378D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F77889F1F530562008378D5 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -40,8 +39,6 @@
 		2F4EB970202B074D0019AD8B /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		2F77888E1F530562008378D5 /* ex03.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ex03.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F7788921F530562008378D5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2F7788941F530562008378D5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		2F7788951F530562008378D5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2F77889D1F530562008378D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F7788A01F530562008378D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F7788A21F530562008378D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -85,8 +82,6 @@
 		2F7788901F530562008378D5 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				2F7788941F530562008378D5 /* AppDelegate.h */,
-				2F7788951F530562008378D5 /* AppDelegate.m */,
 				2F0BE5D420F60158008127F6 /* ios.h */,
 				2F0BE5D520F60158008127F6 /* ios.mm */,
 				2F77889D1F530562008378D5 /* Assets.xcassets */,
@@ -209,7 +204,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F0BE5D620F60158008127F6 /* ios.mm in Sources */,
-				2F7788961F530562008378D5 /* AppDelegate.m in Sources */,
 				2F7788931F530562008378D5 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

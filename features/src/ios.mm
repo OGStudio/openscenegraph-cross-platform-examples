@@ -23,6 +23,11 @@ freely, subject to the following restrictions:
 */
 
 #include "ios.h"
+#include "library.h"
 
-// FEATURE ios+ViewController/Impl
+// FEATURE ios+AppDelegate/Begin
+    // FEATURE ios+RenderVC/Setup
+// FEATURE ios+AppDelegate/End
+
+// FEATURE ios+RenderVC/Impl
 

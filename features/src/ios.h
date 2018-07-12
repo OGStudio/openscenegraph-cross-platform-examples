@@ -25,7 +25,10 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_IOS_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_IOS_H
 
-// FEATURE ios+ViewController/Impl
+#import <UIKit/UIKit.h>
+
+// FEATURE ios+AppDelegate/Impl
+// FEATURE ios+RenderVC/Impl
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_IOS_H
 

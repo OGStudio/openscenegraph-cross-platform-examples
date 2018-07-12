@@ -25,13 +25,19 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_IOS_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_IOS_H
 
-// ios+ViewController Start
 #import <UIKit/UIKit.h>
 
-@interface ViewController: UIViewController
+// ios+AppDelegate Start
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@property (nonatomic, strong) UIWindow *window;
 @end
 
-// ios+ViewController End
+// ios+AppDelegate End
+// ios+RenderVC Start
+@interface RenderVC : UIViewController
+@end
+
+// ios+RenderVC End
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_IOS_H
 

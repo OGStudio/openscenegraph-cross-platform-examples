@@ -23,7 +23,7 @@ freely, subject to the following restrictions:
 */
 
 #import <UIKit/UIKit.h>
-#import "AppDelegate.h"
+#import "ios.h"
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {

@@ -23,33 +23,88 @@ freely, subject to the following restrictions:
 */
 
 #include "ios.h"
+#include "library.h"
 
-// ios+ViewController Start
-//#import "library.h"
+// ios+AppDelegate Start
+@implementation AppDelegate
 
-@interface ViewController ()
+- (BOOL)application:(UIApplication *)application
+    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    auto frame = [[UIScreen mainScreen] bounds];
+    self.window = [[UIWindow alloc] initWithFrame:frame];
 
-/*
-@property (nonatomic, strong) CADisplayLink *displayLink;
-@property (nonatomic, strong) UIView *renderView;
-@property (nonatomic, strong) IBOutlet UIView *parentView;
-*/
+// ios+AppDelegate End
+    // ios+RenderVC Start
+    self.window.rootViewController = [RenderVC new];
+    
+    // ios+RenderVC End
+// ios+AppDelegate Start
+    self.window.backgroundColor = UIColor.whiteColor;
+    [self.window makeKeyAndVisible];
+
+    return YES;
+}
 
 @end
+// ios+AppDelegate End
 
-@implementation ViewController
+// ios+RenderVC Start
+@interface RenderVC ()
+@property (nonatomic, strong) CADisplayLink *displayLink;
+@end
+
+@implementation RenderVC
 
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    // NOTE This must be done exactly once!
-    NSLog(@"TODO setup render view");
-    //[self setupRenderView];
-    // TODO REMOVE
-    self.view.backgroundColor = UIColor.redColor;
+
+    // Setup render view once.
+    // TODO Support render window resizing to allow multiple calls.
+    static bool didSetup = false;
+    if (!didSetup)
+    {
+        [self setupRenderView];
+        didSetup = true;
+    }
+}
+
+- (void)setupRenderView
+{
+    // Remove old display link.
+    if (self.displayLink)
+    {
+        [self.displayLink invalidate];
+        self.displayLink = nil;
+    }
+    // Create new display link.
+    self.displayLink =
+        [CADisplayLink
+            displayLinkWithTarget:self
+            selector:@selector(renderFrame)];
+    [self.displayLink
+        addToRunLoop:[NSRunLoop currentRunLoop]
+        forMode:NSDefaultRunLoopMode];
+
+    // Embed OpenSceneGraph render view.
+    auto size = self.view.frame.size;
+    auto renderView =
+        library::init(
+            size.width,
+            size.height,
+            [UIScreen mainScreen].scale,
+            self.view
+        );
+    [self.view sendSubviewToBack:renderView];
+}
+
+- (void)renderFrame
+{
+    library::frame();
 }
 
 @end
 
-// ios+ViewController End
+// ios+RenderVC End
 

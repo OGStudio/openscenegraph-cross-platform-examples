@@ -1,4 +1,5 @@
-ios+ViewController
+ios+AppDelegate
+ios+RenderVC
 
 # network
 #HTTPClientIOS
