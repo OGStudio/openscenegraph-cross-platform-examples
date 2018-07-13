@@ -1,27 +1,16 @@
 FEATURE ios.h/Impl
 @interface HTTPClientProcessor : NSObject
 
-- (instancetype)initWithHTTPClient:(void *)client;
 - (void)process;
 
 @end
 
 FEATURE ios.mm/Impl
 @interface HTTPClientProcessor ()
-@property (nonatomic, assign) void *client;
-// TODO processors
+// TODO processors?
 @end
 
 @implementation HTTPClientProcessor
-
-- (instancetype)initWithHTTPClient:(void *)client
-{
-    self = [super init];
-
-    self.client = client;
-
-    return self;
-}
 
 - (void)process
 {

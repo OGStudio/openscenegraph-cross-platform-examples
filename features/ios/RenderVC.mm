@@ -1,12 +1,12 @@
-FEATURE ios.h/Impl
+FEATURE ios.h/Properties
 @interface RenderVC : UIViewController
+
+FEATURE ios.h/End
 @end
 
-FEATURE ios.mm/Properties
+FEATURE ios.mm/Frame
 @interface RenderVC ()
     @property (nonatomic, strong) CADisplayLink *displayLink;
-
-FEATURE ios.mm/Frame
 @end
 
 @implementation RenderVC

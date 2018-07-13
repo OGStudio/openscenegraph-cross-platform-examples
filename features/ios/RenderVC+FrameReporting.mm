@@ -1,4 +1,4 @@
-FEATURE ios.mm/Properties
+FEATURE ios.h/Properties
 @property (nonatomic, copy) void (^frame)();
 
 FEATURE ios.mm/Frame

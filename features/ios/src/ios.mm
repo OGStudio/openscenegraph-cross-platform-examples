@@ -40,8 +40,6 @@ freely, subject to the following restrictions:
 
 // FEATURE HTTPClientProcessor/Impl
 
-// FEATURE RenderVC/Properties
-    // FEATURE RenderVC+FrameReporting/Properties
 // FEATURE RenderVC/Frame
     // FEATURE RenderVC+FrameReporting/Frame
 // FEATURE RenderVC/Impl

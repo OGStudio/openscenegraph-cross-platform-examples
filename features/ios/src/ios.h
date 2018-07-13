@@ -29,7 +29,10 @@ freely, subject to the following restrictions:
 
 // FEATURE AppDelegate/Impl
 // FEATURE HTTPClientProcessor/Impl
-// FEATURE RenderVC/Impl
+
+// FEATURE RenderVC/Properties
+    // FEATURE RenderVC+FrameReporting/Properties
+// FEATURE RenderVC/End
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_IOS_H
 

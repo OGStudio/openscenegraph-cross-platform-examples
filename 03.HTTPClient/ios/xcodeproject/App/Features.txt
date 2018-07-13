@@ -1,5 +1,6 @@
 AppDelegate
-#AppDelegate+HTTPClientProcessor
+AppDelegate+HTTPClientProcessor
 AppDelegate+RenderVC
 RenderVC
 RenderVC+FrameReporting
+HTTPClientProcessor

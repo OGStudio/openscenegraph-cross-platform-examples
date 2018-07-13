@@ -33,8 +33,24 @@ freely, subject to the following restrictions:
 @end
 
 // AppDelegate End
+// HTTPClientProcessor Start
+@interface HTTPClientProcessor : NSObject
+
+- (void)process;
+
+@end
+
+// HTTPClientProcessor End
+
 // RenderVC Start
 @interface RenderVC : UIViewController
+
+// RenderVC End
+    // RenderVC+FrameReporting Start
+    @property (nonatomic, copy) void (^frame)();
+    
+    // RenderVC+FrameReporting End
+// RenderVC Start
 @end
 
 // RenderVC End
