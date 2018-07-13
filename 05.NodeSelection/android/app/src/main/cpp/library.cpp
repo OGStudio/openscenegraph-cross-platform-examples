@@ -72,6 +72,7 @@ OSGCPE_JNI(handleMousePress)(OSGCPE_JNI_ARG, jboolean down, jfloat x, jfloat y)
 }
 // library+handleMousePress-android End
 
+
 // library-android Start
 } // extern "C".
 

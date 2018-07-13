@@ -65,6 +65,7 @@ OSGCPE_JNI(frame)(OSGCPE_JNI_ARG)
 
 // library+frame-android End
 
+
 // library-android Start
 } // extern "C".
 

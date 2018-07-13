@@ -14,13 +14,38 @@ FEATURE ios.mm/Impl
 
 - (void)process
 {
-    // TODO
-    NSLog(@"HTTPClientProcessor.process");
+    // Collect one pending HTTP request per execution run.
+    std::string url;
+    std::string data;
+    int id = library::httpClientNextPendingRequest(url, data);
+
+    // Non-empty id means we have request to execute.
+    if (id)
+    {
+        [self
+            performHTTPRequestWithId:id
+            url:@(url.c_str())
+            data:@(data.c_str())
+        ]; 
+    }
+
+    // TODO Remove completed HTTP requests.
+    /*
+    for (HTTPURLRequest *request in self.requests)
+    {
+        if (status == COMPLETED
+
+    }
+    */
 }
 
-@end
+- (void)performHTTPRequestWithId:(int)id
+    url:(NSString *)url
+    data:(NSString *)data
+{
+    NSLog(@"TODO performHTTPRequestWithId '%d' url '%@' data '%@'", id, url, data);
 
-/*
+    /*
     // TODO Check for URL validity.
     NSURL *address = [NSURL URLWithString:url];
     NSLog(@"TODO performGetRequest. address: '%@'", address);
@@ -34,4 +59,8 @@ FEATURE ios.mm/Impl
         dataTaskWithURL:address
         completionHandler:handler];
     [task resume];
-*/
+    */
+}
+
+@end
+

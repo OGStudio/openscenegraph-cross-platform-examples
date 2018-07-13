@@ -57,10 +57,16 @@ void frame()
     example->app->frame();
 }
 // library+frame-ios End
+
 // library+httpClient-ios Start
-void httpClientNextPendingRequest()
+int httpClientNextPendingRequest(std::string &url, std::string &data)
 {
-    // TODO
+    // TODO Do real calls.
+
+    url = "http://your.domain.test";
+    data = "{\"key\": \"value\"}";
+
+    return 144;
 }
 // library+httpClient-ios End
 

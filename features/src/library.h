@@ -26,12 +26,14 @@ freely, subject to the following restrictions:
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_LIBRARY_H
 
 // FEATURE library+init-ios/Decl
+// FEATURE library+httpClient-ios/Include
 
 namespace library
 {
 
-// FEATURE library+init-ios/Impl
 // FEATURE library+frame-ios/Impl
+// FEATURE library+init-ios/Impl
+
 // FEATURE library+httpClient-ios/Impl
 
 } // namespace library.

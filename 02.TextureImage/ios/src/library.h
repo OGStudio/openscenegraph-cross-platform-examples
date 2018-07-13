@@ -38,16 +38,17 @@ freely, subject to the following restrictions:
 namespace library
 {
 
-// library+init-ios Start
-// Initialization.
-UIView *init(int width, int height, float scale, UIView *parentView);
-
-// library+init-ios End
 // library+frame-ios Start
 // Rendering.
 void frame();
 
 // library+frame-ios End
+// library+init-ios Start
+// Initialization.
+UIView *init(int width, int height, float scale, UIView *parentView);
+
+// library+init-ios End
+
 
 } // namespace library.
 

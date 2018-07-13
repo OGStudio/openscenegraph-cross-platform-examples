@@ -34,22 +34,27 @@ freely, subject to the following restrictions:
 #endif
 
 // library+init-ios End
+// library+httpClient-ios Start
+#include <string>
+
+// library+httpClient-ios End
 
 namespace library
 {
 
-// library+init-ios Start
-// Initialization.
-UIView *init(int width, int height, float scale, UIView *parentView);
-
-// library+init-ios End
 // library+frame-ios Start
 // Rendering.
 void frame();
 
 // library+frame-ios End
+// library+init-ios Start
+// Initialization.
+UIView *init(int width, int height, float scale, UIView *parentView);
+
+// library+init-ios End
+
 // library+httpClient-ios Start
-void httpClientNextPendingRequest();
+int httpClientNextPendingRequest(std::string &url, std::string &data);
 
 // library+httpClient-ios End
 

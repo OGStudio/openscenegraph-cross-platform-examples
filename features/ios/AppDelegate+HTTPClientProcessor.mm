@@ -13,11 +13,11 @@ FEATURE ios.mm/Impl
 
     // NOTE Create weak reference to `self` to escape so-called retain cycle.
     // NOTE Without `weakification` we get compile time warning from ARC.
-    __weak typeof(self)weakSelf = self;
+    //__weak typeof(self)weakSelf = self;
 
     self.renderVC.frame = ^() {
         // NOTE Convert weak self to strong self.
-        __strong typeof(self)self = weakSelf;
+        //__strong typeof(self)self = weakSelf;
 
         [self.httpClientProcessor process];
     };

@@ -77,11 +77,11 @@ freely, subject to the following restrictions:
     
         // NOTE Create weak reference to `self` to escape so-called retain cycle.
         // NOTE Without `weakification` we get compile time warning from ARC.
-        __weak typeof(self)weakSelf = self;
+        //__weak typeof(self)weakSelf = self;
     
         self.renderVC.frame = ^() {
             // NOTE Convert weak self to strong self.
-            __strong typeof(self)self = weakSelf;
+            //__strong typeof(self)self = weakSelf;
     
             [self.httpClientProcessor process];
         };
@@ -107,13 +107,38 @@ freely, subject to the following restrictions:
 
 - (void)process
 {
-    // TODO
-    NSLog(@"HTTPClientProcessor.process");
+    // Collect one pending HTTP request per execution run.
+    std::string url;
+    std::string data;
+    int id = library::httpClientNextPendingRequest(url, data);
+
+    // Non-empty id means we have request to execute.
+    if (id)
+    {
+        [self
+            performHTTPRequestWithId:id
+            url:@(url.c_str())
+            data:@(data.c_str())
+        ]; 
+    }
+
+    // TODO Remove completed HTTP requests.
+    /*
+    for (HTTPURLRequest *request in self.requests)
+    {
+        if (status == COMPLETED
+
+    }
+    */
 }
 
-@end
+- (void)performHTTPRequestWithId:(int)id
+    url:(NSString *)url
+    data:(NSString *)data
+{
+    NSLog(@"TODO performHTTPRequestWithId '%d' url '%@' data '%@'", id, url, data);
 
-/*
+    /*
     // TODO Check for URL validity.
     NSURL *address = [NSURL URLWithString:url];
     NSLog(@"TODO performGetRequest. address: '%@'", address);
@@ -127,7 +152,11 @@ freely, subject to the following restrictions:
         dataTaskWithURL:address
         completionHandler:handler];
     [task resume];
-*/
+    */
+}
+
+@end
+
 // HTTPClientProcessor End
 
 // RenderVC Start
