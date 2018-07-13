@@ -1,11 +1,15 @@
-FEATURE ios.h/Begin
+FEATURE ios.h/Impl
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-@property (nonatomic, strong) UIWindow *window;
-
-FEATURE ios.h/End
+    @property (nonatomic, strong) UIWindow *window;
 @end
 
-FEATURE ios.mm/Begin
+FEATURE ios.mm/PropertiesBegin
+@interface AppDelegate ()
+
+FEATURE ios.mm/PropertiesEnd
+@end
+
+FEATURE ios.mm/Setup
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application
@@ -14,7 +18,7 @@ FEATURE ios.mm/Begin
     auto frame = [[UIScreen mainScreen] bounds];
     self.window = [[UIWindow alloc] initWithFrame:frame];
 
-FEATURE ios.mm/EndSetup
+FEATURE ios.mm/Impl
     self.window.backgroundColor = UIColor.whiteColor;
     [self.window makeKeyAndVisible];
 

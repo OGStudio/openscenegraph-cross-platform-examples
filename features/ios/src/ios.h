@@ -27,12 +27,9 @@ freely, subject to the following restrictions:
 
 #import <UIKit/UIKit.h>
 
-// FEATURE ios+HTTPClientProcessor/Impl
-// FEATURE ios+RenderVC/Impl
-
-// FEATURE ios+AppDelegate/Begin
-    // FEATURE ios+HTTPClientProcessor/Setup
-// FEATURE ios+AppDelegate/End
+// FEATURE AppDelegate/Impl
+// FEATURE HTTPClientProcessor/Impl
+// FEATURE RenderVC/Impl
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_IOS_H
 

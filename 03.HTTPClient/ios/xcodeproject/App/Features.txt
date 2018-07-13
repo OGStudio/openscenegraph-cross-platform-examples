@@ -1,3 +1,5 @@
-ios+AppDelegate
-ios+HTTPClientProcessor
-ios+RenderVC
+AppDelegate
+#AppDelegate+HTTPClientProcessor
+AppDelegate+RenderVC
+RenderVC
+RenderVC+FrameReporting

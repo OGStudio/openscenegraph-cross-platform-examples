@@ -26,13 +26,25 @@ freely, subject to the following restrictions:
 
 #include "library.h"
 
-// FEATURE ios+AppDelegate/Begin
-    // FEATURE ios+RenderVC/Setup
-    // FEATURE ios+HTTPClientProcessor/Setup
-// FEATURE ios+AppDelegate/EndSetup
-    // FEATURE ios+HTTPClientProcessor/SetupImpl
-// FEATURE ios+AppDelegate/End
+// FEATURE AppDelegate/PropertiesBegin
+    // FEATURE AppDelegate+HTTPClientProcessor/Properties
+    // FEATURE AppDelegate+RenderVC/Properties
+// FEATURE AppDelegate/PropertiesEnd
+// FEATURE AppDelegate/Setup
+    // FEATURE AppDelegate+RenderVC/Setup
+    // FEATURE AppDelegate+HTTPClientProcessor/Setup
+// FEATURE AppDelegate/Impl
+    // FEATURE AppDelegate+HTTPClientProcessor/Impl
+    // FEATURE AppDelegate+RenderVC/Impl
+// FEATURE AppDelegate/End
 
-// FEATURE ios+HTTPClientProcessor/Impl
-// FEATURE ios+RenderVC/Impl
+// FEATURE HTTPClientProcessor/Impl
+
+// FEATURE RenderVC/Properties
+    // FEATURE RenderVC+FrameReporting/Properties
+// FEATURE RenderVC/Frame
+    // FEATURE RenderVC+FrameReporting/Frame
+// FEATURE RenderVC/Impl
+    // FEATURE RenderVC+FrameReporting/Impl
+// FEATURE RenderVC/End
 

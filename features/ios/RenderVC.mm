@@ -2,12 +2,11 @@ FEATURE ios.h/Impl
 @interface RenderVC : UIViewController
 @end
 
-FEATURE ios.mm/Setup
-self.window.rootViewController = [RenderVC new];
-
-FEATURE ios.mm/Impl
+FEATURE ios.mm/Properties
 @interface RenderVC ()
-@property (nonatomic, strong) CADisplayLink *displayLink;
+    @property (nonatomic, strong) CADisplayLink *displayLink;
+
+FEATURE ios.mm/Frame
 @end
 
 @implementation RenderVC
@@ -58,7 +57,10 @@ FEATURE ios.mm/Impl
 - (void)renderFrame
 {
     library::frame();
+
+FEATURE ios.mm/Impl
 }
 
+FEATURE ios.mm/End
 @end
 

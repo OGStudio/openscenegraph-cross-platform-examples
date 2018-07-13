@@ -58,10 +58,9 @@ void frame()
 }
 // library+frame-ios End
 // library+httpClient-ios Start
-osgcpe::network::HTTPClient *httpClient()
+void httpClientNextPendingRequest()
 {
-    return 0;
-    // TODO return example->app->httpClient;
+    // TODO
 }
 // library+httpClient-ios End
 

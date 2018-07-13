@@ -26,7 +26,19 @@ freely, subject to the following restrictions:
 
 #include "library.h"
 
-// ios+AppDelegate Start
+// AppDelegate Start
+@interface AppDelegate ()
+
+// AppDelegate End
+    // AppDelegate+RenderVC Start
+    @property (nonatomic, strong) RenderVC *renderVC;
+    
+    // AppDelegate+RenderVC End
+// AppDelegate Start
+@end
+
+// AppDelegate End
+// AppDelegate Start
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application
@@ -35,93 +47,41 @@ freely, subject to the following restrictions:
     auto frame = [[UIScreen mainScreen] bounds];
     self.window = [[UIWindow alloc] initWithFrame:frame];
 
-// ios+AppDelegate End
-    // ios+RenderVC Start
-    self.window.rootViewController = [RenderVC new];
+// AppDelegate End
+    // AppDelegate+RenderVC Start
+    [self setupRenderVC];
     
-    // ios+RenderVC End
-    // ios+HTTPClientProcessor Start
-    [self setupHTTPClientProcessor];
-    
-    // ios+HTTPClientProcessor End
-// ios+AppDelegate Start
+    // AppDelegate+RenderVC End
+// AppDelegate Start
     self.window.backgroundColor = UIColor.whiteColor;
     [self.window makeKeyAndVisible];
 
     return YES;
 }
 
-// ios+AppDelegate End
-    // ios+HTTPClientProcessor Start
-    - (void)setupHTTPClientProcessor
+// AppDelegate End
+    // AppDelegate+RenderVC Start
+    - (void)setupRenderVC
     {
-        auto client = library::httpClient();
-        self.httpClientProcessor = [[HTTPClientProcessor alloc] initWithHTTPClient:client];
-        // Regularly process the processor.
-        self.httpClientProcessorTimer =
-            [NSTimer
-                scheduledTimerWithTimeInterval:0
-                target:self
-                selector:@selector(processHTTPClientProcessor)
-                userInfo:nil
-                repeats:YES
-            ];
+        self.renderVC = [RenderVC new];
+        self.window.rootViewController = self.renderVC;
     }
-    
-    - (void)processHTTPClientProcessor
-    {
-        [self.httpClientProcessor process];
-    }
-    
-    // ios+HTTPClientProcessor End
-// ios+AppDelegate Start
+    // AppDelegate+RenderVC End
+// AppDelegate Start
 @end
-// ios+AppDelegate End
+// AppDelegate End
 
-// ios+HTTPClientProcessor Start
-@interface HTTPClientProcessor ()
-@property (nonatomic, assign) void *client;
-// TODO processors
-@end
 
-@implementation HTTPClientProcessor
-
-- (instancetype)initWithHTTPClient:(void *)client
-{
-    self = [super init];
-
-    self.client = client;
-
-    return self;
-}
-
-- (void)process
-{
-    // TODO
-    NSLog(@"HTTPClientProcessor.process");
-}
-
-@end
-
-/*
-    // TODO Check for URL validity.
-    NSURL *address = [NSURL URLWithString:url];
-    NSLog(@"TODO performGetRequest. address: '%@'", address);
-    NSURLSession *session = NSURLSession.sharedSession;
-    // Define completion handler.
-    auto handler = ^void(NSData *data, NSURLResponse *response, NSError *error) {
-        NSLog(@"Completion handler invoked");
-    };
-    // Perform request.
-    auto task = [session
-        dataTaskWithURL:address
-        completionHandler:handler];
-    [task resume];
-*/
-// ios+HTTPClientProcessor End
-// ios+RenderVC Start
+// RenderVC Start
 @interface RenderVC ()
-@property (nonatomic, strong) CADisplayLink *displayLink;
+    @property (nonatomic, strong) CADisplayLink *displayLink;
+
+// RenderVC End
+    // RenderVC+FrameReporting Start
+    @property (nonatomic, copy) void (^frame)();
+    
+    // RenderVC+FrameReporting End
+// RenderVC Start
 @end
 
 @implementation RenderVC
@@ -172,9 +132,27 @@ freely, subject to the following restrictions:
 - (void)renderFrame
 {
     library::frame();
+
+// RenderVC End
+    // RenderVC+FrameReporting Start
+    [self reportFrame];
+    
+    // RenderVC+FrameReporting End
+// RenderVC Start
 }
 
+// RenderVC End
+    // RenderVC+FrameReporting Start
+    - (void)reportFrame
+    {
+        if (self.frame != nil)
+        {
+            self.frame();
+        }
+    }
+    // RenderVC+FrameReporting End
+// RenderVC Start
 @end
 
-// ios+RenderVC End
+// RenderVC End
 
