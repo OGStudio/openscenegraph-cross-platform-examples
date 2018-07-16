@@ -1,0 +1,16 @@
+#!/bin/bash
+# This script builds specified example.
+# Run it from within `build/Simulator` or `build/Device` directory.
+
+id=$1
+
+if [ -z "$id" ]; then
+    echo "$0 EXAMPLE_ID (01, 02, 03...)"
+    exit 1
+fi
+
+cmd="cmake --build . --config Release --target rawex$id"
+echo "Build example '$id'"
+echo $cmd
+$cmd
+

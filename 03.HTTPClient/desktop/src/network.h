@@ -213,6 +213,20 @@ class HTTPClient
             this->requests.push_back(request);
         }
 
+        HTTPRequest *nextPendingRequest()
+        {
+            this->removeCompletedRequests();
+
+            for (auto request : this->requests)
+            {
+                if (request->status == HTTPRequest::PENDING)
+                {
+                    return request;
+                }
+            }
+            return 0;
+        }
+
         Requests pendingRequests()
         {
             this->removeCompletedRequests();

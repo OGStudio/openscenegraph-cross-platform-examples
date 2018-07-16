@@ -54,7 +54,12 @@ UIView *init(int width, int height, float scale, UIView *parentView);
 // library+init-ios End
 
 // library+httpClient-ios Start
-int httpClientNextPendingRequest(std::string &url, std::string &data);
+intptr_t httpClientExecuteNextRequest(std::string &url, std::string &data);
+void httpClientCompleteRequest(
+    intptr_t id,
+    bool status,
+    const std::string &reply
+);
 
 // library+httpClient-ios End
 

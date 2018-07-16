@@ -137,8 +137,8 @@ cmake --build . --config Release -- -IDEBuildOperationMaxNumberOfConcurrentCompi
 * if you encounter `Undefined symbols for architecture <Arch>` errors with `library::`
     * remove OpenSceneGraph build and retry
 * if some libraries or plugins cannot be built either due to missing headers (like curl), or wrong `-std=c++11` directive
-    * first, use `build-osg-ios` script to build only necessary OpenSceneGraph targets for iOS
-    * second, build remaning `ex<Number>` library by running `cmake --build . --config Release --target rawex<Number> -- -IDEBuildOperationMaxNumberOfConcurrentCompileTasks=8`
+    * first, use `build-ios-osg` script to build only necessary OpenSceneGraph targets for iOS
+    * second, use `build-ios-ex <ExampleId>` script to build remaning `ex<ExampleId>` library (`<ExampleId>` values are `01`, `02`, etc...)
 
 Second, open `01.EmbedResource/ios/xcodeproject/ex01.xcodeproj` Xcode project and run it.
 

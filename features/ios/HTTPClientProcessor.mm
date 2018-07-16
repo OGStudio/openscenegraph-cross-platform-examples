@@ -17,7 +17,7 @@ FEATURE ios.mm/Impl
     // Collect one pending HTTP request per execution run.
     std::string url;
     std::string data;
-    int id = library::httpClientNextPendingRequest(url, data);
+    auto id = library::httpClientExecuteNextRequest(url, data);
 
     // Non-empty id means we have request to execute.
     if (id)
@@ -28,38 +28,51 @@ FEATURE ios.mm/Impl
             data:@(data.c_str())
         ]; 
     }
-
-    // TODO Remove completed HTTP requests.
-    /*
-    for (HTTPURLRequest *request in self.requests)
-    {
-        if (status == COMPLETED
-
-    }
-    */
 }
 
-- (void)performHTTPRequestWithId:(int)id
+- (void)performHTTPRequestWithId:(intptr_t)id
     url:(NSString *)url
     data:(NSString *)data
 {
-    NSLog(@"TODO performHTTPRequestWithId '%d' url '%@' data '%@'", id, url, data);
-
-    /*
-    // TODO Check for URL validity.
+    NSLog(@"TODO performHTTPRequestWithId '%ld' url '%@' data '%@'", id, url, data);
     NSURL *address = [NSURL URLWithString:url];
-    NSLog(@"TODO performGetRequest. address: '%@'", address);
-    NSURLSession *session = NSURLSession.sharedSession;
+    if (!address)
+    {
+        library::httpClientCompleteRequest(id, false, "");
+    }
+
     // Define completion handler.
     auto handler = ^void(NSData *data, NSURLResponse *response, NSError *error) {
+        // Failure.
+        if (error)
+        {
+            NSString *errorDescription = error.localizedDescription;
+            std::string reason = std::string([errorDescription UTF8String]);
+            library::httpClientCompleteRequest(id, false, reason);
+        }
+        // Success.
+        else
+        {
+            NSString *strdata =
+                [[NSString alloc]
+                    initWithData:data encoding:NSUTF8StringEncoding
+                ];
+            std::string reply = std::string([strdata UTF8String]);
+            library::httpClientCompleteRequest(id, true, reply);
+        }
         NSLog(@"Completion handler invoked");
     };
+
+    // TODO POST requests
+
     // Perform request.
-    auto task = [session
-        dataTaskWithURL:address
-        completionHandler:handler];
+    NSURLSession *session = NSURLSession.sharedSession;
+    auto task =
+        [session
+            dataTaskWithURL:address
+            completionHandler:handler
+        ];
     [task resume];
-    */
 }
 
 @end
