@@ -30,6 +30,7 @@ freely, subject to the following restrictions:
 // FEATURE Example+BoxScene/Include
 // FEATURE Example+TextureImageScene/Include
 // FEATURE Example+HTTPSGet/Include
+// FEATURE Example+HTTPSPost/Include
 // FEATURE Example+VBO/Include
 
 // FEATURE Example+OSGCPE_EXAMPLE_LOG/Impl
@@ -61,6 +62,7 @@ struct Example
         // FEATURE Example+BoxSelection/Setup
         // FEATURE Example+BoxRotation/Setup
         // FEATURE Example+HTTPSGet/Setup
+        // FEATURE Example+HTTPSPost/Setup
     }
     ~Example()
     {
@@ -74,6 +76,7 @@ struct Example
     // FEATURE Example+BoxScene/Impl
     // FEATURE Example+BoxSelection/Impl
     // FEATURE Example+HTTPSGet/Impl
+    // FEATURE Example+HTTPSPost/Impl
     // FEATURE Example+SingleColorScene/Impl
     // FEATURE Example+TextureImageScene/Impl
     // FEATURE Example+VBO/Impl

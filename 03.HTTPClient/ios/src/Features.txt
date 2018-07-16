@@ -10,7 +10,8 @@ Reporter+Stub
 Example+03
 Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
-Example+HTTPSGet
+#Example+HTTPSGet
+Example+HTTPSPost
 Example+TextureImageScene
 Example+StaticPluginOSG
 Example+StaticPluginImageIO

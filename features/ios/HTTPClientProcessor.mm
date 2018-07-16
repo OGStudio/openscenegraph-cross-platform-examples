@@ -63,13 +63,14 @@ FEATURE ios.mm/Impl
         NSLog(@"Completion handler invoked");
     };
 
-    // TODO POST requests
-
-    // Perform request.
+    // Perform GET/POST request.
     NSURLSession *session = NSURLSession.sharedSession;
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:address];
+    request.HTTPMethod = data.length ? @"POST" : @"GET";
+    request.HTTPBody = [data dataUsingEncoding:NSUTF8StringEncoding];
     auto task =
         [session
-            dataTaskWithURL:address
+            dataTaskWithRequest:request
             completionHandler:handler
         ];
     [task resume];

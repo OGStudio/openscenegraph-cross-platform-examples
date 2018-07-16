@@ -41,10 +41,10 @@ freely, subject to the following restrictions:
 #include "digit.png.h"
 
 // Example+TextureImageScene End
-// Example+HTTPSGet Start
+// Example+HTTPSPost Start
 #include "network.h"
 
-// Example+HTTPSGet End
+// Example+HTTPSPost End
 // Example+VBO Start
 #include "render.h"
 
@@ -100,10 +100,10 @@ struct Example
         this->setupSceneTexturing();
         
         // Example+TextureImageScene End
-        // Example+HTTPSGet Start
-        this->setupHTTPSGet();
+        // Example+HTTPSPost Start
+        this->setupHTTPSPost();
         
-        // Example+HTTPSGet End
+        // Example+HTTPSPost End
     }
     ~Example()
     {
@@ -135,23 +135,24 @@ struct Example
             }
         }
     // Example+BoxScene End
-    // Example+HTTPSGet Start
+    // Example+HTTPSPost Start
     private:
-        void setupHTTPSGet()
+        void setupHTTPSPost()
         {
             auto success = [&](std::string response) {
                 // Set background color to green on success.
                 this->app->camera()->setClearColor({ 0, 1, 0, 0 });
+                OSGCPE_EXAMPLE_LOG(response.c_str());
             };
             auto failure = [&](std::string reason) {
                 // Set background color to red on failure.
                 this->app->camera()->setClearColor({ 1, 0, 0, 0 });
                 OSGCPE_EXAMPLE_LOG(reason.c_str());
             };
-            auto url = "https://raw.githubusercontent.com/OGStudio/openscenegraph-cross-platform-examples/master/.gitignore";
-            this->app->httpClient->get(url, success, failure);
+            auto url = "https://httpbin.org/post";
+            this->app->httpClient->post(url, "sample-post-request", success, failure);
         }
-    // Example+HTTPSGet End
+    // Example+HTTPSPost End
     // Example+TextureImageScene Start
     private:
         void setupSceneTexturing()
