@@ -1,5 +1,31 @@
 
+/*
+This file is part of OpenSceneGraph cross-platform examples:
+  https://github.com/OGStudio/openscenegraph-cross-platform-examples
+
+Copyright (C) 2018 Opensource Game Studio
+
+This software is provided 'as-is', without any express or implied
+warranty.  In no event will the authors be held liable for any damages
+arising from the use of this software.
+
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it
+freely, subject to the following restrictions:
+
+1. The origin of this software must not be misrepresented; you must not
+   claim that you wrote the original software. If you use this software
+   in a product, an acknowledgment in the product documentation would be
+   appreciated but is not required.
+2. Altered source versions must be plainly marked as such, and must not be
+   misrepresented as being the original software.
+3. This notice may not be removed or altered from any source distribution.
+*/
+
+// Ex03 Start
 package org.opengamestudio.ex03;
+// Ex03 End
+// EGLview Start
 /*
  * Copyright (C) 2008 The Android Open Source Project
  *
@@ -28,6 +54,38 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.egl.EGLContext;
 import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.opengles.GL10;
+
+// EGLview End
+// MainActivity Start
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.TextView;
+
+// MainActivity End
+
+// library Start
+public class library
+{
+    static
+    {
+        System.loadLibrary("library");
+    }
+
+// library End
+    // library+init Start
+    // Setup graphics context.
+    public static native void init(int width, int height);
+    // library+init End
+    // library+frame Start
+    // Rendering.
+    public static native void frame();
+    // library+frame End
+// library Start
+}
+
+// library End
+
+// EGLview Start
 /**
  * A simple GLSurfaceView sub-class that demonstrate how to perform
  * OpenGL ES 1.0 rendering into a GL Surface. Note the following important
@@ -326,4 +384,17 @@ public class EGLview extends GLSurfaceView {
 	}
 		    
 }
+
+// EGLview End
+// MainActivity Start
+public class MainActivity extends Activity
+{
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+}
+// MainActivity End
 

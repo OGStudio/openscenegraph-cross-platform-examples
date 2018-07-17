@@ -1,10 +1,9 @@
-
-package org.opengamestudio.ex03;
-
+FEATURE android.java/Include
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+FEATURE android.java/Impl
 public class MainActivity extends Activity
 {
     @Override
@@ -14,4 +13,3 @@ public class MainActivity extends Activity
         setContentView(R.layout.activity_main);
     }
 }
-
