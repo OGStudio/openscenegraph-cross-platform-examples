@@ -28,6 +28,7 @@ freely, subject to the following restrictions:
 // FEATURE extlib-mongoose/Include
 // FEATURE HTTPClient/Include
 // FEATURE HTTPRequest/Include
+// FEATURE HTTPRequestProcessorMongoose/Include
 
 namespace osgcpe
 {

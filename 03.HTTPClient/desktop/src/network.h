@@ -39,6 +39,10 @@ freely, subject to the following restrictions:
 #include <string>
 
 // HTTPRequest End
+// HTTPRequestProcessorMongoose Start
+#include "format.h"
+
+// HTTPRequestProcessorMongoose End
 
 namespace osgcpe
 {
@@ -150,8 +154,8 @@ class HTTPRequestProcessorMongoose
                         if (status != 0)
                         {
                             request->status = HTTPRequest::COMPLETED;
-                            request->failure("Failed to connect");
-                            //failure(strerror(status));
+                            auto msg = format::printfString("Failed to connect: '%s'", strerror(status));
+                            request->failure(msg);
                             self->inProgress = false;
                         }
                     }

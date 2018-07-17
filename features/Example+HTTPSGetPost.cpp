@@ -27,13 +27,13 @@ private:
 
         // GET.
         this->app->httpClient->get(
-            "https://httpbin.org/get",
+            "https://raw.githubusercontent.com/OGStudio/openscenegraph-cross-platform-examples/master/.gitignore",
             success,
             failure
         );
         // POST.
         this->app->httpClient->post(
-            "https://httpbin.org/post",
+            "https://opengamestudio-debug-broker.herokuapp.com",
             "sample-data",
             success,
             failure
