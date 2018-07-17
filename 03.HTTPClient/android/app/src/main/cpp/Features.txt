@@ -1,0 +1,44 @@
+Application+frame
+Application+setupWindow-embedded
+Application+Logging
+Application+Rendering
+
+Example+03
+Example+OSGCPE_EXAMPLE_LOG
+Example+BoxScene
+Example+TextureImageScene
+Example+StaticPluginOSG
+Example+StaticPluginPNG
+Example+VBO
+
+library+Ex03+OSGCPE_JNI-android
+
+library-android
+library+init-android
+library+frame-android
+
+# log
+log-android
+logprintf
+logLevelToString
+Logger
+
+# format
+printfString
+
+# resource
+OSGCPE_RESOURCE_LOG
+createTexture
+extension
+node
+setTextureImage
+string
+Resource
+ResourceStreamBuffer
+
+# render
+createShaderProgram
+VBOSetupVisitor
+
+# scene
+textureImageScene

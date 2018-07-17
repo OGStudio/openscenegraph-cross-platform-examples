@@ -41,10 +41,10 @@ freely, subject to the following restrictions:
 #include "digit.png.h"
 
 // Example+TextureImageScene End
-// Example+HTTPSGetPost Start
-#include "network.h"
+// Example+VBO Start
+#include "render.h"
 
-// Example+HTTPSGetPost End
+// Example+VBO End
 
 // Example+OSGCPE_EXAMPLE_LOG Start
 #include "log.h"
@@ -58,6 +58,15 @@ freely, subject to the following restrictions:
     )
 
 // Example+OSGCPE_EXAMPLE_LOG End
+// Example+StaticPluginOSG Start
+// Reference (statically) plugins to read `osgt` file.
+USE_OSGPLUGIN(osg2)
+USE_SERIALIZER_WRAPPER_LIBRARY(osg)
+// Example+StaticPluginOSG End
+// Example+StaticPluginPNG Start
+// Reference (statically) plugins to read `png` file.
+USE_OSGPLUGIN(png)
+// Example+StaticPluginPNG End
 
 namespace osgcpe
 {
@@ -79,14 +88,14 @@ struct Example
         this->setupBoxScene();
         
         // Example+BoxScene End
+        // Example+VBO Start
+        this->setupSceneVBO();
+        
+        // Example+VBO End
         // Example+TextureImageScene Start
         this->setupSceneTexturing();
         
         // Example+TextureImageScene End
-        // Example+HTTPSGetPost Start
-        this->setupHTTPSGetPost();
-        
-        // Example+HTTPSGetPost End
     }
     ~Example()
     {
@@ -118,42 +127,6 @@ struct Example
             }
         }
     // Example+BoxScene End
-    // Example+HTTPSGetPost Start
-    private:
-        void setupHTTPSGetPost()
-        {
-            // Reset background color.
-            this->app->camera()->setClearColor({ 0, 0, 0, 0 });
-            // Set background color 50% greener on success.
-            auto success = [&](std::string response) {
-                auto color = this->app->camera()->getClearColor();
-                color.y() += 0.5;
-                this->app->camera()->setClearColor(color);
-                OSGCPE_EXAMPLE_LOG(response.c_str());
-            };
-            // Set background color 50% redder on failure.
-            auto failure = [&](std::string reason) {
-                auto color = this->app->camera()->getClearColor();
-                color.x() += 0.5;
-                this->app->camera()->setClearColor(color);
-                OSGCPE_EXAMPLE_LOG(reason.c_str());
-            };
-    
-            // GET.
-            this->app->httpClient->get(
-                "https://raw.githubusercontent.com/OGStudio/openscenegraph-cross-platform-examples/master/.gitignore",
-                success,
-                failure
-            );
-            // POST.
-            this->app->httpClient->post(
-                "https://opengamestudio-debug-broker.herokuapp.com",
-                "sample-data",
-                success,
-                failure
-            );
-        }
-    // Example+HTTPSGetPost End
     // Example+TextureImageScene Start
     private:
         void setupSceneTexturing()
@@ -169,6 +142,23 @@ struct Example
             scene::textureImageScene(this->scene, shaderFrag, shaderVert, texture);
         }
     // Example+TextureImageScene End
+    // Example+VBO Start
+    private:
+        void setupSceneVBO()
+        {
+            // Do nothing for an empty scene.
+            if (!this->scene.valid())
+            {
+                return;
+            }
+            // Use VBO and EBO instead of display lists.
+            // CRITICAL for:
+            // * mobile
+            // * web (Emscripten) to skip FULL_ES2 emulation flag
+            osgcpe::render::VBOSetupVisitor vbo;
+            this->scene->accept(vbo);
+        }
+    // Example+VBO End
 
 };
 
