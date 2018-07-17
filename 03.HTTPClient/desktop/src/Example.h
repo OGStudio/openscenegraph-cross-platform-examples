@@ -41,10 +41,10 @@ freely, subject to the following restrictions:
 #include "digit.png.h"
 
 // Example+TextureImageScene End
-// Example+HTTPSGet Start
+// Example+HTTPSGetPost Start
 #include "network.h"
 
-// Example+HTTPSGet End
+// Example+HTTPSGetPost End
 
 // Example+OSGCPE_EXAMPLE_LOG Start
 #include "log.h"
@@ -83,10 +83,10 @@ struct Example
         this->setupSceneTexturing();
         
         // Example+TextureImageScene End
-        // Example+HTTPSGet Start
-        this->setupHTTPSGet();
+        // Example+HTTPSGetPost Start
+        this->setupHTTPSGetPost();
         
-        // Example+HTTPSGet End
+        // Example+HTTPSGetPost End
     }
     ~Example()
     {
@@ -118,23 +118,42 @@ struct Example
             }
         }
     // Example+BoxScene End
-    // Example+HTTPSGet Start
+    // Example+HTTPSGetPost Start
     private:
-        void setupHTTPSGet()
+        void setupHTTPSGetPost()
         {
+            // Reset background color.
+            this->app->camera()->setClearColor({ 0, 0, 0, 0 });
+            // Set background color 50% greener on success.
             auto success = [&](std::string response) {
-                // Set background color to green on success.
-                this->app->camera()->setClearColor({ 0, 1, 0, 0 });
+                auto color = this->app->camera()->getClearColor();
+                color.y() += 0.5;
+                this->app->camera()->setClearColor(color);
+                OSGCPE_EXAMPLE_LOG(response.c_str());
             };
+            // Set background color 50% redder on failure.
             auto failure = [&](std::string reason) {
-                // Set background color to red on failure.
-                this->app->camera()->setClearColor({ 1, 0, 0, 0 });
+                auto color = this->app->camera()->getClearColor();
+                color.x() += 0.5;
+                this->app->camera()->setClearColor(color);
                 OSGCPE_EXAMPLE_LOG(reason.c_str());
             };
-            auto url = "https://raw.githubusercontent.com/OGStudio/openscenegraph-cross-platform-examples/master/.gitignore";
-            this->app->httpClient->get(url, success, failure);
+    
+            // GET.
+            this->app->httpClient->get(
+                "https://httpbin.org/get",
+                success,
+                failure
+            );
+            // POST.
+            this->app->httpClient->post(
+                "https://httpbin.org/post",
+                "sample-data",
+                success,
+                failure
+            );
         }
-    // Example+HTTPSGet End
+    // Example+HTTPSGetPost End
     // Example+TextureImageScene Start
     private:
         void setupSceneTexturing()

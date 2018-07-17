@@ -41,10 +41,6 @@ freely, subject to the following restrictions:
 #include "digit.png.h"
 
 // Example+TextureImageScene End
-// Example+HTTPSGet Start
-#include "network.h"
-
-// Example+HTTPSGet End
 // Example+VBO Start
 #include "render.h"
 
@@ -100,10 +96,6 @@ struct Example
         this->setupSceneTexturing();
         
         // Example+TextureImageScene End
-        // Example+HTTPSGet Start
-        this->setupHTTPSGet();
-        
-        // Example+HTTPSGet End
     }
     ~Example()
     {
@@ -135,23 +127,6 @@ struct Example
             }
         }
     // Example+BoxScene End
-    // Example+HTTPSGet Start
-    private:
-        void setupHTTPSGet()
-        {
-            auto success = [&](std::string response) {
-                // Set background color to green on success.
-                this->app->camera()->setClearColor({ 0, 1, 0, 0 });
-            };
-            auto failure = [&](std::string reason) {
-                // Set background color to red on failure.
-                this->app->camera()->setClearColor({ 1, 0, 0, 0 });
-                OSGCPE_EXAMPLE_LOG(reason.c_str());
-            };
-            auto url = "https://raw.githubusercontent.com/OGStudio/openscenegraph-cross-platform-examples/master/.gitignore";
-            this->app->httpClient->get(url, success, failure);
-        }
-    // Example+HTTPSGet End
     // Example+TextureImageScene Start
     private:
         void setupSceneTexturing()

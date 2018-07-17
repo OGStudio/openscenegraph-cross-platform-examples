@@ -12,7 +12,7 @@ Reporter+Stub
 Example+03
 Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
-Example+HTTPSGet
+Example+HTTPSGetPost
 Example+TextureImageScene
 
 main-desktop
