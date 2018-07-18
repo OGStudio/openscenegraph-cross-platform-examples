@@ -64,7 +64,7 @@ import android.widget.TextView;
 // MainActivity End
 
 // library Start
-public class library
+class library
 {
     static
     {
@@ -104,7 +104,7 @@ public class library
  *   that matches it exactly (with regards to red/green/blue/alpha channels
  *   bit depths). Failure to do so would result in an EGL_BAD_MATCH error.
  */
-public class EGLview extends GLSurfaceView {
+class EGLview extends GLSurfaceView {
 	private static String TAG = "EGLview";
 	private static final boolean DEBUG = false;
 	

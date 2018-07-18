@@ -1,11 +1,11 @@
-FEATURE android.java/Impl
-public class library
+FEATURE MainActivity.java/Impl
+class library
 {
     static
     {
         System.loadLibrary("library");
     }
 
-FEATURE android.java/End
+FEATURE MainActivity.java/End
 }
 

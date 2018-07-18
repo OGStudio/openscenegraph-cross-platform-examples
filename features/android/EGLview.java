@@ -1,4 +1,4 @@
-FEATURE android.java/Include
+FEATURE MainActivity.java/Include
 /*
  * Copyright (C) 2008 The Android Open Source Project
  *
@@ -28,7 +28,7 @@ import javax.microedition.khronos.egl.EGLContext;
 import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.opengles.GL10;
 
-FEATURE android.java/Impl
+FEATURE MainActivity.java/Impl
 /**
  * A simple GLSurfaceView sub-class that demonstrate how to perform
  * OpenGL ES 1.0 rendering into a GL Surface. Note the following important
@@ -47,7 +47,7 @@ FEATURE android.java/Impl
  *   that matches it exactly (with regards to red/green/blue/alpha channels
  *   bit depths). Failure to do so would result in an EGL_BAD_MATCH error.
  */
-public class EGLview extends GLSurfaceView {
+class EGLview extends GLSurfaceView {
 	private static String TAG = "EGLview";
 	private static final boolean DEBUG = false;
 	

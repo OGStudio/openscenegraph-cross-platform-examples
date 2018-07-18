@@ -1,9 +1,9 @@
-FEATURE android.java/Include
+FEATURE MainActivity.java/Include
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-FEATURE android.java/Impl
+FEATURE MainActivity.java/Impl
 public class MainActivity extends Activity
 {
     @Override

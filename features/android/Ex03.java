@@ -1,2 +1,2 @@
-FEATURE android.java/Impl
+FEATURE MainActivity.java/Impl
 package org.opengamestudio.ex03;
