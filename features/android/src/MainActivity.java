@@ -25,6 +25,11 @@ freely, subject to the following restrictions:
 // FEATURE Ex03/Impl
 // FEATURE EGLview/Include
 // FEATURE MainActivity/Include
+// FEATURE HTTPRequest/Include
+
+// FEATURE MainActivity/Setup
+// FEATURE MainActivity/Impl
+// FEATURE MainActivity/End
 
 // FEATURE library/Impl
     // FEATURE library+init/Impl
@@ -32,5 +37,5 @@ freely, subject to the following restrictions:
 // FEATURE library/End
 
 // FEATURE EGLview/Impl
-// FEATURE MainActivity/Impl
+// FEATURE HTTPRequest/Impl
 
