@@ -2,8 +2,12 @@ Ex03
 library
 library+init
 library+frame
-MainActivity
+Callbacks
 EGLview
+HTTPClientProcessor
 HTTPRequest
-
+MainActivity
+MainActivity+library+init
+MainActivity+library+frame
 MainActivity+HTTPTest
+MainActivity+HTTPClientProcessor

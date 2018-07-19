@@ -47,9 +47,11 @@ FEATURE MainActivity.java/Impl
  *   that matches it exactly (with regards to red/green/blue/alpha channels
  *   bit depths). Failure to do so would result in an EGL_BAD_MATCH error.
  */
-class EGLview extends GLSurfaceView {
+class EGLview extends GLSurfaceView
+{
 	private static String TAG = "EGLview";
 	private static final boolean DEBUG = false;
+    private Renderer renderer = null;
 	
 	public EGLview(Context context) {
 	    super(context);
@@ -92,7 +94,8 @@ class EGLview extends GLSurfaceView {
 	                         new ConfigChooser(5, 6, 5, 0, depth, stencil) );
 	
 	    /* Set the renderer responsible for frame rendering */
-	    setRenderer(new Renderer());
+        this.renderer = new Renderer();
+	    setRenderer(this.renderer);
 	}
 	
 	private static class ContextFactory implements GLSurfaceView.EGLContextFactory {
@@ -310,18 +313,40 @@ class EGLview extends GLSurfaceView {
 	    protected int mStencilSize;
 	    private int[] mValue = new int[1];
 	}
+
+    public void setCallbacks(
+        InitCallback initCallback,
+        FrameCallback frameCallback
+    ) {
+        this.renderer.initCallback = initCallback;
+        this.renderer.frameCallback = frameCallback;
+    }
 	
-	private static class Renderer implements GLSurfaceView.Renderer {
-	    public void onDrawFrame(GL10 gl) {
-	        library.frame();
+	private static class Renderer implements GLSurfaceView.Renderer
+    {
+        public FrameCallback frameCallback = null;
+        public InitCallback initCallback = null;
+
+	    public void onDrawFrame(GL10 gl)
+        {
+	        //library.frame();
+            if (this.frameCallback != null)
+            {
+                this.frameCallback.frame();
+            }
 	    }
 	
-	    public void onSurfaceChanged(GL10 gl, int width, int height) {
-	        library.init(width, height);
+	    public void onSurfaceChanged(GL10 gl, int width, int height)
+        {
+	        //library.init(width, height);
+            if (this.initCallback != null)
+            {
+                this.initCallback.init(width, height);
+            }
 	    }
 	
-	    public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-	        // Do nothing
+	    public void onSurfaceCreated(GL10 gl, EGLConfig config)
+        {
 	        gl.glEnable(GL10.GL_DEPTH_TEST);
 	    }
 	}
