@@ -28,7 +28,9 @@ freely, subject to the following restrictions:
 // FEATURE HTTPRequest/Include
 
 // FEATURE MainActivity/Setup
+    // FEATURE MainActivity+HTTPTest/Setup
 // FEATURE MainActivity/Impl
+    // FEATURE MainActivity+HTTPTest/Impl
 // FEATURE MainActivity/End
 
 // FEATURE library/Impl

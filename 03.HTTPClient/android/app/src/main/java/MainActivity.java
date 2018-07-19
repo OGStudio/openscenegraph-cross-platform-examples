@@ -83,10 +83,21 @@ public class MainActivity extends Activity
         setContentView(R.layout.activity_main);
 
 // MainActivity End
+    // MainActivity+HTTPTest Start
+    this.setupHTTPTest();
+    
+    // MainActivity+HTTPTest End
 // MainActivity Start
     }
 
 // MainActivity End
+    // MainActivity+HTTPTest Start
+    void setupHTTPTest()
+    {
+        HTTPRequest request = new HTTPRequest(); 
+        request.execute("https://httpbin.org/get");
+    }
+    // MainActivity+HTTPTest End
 // MainActivity Start
 }
 // MainActivity End
@@ -474,7 +485,7 @@ class HTTPRequest
     protected void onPostExecute(String result)
     {
         super.onPostExecute(result);
-        Log.e("Response", result);
+        Log.e("Response", "result is: " + result);
     }
 }
 // HTTPRequest End

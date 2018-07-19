@@ -67,6 +67,6 @@ class HTTPRequest
     protected void onPostExecute(String result)
     {
         super.onPostExecute(result);
-        Log.e("Response", result);
+        Log.e("Response", "result is: " + result);
     }
 }
