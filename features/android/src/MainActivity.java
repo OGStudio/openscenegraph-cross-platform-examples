@@ -45,8 +45,8 @@ freely, subject to the following restrictions:
     // FEATURE library+frame/Impl
 // FEATURE library/End
 
-// FEATURE Callbacks/Impl
 // FEATURE EGLview/Impl
+// FEATURE RendererDelegate/Impl
 // FEATURE HTTPRequest/Impl
 // FEATURE HTTPClientProcessor/Impl
 

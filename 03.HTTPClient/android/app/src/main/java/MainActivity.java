@@ -74,7 +74,9 @@ import java.net.URL;
 // HTTPRequest End
 
 // MainActivity Start
-public class MainActivity extends Activity
+public class MainActivity
+    extends Activity
+    implements RendererDelegate
 {
     private EGLview renderer = null;
 
@@ -99,19 +101,7 @@ public class MainActivity extends Activity
     private void setupRenderer()
     {
         this.renderer = (EGLview)findViewById(R.id.render_surface);
-        InitCallback initCallback = new InitCallback() {
-            public void init(int width, int height)
-            {
-                this.rendererInit(width, height);
-            }
-        };
-        FrameCallback frameCallback = new FrameCallback() {
-            public void frame()
-            {
-                this.rendererFrame();
-            }
-        };
-        this.renderer.setCallbacks(initCallback, frameCallback);
+        this.renderer.setDelegate(this);
     }
     public void rendererInit(int width, int height)
     {
@@ -177,17 +167,6 @@ class library
 
 // library End
 
-// Callbacks Start
-interface FrameCallback
-{
-    void frame();
-}
-
-interface InitCallback
-{
-    void init(int width, int height);
-}
-// Callbacks End
 // EGLview Start
 /**
  * A simple GLSurfaceView sub-class that demonstrate how to perform
@@ -474,34 +453,28 @@ class EGLview extends GLSurfaceView
 	    private int[] mValue = new int[1];
 	}
 
-    public void setCallbacks(
-        InitCallback initCallback,
-        FrameCallback frameCallback
-    ) {
-        this.renderer.initCallback = initCallback;
-        this.renderer.frameCallback = frameCallback;
+    public void setDelegate(RendererDelegate delegate)
+    {
+        this.renderer.delegate = delegate;
     }
 	
 	private static class Renderer implements GLSurfaceView.Renderer
     {
-        public FrameCallback frameCallback = null;
-        public InitCallback initCallback = null;
+        public RendererDelegate delegate = null;
 
 	    public void onDrawFrame(GL10 gl)
         {
-	        //library.frame();
-            if (this.frameCallback != null)
+            if (this.delegate != null)
             {
-                this.frameCallback.frame();
+                this.delegate.rendererFrame();
             }
 	    }
 	
 	    public void onSurfaceChanged(GL10 gl, int width, int height)
         {
-	        //library.init(width, height);
-            if (this.initCallback != null)
+            if (this.delegate != null)
             {
-                this.initCallback.init(width, height);
+                this.delegate.rendererInit(width, height);
             }
 	    }
 	
@@ -514,6 +487,13 @@ class EGLview extends GLSurfaceView
 }
 
 // EGLview End
+// RendererDelegate Start
+interface RendererDelegate
+{
+    void rendererFrame();
+    void rendererInit(int width, int height);
+}
+// RendererDelegate End
 // HTTPRequest Start
 class HTTPRequest
     extends AsyncTask<String, Void, String>

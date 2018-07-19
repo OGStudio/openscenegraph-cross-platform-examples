@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 FEATURE MainActivity.java/Setup
-public class MainActivity extends Activity
+public class MainActivity
+    extends Activity
+    implements RendererDelegate
 {
     private EGLview renderer = null;
 
@@ -20,19 +22,7 @@ FEATURE MainActivity.java/RendererInit
     private void setupRenderer()
     {
         this.renderer = (EGLview)findViewById(R.id.render_surface);
-        InitCallback initCallback = new InitCallback() {
-            public void init(int width, int height)
-            {
-                this.rendererInit(width, height);
-            }
-        };
-        FrameCallback frameCallback = new FrameCallback() {
-            public void frame()
-            {
-                this.rendererFrame();
-            }
-        };
-        this.renderer.setCallbacks(initCallback, frameCallback);
+        this.renderer.setDelegate(this);
     }
     public void rendererInit(int width, int height)
     {

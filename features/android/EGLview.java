@@ -314,34 +314,28 @@ class EGLview extends GLSurfaceView
 	    private int[] mValue = new int[1];
 	}
 
-    public void setCallbacks(
-        InitCallback initCallback,
-        FrameCallback frameCallback
-    ) {
-        this.renderer.initCallback = initCallback;
-        this.renderer.frameCallback = frameCallback;
+    public void setDelegate(RendererDelegate delegate)
+    {
+        this.renderer.delegate = delegate;
     }
 	
 	private static class Renderer implements GLSurfaceView.Renderer
     {
-        public FrameCallback frameCallback = null;
-        public InitCallback initCallback = null;
+        public RendererDelegate delegate = null;
 
 	    public void onDrawFrame(GL10 gl)
         {
-	        //library.frame();
-            if (this.frameCallback != null)
+            if (this.delegate != null)
             {
-                this.frameCallback.frame();
+                this.delegate.rendererFrame();
             }
 	    }
 	
 	    public void onSurfaceChanged(GL10 gl, int width, int height)
         {
-	        //library.init(width, height);
-            if (this.initCallback != null)
+            if (this.delegate != null)
             {
-                this.initCallback.init(width, height);
+                this.delegate.rendererInit(width, height);
             }
 	    }
 	

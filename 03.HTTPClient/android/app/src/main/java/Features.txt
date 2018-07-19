@@ -2,8 +2,8 @@ Ex03
 library
 library+init
 library+frame
-Callbacks
 EGLview
+RendererDelegate
 HTTPClientProcessor
 HTTPRequest
 MainActivity
