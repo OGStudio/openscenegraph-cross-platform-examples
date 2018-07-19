@@ -43,6 +43,7 @@ freely, subject to the following restrictions:
 // FEATURE library/Impl
     // FEATURE library+init/Impl
     // FEATURE library+frame/Impl
+    // FEATURE library+httpClient/Impl
 // FEATURE library/End
 
 // FEATURE EGLview/Impl

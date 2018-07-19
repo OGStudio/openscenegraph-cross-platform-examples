@@ -162,6 +162,10 @@ class library
     // Rendering.
     public static native void frame();
     // library+frame End
+    // library+httpClient Start
+    // Pop next pending request and execute it (implicitely mark it as IN_PROGRESS).
+    public static native String[] httpClientExecuteNextRequest();
+    // library+httpClient End
 // library Start
 }
 
@@ -563,7 +567,22 @@ class HTTPClientProcessor
 {
     void process()
     {
-        Log.e("HTTPClientProcessor", "TODO process");
+        // Collect one pending HTTP request per execution run.
+        String[] requestState = library.httpClientExecuteNextRequest();
+        String requestString = requestState[0] + "," + requestState[1] + "," + requestState[2];
+        Log.e("HTTPClientProcessor", "TODO process request: " + requestString);
+
+        /*
+        // Non-empty id means we have request to execute.
+        if (id)
+        {
+            [self
+                performHTTPRequestWithId:id
+                url:@(url.c_str())
+                data:@(data.c_str())
+            ]; 
+        }
+        */
     }
 }
 // HTTPClientProcessor End

@@ -43,6 +43,7 @@ osgcpe::Example *example = 0;
 // FEATURE library+frame-ios/Impl
 // FEATURE library+handleMousePress-android/Impl
 
+// FEATURE library+httpClient-android/Impl
 // FEATURE library+httpClient-ios/Impl
 
 // FEATURE library-android/NamespaceEnd

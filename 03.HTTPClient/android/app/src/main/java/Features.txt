@@ -2,6 +2,7 @@ Ex03
 library
 library+init
 library+frame
+library+httpClient
 EGLview
 RendererDelegate
 HTTPClientProcessor

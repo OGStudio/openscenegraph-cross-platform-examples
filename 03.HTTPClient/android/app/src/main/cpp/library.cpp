@@ -31,6 +31,8 @@ freely, subject to the following restrictions:
 // library+Ex03+OSGCPE_JNI-android Start
 #define OSGCPE_JNI(FUNC_NAME) \
     JNIEXPORT void JNICALL Java_org_opengamestudio_ex03_library_ ## FUNC_NAME
+#define OSGCPE_JNI_ARRAY(FUNC_NAME) \
+    JNIEXPORT jobjectArray JNICALL Java_org_opengamestudio_ex03_library_ ## FUNC_NAME
 #define OSGCPE_JNI_ARG JNIEnv *env, jobject /* this */
 // library+Ex03+OSGCPE_JNI-android End
 
@@ -65,6 +67,28 @@ OSGCPE_JNI(frame)(OSGCPE_JNI_ARG)
 
 // library+frame-android End
 
+// library+httpClient-android Start
+// Pop next pending request and execute it (implicitely mark it as IN_PROGRESS).
+OSGCPE_JNI_ARRAY(httpClientExecuteNextRequest)(OSGCPE_JNI_ARG)
+{
+    std::vector<std::string> requestParts = {
+        "133", // id.
+        "https://httpbin.org/get", // URL.
+        "" // Data. Empty means GET.
+    };
+    jclass stringType = env->FindClass("java/lang/String");
+    jobjectArray requestState =
+        env->NewObjectArray(requestParts.size(), stringType, 0);
+    int id = 0;
+    for (auto requestPart : requestParts)
+    {
+        jstring part = env->NewStringUTF(requestPart.c_str());
+        env->SetObjectArrayElement(requestState, id++, part);
+    }
+    return requestState;
+}
+
+// library+httpClient-android End
 
 // library-android Start
 } // extern "C".

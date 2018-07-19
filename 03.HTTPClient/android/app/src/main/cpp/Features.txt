@@ -16,6 +16,7 @@ library+Ex03+OSGCPE_JNI-android
 library-android
 library+init-android
 library+frame-android
+library+httpClient-android
 
 # log
 log-android
