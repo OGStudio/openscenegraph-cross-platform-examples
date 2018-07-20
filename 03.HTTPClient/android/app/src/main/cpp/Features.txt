@@ -1,11 +1,16 @@
-Application+frame
+Application+OSGCPE_APPLICATION_LOG
+Application+camera
+Application+frame+Reporting
 Application+setupWindow-embedded
+Application+HTTPClient
 Application+Logging
 Application+Rendering
+Reporter+Stub
 
 Example+03
 Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
+Example+HTTPSGetPost
 Example+TextureImageScene
 Example+StaticPluginOSG
 Example+StaticPluginPNG
@@ -21,8 +26,8 @@ library+jniStrings-android
 
 # log
 log-android
-logprintf
 logLevelToString
+logprintf
 Logger
 
 # format
@@ -44,3 +49,7 @@ VBOSetupVisitor
 
 # scene
 textureImageScene
+
+# network
+HTTPClient
+HTTPRequest

@@ -25,6 +25,10 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_APPLICATION_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_APPLICATION_H
 
+// Application+HTTPClient Start
+#include "network.h"
+
+// Application+HTTPClient End
 // Application+Logging Start
 #include "log.h"
 
@@ -36,7 +40,23 @@ freely, subject to the following restrictions:
 #include <osgGA/TrackballManipulator>
 
 // Application+Rendering End
+// Application+frame+Reporting Start
+#include "Reporter.h"
 
+// Application+frame+Reporting End
+
+// Application+OSGCPE_APPLICATION_LOG Start
+#include "log.h"
+#include "format.h"
+#define OSGCPE_APPLICATION_LOG_PREFIX "osgcpe::Application(%p) %s"
+#define OSGCPE_APPLICATION_LOG(...) \
+    osgcpe::log::logprintf( \
+        OSGCPE_APPLICATION_LOG_PREFIX, \
+        this, \
+        osgcpe::format::printfString(__VA_ARGS__).c_str() \
+    )
+
+// Application+OSGCPE_APPLICATION_LOG End
 
 namespace osgcpe
 {
@@ -54,9 +74,17 @@ class Application
             this->setupRendering();
             
             // Application+Rendering End
+            // Application+HTTPClient Start
+            this->setupHTTPClient();
+            
+            // Application+HTTPClient End
         }
         ~Application()
         {
+            // Application+HTTPClient Start
+            this->tearHTTPClientDown();
+            
+            // Application+HTTPClient End
             // Application+Rendering Start
             this->tearRenderingDown();
             
@@ -67,13 +95,22 @@ class Application
             // Application+Logging End
         }
 
-        // Application+frame Start
+        // Application+camera Start
         public:
+            osg::Camera *camera()
+            {
+                return this->viewer->getCamera();
+            }
+        // Application+camera End
+        // Application+frame+Reporting Start
+        public:
+            Reporter frameReporter;
             void frame()
             {
                 this->viewer->frame();
+                this->frameReporter.report();
             }
-        // Application+frame End
+        // Application+frame+Reporting End
         // Application+setupWindow-embedded Start
         private:
             int windowWidth;
@@ -87,6 +124,19 @@ class Application
             }
         // Application+setupWindow-embedded End
 
+        // Application+HTTPClient Start
+        public:
+            network::HTTPClient *httpClient;
+        private:
+            void setupHTTPClient()
+            {
+                this->httpClient = new network::HTTPClient;
+            }
+            void tearHTTPClientDown()
+            {
+                delete this->httpClient;
+            }
+        // Application+HTTPClient End
         // Application+Logging Start
         private:
             log::Logger *logger;
