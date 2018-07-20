@@ -7,8 +7,8 @@ EGLview
 RendererDelegate
 HTTPClientProcessor
 HTTPRequest
+HTTPRequestDelegate
 MainActivity
 MainActivity+library+init
 MainActivity+library+frame
-MainActivity+HTTPTest
 MainActivity+HTTPClientProcessor

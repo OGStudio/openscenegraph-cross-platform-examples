@@ -92,10 +92,6 @@ public class MainActivity
         this.setupRenderer();
 
 // MainActivity End
-    // MainActivity+HTTPTest Start
-    this.setupHTTPTest();
-    
-    // MainActivity+HTTPTest End
     // MainActivity+HTTPClientProcessor Start
     this.setupHTTPClientProcessor();
     
@@ -131,13 +127,6 @@ public class MainActivity
     }
 
 // MainActivity End
-    // MainActivity+HTTPTest Start
-    private void setupHTTPTest()
-    {
-        HTTPRequest request = new HTTPRequest(); 
-        request.execute("https://httpbin.org/get");
-    }
-    // MainActivity+HTTPTest End
     // MainActivity+HTTPClientProcessor Start
     private HTTPClientProcessor httpClientProcessor = null;
     private void setupHTTPClientProcessor()
@@ -169,6 +158,8 @@ class library
     // library+httpClient Start
     // Pop next pending request and execute it (implicitely mark it as IN_PROGRESS).
     public static native String[] httpClientExecuteNextRequest();
+     
+    public static native void httpClientCompleteRequest(String id, boolean status, String response);
     // library+httpClient End
 // library Start
 }
@@ -504,20 +495,29 @@ interface RendererDelegate
 // RendererDelegate End
 // HTTPRequest Start
 class HTTPRequest
-    extends AsyncTask<String, Void, String>
+    extends AsyncTask<Void, Void, String>
 {
+    private String id;
+    private String url;
+    private String data;
+
+    HTTPRequestDelegate delegate = null;
+
+    HTTPRequest(String id, String url, String data)
+    {
+        this.id = id;
+        this.url = url;
+        this.data = data;
+    }
     @Override
-    protected String doInBackground(String... params)
+    protected String doInBackground(Void... params)
     {
         HttpURLConnection connection = null;
-        // TODO Do we need to keep this?
-        String response = null;
-
         try
         {
             // Open connection.
-            URL url = new URL(params[0]);
-            connection = (HttpURLConnection)url.openConnection();
+            URL address = new URL(this.url);
+            connection = (HttpURLConnection)address.openConnection();
             // TODO POST
             // TODO connection.setRequestMethod("GET");
             connection.connect();
@@ -532,20 +532,17 @@ class HTTPRequest
             {
                 result.write(buffer, 0, length);
             }
-            response = result.toString("UTF-8");
+            String response = result.toString("UTF-8");
             return response;
         }
-        /*
-        catch (IOException e)
-        {
-            // TODO Report error.
-            Log.e("IOError", "Error ", e);
-            return null;
-        }
-        */
         catch (Exception e)
         {
-            // TODO Report error.
+            // Report failure.
+            if (this.delegate != null)
+            {
+                this.delegate.completeRequest(id, false, e.getMessage());
+            }
+            // Report error.
             Log.e("Exception", "Error ", e);
             return null;
         }
@@ -562,31 +559,53 @@ class HTTPRequest
     protected void onPostExecute(String result)
     {
         super.onPostExecute(result);
+        // Report success.
+        if (this.delegate != null)
+        {
+            this.delegate.completeRequest(id, true, result);
+        }
         Log.e("Response", "result is: " + result);
     }
 }
 // HTTPRequest End
+// HTTPRequestDelegate Start
+interface HTTPRequestDelegate
+{
+    void completeRequest(String id, boolean status, String response);
+}
+// HTTPRequestDelegate End
 // HTTPClientProcessor Start
 class HTTPClientProcessor
+    implements HTTPRequestDelegate
 {
     void process()
     {
         // Collect one pending HTTP request per execution run.
-        String[] requestState = library.httpClientExecuteNextRequest();
-        String requestString = TextUtils.join(",", requestState);
-        Log.e("HTTPClientProcessor", "TODO process request: " + requestString);
-
-        /*
-        // Non-empty id means we have request to execute.
-        if (id)
+        String[] requestParts = library.httpClientExecuteNextRequest();
+        // Make sure we have enough request parts to perform actual request.
+        if (requestParts.length == 3)
         {
-            [self
-                performHTTPRequestWithId:id
-                url:@(url.c_str())
-                data:@(data.c_str())
-            ]; 
+            String id = requestParts[0];
+            String url = requestParts[1];
+            String data = requestParts[2];
+            this.performHTTPRequest(id, url, data);
         }
-        */
+    }
+
+    private void performHTTPRequest(String id, String url, String data)
+    {
+        Log.e("HTTPClientProcessor", "performHTTPRequest. id: " + id + " url: " + url + " data: " + data);
+        // NOTE We don't keep a list of requests to prevent GC from collecting
+        // NOTE the requests because so far we're fine.
+        HTTPRequest request = new HTTPRequest(id, url, data); 
+        request.delegate = this;
+        request.execute();
+    }
+
+    public void completeRequest(String id, boolean status, String response)
+    {
+        Log.e("HTTPClientProcessor", "Request completed. id: " + id + " status: " + status + " response: " + response);
+        library.httpClientCompleteRequest(id, status, response);
     }
 }
 // HTTPClientProcessor End

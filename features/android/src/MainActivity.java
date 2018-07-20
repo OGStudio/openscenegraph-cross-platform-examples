@@ -29,7 +29,6 @@ freely, subject to the following restrictions:
 // FEATURE HTTPRequest/Include
 
 // FEATURE MainActivity/Setup
-    // FEATURE MainActivity+HTTPTest/Setup
     // FEATURE MainActivity+HTTPClientProcessor/Setup
 // FEATURE MainActivity/RendererInit
     // FEATURE MainActivity+library+init/Impl
@@ -37,7 +36,6 @@ freely, subject to the following restrictions:
     // FEATURE MainActivity+library+frame/Impl
     // FEATURE MainActivity+HTTPClientProcessor/Process
 // FEATURE MainActivity/Impl
-    // FEATURE MainActivity+HTTPTest/Impl
     // FEATURE MainActivity+HTTPClientProcessor/Impl
 // FEATURE MainActivity/End
 
@@ -50,5 +48,6 @@ freely, subject to the following restrictions:
 // FEATURE EGLview/Impl
 // FEATURE RendererDelegate/Impl
 // FEATURE HTTPRequest/Impl
+// FEATURE HTTPRequestDelegate/Impl
 // FEATURE HTTPClientProcessor/Impl
 

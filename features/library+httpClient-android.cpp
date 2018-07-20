@@ -19,3 +19,30 @@ OSGCPE_JNI_ARRAY(httpClientExecuteNextRequest)(OSGCPE_JNI_ARG)
     return jniStrings(env, requestParts);
 }
 
+OSGCPE_JNI(httpClientCompleteRequest)(
+    OSGCPE_JNI_ARG,
+    jstring requestId,
+    jboolean status,
+    jstring response
+) {
+    // TODO Release result of GetStringUTFChars?
+    std::string sid(env->GetStringUTFChars(requestId, 0));
+    intptr_t id = ::strtoll(sid.c_str(), 0, 10);
+    auto request = reinterpret_cast<osgcpe::network::HTTPRequest *>(id);
+    if (!request)
+    {
+        return;
+    }
+    // Report.
+    request->status = osgcpe::network::HTTPRequest::COMPLETED;
+    // TODO Release result of GetStringUTFChars?
+    std::string reply(env->GetStringUTFChars(response, 0));
+    if (status == JNI_TRUE)
+    {
+        request->success(reply);
+    }
+    else
+    {
+        request->failure(reply);
+    }
+}

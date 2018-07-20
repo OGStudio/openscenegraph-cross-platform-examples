@@ -9,20 +9,29 @@ import java.net.URL;
 
 FEATURE MainActivity.java/Impl
 class HTTPRequest
-    extends AsyncTask<String, Void, String>
+    extends AsyncTask<Void, Void, String>
 {
+    private String id;
+    private String url;
+    private String data;
+
+    HTTPRequestDelegate delegate = null;
+
+    HTTPRequest(String id, String url, String data)
+    {
+        this.id = id;
+        this.url = url;
+        this.data = data;
+    }
     @Override
-    protected String doInBackground(String... params)
+    protected String doInBackground(Void... params)
     {
         HttpURLConnection connection = null;
-        // TODO Do we need to keep this?
-        String response = null;
-
         try
         {
             // Open connection.
-            URL url = new URL(params[0]);
-            connection = (HttpURLConnection)url.openConnection();
+            URL address = new URL(this.url);
+            connection = (HttpURLConnection)address.openConnection();
             // TODO POST
             // TODO connection.setRequestMethod("GET");
             connection.connect();
@@ -37,20 +46,17 @@ class HTTPRequest
             {
                 result.write(buffer, 0, length);
             }
-            response = result.toString("UTF-8");
+            String response = result.toString("UTF-8");
             return response;
         }
-        /*
-        catch (IOException e)
-        {
-            // TODO Report error.
-            Log.e("IOError", "Error ", e);
-            return null;
-        }
-        */
         catch (Exception e)
         {
-            // TODO Report error.
+            // Report failure.
+            if (this.delegate != null)
+            {
+                this.delegate.completeRequest(id, false, e.getMessage());
+            }
+            // Report error.
             Log.e("Exception", "Error ", e);
             return null;
         }
@@ -67,6 +73,11 @@ class HTTPRequest
     protected void onPostExecute(String result)
     {
         super.onPostExecute(result);
+        // Report success.
+        if (this.delegate != null)
+        {
+            this.delegate.completeRequest(id, true, result);
+        }
         Log.e("Response", "result is: " + result);
     }
 }

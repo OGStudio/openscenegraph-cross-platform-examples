@@ -9,7 +9,8 @@ jobjectArray jniStrings(JNIEnv *env, const std::vector<std::string> items)
     {
         jstring jniItem = env->NewStringUTF(item.c_str());
         env->SetObjectArrayElement(result, id++, jniItem);
+        // TODO Release result of NewStringUTF?
     }
-    // NOTE Do we need to free result ourselves or JVM does it already?
+    // TODO Release result of NewObjectArray?
     return result;
 }
