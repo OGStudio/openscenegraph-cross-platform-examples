@@ -7,15 +7,16 @@ OSGCPE_JNI_ARRAY(httpClientExecuteNextRequest)(OSGCPE_JNI_ARG)
         "https://httpbin.org/get", // URL.
         "" // Data. Empty means GET.
     };
-    jclass stringType = env->FindClass("java/lang/String");
-    jobjectArray requestState =
-        env->NewObjectArray(requestParts.size(), stringType, 0);
-    int id = 0;
-    for (auto requestPart : requestParts)
+    return jniStrings(env, requestParts);
+    /*
+    auto request = example->app->httpClient->nextPendingRequest();
+    if (request)
     {
-        jstring part = env->NewStringUTF(requestPart.c_str());
-        env->SetObjectArrayElement(requestState, id++, part);
+        request->status = osgcpe::network::HTTPRequest::IN_PROGRESS;
+        intptr_t id = reinterpret_cast<intptr_t>(request);
+        url = request->url;
+        data = request->data;
     }
-    return requestState;
+    */
 }
 

@@ -17,6 +17,7 @@ library-android
 library+init-android
 library+frame-android
 library+httpClient-android
+library+jniStrings-android
 
 # log
 log-android

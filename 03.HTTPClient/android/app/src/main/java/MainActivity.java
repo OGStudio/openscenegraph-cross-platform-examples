@@ -62,6 +62,10 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 // MainActivity End
+// HTTPClientProcessor Start
+import android.text.TextUtils;
+
+// HTTPClientProcessor End
 // HTTPRequest Start
 import android.os.AsyncTask;
 // TODO REMOVE
@@ -569,7 +573,7 @@ class HTTPClientProcessor
     {
         // Collect one pending HTTP request per execution run.
         String[] requestState = library.httpClientExecuteNextRequest();
-        String requestString = requestState[0] + "," + requestState[1] + "," + requestState[2];
+        String requestString = TextUtils.join(",", requestState);
         Log.e("HTTPClientProcessor", "TODO process request: " + requestString);
 
         /*

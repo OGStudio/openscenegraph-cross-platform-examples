@@ -25,6 +25,7 @@ freely, subject to the following restrictions:
 // FEATURE Ex03/Impl
 // FEATURE EGLview/Include
 // FEATURE MainActivity/Include
+// FEATURE HTTPClientProcessor/Include
 // FEATURE HTTPRequest/Include
 
 // FEATURE MainActivity/Setup

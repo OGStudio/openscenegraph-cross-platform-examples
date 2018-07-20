@@ -66,6 +66,22 @@ OSGCPE_JNI(frame)(OSGCPE_JNI_ARG)
 }
 
 // library+frame-android End
+// library+jniStrings-android Start
+// Convert C++ strings to JNI ones.
+jobjectArray jniStrings(JNIEnv *env, const std::vector<std::string> items)
+{
+    jclass stringType = env->FindClass("java/lang/String");
+    jobjectArray result = env->NewObjectArray(items.size(), stringType, 0);
+    int id = 0;
+    for (auto item : items)
+    {
+        jstring jniItem = env->NewStringUTF(item.c_str());
+        env->SetObjectArrayElement(result, id++, jniItem);
+    }
+    // NOTE Do we need to free result ourselves or JVM does it already?
+    return result;
+}
+// library+jniStrings-android End
 
 // library+httpClient-android Start
 // Pop next pending request and execute it (implicitely mark it as IN_PROGRESS).
@@ -76,16 +92,17 @@ OSGCPE_JNI_ARRAY(httpClientExecuteNextRequest)(OSGCPE_JNI_ARG)
         "https://httpbin.org/get", // URL.
         "" // Data. Empty means GET.
     };
-    jclass stringType = env->FindClass("java/lang/String");
-    jobjectArray requestState =
-        env->NewObjectArray(requestParts.size(), stringType, 0);
-    int id = 0;
-    for (auto requestPart : requestParts)
+    return jniStrings(env, requestParts);
+    /*
+    auto request = example->app->httpClient->nextPendingRequest();
+    if (request)
     {
-        jstring part = env->NewStringUTF(requestPart.c_str());
-        env->SetObjectArrayElement(requestState, id++, part);
+        request->status = osgcpe::network::HTTPRequest::IN_PROGRESS;
+        intptr_t id = reinterpret_cast<intptr_t>(request);
+        url = request->url;
+        data = request->data;
     }
-    return requestState;
+    */
 }
 
 // library+httpClient-android End
