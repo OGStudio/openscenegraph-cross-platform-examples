@@ -14,13 +14,14 @@ DIR=`dirname $0`
 FEATURES_FILENAME=Features.txt
 
 # List of examples.
+#01.EmbedResource
+#02.TextureImage
 EXAMPLES="
-01.EmbedResource
-02.TextureImage
 03.HTTPClient
-04.RemoteDebugging
-05.NodeSelection
 "
+
+#04.RemoteDebugging
+#05.NodeSelection
 
 # Platform -> Path to Features.txt
 PLATFORMS=(
@@ -84,18 +85,21 @@ main()
 
             # Desktop. Web. iOS.
             if [ $platform == "desktop" ] || [ $platform == "web" ] || [ $platform == "ios" ]; then
+                echo "01. process features for platform '$platform'"
                 dirFeaturesAbs=$DIR/$example/$platform/$FEATURES_TXT_DIR
                 processFeatureDirs $dirFeaturesAbs
             fi
 
             # iOS.
             if [ $platform == "ios" ]; then
+                echo "02. process features for platform '$platform'"
                 dirFeaturesAbs=$DIR/$example/$platform/$IOS_FEATURES_TXT_DIR
                 processFeatureDirs $dirFeaturesAbs
             fi
 
             # Android.
             if [ $platform == "android" ]; then
+                echo "03. process features for platform '$platform'"
                 for ((dirId=0; dirId < ${#ANDROID_FEATURES_TXT_DIRS[@]}; dirId++)); do
                     dirFeatures=${ANDROID_FEATURES_TXT_DIRS[$dirId]}
                     dirFeaturesAbs=$DIR/$example/$platform/$dirFeatures
