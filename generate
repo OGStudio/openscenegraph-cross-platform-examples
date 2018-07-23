@@ -29,12 +29,14 @@ PLATFORMS=(
     "ios"
     "web"
 )
-FEATURES_TXT_DIRS=(
-    "src" 
-    "xcodeproject/App"
+
+FEATURES_TXT_DIR="src" 
+IOS_FEATURES_TXT_DIR="xcodeproject/App"
+ANDROID_FEATURES_TXT_DIRS=(
     "app/src/main/cpp"
     "app/src/main/java"
 )
+
 FEATURE_DIRS=(
     ""
     "/log"
@@ -49,7 +51,7 @@ FEATURE_DIRS=(
     "/ios"
 )
 
-process()
+processFeatureDir()
 {
     PATH_TO_FEATURES_FILENAME=$1
     FEATURES_FILENAME=$2
@@ -61,6 +63,16 @@ process()
     feature-tool $PATH_TO_FEATURES_TXT $PATH_TO_FEATURES
 }
 
+processFeatureDirs()
+{
+    dirFeaturesAbs=$1
+
+    for ((id=0; id < ${#FEATURE_DIRS[@]}; id++)); do
+        dir=$DIR/features${FEATURE_DIRS[$id]}
+        processFeatureDir $dirFeaturesAbs Features.txt $dir
+    done
+}
+
 main()
 {
     for example in $EXAMPLES; do
@@ -70,22 +82,26 @@ main()
         for ((platformId=0; platformId < ${#PLATFORMS[@]}; platformId++)); do
             platform=${PLATFORMS[$platformId]}
 
-            # Check all directories that may contain Features.txt.
-            for ((dirId=0; dirId < ${#FEATURES_TXT_DIRS[@]}; dirId++)); do
-                dirFeatures=${FEATURES_TXT_DIRS[$dirId]}
-                dirFeaturesAbs=$DIR/$example/$platform/$dirFeatures
+            # Desktop. Web. iOS.
+            if [ $platform == "desktop" ] || [ $platform == "web" ] || [ $platform == "ios" ]; then
+                dirFeaturesAbs=$DIR/$example/$platform/$FEATURES_TXT_DIR
+                processFeatureDirs $dirFeaturesAbs
+            fi
 
-                # Skip absent directory.
-                if [ ! -d "$dirFeaturesAbs" ]; then
-                    continue
-                fi
+            # iOS.
+            if [ $platform == "ios" ]; then
+                dirFeaturesAbs=$DIR/$example/$platform/$IOS_FEATURES_TXT_DIR
+                processFeatureDirs $dirFeaturesAbs
+            fi
 
-                # Parse features.
-                for ((id=0; id < ${#FEATURE_DIRS[@]}; id++)); do
-                    dir=$DIR/features${FEATURE_DIRS[$id]}
-                    process $dirFeaturesAbs Features.txt $dir
+            # Android.
+            if [ $platform == "android" ]; then
+                for ((dirId=0; dirId < ${#ANDROID_FEATURES_TXT_DIRS[@]}; dirId++)); do
+                    dirFeatures=${ANDROID_FEATURES_TXT_DIRS[$dirId]}
+                    dirFeaturesAbs=$DIR/$example/$platform/$dirFeatures
+                    processFeatureDirs $dirFeaturesAbs
                 done
-            done
+            fi
         done
     done
 }
