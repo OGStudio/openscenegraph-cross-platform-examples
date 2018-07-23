@@ -14,14 +14,13 @@ DIR=`dirname $0`
 FEATURES_FILENAME=Features.txt
 
 # List of examples.
-#01.EmbedResource
-#02.TextureImage
 EXAMPLES="
+01.EmbedResource
+02.TextureImage
 03.HTTPClient
+04.RemoteDebugging
+05.NodeSelection
 "
-
-#04.RemoteDebugging
-#05.NodeSelection
 
 # Platform -> Path to Features.txt
 PLATFORMS=(
