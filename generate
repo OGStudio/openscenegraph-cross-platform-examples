@@ -29,11 +29,24 @@ PLATFORMS=(
     "ios"
     "web"
 )
-FEATURES=(
-    "app/src/main/cpp"
+FEATURES_TXT_DIRS=(
     "src" 
-    "src"
-    "src"
+    "xcodeproject/App"
+    "app/src/main/cpp"
+    "app/src/main/java"
+)
+FEATURE_DIRS=(
+    ""
+    "/log"
+    "/format"
+    "/resource"
+    "/render"
+    "/scene"
+    "/network"
+    "/debug"
+    "/input"
+    "/android"
+    "/ios"
 )
 
 process()
@@ -52,27 +65,27 @@ main()
 {
     for example in $EXAMPLES; do
         echo "Generating example '$example'"
-        for ((i=0; i < ${#PLATFORMS[@]}; i++)); do
-            platform=${PLATFORMS[$i]}
-            dirFeatures=${FEATURES[$i]}
-            # Default features.
-            process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features
-            # log
-            process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features/log
-            # format
-            process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features/format
-            # resource
-            process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features/resource
-            # render
-            process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features/render
-            # scene
-            process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features/scene
-            # network
-            process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features/network
-            # debug
-            process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features/debug
-            # input
-            process $DIR/$example/$platform/$dirFeatures Features.txt $DIR/features/input
+
+        # For each platform.
+        for ((platformId=0; platformId < ${#PLATFORMS[@]}; platformId++)); do
+            platform=${PLATFORMS[$platformId]}
+
+            # Check all directories that may contain Features.txt.
+            for ((dirId=0; dirId < ${#FEATURES_TXT_DIRS[@]}; dirId++)); do
+                dirFeatures=${FEATURES_TXT_DIRS[$dirId]}
+                dirFeaturesAbs=$DIR/$example/$platform/$dirFeatures
+
+                # Skip absent directory.
+                if [ ! -d "$dirFeaturesAbs" ]; then
+                    continue
+                fi
+
+                # Parse features.
+                for ((id=0; id < ${#FEATURE_DIRS[@]}; id++)); do
+                    dir=$DIR/features${FEATURE_DIRS[$id]}
+                    process $dirFeaturesAbs Features.txt $dir
+                done
+            done
         done
     done
 }
