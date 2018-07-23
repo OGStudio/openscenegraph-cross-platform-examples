@@ -74,6 +74,9 @@ OSGCPE_JNI(frame)(OSGCPE_JNI_ARG)
 // Convert C++ strings to JNI ones.
 jobjectArray jniStrings(JNIEnv *env, const std::vector<std::string> items)
 {
+    // NOTE According to https://stackoverflow.com/questions/6238785/newstringutf-and-freeing-memory
+    // NOTE we don't need to free memory of New* calls because these are Java's local references.
+    // NOTE Since we pass them to Java (later), we don't need to do anything about them.
     jclass stringType = env->FindClass("java/lang/String");
     jobjectArray result = env->NewObjectArray(items.size(), stringType, 0);
     int id = 0;
@@ -81,9 +84,7 @@ jobjectArray jniStrings(JNIEnv *env, const std::vector<std::string> items)
     {
         jstring jniItem = env->NewStringUTF(item.c_str());
         env->SetObjectArrayElement(result, id++, jniItem);
-        // TODO Release result of NewStringUTF?
     }
-    // TODO Release result of NewObjectArray?
     return result;
 }
 // library+jniStrings-android End
@@ -112,18 +113,23 @@ OSGCPE_JNI(httpClientCompleteRequest)(
     jboolean status,
     jstring response
 ) {
-    // TODO Release result of GetStringUTFChars?
-    std::string sid(env->GetStringUTFChars(requestId, 0));
+    // Get request id.
+    const char *cid = env->GetStringUTFChars(requestId, 0);
+    std::string sid(cid);
     intptr_t id = ::strtoll(sid.c_str(), 0, 10);
+    env->ReleaseStringUTFChars(requestId, cid);
+
+    // Try to get request from id.
     auto request = reinterpret_cast<osgcpe::network::HTTPRequest *>(id);
     if (!request)
     {
         return;
     }
-    // Report.
+
+    // Report result of the request.
     request->status = osgcpe::network::HTTPRequest::COMPLETED;
-    // TODO Release result of GetStringUTFChars?
-    std::string reply(env->GetStringUTFChars(response, 0));
+    const char *creply = env->GetStringUTFChars(response, 0);
+    std::string reply(creply);
     if (status == JNI_TRUE)
     {
         request->success(reply);
@@ -132,6 +138,7 @@ OSGCPE_JNI(httpClientCompleteRequest)(
     {
         request->failure(reply);
     }
+    env->ReleaseStringUTFChars(response, creply);
 }
 // library+httpClient-android End
 
