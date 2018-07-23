@@ -68,10 +68,10 @@ import android.text.TextUtils;
 // HTTPClientProcessor End
 // HTTPRequest Start
 import android.os.AsyncTask;
-// TODO REMOVE
-import android.util.Log;
+//import android.util.Log;
 import java.io.InputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -518,8 +518,18 @@ class HTTPRequest
             // Open connection.
             URL address = new URL(this.url);
             connection = (HttpURLConnection)address.openConnection();
-            // TODO POST
-            // TODO connection.setRequestMethod("GET");
+            // Perform POST request if there's data to send.
+            if (data.length() > 0)
+            {
+                connection.setRequestMethod("POST");
+                connection.setDoOutput(true);
+                connection.setChunkedStreamingMode(0);
+                OutputStreamWriter writer =
+                    new OutputStreamWriter(connection.getOutputStream());
+                writer.write(data);
+                writer.flush();
+            }
+
             connection.connect();
 
             // Get response.
@@ -542,8 +552,7 @@ class HTTPRequest
             {
                 this.delegate.completeRequest(id, false, e.getMessage());
             }
-            // Report error.
-            Log.e("Exception", "Error ", e);
+            //Log.e("Exception", "Error ", e);
             return null;
         }
         finally
@@ -564,7 +573,7 @@ class HTTPRequest
         {
             this.delegate.completeRequest(id, true, result);
         }
-        Log.e("Response", "result is: " + result);
+        //Log.e("Response", "result is: " + result);
     }
 }
 // HTTPRequest End
