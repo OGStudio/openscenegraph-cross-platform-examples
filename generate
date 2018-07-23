@@ -32,12 +32,6 @@ PLATFORMS=(
 )
 
 FEATURES_TXT_DIR="src" 
-IOS_FEATURES_TXT_DIR="xcodeproject/App"
-ANDROID_FEATURES_TXT_DIRS=(
-    "app/src/main/cpp"
-    "app/src/main/java"
-)
-
 FEATURE_DIRS=(
     ""
     "/log"
@@ -49,8 +43,13 @@ FEATURE_DIRS=(
     "/debug"
     "/input"
 )
-ANDROID_FEATURE_DIR="/android"
-IOS_FEATURE_DIR="/ios"
+
+FEATURES_TXT_DIR_ANDROID_CPP="app/src/main/cpp"
+FEATURES_TXT_DIR_ANDROID_JAVA="app/src/main/java"
+FEATURE_DIR_ANDROID="/android"
+
+FEATURES_TXT_DIR_IOS="xcodeproject/App"
+FEATURE_DIR_IOS="/ios"
 
 processFeatureDir()
 {
@@ -83,36 +82,31 @@ main()
         for ((platformId=0; platformId < ${#PLATFORMS[@]}; platformId++)); do
             platform=${PLATFORMS[$platformId]}
 
-            # Desktop. Web. iOS.
+            # C++ features for desktop, web, and iOS.
             if [ $platform == "desktop" ] || [ $platform == "web" ] || [ $platform == "ios" ]; then
-                echo "01. process features for platform '$platform'"
+                echo "process C++ features for '$platform'"
                 dirFeaturesAbs=$DIR/$example/$platform/$FEATURES_TXT_DIR
                 processFeatureDirs $dirFeaturesAbs
             fi
 
-            # iOS.
+            # Objective-C features for iOS.
             if [ $platform == "ios" ]; then
-                echo "02. process features for platform '$platform'"
-                dirFeaturesAbs=$DIR/$example/$platform/$IOS_FEATURES_TXT_DIR
-                processFeatureDirs $dirFeaturesAbs
-
-                # Process specific iOS feature dir.
-                dir=$DIR/features${IOS_FEATURE_DIR}
+                echo "process Objective-C features for '$platform'"
+                dirFeaturesAbs=$DIR/$example/$platform/$FEATURES_TXT_DIR_IOS
+                dir=$DIR/features${FEATURE_DIR_IOS}
                 processFeatureDir $dirFeaturesAbs Features.txt $dir
             fi
 
-            # Android.
+            # C++ and Java features for Android.
             if [ $platform == "android" ]; then
-                echo "03. process features for platform '$platform'"
-                for ((dirId=0; dirId < ${#ANDROID_FEATURES_TXT_DIRS[@]}; dirId++)); do
-                    dirFeatures=${ANDROID_FEATURES_TXT_DIRS[$dirId]}
-                    dirFeaturesAbs=$DIR/$example/$platform/$dirFeatures
-                    processFeatureDirs $dirFeaturesAbs
+                echo "process C++ features for '$platform'"
+                dirFeaturesAbs=$DIR/$example/$platform/${FEATURES_TXT_DIR_ANDROID_CPP}
+                processFeatureDirs $dirFeaturesAbs
 
-                    # Process specific Android feature dir.
-                    dir=$DIR/features${ANDROID_FEATURE_DIR}
-                    processFeatureDir $dirFeaturesAbs Features.txt $dir
-                done
+                echo "process Java features for '$platform'"
+                dirFeaturesAbs=$DIR/$example/$platform/$FEATURES_TXT_DIR_ANDROID_JAVA
+                dir=$DIR/features${FEATURE_DIR_ANDROID}
+                processFeatureDir $dirFeaturesAbs Features.txt $dir
             fi
         done
     done
