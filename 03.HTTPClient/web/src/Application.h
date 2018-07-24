@@ -82,9 +82,17 @@ class Application
             this->setupHTTPClient();
             
             // Application+HTTPClient End
+            // Application+HTTPClientProcessor Start
+            this->setupHTTPClientProcessor();
+            
+            // Application+HTTPClientProcessor End
         }
         ~Application()
         {
+            // Application+HTTPClientProcessor Start
+            this->tearHTTPClientProcessorDown();
+            
+            // Application+HTTPClientProcessor End
             // Application+HTTPClient Start
             this->tearHTTPClientDown();
             
@@ -222,6 +230,29 @@ class Application
                 delete this->httpClient;
             }
         // Application+HTTPClient End
+        // Application+HTTPClientProcessor Start
+        public:
+            network::HTTPClientProcessor *httpClientProcessor;
+        private:
+            const std::string httpClientProcessorCallbackName = "HTTPClientProcessor";
+        
+            void setupHTTPClientProcessor()
+            {
+                this->httpClientProcessor = new network::HTTPClientProcessor(this->httpClient);
+                // Subscribe processor to be processed each frame.
+                this->frameReporter.addCallback(
+                    [&] {
+                        this->httpClientProcessor->process();
+                    },
+                    this->httpClientProcessorCallbackName
+                );
+            }
+            void tearHTTPClientProcessorDown()
+            {
+                this->frameReporter.removeCallback(this->httpClientProcessorCallbackName);
+                delete this->httpClientProcessor;
+            }
+        // Application+HTTPClientProcessor End
         // Application+Logging Start
         private:
             log::Logger *logger;

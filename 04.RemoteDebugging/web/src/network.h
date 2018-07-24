@@ -25,6 +25,10 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
 
+// extlib-fetch Start
+#include "network-extlib.h"
+
+// extlib-fetch End
 // HTTPClient Start
 #include <string>
 #include <vector>

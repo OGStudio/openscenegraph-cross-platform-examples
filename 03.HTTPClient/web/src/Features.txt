@@ -4,6 +4,7 @@ Application+frame+Reporting
 Application+handleEvent-web
 Application+setupWindow-embedded
 Application+HTTPClient
+Application+HTTPClientProcessor
 Application+Logging
 Application+Rendering
 Reporter+Stub
@@ -11,7 +12,7 @@ Reporter+Stub
 Example+03
 Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
-Example+HTTPSGet
+Example+HTTPSGetPost
 Example+TextureImageScene
 Example+StaticPluginOSG
 Example+StaticPluginPNG
@@ -49,7 +50,7 @@ textureImageScene
 
 # network
 HTTPClient
-HTTPClient+Fetch
-HTTPClientFetch
+HTTPClientProcessor
+HTTPRequest
+HTTPRequestProcessorFetch
 extlib-fetch
-OSGCPE_NETWORK_HTTP_CLIENT_FETCH_LOG
