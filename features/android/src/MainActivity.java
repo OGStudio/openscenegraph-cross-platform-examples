@@ -22,7 +22,10 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
+// FEATURE Ex01/Impl
+// FEATURE Ex02/Impl
 // FEATURE Ex03/Impl
+
 // FEATURE EGLview/Include
 // FEATURE MainActivity/Include
 // FEATURE HTTPClientProcessor/Include

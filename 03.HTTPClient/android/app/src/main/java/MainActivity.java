@@ -25,6 +25,7 @@ freely, subject to the following restrictions:
 // Ex03 Start
 package org.opengamestudio.ex03;
 // Ex03 End
+
 // EGLview Start
 /*
  * Copyright (C) 2008 The Android Open Source Project
