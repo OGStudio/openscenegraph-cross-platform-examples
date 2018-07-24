@@ -10,11 +10,9 @@
 		2F4EB962202B07390019AD8B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4EB95C202B06590019AD8B /* MobileCoreServices.framework */; };
 		2F4EB97D202B07A70019AD8B /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4EB96F202B074D0019AD8B /* Accelerate.framework */; };
 		2F7788931F530562008378D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7788921F530562008378D5 /* main.m */; };
-		2F7788961F530562008378D5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7788951F530562008378D5 /* AppDelegate.m */; };
 		2F77889E1F530562008378D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F77889D1F530562008378D5 /* Assets.xcassets */; };
 		2F7788A11F530562008378D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F77889F1F530562008378D5 /* LaunchScreen.storyboard */; };
-		2F7788A91F5306EF008378D5 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F7788A81F5306EF008378D5 /* ViewController.mm */; };
-		2F7788AB1F5306FD008378D5 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7788AA1F5306FD008378D5 /* ViewController.xib */; };
+		2FFD8D2621071FA100D4B5FD /* ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FFD8D2421071FA100D4B5FD /* ios.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,14 +37,11 @@
 		2F4EB970202B074D0019AD8B /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		2F77888E1F530562008378D5 /* ex01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ex01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F7788921F530562008378D5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2F7788941F530562008378D5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		2F7788951F530562008378D5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2F7788971F530562008378D5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		2F77889D1F530562008378D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F7788A01F530562008378D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F7788A21F530562008378D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2F7788A81F5306EF008378D5 /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
-		2F7788AA1F5306FD008378D5 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		2FFD8D2421071FA100D4B5FD /* ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ios.mm; sourceTree = "<group>"; };
+		2FFD8D2521071FA100D4B5FD /* ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +65,7 @@
 		2F7788851F530562008378D5 = {
 			isa = PBXGroup;
 			children = (
-				2F7788901F530562008378D5 /* ex01 */,
+				2F7788901F530562008378D5 /* App */,
 				2F77888F1F530562008378D5 /* Products */,
 				2FFF43FB1F57405A003D419D /* Frameworks */,
 			);
@@ -84,20 +79,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2F7788901F530562008378D5 /* ex01 */ = {
+		2F7788901F530562008378D5 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				2F7788941F530562008378D5 /* AppDelegate.h */,
-				2F7788951F530562008378D5 /* AppDelegate.m */,
-				2F7788971F530562008378D5 /* ViewController.h */,
-				2F7788A81F5306EF008378D5 /* ViewController.mm */,
-				2F7788AA1F5306FD008378D5 /* ViewController.xib */,
+				2FFD8D2521071FA100D4B5FD /* ios.h */,
+				2FFD8D2421071FA100D4B5FD /* ios.mm */,
 				2F77889D1F530562008378D5 /* Assets.xcassets */,
 				2F77889F1F530562008378D5 /* LaunchScreen.storyboard */,
 				2F7788A21F530562008378D5 /* Info.plist */,
 				2F7788911F530562008378D5 /* Supporting Files */,
 			);
-			path = ex01;
+			path = App;
 			sourceTree = "<group>";
 		};
 		2F7788911F530562008378D5 /* Supporting Files */ = {
@@ -200,7 +192,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F7788A11F530562008378D5 /* LaunchScreen.storyboard in Resources */,
-				2F7788AB1F5306FD008378D5 /* ViewController.xib in Resources */,
 				2F77889E1F530562008378D5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,9 +203,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F7788961F530562008378D5 /* AppDelegate.m in Sources */,
 				2F7788931F530562008378D5 /* main.m in Sources */,
-				2F7788A91F5306EF008378D5 /* ViewController.mm in Sources */,
+				2FFD8D2621071FA100D4B5FD /* ios.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,7 +320,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 8379YHJ3XA;
 				ENABLE_BITCODE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/ex01/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -349,7 +339,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 8379YHJ3XA;
 				ENABLE_BITCODE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/ex01/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";

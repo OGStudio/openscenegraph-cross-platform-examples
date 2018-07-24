@@ -22,11 +22,30 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#import <UIKit/UIKit.h>
-#import "AppDelegate.h"
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_IOS_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_IOS_H
 
-int main(int argc, char * argv[]) {
-    @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
-    }
-}
+#import <UIKit/UIKit.h>
+
+// AppDelegate Start
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
+    @property (nonatomic, strong) UIWindow *window;
+@end
+
+// AppDelegate End
+
+// RenderVC Start
+@interface RenderVC : UIViewController
+
+// RenderVC End
+    // RenderVC+FrameReporting Start
+    @property (nonatomic, copy) void (^frame)();
+    
+    // RenderVC+FrameReporting End
+// RenderVC Start
+@end
+
+// RenderVC End
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_IOS_H
+
