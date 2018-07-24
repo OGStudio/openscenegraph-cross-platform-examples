@@ -6,13 +6,13 @@ this->tearHTTPClientProcessorDown();
 
 FEATURE Application.h/Impl
 public:
-    network::HTTPClientProcessorDesktop *httpClientProcessor;
+    network::HTTPClientProcessor *httpClientProcessor;
 private:
     const std::string httpClientProcessorCallbackName = "HTTPClientProcessor";
 
     void setupHTTPClientProcessor()
     {
-        this->httpClientProcessor = new network::HTTPClientProcessorDesktop(this->httpClient);
+        this->httpClientProcessor = new network::HTTPClientProcessor(this->httpClient);
         // Subscribe processor to be processed each frame.
         this->frameReporter.addCallback(
             [&] {

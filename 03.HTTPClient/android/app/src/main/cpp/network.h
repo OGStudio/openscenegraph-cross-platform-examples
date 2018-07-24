@@ -79,7 +79,11 @@ class HTTPRequest
 // HTTPRequest End
 
 // HTTPClient Start
-//! Perform HTTP(s) GET/POST requests by place HTTP requests processed by other entity.
+//! Use HTTPClient to perform HTTP(s) GET/POST requests.
+
+//! Platform specific entities regularly poll HTTPClient for pending requests
+//! and perform them. Once a request is done, platform specific entities
+//! report result back to HTTPClient.
 class HTTPClient
 {
     public:

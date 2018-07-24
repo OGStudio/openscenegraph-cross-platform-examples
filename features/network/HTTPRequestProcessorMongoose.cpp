@@ -1,6 +1,9 @@
 FEATURE network.h/Include
 #include "format.h"
 
+FEATURE network.h/TypeDef
+typedef HTTPRequestProcessorMongoose HTTPRequestProcessor;
+
 FEATURE network.h/Impl
 //! Internal class to process HTTP GET/POST requests with Mongoose.
 class HTTPRequestProcessorMongoose

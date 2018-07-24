@@ -1,9 +1,9 @@
 FEATURE network.h/Impl
-//! Perform HTTP GET/POST requests using Mongoose.
-class HTTPClientProcessorDesktop
+//! Perform HTTP GET/POST requests using either Mongoose, or FetchAPI.
+class HTTPClientProcessor
 {
     public:
-        HTTPClientProcessorDesktop(HTTPClient *client) : client(client) { }
+        HTTPClientProcessor(HTTPClient *client) : client(client) { }
 
         void process()
         {
@@ -41,12 +41,12 @@ class HTTPClientProcessorDesktop
             auto pendingRequests = this->client->pendingRequests();
             for (auto request : pendingRequests)
             {
-                auto processor = new HTTPRequestProcessorMongoose(request);
+                auto processor = new HTTPRequestProcessor(request);
                 this->processors.push_back(processor);
             }
         }
 
     private:
         HTTPClient *client;
-        std::vector<HTTPRequestProcessorMongoose *> processors;
+        std::vector<HTTPRequestProcessor *> processors;
 };

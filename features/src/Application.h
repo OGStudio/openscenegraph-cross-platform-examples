@@ -50,14 +50,14 @@ class Application
             // FEATURE Application+Mouse/Setup
             // FEATURE Application+CameraManipulator/Setup
             // FEATURE Application+HTTPClient/Setup
-            // FEATURE Application+HTTPClientProcessorDesktop/Setup
+            // FEATURE Application+HTTPClientProcessor/Setup
             // FEATURE Application+Debugging/Setup
             // FEATURE Application+DebugCamera/Setup
         }
         ~Application()
         {
             // FEATURE Application+Debugging/TearDown
-            // FEATURE Application+HTTPClientProcessorDesktop/TearDown
+            // FEATURE Application+HTTPClientProcessor/TearDown
             // FEATURE Application+HTTPClient/TearDown
             // FEATURE Application+Rendering/TearDown
             // FEATURE Application+Mouse/TearDown
@@ -75,7 +75,7 @@ class Application
         // FEATURE Application+setupWindow-ios/Impl
 
         // FEATURE Application+HTTPClient/Impl
-        // FEATURE Application+HTTPClientProcessorDesktop/Impl
+        // FEATURE Application+HTTPClientProcessor/Impl
         // FEATURE Application+Logging/Impl
         // FEATURE Application+Rendering/Impl
         // FEATURE Application+Mouse/Impl

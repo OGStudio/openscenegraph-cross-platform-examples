@@ -37,9 +37,10 @@ namespace network
 
 // FEATURE HTTPRequest/Impl
 // FEATURE HTTPRequestProcessorMongoose/Impl
+// FEATURE HTTPRequestProcessorMongoose/TypeDef
 
 // FEATURE HTTPClient/Impl
-// FEATURE HTTPClientProcessorDesktop/Impl
+// FEATURE HTTPClientProcessor/Impl
 
 } // namespace network
 } // namespace osgcpe

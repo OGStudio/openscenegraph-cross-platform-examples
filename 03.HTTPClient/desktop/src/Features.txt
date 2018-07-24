@@ -4,7 +4,7 @@ Application+frame+Reporting
 Application+run
 Application+setupWindow-desktop
 Application+HTTPClient
-Application+HTTPClientProcessorDesktop
+Application+HTTPClientProcessor
 Application+Logging
 Application+Rendering
 Reporter+Stub
@@ -47,7 +47,7 @@ textureImageScene
 
 # network
 HTTPClient
-HTTPClientProcessorDesktop
+HTTPClientProcessor
 HTTPRequest
 HTTPRequestProcessorMongoose
 extlib-mongoose

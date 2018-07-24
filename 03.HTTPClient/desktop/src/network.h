@@ -185,9 +185,17 @@ class HTTPRequestProcessorMongoose
         }
 };
 // HTTPRequestProcessorMongoose End
+// HTTPRequestProcessorMongoose Start
+typedef HTTPRequestProcessorMongoose HTTPRequestProcessor;
+
+// HTTPRequestProcessorMongoose End
 
 // HTTPClient Start
-//! Perform HTTP(s) GET/POST requests by place HTTP requests processed by other entity.
+//! Use HTTPClient to perform HTTP(s) GET/POST requests.
+
+//! Platform specific entities regularly poll HTTPClient for pending requests
+//! and perform them. Once a request is done, platform specific entities
+//! report result back to HTTPClient.
 class HTTPClient
 {
     public:
@@ -279,12 +287,12 @@ class HTTPClient
         }
 };
 // HTTPClient End
-// HTTPClientProcessorDesktop Start
-//! Perform HTTP GET/POST requests using Mongoose.
-class HTTPClientProcessorDesktop
+// HTTPClientProcessor Start
+//! Perform HTTP GET/POST requests using either Mongoose, or FetchAPI.
+class HTTPClientProcessor
 {
     public:
-        HTTPClientProcessorDesktop(HTTPClient *client) : client(client) { }
+        HTTPClientProcessor(HTTPClient *client) : client(client) { }
 
         void process()
         {
@@ -322,16 +330,16 @@ class HTTPClientProcessorDesktop
             auto pendingRequests = this->client->pendingRequests();
             for (auto request : pendingRequests)
             {
-                auto processor = new HTTPRequestProcessorMongoose(request);
+                auto processor = new HTTPRequestProcessor(request);
                 this->processors.push_back(processor);
             }
         }
 
     private:
         HTTPClient *client;
-        std::vector<HTTPRequestProcessorMongoose *> processors;
+        std::vector<HTTPRequestProcessor *> processors;
 };
-// HTTPClientProcessorDesktop End
+// HTTPClientProcessor End
 
 } // namespace network
 } // namespace osgcpe
