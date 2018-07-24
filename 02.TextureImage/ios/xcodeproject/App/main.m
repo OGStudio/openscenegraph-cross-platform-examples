@@ -23,8 +23,10 @@ freely, subject to the following restrictions:
 */
 
 #import <UIKit/UIKit.h>
+#import "ios.h"
 
-@interface ViewController : UIViewController
-
-@end
-
+int main(int argc, char * argv[]) {
+    @autoreleasepool {
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+    }
+}

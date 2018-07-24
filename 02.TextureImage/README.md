@@ -260,7 +260,7 @@ osg::Texture2D *createTexture(const Resource &resource)
 
 <a name="scene"/>
 
-# 2.5. Apply shaders and texture to the scene
+## 2.5. Apply shaders and texture to the scene
 
 The last step is to get scene's material and apply shaders with texture to the material ([source code][scene-textureImageScene]):
 
