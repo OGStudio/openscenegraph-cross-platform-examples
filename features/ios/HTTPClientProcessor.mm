@@ -7,7 +7,6 @@ FEATURE ios.h/Impl
 
 FEATURE ios.mm/Impl
 @interface HTTPClientProcessor ()
-// TODO processors?
 @end
 
 @implementation HTTPClientProcessor
@@ -34,7 +33,7 @@ FEATURE ios.mm/Impl
     url:(NSString *)url
     data:(NSString *)data
 {
-    NSLog(@"TODO performHTTPRequestWithId '%ld' url '%@' data '%@'", id, url, data);
+    //NSLog(@"performHTTPRequestWithId '%ld' url '%@' data '%@'", id, url, data);
     NSURL *address = [NSURL URLWithString:url];
     if (!address)
     {
@@ -60,7 +59,7 @@ FEATURE ios.mm/Impl
             std::string reply = std::string([strdata UTF8String]);
             library::httpClientCompleteRequest(id, true, reply);
         }
-        NSLog(@"Completion handler invoked");
+        //NSLog(@"Completion handler invoked");
     };
 
     // Perform GET/POST request.

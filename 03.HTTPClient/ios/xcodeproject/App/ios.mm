@@ -100,7 +100,6 @@ freely, subject to the following restrictions:
 
 // HTTPClientProcessor Start
 @interface HTTPClientProcessor ()
-// TODO processors?
 @end
 
 @implementation HTTPClientProcessor
@@ -127,7 +126,7 @@ freely, subject to the following restrictions:
     url:(NSString *)url
     data:(NSString *)data
 {
-    NSLog(@"TODO performHTTPRequestWithId '%ld' url '%@' data '%@'", id, url, data);
+    //NSLog(@"performHTTPRequestWithId '%ld' url '%@' data '%@'", id, url, data);
     NSURL *address = [NSURL URLWithString:url];
     if (!address)
     {
@@ -153,7 +152,7 @@ freely, subject to the following restrictions:
             std::string reply = std::string([strdata UTF8String]);
             library::httpClientCompleteRequest(id, true, reply);
         }
-        NSLog(@"Completion handler invoked");
+        //NSLog(@"Completion handler invoked");
     };
 
     // Perform GET/POST request.
