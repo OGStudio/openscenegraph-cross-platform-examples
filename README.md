@@ -9,6 +9,7 @@
 * [Examples](#examples)
     * [01. Embed resource into executable](#ex01)
     * [02. Use PNG images with PNG plugins](#ex02)
+    * [03. Implement HTTP client to perform GET/POST requests](#ex03)
     * [04. Debug application remotely](#ex04)
 * [Help](#help)
 
@@ -193,6 +194,15 @@ E.g., you can serve locally like this:
 
   Learn how to use PNG images across platforms with PNG plugins.
 
+<a name="ex03"/>
+
+### [03. Implement HTTP client to perform GET/POST requests][ex03]
+
+  ![Screenshot][ex03-screenshot]
+
+  Learn how to implement HTTP client across platforms to perform
+  GET/POST requests.
+
 <a name="ex04"/>
 
 ### [04. Debug application remotely][ex04]
@@ -222,6 +232,9 @@ improve examples.
 
 [ex02]: 02.TextureImage
 [ex02-screenshot]: 02.TextureImage/shot.png
+
+[ex03]: 03.HTTPClient
+[ex03-screenshot]: 03.HTTPClient/shot.png
 
 [ex04]: 04.RemoteDebugging
 [ex04-screenshot]: 04.RemoteDebugging/shot.png
