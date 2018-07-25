@@ -49,18 +49,6 @@ freely, subject to the following restrictions:
 
 // Application+handleEvent-web End
 
-// Application+OSGCPE_APPLICATION_LOG Start
-#include "log.h"
-#include "format.h"
-#define OSGCPE_APPLICATION_LOG_PREFIX "osgcpe::Application(%p) %s"
-#define OSGCPE_APPLICATION_LOG(...) \
-    osgcpe::log::logprintf( \
-        OSGCPE_APPLICATION_LOG_PREFIX, \
-        this, \
-        osgcpe::format::printfString(__VA_ARGS__).c_str() \
-    )
-
-// Application+OSGCPE_APPLICATION_LOG End
 
 namespace osgcpe
 {

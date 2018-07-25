@@ -1,4 +1,3 @@
-Application+OSGCPE_APPLICATION_LOG
 Application+camera
 Application+frame+Reporting
 Application+setupWindow-embedded
@@ -26,8 +25,8 @@ library+jniStrings-android
 
 # log
 log-android
-logLevelToString
 logprintf
+logLevelToString
 Logger
 
 # format

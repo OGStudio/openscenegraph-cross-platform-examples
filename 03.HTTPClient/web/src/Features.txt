@@ -1,4 +1,3 @@
-Application+OSGCPE_APPLICATION_LOG
 Application+camera
 Application+frame+Reporting
 Application+handleEvent-web
@@ -28,7 +27,6 @@ Logger
 
 # format
 printfString
-splitString
 
 # resource
 OSGCPE_RESOURCE_LOG
