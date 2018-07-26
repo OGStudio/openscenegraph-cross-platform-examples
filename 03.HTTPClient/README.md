@@ -5,6 +5,8 @@
 * [Architecture](#architecture)
 * [Steps](#steps)
     * [2.1. Implement guest side classes](#guest)
+    * [2.2. Implement HTTPClientProcessor for desktop and web hosts](#http-client-processor)
+    * [2.3. Implement HTTPRequestProcessorMongoose for desktop host](#http-request-processor-mongoose)
 
 * [Result](#result)
 
@@ -86,7 +88,7 @@ Guest side contains the following classes:
 * [HTTPClient][http-client]
     * provides `get(...)` function to perform HTTP(s) GET request
     * provides `post(...)` function to perform HTTP(s) POST request
-    * manages `HTTPRequest` instances
+    * creates new `HTTPRequest` instance for each request
 * [HTTPRequest][http-request]
     * contains URL
     * contains payload
@@ -96,7 +98,7 @@ Guest side contains the following classes:
 
 Cross-platform client code uses `HTTPClient` exclusively to perform HTTP(s) requests.
 
-<a name="desktop"/>
+<a name="http-client-processor"/>
 
 ## 2.2. Implement HTTPClientProcessor for desktop and web hosts
 
@@ -104,16 +106,18 @@ Both desktop and web use [HTTPClientProcessor][http-client-processor]:
 
 * processes single `HTTPClient` instance
 * is [regularly called][http-client-processor-processing] by `Application` to process requests
-* creates either `HTTPClientProcessorMongoose`, or `HTTPClientProcessorFetch` instance for each `HTTPRequest` instance
+* creates either `HTTPRequestProcessorMongoose`, or `HTTPRequestProcessorFetch` instance for each `HTTPRequest` instance
 
-## 2.3. Implement HTTPClientProcessorMongoose for desktop host
+<a name="http-request-processor-mongoose"/>
+
+## 2.3. Implement HTTPRequestProcessorMongoose for desktop host
 
 We chose [Mongoose][mongoose] over numerous other options because it's
 easy to use and integrate.
 
-[HTTPClientProcessorMongoose]:
+[HTTPRequestProcessorMongoose][HTTPRequestProcessorMongoose]:
     * uses `Mongoose`
-    * accepts and alters single `HTTPRequest` instance
+    * manages single `HTTPRequest` instance
 
 To support requests to HTTPS, make sure to:
 
@@ -193,6 +197,7 @@ Here's a [web build of the example][web-build].
 [http-client-processor-processing]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/Application.h#L159
 [mongoose-openssl]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/network-extlib.h#L29
 [link-openssl]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/CMakeLists.txt#L27
+[HTTPRequestProcessorMongoose]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/network.h#L89
 
 
 [web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/03/ex03-http-client.html
