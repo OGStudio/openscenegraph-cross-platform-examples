@@ -117,8 +117,8 @@ easy to use and integrate.
 
 [HTTPRequestProcessorMongoose][HTTPRequestProcessorMongoose]:
 
-    * uses `Mongoose`
-    * manages single `HTTPRequest` instance
+* uses `Mongoose`
+* manages single `HTTPRequest` instance
 
 To support requests to HTTPS, make sure to:
 
