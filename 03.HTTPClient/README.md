@@ -96,12 +96,17 @@ Guest side contains the following classes:
 
 Client code should use `HTTPClient` exclusively to perform HTTP(s) requests.
 
+<a name="desktop"/>
 
+## 2.2. Implement HTTPClientProcessor for desktop and web hosts
 
+[HTTPClientProcessor][http-client-processor]:
 
+* processes single `HTTPClient` instance
+* is [regularly called][http-client-processor-processing] by `Application` to process requests
+* actual HTTP(s) requests are performed by either `HTTPClientProcessorMongoose`, or `HTTPClientProcessorFetch` (covered below)
 
-
-
+## 2.3. Implement HTTPClientProcessorMongoose for desktop host
 
 
 
@@ -176,6 +181,10 @@ Here's a [web build of the example][web-build].
 
 [http-client]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/network.h#L194
 [http-request]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/network.h#L53
+[reporter]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/Reporter.h#L34
+[http-client-processor]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/network.h#L291
+[http-client-processor-processing]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/Application.h#L159
+
 
 [web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/03/ex03-http-client.html
 
