@@ -116,6 +116,7 @@ We chose [Mongoose][mongoose] over numerous other options because it's
 easy to use and integrate.
 
 [HTTPRequestProcessorMongoose][HTTPRequestProcessorMongoose]:
+
     * uses `Mongoose`
     * manages single `HTTPRequest` instance
 
