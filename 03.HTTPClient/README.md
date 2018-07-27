@@ -184,6 +184,11 @@ Introduce the following native library functions to C++:
     * composes `HTTPRequest` from details
     * sets its status to `COMPLETED`
 
+**Note**: all HTTP(s) requests in iOS are subject to
+[Application Transport Security (ATS)][ios-ats], which means you can access
+HTTPS freely, however, domains without TLS must be explicitely whitelisted
+in `Info.plist`.
+
 <a name="ios-objc"/>
 
 ### Objective-C side
@@ -284,6 +289,7 @@ Here's a [web build of the example][web-build].
 [ios-HTTPClientProcessor-report]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/ios/xcodeproject/App/ios.mm#L136
 [ios-httpClientExecuteNextRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/ios/src/library.cpp#L62
 [ios-httpClientCompleteRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/ios/src/library.cpp#L75
+[ios-ats]: https://forums.developer.apple.com/thread/6767
 
 [web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/03/ex03-http-client.html
 
