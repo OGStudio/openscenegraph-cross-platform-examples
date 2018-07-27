@@ -8,6 +8,12 @@
     * [2.2. Implement HTTPClientProcessor for desktop and web hosts](#http-client-processor)
     * [2.3. Implement HTTPRequestProcessorMongoose for desktop host](#http-request-processor-mongoose)
     * [2.4. Implement HTTPRequestProcessorFetch for web host](#http-request-processor-fetch)
+    * [2.5. Implement HTTP support for Android](#android)
+        * [Java side](#android-java)
+        * [C++ side](#android-cpp)
+    * [2.6. Implement HTTP support for iOS](#ios)
+        * [Objective-C side](#ios-objc)
+        * [C++ side](#ios-cpp)
 
 * [Result](#result)
 
@@ -159,6 +165,24 @@ Introduce the following native library functions at C++ side:
 * [httpClientCompleteRequest][android-httpClientCompleteRequest]
     * composes `HTTPRequest` from strings
     * sets its status to `COMPLETED`
+
+<a name="ios"/>
+
+## 2.6. Implement HTTP support for iOS
+
+Android uses Java, so we need to implement HTTP processing at both
+Java (host requirement) and C++ (guest requirement) sides.
+
+<a name="ios-objc"/>
+
+### Objective-C side
+
+<a name="ios-cpp"/>
+
+### C++ side
+
+
+
 
 ## 2.?. Change background (camera) color when GET/POST responses arrive
 
