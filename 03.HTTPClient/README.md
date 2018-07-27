@@ -197,14 +197,14 @@ With hosts managing `HTTPClient` instance we can finally request some HTTP(s)!
 Let's perform GET and POST requests:
 
 * if request succeeds, make green component of background (camera) colour 50% lighter
-* if request failes, make red component of background (camera) colour 50% lighter
+* if request fails, make red component of background (camera) colour 50% lighter
 
 Thus:
 * if both requests succeed, we should see light green background
 * if both requests fail, we should see light red background
-* if one request failes and another one suceeds, we should see some other color
+* if one request fails and another one suceeds, we should see some other color
 
-Here's how to do it: ([source code][https-get-post]):
+Here's how to do it ([source code][https-get-post]):
 
 ```
 // Reset background color.
