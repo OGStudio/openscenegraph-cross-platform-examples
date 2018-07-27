@@ -159,7 +159,7 @@ Introduce the following native library functions at C++ side:
 
 * [httpClientExecuteNextRequest][android-httpClientExecuteNextRequest]
     * gets next pending request from `HTTPClient`
-    * sets its status to `PENDING`
+    * sets the request's status to `IN_PROGRESS`
     * decomposes `HTTPRequest` into strings
     * returns these strings to Java side
 * [httpClientCompleteRequest][android-httpClientCompleteRequest]
