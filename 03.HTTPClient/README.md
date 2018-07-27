@@ -113,7 +113,7 @@ to issue `XMLHttpRequest`s to perform HTTP(s) requests.
 * uses `Fetch API`
 * manages single `HTTPRequest` instance
 
-**Note**: HTTP(s) requests in web browsers are subject to [CORS][web-cors],
+**Note**: HTTP(s) requests in web browsers are subject to [Cross-origin resource sharing (CORS)][web-cors],
 which means you can't access just any location as free as on desktop or mobile.
 
 <a name="android"/>
