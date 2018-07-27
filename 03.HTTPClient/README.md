@@ -168,21 +168,21 @@ Objective-C (host) and C++ (guest) sides.
 
 Introduce [HTTPClientProcessor][ios-HTTPClientProcessor] to Objective-C:
 
-    * is [regularly called][ios-HTTPClientProcessor-processing] by `RenderVC`
-    * [polls C++ side][ios-library-httpClient-poll] for pending HTTP requests
-    * [executes requests][ios-HTTPClientProcessor-exec] with the help of `NSURLSession`
-    * [reports results back][ios-HTTPClientProcessor-report] to C++ side
+* is [regularly called][ios-HTTPClientProcessor-processing] by `RenderVC`
+* [polls C++ side][ios-library-httpClient-poll] for pending HTTP requests
+* [executes requests][ios-HTTPClientProcessor-exec] with the help of `NSURLSession`
+* [reports results back][ios-HTTPClientProcessor-report] to C++ side
 
 Introduce the following native library functions to C++:
 
-    * [httpClientExecuteNextRequest][ios-httpClientExecuteNextRequest]
-        * gets next pending request from `HTTPClient`
-        * sets the request's status to `IN_PROGRESS`
-        * decomposes `HTTPRequest` details
-        * returns decomposed details to Objective-C side
-    * [httpClientCompleteRequest][ios-httpClientCompleteRequest]
-        * composes `HTTPRequest` from details
-        * sets its status to `COMPLETED`
+* [httpClientExecuteNextRequest][ios-httpClientExecuteNextRequest]
+    * gets next pending request from `HTTPClient`
+    * sets the request's status to `IN_PROGRESS`
+    * decomposes `HTTPRequest` details
+    * returns decomposed details to Objective-C side
+* [httpClientCompleteRequest][ios-httpClientCompleteRequest]
+    * composes `HTTPRequest` from details
+    * sets its status to `COMPLETED`
 
 <a name="ios-objc"/>
 
