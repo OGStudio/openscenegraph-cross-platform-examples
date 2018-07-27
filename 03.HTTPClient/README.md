@@ -7,33 +7,11 @@
     * [2.1. Implement guest side classes](#guest)
     * [2.2. Implement HTTPClientProcessor for desktop and web hosts](#http-client-processor)
     * [2.3. Implement HTTPRequestProcessorMongoose for desktop host](#http-request-processor-mongoose)
+    * [2.4. Implement HTTPRequestProcessorFetch for web host](#http-request-processor-fetch)
 
 * [Result](#result)
 
 TODO explain features:
-
-* Application+frame+Reporting
-* Reporter+Stub
-* Application+HTTPClientProcessor
-
-* HTTPClientProcessor (desktop + web)
-
-* HTTPRequestProcessorMongoose (desktop)
-* extlib-mongoose (desktop)
-
-* HTTPRequestProcessorFetch (web)
-* extlib-fetch (web)
-
-Android C++:
-* library+httpClient-android
-* library+jniStrings-android
-
-Android Java:
-* library+httpClient
-* HTTPClientProcessor
-* HTTPRequest
-* HTTPRequestDelegate
-* MainActivity+HTTPClientProcessor
 
 iOS C++:
 * library+httpClient-ios
@@ -48,8 +26,10 @@ iOS Objective-C:
 
 This example is part of [OpenSceneGraph cross-platform examples][osgcpe].
 
-In this example we implement HTTP (with TLS support) client across platforms
-to perform GET/POST requests.
+In this example we implement HTTP client (with TLS support) working across
+platforms to perform GET/POST requests.
+
+**TODO**: rephrase article dependencies just like in OSGCPG.
 
 **Note**: this example builds on the [previous one][ex-prev], make sure to study it.
 
@@ -60,9 +40,9 @@ to perform GET/POST requests.
 Each platform has its own stack of technologies to perform HTTP(s) requests:
 
 * Desktop can utilize almost any library (we use [Mongoose][mongoose] with [OpenSSL][openssl])
-* Web (Emscripten) provides so-called [FetchAPI][fetch-api]
-* Android provides [HttpURLConnection][http-url-connection] in Java
-* iOS provides [NSURLSession][ns-url-session] in Objective-C
+* Web (Emscripten) provides [Fetch API][FetchAPI]
+* Android provides [HttpURLConnection][HttpURLConnection] in Java
+* iOS provides [NSURLSession][NSURLSession] in Objective-C
 
 Such a variaty of platform specific technologies is best addressed by
 implementing host-guest relationship:
@@ -85,11 +65,11 @@ implementing host-guest relationship:
 
 Guest side contains the following classes:
 
-* [HTTPClient][http-client]
+* [HTTPClient][HTTPClient]
     * provides `get(...)` function to perform HTTP(s) GET request
     * provides `post(...)` function to perform HTTP(s) POST request
     * creates new `HTTPRequest` instance for each request
-* [HTTPRequest][http-request]
+* [HTTPRequest][HTTPRequest]
     * contains URL
     * contains payload
         * if payload is empty, hosts perform GET request
@@ -102,17 +82,17 @@ Cross-platform client code uses `HTTPClient` exclusively to perform HTTP(s) requ
 
 ## 2.2. Implement HTTPClientProcessor for desktop and web hosts
 
-Both desktop and web use [HTTPClientProcessor][http-client-processor]:
+Both desktop and web use [HTTPClientProcessor][HTTPClientProcessor]:
 
 * processes single `HTTPClient` instance
-* is [regularly called][http-client-processor-processing] by `Application` to process requests
+* is [regularly called][HTTPClientProcessor-processing] by `Application` to process requests
 * creates either `HTTPRequestProcessorMongoose`, or `HTTPRequestProcessorFetch` instance for each `HTTPRequest` instance
 
 <a name="http-request-processor-mongoose"/>
 
 ## 2.3. Implement HTTPRequestProcessorMongoose for desktop host
 
-We chose [Mongoose][mongoose] over numerous other options because it's
+We prefer [Mongoose][mongoose] to other options because it's
 easy to use and integrate.
 
 [HTTPRequestProcessorMongoose][HTTPRequestProcessorMongoose]:
@@ -125,10 +105,60 @@ To support requests to HTTPS, make sure to:
 * [enable OpenSSL support in Mongoose][mongoose-openssl]
 * [link with OpenSSL libraries][link-openssl]
 
+<a name="http-request-processor-fetch"/>
 
+## 2.4. Implement HTTPRequestProcessorFetch for web host
 
+[Fetch API][FetchAPI] is the recommended way for Emscripten web applications
+to issue `XMLHttpRequest`s to perform HTTP(s) requests.
 
+[HTTPRequestProcessorFetch][HTTPRequestProcessorFetch]:
 
+* uses `Fetch API`
+* manages single `HTTPRequest` instance
+
+<a name="android"/>
+
+## 2.5. Implement HTTP support for Android
+
+Android uses Java, so we need to implement HTTP processing at both
+Java (host requirement) and C++ (guest requirement) sides.
+
+<a name="android-java"/>
+
+### Java side
+
+Introduce the following classes to Java:
+
+* [HTTPClientProcessor][android-HTTPClientProcessor]
+    * is [regularly called][android-HTTPClientProcessor-processing] by `MainActivity`
+    * implements `HTTPRequestDelegate` to receive results
+    * [polls C++ side][android-library-httpClient-poll] for pending HTTP requests
+    * [executes requests][android-HTTPClientProcessor-exec] with the help of `HTTPRequest`
+    * [reports results back][android-HTTPClientProcessor-report] to C++ side
+* [HTTPRequest][android-HTTPRequest]
+    * is an `AsyncTask` that uses `HttpURLConnection` to perform HTTP(s) requests
+    * reports results to `HTTPRequestDelegate` instance
+* [HTTPRequestDelegate][android-HTTPRequestDelegate]
+    * is an interface to delegate `HTTPRequest` results
+
+**Note**: make sure to [add Internet permission][android-manifest-internet] to `AndroidManifest.xml` for
+HTTP(s) requests to work.
+
+<a name="android-cpp"/>
+
+### C++ side
+
+Introduce the following native library functions at C++ side:
+
+* [httpClientExecuteNextRequest][android-httpClientExecuteNextRequest]
+    * gets next pending request from `HTTPClient`
+    * sets its status to `PENDING`
+    * decomposes `HTTPRequest` into strings
+    * returns these strings to Java side
+* [httpClientCompleteRequest][android-httpClientCompleteRequest]
+    * composes `HTTPRequest` from strings
+    * sets its status to `COMPLETED`
 
 ## 2.?. Change background (camera) color when GET/POST responses arrive
 
@@ -187,19 +217,30 @@ Here's a [web build of the example][web-build].
 
 [mongoose]: https://github.com/cesanta/mongoose
 [openssl]: https://www.openssl.org
-[fetch-api]: https://kripken.github.io/emscripten-site/docs/api_reference/fetch.html
-[http-url-connection]: https://developer.android.com/reference/java/net/HttpURLConnection
-[ns-url-session]: https://developer.apple.com/documentation/foundation/nsurlsession?language=objc
+[FetchAPI]: https://kripken.github.io/emscripten-site/docs/api_reference/fetch.html
+[HttpURLConnection]: https://developer.android.com/reference/java/net/HttpURLConnection
+[NSURLSession]: https://developer.apple.com/documentation/foundation/nsurlsession?language=objc
 
-[http-client]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/network.h#L194
-[http-request]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/network.h#L53
-[reporter]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/Reporter.h#L34
-[http-client-processor]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/network.h#L291
-[http-client-processor-processing]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/Application.h#L159
+[HTTPClient]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/network.h#L194
+[HTTPRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/network.h#L53
+[HTTPClientProcessor]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/network.h#L291
+[HTTPClientProcessor-processing]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/Application.h#L159
 [mongoose-openssl]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/network-extlib.h#L29
 [link-openssl]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/CMakeLists.txt#L27
 [HTTPRequestProcessorMongoose]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/network.h#L89
+[HTTPRequestProcessorFetch]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/web/src/network.h#L89
 
+[android-HTTPClientProcessor]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/java/MainActivity.java#L588
+[android-HTTPClientProcessor-processing]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/java/MainActivity.java#L124
+[android-library-httpClient-poll]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/java/MainActivity.java#L593
+[android-HTTPClientProcessor-exec]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/java/MainActivity.java#L601
+[android-HTTPClientProcessor-report]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/java/MainActivity.java#L619
+[android-HTTPRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/java/MainActivity.java#L498
+[android-HTTPRequestDelegate]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/java/MainActivity.java#L582
+[android-manifest-internet]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/AndroidManifest.xml#L6
+
+[android-httpClientExecuteNextRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/cpp/library.cpp#L93
+[android-httpClientCompleteRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/cpp/library.cpp#L110
 
 [web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/03/ex03-http-client.html
 

@@ -17,6 +17,7 @@ class HTTPClientProcessor
             String data = requestParts[2];
             this.performHTTPRequest(id, url, data);
         }
+        // TODO Report failure if number of request parts is different from 3.
     }
 
     private void performHTTPRequest(String id, String url, String data)
