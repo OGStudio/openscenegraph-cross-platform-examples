@@ -12,8 +12,7 @@
         * [Java side](#android-java)
         * [C++ side](#android-cpp)
     * [2.6. Implement HTTP support for iOS](#ios)
-    * TODO change bg upon HTTP responses
-
+    * [2.7. Change background (camera) color when GET/POST responses arrive](#change-bg)
 * [Result](#result)
 
 <a name="overview"/>
@@ -189,26 +188,23 @@ Introduce the following native library functions to C++:
 HTTPS freely, however, domains without TLS must be explicitely whitelisted
 in `Info.plist`.
 
-<a name="ios-objc"/>
+<a name="change-bg"/>
 
-### Objective-C side
+## 2.7. Change background (camera) color when GET/POST responses arrive
 
-<a name="ios-cpp"/>
+With hosts managing `HTTPClient` instance we can finally request some HTTP(s)!
 
-### C++ side
+Let's perform GET and POST requests:
 
+* if request succeeds, make green component of background (camera) colour 50% lighter
+* if request failes, make red component of background (camera) colour 50% lighter
 
+Thus:
+* if both requests succeed, we should see light green background
+* if both requests fail, we should see light red background
+* if one request failes and another one suceeds, we should see some other color
 
-
-## 2.?. Change background (camera) color when GET/POST responses arrive
-
-Specific example:
-* Application+HTTPClient
-* Application+camera
-* Example+HTTPSGetPost
-
-Client code uses `HTTPClient` exclusively to perform HTTP(s) requests
-([source code][https-get-post]):
+Here's how to do it: ([source code][https-get-post]):
 
 ```
 // Reset background color.
@@ -243,6 +239,9 @@ this->app->httpClient->post(
     failure
 );
 ```
+
+**Note**: we use specific HTTPS URLs to make sure both [CORS][web-cors] and
+[ATS][ios-ats] restrictions are met.
 
 <a name="result"/>
 
@@ -290,6 +289,8 @@ Here's a [web build of the example][web-build].
 [ios-httpClientExecuteNextRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/ios/src/library.cpp#L62
 [ios-httpClientCompleteRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/ios/src/library.cpp#L75
 [ios-ats]: https://forums.developer.apple.com/thread/6767
+
+[https-get-post]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/Example.h#L123
 
 [web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/03/ex03-http-client.html
 
