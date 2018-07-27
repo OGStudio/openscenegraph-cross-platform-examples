@@ -260,37 +260,37 @@ Here's a [web build of the example][web-build].
 [HttpURLConnection]: https://developer.android.com/reference/java/net/HttpURLConnection
 [NSURLSession]: https://developer.apple.com/documentation/foundation/nsurlsession?language=objc
 
-[HTTPClient]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/network.h#L194
-[HTTPRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/network.h#L53
-[HTTPClientProcessor]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/network.h#L291
-[HTTPClientProcessor-processing]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/Application.h#L159
-[mongoose-openssl]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/network-extlib.h#L29
-[link-openssl]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/CMakeLists.txt#L27
-[HTTPRequestProcessorMongoose]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/network.h#L89
-[HTTPRequestProcessorFetch]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/web/src/network.h#L89
+[HTTPClient]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/desktop/src/network.h#L194
+[HTTPRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/desktop/src/network.h#L53
+[HTTPClientProcessor]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/desktop/src/network.h#L291
+[HTTPClientProcessor-processing]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/desktop/src/Application.h#L159
+[mongoose-openssl]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/desktop/src/network-extlib.h#L29
+[link-openssl]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/desktop/CMakeLists.txt#L27
+[HTTPRequestProcessorMongoose]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/desktop/src/network.h#L89
+[HTTPRequestProcessorFetch]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/web/src/network.h#L89
 [web-cors]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 
-[android-HTTPClientProcessor]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/java/MainActivity.java#L588
-[android-HTTPClientProcessor-processing]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/java/MainActivity.java#L124
-[android-library-httpClient-poll]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/java/MainActivity.java#L593
-[android-HTTPClientProcessor-exec]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/java/MainActivity.java#L601
-[android-HTTPClientProcessor-report]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/java/MainActivity.java#L619
-[android-HTTPRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/java/MainActivity.java#L498
-[android-HTTPRequestDelegate]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/java/MainActivity.java#L582
-[android-manifest-internet]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/AndroidManifest.xml#L6
-[android-httpClientExecuteNextRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/cpp/library.cpp#L93
-[android-httpClientCompleteRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/cpp/library.cpp#L110
+[android-HTTPClientProcessor]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/android/app/src/main/java/MainActivity.java#L588
+[android-HTTPClientProcessor-processing]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/android/app/src/main/java/MainActivity.java#L124
+[android-library-httpClient-poll]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/android/app/src/main/java/MainActivity.java#L593
+[android-HTTPClientProcessor-exec]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/android/app/src/main/java/MainActivity.java#L601
+[android-HTTPClientProcessor-report]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/android/app/src/main/java/MainActivity.java#L619
+[android-HTTPRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/android/app/src/main/java/MainActivity.java#L498
+[android-HTTPRequestDelegate]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/android/app/src/main/java/MainActivity.java#L582
+[android-manifest-internet]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/android/app/src/main/AndroidManifest.xml#L6
+[android-httpClientExecuteNextRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/android/app/src/main/cpp/library.cpp#L93
+[android-httpClientCompleteRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/android/app/src/main/cpp/library.cpp#L110
 
-[ios-HTTPClientProcessor]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/ios/xcodeproject/App/ios.mm#L102
-[ios-HTTPClientProcessor-processing]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/ios/xcodeproject/App/ios.mm#L86
-[ios-library-httpClient-poll]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/ios/xcodeproject/App/ios.mm#L112
-[ios-HTTPClientProcessor-exec]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/ios/xcodeproject/App/ios.mm#L158
-[ios-HTTPClientProcessor-report]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/ios/xcodeproject/App/ios.mm#L136
-[ios-httpClientExecuteNextRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/ios/src/library.cpp#L62
-[ios-httpClientCompleteRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/ios/src/library.cpp#L75
+[ios-HTTPClientProcessor]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/ios/xcodeproject/App/ios.mm#L102
+[ios-HTTPClientProcessor-processing]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/ios/xcodeproject/App/ios.mm#L86
+[ios-library-httpClient-poll]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/ios/xcodeproject/App/ios.mm#L112
+[ios-HTTPClientProcessor-exec]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/ios/xcodeproject/App/ios.mm#L158
+[ios-HTTPClientProcessor-report]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/ios/xcodeproject/App/ios.mm#L136
+[ios-httpClientExecuteNextRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/ios/src/library.cpp#L62
+[ios-httpClientCompleteRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/ios/src/library.cpp#L75
 [ios-ats]: https://forums.developer.apple.com/thread/6767
 
-[https-get-post]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/Example.h#L123
+[https-get-post]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/desktop/src/Example.h#L123
 
 [web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/03/ex03-http-client.html
 
