@@ -12,19 +12,9 @@
         * [Java side](#android-java)
         * [C++ side](#android-cpp)
     * [2.6. Implement HTTP support for iOS](#ios)
-        * [Objective-C side](#ios-objc)
-        * [C++ side](#ios-cpp)
+    * TODO change bg upon HTTP responses
 
 * [Result](#result)
-
-TODO explain features:
-
-iOS C++:
-* library+httpClient-ios
-
-iOS Objective-C:
-* AppDelegate+HTTPClientProcessor
-* HTTPClientProcessor
 
 <a name="overview"/>
 
@@ -123,12 +113,15 @@ to issue `XMLHttpRequest`s to perform HTTP(s) requests.
 * uses `Fetch API`
 * manages single `HTTPRequest` instance
 
+**Note**: HTTP(s) requests in web browsers are subject to [CORS][web-cors],
+which means you can't access just any location as free as on desktop or mobile.
+
 <a name="android"/>
 
 ## 2.5. Implement HTTP support for Android
 
 Android uses Java, so we need to implement HTTP processing at both
-Java (host requirement) and C++ (guest requirement) sides.
+Java (host) and C++ (guest) sides.
 
 <a name="android-java"/>
 
@@ -170,8 +163,26 @@ Introduce the following native library functions at C++ side:
 
 ## 2.6. Implement HTTP support for iOS
 
-Android uses Java, so we need to implement HTTP processing at both
-Java (host requirement) and C++ (guest requirement) sides.
+iOS uses Objective-C, so we need to implement HTTP processing at both
+Objective-C (host) and C++ (guest) sides.
+
+Introduce [HTTPClientProcessor][ios-HTTPClientProcessor] to Objective-C:
+
+    * is [regularly called][ios-HTTPClientProcessor-processing] by `RenderVC`
+    * [polls C++ side][ios-library-httpClient-poll] for pending HTTP requests
+    * [executes requests][ios-HTTPClientProcessor-exec] with the help of `NSURLSession`
+    * [reports results back][ios-HTTPClientProcessor-report] to C++ side
+
+Introduce the following native library functions to C++:
+
+    * [httpClientExecuteNextRequest][ios-httpClientExecuteNextRequest]
+        * gets next pending request from `HTTPClient`
+        * sets the request's status to `IN_PROGRESS`
+        * decomposes `HTTPRequest` details
+        * returns decomposed details to Objective-C side
+    * [httpClientCompleteRequest][ios-httpClientCompleteRequest]
+        * composes `HTTPRequest` from details
+        * sets its status to `COMPLETED`
 
 <a name="ios-objc"/>
 
@@ -253,6 +264,7 @@ Here's a [web build of the example][web-build].
 [link-openssl]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/CMakeLists.txt#L27
 [HTTPRequestProcessorMongoose]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/desktop/src/network.h#L89
 [HTTPRequestProcessorFetch]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/web/src/network.h#L89
+[web-cors]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 
 [android-HTTPClientProcessor]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/java/MainActivity.java#L588
 [android-HTTPClientProcessor-processing]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/java/MainActivity.java#L124
@@ -262,9 +274,16 @@ Here's a [web build of the example][web-build].
 [android-HTTPRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/java/MainActivity.java#L498
 [android-HTTPRequestDelegate]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/java/MainActivity.java#L582
 [android-manifest-internet]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/AndroidManifest.xml#L6
-
 [android-httpClientExecuteNextRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/cpp/library.cpp#L93
 [android-httpClientCompleteRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/android/app/src/main/cpp/library.cpp#L110
+
+[ios-HTTPClientProcessor]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/ios/xcodeproject/App/ios.mm#L102
+[ios-HTTPClientProcessor-processing]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/ios/xcodeproject/App/ios.mm#L86
+[ios-library-httpClient-poll]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/ios/xcodeproject/App/ios.mm#L112
+[ios-HTTPClientProcessor-exec]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/ios/xcodeproject/App/ios.mm#L158
+[ios-HTTPClientProcessor-report]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/ios/xcodeproject/App/ios.mm#L136
+[ios-httpClientExecuteNextRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/ios/src/library.cpp#L62
+[ios-httpClientCompleteRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-17/03.HTTPClient/ios/src/library.cpp#L75
 
 [web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/03/ex03-http-client.html
 
