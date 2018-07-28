@@ -33,6 +33,7 @@ PLATFORMS=(
 FEATURES_TXT_DIR="src" 
 FEATURE_DIRS=(
     "/core"
+    "/main"
     "/log"
     "/format"
     "/resource"

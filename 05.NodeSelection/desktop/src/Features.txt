@@ -1,5 +1,5 @@
-# core
-OSGCPE_APPLICATION_LOG
+# main
+OSGCPE_MAIN_APPLICATION_LOG
 Application
 Application+camera
 Application+frame+Reporting
@@ -9,7 +9,7 @@ Application+Logging
 Application+Rendering
 Application+Mouse
 
-OSGCPE_EXAMPLE_LOG
+OSGCPE_MAIN_EXAMPLE_LOG
 Example
 Example+05
 Example+BoxScene
@@ -17,9 +17,10 @@ Example+TextureImageScene
 Example+BoxSelection
 Example+BoxRotation
 
-Reporter
-
 main-desktop
+
+# core
+Reporter
 
 # log
 log-default

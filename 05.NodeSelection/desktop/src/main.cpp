@@ -22,7 +22,11 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
+// main-desktop Start
 #include "core.h"
+#include "main.h"
+
+// main-desktop End
 
 
 using namespace osgcpe;
@@ -30,8 +34,8 @@ using namespace osgcpe;
 int main(int argc, char *argv[])
 {
     // main-desktop Start
-    auto example = new core::Example();
-    example->app->setupWindow(core::EXAMPLE_TITLE, 100, 100, 480, 320);
+    auto example = new main::Example();
+    example->app->setupWindow(main::EXAMPLE_TITLE, 100, 100, 480, 320);
     
     // main-desktop End
     // main-desktop Start
