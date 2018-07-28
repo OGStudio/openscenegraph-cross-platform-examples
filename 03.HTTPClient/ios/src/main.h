@@ -25,6 +25,11 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_MAIN_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_MAIN_H
 
+// Application+frame+Reporting Start
+#include "core.h"
+
+// Application+frame+Reporting End
+
 // Application+HTTPClient Start
 #include "network.h"
 
@@ -252,14 +257,14 @@ const auto EXAMPLE_TITLE = "Ex03";
                 auto color = this->app->camera()->getClearColor();
                 color.y() += 0.5;
                 this->app->camera()->setClearColor(color);
-                OSGCPE_EXAMPLE_LOG(response.c_str());
+                OSGCPE_MAIN_EXAMPLE_LOG(response.c_str());
             };
             // Set background color 50% redder on failure.
             auto failure = [&](std::string reason) {
                 auto color = this->app->camera()->getClearColor();
                 color.x() += 0.5;
                 this->app->camera()->setClearColor(color);
-                OSGCPE_EXAMPLE_LOG(reason.c_str());
+                OSGCPE_MAIN_EXAMPLE_LOG(reason.c_str());
             };
     
             // GET.

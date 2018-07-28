@@ -15,14 +15,14 @@ private:
             auto color = this->app->camera()->getClearColor();
             color.y() += 0.5;
             this->app->camera()->setClearColor(color);
-            OSGCPE_EXAMPLE_LOG(response.c_str());
+            OSGCPE_MAIN_EXAMPLE_LOG(response.c_str());
         };
         // Set background color 50% redder on failure.
         auto failure = [&](std::string reason) {
             auto color = this->app->camera()->getClearColor();
             color.x() += 0.5;
             this->app->camera()->setClearColor(color);
-            OSGCPE_EXAMPLE_LOG(reason.c_str());
+            OSGCPE_MAIN_EXAMPLE_LOG(reason.c_str());
         };
 
         // GET.

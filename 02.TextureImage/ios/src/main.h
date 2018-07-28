@@ -25,6 +25,7 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_MAIN_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_MAIN_H
 
+
 // Application+Logging Start
 #include "log.h"
 

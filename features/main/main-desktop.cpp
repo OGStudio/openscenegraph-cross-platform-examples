@@ -1,5 +1,4 @@
 FEATURE main.cpp/Include
-#include "core.h"
 #include "main.h"
 
 FEATURE main.cpp/Setup

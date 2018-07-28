@@ -23,7 +23,6 @@ freely, subject to the following restrictions:
 */
 
 // main-desktop Start
-#include "core.h"
 #include "main.h"
 
 // main-desktop End

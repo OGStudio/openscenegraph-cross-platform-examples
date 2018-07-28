@@ -1,4 +1,4 @@
-# core
+# main
 Application
 Application+frame
 Application+run
@@ -6,7 +6,7 @@ Application+setupWindow-desktop
 Application+Logging
 Application+Rendering
 
-OSGCPE_EXAMPLE_LOG
+OSGCPE_MAIN_EXAMPLE_LOG
 Example
 Example+02
 Example+BoxScene

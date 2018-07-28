@@ -1,5 +1,4 @@
 FEATURE main.cpp/Include
-#include "core.h"
 #include "main.h"
 #include <emscripten.h>
 #include <SDL2/SDL.h>

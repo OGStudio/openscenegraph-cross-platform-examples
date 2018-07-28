@@ -25,6 +25,11 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_MAIN_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_MAIN_H
 
+// Application+handleEvent-web Start
+#include <SDL2/SDL.h>
+
+// Application+handleEvent-web End
+
 // Application+Logging Start
 #include "log.h"
 
@@ -36,10 +41,6 @@ freely, subject to the following restrictions:
 #include <osgGA/TrackballManipulator>
 
 // Application+Rendering End
-// Application+handleEvent-web Start
-#include <SDL2/SDL.h>
-
-// Application+handleEvent-web End
 
 
 // Example+BoxScene Start

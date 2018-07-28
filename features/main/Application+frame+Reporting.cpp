@@ -1,3 +1,6 @@
+FEATURE main.h/Include
+#include "core.h"
+
 FEATURE main.h/Impl
 public:
     core::Reporter frameReporter;

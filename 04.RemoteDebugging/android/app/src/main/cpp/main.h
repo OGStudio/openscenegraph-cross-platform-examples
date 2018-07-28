@@ -25,6 +25,11 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_MAIN_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_MAIN_H
 
+// Application+frame+Reporting Start
+#include "core.h"
+
+// Application+frame+Reporting End
+
 // Application+CameraManipulator Start
 #include <osgGA/TrackballManipulator>
 
@@ -274,8 +279,8 @@ namespace main
                     auto colorComponents = format::splitString(value, ",");
                     if (colorComponents.size() != 3)
                     {
-                        OSGCPE_APPLICATION_LOG("WARNING Skipping camera color application due to wrong value format");
-                        OSGCPE_APPLICATION_LOG("WARNING compoents number: '%d'", colorComponents.size());
+                        OSGCPE_MAIN_APPLICATION_LOG("WARNING Skipping camera color application due to wrong value format");
+                        OSGCPE_MAIN_APPLICATION_LOG("WARNING compoents number: '%d'", colorComponents.size());
                         return;
                     }
                     auto color = this->camera->getClearColor();

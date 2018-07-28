@@ -1,4 +1,4 @@
-# core
+# main
 Application
 Application+camera
 Application+frame+Reporting
@@ -9,16 +9,17 @@ Application+HTTPClientProcessor
 Application+Logging
 Application+Rendering
 
-OSGCPE_EXAMPLE_LOG
+OSGCPE_MAIN_EXAMPLE_LOG
 Example
 Example+03
 Example+BoxScene
 Example+HTTPSGetPost
 Example+TextureImageScene
 
-Reporter
-
 main-desktop
+
+# core
+Reporter
 
 # log
 log-default

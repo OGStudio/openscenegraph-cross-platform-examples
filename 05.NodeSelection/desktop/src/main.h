@@ -25,6 +25,11 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_MAIN_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_MAIN_H
 
+// Application+frame+Reporting Start
+#include "core.h"
+
+// Application+frame+Reporting End
+
 // Application+Logging Start
 #include "log.h"
 

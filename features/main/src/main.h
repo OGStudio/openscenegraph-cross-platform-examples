@@ -25,6 +25,9 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_MAIN_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_MAIN_H
 
+// FEATURE Application+frame+Reporting/Include
+// FEATURE Application+handleEvent-web/Include
+
 // FEATURE Application+CameraManipulator/Include
 // FEATURE Application+Debugging/Include
 // FEATURE Application+DebugCamera/Include
@@ -32,7 +35,6 @@ freely, subject to the following restrictions:
 // FEATURE Application+Logging/Include
 // FEATURE Application+Mouse/Include
 // FEATURE Application+Rendering/Include
-// FEATURE Application+handleEvent-web/Include
 
 // FEATURE OSGCPE_MAIN_APPLICATION_LOG/Impl
 

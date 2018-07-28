@@ -25,6 +25,7 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_MAIN_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_MAIN_H
 
+
 // Application+Logging Start
 #include "log.h"
 
@@ -57,6 +58,17 @@ freely, subject to the following restrictions:
 
 // Example+TextureImageScene End
 
+// OSGCPE_MAIN_EXAMPLE_LOG Start
+#include "log.h"
+#include "format.h"
+#define OSGCPE_MAIN_EXAMPLE_LOG_PREFIX "osgcpe::main::Example(%p) %s"
+#define OSGCPE_MAIN_EXAMPLE_LOG(...) \
+    osgcpe::log::logprintf( \
+        OSGCPE_MAIN_EXAMPLE_LOG_PREFIX, \
+        this, \
+        osgcpe::format::printfString(__VA_ARGS__).c_str() \
+    )
+// OSGCPE_MAIN_EXAMPLE_LOG End
 
 
 namespace osgcpe

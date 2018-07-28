@@ -25,6 +25,11 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_MAIN_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_MAIN_H
 
+// Application+frame+Reporting Start
+#include "core.h"
+
+// Application+frame+Reporting End
+
 // Application+HTTPClient Start
 #include "network.h"
 
@@ -65,6 +70,17 @@ freely, subject to the following restrictions:
 
 // Example+HTTPSGetPost End
 
+// OSGCPE_MAIN_EXAMPLE_LOG Start
+#include "log.h"
+#include "format.h"
+#define OSGCPE_MAIN_EXAMPLE_LOG_PREFIX "osgcpe::main::Example(%p) %s"
+#define OSGCPE_MAIN_EXAMPLE_LOG(...) \
+    osgcpe::log::logprintf( \
+        OSGCPE_MAIN_EXAMPLE_LOG_PREFIX, \
+        this, \
+        osgcpe::format::printfString(__VA_ARGS__).c_str() \
+    )
+// OSGCPE_MAIN_EXAMPLE_LOG End
 
 
 namespace osgcpe
@@ -320,14 +336,14 @@ struct Example
                 auto color = this->app->camera()->getClearColor();
                 color.y() += 0.5;
                 this->app->camera()->setClearColor(color);
-                OSGCPE_EXAMPLE_LOG(response.c_str());
+                OSGCPE_MAIN_EXAMPLE_LOG(response.c_str());
             };
             // Set background color 50% redder on failure.
             auto failure = [&](std::string reason) {
                 auto color = this->app->camera()->getClearColor();
                 color.x() += 0.5;
                 this->app->camera()->setClearColor(color);
-                OSGCPE_EXAMPLE_LOG(reason.c_str());
+                OSGCPE_MAIN_EXAMPLE_LOG(reason.c_str());
             };
     
             // GET.

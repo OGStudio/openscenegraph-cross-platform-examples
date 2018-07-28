@@ -26,7 +26,7 @@ freely, subject to the following restrictions:
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_CORE_H
 
 // FEATURE Reporter/Include
-// FEATURE OSGCPE_REPORTER_LOG/Impl
+// FEATURE OSGCPE_CORE_REPORTER_LOG/Impl
 
 namespace osgcpe
 {
