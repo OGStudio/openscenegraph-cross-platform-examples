@@ -1,5 +1,6 @@
 FEATURE input.h/Include
 #include "Reporter.h"
+#include <algorithm>
 #include <osgGA/GUIEventHandler>
 
 FEATURE input.h/Impl

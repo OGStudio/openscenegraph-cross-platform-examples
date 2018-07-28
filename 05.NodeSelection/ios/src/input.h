@@ -27,6 +27,7 @@ freely, subject to the following restrictions:
 
 // Mouse Start
 #include "Reporter.h"
+#include <algorithm>
 #include <osgGA/GUIEventHandler>
 
 // Mouse End
