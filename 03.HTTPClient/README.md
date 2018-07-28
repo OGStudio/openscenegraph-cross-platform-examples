@@ -97,8 +97,13 @@ easy to use and integrate.
 
 To support requests to HTTPS, make sure to:
 
+* install OpenSSl development libraries
+    * `apt install libssl-dev` under Linux
+    * `brew install openssl` under macOS
 * [enable OpenSSL support in Mongoose][mongoose-openssl]
 * [link with OpenSSL libraries][link-openssl]
+
+**Note**: clone [Mongoose][mongoose] alongside this repository.
 
 <a name="http-request-processor-fetch"/>
 
