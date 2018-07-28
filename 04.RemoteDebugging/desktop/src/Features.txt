@@ -6,6 +6,7 @@ Application+CameraManipulator
 Application+Debugging
 Application+DebugCamera
 Application+HTTPClient
+Application+HTTPClientProcessor
 Application+Logging
 Application+Rendering
 Reporter+Stub
@@ -48,8 +49,9 @@ textureImageScene
 
 # network
 HTTPClient
-HTTPClient+Mongoose
-HTTPClientMongoose
+HTTPClientProcessor
+HTTPRequest
+HTTPRequestProcessorMongoose
 extlib-mongoose
 
 # debug

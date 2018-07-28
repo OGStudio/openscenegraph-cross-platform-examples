@@ -1,4 +1,4 @@
-PROJECT(EX03_REMOTE_DEBUGGING)
+PROJECT(EX04_REMOTE_DEBUGGING)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 # Path to external projects:
@@ -38,10 +38,10 @@ INCLUDE_DIRECTORIES(src)
 # Reference resource headers.
 INCLUDE_DIRECTORIES(../../data)
 # Create executable.
-ADD_EXECUTABLE(ex03-remote-debugging src/main.cpp)
+ADD_EXECUTABLE(ex04-remote-debugging src/main.cpp)
 # Link executable with OpenSceneGraph libraries.
 TARGET_LINK_LIBRARIES(
-    ex03-remote-debugging
+    ex04-remote-debugging
     osgViewer
     osgDB
     osgGA
