@@ -26,6 +26,8 @@ embedded into application.
 
 **Non-desktop platforms' note**: don't forget to reference OpenSceneGraph plugins with `USE_OSGPLUGIN` macro.
 
+**Note**: this example requires [01.EmbedResource example][ex01] knowledge.
+
 <a name="steps"/>
 
 # Steps

@@ -3,20 +3,16 @@
 
 * [Overview](#overview)
 * [Steps](#steps)
-    * [3.1. Introduce HTTP(s) support](#http)
-        * [3.1.1. Technologies](#http-tech)
-        * [3.1.2. Internal representation](#http-representation)
-        * [3.1.3. Usage](#http-usage)
-    * [3.2. Introduce debugging support](#debug)
-        * [3.2.1. Technologies](#debug-tech)
-        * [3.2.2. Internal representation](#debug-representation)
-        * [3.2.3. Usage](#debug-usage)
-    * [3.3. Debug camera](#debug-camera)
-        * [3.3.1. Install camera manipulator](#debug-camera-manipulator)
-        * [3.3.2. Create debug page for camera](#debug-camera-page)
-        * [3.3.3. Retrieve position and rotation](#debug-camera-posrot)
-        * [3.3.4. Alter background color](#debug-camera-bgcolor)
-        * [3.3.5. Add camera's debug page to Debugger](#debug-camera-debugger)
+    * [3.1. Introduce debugging support](#debug)
+        * [3.1.1. Technologies](#debug-tech)
+        * [3.1.2. Internal representation](#debug-representation)
+        * [3.1.3. Usage](#debug-usage)
+    * [3.2. Debug camera](#debug-camera)
+        * [3.2.1. Install camera manipulator](#debug-camera-manipulator)
+        * [3.2.2. Create debug page for camera](#debug-camera-page)
+        * [3.2.3. Retrieve position and rotation](#debug-camera-posrot)
+        * [3.2.4. Alter background color](#debug-camera-bgcolor)
+        * [3.2.5. Add camera's debug page to Debugger](#debug-camera-debugger)
 * [Result](#result)
 
 <a name="overview"/>
@@ -28,78 +24,27 @@ This example is part of [OpenSceneGraph cross-platform examples][osgcpe].
 In this example we implement [debug-broker][debug-broker]'s protocol to support remote
 debugging across platforms.
 
+**Note**: this example requires [03.HTTPClient example][ex03] knowledge.
+
 <a name="steps"/>
 
 # Steps
 
-<a name="http"/>
+<a name="debug"/>
 
-## 3.1. Introduce HTTP(s) support
+## 3.1. Introduce debugging support
 
 Remote debugging assumes application and debug UI are located at different
 machines. The most widespread way to communicate between remote machines
 nowadays is to use HTTP(s) over TCP/IP.
 
-<a name="http-tech"/>
-
-### 3.1.1. Technologies
-
-We use the following technologies to have HTTP(s) support across platforms:
-
-* [Fetch API][fetch-api]
-    * is only used under web
-    * is [Emscripten][emscripten]'s way to make us of [XHR][xhr]
-* [Mongoose][mongoose]
-    * is used under desktop and mobile
-    * is easy to integrate and supports TLS
-
-<a name="http-representation"/>
-
-### 3.1.2. Internal representation
-
-These technologies are mapped to the following classes:
-
-* [HTTPClientFetch][src-HTTPClientFetch]
-    * supports only single request per instance
-    * currently only handles responses up to 1024 characters
-* [HTTPClientMongoose][src-HTTPClientMongoose]
-    * supports only single request per instance
-    * requires client code to call its `process()` function regularly to process the request
-* [HTTPClient][src-HTTPClient]
-    * supports any number of requests per instance by creating and destroying as many `HTTPClientFetch`/`HTTPClientMongoose` instances as necessary
-    * requires client code to call its `process()` function regularly to process requests
-
-<a name="http-usage"/>
-
-### 3.1.3. Usage
-
-Client code:
-
-* creates `HTTPClient` instance ([complete version][src-HTTPClient-create]):
-    ```
-    this->httpClient = new network::HTTPClient;
-    ```
-* regularly calls `HTTPClient`'s `process()` function ([complete version][src-HTTPClient-process]):
-    ```
-    if (this->httpClient->needsProcessing())
-    {
-        this->httpClient->process();
-    }
-    ```
-* makes HTTP(s) requests when necessary (only [Debugger][src-Debugger] does requests in this examle)
-
-<a name="debug"/>
-
-## 3.2. Introduce debugging support
-
 We use [debug-broker][debug-broker]'s protocol to implement remote debugging.
-
 `debug-broker` is a mediator between debugged application (this example) and
 debug UI (source of user input).
 
 <a name="debug-tech"/>
 
-### 3.2.1. Technologies
+### 3.1.1. Technologies
 
 `debug-broker` has the following concepts:
 
@@ -119,9 +64,12 @@ debug UI (source of user input).
 [NLohmann's JSON][nlohmann-json] to parse incoming JSON. Outgoing JSON
 is currently composed manually.
 
+**Note**: clone [NLohmann's JSON][nlohmann-json] alongside OpenSceneGraph
+cross-platfrom examples' repository.
+
 <a name="debug-representation"/>
 
-### 3.2.2. Internal representation
+### 3.1.2. Internal representation
 
 `debug-broker` concepts are mapped to the following classes:
 
@@ -138,7 +86,7 @@ is currently composed manually.
 
 <a name="debug-usage"/>
 
-### 3.2.3. Usage
+### 3.1.3. Usage
 
 Client code:
 
@@ -157,7 +105,7 @@ Client code:
 
 <a name="debug-camera"/>
 
-## 3.3. Debug camera
+## 3.2. Debug camera
 
 Now that we covered prerequisites, it's time to debug.
 
@@ -168,7 +116,7 @@ Let's debug camera:
 
 <a name="debug-camera-manipulator"/>
 
-### 3.3.1. Install camera manipulator
+### 3.2.1. Install camera manipulator
 
 We can only get camera's position from camera manipulator.
 Install one ([complete version][src-camera-manipulator]):
@@ -179,7 +127,7 @@ this->viewer->setCameraManipulator(this->cameraManipulator);
 
 <a name="debug-camera-page"/>
 
-### 3.3.2. Create debug page for camera
+### 3.2.2. Create debug page for camera
 
 Create debug page to collect camera related items
 ([complete version][src-camera-page]):
@@ -193,7 +141,7 @@ this->debugPage.title = "camera";
 
 <a name="debug-camera-posrot"/>
 
-### 3.3.3. Retrieve position and rotation
+### 3.2.3. Retrieve position and rotation
 
 To retrieve camera's position and rotation, we need to register
 `Postion/Rotation` item with getter only
@@ -217,7 +165,7 @@ this->debugPage.addItem(
 
 <a name="debug-camera-bgcolor"/>
 
-### 3.3.4. Alter background color
+### 3.2.4. Alter background color
 
 To alter background camera's background color, we need to register
 `BGColor` item with both getter and setter
@@ -241,7 +189,7 @@ this->debugPage.addItem(
 
 <a name="debug-camera-debugger"/>
 
-### 3.3.5. Add camera's debug page to Debugger
+### 3.2.5. Add camera's debug page to Debugger
 
 Finally, add camera's debug page to `Debugger`
 ([complete version][src-camera-debugger]):
@@ -255,11 +203,14 @@ this->dbg->addPage(this->app->debugPage);
 
 ![Screenshot](shot.png)
 
+TODO Refresh web build
+
 Here's a [web build of the example][web-build].
 
 Now open [debug UI][debug-ui] and change background color to `255,0,0`.
 
 [osgcpe]: https://github.com/OGStudio/openscenegraph-cross-platform-examples
+[ex03]: ../03.HTTPClient
 [debug-broker]: https://github.com/OGStudio/debug-broker
 [fetch-api]: https://kripken.github.io/emscripten-site/docs/api_reference/fetch.html
 [emscripten]: http://emscripten.org
@@ -286,5 +237,5 @@ Now open [debug UI][debug-ui] and change background color to `255,0,0`.
 [src-camera-posrot]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Application.h#L241
 [src-camera-bgcolor]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Application.h#L211
 [src-camera-debugger]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L177
-[web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/03/ex03-remote-debugging.html
+[web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/04/ex04-remote-debugging.html
 [debug-ui]: https://ogstudio.github.io/debug-ui/?broker=https%3A%2F%2Fosgcpe-debug-broker.herokuapp.com&debugger=Ex03&page=camera

@@ -24,9 +24,7 @@ This example is part of [OpenSceneGraph cross-platform examples][osgcpe].
 In this example we implement HTTP client (with TLS support) working across
 platforms to perform GET/POST requests.
 
-**TODO**: rephrase article dependencies just like in OSGCPG.
-
-**Note**: this example builds on the [previous one][ex-prev], make sure to study it.
+**Note**: this example requires [02.TextureImage example][ex02] knowledge.
 
 <a name="architecture"/>
 
@@ -97,13 +95,14 @@ easy to use and integrate.
 
 To support requests to HTTPS, make sure to:
 
-* install OpenSSl development libraries
+* install OpenSSL development libraries
     * `apt install libssl-dev` under Linux
     * `brew install openssl` under macOS
 * [enable OpenSSL support in Mongoose][mongoose-openssl]
 * [link with OpenSSL libraries][link-openssl]
 
-**Note**: clone [Mongoose][mongoose] alongside this repository.
+**Note**: clone [Mongoose][mongoose] alongside OpenSceneGraph cross-platfrom
+examples' repository.
 
 <a name="http-request-processor-fetch"/>
 
@@ -257,7 +256,7 @@ this->app->httpClient->post(
 Here's a [web build of the example][web-build].
 
 [osgcpe]: https://github.com/OGStudio/openscenegraph-cross-platform-examples
-[ex-prev]: ../02.TextureImage
+[ex02]: ../02.TextureImage
 
 [mongoose]: https://github.com/cesanta/mongoose
 [openssl]: https://www.openssl.org
