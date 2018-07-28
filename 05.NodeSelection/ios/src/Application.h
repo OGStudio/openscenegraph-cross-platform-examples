@@ -69,14 +69,14 @@ class Application
         }
         ~Application()
         {
-            // Application+Rendering Start
-            this->tearRenderingDown();
-            
-            // Application+Rendering End
             // Application+Mouse Start
             this->tearMouseDown();
             
             // Application+Mouse End
+            // Application+Rendering Start
+            this->tearRenderingDown();
+            
+            // Application+Rendering End
             // Application+Logging Start
             this->tearLoggingDown();
             
@@ -163,7 +163,7 @@ class Application
         // Application+Rendering End
         // Application+Mouse Start
         public:
-            input::Mouse *mouse;
+            osg::ref_ptr<input::Mouse> mouse;
         private:
             void setupMouse()
             {
@@ -174,8 +174,10 @@ class Application
             }
             void tearMouseDown()
             {
+                OSGCPE_APPLICATION_LOG("tearMouseDown.01");
                 // This also removes Mouse instance.
                 this->viewer->removeEventHandler(this->mouse);
+                OSGCPE_APPLICATION_LOG("tearMouseDown.02");
             }
         // Application+Mouse End
 };

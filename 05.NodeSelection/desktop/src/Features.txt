@@ -1,3 +1,4 @@
+Application+OSGCPE_APPLICATION_LOG
 Application+camera
 Application+frame+Reporting
 Application+run

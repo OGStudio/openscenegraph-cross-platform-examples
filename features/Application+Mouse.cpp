@@ -9,7 +9,7 @@ this->tearMouseDown();
 
 FEATURE Application.h/Impl
 public:
-    input::Mouse *mouse;
+    osg::ref_ptr<input::Mouse> mouse;
 private:
     void setupMouse()
     {
@@ -20,6 +20,8 @@ private:
     }
     void tearMouseDown()
     {
+        OSGCPE_APPLICATION_LOG("tearMouseDown.01");
         // This also removes Mouse instance.
         this->viewer->removeEventHandler(this->mouse);
+        OSGCPE_APPLICATION_LOG("tearMouseDown.02");
     }

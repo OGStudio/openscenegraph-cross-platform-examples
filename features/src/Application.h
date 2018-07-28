@@ -59,8 +59,8 @@ class Application
             // FEATURE Application+Debugging/TearDown
             // FEATURE Application+HTTPClientProcessor/TearDown
             // FEATURE Application+HTTPClient/TearDown
-            // FEATURE Application+Rendering/TearDown
             // FEATURE Application+Mouse/TearDown
+            // FEATURE Application+Rendering/TearDown
             // FEATURE Application+Logging/TearDown
         }
 

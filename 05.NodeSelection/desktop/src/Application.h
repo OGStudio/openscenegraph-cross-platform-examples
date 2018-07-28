@@ -45,6 +45,18 @@ freely, subject to the following restrictions:
 
 // Application+frame+Reporting End
 
+// Application+OSGCPE_APPLICATION_LOG Start
+#include "log.h"
+#include "format.h"
+#define OSGCPE_APPLICATION_LOG_PREFIX "osgcpe::Application(%p) %s"
+#define OSGCPE_APPLICATION_LOG(...) \
+    osgcpe::log::logprintf( \
+        OSGCPE_APPLICATION_LOG_PREFIX, \
+        this, \
+        osgcpe::format::printfString(__VA_ARGS__).c_str() \
+    )
+
+// Application+OSGCPE_APPLICATION_LOG End
 
 namespace osgcpe
 {
@@ -69,14 +81,14 @@ class Application
         }
         ~Application()
         {
-            // Application+Rendering Start
-            this->tearRenderingDown();
-            
-            // Application+Rendering End
             // Application+Mouse Start
             this->tearMouseDown();
             
             // Application+Mouse End
+            // Application+Rendering Start
+            this->tearRenderingDown();
+            
+            // Application+Rendering End
             // Application+Logging Start
             this->tearLoggingDown();
             
@@ -171,7 +183,7 @@ class Application
         // Application+Rendering End
         // Application+Mouse Start
         public:
-            input::Mouse *mouse;
+            osg::ref_ptr<input::Mouse> mouse;
         private:
             void setupMouse()
             {
@@ -182,8 +194,10 @@ class Application
             }
             void tearMouseDown()
             {
+                OSGCPE_APPLICATION_LOG("tearMouseDown.01");
                 // This also removes Mouse instance.
                 this->viewer->removeEventHandler(this->mouse);
+                OSGCPE_APPLICATION_LOG("tearMouseDown.02");
             }
         // Application+Mouse End
 };
