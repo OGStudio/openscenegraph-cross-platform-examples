@@ -1,4 +1,6 @@
-Application+OSGCPE_APPLICATION_LOG
+# core
+OSGCPE_APPLICATION_LOG
+Application
 Application+camera
 Application+frame+Reporting
 Application+run
@@ -6,14 +8,16 @@ Application+setupWindow-desktop
 Application+Logging
 Application+Rendering
 Application+Mouse
-Reporter+Stub
 
-Example+04
-Example+OSGCPE_EXAMPLE_LOG
+OSGCPE_EXAMPLE_LOG
+Example
+Example+05
 Example+BoxScene
 Example+TextureImageScene
 Example+BoxSelection
 Example+BoxRotation
+
+Reporter
 
 main-desktop
 

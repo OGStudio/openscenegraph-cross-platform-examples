@@ -1,5 +1,5 @@
 FEATURE input.h/Include
-#include "Reporter.h"
+#include "core.h"
 #include <algorithm>
 #include <osgGA/GUIEventHandler>
 
@@ -12,11 +12,11 @@ class Mouse : public osgGA::GUIEventHandler
 
         // Current mouse position.
         osg::Vec2f position;
-        Reporter positionChanged;
+        core::Reporter positionChanged;
 
         // Currently pressed mouse buttons.
         std::vector<MOUSE_BUTTON> pressedButtons;
-        Reporter pressedButtonsChanged;
+        core::Reporter pressedButtonsChanged;
 
         bool handle(
             const osgGA::GUIEventAdapter &eventAdapter,

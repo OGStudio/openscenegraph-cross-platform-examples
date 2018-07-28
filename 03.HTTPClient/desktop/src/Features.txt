@@ -1,3 +1,5 @@
+# core
+Application
 Application+camera
 Application+frame+Reporting
 Application+run
@@ -6,13 +8,15 @@ Application+HTTPClient
 Application+HTTPClientProcessor
 Application+Logging
 Application+Rendering
-Reporter+Stub
 
+OSGCPE_EXAMPLE_LOG
+Example
 Example+03
-Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
 Example+HTTPSGetPost
 Example+TextureImageScene
+
+Reporter
 
 main-desktop
 

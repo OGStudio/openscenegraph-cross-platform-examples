@@ -22,7 +22,7 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "Example.h"
+#include "core.h"
 // main-web Start
 #include <emscripten.h>
 #include <SDL2/SDL.h>
@@ -31,7 +31,7 @@ freely, subject to the following restrictions:
 
 // main-web Start
 // We use Example global variable in loop() function.
-osgcpe::Example *example = 0;
+core::Example *example = 0;
 
 // Stand alone function that is called by Emscripten to run the app.
 void loop()
@@ -48,6 +48,8 @@ void loop()
 }
 
 // main-web End
+
+using namespace osgcpe;
 
 int main(int argc, char *argv[])
 {
@@ -84,7 +86,7 @@ int main(int argc, char *argv[])
     }
     SDL_GL_CreateContext(window);
     // Create example.
-    example = new osgcpe::Example;
+    example = new core::Example;
     example->app->setupWindow(width, height);
     
     // main-web End

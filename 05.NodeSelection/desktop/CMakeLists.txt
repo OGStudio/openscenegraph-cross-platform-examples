@@ -1,4 +1,4 @@
-PROJECT(EX04_NODE_SELECTION)
+PROJECT(EX05_NODE_SELECTION)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 # OpenSceneGraph directories.
@@ -15,10 +15,10 @@ INCLUDE_DIRECTORIES(src)
 # Reference resource headers.
 INCLUDE_DIRECTORIES(../../data)
 # Create executable.
-ADD_EXECUTABLE(ex04-node-selection src/main.cpp)
+ADD_EXECUTABLE(ex05-node-selection src/main.cpp)
 # Link executable with libraries.
 TARGET_LINK_LIBRARIES(
-    ex04-node-selection
+    ex05-node-selection
     osgViewer
     osgDB
     osgGA

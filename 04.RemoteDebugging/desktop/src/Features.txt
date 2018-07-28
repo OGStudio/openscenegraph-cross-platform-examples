@@ -1,4 +1,6 @@
-Application+OSGCPE_APPLICATION_LOG
+# core
+OSGCPE_APPLICATION_LOG
+Application
 Application+frame+Reporting
 Application+run
 Application+setupWindow-desktop
@@ -9,12 +11,14 @@ Application+HTTPClient
 Application+HTTPClientProcessor
 Application+Logging
 Application+Rendering
-Reporter+Stub
 
+OSGCPE_EXAMPLE_LOG
+Example
 Example+04
-Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
 Example+TextureImageScene
+
+Reporter
 
 main-desktop
 

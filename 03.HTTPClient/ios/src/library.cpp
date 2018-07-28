@@ -22,7 +22,7 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "Example.h"
+#include "core.h"
 // library-ios Start
 #include "library.h"
 
@@ -30,7 +30,7 @@ freely, subject to the following restrictions:
 
 
 // Example instance.
-osgcpe::Example *example = 0;
+osgcpe::core::Example *example = 0;
 
 // library-ios Start
 namespace library

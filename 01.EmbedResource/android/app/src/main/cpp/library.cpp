@@ -22,7 +22,7 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "Example.h"
+#include "core.h"
 // library-android Start
 #include <jni.h>
 
@@ -35,7 +35,7 @@ freely, subject to the following restrictions:
 // library+Ex01+OSGCPE_JNI-android End
 
 // Example instance.
-osgcpe::Example *example = 0;
+osgcpe::core::Example *example = 0;
 
 // library-android Start
 extern "C" {
