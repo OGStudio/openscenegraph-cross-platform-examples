@@ -34,6 +34,8 @@ namespace format
 
 // FEATURE printfString/Impl
 // FEATURE splitString/Impl
+// FEATURE stringStartsWith/Impl
+// FEATURE trimmedString/Impl
 
 } // namespace format
 } // namespace osgcpe
