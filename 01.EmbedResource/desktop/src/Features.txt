@@ -22,7 +22,6 @@ Logger
 
 # format
 printfString
-splitString
 
 # resource
 OSGCPE_RESOURCE_LOG
