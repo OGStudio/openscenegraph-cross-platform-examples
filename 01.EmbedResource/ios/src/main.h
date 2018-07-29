@@ -42,6 +42,7 @@ freely, subject to the following restrictions:
 // Example+BoxScene Start
 #include "box.osgt.h"
 #include "resource.h"
+#include "scene.h"
 
 #include <osg/MatrixTransform>
 

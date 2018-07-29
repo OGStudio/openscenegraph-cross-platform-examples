@@ -38,7 +38,6 @@ freely, subject to the following restrictions:
 
 // FEATURE OSGCPE_MAIN_APPLICATION_LOG/Impl
 
-// FEATURE Example/Include
 // FEATURE Example+BoxScene/Include
 // FEATURE Example+TextureImageScene/Include
 // FEATURE Example+HTTPSGetPost/Include

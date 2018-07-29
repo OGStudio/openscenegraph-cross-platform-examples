@@ -1,6 +1,7 @@
 FEATURE main.h/Include
 #include "box.osgt.h"
 #include "resource.h"
+#include "scene.h"
 
 #include <osg/MatrixTransform>
 

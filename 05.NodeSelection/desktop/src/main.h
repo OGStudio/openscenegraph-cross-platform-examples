@@ -58,13 +58,10 @@ freely, subject to the following restrictions:
     )
 // OSGCPE_MAIN_APPLICATION_LOG End
 
-// Example Start
-#include "scene.h"
-
-// Example End
 // Example+BoxScene Start
 #include "box.osgt.h"
 #include "resource.h"
+#include "scene.h"
 
 #include <osg/MatrixTransform>
 

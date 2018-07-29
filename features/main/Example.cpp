@@ -1,6 +1,3 @@
-FEATURE main.h/Include
-#include "scene.h"
-
 FEATURE main.h/Setup
 struct Example
 {
