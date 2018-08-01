@@ -1,5 +1,6 @@
 FEATURE core.h/Include
 #include <functional>
+#include <string>
 #include <vector>
 
 FEATURE core.h/Impl
