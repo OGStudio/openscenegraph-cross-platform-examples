@@ -122,7 +122,8 @@ cd 01.EmbedResource/ios
 mkdir -p build/Simulator
 cd build/Simulator
 cmake -G Xcode -DIPHONE_ENABLE_BITCODE=YES ../..
-cmake --build . --config Release -- -IDEBuildOperationMaxNumberOfConcurrentCompileTasks=8
+/path/to/openscenegraph-cross-platform-examples/build-ios-osg
+/path/to/openscenegraph-cross-platform-examples/build-ios-ex 01
 
 cd ../..
 
@@ -130,16 +131,13 @@ cd ../..
 mkdir -p build/Device
 cd build/Device
 cmake -G Xcode -DIPHONE_ENABLE_BITCODE=YES -DBUILD_SIMULATOR=NO ../..
-cmake --build . --config Release -- -IDEBuildOperationMaxNumberOfConcurrentCompileTasks=8
+/path/to/openscenegraph-cross-platform-examples/build-ios-osg
+/path/to/openscenegraph-cross-platform-examples/build-ios-ex 01
 ```
 
 **Build issues**:
 
-* if you encounter `Undefined symbols for architecture <Arch>` errors with `library::`
-    * remove OpenSceneGraph build and retry
-* if some libraries or plugins cannot be built either due to missing headers (like curl), or wrong `-std=c++11` directive
-    * first, use `build-ios-osg` script to build only necessary OpenSceneGraph targets for iOS
-    * second, use `build-ios-ex <ExampleId>` script to build remaning `ex<ExampleId>` library (`<ExampleId>` values are `01`, `02`, etc...)
+* if you encounter `Undefined symbols for architecture <Arch>` errors with `library::`, remove OpenSceneGraph build and retry
 
 Second, open `01.EmbedResource/ios/xcodeproject/ex01.xcodeproj` Xcode project and run it.
 
@@ -157,7 +155,7 @@ To build `01.EmbedResource` example for web, run the following commands:
 cd 01.EmbedResource/web
 mkdir build
 cd build
-cmake -DCMAKE_TOOLCHAIN_FILE=/path/to/emsdk-portable/emscripten/<version>/cmake/Modules/Platform/Emscripten.cmake ..
+cmake -DCMAKE_TOOLCHAIN_FILE=/path/to/emsdk/emscripten/<version>/cmake/Modules/Platform/Emscripten.cmake ..
 make -j8 ex01-embed-resource
 ```
 
