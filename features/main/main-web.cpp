@@ -41,7 +41,7 @@ int width = 800;
 int height = 600;
 SDL_Window* window =
     SDL_CreateWindow(
-        osgcpe::EXAMPLE_TITLE,
+        main::EXAMPLE_TITLE,
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
         width,

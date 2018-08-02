@@ -29,6 +29,8 @@ freely, subject to the following restrictions:
 
 // main-web End
 
+using namespace osgcpe;
+
 // main-web Start
 // We use Example global variable in loop() function.
 main::Example *example = 0;
@@ -48,8 +50,6 @@ void loop()
 }
 
 // main-web End
-
-using namespace osgcpe;
 
 int main(int argc, char *argv[])
 {
@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
     int height = 600;
     SDL_Window* window =
         SDL_CreateWindow(
-            osgcpe::EXAMPLE_TITLE,
+            main::EXAMPLE_TITLE,
             SDL_WINDOWPOS_CENTERED,
             SDL_WINDOWPOS_CENTERED,
             width,

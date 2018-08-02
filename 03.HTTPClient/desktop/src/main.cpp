@@ -27,8 +27,8 @@ freely, subject to the following restrictions:
 
 // main-desktop End
 
-
 using namespace osgcpe;
+
 
 int main(int argc, char *argv[])
 {
