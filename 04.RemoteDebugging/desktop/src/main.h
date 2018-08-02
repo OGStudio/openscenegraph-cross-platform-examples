@@ -112,60 +112,60 @@ class Application
         {
 
 // Application End
-    // Application+Logging Start
-    this->setupLogging(name);
-    
-    // Application+Logging End
-    // Application+Rendering Start
-    this->setupRendering();
-    
-    // Application+Rendering End
-    // Application+CameraManipulator Start
-    this->setupCameraManipulator();
-    
-    // Application+CameraManipulator End
-    // Application+HTTPClient Start
-    this->setupHTTPClient();
-    
-    // Application+HTTPClient End
-    // Application+HTTPClientProcessor Start
-    this->setupHTTPClientProcessor();
-    
-    // Application+HTTPClientProcessor End
-    // Application+Debugging Start
-    this->setupDebugging(name);
-    
-    // Application+Debugging End
-    // Application+DebugCamera Start
-    this->setupDebugCamera();
-    
-    // Application+DebugCamera End
+            // Application+Logging Start
+            this->setupLogging(name);
+            
+            // Application+Logging End
+            // Application+Rendering Start
+            this->setupRendering();
+            
+            // Application+Rendering End
+            // Application+CameraManipulator Start
+            this->setupCameraManipulator();
+            
+            // Application+CameraManipulator End
+            // Application+HTTPClient Start
+            this->setupHTTPClient();
+            
+            // Application+HTTPClient End
+            // Application+HTTPClientProcessor Start
+            this->setupHTTPClientProcessor();
+            
+            // Application+HTTPClientProcessor End
+            // Application+Debugging Start
+            this->setupDebugging(name);
+            
+            // Application+Debugging End
+            // Application+DebugCamera Start
+            this->setupDebugCamera();
+            
+            // Application+DebugCamera End
 // Application Start
         }
         ~Application()
         {
 
 // Application End
-    // Application+Debugging Start
-    this->tearDebuggingDown();
-    
-    // Application+Debugging End
-    // Application+HTTPClientProcessor Start
-    this->tearHTTPClientProcessorDown();
-    
-    // Application+HTTPClientProcessor End
-    // Application+HTTPClient Start
-    this->tearHTTPClientDown();
-    
-    // Application+HTTPClient End
-    // Application+Rendering Start
-    this->tearRenderingDown();
-    
-    // Application+Rendering End
-    // Application+Logging Start
-    this->tearLoggingDown();
-    
-    // Application+Logging End
+            // Application+Debugging Start
+            this->tearDebuggingDown();
+            
+            // Application+Debugging End
+            // Application+HTTPClientProcessor Start
+            this->tearHTTPClientProcessorDown();
+            
+            // Application+HTTPClientProcessor End
+            // Application+HTTPClient Start
+            this->tearHTTPClientDown();
+            
+            // Application+HTTPClient End
+            // Application+Rendering Start
+            this->tearRenderingDown();
+            
+            // Application+Rendering End
+            // Application+Logging Start
+            this->tearLoggingDown();
+            
+            // Application+Logging End
 // Application Start
         }
 
@@ -403,14 +403,14 @@ struct Example
         this->app = new Application(EXAMPLE_TITLE);
 
 // Example End
-    // Example+BoxScene Start
-    this->setupBoxScene();
-    
-    // Example+BoxScene End
-    // Example+TextureImageScene Start
-    this->setupSceneTexturing();
-    
-    // Example+TextureImageScene End
+        // Example+BoxScene Start
+        this->setupBoxScene();
+        
+        // Example+BoxScene End
+        // Example+TextureImageScene Start
+        this->setupSceneTexturing();
+        
+        // Example+TextureImageScene End
 // Example Start
     }
     ~Example()

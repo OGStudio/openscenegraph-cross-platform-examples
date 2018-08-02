@@ -91,38 +91,38 @@ namespace osgcpe
 namespace main
 {
 
-    // Application+Logging Start
-    this->setupLogging(name);
-    
-    // Application+Logging End
-    // Application+Rendering Start
-    this->setupRendering();
-    
-    // Application+Rendering End
-    // Application+HTTPClient Start
-    this->setupHTTPClient();
-    
-    // Application+HTTPClient End
-    // Application+HTTPClientProcessor Start
-    this->setupHTTPClientProcessor();
-    
-    // Application+HTTPClientProcessor End
-    // Application+HTTPClientProcessor Start
-    this->tearHTTPClientProcessorDown();
-    
-    // Application+HTTPClientProcessor End
-    // Application+HTTPClient Start
-    this->tearHTTPClientDown();
-    
-    // Application+HTTPClient End
-    // Application+Rendering Start
-    this->tearRenderingDown();
-    
-    // Application+Rendering End
-    // Application+Logging Start
-    this->tearLoggingDown();
-    
-    // Application+Logging End
+            // Application+Logging Start
+            this->setupLogging(name);
+            
+            // Application+Logging End
+            // Application+Rendering Start
+            this->setupRendering();
+            
+            // Application+Rendering End
+            // Application+HTTPClient Start
+            this->setupHTTPClient();
+            
+            // Application+HTTPClient End
+            // Application+HTTPClientProcessor Start
+            this->setupHTTPClientProcessor();
+            
+            // Application+HTTPClientProcessor End
+            // Application+HTTPClientProcessor Start
+            this->tearHTTPClientProcessorDown();
+            
+            // Application+HTTPClientProcessor End
+            // Application+HTTPClient Start
+            this->tearHTTPClientDown();
+            
+            // Application+HTTPClient End
+            // Application+Rendering Start
+            this->tearRenderingDown();
+            
+            // Application+Rendering End
+            // Application+Logging Start
+            this->tearLoggingDown();
+            
+            // Application+Logging End
     // Application+camera Start
     public:
         osg::Camera *camera()
@@ -317,22 +317,22 @@ namespace main
 const auto EXAMPLE_TITLE = "Ex03";
 // Example+03 End
 
-    // Example+BoxScene Start
-    this->setupBoxScene();
-    
-    // Example+BoxScene End
-    // Example+VBO Start
-    this->setupSceneVBO();
-    
-    // Example+VBO End
-    // Example+TextureImageScene Start
-    this->setupSceneTexturing();
-    
-    // Example+TextureImageScene End
-    // Example+HTTPSGetPost Start
-    this->setupHTTPSGetPost();
-    
-    // Example+HTTPSGetPost End
+        // Example+BoxScene Start
+        this->setupBoxScene();
+        
+        // Example+BoxScene End
+        // Example+VBO Start
+        this->setupSceneVBO();
+        
+        // Example+VBO End
+        // Example+TextureImageScene Start
+        this->setupSceneTexturing();
+        
+        // Example+TextureImageScene End
+        // Example+HTTPSGetPost Start
+        this->setupHTTPSGetPost();
+        
+        // Example+HTTPSGetPost End
     // Example+BoxScene Start
     private:
         osg::ref_ptr<osg::MatrixTransform> scene;

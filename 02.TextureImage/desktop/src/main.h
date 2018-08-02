@@ -81,28 +81,28 @@ class Application
         {
 
 // Application End
-    // Application+Logging Start
-    this->setupLogging(name);
-    
-    // Application+Logging End
-    // Application+Rendering Start
-    this->setupRendering();
-    
-    // Application+Rendering End
+            // Application+Logging Start
+            this->setupLogging(name);
+            
+            // Application+Logging End
+            // Application+Rendering Start
+            this->setupRendering();
+            
+            // Application+Rendering End
 // Application Start
         }
         ~Application()
         {
 
 // Application End
-    // Application+Rendering Start
-    this->tearRenderingDown();
-    
-    // Application+Rendering End
-    // Application+Logging Start
-    this->tearLoggingDown();
-    
-    // Application+Logging End
+            // Application+Rendering Start
+            this->tearRenderingDown();
+            
+            // Application+Rendering End
+            // Application+Logging Start
+            this->tearLoggingDown();
+            
+            // Application+Logging End
 // Application Start
         }
 
@@ -202,14 +202,14 @@ struct Example
         this->app = new Application(EXAMPLE_TITLE);
 
 // Example End
-    // Example+BoxScene Start
-    this->setupBoxScene();
-    
-    // Example+BoxScene End
-    // Example+TextureImageScene Start
-    this->setupSceneTexturing();
-    
-    // Example+TextureImageScene End
+        // Example+BoxScene Start
+        this->setupBoxScene();
+        
+        // Example+BoxScene End
+        // Example+TextureImageScene Start
+        this->setupSceneTexturing();
+        
+        // Example+TextureImageScene End
 // Example Start
     }
     ~Example()

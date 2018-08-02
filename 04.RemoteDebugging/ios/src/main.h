@@ -95,46 +95,46 @@ namespace osgcpe
 namespace main
 {
 
-    // Application+Logging Start
-    this->setupLogging(name);
-    
-    // Application+Logging End
-    // Application+Rendering Start
-    this->setupRendering();
-    
-    // Application+Rendering End
-    // Application+CameraManipulator Start
-    this->setupCameraManipulator();
-    
-    // Application+CameraManipulator End
-    // Application+HTTPClient Start
-    this->setupHTTPClient();
-    
-    // Application+HTTPClient End
-    // Application+Debugging Start
-    this->setupDebugging(name);
-    
-    // Application+Debugging End
-    // Application+DebugCamera Start
-    this->setupDebugCamera();
-    
-    // Application+DebugCamera End
-    // Application+Debugging Start
-    this->tearDebuggingDown();
-    
-    // Application+Debugging End
-    // Application+HTTPClient Start
-    this->tearHTTPClientDown();
-    
-    // Application+HTTPClient End
-    // Application+Rendering Start
-    this->tearRenderingDown();
-    
-    // Application+Rendering End
-    // Application+Logging Start
-    this->tearLoggingDown();
-    
-    // Application+Logging End
+            // Application+Logging Start
+            this->setupLogging(name);
+            
+            // Application+Logging End
+            // Application+Rendering Start
+            this->setupRendering();
+            
+            // Application+Rendering End
+            // Application+CameraManipulator Start
+            this->setupCameraManipulator();
+            
+            // Application+CameraManipulator End
+            // Application+HTTPClient Start
+            this->setupHTTPClient();
+            
+            // Application+HTTPClient End
+            // Application+Debugging Start
+            this->setupDebugging(name);
+            
+            // Application+Debugging End
+            // Application+DebugCamera Start
+            this->setupDebugCamera();
+            
+            // Application+DebugCamera End
+            // Application+Debugging Start
+            this->tearDebuggingDown();
+            
+            // Application+Debugging End
+            // Application+HTTPClient Start
+            this->tearHTTPClientDown();
+            
+            // Application+HTTPClient End
+            // Application+Rendering Start
+            this->tearRenderingDown();
+            
+            // Application+Rendering End
+            // Application+Logging Start
+            this->tearLoggingDown();
+            
+            // Application+Logging End
     // Application+frame+Reporting Start
     public:
         core::Reporter frameReporter;
@@ -324,18 +324,18 @@ namespace main
 const auto EXAMPLE_TITLE = "Ex03";
 // Example+03 End
 
-    // Example+BoxScene Start
-    this->setupBoxScene();
-    
-    // Example+BoxScene End
-    // Example+VBO Start
-    this->setupSceneVBO();
-    
-    // Example+VBO End
-    // Example+TextureImageScene Start
-    this->setupSceneTexturing();
-    
-    // Example+TextureImageScene End
+        // Example+BoxScene Start
+        this->setupBoxScene();
+        
+        // Example+BoxScene End
+        // Example+VBO Start
+        this->setupSceneVBO();
+        
+        // Example+VBO End
+        // Example+TextureImageScene Start
+        this->setupSceneTexturing();
+        
+        // Example+TextureImageScene End
     // Example+BoxScene Start
     private:
         osg::ref_ptr<osg::MatrixTransform> scene;

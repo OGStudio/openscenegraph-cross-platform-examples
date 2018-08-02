@@ -55,21 +55,21 @@ namespace main
 {
 
 // FEATURE Application/Setup
-    // FEATURE Application+Logging/Setup
-    // FEATURE Application+Rendering/Setup
-    // FEATURE Application+Mouse/Setup
-    // FEATURE Application+CameraManipulator/Setup
-    // FEATURE Application+HTTPClient/Setup
-    // FEATURE Application+HTTPClientProcessor/Setup
-    // FEATURE Application+Debugging/Setup
-    // FEATURE Application+DebugCamera/Setup
+            // FEATURE Application+Logging/Setup
+            // FEATURE Application+Rendering/Setup
+            // FEATURE Application+Mouse/Setup
+            // FEATURE Application+CameraManipulator/Setup
+            // FEATURE Application+HTTPClient/Setup
+            // FEATURE Application+HTTPClientProcessor/Setup
+            // FEATURE Application+Debugging/Setup
+            // FEATURE Application+DebugCamera/Setup
 // FEATURE Application/TearDown
-    // FEATURE Application+Debugging/TearDown
-    // FEATURE Application+HTTPClientProcessor/TearDown
-    // FEATURE Application+HTTPClient/TearDown
-    // FEATURE Application+Mouse/TearDown
-    // FEATURE Application+Rendering/TearDown
-    // FEATURE Application+Logging/TearDown
+            // FEATURE Application+Debugging/TearDown
+            // FEATURE Application+HTTPClientProcessor/TearDown
+            // FEATURE Application+HTTPClient/TearDown
+            // FEATURE Application+Mouse/TearDown
+            // FEATURE Application+Rendering/TearDown
+            // FEATURE Application+Logging/TearDown
 // FEATURE Application/Impl
     // FEATURE Application+camera/Impl
     // FEATURE Application+frame/Impl
@@ -98,16 +98,16 @@ namespace main
 // FEATURE Example+05/Title
 
 // FEATURE Example/Setup
-    // FEATURE Example+BoxScene/Setup
-    // FEATURE Example+VBO/Setup
-    // FEATURE Example+SingleColorScene/Setup
-    // FEATURE Example+TextureImageScene/Setup
-    // FEATURE Example+BoxSelection/Setup
-    // FEATURE Example+BoxRotation/Setup
-    // FEATURE Example+HTTPSGetPost/Setup
+        // FEATURE Example+BoxScene/Setup
+        // FEATURE Example+VBO/Setup
+        // FEATURE Example+SingleColorScene/Setup
+        // FEATURE Example+TextureImageScene/Setup
+        // FEATURE Example+BoxSelection/Setup
+        // FEATURE Example+BoxRotation/Setup
+        // FEATURE Example+HTTPSGetPost/Setup
 // FEATURE Example/TearDown
-    // FEATURE Example+BoxRotation/TearDown
-    // FEATURE Example+BoxSelection/TearDown
+        // FEATURE Example+BoxRotation/TearDown
+        // FEATURE Example+BoxSelection/TearDown
 // FEATURE Example/Impl
     // FEATURE Example+BoxRotation/Impl
     // FEATURE Example+BoxScene/Impl

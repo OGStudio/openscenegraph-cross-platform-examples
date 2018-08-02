@@ -67,14 +67,14 @@ Both variables start with `box_osgt`, which is derived from `box.osgt` filename.
 
 ## 1.2. Reference `box.osgt.h`
 
-First, reference `box.osgt.h` by simply including it in the sources ([desktop version][ref_res_src]):
+First, reference `box.osgt.h`([source code][ref_res_src]):
 ```
 #include "box.osgt.h"
 ```
 
-Second, make sure `CMakeLists.txt` includes the directory with `box.osgt.h` ([desktop version][ref_res_cmake]):
+Second, make sure `CMakeLists.txt` includes the directory with `box.osgt.h` ([source code][ref_res_cmake]):
 ```
-INCLUDE_DIRECTORIES(/path/to/the/directory)
+INCLUDE_DIRECTORIES(/path/to/data/directory)
 ```
 
 <a name="stream"/>
@@ -96,7 +96,7 @@ OpenSceneGraph plugins to correctly load resources.
 
 ## 1.4. Load the model from `std::istream`
 
-First, create `Resource` instance to work with ([desktop version][box_res]):
+First, create `Resource` instance to work with ([source code][box_res]):
 ```
 resource::Resource box("models", "box.osgt", box_osgt, box_osgt_len);
 ```
@@ -106,7 +106,7 @@ Second, load the model. To load the model from `std::istream`, we:
 * find a reader that is capable of reading the model (such a reader can be located by providing file extension)
 * let the reader create a node with the model
 
-Here's how the crucial part of the implementation looks like ([complete version][resource_node]):
+Here's how the crucial part of the implementation looks like ([source code][resource_node]):
 
 ```
 - - - -
@@ -134,10 +134,10 @@ Here's a [web build of the example][web_build].
 [osgcpe]: https://github.com/OGStudio/openscenegraph-cross-platform-examples
 [osgcpg]: https://github.com/OGStudio/openscenegraph-cross-platform-guide
 [box.osgt.h]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-19/data/box.osgt.h
-[ref_res_src]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-19/01.EmbedResource/desktop/src/Example.h#L31
+[ref_res_src]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-19/01.EmbedResource/desktop/src/main.h#L43
 [ref_res_cmake]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-19/01.EmbedResource/desktop/CMakeLists.txt#L16
 [Resource]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-19/01.EmbedResource/desktop/src/resource.h#L52
 [ResourceStreamBuffer]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-19/01.EmbedResource/desktop/src/resource.h#L74
 [resource_node]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-19/01.EmbedResource/desktop/src/resource.h#L119
-[box_res]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-19/01.EmbedResource/desktop/src/Example.h#L65
+[box_res]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-19/01.EmbedResource/desktop/src/main.h#L223
 [web_build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/01/ex01-embed-resource.html
