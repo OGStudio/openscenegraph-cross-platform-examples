@@ -16,11 +16,11 @@ FEATURES_FILENAME=Features.txt
 # List of examples.
 EXAMPLES="
 01.EmbedResource
-02.TextureImage
-03.HTTPClient
-04.RemoteDebugging
-05.NodeSelection
 "
+#02.TextureImage
+#03.HTTPClient
+#04.RemoteDebugging
+#05.NodeSelection
 
 # Platform -> Path to Features.txt
 PLATFORMS=(
@@ -36,6 +36,7 @@ FEATURE_DIRS=(
     "/main"
     "/log"
     "/format"
+    "/openscenegraph"
     "/resource"
     "/render"
     "/scene"

@@ -1,0 +1,11 @@
+FEATURE openscenegraphGA.cpp/Impl
+#include "src/osgGA/CameraManipulator.cpp"
+#include "src/osgGA/Event.cpp"
+#include "src/osgGA/EventHandler.cpp"
+#include "src/osgGA/EventQueue.cpp"
+#include "src/osgGA/EventVisitor.cpp"
+#include "src/osgGA/GUIEventAdapter.cpp"
+#include "src/osgGA/GUIEventHandler.cpp"
+#include "src/osgGA/OrbitManipulator.cpp"
+#include "src/osgGA/StandardManipulator.cpp"
+#include "src/osgGA/TrackballManipulator.cpp"
