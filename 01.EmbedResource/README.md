@@ -133,11 +133,11 @@ Here's a [web build of the example][web_build].
 
 [osgcpe]: https://github.com/OGStudio/openscenegraph-cross-platform-examples
 [osgcpg]: https://github.com/OGStudio/openscenegraph-cross-platform-guide
-[box.osgt.h]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/data/box.osgt.h
-[ref_res_src]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/Example.h#L31
-[ref_res_cmake]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/CMakeLists.txt#L16
-[Resource]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/resource.h#L52
-[ResourceStreamBuffer]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/resource.h#L74
-[resource_node]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/resource.h#L119
-[box_res]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/Example.h#L65
+[box.osgt.h]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-19/data/box.osgt.h
+[ref_res_src]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-19/01.EmbedResource/desktop/src/Example.h#L31
+[ref_res_cmake]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-19/01.EmbedResource/desktop/CMakeLists.txt#L16
+[Resource]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-19/01.EmbedResource/desktop/src/resource.h#L52
+[ResourceStreamBuffer]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-19/01.EmbedResource/desktop/src/resource.h#L74
+[resource_node]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-19/01.EmbedResource/desktop/src/resource.h#L119
+[box_res]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-19/01.EmbedResource/desktop/src/Example.h#L65
 [web_build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/01/ex01-embed-resource.html
