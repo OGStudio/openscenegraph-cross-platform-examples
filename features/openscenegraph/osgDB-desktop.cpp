@@ -22,5 +22,6 @@ FEATURE openscenegraphDB.cpp/Impl
 #include "src/osgDB/ReaderWriter.cpp"
 #include "src/osgDB/ReadFile.cpp"
 #include "src/osgDB/SharedStateManager.cpp"
+#include "src/osgDB/StreamOperator.cpp"
 #include "src/osgDB/XmlParser.cpp"
 #include "src/osgDB/WriteFile.cpp"

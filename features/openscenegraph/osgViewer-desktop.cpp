@@ -9,6 +9,7 @@ FEATURE openscenegraphViewer.cpp/Impl
 #include "src/osgViewer/Viewer.cpp"
 #include "src/osgViewer/config/AcrossAllScreens.cpp"
 #include "src/osgViewer/config/SingleScreen.cpp"
+#include "src/osgViewer/config/SingleWindow.cpp"
 #include "src/osgViewer/config/SphericalDisplay.cpp"
 #include "src/osgViewer/config/PanoramicSphericalDisplay.cpp"
 #include "src/osgViewer/config/WoWVxDisplay.cpp"

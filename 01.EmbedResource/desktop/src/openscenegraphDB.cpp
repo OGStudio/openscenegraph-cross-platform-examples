@@ -23,6 +23,9 @@ freely, subject to the following restrictions:
 */
 
 // osgDB-desktop Start
+// This one has to be in a separate build unit.
+#include "src/osg/Matrixd.cpp"
+
 #include "src/osgDB/Archive.cpp"
 #include "src/osgDB/ConvertBase64.cpp"
 #include "src/osgDB/DatabasePager.cpp"
@@ -43,6 +46,7 @@ freely, subject to the following restrictions:
 #include "src/osgDB/ReaderWriter.cpp"
 #include "src/osgDB/ReadFile.cpp"
 #include "src/osgDB/SharedStateManager.cpp"
+#include "src/osgDB/StreamOperator.cpp"
 #include "src/osgDB/XmlParser.cpp"
 #include "src/osgDB/WriteFile.cpp"
 // osgDB-desktop End
