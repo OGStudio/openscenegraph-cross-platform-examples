@@ -23,9 +23,20 @@ freely, subject to the following restrictions:
 */
 
 // osg-desktop Start
+#include "src/osg/glu/libtess/normal.cpp"
+#include "src/osg/glu/libtess/memalloc.cpp"
+#include "src/osg/glu/libtess/priorityq.cpp"
+#include "src/osg/glu/libtess/render.cpp"
+#include "src/osg/glu/libtess/sweep.cpp"
+#include "src/osg/glu/libtess/dict.cpp"
+#include "src/osg/glu/libtess/geom.cpp"
+//#include "src/osg/glu/libtess/priorityq-heap.cpp"
+#include "src/osg/glu/libtess/tessmono.cpp"
 #include "src/osg/glu/libtess/tess.cpp"
+
 #include "src/osg/glu/libutil/error.cpp"
 #include "src/osg/glu/libutil/mipmap.cpp"
+
 #include "src/osg/AlphaFunc.cpp"
 #include "src/osg/ApplicationUsage.cpp"
 #include "src/osg/AttributeDispatchers.cpp"
