@@ -63,6 +63,17 @@ freely, subject to the following restrictions:
 
 // Example+VBO End
 
+// OSGCPE_MAIN_EXAMPLE_LOG Start
+#include "log.h"
+#include "format.h"
+#define OSGCPE_MAIN_EXAMPLE_LOG_PREFIX "osgcpe::main::Example(%p) %s"
+#define OSGCPE_MAIN_EXAMPLE_LOG(...) \
+    osgcpe::log::logprintf( \
+        OSGCPE_MAIN_EXAMPLE_LOG_PREFIX, \
+        this, \
+        osgcpe::format::printfString(__VA_ARGS__).c_str() \
+    )
+// OSGCPE_MAIN_EXAMPLE_LOG End
 
 // Example+StaticPluginOSG Start
 // Reference (statically) plugins to read `osgt` file.
@@ -79,6 +90,14 @@ namespace osgcpe
 namespace main
 {
 
+// Application Start
+class Application
+{
+    public:
+        Application(const std::string &name)
+        {
+
+// Application End
     // Application+Logging Start
     this->setupLogging(name);
     
@@ -87,6 +106,12 @@ namespace main
     this->setupRendering();
     
     // Application+Rendering End
+// Application Start
+        }
+        ~Application()
+        {
+
+// Application End
     // Application+Rendering Start
     this->tearRenderingDown();
     
@@ -95,6 +120,10 @@ namespace main
     this->tearLoggingDown();
     
     // Application+Logging End
+// Application Start
+        }
+
+// Application End
     // Application+frame Start
     public:
         void frame()
@@ -239,11 +268,24 @@ namespace main
             delete this->viewer;
         }
     // Application+Rendering End
+// Application Start
+};
+// Application End
 
 // Example+02 Start
 const auto EXAMPLE_TITLE = "Ex02";
 // Example+02 End
 
+// Example Start
+struct Example
+{
+    Application *app;
+
+    Example()
+    {
+        this->app = new Application(EXAMPLE_TITLE);
+
+// Example End
     // Example+BoxScene Start
     this->setupBoxScene();
     
@@ -256,6 +298,17 @@ const auto EXAMPLE_TITLE = "Ex02";
     this->setupSceneTexturing();
     
     // Example+TextureImageScene End
+// Example Start
+    }
+    ~Example()
+    {
+
+// Example End
+// Example Start
+        delete this->app;
+    }
+
+// Example End
     // Example+BoxScene Start
     private:
         osg::ref_ptr<osg::MatrixTransform> scene;
@@ -312,6 +365,9 @@ const auto EXAMPLE_TITLE = "Ex02";
             this->scene->accept(vbo);
         }
     // Example+VBO End
+// Example Start
+};
+// Example End
 
 } // namespace main.
 } // namespace osgcpe.

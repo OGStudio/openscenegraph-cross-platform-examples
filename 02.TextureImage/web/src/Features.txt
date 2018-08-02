@@ -1,11 +1,14 @@
+# main
+Application
 Application+frame
 Application+handleEvent-web
 Application+setupWindow-embedded
 Application+Logging
 Application+Rendering
 
+OSGCPE_MAIN_EXAMPLE_LOG
+Example
 Example+02
-Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
 Example+TextureImageScene
 Example+StaticPluginOSG
