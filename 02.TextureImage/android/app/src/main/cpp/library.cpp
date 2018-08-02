@@ -22,7 +22,7 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "core.h"
+#include "main.h"
 // library-android Start
 #include <jni.h>
 
@@ -34,8 +34,10 @@ freely, subject to the following restrictions:
 #define OSGCPE_JNI_ARG JNIEnv *env, jobject /* this */
 // library+Ex02+OSGCPE_JNI-android End
 
+using namespace osgcpe;
+
 // Example instance.
-osgcpe::core::Example *example = 0;
+main::Example *example = 0;
 
 // library-android Start
 extern "C" {

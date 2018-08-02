@@ -22,7 +22,7 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "core.h"
+#include "main.h"
 // FEATURE library-android/Include
 // FEATURE library-ios/Include
 // FEATURE library+httpClient-android/Include
@@ -32,8 +32,10 @@ freely, subject to the following restrictions:
 // FEATURE library+Ex03+OSGCPE_JNI-android/Impl
 // FEATURE library+Ex04+OSGCPE_JNI-android/Impl
 
+using namespace osgcpe;
+
 // Example instance.
-osgcpe::core::Example *example = 0;
+main::Example *example = 0;
 
 // FEATURE library-android/NamespaceStart
 // FEATURE library-ios/NamespaceStart

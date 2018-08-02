@@ -22,15 +22,17 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "core.h"
+#include "main.h"
 // library-ios Start
 #include "library.h"
 
 // library-ios End
 
 
+using namespace osgcpe;
+
 // Example instance.
-osgcpe::core::Example *example = 0;
+main::Example *example = 0;
 
 // library-ios Start
 namespace library
@@ -46,7 +48,7 @@ UIView *init(int width, int height, float scale, UIView *parentView)
     // before plugin readers/writers are available, which would break everything.
     if (!example)
     {
-        example = new osgcpe::Example;
+        example = new main::Example;
     }
     return example->app->setupWindow(width, height, scale, parentView);
 }

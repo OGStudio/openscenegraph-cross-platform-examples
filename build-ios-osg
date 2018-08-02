@@ -17,7 +17,7 @@ OpenThreads
 "
 
 for target in ${targets}; do
-    cmd="cmake --build . --config Release --target $target -- -IDEBuildOperationMaxNumberOfConcurrentCompileTasks=8"
+    cmd="cmake --build . --config Release --target $target -- -IDEBuildOperationMaxNumberOfConcurrentCompileTasks=2"
     echo "Build OpenSceneGraph target '$target'"
     echo $cmd
     $cmd

@@ -41,6 +41,7 @@ namespace osgcpe
 namespace scene
 {
 
+
 // degreesToQuaternion Start
 //! Convert from degrees to quaternion.
 osg::Quat degreesToQuaternion(const osg::Vec3f &degrees)

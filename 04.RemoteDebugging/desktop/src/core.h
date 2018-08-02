@@ -27,6 +27,7 @@ freely, subject to the following restrictions:
 
 // Reporter Start
 #include <functional>
+#include <string>
 #include <vector>
 
 // Reporter End

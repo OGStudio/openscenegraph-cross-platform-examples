@@ -37,6 +37,7 @@ namespace osgcpe
 namespace scene
 {
 
+
 // quaternionToDegrees Start
 osg::Vec3f quaternionToDegrees(const osg::Quat &quaternion)
 {

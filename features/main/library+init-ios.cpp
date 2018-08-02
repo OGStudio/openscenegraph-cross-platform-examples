@@ -18,7 +18,7 @@ UIView *init(int width, int height, float scale, UIView *parentView)
     // before plugin readers/writers are available, which would break everything.
     if (!example)
     {
-        example = new osgcpe::Example;
+        example = new main::Example;
     }
     return example->app->setupWindow(width, height, scale, parentView);
 }
