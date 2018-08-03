@@ -1,12 +1,10 @@
-FEATURE openscenegraph.cpp/Impl
+FEATURE openscenegraph01.cpp/Impl
 #include "src/osg/glu/libtess/normal.cpp"
 #include "src/osg/glu/libtess/memalloc.cpp"
-#include "src/osg/glu/libtess/priorityq.cpp"
 #include "src/osg/glu/libtess/render.cpp"
 #include "src/osg/glu/libtess/sweep.cpp"
 #include "src/osg/glu/libtess/dict.cpp"
 #include "src/osg/glu/libtess/geom.cpp"
-//#include "src/osg/glu/libtess/priorityq-heap.cpp"
 #include "src/osg/glu/libtess/tessmono.cpp"
 #include "src/osg/glu/libtess/tess.cpp"
 
@@ -78,7 +76,6 @@ FEATURE openscenegraph.cpp/Impl
 #include "src/osg/PrimitiveSet.cpp"
 #include "src/osg/Program.cpp"
 #include "src/osg/ProxyNode.cpp"
-#include "src/osg/Quat.cpp"
 #include "src/osg/Referenced.cpp"
 #include "src/osg/Sequence.cpp"
 #include "src/osg/Shader.cpp"
@@ -109,3 +106,11 @@ FEATURE openscenegraph.cpp/Impl
 #include "src/osg/VertexArrayState.cpp"
 #include "src/osg/View.cpp"
 #include "src/osg/Viewport.cpp"
+
+FEATURE openscenegraph02.cpp/Impl
+#include "src/osg/glu/libtess/mesh.cpp"
+#include "src/osg/glu/libtess/priorityq.cpp"
+#include "src/osg/Matrixd.cpp"
+
+FEATURE openscenegraph03.cpp/Impl
+#include "src/osg/Quat.cpp"

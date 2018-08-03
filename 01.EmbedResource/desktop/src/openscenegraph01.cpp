@@ -29,7 +29,6 @@ freely, subject to the following restrictions:
 #include "src/osg/glu/libtess/sweep.cpp"
 #include "src/osg/glu/libtess/dict.cpp"
 #include "src/osg/glu/libtess/geom.cpp"
-//#include "src/osg/glu/libtess/priorityq-heap.cpp"
 #include "src/osg/glu/libtess/tessmono.cpp"
 #include "src/osg/glu/libtess/tess.cpp"
 
@@ -101,7 +100,6 @@ freely, subject to the following restrictions:
 #include "src/osg/PrimitiveSet.cpp"
 #include "src/osg/Program.cpp"
 #include "src/osg/ProxyNode.cpp"
-#include "src/osg/Quat.cpp"
 #include "src/osg/Referenced.cpp"
 #include "src/osg/Sequence.cpp"
 #include "src/osg/Shader.cpp"
@@ -132,5 +130,6 @@ freely, subject to the following restrictions:
 #include "src/osg/VertexArrayState.cpp"
 #include "src/osg/View.cpp"
 #include "src/osg/Viewport.cpp"
+
 // osg-desktop End
 

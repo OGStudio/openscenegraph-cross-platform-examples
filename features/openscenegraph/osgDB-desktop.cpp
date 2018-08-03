@@ -1,8 +1,4 @@
 FEATURE openscenegraphDB.cpp/Impl
-// Thes ones have to be in a separate build unit.
-#include "src/osg/glu/libtess/mesh.cpp"
-#include "src/osg/Matrixd.cpp"
-
 #include "src/osgDB/Archive.cpp"
 #include "src/osgDB/ConvertBase64.cpp"
 #include "src/osgDB/DatabasePager.cpp"

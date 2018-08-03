@@ -14,7 +14,9 @@ SET(EXT_PROJ_DIR "${CMAKE_SOURCE_DIR}/../../..")
 # Create custom OpenSceneGraph static libraries.
 INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/OpenSceneGraph)
 ADD_LIBRARY(openthreads STATIC src/openthreads.cpp)
-ADD_LIBRARY(openscenegraph STATIC src/openscenegraph.cpp)
+ADD_LIBRARY(openscenegraph01 STATIC src/openscenegraph01.cpp)
+ADD_LIBRARY(openscenegraph02 STATIC src/openscenegraph02.cpp)
+ADD_LIBRARY(openscenegraph03 STATIC src/openscenegraph03.cpp)
 ADD_LIBRARY(openscenegraphDB STATIC src/openscenegraphDB.cpp)
 ADD_LIBRARY(openscenegraphGA STATIC src/openscenegraphGA.cpp)
 ADD_LIBRARY(openscenegraphUtil STATIC src/openscenegraphUtil.cpp)
@@ -36,7 +38,9 @@ TARGET_LINK_LIBRARIES(
     openscenegraphUtil
     openscenegraphDB
     openscenegraphGA
-    openscenegraph
+    openscenegraph01
+    openscenegraph02
+    openscenegraph03
     openthreads
     dl
     pthread
