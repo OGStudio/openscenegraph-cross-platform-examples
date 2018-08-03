@@ -103,6 +103,7 @@ FEATURE openscenegraph01.cpp/Impl
 #include "src/osg/Transform.cpp"
 #include "src/osg/Uniform.cpp"
 #include "src/osg/UserDataContainer.cpp"
+#include "src/osg/Version.cpp"
 #include "src/osg/VertexArrayState.cpp"
 #include "src/osg/View.cpp"
 #include "src/osg/Viewport.cpp"
