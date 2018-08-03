@@ -38,4 +38,8 @@ freely, subject to the following restrictions:
 #include "src/osgViewer/config/PanoramicSphericalDisplay.cpp"
 #include "src/osgViewer/config/WoWVxDisplay.cpp"
 // osgViewer-desktop End
+// osgViewer-x11 Start
+#include "src/osgViewer/GraphicsWindowX11.cpp"
+#include "src/osgViewer/PixelBufferX11.cpp"
+// osgViewer-x11 End
 

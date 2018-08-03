@@ -45,4 +45,5 @@ TARGET_LINK_LIBRARIES(
     dl
     pthread
     GL
+    X11
 )

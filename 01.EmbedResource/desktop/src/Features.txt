@@ -45,3 +45,4 @@ osgDB-desktop
 osgGA-desktop
 osgUtil-desktop
 osgViewer-desktop
+osgViewer-x11
