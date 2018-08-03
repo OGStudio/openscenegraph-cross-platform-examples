@@ -5,14 +5,9 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 # * OpenSceneGraph
 SET(EXT_PROJ_DIR "${CMAKE_SOURCE_DIR}/../../..")
 
-# OpenSceneGraph directories.
-#SET(OSG_INC_DIR "" CACHE PATH "Path to OpenSceneGraph include directory")
-#SET(OSG_LIB_DIR "" CACHE PATH "Path to OpenSceneGraph lib directory")
-#INCLUDE_DIRECTORIES(${OSG_INC_DIR})
-#LINK_DIRECTORIES(${OSG_LIB_DIR})
-
 # Create custom OpenSceneGraph static libraries.
 INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/OpenSceneGraph)
+INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/OpenSceneGraph/include)
 ADD_LIBRARY(openthreads STATIC src/openthreads.cpp)
 ADD_LIBRARY(openscenegraph01 STATIC src/openscenegraph01.cpp)
 ADD_LIBRARY(openscenegraph02 STATIC src/openscenegraph02.cpp)
@@ -31,6 +26,14 @@ INCLUDE_DIRECTORIES(src)
 INCLUDE_DIRECTORIES(../../data)
 # Create executable.
 ADD_EXECUTABLE(ex01-embed-resource src/main.cpp)
+
+
+SET(PLATFORM_LIBS "X11")
+
+IF (APPLE)
+    SET(PLATFORM_LIBS "")
+ENDIF ()
+
 # Link executable with OpenSceneGraph libraries.
 TARGET_LINK_LIBRARIES(
     ex01-embed-resource
@@ -45,5 +48,5 @@ TARGET_LINK_LIBRARIES(
     dl
     pthread
     GL
-    X11
+    ${PLATFORM_LIBS}
 )

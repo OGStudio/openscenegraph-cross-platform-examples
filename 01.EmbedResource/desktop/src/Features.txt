@@ -39,6 +39,8 @@ setupCamera
 paintScene
 
 # openscenegraph
+defines-desktop
+defines-mac
 OpenThreads-desktop
 osg-desktop
 osgDB-desktop

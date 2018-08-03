@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# TODO Replace Billboard.cpp's squar
+
+# 1. Replace references to 'osg/GL' header.
+osgGLHeaders="
+include/osg/BufferObject
+include/osg/FrameBufferObject
+include/osg/GLU
+include/osg/Texture
+"
+
+for file in $osgGLHeaders; do
+    echo "Patching osg/GL referencing header '$file'"
+    sed -i.bak 's|#include <osg/GL>|#include "openscenegraphDefines.h"|' $file
+done
+
+# 2. Replace references to 'osg/Config' header.
+osgConfigHeaders="
+include/osg/Export
+"
+
+for file in $osgConfigHeaders; do
+    echo "Patching osg/Config referencing header '$file'"
+    sed -i.bak 's|#include<osg/Config>|#include "openscenegraphDefines.h"|' $file
+done
