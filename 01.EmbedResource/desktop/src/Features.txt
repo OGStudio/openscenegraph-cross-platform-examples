@@ -11,6 +11,7 @@ Example
 Example+01
 Example+BoxScene
 Example+SingleColorScene
+Example+StaticPluginOSG
 
 main-desktop
 
@@ -45,3 +46,5 @@ osgDB-desktop
 osgGA-desktop
 osgUtil-desktop
 osgViewer-desktop
+osgPlugins-osg-desktop
+osgWrappers-osg-desktop

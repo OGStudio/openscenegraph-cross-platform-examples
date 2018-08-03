@@ -22,3 +22,11 @@ FEATURE openscenegraphDB.cpp/Impl
 #include "src/osgDB/StreamOperator.cpp"
 #include "src/osgDB/XmlParser.cpp"
 #include "src/osgDB/WriteFile.cpp"
+
+// For plugins.
+#include "src/osgDB/DotOsgWrapper.cpp"
+#include "src/osgDB/Input.cpp"
+#include "src/osgDB/Output.cpp"
+#include "src/osgDB/Field.cpp"
+#include "src/osgDB/FieldReader.cpp"
+#include "src/osgDB/FieldReaderIterator.cpp"

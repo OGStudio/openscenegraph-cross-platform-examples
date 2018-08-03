@@ -16,6 +16,13 @@ ADD_LIBRARY(openscenegraphDB STATIC src/openscenegraphDB.cpp)
 ADD_LIBRARY(openscenegraphGA STATIC src/openscenegraphGA.cpp)
 ADD_LIBRARY(openscenegraphUtil STATIC src/openscenegraphUtil.cpp)
 ADD_LIBRARY(openscenegraphViewer STATIC src/openscenegraphViewer.cpp)
+ADD_LIBRARY(openscenegraphPlugins STATIC src/openscenegraphPlugins.cpp)
+
+ADD_LIBRARY(openscenegraphWrappers01 STATIC src/openscenegraphWrappers01.cpp)
+ADD_LIBRARY(openscenegraphWrappersGroup STATIC src/openscenegraphWrappersGroup.cpp)
+ADD_LIBRARY(openscenegraphWrappersMatrixTransform STATIC src/openscenegraphWrappersMatrixTransform.cpp)
+ADD_LIBRARY(openscenegraphWrappersNode STATIC src/openscenegraphWrappersNode.cpp)
+ADD_LIBRARY(openscenegraphWrappersObject STATIC src/openscenegraphWrappersObject.cpp)
 
 # Provide macOS specifics for OSG.
 IF (APPLE)
@@ -41,6 +48,12 @@ ADD_EXECUTABLE(ex01-embed-resource src/main.cpp)
 # Link executable with OpenSceneGraph libraries.
 TARGET_LINK_LIBRARIES(
     ex01-embed-resource
+    openscenegraphPlugins
+    openscenegraphWrappers01
+    openscenegraphWrappersGroup
+    openscenegraphWrappersMatrixTransform
+    openscenegraphWrappersNode
+    openscenegraphWrappersObject
     openscenegraphViewer
     openscenegraphUtil
     openscenegraphDB
