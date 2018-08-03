@@ -23,5 +23,4 @@ freely, subject to the following restrictions:
 */
 
 // FEATURE osgViewer-desktop/Impl
-// FEATURE osgViewer-x11/Impl
 

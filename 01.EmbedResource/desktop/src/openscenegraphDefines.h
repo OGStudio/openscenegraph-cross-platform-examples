@@ -25,20 +25,23 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_OPENSCENEGRAPH_DEFINES_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_OPENSCENEGRAPH_DEFINES_H
 
-// defines-mac Start
-#include <OpenGL/gl.h>
+// defines-desktop Start
 
-#ifndef APIENTRY
-#define APIENTRY
+#ifdef __APPLE__
+    #include <OpenGL/gl.h>
+#else
+    #include <GL/gl.h>
 #endif
 
-// defines-mac End
-// defines-desktop Start
-#define OSG_EXPORT
+#ifndef APIENTRY
+    #define APIENTRY
+#endif
 
 #ifndef GL_APIENTRY
     #define GL_APIENTRY APIENTRY
-#endif // GL_APIENTRY
+#endif
+
+#define OSG_EXPORT
 
 /*
 #define OSG_GL1_AVAILABLE
@@ -59,6 +62,7 @@ freely, subject to the following restrictions:
 #define OSG_GLES3_FEATURES 0
 #define OSG_GL_CONTEXT_VERSION "1.0"
 */
+
 // defines-desktop End
 
 #endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_OPENSCENEGRAPH_DEFINES_H

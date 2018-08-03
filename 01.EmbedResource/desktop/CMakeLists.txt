@@ -17,6 +17,17 @@ ADD_LIBRARY(openscenegraphGA STATIC src/openscenegraphGA.cpp)
 ADD_LIBRARY(openscenegraphUtil STATIC src/openscenegraphUtil.cpp)
 ADD_LIBRARY(openscenegraphViewer STATIC src/openscenegraphViewer.cpp)
 
+# Provide macOS specifics for OSG.
+IF (APPLE)
+    INCLUDE_DIRECTORIES(../../openscenegraph/macos/include)
+    SET(PLATFORM_LIBS "")
+# Provide Linux specifics for OSG.
+ELSE ()
+    INCLUDE_DIRECTORIES(../../openscenegraph/linux/include)
+    SET(PLATFORM_LIBS "X11")
+ENDIF ()
+# TODO Provide Windows specifics for OSG.
+
 # Use C++11.
 ADD_DEFINITIONS("-std=c++11")
 
@@ -26,13 +37,6 @@ INCLUDE_DIRECTORIES(src)
 INCLUDE_DIRECTORIES(../../data)
 # Create executable.
 ADD_EXECUTABLE(ex01-embed-resource src/main.cpp)
-
-
-SET(PLATFORM_LIBS "X11")
-
-IF (APPLE)
-    SET(PLATFORM_LIBS "")
-ENDIF ()
 
 # Link executable with OpenSceneGraph libraries.
 TARGET_LINK_LIBRARIES(

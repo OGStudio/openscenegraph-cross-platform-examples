@@ -23,6 +23,15 @@ freely, subject to the following restrictions:
 */
 
 // osgViewer-desktop Start
+
+#ifdef __APPLE__
+    #warning "Provide macOS windowing system"
+#else
+    #include "src/osgViewer/GraphicsWindowX11.cpp"
+    #include "src/osgViewer/PixelBufferX11.cpp"
+#endif
+
+
 #include "src/osgViewer/CompositeViewer.cpp"
 #include "src/osgViewer/GraphicsWindow.cpp"
 #include "src/osgViewer/Keystone.cpp"
@@ -38,8 +47,4 @@ freely, subject to the following restrictions:
 #include "src/osgViewer/config/PanoramicSphericalDisplay.cpp"
 #include "src/osgViewer/config/WoWVxDisplay.cpp"
 // osgViewer-desktop End
-// osgViewer-x11 Start
-#include "src/osgViewer/GraphicsWindowX11.cpp"
-#include "src/osgViewer/PixelBufferX11.cpp"
-// osgViewer-x11 End
 
