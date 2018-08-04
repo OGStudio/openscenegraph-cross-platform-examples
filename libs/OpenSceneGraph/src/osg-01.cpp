@@ -1,4 +1,3 @@
-FEATURE openscenegraph01.cpp/Impl
 #include "src/osg/glu/libtess/normal.cpp"
 #include "src/osg/glu/libtess/memalloc.cpp"
 #include "src/osg/glu/libtess/render.cpp"
@@ -107,11 +106,3 @@ FEATURE openscenegraph01.cpp/Impl
 #include "src/osg/VertexArrayState.cpp"
 #include "src/osg/View.cpp"
 #include "src/osg/Viewport.cpp"
-
-FEATURE openscenegraph02.cpp/Impl
-#include "src/osg/glu/libtess/mesh.cpp"
-#include "src/osg/glu/libtess/priorityq.cpp"
-#include "src/osg/Matrixd.cpp"
-
-FEATURE openscenegraph03.cpp/Impl
-#include "src/osg/Quat.cpp"

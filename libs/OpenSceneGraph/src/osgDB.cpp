@@ -1,4 +1,3 @@
-FEATURE openscenegraphDB.cpp/Impl
 #include "src/osgDB/Archive.cpp"
 #include "src/osgDB/ConvertBase64.cpp"
 #include "src/osgDB/DatabasePager.cpp"

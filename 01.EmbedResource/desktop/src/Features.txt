@@ -38,13 +38,3 @@ setupCamera
 
 # scene
 paintScene
-
-# openscenegraph
-OpenThreads-desktop
-osg-desktop
-osgDB-desktop
-osgGA-desktop
-osgUtil-desktop
-osgViewer-desktop
-osgPlugins-osg-desktop
-osgWrappers-osg-desktop

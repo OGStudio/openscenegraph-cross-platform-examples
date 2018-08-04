@@ -1,13 +1,3 @@
-FEATURE openscenegraphViewer.cpp/Impl
-
-#ifdef __APPLE__
-    #warning "Provide macOS windowing system"
-#else
-    #include "src/osgViewer/GraphicsWindowX11.cpp"
-    #include "src/osgViewer/PixelBufferX11.cpp"
-#endif
-
-
 #include "src/osgViewer/CompositeViewer.cpp"
 #include "src/osgViewer/GraphicsWindow.cpp"
 #include "src/osgViewer/Keystone.cpp"

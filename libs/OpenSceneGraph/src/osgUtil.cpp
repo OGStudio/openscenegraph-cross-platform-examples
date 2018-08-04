@@ -1,4 +1,3 @@
-FEATURE openscenegraphUtil.cpp/Impl
 #include "src/osgUtil/CullVisitor.cpp"
 #include "src/osgUtil/GLObjectsVisitor.cpp"
 #include "src/osgUtil/IncrementalCompileOperation.cpp"

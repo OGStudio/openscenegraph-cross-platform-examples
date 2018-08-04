@@ -1,4 +1,3 @@
-FEATURE openscenegraphGA.cpp/Impl
 #include "src/osgGA/CameraManipulator.cpp"
 #include "src/osgGA/Event.cpp"
 #include "src/osgGA/EventHandler.cpp"

@@ -1,4 +1,3 @@
-FEATURE openthreads.cpp/Impl
 #include "src/OpenThreads/common/Atomic.cpp"
 #include "src/OpenThreads/common/Version.cpp"
 
