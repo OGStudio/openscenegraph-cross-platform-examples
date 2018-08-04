@@ -71,6 +71,17 @@ freely, subject to the following restrictions:
 
 // Example+VBO End
 
+// OSGCPE_MAIN_EXAMPLE_LOG Start
+#include "log.h"
+#include "format.h"
+#define OSGCPE_MAIN_EXAMPLE_LOG_PREFIX "main::Example(%p) %s"
+#define OSGCPE_MAIN_EXAMPLE_LOG(...) \
+    log::logprintf( \
+        OSGCPE_MAIN_EXAMPLE_LOG_PREFIX, \
+        this, \
+        format::printfString(__VA_ARGS__).c_str() \
+    )
+// OSGCPE_MAIN_EXAMPLE_LOG End
 
 // Example+StaticPluginOSG Start
 // Reference (statically) plugins to read `osgt` file.
@@ -87,6 +98,14 @@ namespace osgcpe
 namespace main
 {
 
+// Application Start
+class Application
+{
+    public:
+        Application(const std::string &name)
+        {
+
+// Application End
             // Application+Logging Start
             this->setupLogging(name);
             
@@ -99,6 +118,12 @@ namespace main
             this->setupMouse();
             
             // Application+Mouse End
+// Application Start
+        }
+        ~Application()
+        {
+
+// Application End
             // Application+Mouse Start
             this->tearMouseDown();
             
@@ -111,6 +136,10 @@ namespace main
             this->tearLoggingDown();
             
             // Application+Logging End
+// Application Start
+        }
+
+// Application End
     // Application+camera Start
     public:
         osg::Camera *camera()
@@ -281,11 +310,24 @@ namespace main
             this->viewer->removeEventHandler(this->mouse);
         }
     // Application+Mouse End
+// Application Start
+};
+// Application End
 
-// Example+04 Start
-const auto EXAMPLE_TITLE = "Ex04";
-// Example+04 End
+// Example+05 Start
+const auto EXAMPLE_TITLE = "Ex05";
+// Example+05 End
 
+// Example Start
+struct Example
+{
+    Application *app;
+
+    Example()
+    {
+        this->app = new Application(EXAMPLE_TITLE);
+
+// Example End
         // Example+BoxScene Start
         this->setupBoxScene();
         
@@ -306,6 +348,12 @@ const auto EXAMPLE_TITLE = "Ex04";
         this->setupBoxRotation();
         
         // Example+BoxRotation End
+// Example Start
+    }
+    ~Example()
+    {
+
+// Example End
         // Example+BoxRotation Start
         this->tearBoxRotationDown();
         
@@ -314,6 +362,11 @@ const auto EXAMPLE_TITLE = "Ex04";
         this->tearBoxSelectionDown();
         
         // Example+BoxSelection End
+// Example Start
+        delete this->app;
+    }
+
+// Example End
     // Example+BoxRotation Start
     private:
         const std::string boxRotationCallbackName = "BoxRotation";
@@ -497,6 +550,9 @@ const auto EXAMPLE_TITLE = "Ex04";
             this->scene->accept(vbo);
         }
     // Example+VBO End
+// Example Start
+};
+// Example End
 
 } // namespace main.
 } // namespace osgcpe.

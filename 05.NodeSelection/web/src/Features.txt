@@ -1,3 +1,5 @@
+# main
+Application
 Application+camera
 Application+frame+Reporting
 Application+handleEvent-web
@@ -5,10 +7,10 @@ Application+setupWindow-embedded
 Application+Logging
 Application+Rendering
 Application+Mouse
-Reporter+Stub
 
-Example+04
-Example+OSGCPE_EXAMPLE_LOG
+OSGCPE_MAIN_EXAMPLE_LOG
+Example
+Example+05
 Example+BoxScene
 Example+TextureImageScene
 Example+BoxSelection
@@ -18,6 +20,9 @@ Example+StaticPluginPNG
 Example+VBO
 
 main-web
+
+# core
+Reporter
 
 # log
 log-default
