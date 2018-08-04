@@ -1,4 +1,6 @@
-Application+OSGCPE_APPLICATION_LOG
+# main
+OSGCPE_MAIN_APPLICATION_LOG
+Application
 Application+frame+Reporting
 Application+handleEvent-web
 Application+setupWindow-embedded
@@ -6,12 +8,13 @@ Application+CameraManipulator
 Application+Debugging
 Application+DebugCamera
 Application+HTTPClient
+Application+HTTPClientProcessor
 Application+Logging
 Application+Rendering
-Reporter+Stub
 
-Example+03
-Example+OSGCPE_EXAMPLE_LOG
+OSGCPE_MAIN_EXAMPLE_LOG
+Example
+Example+04
 Example+BoxScene
 Example+TextureImageScene
 Example+StaticPluginOSG
@@ -20,10 +23,13 @@ Example+VBO
 
 main-web
 
+# core
+Reporter
+
 # log
 log-default
-logprintf
 logLevelToString
+logprintf
 Logger
 
 # format
@@ -51,10 +57,10 @@ textureImageScene
 
 # network
 HTTPClient
-HTTPClient+Fetch
-HTTPClientFetch
-extlib-fetch
-OSGCPE_NETWORK_HTTP_CLIENT_FETCH_LOG
+HTTPClientProcessor
+HTTPRequest
+HTTPRequestProcessorFetch
+fetch
 
 # debug
 PageDesc
@@ -69,4 +75,3 @@ Debugger+processJSON
 debuggerToJSON
 pageToJSON
 jsonToPageDesc
-extlib-json

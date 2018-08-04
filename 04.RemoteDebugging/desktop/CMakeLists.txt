@@ -25,10 +25,12 @@ TARGET_LINK_LIBRARIES(
     osgViewer
     osgUtil
     osgDB
+    # osgDB plugins start.
     osgdb_osg
     osgdb_serializers_osg
     osgdb_png
     png
+    # osgDB plugins end.
     osgGA
     osg
     OpenThreads
