@@ -25,6 +25,9 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
 
+// fetch Start
+#include <emscripten/fetch.h>
+// fetch End
 // HTTPClient Start
 #include <string>
 #include <vector>

@@ -1,3 +1,5 @@
+# main
+Application
 Application+camera
 Application+frame+Reporting
 Application+handleEvent-web
@@ -6,10 +8,10 @@ Application+HTTPClient
 Application+HTTPClientProcessor
 Application+Logging
 Application+Rendering
-Reporter+Stub
 
+OSGCPE_MAIN_EXAMPLE_LOG
+Example
 Example+03
-Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
 Example+HTTPSGetPost
 Example+TextureImageScene
@@ -18,6 +20,9 @@ Example+StaticPluginPNG
 Example+VBO
 
 main-web
+
+# core
+Reporter
 
 # log
 log-default
@@ -51,4 +56,4 @@ HTTPClient
 HTTPClientProcessor
 HTTPRequest
 HTTPRequestProcessorFetch
-extlib-fetch
+fetch
