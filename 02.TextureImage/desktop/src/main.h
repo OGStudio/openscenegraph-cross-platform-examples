@@ -58,15 +58,24 @@ freely, subject to the following restrictions:
 // OSGCPE_MAIN_EXAMPLE_LOG Start
 #include "log.h"
 #include "format.h"
-#define OSGCPE_MAIN_EXAMPLE_LOG_PREFIX "osgcpe::main::Example(%p) %s"
+#define OSGCPE_MAIN_EXAMPLE_LOG_PREFIX "main::Example(%p) %s"
 #define OSGCPE_MAIN_EXAMPLE_LOG(...) \
-    osgcpe::log::logprintf( \
+    log::logprintf( \
         OSGCPE_MAIN_EXAMPLE_LOG_PREFIX, \
         this, \
-        osgcpe::format::printfString(__VA_ARGS__).c_str() \
+        format::printfString(__VA_ARGS__).c_str() \
     )
 // OSGCPE_MAIN_EXAMPLE_LOG End
 
+// Example+StaticPluginOSG Start
+// Reference (statically) plugins to read `osgt` file.
+USE_OSGPLUGIN(osg2)
+USE_SERIALIZER_WRAPPER_LIBRARY(osg)
+// Example+StaticPluginOSG End
+// Example+StaticPluginPNG Start
+// Reference (statically) plugins to read `png` file.
+USE_OSGPLUGIN(png)
+// Example+StaticPluginPNG End
 
 namespace osgcpe
 {
