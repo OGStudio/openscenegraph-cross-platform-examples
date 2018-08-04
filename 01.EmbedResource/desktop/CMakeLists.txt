@@ -1,39 +1,8 @@
 PROJECT(EX01_EMBED_RESOURCE)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
-# Path to external projects:
-# * OpenSceneGraph
-SET(EXT_PROJ_DIR "${CMAKE_SOURCE_DIR}/../../..")
-
-# Create custom OpenSceneGraph static libraries.
-INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/OpenSceneGraph)
-INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/OpenSceneGraph/include)
-ADD_LIBRARY(openthreads STATIC src/openthreads.cpp)
-ADD_LIBRARY(openscenegraph01 STATIC src/openscenegraph01.cpp)
-ADD_LIBRARY(openscenegraph02 STATIC src/openscenegraph02.cpp)
-ADD_LIBRARY(openscenegraph03 STATIC src/openscenegraph03.cpp)
-ADD_LIBRARY(openscenegraphDB STATIC src/openscenegraphDB.cpp)
-ADD_LIBRARY(openscenegraphGA STATIC src/openscenegraphGA.cpp)
-ADD_LIBRARY(openscenegraphUtil STATIC src/openscenegraphUtil.cpp)
-ADD_LIBRARY(openscenegraphViewer STATIC src/openscenegraphViewer.cpp)
-ADD_LIBRARY(openscenegraphPlugins STATIC src/openscenegraphPlugins.cpp)
-
-ADD_LIBRARY(openscenegraphWrappers01 STATIC src/openscenegraphWrappers01.cpp)
-ADD_LIBRARY(openscenegraphWrappersGroup STATIC src/openscenegraphWrappersGroup.cpp)
-ADD_LIBRARY(openscenegraphWrappersMatrixTransform STATIC src/openscenegraphWrappersMatrixTransform.cpp)
-ADD_LIBRARY(openscenegraphWrappersNode STATIC src/openscenegraphWrappersNode.cpp)
-ADD_LIBRARY(openscenegraphWrappersObject STATIC src/openscenegraphWrappersObject.cpp)
-
-# Provide macOS specifics for OSG.
-IF (APPLE)
-    INCLUDE_DIRECTORIES(../../openscenegraph/macos/include)
-    SET(PLATFORM_LIBS "")
-# Provide Linux specifics for OSG.
-ELSE ()
-    INCLUDE_DIRECTORIES(../../openscenegraph/linux/include)
-    SET(PLATFORM_LIBS "X11")
-ENDIF ()
-# TODO Provide Windows specifics for OSG.
+# Build OpenSceneGraph statically.
+INCLUDE(../../libs/OpenSceneGraph/CMakeLists.txt)
 
 # Use C++11.
 ADD_DEFINITIONS("-std=c++11")
@@ -48,22 +17,10 @@ ADD_EXECUTABLE(ex01-embed-resource src/main.cpp)
 # Link executable with OpenSceneGraph libraries.
 TARGET_LINK_LIBRARIES(
     ex01-embed-resource
-    openscenegraphPlugins
-    openscenegraphWrappers01
-    openscenegraphWrappersGroup
-    openscenegraphWrappersMatrixTransform
-    openscenegraphWrappersNode
-    openscenegraphWrappersObject
-    openscenegraphViewer
-    openscenegraphUtil
-    openscenegraphDB
-    openscenegraphGA
-    openscenegraph01
-    openscenegraph02
-    openscenegraph03
-    openthreads
-    dl
-    pthread
-    GL
-    ${PLATFORM_LIBS}
+    osgViewer
+    osgUtil
+    osgDB
+    osgGA
+    osg
+    OpenThreads
 )
