@@ -311,7 +311,7 @@ const auto EXAMPLE_TITLE = "Ex03";
             // CRITICAL for:
             // * mobile
             // * web (Emscripten) to skip FULL_ES2 emulation flag
-            osgcpe::render::VBOSetupVisitor vbo;
+            render::VBOSetupVisitor vbo;
             this->scene->accept(vbo);
         }
     // Example+VBO End
