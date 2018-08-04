@@ -13,7 +13,7 @@ INCLUDE_DIRECTORIES(src)
 INCLUDE_DIRECTORIES(../../data)
 # Create executable.
 ADD_EXECUTABLE(ex02-texture-image src/main.cpp)
-# Link executable with OpenSceneGraph libraries.
+# Link executable with libraries.
 TARGET_LINK_LIBRARIES(
     ex02-texture-image
     osgViewer

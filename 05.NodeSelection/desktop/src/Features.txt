@@ -13,9 +13,11 @@ OSGCPE_MAIN_EXAMPLE_LOG
 Example
 Example+05
 Example+BoxScene
-Example+TextureImageScene
 Example+BoxSelection
 Example+BoxRotation
+Example+TextureImageScene
+Example+StaticPluginOSG
+Example+StaticPluginPNG
 
 main-desktop
 
@@ -59,6 +61,6 @@ textureImageScene
 LinearInterpolator
 
 # input
+OSGCPE_INPUT_MOUSE_LOG
 Mouse
 MouseButtons
-OSGCPE_INPUT_MOUSE_LOG
