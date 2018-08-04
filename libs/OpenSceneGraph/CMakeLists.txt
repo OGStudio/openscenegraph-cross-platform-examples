@@ -17,10 +17,12 @@ ENDIF ()
 # TODO Windows.
 MESSAGE("OSG_PLATFORM: '${OSG_PLATFORM}'")
 
+# Path to openscenegraph-cross-platform-examples.
+SET(OSGCPE_DIR "${CMAKE_SOURCE_DIR}/../../../openscenegraph-cross-platform-examples")
 # Path to OpenSceneGraph source.
-SET(OSG_SRC_DIR "${CMAKE_SOURCE_DIR}/../../../OpenSceneGraph")
+SET(OSG_SRC_DIR "${OSGCPE_DIR}/../OpenSceneGraph")
 # Path to this directory with our OpenSceneGraph files.
-SET(OSG "${CMAKE_SOURCE_DIR}/../../libs/OpenSceneGraph")
+SET(OSG "${OSGCPE_DIR}/libs/OpenSceneGraph")
 
 # Include cross-platform headers.
 INCLUDE_DIRECTORIES(${OSG_SRC_DIR})
