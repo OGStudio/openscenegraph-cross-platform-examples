@@ -15,6 +15,8 @@ Example+03
 Example+BoxScene
 Example+HTTPSGetPost
 Example+TextureImageScene
+Example+StaticPluginOSG
+Example+StaticPluginPNG
 
 main-desktop
 
@@ -53,4 +55,4 @@ HTTPClient
 HTTPClientProcessor
 HTTPRequest
 HTTPRequestProcessorMongoose
-extlib-mongoose
+mongoose

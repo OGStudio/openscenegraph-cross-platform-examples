@@ -1,34 +1,13 @@
 PROJECT(EX03_HTTP_CLIENT)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
-# Path to external projects:
-# * mongoose
-SET(EXT_PROJ_DIR "${CMAKE_SOURCE_DIR}/../../..")
-
-# OpenSceneGraph directories.
-SET(OSG_INC_DIR "" CACHE PATH "Path to OpenSceneGraph include directory")
-SET(OSG_LIB_DIR "" CACHE PATH "Path to OpenSceneGraph lib directory")
-INCLUDE_DIRECTORIES(${OSG_INC_DIR})
-LINK_DIRECTORIES(${OSG_LIB_DIR})
+# Build OpenSceneGraph statically.
+INCLUDE(../../libs/OpenSceneGraph/CMakeLists.txt)
+# Build mongoose statically.
+INCLUDE(../../libs/mongoose/CMakeLists.txt)
 
 # Use C++11.
 ADD_DEFINITIONS("-std=c++11")
-
-# Reference OpenSSL (necessary for Mongoose).
-SET(OPENSSL_INC_DIR "" CACHE PATH "Path to OpenSSL include directory")
-SET(OPENSSL_LIB_DIR "" CACHE PATH "Path to OpenSSL lib directory")
-INCLUDE_DIRECTORIES(${OPENSSL_INC_DIR})
-LINK_DIRECTORIES(${OPENSSL_LIB_DIR})
-
-# Reference Mongoose HTTP client library.
-INCLUDE_DIRECTORIES(${EXT_PROJ_DIR}/mongoose)
-ADD_LIBRARY(network-extlib STATIC src/network-extlib.cpp)
-# Link with OpenSSL libraries.
-TARGET_LINK_LIBRARIES(
-    network-extlib
-    ssl
-    crypto
-)
 
 # Reference source headers.
 INCLUDE_DIRECTORIES(src)
@@ -40,9 +19,14 @@ ADD_EXECUTABLE(ex03-http-client src/main.cpp)
 TARGET_LINK_LIBRARIES(
     ex03-http-client
     osgViewer
+    osgUtil
     osgDB
+    osgdb_osg
+    osgdb_serializers_osg
+    osgdb_png
+    png
     osgGA
     osg
     OpenThreads
-    network-extlib
+    mongoose
 )

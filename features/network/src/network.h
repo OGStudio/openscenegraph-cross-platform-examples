@@ -25,8 +25,8 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
 
-// FEATURE extlib-fetch/Include
-// FEATURE extlib-mongoose/Include
+// FEATURE fetch/Include
+// FEATURE mongoose/Include
 // FEATURE HTTPClient/Include
 // FEATURE HTTPRequest/Include
 // FEATURE HTTPRequestProcessorFetch/Include

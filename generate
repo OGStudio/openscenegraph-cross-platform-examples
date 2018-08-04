@@ -17,8 +17,8 @@ FEATURES_FILENAME=Features.txt
 EXAMPLES="
 01.EmbedResource
 02.TextureImage
+03.HTTPClient
 "
-#03.HTTPClient
 #04.RemoteDebugging
 #05.NodeSelection
 
