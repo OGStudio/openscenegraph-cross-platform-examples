@@ -7,7 +7,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 SET(OSG_PLATFORM "linux")
 # macOS.
 IF (APPLE)
-    SET(OSG_PLATFORM "macOS")
+    SET(OSG_PLATFORM "macos")
 # Web.
 ELSEIF (${CMAKE_SYSTEM_NAME} STREQUAL "Emscripten")
     SET(OSG_PLATFORM "web")
@@ -77,7 +77,7 @@ SET(VIEWER_PLATFORM_SRC "")
 SET(VIEWER_PLATFORM_LIBS "")
 IF (${OSG_PLATFORM} STREQUAL "linux")
     SET(VIEWER_PLATFORM_SRC ${SRC}/osgViewer-linux.cpp)
-    SET(VIEWER_PLATFORM_LIBS "GL X11")
+    SET(VIEWER_PLATFORM_LIBS "GL" "X11")
 ELSEIF (${OSG_PLATFORM} STREQUAL "web")
     SET(VIEWER_PLATFORM_SRC ${SRC}/osgViewer.cpp)
     SET(VIEWER_PLATFORM_LIBS "EGL")
@@ -87,6 +87,9 @@ TARGET_LINK_LIBRARIES(osgViewer ${VIEWER_PLATFORM_LIBS})
 
 # osgt plugin.
 ADD_LIBRARY(osgdb_osg STATIC ${SRC}/osgdb_osg.cpp)
+
+# png plugin.
+ADD_LIBRARY(osgdb_png STATIC ${SRC}/osgdb_png.cpp)
 
 ADD_LIBRARY(
     osgdb_serializers_osg

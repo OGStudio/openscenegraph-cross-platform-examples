@@ -11,6 +11,8 @@ Example
 Example+02
 Example+BoxScene
 Example+TextureImageScene
+Example+StaticPluginOSG
+Example+StaticPluginPNG
 
 main-desktop
 
