@@ -25,7 +25,7 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_DEBUG_H
 
-#include "debug-extlib.h"
+#include <nlohmann/json.hpp>
 
 // FEATURE PageDesc/Include
 // FEATURE Page/Include

@@ -25,10 +25,9 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_H
 
-// extlib-mongoose Start
-#include "network-extlib.h"
-
-// extlib-mongoose End
+// mongoose Start
+#include <mongoose.h>
+// mongoose End
 // HTTPClient Start
 #include <string>
 #include <vector>

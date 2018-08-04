@@ -17,6 +17,8 @@ Example
 Example+04
 Example+BoxScene
 Example+TextureImageScene
+Example+StaticPluginOSG
+Example+StaticPluginPNG
 
 main-desktop
 
@@ -57,7 +59,7 @@ HTTPClient
 HTTPClientProcessor
 HTTPRequest
 HTTPRequestProcessorMongoose
-extlib-mongoose
+mongoose
 
 # debug
 PageDesc
@@ -72,4 +74,3 @@ Debugger+processJSON
 debuggerToJSON
 pageToJSON
 jsonToPageDesc
-extlib-json
