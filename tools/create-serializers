@@ -1,0 +1,21 @@
+#!/bin/bash
+# Create osg_serializers_osg-<Class> files with contents
+
+CLASSES="
+Drawable
+Geode
+Geometry
+Group
+Object
+MatrixTransform
+Node
+Transform
+"
+
+for class in $CLASSES; do
+    fileName="osgdb_serializers_osg-$class.cpp"
+    contents="#include \"src/osgWrappers/serializers/osg/$class.cpp\""
+    echo $fileName
+    echo $contents > $fileName
+done
+

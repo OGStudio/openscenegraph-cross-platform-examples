@@ -87,14 +87,15 @@ TARGET_LINK_LIBRARIES(osgViewer GL ${VIEWER_PLATFORM_LIBS})
 # osgt plugin.
 ADD_LIBRARY(osgdb_osg STATIC ${SRC}/osgdb_osg.cpp)
 
-# TODO Reference OSG SRC DIR files!
-#ADD_LIBRARY(
-#    osgdb_serializers_osg
-#    src/osgdb_serializers_osg-LibraryWrapper.cpp
-#    src/osgdb_serializers_osg-Geometry.cpp
-#    src/osgdb_serializers_osg-Group.cpp
-#    src/osgdb_serializers_osg-MatrixTransform.cpp
-#    src/osgdb_serializers_osg-Node.cpp
-#    src/osgdb_serializers_osg-Object.cpp
-#    src/osgdb_serializers_osg-Transform.cpp
-#)
+ADD_LIBRARY(
+    osgdb_serializers_osg
+    ${SRC}/osgdb_serializers_osg-LibraryWrapper.cpp
+    ${SRC}/osgdb_serializers_osg-Drawable.cpp
+    ${SRC}/osgdb_serializers_osg-Geode.cpp
+    ${SRC}/osgdb_serializers_osg-Geometry.cpp
+    ${SRC}/osgdb_serializers_osg-Group.cpp
+    ${SRC}/osgdb_serializers_osg-MatrixTransform.cpp
+    ${SRC}/osgdb_serializers_osg-Node.cpp
+    ${SRC}/osgdb_serializers_osg-Object.cpp
+    ${SRC}/osgdb_serializers_osg-Transform.cpp
+)

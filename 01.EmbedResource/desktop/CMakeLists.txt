@@ -20,6 +20,8 @@ TARGET_LINK_LIBRARIES(
     osgViewer
     osgUtil
     osgDB
+    osgdb_osg
+    osgdb_serializers_osg
     osgGA
     osg
     OpenThreads
