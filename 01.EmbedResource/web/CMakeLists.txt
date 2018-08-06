@@ -17,7 +17,7 @@ ADD_DEFINITIONS("-std=c++11")
 # Reference source headers.
 INCLUDE_DIRECTORIES(src)
 # Reference resource headers.
-INCLUDE_DIRECTORIES(../../data)
+INCLUDE_DIRECTORIES(${OSGCPE_DIR}/data)
 # Create executable (aka HTML page).
 ADD_EXECUTABLE(ex01-embed-resource src/main.cpp)
 # Link with OpenSceneGraph libraries in specific order.

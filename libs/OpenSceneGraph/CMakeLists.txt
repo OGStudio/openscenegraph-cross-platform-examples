@@ -13,14 +13,20 @@ IF (APPLE)
 # Web.
 ELSEIF (${CMAKE_SYSTEM_NAME} STREQUAL "Emscripten")
     SET(OSG_PLATFORM "web")
+# Android.
+ELSEIF (${CMAKE_SYSTEM_NAME} STREQUAL "Android")
+    SET(OSG_PLATFORM "android")
 ENDIF ()
-# TODO Android.
 # TODO iOS.
 # TODO Windows.
 MESSAGE("OSG_PLATFORM: '${OSG_PLATFORM}'")
 
 # Path to openscenegraph-cross-platform-examples.
 SET(OSGCPE_DIR "${CMAKE_SOURCE_DIR}/../../../openscenegraph-cross-platform-examples")
+# Use different path for Android.
+IF (${OSG_PLATFORM} STREQUAL "android")
+    SET(OSGCPE_DIR "${CMAKE_SOURCE_DIR}/../../../../openscenegraph-cross-platform-examples")
+ENDIF ()
 # Path to OpenSceneGraph source.
 SET(OSG_SRC_DIR "${OSGCPE_DIR}/../OpenSceneGraph")
 # Path to this directory with our OpenSceneGraph files.
@@ -37,19 +43,21 @@ ELSEIF (${OSG_PLATFORM} STREQUAL "web")
     INCLUDE_DIRECTORIES(${OSG}/include/web)
 ELSEIF (${OSG_PLATFORM} STREQUAL "macos")
     INCLUDE_DIRECTORIES(${OSG}/include/macos)
+ELSEIF (${OSG_PLATFORM} STREQUAL "android")
+    INCLUDE_DIRECTORIES(${OSG}/include/android)
 ENDIF ()
 # TODO Windows.
 # TODO iOS.
-# TODO Android.
 
 # Libraries.
 SET(SRC "${OSG}/src")
 
 # OpenThreads.
 SET(THREADS_PLATFORM_LIBS "pthread")
-#IF (${OSG_PLATFORM} STREQUAL "linux")
-#    SET(THREADS_PLATFORM_LIBS "pthread")
-#ENDIF ()
+# Android already provides "pthread", no need to specify it.
+IF (${OSG_PLATFORM} STREQUAL "android")
+    SET(THREADS_PLATFORM_LIBS "")
+ENDIF ()
 ADD_LIBRARY(OpenThreads STATIC ${SRC}/OpenThreads.cpp)
 TARGET_LINK_LIBRARIES(OpenThreads ${THREADS_PLATFORM_LIBS})
 
@@ -69,6 +77,8 @@ IF (${OSG_PLATFORM} STREQUAL "linux")
     SET(DB_PLATFORM_LIBS "dl")
 ELSEIF (${OSG_PLATFORM} STREQUAL "macos")
     SET(DB_SRC "${SRC}/osgDB.mm")
+ELSEIF (${OSG_PLATFORM} STREQUAL "android")
+    SET(DB_PLATFORM_LIBS "z")
 ENDIF ()
 ADD_LIBRARY(osgDB STATIC ${DB_SRC})
 TARGET_LINK_LIBRARIES(osgDB ${DB_PLATFORM_LIBS})
@@ -97,6 +107,9 @@ ELSEIF (${OSG_PLATFORM} STREQUAL "macos")
 ELSEIF (${OSG_PLATFORM} STREQUAL "web")
     SET(VIEWER_PLATFORM_SRC ${SRC}/osgViewer.cpp)
     SET(VIEWER_PLATFORM_LIBS "EGL")
+ELSEIF (${OSG_PLATFORM} STREQUAL "android")
+    SET(VIEWER_PLATFORM_SRC ${SRC}/osgViewer.cpp)
+    SET(VIEWER_PLATFORM_LIBS "GLESv2")
 ENDIF ()
 ADD_LIBRARY(osgViewer STATIC ${VIEWER_PLATFORM_SRC})
 TARGET_LINK_LIBRARIES(osgViewer ${VIEWER_PLATFORM_LIBS})
