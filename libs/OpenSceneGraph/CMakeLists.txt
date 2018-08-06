@@ -81,21 +81,25 @@ ADD_LIBRARY(osgUtil STATIC ${SRC}/osgUtil.cpp)
 
 # osgViewer.
 # Make suere OpenGL is found.
-FIND_PACKAGE(OPENGL)
 SET(VIEWER_PLATFORM_SRC "")
 SET(VIEWER_PLATFORM_LIBS "")
 IF (${OSG_PLATFORM} STREQUAL "linux")
     SET(VIEWER_PLATFORM_SRC ${SRC}/osgViewer-linux.cpp)
-    SET(VIEWER_PLATFORM_LIBS "X11")
+    SET(VIEWER_PLATFORM_LIBS "GL" "X11")
 ELSEIF (${OSG_PLATFORM} STREQUAL "macos")
     SET(VIEWER_PLATFORM_SRC ${SRC}/osgViewer-macos.mm)
-    SET(VIEWER_PLATFORM_LIBS "-framework Foundation" "-framework Cocoa")
+    SET(
+        VIEWER_PLATFORM_LIBS
+        "-framework OpenGL"
+        "-framework Foundation"
+        "-framework Cocoa"
+    )
 ELSEIF (${OSG_PLATFORM} STREQUAL "web")
     SET(VIEWER_PLATFORM_SRC ${SRC}/osgViewer.cpp)
     SET(VIEWER_PLATFORM_LIBS "EGL")
 ENDIF ()
 ADD_LIBRARY(osgViewer STATIC ${VIEWER_PLATFORM_SRC})
-TARGET_LINK_LIBRARIES(osgViewer ${VIEWER_PLATFORM_LIBS} ${OPENGL_LIBRARIES})
+TARGET_LINK_LIBRARIES(osgViewer ${VIEWER_PLATFORM_LIBS})
 
 # osgt plugin.
 ADD_LIBRARY(osgdb_osg STATIC ${SRC}/osgdb_osg.cpp)
