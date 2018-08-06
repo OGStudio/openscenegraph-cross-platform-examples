@@ -3,6 +3,8 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 # Build OpenSceneGraph into static library.
 
 # TODO: Provide flag to set iOS sim/dev.
+# TODO: And use this flag to detect iOS build.
+
 # Detect platform.
 SET(OSG_PLATFORM "linux")
 # macOS.
@@ -62,10 +64,13 @@ ADD_LIBRARY(
 
 # osgDB.
 SET(DB_PLATFORM_LIBS "")
+SET(DB_SRC "${SRC}/osgDB.cpp")
 IF (${OSG_PLATFORM} STREQUAL "linux")
     SET(DB_PLATFORM_LIBS "dl")
+ELSEIF (${OSG_PLATFORM} STREQUAL "macos")
+    SET(DB_SRC "${SRC}/osgDB.mm")
 ENDIF ()
-ADD_LIBRARY(osgDB STATIC ${SRC}/osgDB.cpp)
+ADD_LIBRARY(osgDB STATIC ${DB_SRC})
 TARGET_LINK_LIBRARIES(osgDB ${DB_PLATFORM_LIBS})
 
 # osgGA.
@@ -75,23 +80,33 @@ ADD_LIBRARY(osgGA STATIC ${SRC}/osgGA.cpp)
 ADD_LIBRARY(osgUtil STATIC ${SRC}/osgUtil.cpp)
 
 # osgViewer.
+# Make suere OpenGL is found.
+FIND_PACKAGE(OPENGL)
 SET(VIEWER_PLATFORM_SRC "")
 SET(VIEWER_PLATFORM_LIBS "")
 IF (${OSG_PLATFORM} STREQUAL "linux")
     SET(VIEWER_PLATFORM_SRC ${SRC}/osgViewer-linux.cpp)
-    SET(VIEWER_PLATFORM_LIBS "GL" "X11")
+    SET(VIEWER_PLATFORM_LIBS "X11")
+ELSEIF (${OSG_PLATFORM} STREQUAL "macos")
+    SET(VIEWER_PLATFORM_SRC ${SRC}/osgViewer-macos.mm)
+    SET(VIEWER_PLATFORM_LIBS "-framework Foundation" "-framework Cocoa")
 ELSEIF (${OSG_PLATFORM} STREQUAL "web")
     SET(VIEWER_PLATFORM_SRC ${SRC}/osgViewer.cpp)
     SET(VIEWER_PLATFORM_LIBS "EGL")
 ENDIF ()
 ADD_LIBRARY(osgViewer STATIC ${VIEWER_PLATFORM_SRC})
-TARGET_LINK_LIBRARIES(osgViewer ${VIEWER_PLATFORM_LIBS})
+TARGET_LINK_LIBRARIES(osgViewer ${VIEWER_PLATFORM_LIBS} ${OPENGL_LIBRARIES})
 
 # osgt plugin.
 ADD_LIBRARY(osgdb_osg STATIC ${SRC}/osgdb_osg.cpp)
 
-# png plugin.
-ADD_LIBRARY(osgdb_png STATIC ${SRC}/osgdb_png.cpp)
+# ImageIO plugin for macOS and iOS.
+IF (${OSG_PLATFORM} STREQUAL "macos")
+    # TODO ADD_LIBRARY(osgdb_imageio STATIC ${SRC}/osgdb_imageio.cpp)
+# PNG plugin for other platforms.
+ELSE ()
+    ADD_LIBRARY(osgdb_png STATIC ${SRC}/osgdb_png.cpp)
+ENDIF ()
 
 ADD_LIBRARY(
     osgdb_serializers_osg
