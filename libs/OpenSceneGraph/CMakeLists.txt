@@ -119,7 +119,9 @@ ADD_LIBRARY(osgdb_osg STATIC ${SRC}/osgdb_osg.cpp)
 
 # ImageIO plugin for macOS and iOS.
 IF (${OSG_PLATFORM} STREQUAL "macos")
-    # TODO ADD_LIBRARY(osgdb_imageio STATIC ${SRC}/osgdb_imageio.cpp)
+    ADD_LIBRARY(osgdb_imageio STATIC ${SRC}/osgdb_imageio.cpp)
+ELSEIF (${OSG_PLATFORM} STREQUAL "ios")
+    ADD_LIBRARY(osgdb_imageio STATIC ${SRC}/osgdb_imageio.cpp)
 # PNG plugin for other platforms.
 ELSE ()
     ADD_LIBRARY(osgdb_png STATIC ${SRC}/osgdb_png.cpp)
