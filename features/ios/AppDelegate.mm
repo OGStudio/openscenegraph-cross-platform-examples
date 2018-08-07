@@ -3,13 +3,12 @@ FEATURE ios.h/Impl
     @property (nonatomic, strong) UIWindow *window;
 @end
 
-FEATURE ios.mm/PropertiesBegin
+FEATURE ios.mm/Properties
 @interface AppDelegate ()
 
-FEATURE ios.mm/PropertiesEnd
+FEATURE ios.mm/Setup
 @end
 
-FEATURE ios.mm/Setup
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application

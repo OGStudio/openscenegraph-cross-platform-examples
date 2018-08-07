@@ -37,8 +37,6 @@ freely, subject to the following restrictions:
 // AppDelegate Start
 @end
 
-// AppDelegate End
-// AppDelegate Start
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application

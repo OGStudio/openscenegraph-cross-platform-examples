@@ -1,11 +1,11 @@
-PROJECT(EX01_EMBED_RESOURCE)
+PROJECT(IOS_GEN)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 SET(BUILD_SIMULATOR YES CACHE BOOL "Build for simulator. Set to `false` to build for real device")
 
 # Path to external projects:
 # * OpenSceneGraph
-SET(EXT_PROJ_DIR "${CMAKE_SOURCE_DIR}/../../..")
+SET(OSG_DIR "${CMAKE_SOURCE_DIR}/../../../../../../OpenSceneGraph")
 
 # Set special build flags:
 # * -O3: make compact binary, critical for iOS
@@ -39,14 +39,11 @@ IF(BUILD_SIMULATOR)
 ELSE()
     SET(BUILD_VARIANT "Device")
 ENDIF()
-SET(OSG_SOURCE_DIR "${EXT_PROJ_DIR}/OpenSceneGraph" CACHE PATH "Path to OpenSceneGraph source directory")
-SET(OSG_BUILD_DIR "${OSG_SOURCE_DIR}/build/${BUILD_VARIANT}/Ex01")
-# Only build OpenSceneGraph if it has not yet been built.
-IF (NOT EXISTS "${OSG_BUILD_DIR}/lib/libosgViewer.a")
-    FILE(MAKE_DIRECTORY ${OSG_BUILD_DIR})
-    ADD_SUBDIRECTORY(${OSG_SOURCE_DIR} ${OSG_BUILD_DIR})
-ENDIF ()
-# Reference OpenSceneGraph includes.
+SET(OSG_SOURCE_DIR "${OSG_DIR}" CACHE PATH "Path to OpenSceneGraph source directory")
+SET(OSG_BUILD_DIR "${OSG_DIR}/build/${BUILD_VARIANT}")
+
+FILE(MAKE_DIRECTORY ${OSG_BUILD_DIR})
+ADD_SUBDIRECTORY(${OSG_SOURCE_DIR} ${OSG_BUILD_DIR})
 INCLUDE_DIRECTORIES(${OSG_SOURCE_DIR}/include)
 INCLUDE_DIRECTORIES(${OSG_BUILD_DIR}/include)
 
@@ -55,53 +52,5 @@ SET(DEV_PLATFORMS "/Applications/Xcode.app/Contents/Developer/Platforms")
 SET(SDK_ROOT "${DEV_PLATFORMS}/${IOS_PLATFORM}.platform/Developer/SDKs/${IOS_PLATFORM}.sdk")
 SET(CMAKE_OSX_SYSROOT ${SDK_ROOT} CACHE STRING "Make sure we build for iOS" FORCE)
 
-# Reference source headers.
-INCLUDE_DIRECTORIES(src)
-# Reference resource headers.
-INCLUDE_DIRECTORIES(../../data)
-# Build example library.
-ADD_LIBRARY(rawex01 STATIC src/library.cpp)
-# NOTE This does not actually link anything. However, this command
-# NOTE makes sure all necessary libraries are built.
-TARGET_LINK_LIBRARIES(
-    rawex01
-    osgViewer
-    osgDB
-    # osgDB plugins start.
-    osgdb_osg
-    osgdb_serializers_osg
-    # osgDB plugins end.
-    osgGA
-    osgShadow
-    osgText
-    osgUtil
-    osg
-    OpenThreads
-)
-
-IF(BUILD_SIMULATOR)
-    SET(BUILD_SUFFIX "Release-iphonesimulator")
-ELSE()
-    SET(BUILD_SUFFIX "Release-iphoneos")
-ENDIF()
-# Generate single ex01 library once rawex01 one has been built.
-ADD_CUSTOM_COMMAND(
-    TARGET rawex01
-    POST_BUILD
-    COMMAND
-        "libtool"
-        "-static" 
-        "-o"
-        "libex01.a"
-        "${CMAKE_BINARY_DIR}/${BUILD_SUFFIX}/librawex01.a"
-        "${OSG_BUILD_DIR}/lib/libosg.a"
-        "${OSG_BUILD_DIR}/lib/libosgDB.a"
-        "${OSG_BUILD_DIR}/lib/libosgdb_osg.a"
-        "${OSG_BUILD_DIR}/lib/libosgdb_serializers_osg.a"
-        "${OSG_BUILD_DIR}/lib/libosgGA.a"
-        "${OSG_BUILD_DIR}/lib/libosgShadow.a"
-        "${OSG_BUILD_DIR}/lib/libosgText.a"
-        "${OSG_BUILD_DIR}/lib/libosgUtil.a"
-        "${OSG_BUILD_DIR}/lib/libosgViewer.a"
-        "${OSG_BUILD_DIR}/lib/libOpenThreads.a"
-)
+# Build sample.
+ADD_LIBRARY(gen STATIC gen.cpp)

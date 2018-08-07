@@ -16,11 +16,11 @@ FEATURES_FILENAME=Features.txt
 # List of examples.
 EXAMPLES="
 01.EmbedResource
-02.TextureImage
-03.HTTPClient
-04.RemoteDebugging
-05.NodeSelection
 "
+#02.TextureImage
+#03.HTTPClient
+#04.RemoteDebugging
+#05.NodeSelection
 
 # Platform -> Path to Features.txt
 PLATFORMS=(
@@ -49,7 +49,6 @@ FEATURES_TXT_DIR_ANDROID_CPP="app/src/main/cpp"
 FEATURES_TXT_DIR_ANDROID_JAVA="app/src/main/java"
 FEATURE_DIR_ANDROID="/android"
 
-FEATURES_TXT_DIR_IOS="xcodeproject/App"
 FEATURE_DIR_IOS="/ios"
 
 processFeatureDir()
@@ -94,7 +93,7 @@ main()
             # Objective-C features for iOS.
             if [ $platform == "ios" ]; then
                 echo "process Objective-C features for '$platform'"
-                dirFeaturesAbs=$DIR/$example/$platform/$FEATURES_TXT_DIR_IOS
+                dirFeaturesAbs=$DIR/$example/$platform/$FEATURES_TXT_DIR
                 dir=$DIR/features${FEATURE_DIR_IOS}
                 processFeatureDir $dirFeaturesAbs Features.txt $dir
             fi

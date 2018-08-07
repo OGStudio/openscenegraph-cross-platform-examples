@@ -26,10 +26,9 @@ freely, subject to the following restrictions:
 
 #include "library.h"
 
-// FEATURE AppDelegate/PropertiesBegin
+// FEATURE AppDelegate/Properties
     // FEATURE AppDelegate+HTTPClientProcessor/Properties
     // FEATURE AppDelegate+RenderVC/Properties
-// FEATURE AppDelegate/PropertiesEnd
 // FEATURE AppDelegate/Setup
     // FEATURE AppDelegate+RenderVC/Setup
     // FEATURE AppDelegate+HTTPClientProcessor/Setup

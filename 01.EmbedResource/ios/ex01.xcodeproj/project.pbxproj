@@ -12,6 +12,15 @@
 		2F7788931F530562008378D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7788921F530562008378D5 /* main.m */; };
 		2F77889E1F530562008378D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F77889D1F530562008378D5 /* Assets.xcassets */; };
 		2F7788A11F530562008378D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F77889F1F530562008378D5 /* LaunchScreen.storyboard */; };
+		2FBE4E7421198A5E00D55C84 /* library.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE4E7321198A5D00D55C84 /* library.mm */; };
+		2FBE4E7F21198C6B00D55C84 /* OpenThreads.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE4E7721198C6A00D55C84 /* OpenThreads.mm */; };
+		2FBE4E8021198C6B00D55C84 /* osg-02.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE4E7821198C6A00D55C84 /* osg-02.mm */; };
+		2FBE4E8121198C6B00D55C84 /* osgGA.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE4E7921198C6A00D55C84 /* osgGA.mm */; };
+		2FBE4E8221198C6B00D55C84 /* osg-03.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE4E7A21198C6A00D55C84 /* osg-03.mm */; };
+		2FBE4E8321198C6B00D55C84 /* osgUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE4E7B21198C6A00D55C84 /* osgUtil.mm */; };
+		2FBE4E8421198C6B00D55C84 /* osgDB.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE4E7C21198C6A00D55C84 /* osgDB.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2FBE4E8521198C6B00D55C84 /* osgViewer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE4E7D21198C6B00D55C84 /* osgViewer.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2FBE4E8621198C6B00D55C84 /* osg-01.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE4E7E21198C6B00D55C84 /* osg-01.mm */; };
 		2FFD8D2621071FA100D4B5FD /* ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FFD8D2421071FA100D4B5FD /* ios.mm */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +49,16 @@
 		2F77889D1F530562008378D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F7788A01F530562008378D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F7788A21F530562008378D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2FBE4E7221198A5D00D55C84 /* library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = library.h; sourceTree = "<group>"; };
+		2FBE4E7321198A5D00D55C84 /* library.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = library.mm; sourceTree = "<group>"; };
+		2FBE4E7721198C6A00D55C84 /* OpenThreads.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenThreads.mm; sourceTree = "<group>"; };
+		2FBE4E7821198C6A00D55C84 /* osg-02.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "osg-02.mm"; sourceTree = "<group>"; };
+		2FBE4E7921198C6A00D55C84 /* osgGA.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = osgGA.mm; sourceTree = "<group>"; };
+		2FBE4E7A21198C6A00D55C84 /* osg-03.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "osg-03.mm"; sourceTree = "<group>"; };
+		2FBE4E7B21198C6A00D55C84 /* osgUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = osgUtil.mm; sourceTree = "<group>"; };
+		2FBE4E7C21198C6A00D55C84 /* osgDB.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = osgDB.mm; sourceTree = "<group>"; };
+		2FBE4E7D21198C6B00D55C84 /* osgViewer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = osgViewer.mm; sourceTree = "<group>"; };
+		2FBE4E7E21198C6B00D55C84 /* osg-01.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "osg-01.mm"; sourceTree = "<group>"; };
 		2FFD8D2421071FA100D4B5FD /* ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ios.mm; sourceTree = "<group>"; };
 		2FFD8D2521071FA100D4B5FD /* ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,7 +84,8 @@
 		2F7788851F530562008378D5 = {
 			isa = PBXGroup;
 			children = (
-				2F7788901F530562008378D5 /* App */,
+				2FBE4E7621198ABE00D55C84 /* libs */,
+				2F7788901F530562008378D5 /* src */,
 				2F77888F1F530562008378D5 /* Products */,
 				2FFF43FB1F57405A003D419D /* Frameworks */,
 			);
@@ -79,17 +99,19 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2F7788901F530562008378D5 /* App */ = {
+		2F7788901F530562008378D5 /* src */ = {
 			isa = PBXGroup;
 			children = (
 				2FFD8D2521071FA100D4B5FD /* ios.h */,
 				2FFD8D2421071FA100D4B5FD /* ios.mm */,
+				2FBE4E7221198A5D00D55C84 /* library.h */,
+				2FBE4E7321198A5D00D55C84 /* library.mm */,
 				2F77889D1F530562008378D5 /* Assets.xcassets */,
 				2F77889F1F530562008378D5 /* LaunchScreen.storyboard */,
 				2F7788A21F530562008378D5 /* Info.plist */,
 				2F7788911F530562008378D5 /* Supporting Files */,
 			);
-			path = App;
+			path = src;
 			sourceTree = "<group>";
 		};
 		2F7788911F530562008378D5 /* Supporting Files */ = {
@@ -98,6 +120,29 @@
 				2F7788921F530562008378D5 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2FBE4E7521198AB700D55C84 /* OpenSceneGraph */ = {
+			isa = PBXGroup;
+			children = (
+				2FBE4E7721198C6A00D55C84 /* OpenThreads.mm */,
+				2FBE4E7E21198C6B00D55C84 /* osg-01.mm */,
+				2FBE4E7821198C6A00D55C84 /* osg-02.mm */,
+				2FBE4E7A21198C6A00D55C84 /* osg-03.mm */,
+				2FBE4E7C21198C6A00D55C84 /* osgDB.mm */,
+				2FBE4E7921198C6A00D55C84 /* osgGA.mm */,
+				2FBE4E7B21198C6A00D55C84 /* osgUtil.mm */,
+				2FBE4E7D21198C6B00D55C84 /* osgViewer.mm */,
+			);
+			path = OpenSceneGraph;
+			sourceTree = "<group>";
+		};
+		2FBE4E7621198ABE00D55C84 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				2FBE4E7521198AB700D55C84 /* OpenSceneGraph */,
+			);
+			path = libs;
 			sourceTree = "<group>";
 		};
 		2FFF43FB1F57405A003D419D /* Frameworks */ = {
@@ -203,8 +248,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2FBE4E8421198C6B00D55C84 /* osgDB.mm in Sources */,
 				2F7788931F530562008378D5 /* main.m in Sources */,
+				2FBE4E8321198C6B00D55C84 /* osgUtil.mm in Sources */,
+				2FBE4E7421198A5E00D55C84 /* library.mm in Sources */,
+				2FBE4E8221198C6B00D55C84 /* osg-03.mm in Sources */,
+				2FBE4E8521198C6B00D55C84 /* osgViewer.mm in Sources */,
+				2FBE4E8021198C6B00D55C84 /* osg-02.mm in Sources */,
 				2FFD8D2621071FA100D4B5FD /* ios.mm in Sources */,
+				2FBE4E7F21198C6B00D55C84 /* OpenThreads.mm in Sources */,
+				2FBE4E8621198C6B00D55C84 /* osg-01.mm in Sources */,
+				2FBE4E8121198C6B00D55C84 /* osgGA.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,11 +379,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
-				"OTHER_LDFLAGS[sdk=iphoneos*]" = "\"$(SRCROOT)/../build/Device/libex01.a\"";
-				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = "\"$(SRCROOT)/../build/Simulator/libex01.a\"";
 				PRODUCT_BUNDLE_IDENTIFIER = org.opengamestudio.ex01;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../src";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../OpenSceneGraph $(SRCROOT)/../../../OpenSceneGraph/include $(SRCROOT)/../../libs/OpenSceneGraph/include/ios";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/src $(SRCROOT)/../../libs/OpenSceneGraph $(SRCROOT)/../../data";
 			};
 			name = Debug;
 		};
@@ -344,11 +397,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
-				"OTHER_LDFLAGS[sdk=iphoneos*]" = "\"$(SRCROOT)/../build/Device/libex01.a\"";
-				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = "\"$(SRCROOT)/../build/Simulator/libex01.a\"";
 				PRODUCT_BUNDLE_IDENTIFIER = org.opengamestudio.ex01;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../src";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../OpenSceneGraph $(SRCROOT)/../../../OpenSceneGraph/include $(SRCROOT)/../../libs/OpenSceneGraph/include/ios";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/src $(SRCROOT)/../../libs/OpenSceneGraph $(SRCROOT)/../../data";
 			};
 			name = Release;
 		};
