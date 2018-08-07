@@ -10,23 +10,21 @@ INCLUDE(${OSGCPE_DIR}/libs/OpenSceneGraph/CMakeLists.txt)
 INCLUDE_DIRECTORIES(src/main/cpp)
 # Reference resource headers.
 INCLUDE_DIRECTORIES(${OSGCPE_DIR}/data)
-
+# Create native library.
 ADD_LIBRARY(library SHARED src/main/cpp/library.cpp)
 FIND_LIBRARY(log-lib log)
-# Libraries must be linked in the specified order.
-# Otherwise you may get unsatisified linker errors.
+# Link native library with libraries.
 TARGET_LINK_LIBRARIES(
     library
     ${log-lib}
     osgViewer
+    osgUtil
     osgDB
     # osgDB plugins start.
     osgdb_osg
     osgdb_serializers_osg
     # osgDB plugins end.
     osgGA
-    osgUtil
     osg
     OpenThreads
 )
-
