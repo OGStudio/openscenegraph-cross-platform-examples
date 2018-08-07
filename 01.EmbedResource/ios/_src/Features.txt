@@ -1,0 +1,43 @@
+# main
+Application
+Application+frame
+Application+setupWindow-ios
+Application+Logging
+Application+Rendering
+
+OSGCPE_MAIN_EXAMPLE_LOG
+Example
+Example+01
+Example+BoxScene
+Example+SingleColorScene
+Example+StaticPluginOSG
+Example+VBO
+
+library-ios
+library+init-ios
+library+frame-ios
+
+# log
+log-default
+logLevelToString
+logprintf
+Logger
+
+# format
+printfString
+
+# resource
+OSGCPE_RESOURCE_LOG
+extension
+node
+Resource
+ResourceStreamBuffer
+
+# render
+createGraphicsContext-ios
+createShaderProgram
+setupCamera
+VBOSetupVisitor
+
+# scene
+paintScene
