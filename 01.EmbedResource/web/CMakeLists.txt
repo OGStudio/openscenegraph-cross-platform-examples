@@ -34,7 +34,9 @@ TARGET_LINK_LIBRARIES(
 # * -O3: make compact binary, critical for web
 # * -s USE_SDL=2: provide SDL2
 # * -s ALLOW_MEMORY_GROWTH=1: allow total memory used to increase when necessary
-SET(BUILD_FLAGS "-O3 -s USE_SDL=2 -s ALLOW_MEMORY_GROWTH=1")
+# * -s USE_LIBPNG=1: use libpng
+# * -s USE_ZLIB=1: use zlib, necessary for libpng
+SET(BUILD_FLAGS "-O3 -s USE_SDL=2 -s ALLOW_MEMORY_GROWTH=1 -s USE_LIBPNG=1 -s USE_ZLIB=1")
 ADD_DEFINITIONS(${BUILD_FLAGS})
 
 # Make Emscripten generate ready-to-open HTML page.
