@@ -21,6 +21,16 @@
 		2FBE4E8421198C6B00D55C84 /* osgDB.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE4E7C21198C6A00D55C84 /* osgDB.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2FBE4E8521198C6B00D55C84 /* osgViewer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE4E7D21198C6B00D55C84 /* osgViewer.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2FBE4E8621198C6B00D55C84 /* osg-01.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE4E7E21198C6B00D55C84 /* osg-01.mm */; };
+		2FBE4E932119943D00D55C84 /* osgdb_serializers_osg-Drawable.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE4E892119943B00D55C84 /* osgdb_serializers_osg-Drawable.mm */; };
+		2FBE4E942119943D00D55C84 /* osgdb_serializers_osg-Geometry.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE4E8A2119943C00D55C84 /* osgdb_serializers_osg-Geometry.mm */; };
+		2FBE4E952119943D00D55C84 /* osgdb_serializers_osg-Transform.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE4E8B2119943C00D55C84 /* osgdb_serializers_osg-Transform.mm */; };
+		2FBE4E962119943D00D55C84 /* osgdb_serializers_osg-Object.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE4E8C2119943C00D55C84 /* osgdb_serializers_osg-Object.mm */; };
+		2FBE4E972119943D00D55C84 /* osgdb_serializers_osg-Geode.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE4E8D2119943C00D55C84 /* osgdb_serializers_osg-Geode.mm */; };
+		2FBE4E982119943D00D55C84 /* osgdb_serializers_osg-LibraryWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE4E8E2119943C00D55C84 /* osgdb_serializers_osg-LibraryWrapper.mm */; };
+		2FBE4E992119943D00D55C84 /* osgdb_serializers_osg-MatrixTransform.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE4E8F2119943C00D55C84 /* osgdb_serializers_osg-MatrixTransform.mm */; };
+		2FBE4E9A2119943D00D55C84 /* osgdb_serializers_osg-Node.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE4E902119943C00D55C84 /* osgdb_serializers_osg-Node.mm */; };
+		2FBE4E9B2119943D00D55C84 /* osgdb_serializers_osg-Group.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE4E912119943D00D55C84 /* osgdb_serializers_osg-Group.mm */; };
+		2FBE4E9C2119943D00D55C84 /* osgdb_osg.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE4E922119943D00D55C84 /* osgdb_osg.mm */; };
 		2FFD8D2621071FA100D4B5FD /* ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FFD8D2421071FA100D4B5FD /* ios.mm */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +69,16 @@
 		2FBE4E7C21198C6A00D55C84 /* osgDB.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = osgDB.mm; sourceTree = "<group>"; };
 		2FBE4E7D21198C6B00D55C84 /* osgViewer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = osgViewer.mm; sourceTree = "<group>"; };
 		2FBE4E7E21198C6B00D55C84 /* osg-01.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "osg-01.mm"; sourceTree = "<group>"; };
+		2FBE4E892119943B00D55C84 /* osgdb_serializers_osg-Drawable.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "osgdb_serializers_osg-Drawable.mm"; sourceTree = "<group>"; };
+		2FBE4E8A2119943C00D55C84 /* osgdb_serializers_osg-Geometry.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "osgdb_serializers_osg-Geometry.mm"; sourceTree = "<group>"; };
+		2FBE4E8B2119943C00D55C84 /* osgdb_serializers_osg-Transform.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "osgdb_serializers_osg-Transform.mm"; sourceTree = "<group>"; };
+		2FBE4E8C2119943C00D55C84 /* osgdb_serializers_osg-Object.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "osgdb_serializers_osg-Object.mm"; sourceTree = "<group>"; };
+		2FBE4E8D2119943C00D55C84 /* osgdb_serializers_osg-Geode.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "osgdb_serializers_osg-Geode.mm"; sourceTree = "<group>"; };
+		2FBE4E8E2119943C00D55C84 /* osgdb_serializers_osg-LibraryWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "osgdb_serializers_osg-LibraryWrapper.mm"; sourceTree = "<group>"; };
+		2FBE4E8F2119943C00D55C84 /* osgdb_serializers_osg-MatrixTransform.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "osgdb_serializers_osg-MatrixTransform.mm"; sourceTree = "<group>"; };
+		2FBE4E902119943C00D55C84 /* osgdb_serializers_osg-Node.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "osgdb_serializers_osg-Node.mm"; sourceTree = "<group>"; };
+		2FBE4E912119943D00D55C84 /* osgdb_serializers_osg-Group.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "osgdb_serializers_osg-Group.mm"; sourceTree = "<group>"; };
+		2FBE4E922119943D00D55C84 /* osgdb_osg.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = osgdb_osg.mm; sourceTree = "<group>"; };
 		2FFD8D2421071FA100D4B5FD /* ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ios.mm; sourceTree = "<group>"; };
 		2FFD8D2521071FA100D4B5FD /* ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +153,16 @@
 				2FBE4E7921198C6A00D55C84 /* osgGA.mm */,
 				2FBE4E7B21198C6A00D55C84 /* osgUtil.mm */,
 				2FBE4E7D21198C6B00D55C84 /* osgViewer.mm */,
+				2FBE4E922119943D00D55C84 /* osgdb_osg.mm */,
+				2FBE4E892119943B00D55C84 /* osgdb_serializers_osg-Drawable.mm */,
+				2FBE4E8D2119943C00D55C84 /* osgdb_serializers_osg-Geode.mm */,
+				2FBE4E8A2119943C00D55C84 /* osgdb_serializers_osg-Geometry.mm */,
+				2FBE4E912119943D00D55C84 /* osgdb_serializers_osg-Group.mm */,
+				2FBE4E8E2119943C00D55C84 /* osgdb_serializers_osg-LibraryWrapper.mm */,
+				2FBE4E8F2119943C00D55C84 /* osgdb_serializers_osg-MatrixTransform.mm */,
+				2FBE4E902119943C00D55C84 /* osgdb_serializers_osg-Node.mm */,
+				2FBE4E8C2119943C00D55C84 /* osgdb_serializers_osg-Object.mm */,
+				2FBE4E8B2119943C00D55C84 /* osgdb_serializers_osg-Transform.mm */,
 			);
 			path = OpenSceneGraph;
 			sourceTree = "<group>";
@@ -250,14 +280,24 @@
 			files = (
 				2FBE4E8421198C6B00D55C84 /* osgDB.mm in Sources */,
 				2F7788931F530562008378D5 /* main.m in Sources */,
+				2FBE4E9A2119943D00D55C84 /* osgdb_serializers_osg-Node.mm in Sources */,
 				2FBE4E8321198C6B00D55C84 /* osgUtil.mm in Sources */,
+				2FBE4E942119943D00D55C84 /* osgdb_serializers_osg-Geometry.mm in Sources */,
+				2FBE4E952119943D00D55C84 /* osgdb_serializers_osg-Transform.mm in Sources */,
 				2FBE4E7421198A5E00D55C84 /* library.mm in Sources */,
+				2FBE4E9B2119943D00D55C84 /* osgdb_serializers_osg-Group.mm in Sources */,
+				2FBE4E9C2119943D00D55C84 /* osgdb_osg.mm in Sources */,
 				2FBE4E8221198C6B00D55C84 /* osg-03.mm in Sources */,
+				2FBE4E932119943D00D55C84 /* osgdb_serializers_osg-Drawable.mm in Sources */,
 				2FBE4E8521198C6B00D55C84 /* osgViewer.mm in Sources */,
 				2FBE4E8021198C6B00D55C84 /* osg-02.mm in Sources */,
+				2FBE4E972119943D00D55C84 /* osgdb_serializers_osg-Geode.mm in Sources */,
+				2FBE4E992119943D00D55C84 /* osgdb_serializers_osg-MatrixTransform.mm in Sources */,
 				2FFD8D2621071FA100D4B5FD /* ios.mm in Sources */,
 				2FBE4E7F21198C6B00D55C84 /* OpenThreads.mm in Sources */,
 				2FBE4E8621198C6B00D55C84 /* osg-01.mm in Sources */,
+				2FBE4E982119943D00D55C84 /* osgdb_serializers_osg-LibraryWrapper.mm in Sources */,
+				2FBE4E962119943D00D55C84 /* osgdb_serializers_osg-Object.mm in Sources */,
 				2FBE4E8121198C6B00D55C84 /* osgGA.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,7 +414,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 8379YHJ3XA;
 				ENABLE_BITCODE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/App/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/src/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -392,7 +432,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 8379YHJ3XA;
 				ENABLE_BITCODE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/App/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/src/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
