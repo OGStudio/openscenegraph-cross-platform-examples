@@ -198,7 +198,9 @@ struct Example
 {
     Application *app;
 
-    Example()
+    typedef std::map<std::string, std::string> Parameters;
+
+    Example(const Parameters &parameters)
     {
         this->app = new Application(EXAMPLE_TITLE);
 

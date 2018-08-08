@@ -67,7 +67,7 @@ std::vector<std::string> splitString(const std::string &s, const char *c)
         }
         else
         {
-            result.push_back(s.substr(pos, s.length() - 1));
+            result.push_back(s.substr(pos, s.length()));
             proceed = false;
             // If delimiting char has not been found,
             // the result should only contain original string.

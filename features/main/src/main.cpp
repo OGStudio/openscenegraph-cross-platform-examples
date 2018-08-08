@@ -32,7 +32,9 @@ using namespace osgcpe;
 int main(int argc, char *argv[])
 {
     // FEATURE main-desktop/Setup
+    // FEATURE main-desktop/End
     // FEATURE main-web/Setup
+    // FEATURE main-web/End
     // FEATURE main-desktop/Run
     // FEATURE main-web/Run
     return 0;

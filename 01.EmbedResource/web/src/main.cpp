@@ -85,8 +85,11 @@ int main(int argc, char *argv[])
         return 1;
     }
     SDL_GL_CreateContext(window);
-    // Create example.
-    example = new main::Example;
+    main::Example::Parameters parameters;
+    
+    // main-web End
+    // main-web Start
+    example = new main::Example(parameters);
     example->app->setupWindow(width, height);
     
     // main-web End

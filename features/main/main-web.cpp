@@ -53,8 +53,10 @@ if (!window)
     return 1;
 }
 SDL_GL_CreateContext(window);
-// Create example.
-example = new main::Example;
+main::Example::Parameters parameters;
+
+FEATURE main.cpp/End
+example = new main::Example(parameters);
 example->app->setupWindow(width, height);
 
 FEATURE main.cpp/Run
