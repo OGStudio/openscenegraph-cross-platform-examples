@@ -100,9 +100,11 @@ ELSEIF (${OSG_PLATFORM} STREQUAL "macos")
     SET(VIEWER_PLATFORM_SRC ${SRC}/osgViewer-macos.mm)
     SET(
         VIEWER_PLATFORM_LIBS
-        "-framework OpenGL"
+        "-framework Accelerate"
         "-framework Foundation"
         "-framework Cocoa"
+        "-framework ImageIO"
+        "-framework OpenGL"
     )
 ELSEIF (${OSG_PLATFORM} STREQUAL "web")
     SET(VIEWER_PLATFORM_SRC ${SRC}/osgViewer.cpp)
