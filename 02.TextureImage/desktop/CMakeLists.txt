@@ -10,15 +10,14 @@ INCLUDE_DIRECTORIES(src)
 # Create executable.
 ADD_EXECUTABLE(ex02-texture-image src/main.cpp)
 
-# Link with PNG or ImageIO to load PNG images.
-SET(IMAGE_LIBS "osgdb_png" "png")
+# Use ImageIO instead PNG for macOS.
 IF (${OSG_PLATFORM} STREQUAL "macos")
-    SET(IMAGE_LIBS "osgdb_imageio")
+    SET(OSGCPE_IMAGE_LINK_LIBS "osgdb_imageio")
 ENDIF ()
 
 # Link executable with libraries.
 TARGET_LINK_LIBRARIES(
     ex02-texture-image
     ${OSGCPE_LINK_LIBS}
-    ${IMAGE_LIBS}
+    ${OSGCPE_IMAGE_LINK_LIBS}
 )

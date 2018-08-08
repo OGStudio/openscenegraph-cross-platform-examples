@@ -4,6 +4,7 @@
 # * OSGCPE_DIR
 # This CMakeLists.txt provides the following variables outside:
 # * OSGCPE_LINK_LIBS
+# * OSGCPE_IMAGE_LINK_LIBS
 
 PROJECT(EX02_TEXTURE_IMAGE)
 
@@ -30,3 +31,6 @@ SET(
     osg
     OpenThreads
 )
+
+# Provide image libraries to link with.
+SET(OSGCPE_IMAGE_LINK_LIBS "osgdb_png" "png")
