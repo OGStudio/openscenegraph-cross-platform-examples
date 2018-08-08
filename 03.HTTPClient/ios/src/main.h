@@ -72,10 +72,6 @@ freely, subject to the following restrictions:
 // Example+VBO End
 
 
-// Example+StaticPluginImageIO Start
-// Reference (statically) plugins to read `png` file.
-USE_OSGPLUGIN(imageio)
-// Example+StaticPluginImageIO End
 // Example+StaticPluginOSG Start
 // Reference (statically) plugins to read `osgt` file.
 USE_OSGPLUGIN(osg2)

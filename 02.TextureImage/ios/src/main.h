@@ -71,10 +71,6 @@ freely, subject to the following restrictions:
     )
 // OSGCPE_MAIN_EXAMPLE_LOG End
 
-// Example+StaticPluginImageIO Start
-// Reference (statically) plugins to read `png` file.
-USE_OSGPLUGIN(imageio)
-// Example+StaticPluginImageIO End
 // Example+StaticPluginOSG Start
 // Reference (statically) plugins to read `osgt` file.
 USE_OSGPLUGIN(osg2)

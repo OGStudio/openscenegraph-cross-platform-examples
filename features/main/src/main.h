@@ -45,7 +45,6 @@ freely, subject to the following restrictions:
 
 // FEATURE OSGCPE_MAIN_EXAMPLE_LOG/Impl
 
-// FEATURE Example+StaticPluginImageIO/Impl
 // FEATURE Example+StaticPluginOSG/Impl
 // FEATURE Example+StaticPluginPNG/Impl
 
