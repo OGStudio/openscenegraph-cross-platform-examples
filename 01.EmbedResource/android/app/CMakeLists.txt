@@ -1,6 +1,6 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.4)
 
-SET(OSGCPE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../../../../openscenegraph-cross-platform-examples")
+SET(OSGCPE_DIR "${CMAKE_SOURCE_DIR}/../../../../openscenegraph-cross-platform-examples")
 
 # Include common CMakeLists.txt.
 INCLUDE(${CMAKE_SOURCE_DIR}/../../CMakeLists.txt)
