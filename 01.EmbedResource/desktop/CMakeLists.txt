@@ -8,10 +8,10 @@ INCLUDE(${CMAKE_SOURCE_DIR}/../CMakeLists.txt)
 # Reference sources.
 INCLUDE_DIRECTORIES(src)
 # Create executable.
-ADD_EXECUTABLE(ex01-embed-resource src/main.cpp)
+ADD_EXECUTABLE(${EXAMPLE_BINARY_NAME} src/main.cpp)
 
 # Link executable with libraries.
 TARGET_LINK_LIBRARIES(
-    ex01-embed-resource
+    ${EXAMPLE_BINARY_NAME}
     ${OSGCPE_LINK_LIBS}
 )

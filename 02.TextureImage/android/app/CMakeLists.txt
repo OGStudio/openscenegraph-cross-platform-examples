@@ -13,11 +13,12 @@ INCLUDE_DIRECTORIES(src/main/cpp)
 ADD_LIBRARY(library SHARED src/main/cpp/library.cpp)
 
 FIND_LIBRARY(log-lib log)
+SET(IMAGE_LINK_LIBS "osgdb_png" "png")
 
 # Link native library with libraries.
 TARGET_LINK_LIBRARIES(
     library
     ${log-lib}
     ${OSGCPE_LINK_LIBS}
-    ${OSGCPE_IMAGE_LINK_LIBS}
+    ${IMAGE_LINK_LIBS}
 )

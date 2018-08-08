@@ -3,9 +3,11 @@
 # This CMakeLists.txt requires the following variables:
 # * OSGCPE_DIR
 # This CMakeLists.txt provides the following variables outside:
+# * EXAMPLE_BINARY_NAME
 # * OSGCPE_LINK_LIBS
 
 PROJECT(EX01_EMBED_RESOURCE)
+SET(EXAMPLE_BINARY_NAME "ex01-embed-resource")
 
 # Use C++11.
 ADD_DEFINITIONS("-std=c++11")

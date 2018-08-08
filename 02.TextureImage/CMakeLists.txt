@@ -3,10 +3,11 @@
 # This CMakeLists.txt requires the following variables:
 # * OSGCPE_DIR
 # This CMakeLists.txt provides the following variables outside:
+# * EXAMPLE_BINARY_NAME
 # * OSGCPE_LINK_LIBS
-# * OSGCPE_IMAGE_LINK_LIBS
 
 PROJECT(EX02_TEXTURE_IMAGE)
+SET(EXAMPLE_BINARY_NAME "ex02-texture-image")
 
 # Use C++11.
 ADD_DEFINITIONS("-std=c++11")
@@ -31,6 +32,3 @@ SET(
     osg
     OpenThreads
 )
-
-# Provide image libraries to link with.
-SET(OSGCPE_IMAGE_LINK_LIBS "osgdb_png" "png")

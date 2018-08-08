@@ -1,34 +1,22 @@
-PROJECT(EX02_TEXTURE_IMAGE)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 SET(OSGCPE_DIR "${CMAKE_SOURCE_DIR}/../../../openscenegraph-cross-platform-examples")
 
-# Build OpenSceneGraph statically.
-INCLUDE(${OSGCPE_DIR}/libs/OpenSceneGraph/CMakeLists.txt)
+# Include common CMakeLists.txt.
+INCLUDE(${CMAKE_SOURCE_DIR}/../CMakeLists.txt)
 
-# Use C++11.
-ADD_DEFINITIONS("-std=c++11")
-
-# Reference source headers.
+# Reference sources.
 INCLUDE_DIRECTORIES(src)
-# Reference resource headers.
-INCLUDE_DIRECTORIES(${OSGCPE_DIR}/data)
 # Create executable (aka HTML page).
-ADD_EXECUTABLE(ex02-texture-image src/main.cpp)
+ADD_EXECUTABLE(${EXAMPLE_BINARY_NAME} src/main.cpp)
+
+SET(IMAGE_LINK_LIBS "osgdb_png")
+
 # Link executable with libraries.
 TARGET_LINK_LIBRARIES(
-    ex02-texture-image
-    osgViewer
-    osgUtil
-    osgDB
-    # osgDB plugins start.
-    osgdb_osg
-    osgdb_serializers_osg
-    osgdb_png
-    # osgDB plugins end.
-    osgGA
-    osg
-    OpenThreads
+    ${EXAMPLE_BINARY_NAME}
+    ${OSGCPE_LINK_LIBS}
+    ${IMAGE_LINK_LIBS}
 )
 
 # Set special build flags:
@@ -43,4 +31,4 @@ ADD_DEFINITIONS(${BUILD_FLAGS})
 # Make Emscripten generate ready-to-open HTML page.
 SET(CMAKE_EXECUTABLE_SUFFIX ".html")
 # Link with special build flags.
-SET_TARGET_PROPERTIES(ex02-texture-image PROPERTIES LINK_FLAGS ${BUILD_FLAGS})
+SET_TARGET_PROPERTIES(${EXAMPLE_BINARY_NAME} PROPERTIES LINK_FLAGS ${BUILD_FLAGS})

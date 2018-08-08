@@ -8,11 +8,11 @@ INCLUDE(${CMAKE_SOURCE_DIR}/../CMakeLists.txt)
 # Reference sources.
 INCLUDE_DIRECTORIES(src)
 # Create executable (aka HTML page).
-ADD_EXECUTABLE(ex01-embed-resource src/main.cpp)
+ADD_EXECUTABLE(${EXAMPLE_BINARY_NAME} src/main.cpp)
 
 # Link executable with libraries.
 TARGET_LINK_LIBRARIES(
-    ex01-embed-resource
+    ${EXAMPLE_BINARY_NAME}
     ${OSGCPE_LINK_LIBS}
 )
 
@@ -28,4 +28,4 @@ ADD_DEFINITIONS(${BUILD_FLAGS})
 # Make Emscripten generate ready-to-open HTML page.
 SET(CMAKE_EXECUTABLE_SUFFIX ".html")
 # Link with special build flags.
-SET_TARGET_PROPERTIES(ex01-embed-resource PROPERTIES LINK_FLAGS ${BUILD_FLAGS})
+SET_TARGET_PROPERTIES(${EXAMPLE_BINARY_NAME} PROPERTIES LINK_FLAGS ${BUILD_FLAGS})
