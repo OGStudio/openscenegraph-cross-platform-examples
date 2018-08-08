@@ -10,7 +10,6 @@ INCLUDE_DIRECTORIES(src/main/cpp)
 # Create native library.
 ADD_LIBRARY(library SHARED src/main/cpp/library.cpp)
 
-# Use Android's log library.
 FIND_LIBRARY(log-lib log)
 
 # Link native library with libraries.

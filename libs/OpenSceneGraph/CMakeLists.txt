@@ -2,9 +2,6 @@ PROJECT(STATIC_OPENSCENEGRAPH)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 # Build OpenSceneGraph into static library.
 
-# TODO: Provide flag to set iOS sim/dev.
-# TODO: And use this flag to detect iOS build.
-
 # Detect platform.
 SET(OSG_PLATFORM "linux")
 # macOS.
@@ -17,7 +14,6 @@ ELSEIF (${CMAKE_SYSTEM_NAME} STREQUAL "Emscripten")
 ELSEIF (${CMAKE_SYSTEM_NAME} STREQUAL "Android")
     SET(OSG_PLATFORM "android")
 ENDIF ()
-# TODO iOS.
 # TODO Windows.
 MESSAGE("OSG_PLATFORM: '${OSG_PLATFORM}'")
 
@@ -47,7 +43,6 @@ ELSEIF (${OSG_PLATFORM} STREQUAL "android")
     INCLUDE_DIRECTORIES(${OSG}/include/android)
 ENDIF ()
 # TODO Windows.
-# TODO iOS.
 
 # Libraries.
 SET(SRC "${OSG}/src")
@@ -119,10 +114,8 @@ TARGET_LINK_LIBRARIES(osgViewer ${VIEWER_PLATFORM_LIBS})
 # osgt plugin.
 ADD_LIBRARY(osgdb_osg STATIC ${SRC}/osgdb_osg.cpp)
 
-# ImageIO plugin for macOS and iOS.
+# ImageIO plugin for macOS.
 IF (${OSG_PLATFORM} STREQUAL "macos")
-    ADD_LIBRARY(osgdb_imageio STATIC ${SRC}/osgdb_imageio.cpp)
-ELSEIF (${OSG_PLATFORM} STREQUAL "ios")
     ADD_LIBRARY(osgdb_imageio STATIC ${SRC}/osgdb_imageio.cpp)
 # PNG plugin for other platforms.
 ELSE ()
