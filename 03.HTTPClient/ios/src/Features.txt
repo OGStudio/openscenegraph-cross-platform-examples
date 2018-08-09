@@ -1,6 +1,6 @@
 # ios
 AppDelegate
-AppDelegate+HTTPClientProcessor
+AppDelegate+HTTPClientProcessor-ios
 AppDelegate+RenderVC
 HTTPClientProcessor-ios
 RenderVC

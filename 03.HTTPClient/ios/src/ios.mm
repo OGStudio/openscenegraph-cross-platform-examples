@@ -30,6 +30,10 @@ freely, subject to the following restrictions:
 @interface AppDelegate ()
 
 // AppDelegate End
+    // AppDelegate+HTTPClientProcessor-ios Start
+    @property (nonatomic, strong) HTTPClientProcessor *httpClientProcessor;
+    
+    // AppDelegate+HTTPClientProcessor-ios End
     // AppDelegate+RenderVC Start
     @property (nonatomic, strong) RenderVC *renderVC;
     
@@ -50,6 +54,10 @@ freely, subject to the following restrictions:
     [self setupRenderVC];
     
     // AppDelegate+RenderVC End
+    // AppDelegate+HTTPClientProcessor-ios Start
+    [self setupHTTPClientProcessor];
+    
+    // AppDelegate+HTTPClientProcessor-ios End
 // AppDelegate Start
     self.window.backgroundColor = UIColor.whiteColor;
     [self.window makeKeyAndVisible];
@@ -58,6 +66,25 @@ freely, subject to the following restrictions:
 }
 
 // AppDelegate End
+    // AppDelegate+HTTPClientProcessor-ios Start
+    - (void)setupHTTPClientProcessor
+    {
+        self.httpClientProcessor = [HTTPClientProcessor new];
+    
+        // Run the processor each frame.
+    
+        // NOTE Create weak reference to `self` to escape so-called retain cycle.
+        // NOTE Without `weakification` we get compile time warning from ARC.
+        //__weak typeof(self)weakSelf = self;
+    
+        self.renderVC.frame = ^() {
+            // NOTE Convert weak self to strong self.
+            //__strong typeof(self)self = weakSelf;
+    
+            [self.httpClientProcessor process];
+        };
+    }
+    // AppDelegate+HTTPClientProcessor-ios End
     // AppDelegate+RenderVC Start
     - (void)setupRenderVC
     {
