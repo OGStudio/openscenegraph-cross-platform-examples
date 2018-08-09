@@ -1,13 +1,15 @@
+# main
+Application
 Application+camera
 Application+frame+Reporting
 Application+setupWindow-embedded
 Application+HTTPClient
 Application+Logging
 Application+Rendering
-Reporter+Stub
 
+OSGCPE_MAIN_EXAMPLE_LOG
+Example
 Example+03
-Example+OSGCPE_EXAMPLE_LOG
 Example+BoxScene
 Example+HTTPSGetPost
 Example+TextureImageScene
@@ -23,10 +25,13 @@ library+frame-android
 library+httpClient-android
 library+jniStrings-android
 
+# core
+Reporter
+
 # log
 log-android
-logprintf
 logLevelToString
+logprintf
 Logger
 
 # format
