@@ -1,38 +1,33 @@
 PROJECT(EX04_REMOTE_DEBUGGING)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
-SET(OSGCPE_DIR "${CMAKE_SOURCE_DIR}/../..")
+SET(OSGCPE_DIR "${CMAKE_SOURCE_DIR}/../../../openscenegraph-cross-platform-examples")
 
-# Build OpenSceneGraph statically.
-INCLUDE(../../libs/OpenSceneGraph/CMakeLists.txt)
+# Include common CMakeLists.txt.
+INCLUDE(${CMAKE_SOURCE_DIR}/../CMakeLists.txt)
+
 # Build mongoose statically.
 INCLUDE(../../libs/mongoose/CMakeLists.txt)
 # Reference NLohmann's JSON parsing library.
 INCLUDE_DIRECTORIES(${OSGCPE_DIR}/../json/single_include)
 
-# Use C++11.
-ADD_DEFINITIONS("-std=c++11")
-
-# Reference source headers.
+# Reference sources.
 INCLUDE_DIRECTORIES(src)
-# Reference resource headers.
-INCLUDE_DIRECTORIES(../../data)
 # Create executable.
-ADD_EXECUTABLE(ex04-remote-debugging src/main.cpp)
-# Link executable with OpenSceneGraph libraries.
+ADD_EXECUTABLE(${EXAMPLE_BINARY_NAME} src/main.cpp)
+
+# Use ImageIO for macOS.
+IF (${OSG_PLATFORM} STREQUAL "macos")
+    SET(IMAGE_LINK_LIBS "osgdb_imageio")
+# Use libpng for Linux and Windows.
+ELSE ()
+    SET(IMAGE_LINK_LIBS "osgdb_png" "png")
+ENDIF ()
+
+# Link executable with libraries.
 TARGET_LINK_LIBRARIES(
-    ex04-remote-debugging
-    osgViewer
-    osgUtil
-    osgDB
-    # osgDB plugins start.
-    osgdb_osg
-    osgdb_serializers_osg
-    osgdb_png
-    png
-    # osgDB plugins end.
-    osgGA
-    osg
-    OpenThreads
+    ${EXAMPLE_BINARY_NAME}
+    ${OSGCPE_LINK_LIBS}
+    ${IMAGE_LINK_LIBS}
     mongoose
 )
