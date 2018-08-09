@@ -18,7 +18,8 @@ UIView *init(int width, int height, float scale, UIView *parentView)
     // before plugin readers/writers are available, which would break everything.
     if (!example)
     {
-        example = new main::Example;
+        main::Example::Parameters parameters;
+        example = new main::Example(parameters);
     }
     return example->app->setupWindow(width, height, scale, parentView);
 }

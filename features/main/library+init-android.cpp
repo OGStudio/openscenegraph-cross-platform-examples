@@ -7,7 +7,8 @@ OSGCPE_JNI(init)(OSGCPE_JNI_ARG, jint width, jint height)
     // before plugin readers/writers are available, which would break everything.
     if (!example)
     {
-        example = new main::Example;
+        main::Example::Parameters parameters;
+        example = new main::Example(parameters);
     }
     return example->app->setupWindow(width, height);
 }
