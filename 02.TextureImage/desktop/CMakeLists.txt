@@ -18,7 +18,6 @@ ELSE ()
     SET(IMAGE_LINK_LIBS "osgdb_png" "png")
 ENDIF ()
 
-
 # Link executable with libraries.
 TARGET_LINK_LIBRARIES(
     ${EXAMPLE_BINARY_NAME}
