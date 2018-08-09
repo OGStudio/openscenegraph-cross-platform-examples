@@ -33,14 +33,14 @@ freely, subject to the following restrictions:
 @end
 
 // AppDelegate End
-// HTTPClientProcessor Start
+// HTTPClientProcessor-ios Start
 @interface HTTPClientProcessor : NSObject
 
 - (void)process;
 
 @end
 
-// HTTPClientProcessor End
+// HTTPClientProcessor-ios End
 
 // RenderVC Start
 @interface RenderVC : UIViewController

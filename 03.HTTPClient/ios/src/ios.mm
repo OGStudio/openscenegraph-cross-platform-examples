@@ -30,10 +30,6 @@ freely, subject to the following restrictions:
 @interface AppDelegate ()
 
 // AppDelegate End
-    // AppDelegate+HTTPClientProcessor Start
-    @property (nonatomic, strong) HTTPClientProcessor *httpClientProcessor;
-    
-    // AppDelegate+HTTPClientProcessor End
     // AppDelegate+RenderVC Start
     @property (nonatomic, strong) RenderVC *renderVC;
     
@@ -41,8 +37,6 @@ freely, subject to the following restrictions:
 // AppDelegate Start
 @end
 
-// AppDelegate End
-// AppDelegate Start
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application
@@ -56,10 +50,6 @@ freely, subject to the following restrictions:
     [self setupRenderVC];
     
     // AppDelegate+RenderVC End
-    // AppDelegate+HTTPClientProcessor Start
-    [self setupHTTPClientProcessor];
-    
-    // AppDelegate+HTTPClientProcessor End
 // AppDelegate Start
     self.window.backgroundColor = UIColor.whiteColor;
     [self.window makeKeyAndVisible];
@@ -68,25 +58,6 @@ freely, subject to the following restrictions:
 }
 
 // AppDelegate End
-    // AppDelegate+HTTPClientProcessor Start
-    - (void)setupHTTPClientProcessor
-    {
-        self.httpClientProcessor = [HTTPClientProcessor new];
-    
-        // Run the processor each frame.
-    
-        // NOTE Create weak reference to `self` to escape so-called retain cycle.
-        // NOTE Without `weakification` we get compile time warning from ARC.
-        //__weak typeof(self)weakSelf = self;
-    
-        self.renderVC.frame = ^() {
-            // NOTE Convert weak self to strong self.
-            //__strong typeof(self)self = weakSelf;
-    
-            [self.httpClientProcessor process];
-        };
-    }
-    // AppDelegate+HTTPClientProcessor End
     // AppDelegate+RenderVC Start
     - (void)setupRenderVC
     {
@@ -98,7 +69,7 @@ freely, subject to the following restrictions:
 @end
 // AppDelegate End
 
-// HTTPClientProcessor Start
+// HTTPClientProcessor-ios Start
 @interface HTTPClientProcessor ()
 @end
 
@@ -170,7 +141,7 @@ freely, subject to the following restrictions:
 
 @end
 
-// HTTPClientProcessor End
+// HTTPClientProcessor-ios End
 
 // RenderVC Start
 @interface RenderVC ()

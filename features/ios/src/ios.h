@@ -28,7 +28,7 @@ freely, subject to the following restrictions:
 #import <UIKit/UIKit.h>
 
 // FEATURE AppDelegate/Impl
-// FEATURE HTTPClientProcessor/Impl
+// FEATURE HTTPClientProcessor-ios/Impl
 
 // FEATURE RenderVC/Properties
     // FEATURE RenderVC+FrameReporting/Properties

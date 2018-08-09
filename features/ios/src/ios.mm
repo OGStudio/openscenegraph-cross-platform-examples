@@ -27,17 +27,17 @@ freely, subject to the following restrictions:
 #include "library.h"
 
 // FEATURE AppDelegate/Properties
-    // FEATURE AppDelegate+HTTPClientProcessor/Properties
+    // FEATURE AppDelegate+HTTPClientProcessor-ios/Properties
     // FEATURE AppDelegate+RenderVC/Properties
 // FEATURE AppDelegate/Setup
     // FEATURE AppDelegate+RenderVC/Setup
-    // FEATURE AppDelegate+HTTPClientProcessor/Setup
+    // FEATURE AppDelegate+HTTPClientProcessor-ios/Setup
 // FEATURE AppDelegate/Impl
-    // FEATURE AppDelegate+HTTPClientProcessor/Impl
+    // FEATURE AppDelegate+HTTPClientProcessor-ios/Impl
     // FEATURE AppDelegate+RenderVC/Impl
 // FEATURE AppDelegate/End
 
-// FEATURE HTTPClientProcessor/Impl
+// FEATURE HTTPClientProcessor-ios/Impl
 
 // FEATURE RenderVC/Frame
     // FEATURE RenderVC+FrameReporting/Frame
