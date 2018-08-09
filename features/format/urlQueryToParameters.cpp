@@ -1,3 +1,6 @@
+FEATURE format.h/Include
+#include <map>
+
 FEATURE format.h/Impl
 typedef std::map<std::string, std::string> Parameters;
 //! Convert query parameters starting after `?` that are in the form of `key=value` to parameters.

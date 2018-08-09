@@ -1,3 +1,6 @@
+FEATURE scene.h/Include
+#include <osg/MatrixTransform>
+
 FEATURE scene.h/Impl
 //! Set node position.
 //! NOTE Only works for non-rotated/scaled nodes.
