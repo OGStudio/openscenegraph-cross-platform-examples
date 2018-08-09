@@ -76,6 +76,16 @@ freely, subject to the following restrictions:
 USE_OSGPLUGIN(osg2)
 USE_SERIALIZER_WRAPPER_LIBRARY(osg)
 // Example+StaticPluginOSG End
+// Example+StaticPluginPNG Start
+// Reference (statically) plugins to read `png` file.
+// Apple platforms use ImageIO. All others use libpng.
+
+#ifdef __APPLE__
+    USE_OSGPLUGIN(imageio)
+#else
+    USE_OSGPLUGIN(png)
+#endif
+// Example+StaticPluginPNG End
 
 namespace osgcpe
 {

@@ -1,4 +1,0 @@
-AppDelegate
-AppDelegate+RenderVC
-RenderVC
-RenderVC+FrameReporting
