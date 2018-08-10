@@ -58,6 +58,17 @@ freely, subject to the following restrictions:
 
 // Application+Rendering End
 
+// OSGCPE_MAIN_APPLICATION_LOG Start
+#include "log.h"
+#include "format.h"
+#define OSGCPE_MAIN_APPLICATION_LOG_PREFIX "main::Application(%p) %s"
+#define OSGCPE_MAIN_APPLICATION_LOG(...) \
+    log::logprintf( \
+        OSGCPE_MAIN_APPLICATION_LOG_PREFIX, \
+        this, \
+        format::printfString(__VA_ARGS__).c_str() \
+    )
+// OSGCPE_MAIN_APPLICATION_LOG End
 
 // Example+BoxScene Start
 #include "box.osgt.h"
@@ -79,18 +90,47 @@ freely, subject to the following restrictions:
 
 // Example+VBO End
 
+// OSGCPE_MAIN_EXAMPLE_LOG Start
+#include "log.h"
+#include "format.h"
+#define OSGCPE_MAIN_EXAMPLE_LOG_PREFIX "main::Example(%p) %s"
+#define OSGCPE_MAIN_EXAMPLE_LOG(...) \
+    log::logprintf( \
+        OSGCPE_MAIN_EXAMPLE_LOG_PREFIX, \
+        this, \
+        format::printfString(__VA_ARGS__).c_str() \
+    )
+// OSGCPE_MAIN_EXAMPLE_LOG End
 
 // Example+StaticPluginOSG Start
 // Reference (statically) plugins to read `osgt` file.
 USE_OSGPLUGIN(osg2)
 USE_SERIALIZER_WRAPPER_LIBRARY(osg)
 // Example+StaticPluginOSG End
+// Example+StaticPluginPNG Start
+// Reference (statically) plugins to read `png` file.
+// Apple platforms use ImageIO. All others use libpng.
+
+#ifdef __APPLE__
+    USE_OSGPLUGIN(imageio)
+#else
+    USE_OSGPLUGIN(png)
+#endif
+// Example+StaticPluginPNG End
 
 namespace osgcpe
 {
 namespace main
 {
 
+// Application Start
+class Application
+{
+    public:
+        Application(const std::string &name)
+        {
+
+// Application End
             // Application+Logging Start
             this->setupLogging(name);
             
@@ -115,6 +155,12 @@ namespace main
             this->setupDebugCamera();
             
             // Application+DebugCamera End
+// Application Start
+        }
+        ~Application()
+        {
+
+// Application End
             // Application+Debugging Start
             this->tearDebuggingDown();
             
@@ -131,6 +177,17 @@ namespace main
             this->tearLoggingDown();
             
             // Application+Logging End
+// Application Start
+        }
+
+// Application End
+    // Application+camera Start
+    public:
+        osg::Camera *camera()
+        {
+            return this->viewer->getCamera();
+        }
+    // Application+camera End
     // Application+frame+Reporting Start
     public:
         core::Reporter frameReporter;
@@ -256,12 +313,10 @@ namespace main
     // Application+DebugCamera Start
     private:
         debug::Page debugPage;
-        osg::Camera *camera;
     public:
         void setupDebugCamera()
         {
             this->debugPage.title = "camera";
-            this->camera = this->viewer->getCamera();
             this->setupDebugBGColor();
             this->setupDebugCameraOrientation();
             this->debugger->addPage(this->debugPage);
@@ -273,7 +328,7 @@ namespace main
                 "BGColor",
                 // Getter.
                 [&] {
-                    auto color = this->camera->getClearColor();
+                    auto color = this->camera()->getClearColor();
                     int r = color.r() * 255.0;
                     int g = color.g() * 255.0;
                     int b = color.b() * 255.0;
@@ -288,11 +343,11 @@ namespace main
                         OSGCPE_MAIN_APPLICATION_LOG("WARNING compoents number: '%d'", colorComponents.size());
                         return;
                     }
-                    auto color = this->camera->getClearColor();
+                    auto color = this->camera()->getClearColor();
                     color.r() = static_cast<float>(atoi(colorComponents[0].c_str())) / 255.0;
                     color.g() = static_cast<float>(atoi(colorComponents[1].c_str())) / 255.0;
                     color.b() = static_cast<float>(atoi(colorComponents[2].c_str())) / 255.0;
-                    this->camera->setClearColor(color);
+                    this->camera()->setClearColor(color);
                 }
             );
         }
@@ -317,11 +372,26 @@ namespace main
             );
         }
     // Application+DebugCamera End
+// Application Start
+};
+// Application End
 
-// Example+03 Start
-const auto EXAMPLE_TITLE = "Ex03";
-// Example+03 End
+// Example+04 Start
+const auto EXAMPLE_TITLE = "Ex04";
+// Example+04 End
 
+// Example Start
+struct Example
+{
+    Application *app;
+
+    typedef std::map<std::string, std::string> Parameters;
+
+    Example(const Parameters &parameters)
+    {
+        this->app = new Application(EXAMPLE_TITLE);
+
+// Example End
         // Example+BoxScene Start
         this->setupBoxScene();
         
@@ -334,6 +404,17 @@ const auto EXAMPLE_TITLE = "Ex03";
         this->setupSceneTexturing();
         
         // Example+TextureImageScene End
+// Example Start
+    }
+    ~Example()
+    {
+
+// Example End
+// Example Start
+        delete this->app;
+    }
+
+// Example End
     // Example+BoxScene Start
     private:
         osg::ref_ptr<osg::MatrixTransform> scene;
@@ -390,6 +471,9 @@ const auto EXAMPLE_TITLE = "Ex03";
             this->scene->accept(vbo);
         }
     // Example+VBO End
+// Example Start
+};
+// Example End
 
 } // namespace main.
 } // namespace osgcpe.

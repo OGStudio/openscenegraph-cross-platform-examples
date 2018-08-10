@@ -30,12 +30,53 @@ freely, subject to the following restrictions:
 #include <vector>
 
 // HTTPClient End
+// HTTPRequest Start
+#include <functional>
+#include <string>
+
+// HTTPRequest End
 
 namespace osgcpe
 {
 namespace network
 {
 
+// HTTPRequest Start
+//! HTTP request container
+class HTTPRequest
+{
+    public:
+        typedef std::function<void(std::string)> Callback;
+
+        enum STATUS
+        {
+            PENDING,
+            IN_PROGRESS,
+            COMPLETED
+        };
+
+        // If data is emtpy, GET request is issued.
+        // Otherwise POST request is issued.
+        HTTPRequest(
+            const std::string &url,
+            const std::string &data,
+            Callback success,
+            Callback failure
+        ) :
+            url(url),
+            data(data),
+            success(success),
+            failure(failure),
+            status(PENDING)
+        { }
+
+        const std::string url;
+        const std::string data;
+        Callback success;
+        Callback failure;
+        STATUS status;
+};
+// HTTPRequest End
 
 // HTTPClient Start
 //! Use HTTPClient to perform HTTP(s) GET/POST requests.

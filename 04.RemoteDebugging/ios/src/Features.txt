@@ -1,4 +1,15 @@
-Application+OSGCPE_APPLICATION_LOG
+# ios
+AppDelegate
+AppDelegate+HTTPClientProcessor-ios
+AppDelegate+RenderVC
+HTTPClientProcessor-ios
+RenderVC
+RenderVC+FrameReporting
+
+# main
+OSGCPE_MAIN_APPLICATION_LOG
+Application
+Application+camera
 Application+frame+Reporting
 Application+setupWindow-ios
 Application+CameraManipulator
@@ -7,19 +18,23 @@ Application+DebugCamera
 Application+HTTPClient
 Application+Logging
 Application+Rendering
-Reporter+Stub
 
-Example+03
-Example+OSGCPE_EXAMPLE_LOG
+OSGCPE_MAIN_EXAMPLE_LOG
+Example
+Example+04
 Example+BoxScene
 Example+TextureImageScene
 Example+StaticPluginOSG
-Example+StaticPluginImageIO
+Example+StaticPluginPNG
 Example+VBO
 
 library-ios
 library+init-ios
 library+frame-ios
+library+httpClient-ios
+
+# core
+Reporter
 
 # log
 log-default
@@ -53,16 +68,14 @@ textureImageScene
 
 # network
 HTTPClient
-HTTPClient+Mongoose
-HTTPClientMongoose
-extlib-mongoose
+HTTPRequest
 
 # debug
+OSGCPE_DEBUG_DEBUGGER_LOG
 PageDesc
 Page
 Page+item
 Page+setDesc
-OSGCPE_DEBUG_DEBUGGER_LOG
 Debugger
 Debugger+page
 Debugger+process
@@ -70,4 +83,3 @@ Debugger+processJSON
 debuggerToJSON
 pageToJSON
 jsonToPageDesc
-extlib-json

@@ -9,12 +9,30 @@
 /* Begin PBXBuildFile section */
 		2F4EB962202B07390019AD8B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4EB95C202B06590019AD8B /* MobileCoreServices.framework */; };
 		2F4EB97D202B07A70019AD8B /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4EB96F202B074D0019AD8B /* Accelerate.framework */; };
+		2F5C7BF0211C2EF1004ED0F6 /* osgdb_imageio.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C7BEF211C2EF1004ED0F6 /* osgdb_imageio.mm */; };
 		2F7788931F530562008378D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7788921F530562008378D5 /* main.m */; };
-		2F7788961F530562008378D5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7788951F530562008378D5 /* AppDelegate.m */; };
 		2F77889E1F530562008378D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F77889D1F530562008378D5 /* Assets.xcassets */; };
 		2F7788A11F530562008378D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F77889F1F530562008378D5 /* LaunchScreen.storyboard */; };
-		2F7788A91F5306EF008378D5 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F7788A81F5306EF008378D5 /* ViewController.mm */; };
-		2F7788AB1F5306FD008378D5 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2F7788AA1F5306FD008378D5 /* ViewController.xib */; };
+		2FBE4E7421198A5E00D55C84 /* library.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE4E7321198A5D00D55C84 /* library.mm */; };
+		2FF6D68C211C2CEA0083A068 /* osgdb_osg.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D67A211C2CE90083A068 /* osgdb_osg.mm */; };
+		2FF6D68D211C2CEA0083A068 /* osgdb_serializers_osg-Node.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D67B211C2CE90083A068 /* osgdb_serializers_osg-Node.mm */; };
+		2FF6D68E211C2CEA0083A068 /* osgdb_serializers_osg-Transform.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D67C211C2CE90083A068 /* osgdb_serializers_osg-Transform.mm */; };
+		2FF6D68F211C2CEA0083A068 /* osgdb_serializers_osg-Geometry.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D67D211C2CE90083A068 /* osgdb_serializers_osg-Geometry.mm */; };
+		2FF6D690211C2CEA0083A068 /* osg-03.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D67E211C2CE90083A068 /* osg-03.mm */; };
+		2FF6D691211C2CEA0083A068 /* osgdb_serializers_osg-LibraryWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D67F211C2CE90083A068 /* osgdb_serializers_osg-LibraryWrapper.mm */; };
+		2FF6D692211C2CEA0083A068 /* osgGA.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D680211C2CE90083A068 /* osgGA.mm */; };
+		2FF6D693211C2CEA0083A068 /* osgDB.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D681211C2CEA0083A068 /* osgDB.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2FF6D694211C2CEA0083A068 /* osgUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D682211C2CEA0083A068 /* osgUtil.mm */; };
+		2FF6D695211C2CEA0083A068 /* osgdb_serializers_osg-Group.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D683211C2CEA0083A068 /* osgdb_serializers_osg-Group.mm */; };
+		2FF6D696211C2CEA0083A068 /* osgdb_serializers_osg-Object.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D684211C2CEA0083A068 /* osgdb_serializers_osg-Object.mm */; };
+		2FF6D697211C2CEA0083A068 /* OpenThreads.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D685211C2CEA0083A068 /* OpenThreads.mm */; };
+		2FF6D698211C2CEA0083A068 /* osgdb_serializers_osg-Drawable.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D686211C2CEA0083A068 /* osgdb_serializers_osg-Drawable.mm */; };
+		2FF6D699211C2CEA0083A068 /* osgdb_serializers_osg-Geode.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D687211C2CEA0083A068 /* osgdb_serializers_osg-Geode.mm */; };
+		2FF6D69A211C2CEA0083A068 /* osg-02.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D688211C2CEA0083A068 /* osg-02.mm */; };
+		2FF6D69B211C2CEA0083A068 /* osg-01.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D689211C2CEA0083A068 /* osg-01.mm */; };
+		2FF6D69C211C2CEA0083A068 /* osgdb_serializers_osg-MatrixTransform.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D68A211C2CEA0083A068 /* osgdb_serializers_osg-MatrixTransform.mm */; };
+		2FF6D69D211C2CEA0083A068 /* osgViewer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D68B211C2CEA0083A068 /* osgViewer.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2FFD8D2621071FA100D4B5FD /* ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FFD8D2421071FA100D4B5FD /* ios.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,16 +55,34 @@
 		2F4EB96E202B074D0019AD8B /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		2F4EB96F202B074D0019AD8B /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		2F4EB970202B074D0019AD8B /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
-		2F77888E1F530562008378D5 /* ex03.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ex03.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F5C7BEF211C2EF1004ED0F6 /* osgdb_imageio.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = osgdb_imageio.mm; path = "../../libs/OpenSceneGraph/src-ios/osgdb_imageio.mm"; sourceTree = "<group>"; };
+		2F77888E1F530562008378D5 /* ex04.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ex04.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F7788921F530562008378D5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2F7788941F530562008378D5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		2F7788951F530562008378D5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2F7788971F530562008378D5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		2F77889D1F530562008378D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F7788A01F530562008378D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F7788A21F530562008378D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2F7788A81F5306EF008378D5 /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
-		2F7788AA1F5306FD008378D5 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		2FBE4E7221198A5D00D55C84 /* library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = library.h; sourceTree = "<group>"; };
+		2FBE4E7321198A5D00D55C84 /* library.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = library.mm; sourceTree = "<group>"; };
+		2FF6D67A211C2CE90083A068 /* osgdb_osg.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = osgdb_osg.mm; path = "../../libs/OpenSceneGraph/src-ios/osgdb_osg.mm"; sourceTree = "<group>"; };
+		2FF6D67B211C2CE90083A068 /* osgdb_serializers_osg-Node.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "osgdb_serializers_osg-Node.mm"; path = "../../libs/OpenSceneGraph/src-ios/osgdb_serializers_osg-Node.mm"; sourceTree = "<group>"; };
+		2FF6D67C211C2CE90083A068 /* osgdb_serializers_osg-Transform.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "osgdb_serializers_osg-Transform.mm"; path = "../../libs/OpenSceneGraph/src-ios/osgdb_serializers_osg-Transform.mm"; sourceTree = "<group>"; };
+		2FF6D67D211C2CE90083A068 /* osgdb_serializers_osg-Geometry.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "osgdb_serializers_osg-Geometry.mm"; path = "../../libs/OpenSceneGraph/src-ios/osgdb_serializers_osg-Geometry.mm"; sourceTree = "<group>"; };
+		2FF6D67E211C2CE90083A068 /* osg-03.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "osg-03.mm"; path = "../../libs/OpenSceneGraph/src-ios/osg-03.mm"; sourceTree = "<group>"; };
+		2FF6D67F211C2CE90083A068 /* osgdb_serializers_osg-LibraryWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "osgdb_serializers_osg-LibraryWrapper.mm"; path = "../../libs/OpenSceneGraph/src-ios/osgdb_serializers_osg-LibraryWrapper.mm"; sourceTree = "<group>"; };
+		2FF6D680211C2CE90083A068 /* osgGA.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = osgGA.mm; path = "../../libs/OpenSceneGraph/src-ios/osgGA.mm"; sourceTree = "<group>"; };
+		2FF6D681211C2CEA0083A068 /* osgDB.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = osgDB.mm; path = "../../libs/OpenSceneGraph/src-ios/osgDB.mm"; sourceTree = "<group>"; };
+		2FF6D682211C2CEA0083A068 /* osgUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = osgUtil.mm; path = "../../libs/OpenSceneGraph/src-ios/osgUtil.mm"; sourceTree = "<group>"; };
+		2FF6D683211C2CEA0083A068 /* osgdb_serializers_osg-Group.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "osgdb_serializers_osg-Group.mm"; path = "../../libs/OpenSceneGraph/src-ios/osgdb_serializers_osg-Group.mm"; sourceTree = "<group>"; };
+		2FF6D684211C2CEA0083A068 /* osgdb_serializers_osg-Object.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "osgdb_serializers_osg-Object.mm"; path = "../../libs/OpenSceneGraph/src-ios/osgdb_serializers_osg-Object.mm"; sourceTree = "<group>"; };
+		2FF6D685211C2CEA0083A068 /* OpenThreads.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = OpenThreads.mm; path = "../../libs/OpenSceneGraph/src-ios/OpenThreads.mm"; sourceTree = "<group>"; };
+		2FF6D686211C2CEA0083A068 /* osgdb_serializers_osg-Drawable.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "osgdb_serializers_osg-Drawable.mm"; path = "../../libs/OpenSceneGraph/src-ios/osgdb_serializers_osg-Drawable.mm"; sourceTree = "<group>"; };
+		2FF6D687211C2CEA0083A068 /* osgdb_serializers_osg-Geode.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "osgdb_serializers_osg-Geode.mm"; path = "../../libs/OpenSceneGraph/src-ios/osgdb_serializers_osg-Geode.mm"; sourceTree = "<group>"; };
+		2FF6D688211C2CEA0083A068 /* osg-02.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "osg-02.mm"; path = "../../libs/OpenSceneGraph/src-ios/osg-02.mm"; sourceTree = "<group>"; };
+		2FF6D689211C2CEA0083A068 /* osg-01.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "osg-01.mm"; path = "../../libs/OpenSceneGraph/src-ios/osg-01.mm"; sourceTree = "<group>"; };
+		2FF6D68A211C2CEA0083A068 /* osgdb_serializers_osg-MatrixTransform.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "osgdb_serializers_osg-MatrixTransform.mm"; path = "../../libs/OpenSceneGraph/src-ios/osgdb_serializers_osg-MatrixTransform.mm"; sourceTree = "<group>"; };
+		2FF6D68B211C2CEA0083A068 /* osgViewer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = osgViewer.mm; path = "../../libs/OpenSceneGraph/src-ios/osgViewer.mm"; sourceTree = "<group>"; };
+		2FFD8D2421071FA100D4B5FD /* ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ios.mm; sourceTree = "<group>"; };
+		2FFD8D2521071FA100D4B5FD /* ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +106,8 @@
 		2F7788851F530562008378D5 = {
 			isa = PBXGroup;
 			children = (
-				2F7788901F530562008378D5 /* App */,
+				2FF6D678211C2CCB0083A068 /* OpenSceneGraph */,
+				2F7788901F530562008378D5 /* src */,
 				2F77888F1F530562008378D5 /* Products */,
 				2FFF43FB1F57405A003D419D /* Frameworks */,
 			);
@@ -79,25 +116,24 @@
 		2F77888F1F530562008378D5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2F77888E1F530562008378D5 /* ex03.app */,
+				2F77888E1F530562008378D5 /* ex04.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2F7788901F530562008378D5 /* App */ = {
+		2F7788901F530562008378D5 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				2F7788941F530562008378D5 /* AppDelegate.h */,
-				2F7788951F530562008378D5 /* AppDelegate.m */,
-				2F7788971F530562008378D5 /* ViewController.h */,
-				2F7788A81F5306EF008378D5 /* ViewController.mm */,
-				2F7788AA1F5306FD008378D5 /* ViewController.xib */,
+				2FFD8D2521071FA100D4B5FD /* ios.h */,
+				2FFD8D2421071FA100D4B5FD /* ios.mm */,
+				2FBE4E7221198A5D00D55C84 /* library.h */,
+				2FBE4E7321198A5D00D55C84 /* library.mm */,
 				2F77889D1F530562008378D5 /* Assets.xcassets */,
 				2F77889F1F530562008378D5 /* LaunchScreen.storyboard */,
 				2F7788A21F530562008378D5 /* Info.plist */,
 				2F7788911F530562008378D5 /* Supporting Files */,
 			);
-			path = App;
+			path = src;
 			sourceTree = "<group>";
 		};
 		2F7788911F530562008378D5 /* Supporting Files */ = {
@@ -106,6 +142,32 @@
 				2F7788921F530562008378D5 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2FF6D678211C2CCB0083A068 /* OpenSceneGraph */ = {
+			isa = PBXGroup;
+			children = (
+				2FF6D685211C2CEA0083A068 /* OpenThreads.mm */,
+				2FF6D689211C2CEA0083A068 /* osg-01.mm */,
+				2FF6D688211C2CEA0083A068 /* osg-02.mm */,
+				2FF6D67E211C2CE90083A068 /* osg-03.mm */,
+				2F5C7BEF211C2EF1004ED0F6 /* osgdb_imageio.mm */,
+				2FF6D67A211C2CE90083A068 /* osgdb_osg.mm */,
+				2FF6D686211C2CEA0083A068 /* osgdb_serializers_osg-Drawable.mm */,
+				2FF6D687211C2CEA0083A068 /* osgdb_serializers_osg-Geode.mm */,
+				2FF6D67D211C2CE90083A068 /* osgdb_serializers_osg-Geometry.mm */,
+				2FF6D683211C2CEA0083A068 /* osgdb_serializers_osg-Group.mm */,
+				2FF6D67F211C2CE90083A068 /* osgdb_serializers_osg-LibraryWrapper.mm */,
+				2FF6D68A211C2CEA0083A068 /* osgdb_serializers_osg-MatrixTransform.mm */,
+				2FF6D67B211C2CE90083A068 /* osgdb_serializers_osg-Node.mm */,
+				2FF6D684211C2CEA0083A068 /* osgdb_serializers_osg-Object.mm */,
+				2FF6D67C211C2CE90083A068 /* osgdb_serializers_osg-Transform.mm */,
+				2FF6D681211C2CEA0083A068 /* osgDB.mm */,
+				2FF6D680211C2CE90083A068 /* osgGA.mm */,
+				2FF6D682211C2CEA0083A068 /* osgUtil.mm */,
+				2FF6D68B211C2CEA0083A068 /* osgViewer.mm */,
+			);
+			name = OpenSceneGraph;
 			sourceTree = "<group>";
 		};
 		2FFF43FB1F57405A003D419D /* Frameworks */ = {
@@ -137,9 +199,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2F77888D1F530562008378D5 /* ex03 */ = {
+		2F77888D1F530562008378D5 /* ex04 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2F7788A51F530562008378D5 /* Build configuration list for PBXNativeTarget "ex03" */;
+			buildConfigurationList = 2F7788A51F530562008378D5 /* Build configuration list for PBXNativeTarget "ex04" */;
 			buildPhases = (
 				2F77888A1F530562008378D5 /* Sources */,
 				2F77888B1F530562008378D5 /* Frameworks */,
@@ -149,9 +211,9 @@
 			);
 			dependencies = (
 			);
-			name = ex03;
+			name = ex04;
 			productName = "mjin-player";
-			productReference = 2F77888E1F530562008378D5 /* ex03.app */;
+			productReference = 2F77888E1F530562008378D5 /* ex04.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -170,7 +232,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2F7788891F530562008378D5 /* Build configuration list for PBXProject "ex03" */;
+			buildConfigurationList = 2F7788891F530562008378D5 /* Build configuration list for PBXProject "ex04" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -189,7 +251,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				2F77888D1F530562008378D5 /* ex03 */,
+				2F77888D1F530562008378D5 /* ex04 */,
 			);
 		};
 /* End PBXProject section */
@@ -200,7 +262,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F7788A11F530562008378D5 /* LaunchScreen.storyboard in Resources */,
-				2F7788AB1F5306FD008378D5 /* ViewController.xib in Resources */,
 				2F77889E1F530562008378D5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,9 +273,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F7788961F530562008378D5 /* AppDelegate.m in Sources */,
 				2F7788931F530562008378D5 /* main.m in Sources */,
-				2F7788A91F5306EF008378D5 /* ViewController.mm in Sources */,
+				2FF6D698211C2CEA0083A068 /* osgdb_serializers_osg-Drawable.mm in Sources */,
+				2FF6D697211C2CEA0083A068 /* OpenThreads.mm in Sources */,
+				2FF6D694211C2CEA0083A068 /* osgUtil.mm in Sources */,
+				2FF6D68D211C2CEA0083A068 /* osgdb_serializers_osg-Node.mm in Sources */,
+				2FF6D690211C2CEA0083A068 /* osg-03.mm in Sources */,
+				2FBE4E7421198A5E00D55C84 /* library.mm in Sources */,
+				2FF6D69A211C2CEA0083A068 /* osg-02.mm in Sources */,
+				2FFD8D2621071FA100D4B5FD /* ios.mm in Sources */,
+				2FF6D692211C2CEA0083A068 /* osgGA.mm in Sources */,
+				2FF6D695211C2CEA0083A068 /* osgdb_serializers_osg-Group.mm in Sources */,
+				2FF6D696211C2CEA0083A068 /* osgdb_serializers_osg-Object.mm in Sources */,
+				2FF6D699211C2CEA0083A068 /* osgdb_serializers_osg-Geode.mm in Sources */,
+				2FF6D69D211C2CEA0083A068 /* osgViewer.mm in Sources */,
+				2FF6D69C211C2CEA0083A068 /* osgdb_serializers_osg-MatrixTransform.mm in Sources */,
+				2F5C7BF0211C2EF1004ED0F6 /* osgdb_imageio.mm in Sources */,
+				2FF6D691211C2CEA0083A068 /* osgdb_serializers_osg-LibraryWrapper.mm in Sources */,
+				2FF6D68E211C2CEA0083A068 /* osgdb_serializers_osg-Transform.mm in Sources */,
+				2FF6D68C211C2CEA0083A068 /* osgdb_osg.mm in Sources */,
+				2FF6D69B211C2CEA0083A068 /* osg-01.mm in Sources */,
+				2FF6D68F211C2CEA0083A068 /* osgdb_serializers_osg-Geometry.mm in Sources */,
+				2FF6D693211C2CEA0083A068 /* osgDB.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,16 +410,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 8379YHJ3XA;
 				ENABLE_BITCODE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/App/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/src/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
-				"OTHER_LDFLAGS[sdk=iphoneos*]" = "\"$(SRCROOT)/../build/Device/libex03.a\"";
-				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = "\"$(SRCROOT)/../build/Simulator/libex03.a\"";
-				PRODUCT_BUNDLE_IDENTIFIER = org.opengamestudio.ex03;
+				PRODUCT_BUNDLE_IDENTIFIER = org.opengamestudio.ex01;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../src";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../OpenSceneGraph $(SRCROOT)/../../../OpenSceneGraph/include $(SRCROOT)/../../libs/OpenSceneGraph/include/ios $(SRCROOT)/../../../json/single_include";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/src $(SRCROOT)/../../libs/OpenSceneGraph $(SRCROOT)/../../data";
 			};
 			name = Debug;
 		};
@@ -349,23 +428,22 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 8379YHJ3XA;
 				ENABLE_BITCODE = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/App/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/src/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
-				"OTHER_LDFLAGS[sdk=iphoneos*]" = "\"$(SRCROOT)/../build/Device/libex03.a\"";
-				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = "\"$(SRCROOT)/../build/Simulator/libex03.a\"";
-				PRODUCT_BUNDLE_IDENTIFIER = org.opengamestudio.ex03;
+				PRODUCT_BUNDLE_IDENTIFIER = org.opengamestudio.ex01;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/../src";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../OpenSceneGraph $(SRCROOT)/../../../OpenSceneGraph/include $(SRCROOT)/../../libs/OpenSceneGraph/include/ios $(SRCROOT)/../../../json/single_include";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/src $(SRCROOT)/../../libs/OpenSceneGraph $(SRCROOT)/../../data";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2F7788891F530562008378D5 /* Build configuration list for PBXProject "ex03" */ = {
+		2F7788891F530562008378D5 /* Build configuration list for PBXProject "ex04" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2F7788A31F530562008378D5 /* Debug */,
@@ -374,7 +452,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2F7788A51F530562008378D5 /* Build configuration list for PBXNativeTarget "ex03" */ = {
+		2F7788A51F530562008378D5 /* Build configuration list for PBXNativeTarget "ex04" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2F7788A61F530562008378D5 /* Debug */,

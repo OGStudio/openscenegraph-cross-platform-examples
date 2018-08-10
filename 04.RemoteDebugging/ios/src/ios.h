@@ -22,14 +22,38 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_EXTLIB_H
-#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_EXTLIB_H
+#ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_IOS_H
+#define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_IOS_H
 
-// extlib-mongoose Start
-#define MG_ENABLE_SSL 1
-#include <mongoose.h>
+#import <UIKit/UIKit.h>
 
-// extlib-mongoose End
+// AppDelegate Start
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
+    @property (nonatomic, strong) UIWindow *window;
+@end
 
-#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_NETWORK_EXTLIB_H
+// AppDelegate End
+// HTTPClientProcessor-ios Start
+@interface HTTPClientProcessor : NSObject
+
+- (void)process;
+
+@end
+
+// HTTPClientProcessor-ios End
+
+// RenderVC Start
+@interface RenderVC : UIViewController
+
+// RenderVC End
+    // RenderVC+FrameReporting Start
+    @property (nonatomic, copy) void (^frame)();
+    
+    // RenderVC+FrameReporting End
+// RenderVC Start
+@end
+
+// RenderVC End
+
+#endif // OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_IOS_H
 

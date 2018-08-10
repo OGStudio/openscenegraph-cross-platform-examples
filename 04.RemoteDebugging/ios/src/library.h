@@ -34,6 +34,10 @@ freely, subject to the following restrictions:
 #endif
 
 // library+init-ios End
+// library+httpClient-ios Start
+#include <string>
+
+// library+httpClient-ios End
 
 namespace library
 {
@@ -49,6 +53,15 @@ UIView *init(int width, int height, float scale, UIView *parentView);
 
 // library+init-ios End
 
+// library+httpClient-ios Start
+intptr_t httpClientExecuteNextRequest(std::string &url, std::string &data);
+void httpClientCompleteRequest(
+    intptr_t id,
+    bool status,
+    const std::string &reply
+);
+
+// library+httpClient-ios End
 
 } // namespace library.
 

@@ -61,6 +61,42 @@ void frame()
 }
 // library+frame-ios End
 
+// library+httpClient-ios Start
+// Pop next pending request and execute it (implicitely mark it as IN_PROGRESS).
+intptr_t httpClientExecuteNextRequest(std::string &url, std::string &data)
+{
+    auto request = example->app->httpClient->nextPendingRequest();
+    if (request)
+    {
+        request->status = osgcpe::network::HTTPRequest::IN_PROGRESS;
+        url = request->url;
+        data = request->data;
+    }
+    return reinterpret_cast<intptr_t>(request);
+}
+
+void httpClientCompleteRequest(
+    intptr_t id,
+    bool status,
+    const std::string &reply
+) {
+    auto request = reinterpret_cast<osgcpe::network::HTTPRequest *>(id);
+    if (!request)
+    {
+        return;
+    }
+    // Report.
+    request->status = osgcpe::network::HTTPRequest::COMPLETED;
+    if (status)
+    {
+        request->success(reply);
+    }
+    else
+    {
+        request->failure(reply);
+    }
+}
+// library+httpClient-ios End
 
 // library-ios Start
 } // namespace library.
