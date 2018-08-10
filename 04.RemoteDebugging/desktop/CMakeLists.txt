@@ -1,4 +1,3 @@
-PROJECT(EX04_REMOTE_DEBUGGING)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
 SET(OSGCPE_DIR "${CMAKE_SOURCE_DIR}/../../../openscenegraph-cross-platform-examples")

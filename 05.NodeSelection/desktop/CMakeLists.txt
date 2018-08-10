@@ -1,29 +1,26 @@
-PROJECT(EX05_NODE_SELECTION)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 
-# Build OpenSceneGraph statically.
-INCLUDE(../../libs/OpenSceneGraph/CMakeLists.txt)
+SET(OSGCPE_DIR "${CMAKE_SOURCE_DIR}/../../../openscenegraph-cross-platform-examples")
 
-# Use C++11.
-ADD_DEFINITIONS("-std=c++11")
+# Include common CMakeLists.txt.
+INCLUDE(${CMAKE_SOURCE_DIR}/../CMakeLists.txt)
 
-# Reference source headers.
+# Reference sources.
 INCLUDE_DIRECTORIES(src)
-# Reference resource headers.
-INCLUDE_DIRECTORIES(../../data)
 # Create executable.
-ADD_EXECUTABLE(ex05-node-selection src/main.cpp)
+ADD_EXECUTABLE(${EXAMPLE_BINARY_NAME} src/main.cpp)
+
+# Use ImageIO for macOS.
+IF (${OSG_PLATFORM} STREQUAL "macos")
+    SET(IMAGE_LINK_LIBS "osgdb_imageio")
+# Use libpng for Linux and Windows.
+ELSE ()
+    SET(IMAGE_LINK_LIBS "osgdb_png" "png")
+ENDIF ()
+
 # Link executable with libraries.
 TARGET_LINK_LIBRARIES(
-    ex05-node-selection
-    osgViewer
-    osgUtil
-    osgDB
-    osgdb_osg
-    osgdb_serializers_osg
-    osgdb_png
-    png
-    osgGA
-    osg
-    OpenThreads
+    ${EXAMPLE_BINARY_NAME}
+    ${OSGCPE_LINK_LIBS}
+    ${IMAGE_LINK_LIBS}
 )
