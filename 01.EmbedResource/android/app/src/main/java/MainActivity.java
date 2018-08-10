@@ -68,6 +68,9 @@ import android.widget.TextView;
 public class MainActivity
     extends Activity
     implements RendererDelegate
+
+// MainActivity End
+// MainActivity Start
 {
     private EGLview renderer = null;
 
@@ -90,18 +93,18 @@ public class MainActivity
     {
 
 // MainActivity End
-    // MainActivity+library+init Start
-    library.init(width, height);
-    // MainActivity+library+init End
+        // MainActivity+library+init Start
+        library.init(width, height);
+        // MainActivity+library+init End
 // MainActivity Start
     }
     public void rendererFrame()
     {
 
 // MainActivity End
-    // MainActivity+library+frame Start
-    library.frame();
-    // MainActivity+library+frame End
+        // MainActivity+library+frame Start
+        library.frame();
+        // MainActivity+library+frame End
 // MainActivity Start
     }
 

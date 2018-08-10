@@ -30,23 +30,29 @@ freely, subject to the following restrictions:
 
 // FEATURE EGLview/Include
 // FEATURE MainActivity/Include
+// FEATURE MainActivity+Input/Include
 // FEATURE HTTPClientProcessor/Include
 // FEATURE HTTPRequest/Include
 
+// FEATURE MainActivity/Inherit
+        // FEATURE MainActivity+Input/Inherit
 // FEATURE MainActivity/Setup
-    // FEATURE MainActivity+HTTPClientProcessor/Setup
+        // FEATURE MainActivity+HTTPClientProcessor/Setup
+        // FEATURE MainActivity+Input/Setup
 // FEATURE MainActivity/RendererInit
-    // FEATURE MainActivity+library+init/Impl
+        // FEATURE MainActivity+library+init/Impl
 // FEATURE MainActivity/RendererFrame
-    // FEATURE MainActivity+library+frame/Impl
-    // FEATURE MainActivity+HTTPClientProcessor/Process
+        // FEATURE MainActivity+library+frame/Impl
+        // FEATURE MainActivity+HTTPClientProcessor/Process
 // FEATURE MainActivity/Impl
     // FEATURE MainActivity+HTTPClientProcessor/Impl
+    // FEATURE MainActivity+Input/Impl
 // FEATURE MainActivity/End
 
 // FEATURE library/Impl
     // FEATURE library+init/Impl
     // FEATURE library+frame/Impl
+    // FEATURE library+handleMousePress/Impl
     // FEATURE library+httpClient/Impl
 // FEATURE library/End
 

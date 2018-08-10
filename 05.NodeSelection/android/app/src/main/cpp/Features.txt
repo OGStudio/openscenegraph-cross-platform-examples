@@ -1,3 +1,5 @@
+# main
+Application
 Application+camera
 Application+frame+Reporting
 Application+handleMousePress-android
@@ -5,24 +7,27 @@ Application+setupWindow-embedded
 Application+Logging
 Application+Rendering
 Application+Mouse
-Reporter+Stub
 
-Example+04
-Example+OSGCPE_EXAMPLE_LOG
+OSGCPE_MAIN_EXAMPLE_LOG
+Example
+Example+05
 Example+BoxScene
-Example+TextureImageScene
 Example+BoxSelection
 Example+BoxRotation
+Example+TextureImageScene
 Example+StaticPluginOSG
 Example+StaticPluginPNG
 Example+VBO
 
-library+Ex04+OSGCPE_JNI-android
+library+Ex05+OSGCPE_JNI-android
 
 library-android
 library+init-android
 library+frame-android
 library+handleMousePress-android
+
+# core
+Reporter
 
 # log
 log-android

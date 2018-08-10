@@ -82,6 +82,9 @@ import java.net.URL;
 public class MainActivity
     extends Activity
     implements RendererDelegate
+
+// MainActivity End
+// MainActivity Start
 {
     private EGLview renderer = null;
 
@@ -93,10 +96,10 @@ public class MainActivity
         this.setupRenderer();
 
 // MainActivity End
-    // MainActivity+HTTPClientProcessor Start
-    this.setupHTTPClientProcessor();
-    
-    // MainActivity+HTTPClientProcessor End
+        // MainActivity+HTTPClientProcessor Start
+        this.setupHTTPClientProcessor();
+        
+        // MainActivity+HTTPClientProcessor End
 // MainActivity Start
     }
     private void setupRenderer()
@@ -108,22 +111,22 @@ public class MainActivity
     {
 
 // MainActivity End
-    // MainActivity+library+init Start
-    library.init(width, height);
-    // MainActivity+library+init End
+        // MainActivity+library+init Start
+        library.init(width, height);
+        // MainActivity+library+init End
 // MainActivity Start
     }
     public void rendererFrame()
     {
 
 // MainActivity End
-    // MainActivity+library+frame Start
-    library.frame();
-    // MainActivity+library+frame End
-    // MainActivity+HTTPClientProcessor Start
-    this.httpClientProcessor.process();
-    
-    // MainActivity+HTTPClientProcessor End
+        // MainActivity+library+frame Start
+        library.frame();
+        // MainActivity+library+frame End
+        // MainActivity+HTTPClientProcessor Start
+        this.httpClientProcessor.process();
+        
+        // MainActivity+HTTPClientProcessor End
 // MainActivity Start
     }
 

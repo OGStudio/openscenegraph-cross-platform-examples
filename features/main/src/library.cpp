@@ -31,6 +31,7 @@ freely, subject to the following restrictions:
 // FEATURE library+Ex02+OSGCPE_JNI-android/Impl
 // FEATURE library+Ex03+OSGCPE_JNI-android/Impl
 // FEATURE library+Ex04+OSGCPE_JNI-android/Impl
+// FEATURE library+Ex05+OSGCPE_JNI-android/Impl
 
 using namespace osgcpe;
 

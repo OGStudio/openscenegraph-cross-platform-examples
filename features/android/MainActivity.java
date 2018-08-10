@@ -3,10 +3,12 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-FEATURE MainActivity.java/Setup
+FEATURE MainActivity.java/Inherit
 public class MainActivity
     extends Activity
     implements RendererDelegate
+
+FEATURE MainActivity.java/Setup
 {
     private EGLview renderer = null;
 
