@@ -1,4 +1,6 @@
-Application+OSGCPE_APPLICATION_LOG
+# main
+OSGCPE_MAIN_APPLICATION_LOG
+Application
 Application+frame+Reporting
 Application+setupWindow-embedded
 Application+CameraManipulator
@@ -7,26 +9,31 @@ Application+DebugCamera
 Application+HTTPClient
 Application+Logging
 Application+Rendering
-Reporter+Stub
 
-Example+03
-Example+OSGCPE_EXAMPLE_LOG
+OSGCPE_MAIN_EXAMPLE_LOG
+Example
+Example+04
 Example+BoxScene
 Example+TextureImageScene
 Example+StaticPluginOSG
 Example+StaticPluginPNG
 Example+VBO
 
-library+Ex03+OSGCPE_JNI-android
+library+Ex04+OSGCPE_JNI-android
 
 library-android
 library+init-android
 library+frame-android
+library+httpClient-android
+library+jniStrings-android
+
+# core
+Reporter
 
 # log
 log-android
-logprintf
 logLevelToString
+logprintf
 Logger
 
 # format
@@ -53,17 +60,14 @@ textureImageScene
 
 # network
 HTTPClient
-HTTPClient+Mongoose
-HTTPClientMongoose
-extlib-mongoose
-extlib-mongoose+fseeko-android
+HTTPRequest
 
 # debug
+OSGCPE_DEBUG_DEBUGGER_LOG
 PageDesc
 Page
 Page+item
 Page+setDesc
-OSGCPE_DEBUG_DEBUGGER_LOG
 Debugger
 Debugger+page
 Debugger+process
@@ -71,6 +75,3 @@ Debugger+processJSON
 debuggerToJSON
 pageToJSON
 jsonToPageDesc
-extlib-json
-extlib-json+localeconv-android
-extlib-json+STL-android

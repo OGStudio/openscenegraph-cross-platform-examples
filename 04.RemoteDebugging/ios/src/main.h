@@ -197,6 +197,8 @@ namespace main
     public:
         void setScene(osg::Node *scene)
         {
+            // Make sure we reset the scene upon setting the same scene again.
+            this->viewer->setSceneData(0);
             this->viewer->setSceneData(scene);
         }
     private:

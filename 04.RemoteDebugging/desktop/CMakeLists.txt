@@ -7,7 +7,7 @@ SET(OSGCPE_DIR "${CMAKE_SOURCE_DIR}/../../../openscenegraph-cross-platform-examp
 INCLUDE(${CMAKE_SOURCE_DIR}/../CMakeLists.txt)
 
 # Build mongoose statically.
-INCLUDE(../../libs/mongoose/CMakeLists.txt)
+INCLUDE(${OSGCPE_DIR}/libs/mongoose/CMakeLists.txt)
 # Reference NLohmann's JSON parsing library.
 INCLUDE_DIRECTORIES(${OSGCPE_DIR}/../json/single_include)
 
