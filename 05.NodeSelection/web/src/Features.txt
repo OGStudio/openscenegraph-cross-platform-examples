@@ -1,6 +1,5 @@
 # main
 Application
-Application+camera
 Application+frame+Reporting
 Application+handleEvent-web
 Application+setupWindow-embedded
