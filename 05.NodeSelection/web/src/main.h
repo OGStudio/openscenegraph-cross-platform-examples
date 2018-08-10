@@ -146,6 +146,13 @@ class Application
         }
 
 // Application End
+    // Application+camera Start
+    public:
+        osg::Camera *camera()
+        {
+            return this->viewer->getCamera();
+        }
+    // Application+camera End
     // Application+frame+Reporting Start
     public:
         core::Reporter frameReporter;
