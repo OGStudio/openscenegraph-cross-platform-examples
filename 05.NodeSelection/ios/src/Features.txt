@@ -1,24 +1,35 @@
+# ios
+AppDelegate
+AppDelegate+RenderVC
+RenderVC
+RenderVC+FrameReporting
+
+# main
+Application
 Application+camera
 Application+frame+Reporting
 Application+setupWindow-ios
 Application+Logging
 Application+Rendering
 Application+Mouse
-Reporter+Stub
 
-Example+04
-Example+OSGCPE_EXAMPLE_LOG
+OSGCPE_MAIN_EXAMPLE_LOG
+Example
+Example+05
 Example+BoxScene
 Example+TextureImageScene
 Example+BoxSelection
 Example+BoxRotation
 Example+StaticPluginOSG
-Example+StaticPluginImageIO
+Example+StaticPluginPNG
 Example+VBO
 
 library-ios
 library+init-ios
 library+frame-ios
+
+# core
+Reporter
 
 # log
 log-default

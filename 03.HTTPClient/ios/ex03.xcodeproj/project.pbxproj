@@ -415,7 +415,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = org.opengamestudio.ex01;
+				PRODUCT_BUNDLE_IDENTIFIER = org.opengamestudio.ex03;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SYSTEM_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../OpenSceneGraph $(SRCROOT)/../../../OpenSceneGraph/include $(SRCROOT)/../../libs/OpenSceneGraph/include/ios";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/src $(SRCROOT)/../../libs/OpenSceneGraph $(SRCROOT)/../../data";
@@ -433,7 +433,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = org.opengamestudio.ex01;
+				PRODUCT_BUNDLE_IDENTIFIER = org.opengamestudio.ex03;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SYSTEM_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../OpenSceneGraph $(SRCROOT)/../../../OpenSceneGraph/include $(SRCROOT)/../../libs/OpenSceneGraph/include/ios";
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/src $(SRCROOT)/../../libs/OpenSceneGraph $(SRCROOT)/../../data";
