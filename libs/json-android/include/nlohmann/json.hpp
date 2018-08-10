@@ -44,3 +44,6 @@ inline int stoi(const std::string &s, size_t *idx = 0, int base = 10)
 
 } // namespace std
 
+// Include NLohmann's JSON.
+#include <single_include/nlohmann/json.hpp>
+

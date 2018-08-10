@@ -7,7 +7,7 @@ INCLUDE(${CMAKE_SOURCE_DIR}/../../CMakeLists.txt)
 # Include libpng-android CMakeLists.txt.
 INCLUDE(${OSGCPE_DIR}/libs/libpng-android/CMakeLists.txt)
 
-# Build Android variant of NLohmann's JSON parsing library.
+# Reference Android variant of NLohmann's JSON parsing library.
 INCLUDE(${OSGCPE_DIR}/libs/json-android/CMakeLists.txt)
 
 # Reference sources.
@@ -24,5 +24,4 @@ TARGET_LINK_LIBRARIES(
     ${log-lib}
     ${OSGCPE_LINK_LIBS}
     ${IMAGE_LINK_LIBS}
-    json-android
 )
