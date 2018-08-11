@@ -129,7 +129,7 @@ make
 
 **Notes**:
 
-* you must have Emscripten installed (see [Emscripten documentation][emsdk-installation] for details)
+* you must have Emscripten installed (see [Emscripten documentation][emscripten-installation] for details)
 * make sure to specify path to `emsdk`
 
 
