@@ -19,8 +19,6 @@ In this example we embed `box.osgt` model (a binary resource) into application.
 Embedding binary resources unifies data loading for platforms with different file
 system requirements and constraints like desktop, Android, iOS, and web.
 
-**Non-desktop platforms' note**: don't forget to reference OpenSceneGraph plugins with `USE_OSGPLUGIN` macro.
-
 <a name="steps"/>
 
 # Steps
@@ -123,6 +121,8 @@ if (reader)
 - - - -
 ```
 
+**Note**: don't forget to reference OpenSceneGraph plugins with `USE_OSGPLUGIN` macro.
+
 <a name="result"/>
 
 # Result
@@ -133,11 +133,11 @@ Here's a [web build of the example][web_build].
 
 [osgcpe]: https://github.com/OGStudio/openscenegraph-cross-platform-examples
 [osgcpg]: https://github.com/OGStudio/openscenegraph-cross-platform-guide
-[box.osgt.h]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-19/data/box.osgt.h
-[ref_res_src]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-19/01.EmbedResource/desktop/src/main.h#L43
-[ref_res_cmake]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-19/01.EmbedResource/desktop/CMakeLists.txt#L16
-[Resource]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-19/01.EmbedResource/desktop/src/resource.h#L52
-[ResourceStreamBuffer]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-19/01.EmbedResource/desktop/src/resource.h#L74
-[resource_node]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-19/01.EmbedResource/desktop/src/resource.h#L119
-[box_res]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/Mahjong-19/01.EmbedResource/desktop/src/main.h#L223
+[box.osgt.h]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/dev/data/box.osgt.h
+[ref_res_src]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/dev/01.EmbedResource/desktop/src/main.h#L43
+[ref_res_cmake]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/dev/01.EmbedResource/desktop/CMakeLists.txt#L16
+[Resource]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/dev/01.EmbedResource/desktop/src/resource.h#L52
+[ResourceStreamBuffer]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/dev/01.EmbedResource/desktop/src/resource.h#L74
+[resource_node]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/dev/01.EmbedResource/desktop/src/resource.h#L119
+[box_res]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/dev/01.EmbedResource/desktop/src/main.h#L223
 [web_build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/01/ex01-embed-resource.html
