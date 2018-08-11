@@ -133,7 +133,7 @@ make
 * make sure to specify path to `emsdk`
 
 
-  ![Screenshot][screenshot-web]
+![Screenshot][screenshot-web]
 
 To launch the first example, open `ex01-embed-resource.html` file in Firefox.
 
