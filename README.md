@@ -140,14 +140,18 @@ To launch the first example, open `ex01-embed-resource.html` file in Firefox.
 To launch the example in any web browser, you need to serve example files
 with a web server.
 
-E.g., you can serve locally like this:
+### Serving example with Python web server
 
-* serve with the following commands:
+If you have have Python installed, here's what you need to do:
+
+* serve example with a web server:
+
     ```
     cd 01.EmbedResource/web/build
     python -m SimpleHTTPServer
     ```
 * open [http://localhost:8000](http://localhost:8000) in any web browser
+* select `ex01-embed-resource.html` file
 
 <a name="examples"/>
 
