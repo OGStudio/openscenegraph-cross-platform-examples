@@ -45,7 +45,7 @@ OpenSceneGraph is built as part of each example: examples don't use
 OpenSceneGraph libraries built separately, instead each example includes
 OpenSceneGraph sources directly. This was necessary to simplify building
 OpenSceneGraph across platforms. [Here's custom CMakeLists.txt][custom-osg-cmake]
-we use to build OpenSceneGraph across platforms.
+we use to build OpenSceneGraph across platforms (excluding iOS).
 
 Certain examples use other libraries like Mongoose and libpng-android
 to achieve specific functionality. Those libraries are part of
@@ -62,10 +62,7 @@ Each example contains four implementations to cover all supported platforms:
 * ios
 * web
 
-**Note**: OpenSceneGraph
-
-Each example links to static builds of OpenSceneGraph. OpenSceneGraph
-is built as part
+Let's see how to build the first example for each platform.
 
 <a name="build-desktop"/>
 
@@ -73,12 +70,7 @@ is built as part
 
   ![Screenshot][screenshot-desktop]
 
-**Notes**:
-
-* you must have OpenSceneGraph installation (see [OpenSceneGraph cross-platform guide][osgcpg] for details)
-* you may need to specify OpenSceneGraph include and library directories with `-DOSG_INC_DIR=/path/to/OSG/includes` and `-DOSG_LIB_DIR=/path/to/OSG/libs` during `cmake` invocation if OpenSceneGraph is located in non-standard location
-
-To build `01.EmbedResource` example for desktop, run the following commands:
+To build the first example, run the following commands:
 
 ```
 cd 01.EmbedResource/desktop
@@ -226,6 +218,7 @@ improve examples.
 [osg]: http://openscenegraph.org
 [osgcpg]: https://github.com/OGStudio/openscenegraph-cross-platform-guide
 [issues]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/issues
+[custom-osg-cmake]: libs/OpenSceneGraph/CMakeLists.txt
 [screenshot-desktop]: readme/shot-desktop.png
 [screenshot-android]: readme/shot-android.png
 [screenshot-ios]: readme/shot-ios.png
