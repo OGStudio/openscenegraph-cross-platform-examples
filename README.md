@@ -132,6 +132,7 @@ make
 * you must have Emscripten installed (see [Emscripten documentation][emsdk-installation] for details)
 * make sure to specify path to `emsdk`
 
+
   ![Screenshot][screenshot-web]
 
 To launch the first example, open `ex01-embed-resource.html` file in Firefox.
