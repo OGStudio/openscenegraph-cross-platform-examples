@@ -68,8 +68,6 @@ Let's see how to build the first example for each platform.
 
 ## Desktop
 
-  ![Screenshot][screenshot-desktop]
-
 To build the first example, run the following commands:
 
 ```
@@ -79,6 +77,8 @@ cd build
 cmake ..
 make
 ```
+
+  ![Screenshot][screenshot-desktop]
 
 To launch the first example, run the following command:
 
