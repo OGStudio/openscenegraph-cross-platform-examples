@@ -130,7 +130,7 @@ make
 **Notes**:
 
 * you must have Emscripten installed (see [Emscripten documentation][emscripten-installation] for details)
-* make sure to specify path to `emsdk`
+* make sure to specify path to Emscripten's CMake toolchain file
 
 
 ![Screenshot][screenshot-web]
