@@ -4,12 +4,7 @@
 * [Overview](#overview)
 * [Steps](#steps)
     * [2.1. Generate resources](#generate)
-    * [2.2. Build OpenSceneGraph with PNG support](#plugins)
-        * [Linux, Windows](#linuxwindows)
-        * [macOS](#macos)
-        * [iOS](#ios)
-        * [Android](#android)
-        * [Web](#web)
+    * [2.2. OpenSceneGraph support for PNG](#plugins)
     * [2.3. Provide shader resources as strings](#shaders)
     * [2.4. Provide image resource as a texture](#image)
     * [2.5. Apply shaders and texture to the scene](#scene)
@@ -23,8 +18,6 @@ This example is part of [OpenSceneGraph cross-platform examples][osgcpe].
 
 In this example we use PNG image as a texture for a model. All resources are
 embedded into application.
-
-**Non-desktop platforms' note**: don't forget to reference OpenSceneGraph plugins with `USE_OSGPLUGIN` macro.
 
 **Note**: this example requires [01.EmbedResource example][ex01] knowledge.
 
@@ -46,7 +39,7 @@ We need to have the following files generated:
 
 <a name="plugins"/>
 
-## 2.2. Build OpenSceneGraph with PNG support
+## 2.2. OpenSceneGraph support for PNG
 
 OpenSceneGraph has two plugins capable of loading PNG images:
 
@@ -77,66 +70,16 @@ OpenSceneGraph has two plugins capable of loading PNG images:
         - - - -
         ```
 
-**macOS, iOS note**: since Apple provides [Image I/O][imageio] library to work
-with popular image formats, you don't need to use any additional dependency to
-work with PNG.
+As you can see, only macOS and iOS builds use `imageio` plugin. Other builds
+use `png` one.
 
-<a name="linuxwindows"/>
+**Notes**:
 
-### Linux, Windows
-
-You should generally use package managers ([MSYS2][msys2] for Windows) to install
-OpenSceneGraph because they provide OpenSceneGraph with `png` plugin by default.
-
-If you build OpenSceneGraph from sources, you need to make sure `libpng` is found
-by `CMake` during configuration stage. Consult `CMake`'s [FindPNG][find-png] documentation
-for details.
-
-<a name="macos"/>
-
-### macOS
-
-If you installed OpenSceneGraph with [brew][brew], you already have
-`imageio` plugin installed.
-
-If you built OpenSceneGraph from sources, `CMake` should have found `Image I/O`
-during configuration stage.
-
-<a name="ios"/>
-
-### iOS
-
-OpenSceneGraph should have detected and built `Image I/O` plugin. So you should have no problems.
-
-<a name="android"/>
-
-### Android
-
-First, download [libpng-android][libpng-android] and place it alongside this
-repository (next to OpenSceneGraph).
-
-Second, reference `libpng-android` from `CMakeLists.txt` ([source code][cmake-libpng]):
-
-```
-- - - -
-# Reference libpng-android.
-SET(PNG_SOURCE_DIR "${EXT_PROJ_DIR}/libpng-android")
-SET(PNG_BUILD_DIR "${PNG_SOURCE_DIR}/build/${ANDROID_ABI}")
-# Only build libpng-android if it has not yet been built.
-IF (NOT EXISTS "${PNG_BUILD_DIR}/libpng.a")
-    FILE(MAKE_DIRECTORY ${PNG_BUILD_DIR})
-    ADD_SUBDIRECTORY(${PNG_SOURCE_DIR} ${PNG_BUILD_DIR})
-ENDIF ()
-# Reference libpng-android includes.
-INCLUDE_DIRECTORIES(${PNG_SOURCE_DIR}/jni)
-# Reference libpng-android libraries.
-LINK_DIRECTORIES(${PNG_BUILD_DIR})
-# Force PNG specific flags for OSG.
-SET(PNG_FOUND ON CACHE BOOL "PNG is found")
-SET(OSG_CPP_EXCEPTIONS_AVAILABLE ON CACHE BOOL "Enable exceptions to build PNG")
-SET(PNG_INCLUDE_DIR ${PNG_SOURCE_DIR}/jni)
-- - - -
-```
+* Android build uses [libpng-android][libpng-android]
+* Web build uses `libpng` provided by [Emscripten][emscripten], so we simply
+provide necessary build flags ([source code][emscripten-png]):
+    * `-s USE_LIBPNG=1`
+    * `-s USE_ZLIB=1`
 
 <a name="web"/>
 
@@ -294,9 +237,11 @@ Here's a [web build of the example][web-build].
 [ex01]: ../01.EmbedResource
 [libpng]: http://www.libpng.org/pub/png/libpng.html
 [imageio]: https://developer.apple.com/documentation/imageio
-[msys2]: https://www.msys2.org/
-[find-png]: https://cmake.org/cmake/help/v3.0/module/FindPNG.html
-[brew]: https://brew.sh/
+[libpng-android]: https://github.com/julienr/libpng-android
+[emscripten]: http://emscripten.org/
+[emscripten-png]: web/CMakeLists.txt#L29
+
+
 [ex01-shaders]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/scene.h#L37
 [resource-string]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/resource.h#L177
 [resource-string-usage]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/scene.h#L45
@@ -304,10 +249,4 @@ Here's a [web build of the example][web-build].
 [resource-setTextureImage]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/resource.h#L184
 [resource-createTexture]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/resource.h#L242
 [scene-textureImageScene]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/scene.h#L39
-[emscripten]: http://emscripten.org/
 [web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/02/ex02-texture-image.html
-[libpng-android]: https://github.com/julienr/libpng-android
-[cmake-libpng]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/android/app/CMakeLists.txt#L8
-[cmake-png]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/web/CMakeLists.txt#L20
-[cmake_png_plugin]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/web/CMakeLists.txt#L66
-[cmake-force-png]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/web/CMakeLists.txt#L31
