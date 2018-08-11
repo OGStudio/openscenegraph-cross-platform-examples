@@ -81,51 +81,18 @@ provide necessary build flags ([source code][emscripten-png]):
     * `-s USE_LIBPNG=1`
     * `-s USE_ZLIB=1`
 
-<a name="web"/>
-
-### Web
-
-[Emscripten][emscripten] ships `libpng` itself. However, to use it, we need to
-perform several compile time tricks.
-
-First, provide `USE_LIBPNG` and `USE_ZLIB` flags at compile and link times
-([source code][cmake-png]):
-
-```
-- - - -
-SET(BUILD_FLAGS "-O3 -s USE_SDL=2 -s ALLOW_MEMORY_GROWTH=1 -s USE_LIBPNG=1 -s USE_ZLIB=1")
-ADD_DEFINITIONS(${BUILD_FLAGS})
-- - - -
-SET_TARGET_PROPERTIES(ex02-texture-image PROPERTIES LINK_FLAGS ${BUILD_FLAGS})
-- - - -
-```
-
-Second, force PNG detection ([source code][cmake-force-png]):
-```
-SET(PNG_PNG_INCLUDE_DIR "whatever" CACHE STRING "Force PNG detection")
-SET(PNG_LIBRARY "libpng" CACHE STRING "Force PNG detection")
-SET(ZLIB_INCLUDE_DIR "whatever" CACHE STRING "Force ZLIB detection")
-SET(ZLIB_LIBRARY "zlib" CACHE STRING "Force ZLIB detection")
-SET(OSG_CPP_EXCEPTIONS_AVAILABLE ON CACHE BOOL "Force PNG plugin building")
-```
-
-**Notes**:
-
-* ignore `WARNING:root:emcc: cannot find library "libpng"` errors: they arise because `libpng` is taken from Emscripten ports and not as explicit files like OpenSceneGraph
-* make sure there are no `warning: unresolved symbol: png_read_info` errors, because they mean `libpng` have not been linked with
-
 <a name="shaders"/>
 
 ## 2.3. Provide shader resources as strings
 
-[01.EmbedResource][ex01] example provides shaders as simple [strings][ex01-shaders].
-This worked fine for single line shaders. 
+[01.EmbedResource][ex01] example provides shaders in code.
+This works fine for single line shaders. 
 
 Now that we need more complex shaders to apply textures, it's easier to manage
 shaders separately from application's source code. That's why shaders are now
 resources.
 
-Let's see how to convert a resource to a string ([source code][resource-string]):
+Let's see how to convert a resource to a string ([source code][resource-to-string]):
 
 ```
 std::string string(const Resource &resource)
@@ -135,9 +102,8 @@ std::string string(const Resource &resource)
 }
 ```
 
-**Note**: we casted `unsigned char *` (originally provided by `xxd`) to
+**Note**: we cast `unsigned char *` (originally provided by `xxd`) to
 `const char *`.
-
 
 Let's see how to provide shader resources as strings to other functions
 ([source code][resource-string-usage]):
@@ -164,7 +130,7 @@ resource::Resource shaderVert("shaders", "ppl.vert", ppl_vert, ppl_vert_len);
 ## 2.4. Provide image resource as a texture
 
 First, we need to read an image from a resource. Here's how the crucial part
-of the implementation looks like ([complete version][resource-setTextureImage]):
+of the implementation looks like ([source code][resource-setTextureImage]):
 
 ```
 - - - -
@@ -177,8 +143,6 @@ if (reader)
     auto result = reader->readImage(in, 0);
     if (result.success())
     {
-        // NOTE I could not get resulting osg::Image outside the function.
-        // NOTE Somehow just returning result.getImage() does not work.
         texture->setImage(result.getImage());
     }
 - - - -
@@ -207,7 +171,8 @@ osg::Texture2D *createTexture(const Resource &resource)
 
 ## 2.5. Apply shaders and texture to the scene
 
-The last step is to get scene's material and apply shaders with texture to the material ([source code][scene-textureImageScene]):
+The last step is to get scene's material and apply shaders with texture to
+the material ([source code][scene-textureImageScene]):
 
 ```
 // Create shader program.
@@ -240,13 +205,10 @@ Here's a [web build of the example][web-build].
 [libpng-android]: https://github.com/julienr/libpng-android
 [emscripten]: http://emscripten.org/
 [emscripten-png]: web/CMakeLists.txt#L29
-
-
-[ex01-shaders]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/01.EmbedResource/desktop/src/scene.h#L37
-[resource-string]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/resource.h#L177
-[resource-string-usage]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/scene.h#L45
-[shaders-definition]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/Example.h#L81
-[resource-setTextureImage]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/resource.h#L184
-[resource-createTexture]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/resource.h#L242
-[scene-textureImageScene]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/02.TextureImage/desktop/src/scene.h#L39
+[resource-to-string]: desktop/src/resource.h#L177
+[resource-string-usage]: desktop/src/scene.h#L44
+[shaders-definition]: desktop/src/main.h#L276
+[resource-setTextureImage]: desktop/src/resource.h#L184
+[resource-createTexture]: desktop/src/resource.h#L242
+[scene-textureImageScene]: desktop/src/scene.h#L44
 [web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/02/ex02-texture-image.html
