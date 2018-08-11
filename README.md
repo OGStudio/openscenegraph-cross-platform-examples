@@ -1,7 +1,8 @@
 # Table of contents
 
 * [Overview](#overview)
-* [How to build](#build)
+* [Libraries](#libs)
+* [Building](#build)
     * [Desktop](#build-desktop)
     * [Android](#build-android)
     * [iOS](#build-ios)
@@ -21,29 +22,38 @@
 3D graphics toolkit, used by application developers in fields such as visual
 simulation, games, virtual reality, scientific visualization and modelling.
 
-This document is a collection of examples to perform specific tasks. This
-document is a logical continuation of [OpenSceneGraph cross-platform guide][osgcpg], which
-can be seen as an introduction to working with OpenSceneGraph.
-
-This document, unlike [OpenSceneGraph cross-platform guide][osgcpg], only contains examples,
-not tutorials with screenshots and videos. Here, you find a solution for a specific
-problem only.
+This document is a logical continuation of
+[OpenSceneGraph cross-platform guide][osgcpg]. Here you'll find
+a collection of examples to perform specific tasks.
 
 Examples run on the following platforms:
 
 * Linux
 * macOS
-* Windows
 * Android
 * iOS
 * Web
 
-**Note**: please, make yourself familiar with [OpenSceneGraph cross-platform guide][osgcpg]
-before trying examples.
+**Note**: Windows builds have not been tested.
+
+<a name="libs"/>
+
+# Libraries
+
+Each example uses OpenSceneGraph.
+OpenSceneGraph is built as part of each example: examples don't use
+OpenSceneGraph libraries built separately, instead each example includes
+OpenSceneGraph sources directly. This was necessary to simplify building
+OpenSceneGraph across platforms. [Here's custom CMakeLists.txt][custom-osg-cmake]
+we use to build OpenSceneGraph across platforms.
+
+Certain examples use other libraries like Mongoose and libpng-android
+to achieve specific functionality. Those libraries are part of
+corresponding examples, too.
 
 <a name="build"/>
 
-# How to build
+# Building
 
 Each example contains four implementations to cover all supported platforms:
 
@@ -52,14 +62,10 @@ Each example contains four implementations to cover all supported platforms:
 * ios
 * web
 
-**Plugin notes**:
+**Note**: OpenSceneGraph
 
-* desktop builds
-    * OpenSceneGraph plugins are referenced at run-time
-    * plugins should be located in a directory where dynamic linker looks for libraries
-* non-desktop builds
-    * OpenSceneGraph plugins are linked with at build time
-    * plugins should be explicitely referenced in code with `USE_OSGPLUGIN` macro
+Each example links to static builds of OpenSceneGraph. OpenSceneGraph
+is built as part
 
 <a name="build-desktop"/>
 
