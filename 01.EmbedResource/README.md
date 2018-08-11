@@ -34,7 +34,7 @@ Generate `box.osgt.h` C header from `box.osgt` model by running the following co
 
 `xxd -i box.osgt > box.osgt.h`
 
-Generated [`box.osgt.h`][box.osgt.h] file looks like this:
+Generated [`box.osgt.h`][model-header] file looks like this:
 
 ```
 unsigned char box_osgt[] = {
@@ -65,12 +65,12 @@ Both variables start with `box_osgt`, which is derived from `box.osgt` filename.
 
 ## 1.2. Reference `box.osgt.h`
 
-First, reference `box.osgt.h`([source code][ref_res_src]):
+First, reference `box.osgt.h`([source code][model-reference]):
 ```
 #include "box.osgt.h"
 ```
 
-Second, make sure `CMakeLists.txt` includes the directory with `box.osgt.h` ([source code][ref_res_cmake]):
+Second, make sure `CMakeLists.txt` includes the directory with `box.osgt.h` ([source code][data-cmake]):
 ```
 INCLUDE_DIRECTORIES(/path/to/data/directory)
 ```
@@ -133,9 +133,10 @@ Here's a [web build of the example][web_build].
 
 [osgcpe]: https://github.com/OGStudio/openscenegraph-cross-platform-examples
 [osgcpg]: https://github.com/OGStudio/openscenegraph-cross-platform-guide
-[box.osgt.h]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/dev/data/box.osgt.h
-[ref_res_src]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/dev/01.EmbedResource/desktop/src/main.h#L43
-[ref_res_cmake]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/dev/01.EmbedResource/desktop/CMakeLists.txt#L16
+[model-header]: ../data/box.osgt.h
+[model-reference]: desktop/src/main.h#L43
+[data-cmake]: CMakeLists.txt#L16
+
 [Resource]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/dev/01.EmbedResource/desktop/src/resource.h#L52
 [ResourceStreamBuffer]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/dev/01.EmbedResource/desktop/src/resource.h#L74
 [resource_node]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/dev/01.EmbedResource/desktop/src/resource.h#L119
