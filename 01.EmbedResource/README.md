@@ -72,7 +72,7 @@ First, reference `box.osgt.h`([source code][model-reference]):
 
 Second, make sure `CMakeLists.txt` includes the directory with `box.osgt.h` ([source code][data-cmake]):
 ```
-INCLUDE_DIRECTORIES(/path/to/data/directory)
+INCLUDE_DIRECTORIES(${OSGCPE_DIR}/data)
 ```
 
 <a name="stream"/>
@@ -94,7 +94,7 @@ OpenSceneGraph plugins to correctly load resources.
 
 ## 1.4. Load the model from `std::istream`
 
-First, create `Resource` instance to work with ([source code][box_res]):
+First, create `Resource` instance to work with ([source code][model-resource]):
 ```
 resource::Resource box("models", "box.osgt", box_osgt, box_osgt_len);
 ```
@@ -104,7 +104,7 @@ Second, load the model. To load the model from `std::istream`, we:
 * find a reader that is capable of reading the model (such a reader can be located by providing file extension)
 * let the reader create a node with the model
 
-Here's how the crucial part of the implementation looks like ([source code][resource_node]):
+Here's how the crucial part of the implementation looks like ([source code][node-resource]):
 
 ```
 - - - -
@@ -121,7 +121,12 @@ if (reader)
 - - - -
 ```
 
-**Note**: don't forget to reference OpenSceneGraph plugins with `USE_OSGPLUGIN` macro.
+Third, reference plugin capable of loading `.osgt` ([source code][plugin-reference]):
+
+```
+USE_OSGPLUGIN(osg2)
+USE_SERIALIZER_WRAPPER_LIBRARY(osg)
+```
 
 <a name="result"/>
 
@@ -129,16 +134,16 @@ if (reader)
 
 ![Screenshot](shot.png)
 
-Here's a [web build of the example][web_build].
+Here's a [web build of the example][web-build].
 
 [osgcpe]: https://github.com/OGStudio/openscenegraph-cross-platform-examples
 [osgcpg]: https://github.com/OGStudio/openscenegraph-cross-platform-guide
 [model-header]: ../data/box.osgt.h
 [model-reference]: desktop/src/main.h#L43
-[data-cmake]: CMakeLists.txt#L16
-
-[Resource]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/dev/01.EmbedResource/desktop/src/resource.h#L52
-[ResourceStreamBuffer]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/dev/01.EmbedResource/desktop/src/resource.h#L74
-[resource_node]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/dev/01.EmbedResource/desktop/src/resource.h#L119
-[box_res]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/dev/01.EmbedResource/desktop/src/main.h#L223
-[web_build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/01/ex01-embed-resource.html
+[data-cmake]: CMakeLists.txt#L19
+[Resource]: desktop/src/resource.h#L52
+[ResourceStreamBuffer]: desktop/src/resource.h#L74
+[model-resource]: desktop/src/main.h#L232
+[node-resource]: desktop/src/resource.h#L119
+[plugin-reference]: desktop/src/main.h#L65
+[web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/01/ex01-embed-resource.html
