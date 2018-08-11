@@ -64,6 +64,11 @@ Each example contains four implementations to cover all supported platforms:
 
 Let's see how to build the first example for each platform.
 
+**Notes**:
+
+* you must have OpenSceneGraph sources alongside this repository
+* you must have mongoose, libpng-android sources alongside this repository, too, for certain examples
+
 <a name="build-desktop"/>
 
 ## Desktop
@@ -92,12 +97,11 @@ To launch the first example, run the following command:
 
 **Notes**:
 
-* you must have OpenSceneGraph sources alongside this repository clone (see [OpenSceneGraph cross-platform guide][osgcpg] for details)
-* Android project is built for `armeabi-v7a` architecture by default (update `abiFilters` value in `android/app/build.gradle` if you want other platforms)
-* make sure to run `Tools -> Android -> Sync Project with Gradle Files` in Android Studio after opening each example, this is necessary for Android Studio to create internal project files
-* each example builds its own version of OpenSceneGraph under `/path/to/OpenSceneGraph/build/Android-<ABI>/Ex<Number>` because different examples require different OpenSceneGrah plugins
+* Android project is built for `armeabi-v7a` architecture by default
+    * update `abiFilters` value in `android/app/build.gradle` if you want other platforms
+* make sure to run `Tools -> Android -> Sync Project with Gradle Files` in Android Studio after opening a project, this is necessary for Android Studio to create internal project files
 
-To build and run `01.EmbedResource` example for Android, you open
+To build and run the first example for Android, open
 `01.EmbedResource/android` in Android Studio and run the project.
 
 <a name="build-ios"/>
@@ -106,60 +110,35 @@ To build and run `01.EmbedResource` example for Android, you open
 
   ![Screenshot][screenshot-ios]
 
-**Notes**:
-
-* you must have OpenSceneGraph sources alongside this repository clone (see [OpenSceneGraph cross-platform guide][osgcpg] for details)
-* each example builds its own version of OpenSceneGraph under `/path/to/OpenSceneGraph/build/<Device|Simulator>/Ex<Number>` because different examples require different OpenSceneGrah plugins
-
-First, build example library (for each example) for Simulator and Device:
-
-```
-cd 01.EmbedResource/ios
-
-# Simulator.
-mkdir -p build/Simulator
-cd build/Simulator
-cmake -G Xcode -DIPHONE_ENABLE_BITCODE=YES ../..
-/path/to/openscenegraph-cross-platform-examples/build-ios-osg
-/path/to/openscenegraph-cross-platform-examples/build-ios-ex 01
-
-cd ../..
-
-# Device.
-mkdir -p build/Device
-cd build/Device
-cmake -G Xcode -DIPHONE_ENABLE_BITCODE=YES -DBUILD_SIMULATOR=NO ../..
-/path/to/openscenegraph-cross-platform-examples/build-ios-osg
-/path/to/openscenegraph-cross-platform-examples/build-ios-ex 01
-```
-
-**Build issues**:
-
-* if you encounter `Undefined symbols for architecture <Arch>` errors with `library::`, remove OpenSceneGraph build and retry
-
-Second, open `01.EmbedResource/ios/xcodeproject/ex01.xcodeproj` Xcode project and run it.
+To build and run the first example for iOS, open
+`01.EmbedResource/ios/ex01.xcodeproj` in Xcode and run the project.
 
 <a name="build-web"/>
 
 ## Web
 
-  ![Screenshot][screenshot-web]
-
-**Note**: you must have OpenSceneGraph sources alongside this repository clone (see [OpenSceneGraph cross-platform guide][osgcpg] for details)
-
-To build `01.EmbedResource` example for web, run the following commands:
+To build the first example for web, run the following commands:
 
 ```
 cd 01.EmbedResource/web
 mkdir build
 cd build
 cmake -DCMAKE_TOOLCHAIN_FILE=/path/to/emsdk/emscripten/<version>/cmake/Modules/Platform/Emscripten.cmake ..
-make -j8 ex01-embed-resource
+make
 ```
+
+**Notes**:
+
+* you must have Emscripten installed (see [Emscripten documentation][emsdk-installation] for details)
+* make sure to specify path to `emsdk`
+
+  ![Screenshot][screenshot-web]
 
 To launch the first example, open `ex01-embed-resource.html` file in Firefox.
 
-To launch examples in any web browser, you need to serve the files with a web server.
+To launch the example in any web browser, you need to serve example files
+with a web server.
+
 E.g., you can serve locally like this:
 
 * serve with the following commands:
@@ -217,8 +196,10 @@ improve examples.
 
 [osg]: http://openscenegraph.org
 [osgcpg]: https://github.com/OGStudio/openscenegraph-cross-platform-guide
-[issues]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/issues
 [custom-osg-cmake]: libs/OpenSceneGraph/CMakeLists.txt
+[emscripten-installation]: http://kripken.github.io/emscripten-site/docs/getting_started/downloads.html
+[issues]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/issues
+
 [screenshot-desktop]: readme/shot-desktop.png
 [screenshot-android]: readme/shot-android.png
 [screenshot-ios]: readme/shot-ios.png

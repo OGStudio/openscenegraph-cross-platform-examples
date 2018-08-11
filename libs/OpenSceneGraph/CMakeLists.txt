@@ -85,7 +85,6 @@ ADD_LIBRARY(osgGA STATIC ${SRC}/osgGA.cpp)
 ADD_LIBRARY(osgUtil STATIC ${SRC}/osgUtil.cpp)
 
 # osgViewer.
-# Make suere OpenGL is found.
 SET(VIEWER_PLATFORM_SRC "")
 SET(VIEWER_PLATFORM_LIBS "")
 IF (${OSG_PLATFORM} STREQUAL "linux")
