@@ -98,6 +98,7 @@ To support requests to HTTPS, make sure to:
 * install OpenSSL development libraries
     * `apt install libssl-dev` under Linux
     * `brew install openssl` under macOS
+    * mobile and web are fine as is
 * [enable OpenSSL support in Mongoose][mongoose-openssl]
 * [link with OpenSSL libraries][link-openssl]
 
@@ -176,7 +177,7 @@ Introduce [HTTPClientProcessor][ios-HTTPClientProcessor] to Objective-C:
 * [executes requests][ios-HTTPClientProcessor-exec] with the help of `NSURLSession`
 * [reports results back][ios-HTTPClientProcessor-report] to C++ side
 
-Introduce the following native library functions to C++:
+Introduce the following functions to C++:
 
 * [httpClientExecuteNextRequest][ios-httpClientExecuteNextRequest]
     * gets next pending request from `HTTPClient`
@@ -200,8 +201,8 @@ With hosts managing `HTTPClient` instance we can finally request some HTTP(s)!
 
 Let's perform GET and POST requests:
 
-* if request succeeds, make green component of background (camera) colour 50% lighter
-* if request fails, make red component of background (camera) colour 50% lighter
+* if request succeeds, make green component of background (camera) color 50% lighter
+* if request fails, make red component of background (camera) color 50% lighter
 
 Thus:
 * if both requests succeed, we should see light green background
@@ -218,14 +219,14 @@ auto success = [&](std::string response) {
     auto color = this->app->camera()->getClearColor();
     color.y() += 0.5;
     this->app->camera()->setClearColor(color);
-    OSGCPE_EXAMPLE_LOG(response.c_str());
+    OSGCPE_MAIN_EXAMPLE_LOG(response.c_str());
 };
 // Set background color 50% redder on failure.
 auto failure = [&](std::string reason) {
     auto color = this->app->camera()->getClearColor();
     color.x() += 0.5;
     this->app->camera()->setClearColor(color);
-    OSGCPE_EXAMPLE_LOG(reason.c_str());
+    OSGCPE_MAIN_EXAMPLE_LOG(reason.c_str());
 };
 
 // GET.
@@ -264,37 +265,39 @@ Here's a [web build of the example][web-build].
 [HttpURLConnection]: https://developer.android.com/reference/java/net/HttpURLConnection
 [NSURLSession]: https://developer.apple.com/documentation/foundation/nsurlsession?language=objc
 
-[HTTPClient]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/desktop/src/network.h#L194
-[HTTPRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/desktop/src/network.h#L53
-[HTTPClientProcessor]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/desktop/src/network.h#L291
-[HTTPClientProcessor-processing]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/desktop/src/Application.h#L159
-[mongoose-openssl]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/desktop/src/network-extlib.h#L29
-[link-openssl]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/desktop/CMakeLists.txt#L27
-[HTTPRequestProcessorMongoose]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/desktop/src/network.h#L89
-[HTTPRequestProcessorFetch]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/web/src/network.h#L89
+[HTTPClient]: desktop/src/network.h#L193
+[HTTPRequest]: desktop/src/network.h#L52
+[HTTPClientProcessor]: desktop/src/network.h#L290
+[HTTPClientProcessor-processing]: desktop/src/main.h#L221
+
+[HTTPRequestProcessorMongoose]: desktop/src/network.h#L88
+[mongoose-openssl]: ../libs/mongoose/CMakeLists.txt#L27
+[link-openssl]: ../libs/mongoose/CMakeLists.txt#L15
+
+[HTTPRequestProcessorFetch]: web/src/network.h#L88
 [web-cors]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 
-[android-HTTPClientProcessor]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/android/app/src/main/java/MainActivity.java#L588
-[android-HTTPClientProcessor-processing]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/android/app/src/main/java/MainActivity.java#L124
-[android-library-httpClient-poll]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/android/app/src/main/java/MainActivity.java#L593
-[android-HTTPClientProcessor-exec]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/android/app/src/main/java/MainActivity.java#L601
-[android-HTTPClientProcessor-report]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/android/app/src/main/java/MainActivity.java#L619
-[android-HTTPRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/android/app/src/main/java/MainActivity.java#L498
-[android-HTTPRequestDelegate]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/android/app/src/main/java/MainActivity.java#L582
-[android-manifest-internet]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/android/app/src/main/AndroidManifest.xml#L6
-[android-httpClientExecuteNextRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/android/app/src/main/cpp/library.cpp#L93
-[android-httpClientCompleteRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/android/app/src/main/cpp/library.cpp#L110
+[android-HTTPClientProcessor]: android/app/src/main/java/MainActivity.java#L591
+[android-HTTPClientProcessor-processing]: android/app/src/main/java/MainActivity.java#L127
+[android-library-httpClient-poll]: android/app/src/main/java/MainActivity.java#L594
+[android-HTTPClientProcessor-exec]: android/app/src/main/java/MainActivity.java#L609
+[android-HTTPClientProcessor-report]: android/app/src/main/java/MainActivity.java#L619
+[android-HTTPRequest]: android/app/src/main/java/MainActivity.java#L501
+[android-HTTPRequestDelegate]: android/app/src/main/java/MainActivity.java#L585
+[android-manifest-internet]: android/app/src/main/AndroidManifest.xml#L6
+[android-httpClientExecuteNextRequest]: android/app/src/main/cpp/library.cpp#L97
+[android-httpClientCompleteRequest]: android/app/src/main/cpp/library.cpp#L113
 
-[ios-HTTPClientProcessor]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/ios/xcodeproject/App/ios.mm#L102
-[ios-HTTPClientProcessor-processing]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/ios/xcodeproject/App/ios.mm#L86
-[ios-library-httpClient-poll]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/ios/xcodeproject/App/ios.mm#L112
-[ios-HTTPClientProcessor-exec]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/ios/xcodeproject/App/ios.mm#L158
-[ios-HTTPClientProcessor-report]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/ios/xcodeproject/App/ios.mm#L136
-[ios-httpClientExecuteNextRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/ios/src/library.cpp#L62
-[ios-httpClientCompleteRequest]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/ios/src/library.cpp#L75
+[ios-HTTPClientProcessor]: ios/src/ios.mm#L100
+[ios-HTTPClientProcessor-processing]: ios/src/ios.mm#L84
+[ios-library-httpClient-poll]: ios/src/ios.mm#L105
+[ios-HTTPClientProcessor-exec]: ios/src/ios.mm#L123
+[ios-HTTPClientProcessor-report]: ios/src/ios.mm#L135
+[ios-httpClientExecuteNextRequest]: ios/src/library.cpp#L66
+[ios-httpClientCompleteRequest]: ios/src/library.cpp#L78
 [ios-ats]: https://forums.developer.apple.com/thread/6767
 
-[https-get-post]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.HTTPClient/desktop/src/Example.h#L123
+[https-get-post]: desktop/src/main.h#L346
 
 [web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/03/ex03-http-client.html
 
