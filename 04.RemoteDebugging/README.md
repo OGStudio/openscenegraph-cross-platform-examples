@@ -167,7 +167,7 @@ this->debugPage.addItem(
 
 ### 3.2.4. Alter background color
 
-To alter background camera's background color, we need to register
+To alter background (camera) color, we need to register
 `BGColor` item with both getter and setter
 ([source code][camera-bgcolor]):
 ```
@@ -223,7 +223,7 @@ Now open [debug UI][debug-ui] and change background color to `255,0,0`.
 
 [Debugger-create]: desktop/src/main.h#L330
 [Debugger-address]: desktop/src/main.h#L331
-[Debugger-process]: desktop/src/main.h#L338
+[Debugger-process]: desktop/src/main.h#L336
 
 [camera-manipulator]: desktop/src/main.h#L315
 [camera-page]: desktop/src/main.h#L350
