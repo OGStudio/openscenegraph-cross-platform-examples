@@ -1,6 +1,7 @@
 # main
 OSGCPE_MAIN_APPLICATION_LOG
 Application
+Application+camera
 Application+frame+Reporting
 Application+run
 Application+setupWindow-desktop

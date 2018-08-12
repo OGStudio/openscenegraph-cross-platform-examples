@@ -73,15 +73,15 @@ cross-platfrom examples' repository.
 
 `debug-broker` concepts are mapped to the following classes:
 
-* [Debugger][src-Debugger]
+* [Debugger][Debugger]
     * is a container for `Page`s
     * uses `HTTPClient` instance to communicate with `debug-broker`
     * makes new request
         * each second
         * only after previous request has been completed
-* [Page][src-Page]
+* [Page][Page]
     * is a container for `Page::Item`s
-* [Page::Item][src-PageItem]
+* [Page::Item][PageItem]
     * is an entry with alterable value
 
 <a name="debug-usage"/>
@@ -90,17 +90,17 @@ cross-platfrom examples' repository.
 
 Client code:
 
-* creates `Debugger` instance ([complete version][src-Debugger-create]):
+* creates `Debugger` instance ([source code][Debugger-create]):
     ```
-    this->dbg = new debug::Debugger(this->httpClient, EXAMPLE_TITLE);
+    this->debugger = new debug::Debugger(this->httpClient, name);
     ```
-* provides `debug-broker`'s address ([complete version][src-Debugger-address]):
+* provides `debug-broker`'s address ([source code][Debugger-address]):
     ```
-    this->dbg->setBrokerURL("http://localhost:7999");
+    this->debugger->setBrokerURL("http://localhost:7999");
     ```
-* regularly calls `Debugger`'s `process()` function ([complete version][src-Debugger-process]):
+* regularly calls `Debugger`'s `process()` function ([source code][Debugger-process]):
     ```
-    this->dbg->process();
+    this->debugger->process();
     ```
 
 <a name="debug-camera"/>
@@ -119,7 +119,7 @@ Let's debug camera:
 ### 3.2.1. Install camera manipulator
 
 We can only get camera's position from camera manipulator.
-Install one ([complete version][src-camera-manipulator]):
+Install one ([source code][camera-manipulator]):
 ```
 this->cameraManipulator = new osgGA::TrackballManipulator;
 this->viewer->setCameraManipulator(this->cameraManipulator);
@@ -130,7 +130,7 @@ this->viewer->setCameraManipulator(this->cameraManipulator);
 ### 3.2.2. Create debug page for camera
 
 Create debug page to collect camera related items
-([complete version][src-camera-page]):
+([source code][camera-page]):
 ```
 - - - -
 debug::Page debugPage;
@@ -144,8 +144,8 @@ this->debugPage.title = "camera";
 ### 3.2.3. Retrieve position and rotation
 
 To retrieve camera's position and rotation, we need to register
-`Postion/Rotation` item with getter only
-([complete version][src-camera-posrot]):
+`Postion/Rotation` item with getter
+([source code][camera-posrot]):
 ```
 this->debugPage.addItem(
     "Position/Rotation",
@@ -169,7 +169,7 @@ this->debugPage.addItem(
 
 To alter background camera's background color, we need to register
 `BGColor` item with both getter and setter
-([complete version][src-camera-bgcolor]):
+([source code][camera-bgcolor]):
 ```
 this->debugPage.addItem(
     "BGColor",
@@ -181,7 +181,7 @@ this->debugPage.addItem(
     // Setter.
     [&](const std::string &value) {
         - - - -
-        this->camera->setClearColor(color);
+        this->camera()->setClearColor(color);
     }
 );
 
@@ -192,9 +192,9 @@ this->debugPage.addItem(
 ### 3.2.5. Add camera's debug page to Debugger
 
 Finally, add camera's debug page to `Debugger`
-([complete version][src-camera-debugger]):
+([source code][camera-debugger]):
 ```
-this->dbg->addPage(this->app->debugPage);
+this->debugger->addPage(this->debugPage);
 ```
 
 <a name="result"/>
@@ -203,8 +203,6 @@ this->dbg->addPage(this->app->debugPage);
 
 ![Screenshot](shot.png)
 
-TODO Refresh web build
-
 Here's a [web build of the example][web-build].
 
 Now open [debug UI][debug-ui] and change background color to `255,0,0`.
@@ -212,30 +210,25 @@ Now open [debug UI][debug-ui] and change background color to `255,0,0`.
 [osgcpe]: https://github.com/OGStudio/openscenegraph-cross-platform-examples
 [ex03]: ../03.HTTPClient
 [debug-broker]: https://github.com/OGStudio/debug-broker
+[nlohmann-json]: https://github.com/nlohmann/json
+
 [fetch-api]: https://kripken.github.io/emscripten-site/docs/api_reference/fetch.html
 [emscripten]: http://emscripten.org
 [xhr]: https://en.wikipedia.org/wiki/XMLHttpRequest
 [mongoose]: https://github.com/cesanta/mongoose
-[nlohmann-json]: https://github.com/nlohmann/json
 
-[src-HTTPClientFetch]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/web/src/network.h#L48
-[src-HTTPClientMongoose]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/network.h#L38
-[src-HTTPClient]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/network.h#L145
-[src-Debugger]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/debug.h#L246
-[src-HTTPClient-create]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L130
-[src-HTTPClient-process]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L132
+[Debugger]: desktop/src/debug.h#L246
+[Page]: desktop/src/debug.h#L99
+[PageItem]: desktop/src/debug.h#L114
 
-[src-Debugger]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/debug.h#L246
-[src-Page]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/debug.h#L99
-[src-PageItem]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/debug.h#L114
-[src-Debugger-create]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L157
-[src-Debugger-address]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L158
-[src-Debugger-process]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L164
+[Debugger-create]: desktop/src/main.h#L323
+[Debugger-address]: desktop/src/main.h#L324
+[Debugger-process]: desktop/src/main.h#L329
 
-[src-camera-manipulator]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Application.h#L188
-[src-camera-page]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Application.h#L206
-[src-camera-posrot]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Application.h#L241
-[src-camera-bgcolor]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Application.h#L211
-[src-camera-debugger]: https://github.com/OGStudio/openscenegraph-cross-platform-examples/blob/master/03.RemoteDebugging/desktop/src/Example.h#L177
+[camera-manipulator]: desktop/src/main.h#L308
+[camera-page]: desktop/src/main.h#L343
+[camera-posrot]: desktop/src/main.h#L383
+[camera-bgcolor]: desktop/src/main.h#L353
+[camera-debugger]: desktop/src/main.h#L350
 [web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/04/ex04-remote-debugging.html
-[debug-ui]: https://ogstudio.github.io/debug-ui/?broker=https%3A%2F%2Fosgcpe-debug-broker.herokuapp.com&debugger=Ex03&page=camera
+[debug-ui]: https://ogstudio.github.io/debug-ui/?broker=https%3A%2F%2Fosgcpe-debug-broker.herokuapp.com&debugger=Ex04&page=camera
