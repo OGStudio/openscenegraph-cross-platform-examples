@@ -17,7 +17,7 @@ This example is part of [OpenSceneGraph cross-platform examples][osgcpe].
 
 In this example we implement node selection.
 
-**Note**: this example requires [02.TextureImage example][ex03] knowledge.
+**Note**: this example requires [02.TextureImage example][ex02] knowledge.
 
 <a name="steps"/>
 
@@ -28,10 +28,10 @@ In this example we implement node selection.
 ## 5.1. Input support across platforms
 
 OpenSceneGraph provides windowing system for desktop (Linux, macOS, Windows)
-and iOS platforms. Input is working there out of the box.
+and iOS platforms. Input is working out of the box there.
 
 However, OpenSceneGraph does not have windowing systems for Android and Web
-(Emscripten), so we need to handle input events ourselves in there.
+(Emscripten), so we need to handle input events ourselves for these platforms.
 
 ### 5.1.1. Android
 
@@ -222,10 +222,10 @@ bool handleFingerEvent(const SDL_Event &e, osgGA::EventQueue &queue)
 Let's handle OpenSceneGraph mouse events with the help of
 [Mouse][Mouse]:
 
-    * implements `osgGA::GUIEventAdapter::handle()` to be able to accept OpenSceneGraph events
-    * [is registered][Mouse-register] to `osgViewer::Viewer` to actually accept events
-    * keeps current mouse position and a list of pressed mouse buttons
-    * reports changes in mouse position and pressed buttons
+* implements `osgGA::GUIEventAdapter::handle()` to be able to accept OpenSceneGraph events
+* [is registered][Mouse-register] to `osgViewer::Viewer` to actually accept events
+* keeps current mouse position and a list of pressed mouse buttons
+* reports changes in mouse position and pressed buttons
 
 
 TODO
