@@ -8,6 +8,7 @@
         * [5.1.2. Web](#input-web)
     * [5.2. Introduce Mouse class](#mouse)
     * [5.3. Find a node intersecting mouse position](#node)
+    * [5.4. Rotate the node](#rotate)
 * [Result](#result)
 
 <a name="overview"/>
@@ -231,6 +232,12 @@ Let's handle OpenSceneGraph mouse events with the help of
 <a name="node"/>
 
 ## 5.3. Find a node intersecting mouse position
+
+TODO
+
+<a name="rotate"/>
+
+## 5.4. Rotate the node
 
 TODO
 
