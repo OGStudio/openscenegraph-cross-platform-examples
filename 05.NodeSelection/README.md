@@ -218,7 +218,7 @@ bool handleFingerEvent(const SDL_Event &e, osgGA::EventQueue &queue)
 
 <a name="mouse"/>
 
-# 5.2. Introduce Mouse class
+## 5.2. Introduce Mouse class
 
 Let's handle OpenSceneGraph mouse events with the help of
 [Mouse][Mouse]:
@@ -230,7 +230,7 @@ Let's handle OpenSceneGraph mouse events with the help of
 
 <a name="node"/>
 
-# 5.3. Find a node intersecting mouse position
+## 5.3. Find a node intersecting mouse position
 
 TODO
 
