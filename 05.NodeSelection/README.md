@@ -7,6 +7,7 @@
         * [5.1.1. Android](#input-android)
         * [5.1.2. Web](#input-web)
     * [5.2. Introduce Mouse class](#mouse)
+    * [5.3. Find a node intersecting mouse position](#node)
 * [Result](#result)
 
 <a name="overview"/>
@@ -227,6 +228,9 @@ Let's handle OpenSceneGraph mouse events with the help of
 * keeps current mouse position and a list of pressed mouse buttons
 * reports changes in mouse position and pressed buttons
 
+<a name="node"/>
+
+# 5.3. Find a node intersecting mouse position
 
 TODO
 
