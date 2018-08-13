@@ -12,6 +12,7 @@
     * [02. Use PNG images with PNG plugins](#ex02)
     * [03. Implement HTTP client to perform GET/POST requests](#ex03)
     * [04. Debug application remotely](#ex04)
+    * [05. Node selection](#ex05)
 * [Help](#help)
 
 <a name="overview"/>
@@ -34,7 +35,7 @@ Examples run on the following platforms:
 * iOS
 * Web
 
-**Note**: Windows builds have not been tested.
+**Note**: Windows builds have not yet been tested.
 
 <a name="libs"/>
 
@@ -191,6 +192,14 @@ If you have have Python installed, here's what you need to do:
 
   Learn how to work with debug-broker to perform remote debugging.
 
+<a name="ex05"/>
+
+### [05. Node selection][ex05]
+
+  ![Screenshot][ex05-screenshot]
+
+  Learn how to select a node.
+
 <a name="help"/>
 
 Help
@@ -221,3 +230,6 @@ improve examples.
 
 [ex04]: 04.RemoteDebugging
 [ex04-screenshot]: 04.RemoteDebugging/shot.png
+
+[ex05]: 05.NodeSelection
+[ex05-screenshot]: 05.NodeSelection/shot.png

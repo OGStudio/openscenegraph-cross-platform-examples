@@ -196,15 +196,15 @@ class Application
                 e.type == SDL_FINGERDOWN ||
                 e.type == SDL_FINGERUP
             ) {
-                fingerEventsDetected = true;
+                this->fingerEventsDetected = true;
             }
             // Handle mouse events unless finger events are detected.
-            if (!fingerEventsDetected)
+            if (!this->fingerEventsDetected)
             {
-                return handleMouseEvent(e, queue);
+                return this->handleMouseEvent(e, queue);
             }
             // Handle finger events.
-            return handleFingerEvent(e, queue);
+            return this->handleFingerEvent(e, queue);
         }
     
     private:

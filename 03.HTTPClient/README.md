@@ -4,15 +4,15 @@
 * [Overview](#overview)
 * [Architecture](#architecture)
 * [Steps](#steps)
-    * [2.1. Implement guest side classes](#guest)
-    * [2.2. Implement HTTPClientProcessor for desktop and web hosts](#http-client-processor)
-    * [2.3. Implement HTTPRequestProcessorMongoose for desktop host](#http-request-processor-mongoose)
-    * [2.4. Implement HTTPRequestProcessorFetch for web host](#http-request-processor-fetch)
-    * [2.5. Implement HTTP support for Android](#android)
+    * [3.1. Implement guest side classes](#guest)
+    * [3.2. Implement HTTPClientProcessor for desktop and web hosts](#http-client-processor)
+    * [3.3. Implement HTTPRequestProcessorMongoose for desktop host](#http-request-processor-mongoose)
+    * [3.4. Implement HTTPRequestProcessorFetch for web host](#http-request-processor-fetch)
+    * [3.5. Implement HTTP support for Android](#android)
         * [Java side](#android-java)
         * [C++ side](#android-cpp)
-    * [2.6. Implement HTTP support for iOS](#ios)
-    * [2.7. Change background (camera) color when GET/POST responses arrive](#change-bg)
+    * [3.6. Implement HTTP support for iOS](#ios)
+    * [3.7. Change background (camera) color when GET/POST responses arrive](#change-bg)
 * [Result](#result)
 
 <a name="overview"/>
@@ -54,7 +54,7 @@ implementing host-guest relationship:
 
 <a name="guest"/>
 
-## 2.1. Implement guest side classes
+## 3.1. Implement guest side classes
 
 Guest side contains the following classes:
 
@@ -73,7 +73,7 @@ Cross-platform client code uses `HTTPClient` exclusively to perform HTTP(s) requ
 
 <a name="http-client-processor"/>
 
-## 2.2. Implement HTTPClientProcessor for desktop and web hosts
+## 3.2. Implement HTTPClientProcessor for desktop and web hosts
 
 Both desktop and web use [HTTPClientProcessor][HTTPClientProcessor]:
 
@@ -83,7 +83,7 @@ Both desktop and web use [HTTPClientProcessor][HTTPClientProcessor]:
 
 <a name="http-request-processor-mongoose"/>
 
-## 2.3. Implement HTTPRequestProcessorMongoose for desktop host
+## 3.3. Implement HTTPRequestProcessorMongoose for desktop host
 
 We prefer [Mongoose][mongoose] to other options because it's
 easy to use and integrate.
@@ -107,7 +107,7 @@ examples' repository.
 
 <a name="http-request-processor-fetch"/>
 
-## 2.4. Implement HTTPRequestProcessorFetch for web host
+## 3.4. Implement HTTPRequestProcessorFetch for web host
 
 [Fetch API][FetchAPI] is the recommended way for Emscripten web applications
 to issue `XMLHttpRequest`s to perform HTTP(s) requests.
@@ -122,7 +122,7 @@ which means you can't access just any location as free as on desktop or mobile.
 
 <a name="android"/>
 
-## 2.5. Implement HTTP support for Android
+## 3.5. Implement HTTP support for Android
 
 Android uses Java, so we need to implement HTTP processing at both
 Java (host) and C++ (guest) sides.
@@ -165,7 +165,7 @@ Introduce the following native library functions at C++ side:
 
 <a name="ios"/>
 
-## 2.6. Implement HTTP support for iOS
+## 3.6. Implement HTTP support for iOS
 
 iOS uses Objective-C, so we need to implement HTTP processing at both
 Objective-C (host) and C++ (guest) sides.
@@ -195,7 +195,7 @@ in `Info.plist`.
 
 <a name="change-bg"/>
 
-## 2.7. Change background (camera) color when GET/POST responses arrive
+## 3.7. Change background (camera) color when GET/POST responses arrive
 
 With hosts managing `HTTPClient` instance we can finally request some HTTP(s)!
 

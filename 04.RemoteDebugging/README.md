@@ -3,16 +3,16 @@
 
 * [Overview](#overview)
 * [Steps](#steps)
-    * [3.1. Introduce debugging support](#debug)
-        * [3.1.1. Technologies](#debug-tech)
-        * [3.1.2. Internal representation](#debug-representation)
-        * [3.1.3. Usage](#debug-usage)
-    * [3.2. Debug camera](#debug-camera)
-        * [3.2.1. Install camera manipulator](#debug-camera-manipulator)
-        * [3.2.2. Create debug page for camera](#debug-camera-page)
-        * [3.2.3. Retrieve position and rotation](#debug-camera-posrot)
-        * [3.2.4. Alter background color](#debug-camera-bgcolor)
-        * [3.2.5. Add camera's debug page to Debugger](#debug-camera-debugger)
+    * [4.1. Introduce debugging support](#debug)
+        * [4.1.1. Technologies](#debug-tech)
+        * [4.1.2. Internal representation](#debug-representation)
+        * [4.1.3. Usage](#debug-usage)
+    * [4.2. Debug camera](#debug-camera)
+        * [4.2.1. Install camera manipulator](#debug-camera-manipulator)
+        * [4.2.2. Create debug page for camera](#debug-camera-page)
+        * [4.2.3. Retrieve position and rotation](#debug-camera-posrot)
+        * [4.2.4. Alter background color](#debug-camera-bgcolor)
+        * [4.2.5. Add camera's debug page to Debugger](#debug-camera-debugger)
 * [Result](#result)
 
 <a name="overview"/>
@@ -32,7 +32,7 @@ debugging across platforms.
 
 <a name="debug"/>
 
-## 3.1. Introduce debugging support
+## 4.1. Introduce debugging support
 
 Remote debugging assumes application and debug UI are located at different
 machines. The most widespread way to communicate between remote machines
@@ -44,7 +44,7 @@ debug UI (source of user input).
 
 <a name="debug-tech"/>
 
-### 3.1.1. Technologies
+### 4.1.1. Technologies
 
 `debug-broker` has the following concepts:
 
@@ -69,7 +69,7 @@ cross-platfrom examples' repository.
 
 <a name="debug-representation"/>
 
-### 3.1.2. Internal representation
+### 4.1.2. Internal representation
 
 `debug-broker` concepts are mapped to the following classes:
 
@@ -86,7 +86,7 @@ cross-platfrom examples' repository.
 
 <a name="debug-usage"/>
 
-### 3.1.3. Usage
+### 4.1.3. Usage
 
 Client code:
 
@@ -105,7 +105,7 @@ Client code:
 
 <a name="debug-camera"/>
 
-## 3.2. Debug camera
+## 4.2. Debug camera
 
 Now that we covered prerequisites, it's time to debug.
 
@@ -116,7 +116,7 @@ Let's debug camera:
 
 <a name="debug-camera-manipulator"/>
 
-### 3.2.1. Install camera manipulator
+### 4.2.1. Install camera manipulator
 
 We can only get camera's position from camera manipulator.
 Install one ([source code][camera-manipulator]):
@@ -127,7 +127,7 @@ this->viewer->setCameraManipulator(this->cameraManipulator);
 
 <a name="debug-camera-page"/>
 
-### 3.2.2. Create debug page for camera
+### 4.2.2. Create debug page for camera
 
 Create debug page to collect camera related items
 ([source code][camera-page]):
@@ -141,7 +141,7 @@ this->debugPage.title = "camera";
 
 <a name="debug-camera-posrot"/>
 
-### 3.2.3. Retrieve position and rotation
+### 4.2.3. Retrieve position and rotation
 
 To retrieve camera's position and rotation, we need to register
 `Postion/Rotation` item with getter
@@ -165,7 +165,7 @@ this->debugPage.addItem(
 
 <a name="debug-camera-bgcolor"/>
 
-### 3.2.4. Alter background color
+### 4.2.4. Alter background color
 
 To alter background (camera) color, we need to register
 `BGColor` item with both getter and setter
@@ -189,7 +189,7 @@ this->debugPage.addItem(
 
 <a name="debug-camera-debugger"/>
 
-### 3.2.5. Add camera's debug page to Debugger
+### 4.2.5. Add camera's debug page to Debugger
 
 Finally, add camera's debug page to `Debugger`
 ([source code][camera-debugger]):
