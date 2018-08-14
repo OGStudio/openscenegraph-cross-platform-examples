@@ -9,6 +9,7 @@
     * [5.2. Introduce Mouse class](#mouse)
     * [5.3. Mark scene node as selectable](#mark)
     * [5.4. Find a node at mouse position](#node)
+    * [5.5. Rotate the node upon selection](#rotate)
 * [Result](#result)
 
 <a name="overview"/>
@@ -284,15 +285,27 @@ for (auto node : intersection.nodePath)
 - - - -
 ```
 
-TODO
+<a name="rotate "/>
 
-* receive node
-* rotate it in response, in this case
+## 5.5. Rotate the node upon selection
 
-Features:
-** Example+BoxRotation
-** LinearInterpolator
+Use [LinearInterpolator][LinearInterpolator] to rotate the node
+during time interval ([source code][rotate]):
 
+```
+- - - -
+// Get current box rotation along X.
+auto rot = scene::simpleRotation(this->scene);
+auto srcX = rot.x();
+
+// Configure interpolation.
+this->interpolator.keyValues = {
+    {0, srcX},
+    {0.5, srcX + 45}, // Rotate by 45 degrees in 0.5 seconds.
+    {2, srcX}, // Rotate back in 2 - 0.5 = 1.5 seconds.
+};
+- - - -
+```
 
 <a name="result"/>
 
@@ -320,3 +333,7 @@ Here's a [web build of the example][web-build].
 [Mouse-register]: desktop/src/main.h#L244
 [node-mask]: desktop/src/main.h#L422
 [intersection]: desktop/src/scene.h#L114
+[LinearInterpolator]: desktop/src/scene.h#L176
+[rotate]: desktop/src/main.h#L338
+
+[web-build]: 
