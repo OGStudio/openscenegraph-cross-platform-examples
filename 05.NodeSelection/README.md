@@ -7,8 +7,8 @@
         * [5.1.1. Android](#input-android)
         * [5.1.2. Web](#input-web)
     * [5.2. Introduce Mouse class](#mouse)
-    * [5.3. Find a node intersecting mouse position](#node)
-    * [5.4. Rotate the node](#rotate)
+    * [5.3. Mark scene node as selectable](#mark)
+    * [5.4. Find a node at mouse position](#node)
 * [Result](#result)
 
 <a name="overview"/>
@@ -229,26 +229,68 @@ Let's handle OpenSceneGraph mouse events with the help of
 * keeps current mouse position and a list of pressed mouse buttons
 * reports changes in mouse position and pressed buttons
 
+<a name="mark"/>
+
+## 5.3. Mark scene node as selectable
+
+To tell selectable scene nodes from non-selectable ones apart, we need to mark
+necessary ones as selectable. One way to do so is to use node masks.
+
+By default, each scene node has `0xFFFFFFFF` mask. Let's exclude specific
+bit from those scene nodes that we want to mark as selectable. Since our
+scene only contains a single box node, we mark the whole scene
+([source code][node-mask]):
+
+```
+- - - -
+const unsigned int selectionNodeMask = 0x00000004;
+- - - -
+// Make box node selectable by excluding specific node mask.
+this->scene->setNodeMask(
+    this->scene->getNodeMask() & ~this->selectionNodeMask
+);
+- - - -
+```
+
 <a name="node"/>
 
-## 5.3. Find a node intersecting mouse position
+## 5.4. Find a node at mouse position
+
+To find a node at mouse position, we check what mouse position intersects
+with from the point of view of the camera ([source code][intersection]):
+
+```
+- - - -
+// Find intersections.
+osg::ref_ptr<osgUtil::LineSegmentIntersector> intersector =
+    new osgUtil::LineSegmentIntersector(
+        osgUtil::Intersector::WINDOW,
+        position.x(),
+        position.y()
+    );
+osgUtil::IntersectionVisitor iv(intersector.get());
+camera->accept(iv);
+- - - -
+// Get closest intersection.
+auto intersection = intersector->getFirstIntersection();
+for (auto node : intersection.nodePath)
+{
+    // Make sure node mask is excluded.
+    if ((node->getNodeMask() & excludedNodeMask) != excludedNodeMask)
+    {
+        return node;
+    }
+}
+- - - -
+```
 
 TODO
 
-<a name="rotate"/>
-
-## 5.4. Rotate the node
-
-TODO
-
-* ray-trace node at pointer position
 * receive node
 * rotate it in response, in this case
 
 Features:
-** Example+BoxSelection
 ** Example+BoxRotation
-** nodeAtPosition
 ** LinearInterpolator
 
 
@@ -276,3 +318,5 @@ Here's a [web build of the example][web-build].
 
 [Mouse]: desktop/src/input.h#L95
 [Mouse-register]: desktop/src/main.h#L244
+[node-mask]: desktop/src/main.h#L422
+[intersection]: desktop/src/scene.h#L114
