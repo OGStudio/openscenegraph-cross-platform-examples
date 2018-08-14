@@ -336,4 +336,4 @@ Here's a [web build of the example][web-build].
 [LinearInterpolator]: desktop/src/scene.h#L176
 [rotate]: desktop/src/main.h#L338
 
-[web-build]: 
+[web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/05/ex05-node-selection.html
