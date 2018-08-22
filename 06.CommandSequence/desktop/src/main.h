@@ -25,11 +25,19 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_MAIN_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_MAIN_H
 
+// Application+frame+Reporting Start
+#include "core.h"
+
+// Application+frame+Reporting End
 
 // Application+Logging Start
 #include "log.h"
 
 // Application+Logging End
+// Application+Mouse Start
+#include "input.h"
+
+// Application+Mouse End
 // Application+Rendering Start
 #include "render.h"
 
@@ -38,6 +46,17 @@ freely, subject to the following restrictions:
 
 // Application+Rendering End
 
+// OSGCPE_MAIN_APPLICATION_LOG Start
+#include "log.h"
+#include "format.h"
+#define OSGCPE_MAIN_APPLICATION_LOG_PREFIX "main::Application(%p) %s"
+#define OSGCPE_MAIN_APPLICATION_LOG(...) \
+    log::logprintf( \
+        OSGCPE_MAIN_APPLICATION_LOG_PREFIX, \
+        this, \
+        format::printfString(__VA_ARGS__).c_str() \
+    )
+// OSGCPE_MAIN_APPLICATION_LOG End
 
 // Example+BoxScene Start
 #include "box.osgt.h"
@@ -47,10 +66,13 @@ freely, subject to the following restrictions:
 #include <osg/MatrixTransform>
 
 // Example+BoxScene End
-// Example+VBO Start
-#include "render.h"
+// Example+TextureImageScene Start
+#include "resource.h"
+#include "ppl.frag.h"
+#include "ppl.vert.h"
+#include "digit.png.h"
 
-// Example+VBO End
+// Example+TextureImageScene End
 
 // OSGCPE_MAIN_EXAMPLE_LOG Start
 #include "log.h"
@@ -71,6 +93,17 @@ freely, subject to the following restrictions:
 USE_OSGPLUGIN(osg2)
 USE_SERIALIZER_WRAPPER_LIBRARY(osg)
 // Example+StaticPluginOSG End
+// Example+StaticPluginPNG Start
+#include <osgDB/Registry>
+
+// Reference (statically) plugins to read `png` file.
+// Apple platforms use ImageIO. All others use libpng.
+#ifdef __APPLE__
+    USE_OSGPLUGIN(imageio)
+#else
+    USE_OSGPLUGIN(png)
+#endif
+// Example+StaticPluginPNG End
 
 namespace osgcpe
 {
@@ -93,12 +126,20 @@ class Application
             this->setupRendering();
             
             // Application+Rendering End
+            // Application+Mouse Start
+            this->setupMouse();
+            
+            // Application+Mouse End
 // Application Start
         }
         ~Application()
         {
 
 // Application End
+            // Application+Mouse Start
+            this->tearMouseDown();
+            
+            // Application+Mouse End
             // Application+Rendering Start
             this->tearRenderingDown();
             
@@ -111,31 +152,48 @@ class Application
         }
 
 // Application End
-    // Application+frame Start
+    // Application+camera Start
     public:
+        osg::Camera *camera()
+        {
+            return this->viewer->getCamera();
+        }
+    // Application+camera End
+    // Application+frame+Reporting Start
+    public:
+        core::Reporter frameReporter;
         void frame()
         {
             this->viewer->frame();
+            this->frameReporter.report();
         }
-    // Application+frame End
-    // Application+setupWindow-ios Start
-    UIView *setupWindow(
-        int width,
-        int height,
-        float scale,
-        UIView *parentView
-    ) {
-        osgViewer::GraphicsWindowIOS *gc =
-            dynamic_cast<osgViewer::GraphicsWindowIOS *>(
-                render::createGraphicsContext(width, height, scale, parentView)
-            );
-        // Configure viewer's camera with FOVY and window size.
-        osg::Camera *cam = this->viewer->getCamera();
-        render::setupCamera(cam, gc, 30, width * scale, height * scale);
-        // Return UIView for embedding.
-        return (UIView *)gc->getView();
-    }
-    // Application+setupWindow-ios End
+    // Application+frame+Reporting End
+    // Application+run Start
+    public:
+        void run()
+        {
+            while (!this->viewer->done())
+            {
+                this->frame();
+            }
+        }
+    // Application+run End
+    // Application+setupWindow-desktop Start
+    public:
+        void setupWindow(
+            const std::string &title,
+            int x,
+            int y,
+            int width,
+            int height
+        ) {
+            osg::GraphicsContext *gc =
+                render::createGraphicsContext(title, x, y, width, height);
+            // Configure viewer's camera with FOVY and window size.
+            osg::Camera *cam = this->viewer->getCamera();
+            render::setupCamera(cam, gc, 30, width, height);
+        }
+    // Application+setupWindow-desktop End
 
     // Application+Logging Start
     private:
@@ -182,13 +240,30 @@ class Application
             delete this->viewer;
         }
     // Application+Rendering End
+    // Application+Mouse Start
+    public:
+        osg::ref_ptr<input::Mouse> mouse;
+    private:
+        void setupMouse()
+        {
+            // Create mouse events' handler.
+            this->mouse = new input::Mouse;
+            // Register it.
+            this->viewer->addEventHandler(this->mouse);
+        }
+        void tearMouseDown()
+        {
+            // This also removes Mouse instance.
+            this->viewer->removeEventHandler(this->mouse);
+        }
+    // Application+Mouse End
 // Application Start
 };
 // Application End
 
-// Example+01 Start
-const auto EXAMPLE_TITLE = "Ex01";
-// Example+01 End
+// Example+06 Start
+const auto EXAMPLE_TITLE = "ex06: command sequence";
+// Example+06 End
 
 // Example Start
 struct Example
@@ -206,14 +281,10 @@ struct Example
         this->setupBoxScene();
         
         // Example+BoxScene End
-        // Example+VBO Start
-        this->setupSceneVBO();
-        
-        // Example+VBO End
-        // Example+SingleColorScene Start
+        // Example+TextureImageScene Start
         this->setupSceneTexturing();
         
-        // Example+SingleColorScene End
+        // Example+TextureImageScene End
 // Example Start
     }
     ~Example()
@@ -249,7 +320,7 @@ struct Example
             }
         }
     // Example+BoxScene End
-    // Example+SingleColorScene Start
+    // Example+TextureImageScene Start
     private:
         void setupSceneTexturing()
         {
@@ -258,27 +329,12 @@ struct Example
             {
                 return;
             }
-    
-            osgcpe::scene::paintScene(this->scene);
+            resource::Resource shaderFrag("shaders", "ppl.frag", ppl_frag, ppl_frag_len);
+            resource::Resource shaderVert("shaders", "ppl.vert", ppl_vert, ppl_vert_len);
+            resource::Resource texture("images", "digit.png", digit_png, digit_png_len);
+            scene::textureImageScene(this->scene, shaderFrag, shaderVert, texture);
         }
-    // Example+SingleColorScene End
-    // Example+VBO Start
-    private:
-        void setupSceneVBO()
-        {
-            // Do nothing for an empty scene.
-            if (!this->scene.valid())
-            {
-                return;
-            }
-            // Use VBO and EBO instead of display lists.
-            // CRITICAL for:
-            // * mobile
-            // * web (Emscripten) to skip FULL_ES2 emulation flag
-            render::VBOSetupVisitor vbo;
-            this->scene->accept(vbo);
-        }
-    // Example+VBO End
+    // Example+TextureImageScene End
 // Example Start
 };
 // Example End

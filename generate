@@ -20,6 +20,7 @@ EXAMPLES="
 03.HTTPClient
 04.RemoteDebugging
 05.NodeSelection
+06.CommandSequence
 "
 
 # Platform -> Path to Features.txt
