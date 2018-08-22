@@ -285,12 +285,28 @@ struct Example
         this->setupSceneTexturing();
         
         // Example+TextureImageScene End
+        // Example+BoxSelection Start
+        this->setupBoxSelection();
+        
+        // Example+BoxSelection End
+        // Example+SequenceTest Start
+        this->setupSequenceTest();
+        
+        // Example+SequenceTest End
 // Example Start
     }
     ~Example()
     {
 
 // Example End
+        // Example+SequenceTest Start
+        this->tearSequenceTestDown();
+        
+        // Example+SequenceTest End
+        // Example+BoxSelection Start
+        this->tearBoxSelectionDown();
+        
+        // Example+BoxSelection End
 // Example Start
         delete this->app;
     }
@@ -320,6 +336,92 @@ struct Example
             }
         }
     // Example+BoxScene End
+    // Example+BoxSelection Start
+    private:
+        core::Reporter boxSelected;
+        const std::string boxSelectionCallbackName = "BoxSelection";
+        const unsigned int selectionNodeMask = 0x00000004;
+        void setupBoxSelection()
+        {
+            // Make box node selectable by excluding specific node mask.
+            this->scene->setNodeMask(
+                this->scene->getNodeMask() & ~this->selectionNodeMask
+            );
+    
+            // Listen to mouse clicks.
+            this->app->mouse->pressedButtonsChanged.addCallback(
+                [&] {
+                    bool clicked = !this->app->mouse->pressedButtons.empty();
+                    if (clicked)
+                    {
+                        this->tryToSelectBox();
+                    }
+                },
+                this->boxSelectionCallbackName
+            );
+        }
+        void tearBoxSelectionDown()
+        {
+            this->app->mouse->pressedButtonsChanged.removeCallback(
+                this->boxSelectionCallbackName
+            );
+        }
+        void tryToSelectBox()
+        {
+            auto node =
+                scene::nodeAtPosition(
+                    this->app->mouse->position,
+                    this->app->camera(),
+                    this->selectionNodeMask
+                );
+            if (node)
+            {
+                // Since we don't have other nodes in the scene,
+                // we are sure it's the box.
+                this->boxSelected.report();
+            }
+        }
+    // Example+BoxSelection End
+    // Example+SequenceTest Start
+    private:
+        const std::string sequenceTestCallbackName = "SequenceTest";
+        void setupSequenceTest()
+        {
+            // Do nothing for an empty scene.
+            if (!this->scene.valid())
+            {
+                return;
+            }
+    
+            this->setSequenceTestBoxSelectionEnabled(true);
+        }
+        void tearSequenceTestDown()
+        {
+            this->setSequenceTestBoxSelectionEnabled(false);
+            // TODO Terminate animations?
+        }
+        void setSequenceTestBoxSelectionEnabled(bool state)
+        {
+            if (state)
+            {
+                this->boxSelected.addCallback(
+                    [&] {
+                        this->testSequence();
+                    },
+                    this->sequenceTestCallbackName
+                );
+            }
+            else
+            {
+                this->boxSelected.removeCallback(this->sequenceTestCallbackName);
+            }
+        }
+        void testSequence()
+        {
+            OSGCPE_MAIN_EXAMPLE_LOG("TODO test sequence");
+            // TODO Disable selection while sequence test is in progress. Do it through Sequence, too.
+        }
+    // Example+SequenceTest End
     // Example+TextureImageScene Start
     private:
         void setupSceneTexturing()
