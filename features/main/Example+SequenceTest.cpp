@@ -16,6 +16,32 @@ private:
             return;
         }
 
+        OSGCPE_MAIN_EXAMPLE_REGISTER_SEQUENCE_ACTION(sequence, "waitForBoxSelection", this->waitForBoxSelection());
+        // Register actions.
+        sequence.registerAction(
+            "waitForBoxSelection",
+            OSGCPE_CORE_SEQUENCE_CALLBACK(this->waitForBoxSelection())
+        );
+        sequence.registerAction(
+            "printBoxSelection",
+            OSGCPE_CORE_SEQUENCE_CALLBACK(this->printBoxSelection())
+        );
+
+        sequence.setActionSequence({
+            "enableBoxSelection",
+            "waitForBoxSelection",
+            "disableBoxSelection",
+            "printBoxSelection",
+            "enableBoxSelection",
+            /*
+            "startLoading",
+            "startBoxRotation",
+            "waitForLoadingFinish",
+            "stopBoxRotation",
+            "depictLoadingResult",
+            */
+        });
+
         this->setSequenceTestBoxSelectionEnabled(true);
     }
     void tearSequenceTestDown()
@@ -42,20 +68,6 @@ private:
     void testSequence()
     {
         OSGCPE_MAIN_EXAMPLE_LOG("TODO test sequence");
-        sequence.sequence = [
-            "waitForBoxSelection",
-            "disableBoxSelection",
-            "startLoading",
-            "startBoxRotation",
-            "waitForLoadingFinish",
-            "stopBoxRotation",
-            "depictLoadingResult",
-            "enableBoxSelection"
-        ]
-        sequence.registerAction(
-            "waitForBoxSelection",
-            OSGCPE_SEQUENCE_CALLBACK(this->waitForBoxSelection())
-        );
         /*
         sequence.registerAction(
             "disableBoxSelection",
@@ -74,8 +86,18 @@ private:
             OSGCPE_SEQUENCE_CALLBACK(this->startBoxRotation())
         );
         */
+        sequence.setEnabled(true);
         // TODO Finish registration of actions.
 
+    }
+    core::Reporter *waitForBoxSelection()
+    {
+        return &this->boxSelected;
+    }
+    core::Reporter *printBoxSelection()
+    {
+        OSGCPE_MAIN_EXAMPLE_LOG("printBoxSelection: box has been selected");
+        return 0;
     }
 /*
         void setupMatching()

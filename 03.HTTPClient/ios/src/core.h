@@ -32,6 +32,7 @@ freely, subject to the following restrictions:
 
 // Reporter End
 
+
 namespace osgcpe
 {
 namespace core
@@ -53,14 +54,18 @@ class Reporter
             this->callbacks.push_back({callback, name});
         }
 
+        void addOneTimeCallback(Callback callback)
+        {
+            this->oneTimeCallbacks.push_back(callback);
+        }
+
         void removeCallback(const std::string &name)
         {
             // This call only deactivates a callback for
             // later removal that happens during next report() call.
-            auto callback = this->callbacks.begin();
-            for (; callback != this->callbacks.end(); ++callback)
+            for (auto callback : this->callbacks)
             {
-                if (callback->name == name)
+                if (callback.name == name)
                 {
                     this->inactiveCallbackNames.push_back(name);
                 }
@@ -71,11 +76,19 @@ class Reporter
         {
             this->removeInactiveCallbacks();
 
-            auto callback = this->callbacks.begin();
-            for (; callback != this->callbacks.end(); ++callback)
+            // Call normal callbacks.
+            for (auto callback : this->callbacks)
             {
-                callback->callback();
+                callback.callback();
             }
+
+            // Call one-time callbacks.
+            for (auto callback : this->oneTimeCallbacks)
+            {
+                callback();
+            }
+            // Remove one-time callbacks.
+            this->oneTimeCallbacks.clear();
         }
 
     private:
@@ -87,6 +100,7 @@ class Reporter
 
         std::vector<NamedCallback> callbacks;
         std::vector<std::string> inactiveCallbackNames;
+        std::vector<Callback> oneTimeCallbacks;
 
     private:
         void removeInactiveCallbacks()
@@ -110,7 +124,6 @@ class Reporter
             // Clear the list of inactive callbacks.
             this->inactiveCallbackNames.clear();
         }
-
 };
 // Reporter End
 

@@ -31,6 +31,26 @@ freely, subject to the following restrictions:
 #include <vector>
 
 // Reporter End
+// Sequence Start
+#include <map>
+
+// Sequence End
+
+// OSGCPE_CORE_SEQUENCE_CALLBACK Start
+#define OSGCPE_CORE_SEQUENCE_CALLBACK(CALL) [=]() { return CALL; }
+// OSGCPE_CORE_SEQUENCE_CALLBACK End
+// OSGCPE_CORE_SEQUENCE_LOG Start
+#include "log.h"
+#include "format.h"
+#define OSGCPE_CORE_SEQUENCE_LOG_PREFIX "core::Sequence(%p) %s"
+#define OSGCPE_CORE_SEQUENCE_LOG(...) \
+    log::logprintf( \
+        OSGCPE_CORE_SEQUENCE_LOG_PREFIX, \
+        this, \
+        format::printfString(__VA_ARGS__).c_str() \
+    )
+
+// OSGCPE_CORE_SEQUENCE_LOG End
 
 namespace osgcpe
 {
@@ -53,14 +73,18 @@ class Reporter
             this->callbacks.push_back({callback, name});
         }
 
+        void addOneTimeCallback(Callback callback)
+        {
+            this->oneTimeCallbacks.push_back(callback);
+        }
+
         void removeCallback(const std::string &name)
         {
             // This call only deactivates a callback for
             // later removal that happens during next report() call.
-            auto callback = this->callbacks.begin();
-            for (; callback != this->callbacks.end(); ++callback)
+            for (auto callback : this->callbacks)
             {
-                if (callback->name == name)
+                if (callback.name == name)
                 {
                     this->inactiveCallbackNames.push_back(name);
                 }
@@ -71,11 +95,19 @@ class Reporter
         {
             this->removeInactiveCallbacks();
 
-            auto callback = this->callbacks.begin();
-            for (; callback != this->callbacks.end(); ++callback)
+            // Call normal callbacks.
+            for (auto callback : this->callbacks)
             {
-                callback->callback();
+                callback.callback();
             }
+
+            // Call one-time callbacks.
+            for (auto callback : this->oneTimeCallbacks)
+            {
+                callback();
+            }
+            // Remove one-time callbacks.
+            this->oneTimeCallbacks.clear();
         }
 
     private:
@@ -87,6 +119,7 @@ class Reporter
 
         std::vector<NamedCallback> callbacks;
         std::vector<std::string> inactiveCallbackNames;
+        std::vector<Callback> oneTimeCallbacks;
 
     private:
         void removeInactiveCallbacks()
@@ -110,9 +143,117 @@ class Reporter
             // Clear the list of inactive callbacks.
             this->inactiveCallbackNames.clear();
         }
-
 };
 // Reporter End
+// Sequence Start
+class Sequence
+{
+    public:
+        typedef std::vector<std::string> ActionSequence;
+        typedef std::function<core::Reporter *()> Callback;
+
+    public:
+        Sequence() { }
+
+        std::string name;
+
+        void registerAction(const std::string &name, Callback callback)
+        {
+            this->actions[name] = callback;
+        }
+
+        void setActionSequence(const ActionSequence &sequence)
+        {
+            // Make sure action sequence is valid.
+            if (!this->isActionSequenceValid(sequence))
+            {
+                OSGCPE_CORE_SEQUENCE_LOG(
+                    "ERROR Could not set action sequence because there are "
+                    "missing actions in the sequence"
+                );
+                return;
+            }
+
+            this->sequence = sequence;
+        }
+
+        void setEnabled(bool state)
+        {
+            this->isActive = state;
+
+            // Activate.
+            if (state)
+            {
+                this->actionId = -1;
+                this->executeNextAction();
+            }
+        }
+
+    private:
+        std::map<std::string, Callback> actions;
+        ActionSequence sequence; 
+        int actionId = -1;
+        bool isActive = false;
+
+        Callback *callback(const std::string &action)
+        {
+            auto it = this->actions.find(action);
+            if (it != this->actions.end())
+            {
+                return &it->second;
+            }
+            return 0;
+        }
+
+        void executeNextAction()
+        {
+            // Make sure this sequence is active.
+            if (!this->isActive)
+            {
+                return;
+            }
+
+            // Make sure there are actions to execute.
+            if (this->actionId + 1 >= this->sequence.size())
+            {
+                return;
+            }
+
+            // Execute action.
+            auto action = this->sequence[++this->actionId];
+            auto callback = this->callback(action);
+            auto reporter = (*callback)();
+
+            // Wait for execution completion report if it exists.
+            if (reporter)
+            {
+                reporter->addOneTimeCallback(
+                    [=]{
+                        this->executeNextAction();
+                    }
+                );
+            }
+            // Otherwise execute the next action right away.
+            else
+            {
+                this->executeNextAction();
+            }
+        }
+
+        bool isActionSequenceValid(const ActionSequence &actions)
+        {
+            // Make sure each action has a callback.
+            for (auto action : actions)
+            {
+                if (!this->callback(action))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+};
+// Sequence End
 
 } // namespace core.
 } // namespace osgcpe.
