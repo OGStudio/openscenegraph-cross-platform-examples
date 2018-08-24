@@ -402,7 +402,6 @@ struct Example
                 "waitForBoxSelection",
                 "disableBoxSelection",
                 "printBoxSelection",
-                "enableBoxSelection",
                 /*
                 "startLoading",
                 "startBoxRotation",

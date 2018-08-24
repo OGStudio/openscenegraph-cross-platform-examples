@@ -24,7 +24,6 @@ private:
             "waitForBoxSelection",
             "disableBoxSelection",
             "printBoxSelection",
-            "enableBoxSelection",
             /*
             "startLoading",
             "startBoxRotation",

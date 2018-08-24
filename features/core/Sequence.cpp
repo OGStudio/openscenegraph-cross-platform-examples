@@ -12,6 +12,7 @@ class Sequence
         Sequence() { }
 
         std::string name;
+        bool isRepeatable = true;
 
         void registerAction(const std::string &name, Callback callback)
         {
@@ -72,13 +73,21 @@ class Sequence
             // Make sure there are actions to execute.
             if (this->actionId + 1 >= this->sequence.size())
             {
-                return;
+                // Quit if this sequence is not repeatable.
+                if (!this->isRepeatable)
+                {
+                    return;
+                }
+                // Reset otherwise.
+                this->actionId = -1;
             }
 
             // Execute action.
             auto action = this->sequence[++this->actionId];
             auto callback = this->callback(action);
             auto reporter = (*callback)();
+
+            //OSGCPE_CORE_SEQUENCE_LOG("Executed action '%s'", action.c_str());
 
             // Wait for execution completion report if it exists.
             if (reporter)
