@@ -12,6 +12,12 @@ private:
     core::Reporter loadingSimulated;
     const std::string loadingSimulationCallbackName = "LoadingSimulation";
 
+    core::Reporter bgChanged;
+    const std::string bgChangeCallbackName = "BGChange";
+    const osg::Vec4 bgColorDefault = {0.192, 0.192, 0.388, 0};
+    const osg::Vec4 bgColorDim = {0.192, 0.192, 0.192, 0};
+    const float bgColorStepDiff = 0.0049;
+
     void setupSequenceTest()
     {
         // Do nothing for an empty scene.
@@ -24,11 +30,11 @@ private:
             "enableBoxSelection",
             "waitForBoxSelection",
             "disableBoxSelection",
-            //"dimBackground",
+            "dimBackground",
             "startBoxRotation",
             "simulateLoading",
             "stopBoxRotation",
-            //"lightBackground",
+            "lightBackground",
         });
 
         // Register actions.
@@ -62,18 +68,16 @@ private:
             "simulateLoading",
             this->simulateLoading()
         );
-        /*
         OSGCPE_CORE_REGISTER_SEQUENCE_ACTION(
             this->sequence,
             "dimBackground",
-            this->dimBackground()
+            this->changeBackground(true)
         );
         OSGCPE_CORE_REGISTER_SEQUENCE_ACTION(
             this->sequence,
             "lightBackground",
-            this->lightBackground()
+            this->changeBackground(false)
         );
-        */
 
         // Enable sequence.
         this->sequence.setEnabled(true);
@@ -153,4 +157,40 @@ private:
         );
 
         return &this->loadingSimulated;
+    }
+
+    // Background.
+    core::Reporter *changeBackground(bool dim)
+    {
+        auto targetColor = 
+            dim ?
+            this->bgColorDim :
+            this->bgColorDefault
+            ;
+        auto targetColorDiff =
+            dim ?
+            -this->bgColorStepDiff :
+            this->bgColorStepDiff
+            ;
+        this->app->frameReporter.addCallback(
+            [=] {
+                // Change color.
+                auto color = this->app->camera()->getClearColor();
+                color.z() += targetColorDiff;
+                this->app->camera()->setClearColor(color);
+
+                // Find out if we're done.
+                auto targetColorHasBeenReached =
+                    abs(color.z() - targetColor.z()) < 0.01;
+                if (targetColorHasBeenReached)
+                {
+                    this->app->frameReporter.removeCallback(this->bgChangeCallbackName);
+                    this->app->camera()->setClearColor(targetColor);
+                    this->bgChanged.report();
+                }
+            },
+            this->bgChangeCallbackName
+        );
+
+        return &this->bgChanged;
     }
