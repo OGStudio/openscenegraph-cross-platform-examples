@@ -6,8 +6,11 @@ this->tearSequenceTestDown();
 
 FEATURE main.h/Impl
 private:
-    const std::string sequenceTestCallbackName = "SequenceTest";
+    const std::string sequenceTestBoxSelectedCallbackName =
+        "SequenceTestBoxSelected";
+    core::Reporter sequenceTestBoxSelected;
     core::Sequence sequence;
+
     void setupSequenceTest()
     {
         // Do nothing for an empty scene.
@@ -16,18 +19,7 @@ private:
             return;
         }
 
-        OSGCPE_MAIN_EXAMPLE_REGISTER_SEQUENCE_ACTION(sequence, "waitForBoxSelection", this->waitForBoxSelection());
-        // Register actions.
-        sequence.registerAction(
-            "waitForBoxSelection",
-            OSGCPE_CORE_SEQUENCE_CALLBACK(this->waitForBoxSelection())
-        );
-        sequence.registerAction(
-            "printBoxSelection",
-            OSGCPE_CORE_SEQUENCE_CALLBACK(this->printBoxSelection())
-        );
-
-        sequence.setActionSequence({
+        this->sequence.setActions({
             "enableBoxSelection",
             "waitForBoxSelection",
             "disableBoxSelection",
@@ -42,20 +34,67 @@ private:
             */
         });
 
-        this->setSequenceTestBoxSelectionEnabled(true);
+        // Register actions.
+        OSGCPE_CORE_REGISTER_SEQUENCE_ACTION(
+            this->sequence,
+            "waitForBoxSelection",
+            this->sequenceTestWaitForBoxSelection()
+        );
+        OSGCPE_CORE_REGISTER_SEQUENCE_ACTION(
+            this->sequence,
+            "printBoxSelection",
+            this->sequenceTestPrintBoxSelection()
+        );
+        OSGCPE_CORE_REGISTER_SEQUENCE_ACTION(
+            this->sequence,
+            "enableBoxSelection",
+            this->sequenceTestSetBoxSelectionEnabled(true)
+        );
+        OSGCPE_CORE_REGISTER_SEQUENCE_ACTION(
+            this->sequence,
+            "disableBoxSelection",
+            this->sequenceTestSetBoxSelectionEnabled(false)
+        );
+        /*
+            "startLoading",
+            "startBoxRotation",
+        */
+
+        // Enable sequence.
+        this->sequence.setEnabled(true);
     }
     void tearSequenceTestDown()
     {
-        this->setSequenceTestBoxSelectionEnabled(false);
-        // TODO Terminate animations?
+        this->sequence.setEnabled(false);
     }
+    core::Reporter *sequenceTestSetBoxSelectionEnabled(bool state)
+    {
+        // Subscribe to `boxSelected`.
+        if (state)
+        {
+            this->boxSelected.addCallback(
+                [&] {
+                    this->sequenceTestBoxSelected.report();
+                },
+                this->sequenceTestBoxSelectedCallbackName
+            );
+        }
+        // Unsubscribe from `boxSelected`.
+        else
+        {
+            this->boxSelected.removeCallback(this->sequenceTestBoxSelectedCallbackName);
+        }
+
+        return 0;
+    }
+    /*
     void setSequenceTestBoxSelectionEnabled(bool state)
     {
         if (state)
         {
             this->boxSelected.addCallback(
                 [&] {
-                    this->testSequence();
+                    //this->testSequence();
                 },
                 this->sequenceTestCallbackName
             );
@@ -65,36 +104,12 @@ private:
             this->boxSelected.removeCallback(this->sequenceTestCallbackName);
         }
     }
-    void testSequence()
+    */
+    core::Reporter *sequenceTestWaitForBoxSelection()
     {
-        OSGCPE_MAIN_EXAMPLE_LOG("TODO test sequence");
-        /*
-        sequence.registerAction(
-            "disableBoxSelection",
-            OSGCPE_SEQUENCE_CALLBACK(this->setBoxSelectionEnabled(false))
-        );
-        sequence.registerAction(
-            "enableBoxSelection",
-            OSGCPE_SEQUENCE_CALLBACK(this->setBoxSelectionEnabled(true))
-        );
-        sequence.registerAction(
-            "startLoading",
-            OSGCPE_SEQUENCE_CALLBACK(this->startLoading())
-        );
-        sequence.registerAction(
-            "startBoxRotation",
-            OSGCPE_SEQUENCE_CALLBACK(this->startBoxRotation())
-        );
-        */
-        sequence.setEnabled(true);
-        // TODO Finish registration of actions.
-
+        return &this->sequenceTestBoxSelected;
     }
-    core::Reporter *waitForBoxSelection()
-    {
-        return &this->boxSelected;
-    }
-    core::Reporter *printBoxSelection()
+    core::Reporter *sequenceTestPrintBoxSelection()
     {
         OSGCPE_MAIN_EXAMPLE_LOG("printBoxSelection: box has been selected");
         return 0;

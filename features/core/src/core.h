@@ -29,8 +29,9 @@ freely, subject to the following restrictions:
 // FEATURE Sequence/Include
 
 // FEATURE OSGCPE_CORE_REPORTER_LOG/Impl
-// FEATURE OSGCPE_CORE_SEQUENCE_CALLBACK/Impl
 // FEATURE OSGCPE_CORE_SEQUENCE_LOG/Impl
+
+// FEATURE OSGCPE_CORE_REGISTER_SEQUENCE_ACTION/Impl
 
 namespace osgcpe
 {

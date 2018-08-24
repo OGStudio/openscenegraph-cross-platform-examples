@@ -5,7 +5,7 @@ FEATURE core.h/Impl
 class Sequence
 {
     public:
-        typedef std::vector<std::string> ActionSequence;
+        typedef std::vector<std::string> Actions;
         typedef std::function<core::Reporter *()> Callback;
 
     public:
@@ -18,10 +18,15 @@ class Sequence
             this->actions[name] = callback;
         }
 
-        void setActionSequence(const ActionSequence &sequence)
+        void setActions(const Actions &sequence)
+        {
+            this->sequence = sequence;
+        }
+
+        void setEnabled(bool state)
         {
             // Make sure action sequence is valid.
-            if (!this->isActionSequenceValid(sequence))
+            if (!this->isActionSequenceValid(this->sequence))
             {
                 OSGCPE_CORE_SEQUENCE_LOG(
                     "ERROR Could not set action sequence because there are "
@@ -30,11 +35,6 @@ class Sequence
                 return;
             }
 
-            this->sequence = sequence;
-        }
-
-        void setEnabled(bool state)
-        {
             this->isActive = state;
 
             // Activate.
@@ -47,7 +47,7 @@ class Sequence
 
     private:
         std::map<std::string, Callback> actions;
-        ActionSequence sequence; 
+        Actions sequence; 
         int actionId = -1;
         bool isActive = false;
 
@@ -96,7 +96,7 @@ class Sequence
             }
         }
 
-        bool isActionSequenceValid(const ActionSequence &actions)
+        bool isActionSequenceValid(const Actions &actions)
         {
             // Make sure each action has a callback.
             for (auto action : actions)
