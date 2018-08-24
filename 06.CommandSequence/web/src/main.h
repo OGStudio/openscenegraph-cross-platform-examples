@@ -29,6 +29,10 @@ freely, subject to the following restrictions:
 #include "core.h"
 
 // Application+frame+Reporting End
+// Application+handleEvent-web Start
+#include <SDL2/SDL.h>
+
+// Application+handleEvent-web End
 
 // Application+Logging Start
 #include "log.h"
@@ -62,6 +66,10 @@ freely, subject to the following restrictions:
 #include "digit.png.h"
 
 // Example+TextureImageScene End
+// Example+VBO Start
+#include "render.h"
+
+// Example+VBO End
 
 // OSGCPE_MAIN_EXAMPLE_LOG Start
 #include "log.h"
@@ -157,32 +165,99 @@ class Application
             this->frameReporter.report();
         }
     // Application+frame+Reporting End
-    // Application+run Start
+    // Application+handleEvent-web Start
+    private:
+        bool fingerEventsDetected = false;
     public:
-        void run()
+        bool handleEvent(const SDL_Event &e)
         {
-            while (!this->viewer->done())
+            // Get event queue.
+            osgViewer::GraphicsWindow *gw =
+                dynamic_cast<osgViewer::GraphicsWindow *>(
+                    this->viewer->getCamera()->getGraphicsContext());
+            if (!gw)
             {
-                this->frame();
+                return false;
             }
+            osgGA::EventQueue &queue = *(gw->getEventQueue());
+    
+            // Detect finger events.
+            if (
+                e.type == SDL_FINGERMOTION ||
+                e.type == SDL_FINGERDOWN ||
+                e.type == SDL_FINGERUP
+            ) {
+                this->fingerEventsDetected = true;
+            }
+            // Handle mouse events unless finger events are detected.
+            if (!this->fingerEventsDetected)
+            {
+                return this->handleMouseEvent(e, queue);
+            }
+            // Handle finger events.
+            return this->handleFingerEvent(e, queue);
         }
-    // Application+run End
-    // Application+setupWindow-desktop Start
+    
+    private:
+        bool handleFingerEvent(const SDL_Event &e, osgGA::EventQueue &queue)
+        {
+            int absX = this->windowWidth * e.tfinger.x;
+            int absY = this->windowHeight * e.tfinger.y;
+            auto correctedY = -(this->windowHeight - absY);
+            switch (e.type)
+            {
+                case SDL_FINGERMOTION:
+                    queue.mouseMotion(absX, correctedY);
+                    return true;
+                case SDL_FINGERDOWN: 
+                    queue.mouseButtonPress(absX, correctedY, e.tfinger.fingerId);
+                    return true;
+                case SDL_FINGERUP:
+                    queue.mouseButtonRelease(absX, correctedY, e.tfinger.fingerId);
+                    return true;
+                default:
+                    break;
+            }
+            return false;
+        }
+    
+        bool handleMouseEvent(const SDL_Event &e, osgGA::EventQueue &queue)
+        {
+            switch (e.type)
+            {
+                case SDL_MOUSEMOTION: {
+                    auto correctedY = -(this->windowHeight - e.motion.y);
+                    queue.mouseMotion(e.motion.x, correctedY);
+                    return true;
+                }
+                case SDL_MOUSEBUTTONDOWN: {
+                    auto correctedY = -(this->windowHeight - e.button.y);
+                    queue.mouseButtonPress(e.button.x, correctedY, e.button.button);
+                    return true;
+                }
+                case SDL_MOUSEBUTTONUP: {
+                    auto correctedY = -(this->windowHeight - e.button.y);
+                    queue.mouseButtonRelease(e.button.x, correctedY, e.button.button);
+                    return true;
+                }
+                default:
+                    break;
+            }
+            return false;
+        }
+    // Application+handleEvent-web End
+    // Application+setupWindow-embedded Start
+    private:
+        int windowWidth;
+        int windowHeight;
     public:
-        void setupWindow(
-            const std::string &title,
-            int x,
-            int y,
-            int width,
-            int height
-        ) {
-            osg::GraphicsContext *gc =
-                render::createGraphicsContext(title, x, y, width, height);
-            // Configure viewer's camera with FOVY and window size.
-            osg::Camera *cam = this->viewer->getCamera();
-            render::setupCamera(cam, gc, 30, width, height);
+        void setupWindow(int width, int height)
+        {
+            this->viewer->setUpViewerAsEmbeddedInWindow(0, 0, width, height);
+            this->windowWidth = width;
+            this->windowHeight = height;
         }
-    // Application+setupWindow-desktop End
+    // Application+setupWindow-embedded End
 
     // Application+Logging Start
     private:
@@ -270,6 +345,10 @@ struct Example
         this->setupBoxScene();
         
         // Example+BoxScene End
+        // Example+VBO Start
+        this->setupSceneVBO();
+        
+        // Example+VBO End
         // Example+TextureImageScene Start
         this->setupSceneTexturing();
         
@@ -577,6 +656,23 @@ struct Example
             scene::textureImageScene(this->scene, shaderFrag, shaderVert, texture);
         }
     // Example+TextureImageScene End
+    // Example+VBO Start
+    private:
+        void setupSceneVBO()
+        {
+            // Do nothing for an empty scene.
+            if (!this->scene.valid())
+            {
+                return;
+            }
+            // Use VBO and EBO instead of display lists.
+            // CRITICAL for:
+            // * mobile
+            // * web (Emscripten) to skip FULL_ES2 emulation flag
+            render::VBOSetupVisitor vbo;
+            this->scene->accept(vbo);
+        }
+    // Example+VBO End
 // Example Start
 };
 // Example End

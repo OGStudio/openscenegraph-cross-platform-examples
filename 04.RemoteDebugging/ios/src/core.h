@@ -26,6 +26,7 @@ freely, subject to the following restrictions:
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_CORE_H
 
 // Reporter Start
+#include <algorithm>
 #include <functional>
 #include <string>
 #include <vector>

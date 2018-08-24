@@ -1,4 +1,5 @@
 FEATURE core.h/Include
+#include <algorithm>
 #include <functional>
 #include <string>
 #include <vector>

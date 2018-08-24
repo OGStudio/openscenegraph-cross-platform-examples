@@ -2,8 +2,8 @@
 Application
 Application+camera
 Application+frame+Reporting
-Application+run
-Application+setupWindow-desktop
+Application+handleEvent-web
+Application+setupWindow-embedded
 Application+Logging
 Application+Rendering
 Application+Mouse
@@ -17,8 +17,9 @@ Example+TextureImageScene
 Example+SequenceTest
 Example+StaticPluginOSG
 Example+StaticPluginPNG
+Example+VBO
 
-main-desktop
+main-web
 
 # core
 OSGCPE_CORE_REGISTER_SEQUENCE_ACTION
@@ -46,9 +47,9 @@ Resource
 ResourceStreamBuffer
 
 # render
-createGraphicsContext-desktop
 createShaderProgram
 setupCamera
+VBOSetupVisitor
 
 # scene
 degreesToQuaternion
