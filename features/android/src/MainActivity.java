@@ -27,6 +27,7 @@ freely, subject to the following restrictions:
 // FEATURE Ex03/Impl
 // FEATURE Ex04/Impl
 // FEATURE Ex05/Impl
+// FEATURE Ex06/Impl
 
 // FEATURE EGLview/Include
 // FEATURE MainActivity/Include
