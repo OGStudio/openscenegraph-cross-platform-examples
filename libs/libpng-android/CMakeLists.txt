@@ -2,7 +2,9 @@ PROJECT(STATIC_LIBPNG_ANDROID)
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 # Build libpng-android into static library under Android.
 
-SET(OSGCPE_DIR "${CMAKE_SOURCE_DIR}/../../../../openscenegraph-cross-platform-examples")
+# NOTE Must be provided by parent.
+#SET(OSGCPE_DIR "${CMAKE_SOURCE_DIR}/../../../../openscenegraph-cross-platform-examples")
+
 # Path to libpng-android source.
 SET(PNG_SRC_DIR "${OSGCPE_DIR}/../libpng-android/jni")
 INCLUDE_DIRECTORIES(${PNG_SRC_DIR})

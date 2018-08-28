@@ -3,7 +3,9 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 # Build mongoose into static library.
 
 # Path to openscenegraph-cross-platform-examples.
-SET(OSGCPE_DIR "${CMAKE_SOURCE_DIR}/../../../openscenegraph-cross-platform-examples")
+# NOTE Must by provided by parent.
+#SET(OSGCPE_DIR "${CMAKE_SOURCE_DIR}/../../../openscenegraph-cross-platform-examples")
+
 # Path to mongoose source.
 SET(MONGOOSE_SRC_DIR "${OSGCPE_DIR}/../mongoose")
 # Path to this directory with our mongoose files.
