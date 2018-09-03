@@ -34,16 +34,15 @@ PLATFORMS=(
 FEATURES_TXT_DIR="src" 
 FEATURE_DIRS=(
     "/core"
-    "/main"
-    "/log"
-    "/format"
-    "/openscenegraph"
-    "/resource"
-    "/render"
-    "/scene"
-    "/network"
     "/debug"
+    "/format"
     "/input"
+    "/log"
+    "/main"
+    "/network"
+    "/render"
+    "/resource"
+    "/scene"
 )
 
 FEATURES_TXT_DIR_ANDROID_CPP="app/src/main/cpp"

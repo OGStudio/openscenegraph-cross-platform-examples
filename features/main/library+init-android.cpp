@@ -1,6 +1,6 @@
 FEATURE library.cpp/Impl
 // Setup graphics context.
-OSGCPE_JNI(init)(OSGCPE_JNI_ARG, jint width, jint height)
+JNI_FUNC(init)(JNI_ARG, jint width, jint height)
 {
     // Create example only once.
     // If we create example at stack, the instance might get initialized

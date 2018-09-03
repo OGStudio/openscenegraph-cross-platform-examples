@@ -1,6 +1,6 @@
 FEATURE library.cpp/Impl
 // Rendering.
-OSGCPE_JNI(frame)(OSGCPE_JNI_ARG)
+JNI_FUNC(frame)(JNI_ARG)
 {
     example->app->frame();
 }

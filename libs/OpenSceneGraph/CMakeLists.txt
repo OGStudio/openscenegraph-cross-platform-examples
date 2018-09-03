@@ -17,13 +17,6 @@ ENDIF ()
 # TODO Windows.
 MESSAGE("OSG_PLATFORM: '${OSG_PLATFORM}'")
 
-# Path to openscenegraph-cross-platform-examples must be provided by parent.
-#SET(OSGCPE_DIR "${CMAKE_SOURCE_DIR}/../../../openscenegraph-cross-platform-examples")
-
-# Use different path for Android.
-IF (${OSG_PLATFORM} STREQUAL "android")
-    SET(OSGCPE_DIR "${CMAKE_SOURCE_DIR}/../../../../openscenegraph-cross-platform-examples")
-ENDIF ()
 # Path to OpenSceneGraph source.
 SET(OSG_SRC_DIR "${OSGCPE_DIR}/../OpenSceneGraph")
 # Path to this directory with our OpenSceneGraph files.

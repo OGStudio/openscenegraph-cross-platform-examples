@@ -3,7 +3,7 @@ FEATURE library.cpp/Include
 
 FEATURE library.cpp/Impl
 // Pop next pending request and execute it (implicitely mark it as IN_PROGRESS).
-OSGCPE_JNI_ARRAY(httpClientExecuteNextRequest)(OSGCPE_JNI_ARG)
+JNI_FUNC_ARRAY(httpClientExecuteNextRequest)(JNI_ARG)
 {
     std::vector<std::string> requestParts;
     auto request = example->app->httpClient->nextPendingRequest();
@@ -19,8 +19,8 @@ OSGCPE_JNI_ARRAY(httpClientExecuteNextRequest)(OSGCPE_JNI_ARG)
     return jniStrings(env, requestParts);
 }
 
-OSGCPE_JNI(httpClientCompleteRequest)(
-    OSGCPE_JNI_ARG,
+JNI_FUNC(httpClientCompleteRequest)(
+    JNI_ARG,
     jstring requestId,
     jboolean status,
     jstring response

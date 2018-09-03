@@ -5,7 +5,7 @@ std::string extension(const Resource &resource)
     // Return empty extension if we cannot detect it.
     if (dotPosition == std::string::npos)
     {
-        OSGCPE_RESOURCE_LOG(
+        RESOURCE_LOG(
             "ERROR Could not detect file extension for '%s/%s' resource",
             resource.group.c_str(),
             resource.name.c_str()

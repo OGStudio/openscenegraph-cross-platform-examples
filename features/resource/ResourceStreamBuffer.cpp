@@ -1,3 +1,6 @@
+FEATURE resource.h/Include
+#include <iostream>
+
 FEATURE resource.h/Impl
 //! Work with Resource contents as with any stream.
 struct ResourceStreamBuffer : std::streambuf

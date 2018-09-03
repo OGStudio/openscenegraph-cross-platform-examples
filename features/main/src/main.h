@@ -36,7 +36,7 @@ freely, subject to the following restrictions:
 // FEATURE Application+Mouse/Include
 // FEATURE Application+Rendering/Include
 
-// FEATURE OSGCPE_MAIN_APPLICATION_LOG/Impl
+// FEATURE MAIN_APPLICATION_LOG/Impl
 
 // FEATURE Example+BoxScene/Include
 // FEATURE Example+SequenceTest/Include
@@ -44,7 +44,7 @@ freely, subject to the following restrictions:
 // FEATURE Example+HTTPSGetPost/Include
 // FEATURE Example+VBO/Include
 
-// FEATURE OSGCPE_MAIN_EXAMPLE_LOG/Impl
+// FEATURE MAIN_EXAMPLE_LOG/Impl
 
 // FEATURE Example+StaticPluginOSG/Impl
 // FEATURE Example+StaticPluginPNG/Impl

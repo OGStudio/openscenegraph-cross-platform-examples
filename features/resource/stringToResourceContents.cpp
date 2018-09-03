@@ -4,7 +4,7 @@ unsigned char * stringToResourceContents(const std::string &str)
     auto dat = const_cast<char *>(str.data());
     if (!dat)
     {
-        OSGCPE_RESOURCE_LOG(
+        RESOURCE_LOG(
             "ERROR Could not convert string to resource contents "
             "at 'const char * -> char *' stage"
         );
@@ -13,7 +13,7 @@ unsigned char * stringToResourceContents(const std::string &str)
     auto contents = reinterpret_cast<unsigned char *>(dat);
     if (!contents)
     {
-        OSGCPE_RESOURCE_LOG(
+        RESOURCE_LOG(
             "ERROR Could not convert string to resource contents "
             "at 'char * -> usigned char *' stage"
         );

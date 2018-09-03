@@ -18,7 +18,7 @@ void setTextureImage(
     // Do nothing if extension is absent.
     if (ex.empty())
     {
-        OSGCPE_RESOURCE_LOG(
+        RESOURCE_LOG(
             "ERROR Could not read image of '%s/%s' resource "
             "because extension is absent",
             resource.group.c_str(),
@@ -41,7 +41,7 @@ void setTextureImage(
         }
         else
         {
-            OSGCPE_RESOURCE_LOG(
+            RESOURCE_LOG(
                 "ERROR Could not read image of '%s/%s' resource from buffer.",
                 resource.group.c_str(),
                 resource.name.c_str()
@@ -50,7 +50,7 @@ void setTextureImage(
     }
     else
     {
-        OSGCPE_RESOURCE_LOG(
+        RESOURCE_LOG(
             "ERROR Could not read image of '%s/%s' resource because "
             "image reader for extension '%s' is absent.",
             resource.group.c_str(),
