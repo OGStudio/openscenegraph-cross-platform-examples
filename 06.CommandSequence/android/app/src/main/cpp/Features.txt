@@ -5,10 +5,10 @@ Application+frame+Reporting
 Application+handleMousePress-android
 Application+setupWindow-embedded
 Application+Logging
-Application+Rendering
 Application+Mouse
+Application+Rendering
 
-OSGCPE_MAIN_EXAMPLE_LOG
+MAIN_EXAMPLE_LOG
 Example
 Example+06
 Example+BoxScene
@@ -19,7 +19,7 @@ Example+StaticPluginOSG
 Example+StaticPluginPNG
 Example+VBO
 
-library+Ex06+OSGCPE_JNI-android
+library+Ex06+JNI-android
 
 library-android
 library+init-android
@@ -27,22 +27,22 @@ library+frame-android
 library+handleMousePress-android
 
 # core
-OSGCPE_CORE_REGISTER_SEQUENCE_ACTION
-OSGCPE_CORE_SEQUENCE_LOG
+CORE_REGISTER_SEQUENCE_ACTION
+CORE_SEQUENCE_LOG
 Reporter
 Sequence
 
 # log
+Logger
 log-android
 logLevelToString
 logprintf
-Logger
 
 # format
 printfString
 
 # resource
-OSGCPE_RESOURCE_LOG
+RESOURCE_LOG
 createTexture
 extension
 node
@@ -56,16 +56,14 @@ createShaderProgram
 VBOSetupVisitor
 
 # scene
+LinearInterpolator
 degreesToQuaternion
 quaternionToDegrees
 setSimpleRotation
 simpleRotation
 
 nodeAtPosition
-
 textureImageScene
-
-LinearInterpolator
 
 # input
 Mouse
