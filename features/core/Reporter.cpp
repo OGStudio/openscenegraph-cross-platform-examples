@@ -21,12 +21,12 @@ class Reporter
             // before `report()` call.
             if (this->reactivateInactiveCallback(name))
             {
-                //OSGCPE_CORE_REPORTER_LOG("reactivated callback named '%s'", name.c_str());
+                //CORE_REPORTER_LOG("reactivated callback named '%s'", name.c_str());
                 return;
             }
 
             this->callbacks.push_back({callback, name});
-            //OSGCPE_CORE_REPORTER_LOG("added callback named '%s'", name.c_str());
+            //CORE_REPORTER_LOG("added callback named '%s'", name.c_str());
         }
 
         void addOneTimeCallback(Callback callback)

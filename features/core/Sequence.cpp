@@ -12,7 +12,7 @@ class Sequence
         Sequence() { }
 
         std::string name;
-        bool isRepeatable = true;
+        bool isRepeatable = false;
 
         void registerAction(const std::string &name, Callback callback)
         {
@@ -29,7 +29,7 @@ class Sequence
             // Make sure action sequence is valid.
             if (!this->isActionSequenceValid(this->sequence))
             {
-                OSGCPE_CORE_SEQUENCE_LOG(
+                CORE_SEQUENCE_LOG(
                     "ERROR Could not set action sequence because there are "
                     "missing actions in the sequence"
                 );
@@ -87,7 +87,7 @@ class Sequence
             auto callback = this->callback(action);
             auto reporter = (*callback)();
 
-            //OSGCPE_CORE_SEQUENCE_LOG("Executed action '%s'", action.c_str());
+            //CORE_SEQUENCE_LOG("Executed action '%s'", action.c_str());
 
             // Wait for execution completion report if it exists.
             if (reporter)
