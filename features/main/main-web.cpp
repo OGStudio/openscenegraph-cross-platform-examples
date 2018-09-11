@@ -1,13 +1,75 @@
 FEATURE main.cpp/Include
 #include "main.h"
 #include <emscripten.h>
-#include <emscripten/html5.h>
 #include <SDL2/SDL.h>
 
 FEATURE main.cpp/Loop
 // We use Example global variable in loop() function.
 main::Example *example = 0;
 
+// Stand alone function that is called by Emscripten to run the app.
+void loop()
+{
+    if (example)
+    {
+        SDL_Event e;
+        while (SDL_PollEvent(&e))
+        {
+            example->app->handleEvent(e);
+        }
+        example->app->frame();
+    }
+}
+
+FEATURE main.cpp/Setup
+// Make sure SDL is working.
+if (SDL_Init(SDL_INIT_VIDEO) < 0)
+{
+    printf("Could not init SDL: '%s'\n", SDL_GetError());
+    return 1;
+}
+// Clean SDL up at exit.
+atexit(SDL_Quit);
+// Configure rendering context.
+SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5);
+SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 5);
+SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
+SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
+SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+
+// Create rendering window.
+// Provide default values.
+int width = 800;
+int height = 600;
+// Query currenty canvas size.
+canvasSize(&width, &height);
+
+SDL_Window* window =
+    SDL_CreateWindow(
+        main::EXAMPLE_TITLE,
+        SDL_WINDOWPOS_CENTERED,
+        SDL_WINDOWPOS_CENTERED,
+        width,
+        height,
+        SDL_WINDOW_OPENGL);
+if (!window)
+{
+    printf("Could not create window: '%s'\n", SDL_GetError());
+    return 1;
+}
+
+SDL_GL_CreateContext(window);
+main::Example::Parameters parameters;
+
+FEATURE main.cpp/End
+example = new main::Example(parameters);
+example->app->setupWindow(width, height);
+
+FEATURE main.cpp/Run
+// Render asynchronously.
+emscripten_set_main_loop(loop, -1, 0);
+
+FEATURE main.cpp/TODO
 std::string emscriptenResultToString(EMSCRIPTEN_RESULT result)
 {
     switch (result)
@@ -33,31 +95,6 @@ std::string emscriptenResultToString(EMSCRIPTEN_RESULT result)
     }
     return "UNEXPECTED-RESULT";
 }
-
-void getSize(const std::string &name)
-{
-    double width = 0;
-    double height = 0;
-    auto result = emscripten_get_element_css_size(name.c_str(), &width, &height);
-    auto resultDescription = emscriptenResultToString(result);
-    printf("emscripten_get_element_css_size(%s): '%s'\n", name.c_str(), resultDescription.c_str());
-    if (result < 0)
-    {
-        printf("Could not get element css size\n");
-        //return;
-    }
-
-    printf("'%s' width: '%f' height: '%f'\n", name.c_str(), width, height);
-
-}
-
-void debug()
-{
-    getSize("canvas");
-    getSize("window");
-}
-
-// TODO REMOVE
 void printEvent(const SDL_Event &e)
 {
     printf("Event type: '%d'\n", e.type);
@@ -116,69 +153,3 @@ EM_BOOL resizeCallback(int eventType, const EmscriptenUiEvent *event, void *user
     return EM_TRUE;
 }
 
-// Stand alone function that is called by Emscripten to run the app.
-void loop()
-{
-    if (example)
-    {
-        SDL_Event e;
-        while (SDL_PollEvent(&e))
-        {
-            printEvent(e);
-            debug();
-            example->app->handleEvent(e);
-        }
-        example->app->frame();
-    }
-}
-
-FEATURE main.cpp/Setup
-
-    getSize("canvas");
-    getSize("window");
-
-// Make sure SDL is working.
-if (SDL_Init(SDL_INIT_VIDEO) < 0)
-{
-    printf("Could not init SDL: '%s'\n", SDL_GetError());
-    return 1;
-}
-// Clean SDL up at exit.
-atexit(SDL_Quit);
-// Configure rendering context.
-SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5);
-SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 5);
-SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
-SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
-SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-// Create rendering window.
-int width = 800;
-int height = 600;
-SDL_Window* window =
-    SDL_CreateWindow(
-        main::EXAMPLE_TITLE,
-        SDL_WINDOWPOS_CENTERED,
-        SDL_WINDOWPOS_CENTERED,
-        width,
-        height,
-        SDL_WINDOW_OPENGL);
-if (!window)
-{
-    printf("Could not create window: '%s'\n", SDL_GetError());
-    return 1;
-}
-
-printf("created render window\n");
-
-SDL_GL_CreateContext(window);
-main::Example::Parameters parameters;
-
-emscripten_set_resize_callback(0, 0, EM_FALSE, resizeCallback);
-
-FEATURE main.cpp/End
-example = new main::Example(parameters);
-example->app->setupWindow(width, height);
-
-FEATURE main.cpp/Run
-// Render asynchronously.
-emscripten_set_main_loop(loop, -1, 0);

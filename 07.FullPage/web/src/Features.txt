@@ -20,6 +20,7 @@ Example+StaticPluginPNG
 Example+VBO
 
 main-web
+main+canvasSize-web
 
 # core
 CORE_REGISTER_SEQUENCE_ACTION

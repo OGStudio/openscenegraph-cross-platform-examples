@@ -24,10 +24,12 @@ freely, subject to the following restrictions:
 
 // FEATURE main-desktop/Include
 // FEATURE main-web/Include
+// FEATURE main+canvasSize-web/Include
 
 using namespace osgcpe;
 
 // FEATURE main-web/Loop
+// FEATURE main+canvasSize-web/Impl
 
 int main(int argc, char *argv[])
 {
