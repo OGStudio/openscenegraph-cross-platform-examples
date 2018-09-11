@@ -163,9 +163,19 @@ class HTTPRequestProcessorMongoose
                     {
                         connection->flags |= MG_F_CLOSE_IMMEDIATELY;
                         auto msg = static_cast<http_message *>(data);
-                        auto body = std::string(msg->body.p, msg->body.len);
+                        // Only succeed for HTTP code 200 (OK).
+                        if (msg->resp_code == 200)
+                        {
+                            auto body = std::string(msg->body.p, msg->body.len);
+                            request->success(body);
+                        }
+                        // Report failure otherwise.
+                        else
+                        {
+                            auto reason = format::printfString("%d", msg->resp_code);
+                            request->failure(reason);
+                        }
                         request->status = HTTPRequest::COMPLETED;
-                        request->success(body);
                         self->inProgress = false;
                     }
                     break;

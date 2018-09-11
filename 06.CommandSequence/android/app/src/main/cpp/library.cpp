@@ -28,11 +28,6 @@ freely, subject to the following restrictions:
 
 // library-android End
 
-// library+Ex06+OSGCPE_JNI-android Start
-#define OSGCPE_JNI(FUNC_NAME) \
-    JNIEXPORT void JNICALL Java_org_opengamestudio_ex06_library_ ## FUNC_NAME
-#define OSGCPE_JNI_ARG JNIEnv *env, jobject /* this */
-// library+Ex06+OSGCPE_JNI-android End
 
 using namespace osgcpe;
 
@@ -46,7 +41,7 @@ extern "C" {
 
 // library+init-android Start
 // Setup graphics context.
-OSGCPE_JNI(init)(OSGCPE_JNI_ARG, jint width, jint height)
+JNI_FUNC(init)(JNI_ARG, jint width, jint height)
 {
     // Create example only once.
     // If we create example at stack, the instance might get initialized
@@ -61,7 +56,7 @@ OSGCPE_JNI(init)(OSGCPE_JNI_ARG, jint width, jint height)
 // library+init-android End
 // library+frame-android Start
 // Rendering.
-OSGCPE_JNI(frame)(OSGCPE_JNI_ARG)
+JNI_FUNC(frame)(JNI_ARG)
 {
     example->app->frame();
 }
@@ -69,7 +64,7 @@ OSGCPE_JNI(frame)(OSGCPE_JNI_ARG)
 // library+frame-android End
 // library+handleMousePress-android Start
 // Handle mouse press and release events.
-OSGCPE_JNI(handleMousePress)(OSGCPE_JNI_ARG, jboolean down, jfloat x, jfloat y)
+JNI_FUNC(handleMousePress)(JNI_ARG, jboolean down, jfloat x, jfloat y)
 {
     example->app->handleMousePress(down == JNI_TRUE, x, y);
 }

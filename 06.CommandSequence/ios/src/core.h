@@ -37,24 +37,7 @@ freely, subject to the following restrictions:
 
 // Sequence End
 
-// OSGCPE_CORE_SEQUENCE_LOG Start
-#include "log.h"
-#include "format.h"
-#define OSGCPE_CORE_SEQUENCE_LOG_PREFIX "core::Sequence(%p) %s"
-#define OSGCPE_CORE_SEQUENCE_LOG(...) \
-    log::logprintf( \
-        OSGCPE_CORE_SEQUENCE_LOG_PREFIX, \
-        this, \
-        format::printfString(__VA_ARGS__).c_str() \
-    )
 
-// OSGCPE_CORE_SEQUENCE_LOG End
-
-// OSGCPE_CORE_REGISTER_SEQUENCE_ACTION Start
-#define OSGCPE_CORE_REGISTER_SEQUENCE_ACTION(SEQUENCE, ACTION, CALL) \
-    SEQUENCE.registerAction(ACTION, [=]() { return CALL; });
-
-// OSGCPE_CORE_REGISTER_SEQUENCE_ACTION End
 
 namespace osgcpe
 {
@@ -78,12 +61,12 @@ class Reporter
             // before `report()` call.
             if (this->reactivateInactiveCallback(name))
             {
-                //OSGCPE_CORE_REPORTER_LOG("reactivated callback named '%s'", name.c_str());
+                //CORE_REPORTER_LOG("reactivated callback named '%s'", name.c_str());
                 return;
             }
 
             this->callbacks.push_back({callback, name});
-            //OSGCPE_CORE_REPORTER_LOG("added callback named '%s'", name.c_str());
+            //CORE_REPORTER_LOG("added callback named '%s'", name.c_str());
         }
 
         void addOneTimeCallback(Callback callback)
@@ -184,7 +167,7 @@ class Sequence
         Sequence() { }
 
         std::string name;
-        bool isRepeatable = true;
+        bool isRepeatable = false;
 
         void registerAction(const std::string &name, Callback callback)
         {
@@ -201,7 +184,7 @@ class Sequence
             // Make sure action sequence is valid.
             if (!this->isActionSequenceValid(this->sequence))
             {
-                OSGCPE_CORE_SEQUENCE_LOG(
+                CORE_SEQUENCE_LOG(
                     "ERROR Could not set action sequence because there are "
                     "missing actions in the sequence"
                 );
@@ -259,7 +242,7 @@ class Sequence
             auto callback = this->callback(action);
             auto reporter = (*callback)();
 
-            //OSGCPE_CORE_SEQUENCE_LOG("Executed action '%s'", action.c_str());
+            //CORE_SEQUENCE_LOG("Executed action '%s'", action.c_str());
 
             // Wait for execution completion report if it exists.
             if (reporter)

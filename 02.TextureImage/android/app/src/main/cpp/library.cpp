@@ -46,7 +46,7 @@ extern "C" {
 
 // library+init-android Start
 // Setup graphics context.
-OSGCPE_JNI(init)(OSGCPE_JNI_ARG, jint width, jint height)
+JNI_FUNC(init)(JNI_ARG, jint width, jint height)
 {
     // Create example only once.
     // If we create example at stack, the instance might get initialized
@@ -61,7 +61,7 @@ OSGCPE_JNI(init)(OSGCPE_JNI_ARG, jint width, jint height)
 // library+init-android End
 // library+frame-android Start
 // Rendering.
-OSGCPE_JNI(frame)(OSGCPE_JNI_ARG)
+JNI_FUNC(frame)(JNI_ARG)
 {
     example->app->frame();
 }

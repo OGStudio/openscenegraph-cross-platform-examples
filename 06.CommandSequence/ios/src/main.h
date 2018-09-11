@@ -67,17 +67,6 @@ freely, subject to the following restrictions:
 
 // Example+VBO End
 
-// OSGCPE_MAIN_EXAMPLE_LOG Start
-#include "log.h"
-#include "format.h"
-#define OSGCPE_MAIN_EXAMPLE_LOG_PREFIX "main::Example(%p) %s"
-#define OSGCPE_MAIN_EXAMPLE_LOG(...) \
-    log::logprintf( \
-        OSGCPE_MAIN_EXAMPLE_LOG_PREFIX, \
-        this, \
-        format::printfString(__VA_ARGS__).c_str() \
-    )
-// OSGCPE_MAIN_EXAMPLE_LOG End
 
 // Example+StaticPluginOSG Start
 #include <osgDB/Registry>
@@ -321,7 +310,7 @@ struct Example
             }
             else
             {
-                OSGCPE_MAIN_EXAMPLE_LOG("ERROR Could not load scene");
+                MAIN_EXAMPLE_LOG("ERROR Could not load scene");
             }
         }
     // Example+BoxScene End
@@ -405,42 +394,42 @@ struct Example
             });
     
             // Register actions.
-            OSGCPE_CORE_REGISTER_SEQUENCE_ACTION(
+            CORE_REGISTER_SEQUENCE_ACTION(
                 this->sequence,
                 "waitForBoxSelection",
                 this->waitForBoxSelection()
             );
-            OSGCPE_CORE_REGISTER_SEQUENCE_ACTION(
+            CORE_REGISTER_SEQUENCE_ACTION(
                 this->sequence,
                 "enableBoxSelection",
                 this->setBoxSelectionEnabled(true)
             );
-            OSGCPE_CORE_REGISTER_SEQUENCE_ACTION(
+            CORE_REGISTER_SEQUENCE_ACTION(
                 this->sequence,
                 "disableBoxSelection",
                 this->setBoxSelectionEnabled(false)
             );
-            OSGCPE_CORE_REGISTER_SEQUENCE_ACTION(
+            CORE_REGISTER_SEQUENCE_ACTION(
                 this->sequence,
                 "startBoxRotation",
                 this->setBoxRotationEnabled(true)
             );
-            OSGCPE_CORE_REGISTER_SEQUENCE_ACTION(
+            CORE_REGISTER_SEQUENCE_ACTION(
                 this->sequence,
                 "stopBoxRotation",
                 this->setBoxRotationEnabled(false)
             );
-            OSGCPE_CORE_REGISTER_SEQUENCE_ACTION(
+            CORE_REGISTER_SEQUENCE_ACTION(
                 this->sequence,
                 "simulateLoading",
                 this->simulateLoading()
             );
-            OSGCPE_CORE_REGISTER_SEQUENCE_ACTION(
+            CORE_REGISTER_SEQUENCE_ACTION(
                 this->sequence,
                 "dimBackground",
                 this->changeBackground(true)
             );
-            OSGCPE_CORE_REGISTER_SEQUENCE_ACTION(
+            CORE_REGISTER_SEQUENCE_ACTION(
                 this->sequence,
                 "lightBackground",
                 this->changeBackground(false)

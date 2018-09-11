@@ -52,7 +52,7 @@ extern "C" {
 
 // library+init-android Start
 // Setup graphics context.
-OSGCPE_JNI(init)(OSGCPE_JNI_ARG, jint width, jint height)
+JNI_FUNC(init)(JNI_ARG, jint width, jint height)
 {
     // Create example only once.
     // If we create example at stack, the instance might get initialized
@@ -67,7 +67,7 @@ OSGCPE_JNI(init)(OSGCPE_JNI_ARG, jint width, jint height)
 // library+init-android End
 // library+frame-android Start
 // Rendering.
-OSGCPE_JNI(frame)(OSGCPE_JNI_ARG)
+JNI_FUNC(frame)(JNI_ARG)
 {
     example->app->frame();
 }
@@ -94,7 +94,7 @@ jobjectArray jniStrings(JNIEnv *env, const std::vector<std::string> items)
 
 // library+httpClient-android Start
 // Pop next pending request and execute it (implicitely mark it as IN_PROGRESS).
-OSGCPE_JNI_ARRAY(httpClientExecuteNextRequest)(OSGCPE_JNI_ARG)
+JNI_FUNC_ARRAY(httpClientExecuteNextRequest)(JNI_ARG)
 {
     std::vector<std::string> requestParts;
     auto request = example->app->httpClient->nextPendingRequest();
@@ -110,8 +110,8 @@ OSGCPE_JNI_ARRAY(httpClientExecuteNextRequest)(OSGCPE_JNI_ARG)
     return jniStrings(env, requestParts);
 }
 
-OSGCPE_JNI(httpClientCompleteRequest)(
-    OSGCPE_JNI_ARG,
+JNI_FUNC(httpClientCompleteRequest)(
+    JNI_ARG,
     jstring requestId,
     jboolean status,
     jstring response

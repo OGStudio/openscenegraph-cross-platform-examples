@@ -28,6 +28,6 @@ private:
         }
         else
         {
-            OSGCPE_MAIN_EXAMPLE_LOG("ERROR Could not load scene");
+            MAIN_EXAMPLE_LOG("ERROR Could not load scene");
         }
     }

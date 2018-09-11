@@ -1,0 +1,68 @@
+# main
+Application
+Application+camera
+Application+frame+Reporting
+Application+handleEvent-web
+Application+setupWindow-embedded
+Application+Logging
+Application+Rendering
+Application+Mouse
+
+MAIN_EXAMPLE_LOG
+Example
+Example+07
+Example+BoxScene
+Example+BoxSelection
+Example+TextureImageScene
+Example+SequenceTest
+Example+StaticPluginOSG
+Example+StaticPluginPNG
+Example+VBO
+
+main-web
+
+# core
+CORE_REGISTER_SEQUENCE_ACTION
+CORE_SEQUENCE_LOG
+Reporter
+Sequence
+
+# log
+log-default
+logLevelToString
+logprintf
+Logger
+
+# format
+printfString
+
+# resource
+RESOURCE_LOG
+createTexture
+extension
+node
+setTextureImage
+string
+Resource
+ResourceStreamBuffer
+
+# render
+createShaderProgram
+setupCamera
+VBOSetupVisitor
+
+# scene
+degreesToQuaternion
+quaternionToDegrees
+setSimpleRotation
+simpleRotation
+
+nodeAtPosition
+
+textureImageScene
+
+LinearInterpolator
+
+# input
+Mouse
+MouseButtons

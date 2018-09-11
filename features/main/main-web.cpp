@@ -1,6 +1,7 @@
 FEATURE main.cpp/Include
 #include "main.h"
 #include <emscripten.h>
+#include <emscripten/html5.h>
 #include <SDL2/SDL.h>
 
 FEATURE main.cpp/Loop

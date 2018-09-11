@@ -38,42 +38,42 @@ private:
         });
 
         // Register actions.
-        OSGCPE_CORE_REGISTER_SEQUENCE_ACTION(
+        CORE_REGISTER_SEQUENCE_ACTION(
             this->sequence,
             "waitForBoxSelection",
             this->waitForBoxSelection()
         );
-        OSGCPE_CORE_REGISTER_SEQUENCE_ACTION(
+        CORE_REGISTER_SEQUENCE_ACTION(
             this->sequence,
             "enableBoxSelection",
             this->setBoxSelectionEnabled(true)
         );
-        OSGCPE_CORE_REGISTER_SEQUENCE_ACTION(
+        CORE_REGISTER_SEQUENCE_ACTION(
             this->sequence,
             "disableBoxSelection",
             this->setBoxSelectionEnabled(false)
         );
-        OSGCPE_CORE_REGISTER_SEQUENCE_ACTION(
+        CORE_REGISTER_SEQUENCE_ACTION(
             this->sequence,
             "startBoxRotation",
             this->setBoxRotationEnabled(true)
         );
-        OSGCPE_CORE_REGISTER_SEQUENCE_ACTION(
+        CORE_REGISTER_SEQUENCE_ACTION(
             this->sequence,
             "stopBoxRotation",
             this->setBoxRotationEnabled(false)
         );
-        OSGCPE_CORE_REGISTER_SEQUENCE_ACTION(
+        CORE_REGISTER_SEQUENCE_ACTION(
             this->sequence,
             "simulateLoading",
             this->simulateLoading()
         );
-        OSGCPE_CORE_REGISTER_SEQUENCE_ACTION(
+        CORE_REGISTER_SEQUENCE_ACTION(
             this->sequence,
             "dimBackground",
             this->changeBackground(true)
         );
-        OSGCPE_CORE_REGISTER_SEQUENCE_ACTION(
+        CORE_REGISTER_SEQUENCE_ACTION(
             this->sequence,
             "lightBackground",
             this->changeBackground(false)
