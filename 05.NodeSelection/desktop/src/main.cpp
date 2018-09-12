@@ -30,6 +30,8 @@ freely, subject to the following restrictions:
 using namespace osgcpe;
 
 
+
+
 int main(int argc, char *argv[])
 {
     // main-desktop Start
@@ -41,6 +43,8 @@ int main(int argc, char *argv[])
     example->app->setupWindow(main::EXAMPLE_TITLE, 100, 100, 480, 320);
     
     // main-desktop End
+
+
     // main-desktop Start
     example->app->run();
     delete example;

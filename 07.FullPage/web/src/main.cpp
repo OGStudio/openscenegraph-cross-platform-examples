@@ -28,10 +28,10 @@ freely, subject to the following restrictions:
 #include <SDL2/SDL.h>
 
 // main-web End
-// main+canvasSize-web Start
+// main+FullPage-web Start
 #include <emscripten/html5.h>
 
-// main+canvasSize-web End
+// main+FullPage-web End
 
 using namespace osgcpe;
 
@@ -39,22 +39,9 @@ using namespace osgcpe;
 // We use Example global variable in loop() function.
 main::Example *example = 0;
 
-// Stand alone function that is called by Emscripten to run the app.
-void loop()
-{
-    if (example)
-    {
-        SDL_Event e;
-        while (SDL_PollEvent(&e))
-        {
-            example->app->handleEvent(e);
-        }
-        example->app->frame();
-    }
-}
-
 // main-web End
-// main+canvasSize-web Start
+
+// main+FullPage-web Start
 bool canvasSize(int *width, int *height)
 {
     double w;
@@ -69,10 +56,90 @@ bool canvasSize(int *width, int *height)
     }
     return false;
 }
-// main+canvasSize-web End
+/*
+bool handleWindowResize(const SDL_Event &e)
+{
+    // Make sure this is a window event.
+    if (e.type != SDL_WINDOWEVENT)
+    {
+        return false;
+    }
+
+    // Make sure this is a resize event.
+    if (e.window.event != SDL_WINDOWEVENT_RESIZED)
+    {
+        return false;
+    }
+
+    return;
+}
+*/
+void resizeWindowToCanvasSize(SDL_Window *window)
+{
+    printf("resizeWindowToCanvasSize.01\n");
+    int width;
+    int height;
+
+    // Do nothing if canvas size retrieval fails.
+    if (!canvasSize(&width, &height))
+    {
+        return;
+    }
+
+    printf("resizeWindowToCanvasSize.02. w/h: '%d / %d'\n", width, height);
+    // Resize.
+    SDL_SetWindowSize(window, width, height);
+    // Resize render window.
+    example->app->setupWindow(width, height);
+}
+EM_BOOL windowResized(
+    int eventType,
+    const EmscriptenUiEvent *event,
+    void *userData
+) {
+    printf("windowResized.01\n");
+    int width;
+    int height;
+
+    // Do nothing if canvas size retrieval fails.
+    if (!canvasSize(&width, &height))
+    {
+        return EM_FALSE;
+    }
+
+    printf("windowResized.02. w/h: '%d / %d'\n", width, height);
+    // Resize render window.
+    example->app->setupWindow(width, height);
+
+    return EM_TRUE;
+}
+// main+FullPage-web End
+
+// main-web Start
+// Stand alone function that is called by Emscripten to run the app.
+void loop()
+{
+    if (example)
+    {
+        SDL_Event e;
+        while (SDL_PollEvent(&e))
+        {
+
+// main-web End
+            // main+Input-web Start
+            example->app->handleEvent(e);
+            // main+Input-web End
+// main-web Start
+        }
+        example->app->frame();
+    }
+}
+
+// main-web End
 
 int main(int argc, char *argv[])
 {
+
     // main-web Start
     // Make sure SDL is working.
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -90,11 +157,8 @@ int main(int argc, char *argv[])
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     
     // Create rendering window.
-    // Provide default values.
     int width = 800;
     int height = 600;
-    // Query currenty canvas size.
-    canvasSize(&width, &height);
     
     SDL_Window* window =
         SDL_CreateWindow(
@@ -119,10 +183,15 @@ int main(int argc, char *argv[])
     example->app->setupWindow(width, height);
     
     // main-web End
+    // main+FullPage-web Start
+    emscripten_set_resize_callback("canvas", 0, 0, windowResized);
+    resizeWindowToCanvasSize(window);
+    
+    // main+FullPage-web End
+
     // main-web Start
     // Render asynchronously.
     emscripten_set_main_loop(loop, -1, 0);
-    
     // main-web End
     return 0;
 }

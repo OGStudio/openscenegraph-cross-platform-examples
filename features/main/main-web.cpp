@@ -3,10 +3,11 @@ FEATURE main.cpp/Include
 #include <emscripten.h>
 #include <SDL2/SDL.h>
 
-FEATURE main.cpp/Loop
+FEATURE main.cpp/Example
 // We use Example global variable in loop() function.
 main::Example *example = 0;
 
+FEATURE main.cpp/LoopBegin
 // Stand alone function that is called by Emscripten to run the app.
 void loop()
 {
@@ -15,7 +16,8 @@ void loop()
         SDL_Event e;
         while (SDL_PollEvent(&e))
         {
-            example->app->handleEvent(e);
+
+FEATURE main.cpp/LoopEnd
         }
         example->app->frame();
     }
@@ -38,11 +40,8 @@ SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
 SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
 // Create rendering window.
-// Provide default values.
 int width = 800;
 int height = 600;
-// Query currenty canvas size.
-canvasSize(&width, &height);
 
 SDL_Window* window =
     SDL_CreateWindow(
@@ -68,88 +67,3 @@ example->app->setupWindow(width, height);
 FEATURE main.cpp/Run
 // Render asynchronously.
 emscripten_set_main_loop(loop, -1, 0);
-
-FEATURE main.cpp/TODO
-std::string emscriptenResultToString(EMSCRIPTEN_RESULT result)
-{
-    switch (result)
-    {
-        case EMSCRIPTEN_RESULT_SUCCESS:
-            return "success";
-        case EMSCRIPTEN_RESULT_DEFERRED:
-            return "deferred";
-        case EMSCRIPTEN_RESULT_NOT_SUPPORTED:
-            return "not supported";
-        case EMSCRIPTEN_RESULT_FAILED_NOT_DEFERRED:
-            return "failed not deferred";
-        case EMSCRIPTEN_RESULT_INVALID_TARGET:
-            return "invalid target";
-        case EMSCRIPTEN_RESULT_UNKNOWN_TARGET:
-            return "unknown target";
-        case EMSCRIPTEN_RESULT_INVALID_PARAM:
-            return "invalid param";
-        case EMSCRIPTEN_RESULT_FAILED:
-            return "failed";
-        case EMSCRIPTEN_RESULT_NO_DATA:
-            return "no data";
-    }
-    return "UNEXPECTED-RESULT";
-}
-void printEvent(const SDL_Event &e)
-{
-    printf("Event type: '%d'\n", e.type);
-    // Make sure we have window event.
-    if (e.type != SDL_WINDOWEVENT)
-    {
-        return;
-    }
-    switch (e.window.event)
-    {
-        case SDL_WINDOWEVENT_SHOWN:
-            printf("shown\n");
-            break;
-        case SDL_WINDOWEVENT_EXPOSED:
-            printf("exposed\n");
-            break;
-        case SDL_WINDOWEVENT_MOVED:
-            printf("moved\n");
-            break;
-        case SDL_WINDOWEVENT_MINIMIZED:
-            printf("minimized\n");
-            break;
-        case SDL_WINDOWEVENT_MAXIMIZED:
-            printf("maximized\n");
-            break;
-        case SDL_WINDOWEVENT_RESIZED:
-            printf("resized\n");
-            break;
-        case SDL_WINDOWEVENT_SIZE_CHANGED:
-            printf("size changed\n");
-            break;
-        case SDL_WINDOWEVENT_ENTER:
-            printf("enter\n");
-            break;
-        case SDL_WINDOWEVENT_LEAVE:
-            printf("leave\n");
-            break;
-        case SDL_WINDOWEVENT_TAKE_FOCUS:
-            printf("take focus\n");
-            break;
-        case SDL_WINDOWEVENT_FOCUS_GAINED:
-            printf("focus gained\n");
-            break;
-        case SDL_WINDOWEVENT_FOCUS_LOST:
-            printf("focus lost\n");
-            break;
-        default:
-            printf("smth else\n");
-    }
-}
-
-EM_BOOL resizeCallback(int eventType, const EmscriptenUiEvent *event, void *userData)
-{
-    printf("resize callback\n");
-
-    return EM_TRUE;
-}
-

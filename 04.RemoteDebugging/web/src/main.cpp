@@ -35,6 +35,10 @@ using namespace osgcpe;
 // We use Example global variable in loop() function.
 main::Example *example = 0;
 
+// main-web End
+
+
+// main-web Start
 // Stand alone function that is called by Emscripten to run the app.
 void loop()
 {
@@ -43,7 +47,9 @@ void loop()
         SDL_Event e;
         while (SDL_PollEvent(&e))
         {
-            example->app->handleEvent(e);
+
+// main-web End
+// main-web Start
         }
         example->app->frame();
     }
@@ -53,6 +59,7 @@ void loop()
 
 int main(int argc, char *argv[])
 {
+
     // main-web Start
     // Make sure SDL is working.
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -70,11 +77,8 @@ int main(int argc, char *argv[])
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     
     // Create rendering window.
-    // Provide default values.
     int width = 800;
     int height = 600;
-    // Query currenty canvas size.
-    canvasSize(&width, &height);
     
     SDL_Window* window =
         SDL_CreateWindow(
@@ -99,10 +103,10 @@ int main(int argc, char *argv[])
     example->app->setupWindow(width, height);
     
     // main-web End
+
     // main-web Start
     // Render asynchronously.
     emscripten_set_main_loop(loop, -1, 0);
-    
     // main-web End
     return 0;
 }

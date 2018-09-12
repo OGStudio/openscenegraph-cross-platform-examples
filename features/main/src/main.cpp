@@ -24,19 +24,27 @@ freely, subject to the following restrictions:
 
 // FEATURE main-desktop/Include
 // FEATURE main-web/Include
-// FEATURE main+canvasSize-web/Include
+// FEATURE main+FullPage-web/Include
 
 using namespace osgcpe;
 
-// FEATURE main-web/Loop
-// FEATURE main+canvasSize-web/Impl
+// FEATURE main-web/Example
+
+// FEATURE main+FullPage-web/Impl
+
+// FEATURE main-web/LoopBegin
+            // FEATURE main+Input-web/Loop
+// FEATURE main-web/LoopEnd
 
 int main(int argc, char *argv[])
 {
     // FEATURE main-desktop/Setup
     // FEATURE main-desktop/End
+
     // FEATURE main-web/Setup
     // FEATURE main-web/End
+    // FEATURE main+FullPage-web/Setup
+
     // FEATURE main-desktop/Run
     // FEATURE main-web/Run
     return 0;
