@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# This script adds CSS style to #canvas to make it display full page.
+
+fileName=$1
+
+if [ -z "$fileName" ]; then
+    echo "Usage: $0 FILE_NAME"
+    exit 1
+fi
+
+# Create temporary directory for temporary files.
+MYTMPDIR=$(mktemp -d)
+# Remove temporary directory on exit.
+trap "rm -fR $MYTMPDIR" EXIT
+
+tmpFileNameA=$MYTMPDIR/emscripten-fullpage.tmp.a
+tmpFileNameB=$MYTMPDIR/emscripten-fullpage.tmp.b
+
+# 1. Replace '\n' to '\r' for sed to work easily.
+# Topic: How can I use sed to replace a multi-line string?
+# Source: https://unix.stackexchange.com/a/152389
+cat $fileName | tr '\n' '\r' > $tmpFileNameA
+
+style="
+#canvas {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: block;
+}
+"
+# 2. Compact the style into single line.
+compactStyle=$(echo $style | tr '\n' '\r')
+
+# 3. Add the style before `body` style.
+
+cat $tmpFileNameA | sed "s|body {|\n$compactStyle\nbody {|" > $tmpFileNameB
+
+# 4. Replace '\r' back to '\n'.
+cat $tmpFileNameB | tr '\r' '\n'
