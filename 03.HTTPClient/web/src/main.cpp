@@ -32,8 +32,10 @@ freely, subject to the following restrictions:
 using namespace osgcpe;
 
 // main-web Start
-// We use Example global variable in loop() function.
+// Declare globals to be used by free functions.
+// TODO Create some struct/class to encapsulate both functions and variables?
 main::Example *example = 0;
+SDL_Window *window = 0;
 
 // main-web End
 
@@ -80,14 +82,15 @@ int main(int argc, char *argv[])
     int width = 800;
     int height = 600;
     
-    SDL_Window* window =
+    window =
         SDL_CreateWindow(
             main::EXAMPLE_TITLE,
             SDL_WINDOWPOS_CENTERED,
             SDL_WINDOWPOS_CENTERED,
             width,
             height,
-            SDL_WINDOW_OPENGL);
+            SDL_WINDOW_OPENGL
+        );
     if (!window)
     {
         printf("Could not create window: '%s'\n", SDL_GetError());

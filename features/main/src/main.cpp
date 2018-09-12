@@ -28,11 +28,12 @@ freely, subject to the following restrictions:
 
 using namespace osgcpe;
 
-// FEATURE main-web/Example
+// FEATURE main-web/Decl
 
 // FEATURE main+FullPage-web/Impl
 
 // FEATURE main-web/LoopBegin
+            // FEATURE main+FullPage-web/Loop
             // FEATURE main+Input-web/Loop
 // FEATURE main-web/LoopEnd
 

@@ -3,9 +3,11 @@ FEATURE main.cpp/Include
 #include <emscripten.h>
 #include <SDL2/SDL.h>
 
-FEATURE main.cpp/Example
-// We use Example global variable in loop() function.
+FEATURE main.cpp/Decl
+// Declare globals to be used by free functions.
+// TODO Create some struct/class to encapsulate both functions and variables?
 main::Example *example = 0;
+SDL_Window *window = 0;
 
 FEATURE main.cpp/LoopBegin
 // Stand alone function that is called by Emscripten to run the app.
@@ -43,14 +45,15 @@ SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 int width = 800;
 int height = 600;
 
-SDL_Window* window =
+window =
     SDL_CreateWindow(
         main::EXAMPLE_TITLE,
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
         width,
         height,
-        SDL_WINDOW_OPENGL);
+        SDL_WINDOW_OPENGL
+    );
 if (!window)
 {
     printf("Could not create window: '%s'\n", SDL_GetError());

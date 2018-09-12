@@ -36,8 +36,10 @@ freely, subject to the following restrictions:
 using namespace osgcpe;
 
 // main-web Start
-// We use Example global variable in loop() function.
+// Declare globals to be used by free functions.
+// TODO Create some struct/class to encapsulate both functions and variables?
 main::Example *example = 0;
+SDL_Window *window = 0;
 
 // main-web End
 
@@ -56,25 +58,7 @@ bool canvasSize(int *width, int *height)
     }
     return false;
 }
-/*
-bool handleWindowResize(const SDL_Event &e)
-{
-    // Make sure this is a window event.
-    if (e.type != SDL_WINDOWEVENT)
-    {
-        return false;
-    }
-
-    // Make sure this is a resize event.
-    if (e.window.event != SDL_WINDOWEVENT_RESIZED)
-    {
-        return false;
-    }
-
-    return;
-}
-*/
-void resizeWindowToCanvasSize(SDL_Window *window)
+void resizeWindowToCanvasSize()
 {
     printf("resizeWindowToCanvasSize.01\n");
     int width;
@@ -87,31 +71,44 @@ void resizeWindowToCanvasSize(SDL_Window *window)
     }
 
     printf("resizeWindowToCanvasSize.02. w/h: '%d / %d'\n", width, height);
-    // Resize.
-    SDL_SetWindowSize(window, width, height);
-    // Resize render window.
-    example->app->setupWindow(width, height);
-}
-EM_BOOL windowResized(
-    int eventType,
-    const EmscriptenUiEvent *event,
-    void *userData
-) {
-    printf("windowResized.01\n");
-    int width;
-    int height;
 
-    // Do nothing if canvas size retrieval fails.
-    if (!canvasSize(&width, &height))
-    {
-        return EM_FALSE;
+    // Do nothing if size is the same.
+    int oldWidth;
+    int oldHeight;
+    SDL_GetWindowSize(window, &oldWidth, &oldHeight);
+    if (
+        width == oldWidth &&
+        height == oldHeight
+    ) {
+        return;
     }
 
-    printf("windowResized.02. w/h: '%d / %d'\n", width, height);
-    // Resize render window.
+    // Resize SDL window.
+    SDL_SetWindowSize(window, width, height);
+    // Resize OSG window.
     example->app->setupWindow(width, height);
+}
+bool handleWindowResize(const SDL_Event &e)
+{
+    // Make sure this is a window event.
+    if (e.type != SDL_WINDOWEVENT)
+    {
+        return false;
+    }
 
-    return EM_TRUE;
+
+    // Make sure this is a resize event.
+    bool isResized = (e.window.event == SDL_WINDOWEVENT_RESIZED);
+    bool isSizeChanged = (e.window.event == SDL_WINDOWEVENT_SIZE_CHANGED);
+    printf("got window event. resize: '%d' changed size: '%d'\n", isResized, isSizeChanged);
+    if (!isResized && !isSizeChanged)
+    {
+        return false;
+    }
+
+    resizeWindowToCanvasSize();
+
+    return true;
 }
 // main+FullPage-web End
 
@@ -126,6 +123,10 @@ void loop()
         {
 
 // main-web End
+            // main+FullPage-web Start
+            handleWindowResize(e);
+            
+            // main+FullPage-web End
             // main+Input-web Start
             example->app->handleEvent(e);
             // main+Input-web End
@@ -160,14 +161,15 @@ int main(int argc, char *argv[])
     int width = 800;
     int height = 600;
     
-    SDL_Window* window =
+    window =
         SDL_CreateWindow(
             main::EXAMPLE_TITLE,
             SDL_WINDOWPOS_CENTERED,
             SDL_WINDOWPOS_CENTERED,
             width,
             height,
-            SDL_WINDOW_OPENGL);
+            SDL_WINDOW_OPENGL
+        );
     if (!window)
     {
         printf("Could not create window: '%s'\n", SDL_GetError());
@@ -184,8 +186,7 @@ int main(int argc, char *argv[])
     
     // main-web End
     // main+FullPage-web Start
-    emscripten_set_resize_callback("canvas", 0, 0, windowResized);
-    resizeWindowToCanvasSize(window);
+    resizeWindowToCanvasSize();
     
     // main+FullPage-web End
 
