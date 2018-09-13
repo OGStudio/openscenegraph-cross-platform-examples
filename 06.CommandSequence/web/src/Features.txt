@@ -1,14 +1,16 @@
 # main
+MAIN_APPLICATION_LOG
 Application
 Application+camera
 Application+frame+Reporting
 Application+handleEvent-web
 Application+setupWindow-embedded
+Application+setupWindow-web
 Application+Logging
-Application+Rendering
 Application+Mouse
+Application+Rendering
 
-OSGCPE_MAIN_EXAMPLE_LOG
+MAIN_EXAMPLE_LOG
 Example
 Example+06
 Example+BoxScene
@@ -22,8 +24,8 @@ Example+VBO
 main-web
 
 # core
-OSGCPE_CORE_REGISTER_SEQUENCE_ACTION
-OSGCPE_CORE_SEQUENCE_LOG
+CORE_REGISTER_SEQUENCE_ACTION
+CORE_SEQUENCE_LOG
 Reporter
 Sequence
 
@@ -37,7 +39,7 @@ Logger
 printfString
 
 # resource
-OSGCPE_RESOURCE_LOG
+RESOURCE_LOG
 createTexture
 extension
 node

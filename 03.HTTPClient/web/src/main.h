@@ -29,6 +29,10 @@ freely, subject to the following restrictions:
 #include "core.h"
 
 // Application+frame+Reporting End
+// Application+setupWindow-web Start
+#include <SDL2/SDL.h>
+
+// Application+setupWindow-web End
 
 // Application+HTTPClient Start
 #include "network.h"
@@ -46,6 +50,17 @@ freely, subject to the following restrictions:
 
 // Application+Rendering End
 
+// MAIN_APPLICATION_LOG Start
+#include "log.h"
+#include "format.h"
+#define MAIN_APPLICATION_LOG_PREFIX "main::Application(%p) %s"
+#define MAIN_APPLICATION_LOG(...) \
+    log::logprintf( \
+        MAIN_APPLICATION_LOG_PREFIX, \
+        this, \
+        format::printfString(__VA_ARGS__).c_str() \
+    )
+// MAIN_APPLICATION_LOG End
 
 // Example+BoxScene Start
 #include "box.osgt.h"
@@ -185,6 +200,48 @@ class Application
             this->windowHeight = height;
         }
     // Application+setupWindow-embedded End
+    // Application+setupWindow-web Start
+    private:
+        SDL_Window *sdlWindow = 0;
+    public:
+        bool setupWindow(
+            const std::string &title,
+            int width,
+            int height
+        ) {
+            this->configureSDLGLContext();
+            this->sdlWindow =
+                SDL_CreateWindow(
+                    title.c_str(),
+                    SDL_WINDOWPOS_CENTERED,
+                    SDL_WINDOWPOS_CENTERED,
+                    width,
+                    height,
+                    SDL_WINDOW_OPENGL
+                );
+            if (!this->sdlWindow)
+            {
+                MAIN_APPLICATION_LOG(
+                    "ERROR Could not create SDL window: '%s'\n",
+                    SDL_GetError()
+                );
+                return false;
+            }
+    
+            SDL_GL_CreateContext(this->sdlWindow);
+            this->setupWindow(width, height);
+    
+            return true;
+        }
+        void configureSDLGLContext()
+        {
+            SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5);
+            SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 5);
+            SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
+            SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
+            SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+        }
+    // Application+setupWindow-web End
 
     // Application+HTTPClient Start
     public:

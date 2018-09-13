@@ -5,6 +5,7 @@ Application+camera
 Application+frame+Reporting
 Application+handleEvent-web
 Application+setupWindow-embedded
+Application+setupWindow-web
 Application+CameraManipulator
 Application+Debugging
 Application+DebugCamera

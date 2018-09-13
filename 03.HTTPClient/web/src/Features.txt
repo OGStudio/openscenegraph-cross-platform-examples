@@ -1,8 +1,10 @@
 # main
+MAIN_APPLICATION_LOG
 Application
 Application+camera
 Application+frame+Reporting
 Application+setupWindow-embedded
+Application+setupWindow-web
 Application+HTTPClient
 Application+HTTPClientProcessor
 Application+Logging

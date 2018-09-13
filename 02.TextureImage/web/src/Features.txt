@@ -1,7 +1,9 @@
 # main
+MAIN_APPLICATION_LOG
 Application
 Application+frame
 Application+setupWindow-embedded
+Application+setupWindow-web
 Application+Logging
 Application+Rendering
 
