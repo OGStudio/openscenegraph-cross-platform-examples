@@ -45,6 +45,9 @@ void loop()
         {
 
 // main-web End
+            // main+Input-web Start
+            example->app->handleEvent(e);
+            // main+Input-web End
 // main-web Start
         }
         example->app->frame();

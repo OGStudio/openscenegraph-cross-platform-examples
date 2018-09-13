@@ -22,6 +22,7 @@ Example+StaticPluginPNG
 Example+VBO
 
 main-web
+main+Input-web
 
 # core
 Reporter

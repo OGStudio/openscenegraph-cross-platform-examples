@@ -21,7 +21,6 @@ EXAMPLES="
 04.RemoteDebugging
 05.NodeSelection
 06.CommandSequence
-07.FullPage
 "
 
 # Platform -> Path to Features.txt
