@@ -6,6 +6,7 @@ handleWindowResize(e);
 
 FEATURE main.cpp/Setup
 resizeWindowToCanvasSize();
+emscripten_set_resize_callback(0, 0, EM_FALSE, windowResized);
 
 FEATURE main.cpp/Impl
 bool canvasSize(int *width, int *height)
@@ -73,4 +74,12 @@ bool handleWindowResize(const SDL_Event &e)
     resizeWindowToCanvasSize();
 
     return true;
+}
+EM_BOOL windowResized(
+    int eventType,
+    const EmscriptenUiEvent *event,
+    void *userData
+) {
+    resizeWindowToCanvasSize();
+    return EM_TRUE;
 }

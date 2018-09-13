@@ -96,11 +96,11 @@ bool handleWindowResize(const SDL_Event &e)
         return false;
     }
 
+    printf("got window event\n");
 
     // Make sure this is a resize event.
     bool isResized = (e.window.event == SDL_WINDOWEVENT_RESIZED);
     bool isSizeChanged = (e.window.event == SDL_WINDOWEVENT_SIZE_CHANGED);
-    printf("got window event. resize: '%d' changed size: '%d'\n", isResized, isSizeChanged);
     if (!isResized && !isSizeChanged)
     {
         return false;
@@ -109,6 +109,14 @@ bool handleWindowResize(const SDL_Event &e)
     resizeWindowToCanvasSize();
 
     return true;
+}
+EM_BOOL windowResized(
+    int eventType,
+    const EmscriptenUiEvent *event,
+    void *userData
+) {
+    resizeWindowToCanvasSize();
+    return EM_TRUE;
 }
 // main+FullPage-web End
 
@@ -187,6 +195,7 @@ int main(int argc, char *argv[])
     // main-web End
     // main+FullPage-web Start
     resizeWindowToCanvasSize();
+    emscripten_set_resize_callback(0, 0, EM_FALSE, windowResized);
     
     // main+FullPage-web End
 
