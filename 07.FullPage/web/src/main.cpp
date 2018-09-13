@@ -88,28 +88,6 @@ void resizeWindowToCanvasSize()
     // Resize OSG window.
     example->app->setupWindow(width, height);
 }
-bool handleWindowResize(const SDL_Event &e)
-{
-    // Make sure this is a window event.
-    if (e.type != SDL_WINDOWEVENT)
-    {
-        return false;
-    }
-
-    printf("got window event\n");
-
-    // Make sure this is a resize event.
-    bool isResized = (e.window.event == SDL_WINDOWEVENT_RESIZED);
-    bool isSizeChanged = (e.window.event == SDL_WINDOWEVENT_SIZE_CHANGED);
-    if (!isResized && !isSizeChanged)
-    {
-        return false;
-    }
-
-    resizeWindowToCanvasSize();
-
-    return true;
-}
 EM_BOOL windowResized(
     int eventType,
     const EmscriptenUiEvent *event,
@@ -131,10 +109,6 @@ void loop()
         {
 
 // main-web End
-            // main+FullPage-web Start
-            handleWindowResize(e);
-            
-            // main+FullPage-web End
             // main+Input-web Start
             example->app->handleEvent(e);
             // main+Input-web End

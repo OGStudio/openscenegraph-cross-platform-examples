@@ -1,9 +1,6 @@
 FEATURE main.cpp/Include
 #include <emscripten/html5.h>
 
-FEATURE main.cpp/Loop
-handleWindowResize(e);
-
 FEATURE main.cpp/Setup
 resizeWindowToCanvasSize();
 emscripten_set_resize_callback(0, 0, EM_FALSE, windowResized);
@@ -52,28 +49,6 @@ void resizeWindowToCanvasSize()
     SDL_SetWindowSize(window, width, height);
     // Resize OSG window.
     example->app->setupWindow(width, height);
-}
-bool handleWindowResize(const SDL_Event &e)
-{
-    // Make sure this is a window event.
-    if (e.type != SDL_WINDOWEVENT)
-    {
-        return false;
-    }
-
-    printf("got window event\n");
-
-    // Make sure this is a resize event.
-    bool isResized = (e.window.event == SDL_WINDOWEVENT_RESIZED);
-    bool isSizeChanged = (e.window.event == SDL_WINDOWEVENT_SIZE_CHANGED);
-    if (!isResized && !isSizeChanged)
-    {
-        return false;
-    }
-
-    resizeWindowToCanvasSize();
-
-    return true;
 }
 EM_BOOL windowResized(
     int eventType,
