@@ -1,9 +1,11 @@
 # main
+MAIN_APPLICATION_LOG
 Application
 Application+camera
 Application+frame+Reporting
 Application+handleEvent-web
 Application+setupWindow-embedded
+Application+setupWindow-web
 Application+Logging
 Application+Rendering
 Application+Mouse
@@ -20,7 +22,7 @@ Example+StaticPluginPNG
 Example+VBO
 
 main-web
-main+FullPage-web
+#main+FullPage-web
 main+Input-web
 
 # core

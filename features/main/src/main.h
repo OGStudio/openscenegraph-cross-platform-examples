@@ -27,6 +27,7 @@ freely, subject to the following restrictions:
 
 // FEATURE Application+frame+Reporting/Include
 // FEATURE Application+handleEvent-web/Include
+// FEATURE Application+setupWindow-web/Include
 
 // FEATURE Application+CameraManipulator/Include
 // FEATURE Application+Debugging/Include
@@ -80,6 +81,7 @@ namespace main
     // FEATURE Application+setupWindow-desktop/Impl
     // FEATURE Application+setupWindow-embedded/Impl
     // FEATURE Application+setupWindow-ios/Impl
+    // FEATURE Application+setupWindow-web/Impl
 
     // FEATURE Application+HTTPClient/Impl
     // FEATURE Application+HTTPClientProcessor/Impl

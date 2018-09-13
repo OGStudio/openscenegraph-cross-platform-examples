@@ -28,10 +28,6 @@ freely, subject to the following restrictions:
 #include <SDL2/SDL.h>
 
 // main-web End
-// main+FullPage-web Start
-#include <emscripten/html5.h>
-
-// main+FullPage-web End
 
 using namespace osgcpe;
 
@@ -39,64 +35,9 @@ using namespace osgcpe;
 // Declare globals to be used by free functions.
 // TODO Create some struct/class to encapsulate both functions and variables?
 main::Example *example = 0;
-SDL_Window *window = 0;
 
 // main-web End
 
-// main+FullPage-web Start
-bool canvasSize(int *width, int *height)
-{
-    double w;
-    double h;
-    auto result = emscripten_get_element_css_size("canvas", &w, &h);
-
-    if (result >= 0)
-    {
-        *width = w;
-        *height = h;
-        return true;
-    }
-    return false;
-}
-void resizeWindowToCanvasSize()
-{
-    printf("resizeWindowToCanvasSize.01\n");
-    int width;
-    int height;
-
-    // Do nothing if canvas size retrieval fails.
-    if (!canvasSize(&width, &height))
-    {
-        return;
-    }
-
-    printf("resizeWindowToCanvasSize.02. w/h: '%d / %d'\n", width, height);
-
-    // Do nothing if size is the same.
-    int oldWidth;
-    int oldHeight;
-    SDL_GetWindowSize(window, &oldWidth, &oldHeight);
-    if (
-        width == oldWidth &&
-        height == oldHeight
-    ) {
-        return;
-    }
-
-    // Resize SDL window.
-    SDL_SetWindowSize(window, width, height);
-    // Resize OSG window.
-    example->app->setupWindow(width, height);
-}
-EM_BOOL windowResized(
-    int eventType,
-    const EmscriptenUiEvent *event,
-    void *userData
-) {
-    resizeWindowToCanvasSize();
-    return EM_TRUE;
-}
-// main+FullPage-web End
 
 // main-web Start
 // Stand alone function that is called by Emscripten to run the app.
@@ -127,51 +68,24 @@ int main(int argc, char *argv[])
     // Make sure SDL is working.
     if (SDL_Init(SDL_INIT_VIDEO) < 0)
     {
-        printf("Could not init SDL: '%s'\n", SDL_GetError());
+        printf("ERROR Could not initialize SDL: '%s'\n", SDL_GetError());
         return 1;
     }
     // Clean SDL up at exit.
     atexit(SDL_Quit);
-    // Configure rendering context.
-    SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5);
-    SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 5);
-    SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
-    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
-    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     
-    // Create rendering window.
-    int width = 800;
-    int height = 600;
-    
-    window =
-        SDL_CreateWindow(
-            main::EXAMPLE_TITLE,
-            SDL_WINDOWPOS_CENTERED,
-            SDL_WINDOWPOS_CENTERED,
-            width,
-            height,
-            SDL_WINDOW_OPENGL
-        );
-    if (!window)
-    {
-        printf("Could not create window: '%s'\n", SDL_GetError());
-        return 1;
-    }
-    
-    SDL_GL_CreateContext(window);
     main::Example::Parameters parameters;
     
     // main-web End
     // main-web Start
     example = new main::Example(parameters);
-    example->app->setupWindow(width, height);
+    // Create rendering window.
+    if (!example->app->setupWindow(main::EXAMPLE_TITLE, 800, 600))
+    {
+        return 1;
+    }
     
     // main-web End
-    // main+FullPage-web Start
-    resizeWindowToCanvasSize();
-    emscripten_set_resize_callback(0, 0, EM_FALSE, windowResized);
-    
-    // main+FullPage-web End
 
     // main-web Start
     // Render asynchronously.
