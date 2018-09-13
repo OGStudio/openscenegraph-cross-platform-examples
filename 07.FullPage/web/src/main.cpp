@@ -32,14 +32,9 @@ freely, subject to the following restrictions:
 using namespace osgcpe;
 
 // main-web Start
-// Declare globals to be used by free functions.
-// TODO Create some struct/class to encapsulate both functions and variables?
+// Declare global example to be used by free functions.
 main::Example *example = 0;
 
-// main-web End
-
-
-// main-web Start
 // Stand alone function that is called by Emscripten to run the app.
 void loop()
 {
@@ -79,11 +74,12 @@ int main(int argc, char *argv[])
     // main-web End
     // main-web Start
     example = new main::Example(parameters);
-    // Create rendering window.
+    // Create rendering window of initial size.
     if (!example->app->setupWindow(main::EXAMPLE_TITLE, 800, 600))
     {
         return 1;
     }
+    example->app->resizeWindowToCanvasSize();
     
     // main-web End
 

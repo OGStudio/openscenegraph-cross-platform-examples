@@ -24,13 +24,8 @@ freely, subject to the following restrictions:
 
 // FEATURE main-desktop/Include
 // FEATURE main-web/Include
-// FEATURE main+FullPage-web/Include
 
 using namespace osgcpe;
-
-// FEATURE main-web/Decl
-
-// FEATURE main+FullPage-web/Impl
 
 // FEATURE main-web/LoopBegin
             // FEATURE main+Input-web/Loop
@@ -43,7 +38,6 @@ int main(int argc, char *argv[])
 
     // FEATURE main-web/Setup
     // FEATURE main-web/End
-    // FEATURE main+FullPage-web/Setup
 
     // FEATURE main-desktop/Run
     // FEATURE main-web/Run

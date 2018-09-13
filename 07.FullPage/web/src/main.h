@@ -53,6 +53,10 @@ freely, subject to the following restrictions:
 #include <osgGA/TrackballManipulator>
 
 // Application+Rendering End
+// Application+WindowResizing-web Start
+#include <emscripten/html5.h>
+
+// Application+WindowResizing-web End
 
 // MAIN_APPLICATION_LOG Start
 #include "log.h"
@@ -142,6 +146,10 @@ class Application
             this->setupMouse();
             
             // Application+Mouse End
+            // Application+WindowResizing-web Start
+            this->setupWindowResizing();
+            
+            // Application+WindowResizing-web End
 // Application Start
         }
         ~Application()
@@ -378,6 +386,71 @@ class Application
             this->viewer->removeEventHandler(this->mouse);
         }
     // Application+Mouse End
+    // Application+WindowResizing-web Start
+    public:
+        void resizeWindowToCanvasSize()
+        {
+            // Do nothing if canvas size retrieval fails.
+            int width;
+            int height;
+            if (!canvasSize(&width, &height))
+            {
+                return;
+            }
+    
+            // Do nothing if size is the same.
+            int currentWidth;
+            int currentHeight;
+            SDL_GetWindowSize(this->sdlWindow, &currentWidth, &currentHeight);
+            if (
+                width == currentWidth &&
+                height == currentHeight
+            ) {
+                return;
+            }
+    
+            // Resize SDL window.
+            SDL_SetWindowSize(this->sdlWindow, width, height);
+            // Resize OSG window.
+            this->setupWindow(width, height);
+        }
+    private:
+        void setupWindowResizing()
+        {
+            emscripten_set_resize_callback(
+                0,
+                this,
+                EM_FALSE,
+                Application::resizeWindow
+            );
+        }
+        bool canvasSize(int *width, int *height)
+        {
+            double w;
+            double h;
+            auto result = emscripten_get_element_css_size("canvas", &w, &h);
+            if (result >= 0)
+            {
+                *width = w;
+                *height = h;
+                return true;
+            }
+            return false;
+        }
+        static EM_BOOL resizeWindow(int, const EmscriptenUiEvent *, void *userData)
+        {
+            Application *app = reinterpret_cast<Application *>(userData);
+    
+            // Make sure application instance exists.
+            if (!app)
+            {
+                return EM_FALSE;
+            }
+    
+            app->resizeWindowToCanvasSize();
+            return EM_TRUE;
+        }
+    // Application+WindowResizing-web End
 // Application Start
 };
 // Application End

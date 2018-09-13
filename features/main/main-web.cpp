@@ -3,12 +3,10 @@ FEATURE main.cpp/Include
 #include <emscripten.h>
 #include <SDL2/SDL.h>
 
-FEATURE main.cpp/Decl
-// Declare globals to be used by free functions.
-// TODO Create some struct/class to encapsulate both functions and variables?
+FEATURE main.cpp/LoopBegin
+// Declare global example to be used by free functions.
 main::Example *example = 0;
 
-FEATURE main.cpp/LoopBegin
 // Stand alone function that is called by Emscripten to run the app.
 void loop()
 {
@@ -38,11 +36,12 @@ main::Example::Parameters parameters;
 
 FEATURE main.cpp/End
 example = new main::Example(parameters);
-// Create rendering window.
+// Create rendering window of initial size.
 if (!example->app->setupWindow(main::EXAMPLE_TITLE, 800, 600))
 {
     return 1;
 }
+example->app->resizeWindowToCanvasSize();
 
 FEATURE main.cpp/Run
 // Render asynchronously.

@@ -30,8 +30,6 @@ freely, subject to the following restrictions:
 using namespace osgcpe;
 
 
-
-
 int main(int argc, char *argv[])
 {
     // main-desktop Start

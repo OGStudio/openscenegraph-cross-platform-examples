@@ -36,6 +36,7 @@ freely, subject to the following restrictions:
 // FEATURE Application+Logging/Include
 // FEATURE Application+Mouse/Include
 // FEATURE Application+Rendering/Include
+// FEATURE Application+WindowResizing-web/Include
 
 // FEATURE MAIN_APPLICATION_LOG/Impl
 
@@ -64,6 +65,7 @@ namespace main
             // FEATURE Application+HTTPClientProcessor/Setup
             // FEATURE Application+Debugging/Setup
             // FEATURE Application+DebugCamera/Setup
+            // FEATURE Application+WindowResizing-web/Setup
 // FEATURE Application/TearDown
             // FEATURE Application+Debugging/TearDown
             // FEATURE Application+HTTPClientProcessor/TearDown
@@ -91,6 +93,7 @@ namespace main
     // FEATURE Application+CameraManipulator/Impl
     // FEATURE Application+Debugging/Impl
     // FEATURE Application+DebugCamera/Impl
+    // FEATURE Application+WindowResizing-web/Impl
 // FEATURE Application/End
 
 // FEATURE Example+01/Title
