@@ -1,5 +1,5 @@
 # main
-OSGCPE_MAIN_APPLICATION_LOG
+MAIN_APPLICATION_LOG
 Application
 Application+camera
 Application+frame+Reporting
@@ -13,7 +13,7 @@ Application+HTTPClientProcessor
 Application+Logging
 Application+Rendering
 
-OSGCPE_MAIN_EXAMPLE_LOG
+MAIN_EXAMPLE_LOG
 Example
 Example+04
 Example+BoxScene
@@ -37,7 +37,7 @@ printfString
 splitString
 
 # resource
-OSGCPE_RESOURCE_LOG
+RESOURCE_LOG
 createTexture
 extension
 node
@@ -63,11 +63,11 @@ HTTPRequestProcessorMongoose
 mongoose
 
 # debug
+DEBUG_DEBUGGER_LOG
 PageDesc
 Page
 Page+item
 Page+setDesc
-OSGCPE_DEBUG_DEBUGGER_LOG
 Debugger
 Debugger+page
 Debugger+process

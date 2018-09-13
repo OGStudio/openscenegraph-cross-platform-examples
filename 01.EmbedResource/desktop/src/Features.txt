@@ -6,7 +6,7 @@ Application+setupWindow-desktop
 Application+Logging
 Application+Rendering
 
-OSGCPE_MAIN_EXAMPLE_LOG
+MAIN_EXAMPLE_LOG
 Example
 Example+01
 Example+BoxScene
@@ -25,7 +25,7 @@ Logger
 printfString
 
 # resource
-OSGCPE_RESOURCE_LOG
+RESOURCE_LOG
 extension
 node
 Resource

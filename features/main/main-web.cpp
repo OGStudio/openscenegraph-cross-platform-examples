@@ -41,7 +41,6 @@ if (!example->app->setupWindow(main::EXAMPLE_TITLE, 800, 600))
 {
     return 1;
 }
-example->app->resizeWindowToCanvasSize();
 
 FEATURE main.cpp/Run
 // Render asynchronously.

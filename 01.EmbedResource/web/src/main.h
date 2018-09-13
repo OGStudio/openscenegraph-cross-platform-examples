@@ -25,10 +25,10 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_MAIN_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_MAIN_H
 
-// Application+handleEvent-web Start
+// Application+setupWindow-web Start
 #include <SDL2/SDL.h>
 
-// Application+handleEvent-web End
+// Application+setupWindow-web End
 
 // Application+Logging Start
 #include "log.h"
@@ -42,6 +42,17 @@ freely, subject to the following restrictions:
 
 // Application+Rendering End
 
+// MAIN_APPLICATION_LOG Start
+#include "log.h"
+#include "format.h"
+#define MAIN_APPLICATION_LOG_PREFIX "main::Application(%p) %s"
+#define MAIN_APPLICATION_LOG(...) \
+    log::logprintf( \
+        MAIN_APPLICATION_LOG_PREFIX, \
+        this, \
+        format::printfString(__VA_ARGS__).c_str() \
+    )
+// MAIN_APPLICATION_LOG End
 
 // Example+BoxScene Start
 #include "box.osgt.h"
@@ -56,6 +67,17 @@ freely, subject to the following restrictions:
 
 // Example+VBO End
 
+// MAIN_EXAMPLE_LOG Start
+#include "log.h"
+#include "format.h"
+#define MAIN_EXAMPLE_LOG_PREFIX "main::Example(%p) %s"
+#define MAIN_EXAMPLE_LOG(...) \
+    log::logprintf( \
+        MAIN_EXAMPLE_LOG_PREFIX, \
+        this, \
+        format::printfString(__VA_ARGS__).c_str() \
+    )
+// MAIN_EXAMPLE_LOG End
 
 // Example+StaticPluginOSG Start
 #include <osgDB/Registry>
@@ -111,87 +133,6 @@ class Application
             this->viewer->frame();
         }
     // Application+frame End
-    // Application+handleEvent-web Start
-    private:
-        bool fingerEventsDetected = false;
-    public:
-        bool handleEvent(const SDL_Event &e)
-        {
-            // Get event queue.
-            osgViewer::GraphicsWindow *gw =
-                dynamic_cast<osgViewer::GraphicsWindow *>(
-                    this->viewer->getCamera()->getGraphicsContext());
-            if (!gw)
-            {
-                return false;
-            }
-            osgGA::EventQueue &queue = *(gw->getEventQueue());
-    
-            // Detect finger events.
-            if (
-                e.type == SDL_FINGERMOTION ||
-                e.type == SDL_FINGERDOWN ||
-                e.type == SDL_FINGERUP
-            ) {
-                this->fingerEventsDetected = true;
-            }
-            // Handle mouse events unless finger events are detected.
-            if (!this->fingerEventsDetected)
-            {
-                return this->handleMouseEvent(e, queue);
-            }
-            // Handle finger events.
-            return this->handleFingerEvent(e, queue);
-        }
-    
-    private:
-        bool handleFingerEvent(const SDL_Event &e, osgGA::EventQueue &queue)
-        {
-            int absX = this->windowWidth * e.tfinger.x;
-            int absY = this->windowHeight * e.tfinger.y;
-            auto correctedY = -(this->windowHeight - absY);
-            switch (e.type)
-            {
-                case SDL_FINGERMOTION:
-                    queue.mouseMotion(absX, correctedY);
-                    return true;
-                case SDL_FINGERDOWN: 
-                    queue.mouseButtonPress(absX, correctedY, e.tfinger.fingerId);
-                    return true;
-                case SDL_FINGERUP:
-                    queue.mouseButtonRelease(absX, correctedY, e.tfinger.fingerId);
-                    return true;
-                default:
-                    break;
-            }
-            return false;
-        }
-    
-        bool handleMouseEvent(const SDL_Event &e, osgGA::EventQueue &queue)
-        {
-            switch (e.type)
-            {
-                case SDL_MOUSEMOTION: {
-                    auto correctedY = -(this->windowHeight - e.motion.y);
-                    queue.mouseMotion(e.motion.x, correctedY);
-                    return true;
-                }
-                case SDL_MOUSEBUTTONDOWN: {
-                    auto correctedY = -(this->windowHeight - e.button.y);
-                    queue.mouseButtonPress(e.button.x, correctedY, e.button.button);
-                    return true;
-                }
-                case SDL_MOUSEBUTTONUP: {
-                    auto correctedY = -(this->windowHeight - e.button.y);
-                    queue.mouseButtonRelease(e.button.x, correctedY, e.button.button);
-                    return true;
-                }
-                default:
-                    break;
-            }
-            return false;
-        }
-    // Application+handleEvent-web End
     // Application+setupWindow-embedded Start
     private:
         int windowWidth;
@@ -204,6 +145,48 @@ class Application
             this->windowHeight = height;
         }
     // Application+setupWindow-embedded End
+    // Application+setupWindow-web Start
+    private:
+        SDL_Window *sdlWindow = 0;
+    public:
+        bool setupWindow(
+            const std::string &title,
+            int width,
+            int height
+        ) {
+            this->configureSDLGLContext();
+            this->sdlWindow =
+                SDL_CreateWindow(
+                    title.c_str(),
+                    SDL_WINDOWPOS_CENTERED,
+                    SDL_WINDOWPOS_CENTERED,
+                    width,
+                    height,
+                    SDL_WINDOW_OPENGL
+                );
+            if (!this->sdlWindow)
+            {
+                MAIN_APPLICATION_LOG(
+                    "ERROR Could not create SDL window: '%s'\n",
+                    SDL_GetError()
+                );
+                return false;
+            }
+    
+            SDL_GL_CreateContext(this->sdlWindow);
+            this->setupWindow(width, height);
+    
+            return true;
+        }
+        void configureSDLGLContext()
+        {
+            SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5);
+            SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 5);
+            SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
+            SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
+            SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+        }
+    // Application+setupWindow-web End
 
     // Application+Logging Start
     private:

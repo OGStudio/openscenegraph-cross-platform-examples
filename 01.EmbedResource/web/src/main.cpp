@@ -76,7 +76,6 @@ int main(int argc, char *argv[])
     {
         return 1;
     }
-    example->app->resizeWindowToCanvasSize();
     
     // main-web End
 

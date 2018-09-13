@@ -9,7 +9,7 @@ Application+HTTPClientProcessor
 Application+Logging
 Application+Rendering
 
-OSGCPE_MAIN_EXAMPLE_LOG
+MAIN_EXAMPLE_LOG
 Example
 Example+03
 Example+BoxScene
@@ -33,7 +33,7 @@ Logger
 printfString
 
 # resource
-OSGCPE_RESOURCE_LOG
+RESOURCE_LOG
 createTexture
 extension
 node
