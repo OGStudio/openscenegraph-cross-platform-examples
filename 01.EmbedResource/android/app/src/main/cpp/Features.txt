@@ -1,9 +1,9 @@
 # main
 Application
-Application+frame
-Application+setupWindow-embedded
 Application+Logging
 Application+Rendering
+Application+frame
+Application+setupWindow-embedded
 
 OSGCPE_MAIN_EXAMPLE_LOG
 Example
@@ -19,24 +19,24 @@ library+frame-android
 library+Ex01+OSGCPE_JNI-android
 
 # log
+Logger
 log-android
 logLevelToString
 logprintf
-Logger
 
 # format
 printfString
 
 # resource
 OSGCPE_RESOURCE_LOG
-extension
-node
 Resource
 ResourceStreamBuffer
+extension
+node
 
 # render
-createShaderProgram
 VBOSetupVisitor
+createShaderProgram
 
 # scene
 paintScene

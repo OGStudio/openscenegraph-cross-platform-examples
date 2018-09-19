@@ -1,11 +1,11 @@
 # main
 MAIN_APPLICATION_LOG
 Application
+Application+Logging
+Application+Rendering
 Application+frame
 Application+setupWindow-embedded
 Application+setupWindow-web
-Application+Logging
-Application+Rendering
 
 MAIN_EXAMPLE_LOG
 Example
@@ -18,25 +18,25 @@ Example+VBO
 main-web
 
 # log
+Logger
 log-default
 logLevelToString
 logprintf
-Logger
 
 # format
 printfString
 
 # resource
 RESOURCE_LOG
-extension
-node
 Resource
 ResourceStreamBuffer
+extension
+node
 
 # render
+VBOSetupVisitor
 createShaderProgram
 setupCamera
-VBOSetupVisitor
 
 # scene
 paintScene

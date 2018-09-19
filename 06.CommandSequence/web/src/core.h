@@ -37,6 +37,7 @@ freely, subject to the following restrictions:
 
 // Sequence End
 
+
 // CORE_SEQUENCE_LOG Start
 #include "log.h"
 #include "format.h"
@@ -49,12 +50,6 @@ freely, subject to the following restrictions:
     )
 
 // CORE_SEQUENCE_LOG End
-
-// CORE_REGISTER_SEQUENCE_ACTION Start
-#define CORE_REGISTER_SEQUENCE_ACTION(SEQUENCE, ACTION, CALL) \
-    SEQUENCE.registerAction(ACTION, [=]() { return CALL; });
-
-// CORE_REGISTER_SEQUENCE_ACTION End
 
 namespace osgcpe
 {
@@ -177,8 +172,20 @@ class Reporter
 class Sequence
 {
     public:
-        typedef std::vector<std::string> Actions;
         typedef std::function<core::Reporter *()> Callback;
+
+        struct Action
+        {
+            Action(const std::string &name, Callback callback) :
+                name(name),
+                callback(callback)
+            { }
+
+            std::string name;
+            Callback callback;
+        };
+
+        typedef std::vector<Action> Actions;
 
     public:
         Sequence() { }
@@ -186,28 +193,27 @@ class Sequence
         std::string name;
         bool isRepeatable = false;
 
-        void registerAction(const std::string &name, Callback callback)
+        //! Insert new action before the one specified by name.
+        void insertAction(Action action, const std::string &name)
         {
-            this->actions[name] = callback;
+            auto it = this->actions.begin();
+            for (; it != this->actions.end(); ++it)
+            {
+                if (it->name == name)
+                {
+                    this->actions.insert(it, action);
+                    return;
+                }
+            }
         }
 
-        void setActions(const Actions &sequence)
+        void setActions(Actions actions)
         {
-            this->sequence = sequence;
+            this->actions = actions;
         }
 
         void setEnabled(bool state)
         {
-            // Make sure action sequence is valid.
-            if (!this->isActionSequenceValid(this->sequence))
-            {
-                CORE_SEQUENCE_LOG(
-                    "ERROR Could not set action sequence because there are "
-                    "missing actions in the sequence"
-                );
-                return;
-            }
-
             this->isActive = state;
 
             // Activate.
@@ -219,20 +225,9 @@ class Sequence
         }
 
     private:
-        std::map<std::string, Callback> actions;
-        Actions sequence; 
+        Actions actions;
         int actionId = -1;
         bool isActive = false;
-
-        Callback *callback(const std::string &action)
-        {
-            auto it = this->actions.find(action);
-            if (it != this->actions.end())
-            {
-                return &it->second;
-            }
-            return 0;
-        }
 
         void executeNextAction()
         {
@@ -243,7 +238,7 @@ class Sequence
             }
 
             // Make sure there are actions to execute.
-            if (this->actionId + 1 >= this->sequence.size())
+            if (this->actionId + 1 >= this->actions.size())
             {
                 // Quit if this sequence is not repeatable.
                 if (!this->isRepeatable)
@@ -255,9 +250,8 @@ class Sequence
             }
 
             // Execute action.
-            auto action = this->sequence[++this->actionId];
-            auto callback = this->callback(action);
-            auto reporter = (*callback)();
+            auto action = this->actions[++this->actionId];
+            auto reporter = action.callback();
 
             //CORE_SEQUENCE_LOG("Executed action '%s'", action.c_str());
 
@@ -275,19 +269,6 @@ class Sequence
             {
                 this->executeNextAction();
             }
-        }
-
-        bool isActionSequenceValid(const Actions &actions)
-        {
-            // Make sure each action has a callback.
-            for (auto action : actions)
-            {
-                if (!this->callback(action))
-                {
-                    return false;
-                }
-            }
-            return true;
         }
 };
 // Sequence End

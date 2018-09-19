@@ -1,10 +1,10 @@
 # main
 Application
+Application+Logging
+Application+Rendering
 Application+frame
 Application+run
 Application+setupWindow-desktop
-Application+Logging
-Application+Rendering
 
 MAIN_EXAMPLE_LOG
 Example
@@ -16,20 +16,20 @@ Example+StaticPluginOSG
 main-desktop
 
 # log
+Logger
 log-default
 logLevelToString
 logprintf
-Logger
 
 # format
 printfString
 
 # resource
 RESOURCE_LOG
-extension
-node
 Resource
 ResourceStreamBuffer
+extension
+node
 
 # render
 createGraphicsContext-desktop
