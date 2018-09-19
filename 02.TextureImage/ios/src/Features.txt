@@ -6,18 +6,18 @@ RenderVC+FrameReporting
 
 # main
 Application
-Application+frame
-Application+setupWindow-ios
 Application+Logging
 Application+Rendering
+Application+frame
+Application+setupWindow-ios
 
-OSGCPE_MAIN_EXAMPLE_LOG
+MAIN_EXAMPLE_LOG
 Example
 Example+02
 Example+BoxScene
-Example+TextureImageScene
 Example+StaticPluginOSG
 Example+StaticPluginPNG
+Example+TextureImageScene
 Example+VBO
 
 library-ios
@@ -25,29 +25,29 @@ library+init-ios
 library+frame-ios
 
 # log
+Logger
 log-default
 logLevelToString
 logprintf
-Logger
 
 # format
 printfString
 
 # resource
-OSGCPE_RESOURCE_LOG
+RESOURCE_LOG
+Resource
+ResourceStreamBuffer
 createTexture
 extension
 node
 setTextureImage
 string
-Resource
-ResourceStreamBuffer
 
 # render
+VBOSetupVisitor
 createGraphicsContext-ios
 createShaderProgram
 setupCamera
-VBOSetupVisitor
 
 # scene
 textureImageScene

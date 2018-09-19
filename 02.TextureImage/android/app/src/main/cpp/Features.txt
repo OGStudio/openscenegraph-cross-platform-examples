@@ -1,47 +1,47 @@
 # main
 Application
-Application+frame
-Application+setupWindow-embedded
 Application+Logging
 Application+Rendering
+Application+frame
+Application+setupWindow-embedded
 
-OSGCPE_MAIN_EXAMPLE_LOG
+MAIN_EXAMPLE_LOG
 Example
 Example+02
 Example+BoxScene
-Example+TextureImageScene
 Example+StaticPluginOSG
 Example+StaticPluginPNG
+Example+TextureImageScene
 Example+VBO
 
-library+Ex02+OSGCPE_JNI-android
+library+Ex02+JNI-android
 
 library-android
 library+init-android
 library+frame-android
 
 # log
+Logger
 log-android
 logLevelToString
 logprintf
-Logger
 
 # format
 printfString
 
 # resource
-OSGCPE_RESOURCE_LOG
+RESOURCE_LOG
+Resource
+ResourceStreamBuffer
 createTexture
 extension
 node
 setTextureImage
 string
-Resource
-ResourceStreamBuffer
 
 # render
-createShaderProgram
 VBOSetupVisitor
+createShaderProgram
 
 # scene
 textureImageScene
