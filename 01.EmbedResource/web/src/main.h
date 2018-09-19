@@ -238,7 +238,7 @@ class Application
 // Application End
 
 // Example+01 Start
-const auto EXAMPLE_TITLE = "Ex01";
+const auto EXAMPLE_TITLE = "OSGCPE-01: Embed resource";
 // Example+01 End
 
 // Example Start

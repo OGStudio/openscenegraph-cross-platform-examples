@@ -194,7 +194,7 @@ class Application
 // Application End
 
 // Example+02 Start
-const auto EXAMPLE_TITLE = "Ex02";
+const auto EXAMPLE_TITLE = "OSGCPE-02: Texture image";
 // Example+02 End
 
 // Example Start

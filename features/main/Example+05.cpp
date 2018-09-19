@@ -1,2 +1,2 @@
 FEATURE main.h/Title
-const auto EXAMPLE_TITLE = "Ex05";
+const auto EXAMPLE_TITLE = "OSGCPE-05: Node selection";

@@ -282,7 +282,7 @@ class Application
 // Application End
 
 // Example+03 Start
-const auto EXAMPLE_TITLE = "Ex03";
+const auto EXAMPLE_TITLE = "OSGCPE-03: HTTP client";
 // Example+03 End
 
 // Example Start

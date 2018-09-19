@@ -358,7 +358,7 @@ class Application
 // Application End
 
 // Example+04 Start
-const auto EXAMPLE_TITLE = "Ex04";
+const auto EXAMPLE_TITLE = "OSGCPE-04: Remote debugging";
 // Example+04 End
 
 // Example Start

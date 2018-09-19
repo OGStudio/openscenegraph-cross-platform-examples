@@ -236,7 +236,7 @@ class Application
 // Application End
 
 // Example+06 Start
-const auto EXAMPLE_TITLE = "ex06: command sequence";
+const auto EXAMPLE_TITLE = "OSGCPE-06: Command sequence";
 // Example+06 End
 
 // Example Start

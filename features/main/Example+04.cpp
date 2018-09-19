@@ -1,2 +1,2 @@
 FEATURE main.h/Title
-const auto EXAMPLE_TITLE = "Ex04";
+const auto EXAMPLE_TITLE = "OSGCPE-04: Remote debugging";

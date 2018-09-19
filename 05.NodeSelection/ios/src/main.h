@@ -236,7 +236,7 @@ class Application
 // Application End
 
 // Example+05 Start
-const auto EXAMPLE_TITLE = "Ex05";
+const auto EXAMPLE_TITLE = "OSGCPE-05: Node selection";
 // Example+05 End
 
 // Example Start
