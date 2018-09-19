@@ -27,12 +27,12 @@ freely, subject to the following restrictions:
 // FEATURE library-ios/Include
 // FEATURE library+httpClient-android/Include
 
-// FEATURE library+Ex01+OSGCPE_JNI-android/Impl
-// FEATURE library+Ex02+OSGCPE_JNI-android/Impl
-// FEATURE library+Ex03+OSGCPE_JNI-android/Impl
-// FEATURE library+Ex04+OSGCPE_JNI-android/Impl
-// FEATURE library+Ex05+OSGCPE_JNI-android/Impl
-// FEATURE library+Ex06+OSGCPE_JNI-android/Impl
+// FEATURE library+Ex01+JNI-android/Impl
+// FEATURE library+Ex02+JNI-android/Impl
+// FEATURE library+Ex03+JNI-android/Impl
+// FEATURE library+Ex04+JNI-android/Impl
+// FEATURE library+Ex05+JNI-android/Impl
+// FEATURE library+Ex06+JNI-android/Impl
 
 using namespace osgcpe;
 

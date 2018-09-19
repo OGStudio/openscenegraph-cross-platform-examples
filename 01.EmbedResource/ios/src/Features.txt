@@ -11,7 +11,7 @@ Application+Rendering
 Application+frame
 Application+setupWindow-ios
 
-OSGCPE_MAIN_EXAMPLE_LOG
+MAIN_EXAMPLE_LOG
 Example
 Example+01
 Example+BoxScene
@@ -33,7 +33,7 @@ logprintf
 printfString
 
 # resource
-OSGCPE_RESOURCE_LOG
+RESOURCE_LOG
 Resource
 ResourceStreamBuffer
 extension

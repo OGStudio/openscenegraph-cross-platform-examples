@@ -28,11 +28,6 @@ freely, subject to the following restrictions:
 
 // library-android End
 
-// library+Ex02+OSGCPE_JNI-android Start
-#define OSGCPE_JNI(FUNC_NAME) \
-    JNIEXPORT void JNICALL Java_org_opengamestudio_ex02_library_ ## FUNC_NAME
-#define OSGCPE_JNI_ARG JNIEnv *env, jobject /* this */
-// library+Ex02+OSGCPE_JNI-android End
 
 using namespace osgcpe;
 

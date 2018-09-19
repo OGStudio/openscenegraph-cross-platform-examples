@@ -5,7 +5,7 @@ Application+Rendering
 Application+frame
 Application+setupWindow-embedded
 
-OSGCPE_MAIN_EXAMPLE_LOG
+MAIN_EXAMPLE_LOG
 Example
 Example+01
 Example+BoxScene
@@ -16,7 +16,7 @@ Example+VBO
 library-android
 library+init-android
 library+frame-android
-library+Ex01+OSGCPE_JNI-android
+library+Ex01+JNI-android
 
 # log
 Logger
@@ -28,7 +28,7 @@ logprintf
 printfString
 
 # resource
-OSGCPE_RESOURCE_LOG
+RESOURCE_LOG
 Resource
 ResourceStreamBuffer
 extension
