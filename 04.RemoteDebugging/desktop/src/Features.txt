@@ -1,10 +1,6 @@
 # main
 MAIN_APPLICATION_LOG
 Application
-Application+camera
-Application+frame+Reporting
-Application+run
-Application+setupWindow-desktop
 Application+CameraManipulator
 Application+Debugging
 Application+DebugCamera
@@ -12,14 +8,18 @@ Application+HTTPClient
 Application+HTTPClientProcessor
 Application+Logging
 Application+Rendering
+Application+camera
+Application+frame+Reporting
+Application+run
+Application+setupWindow-desktop
 
 MAIN_EXAMPLE_LOG
 Example
 Example+04
 Example+BoxScene
-Example+TextureImageScene
 Example+StaticPluginOSG
 Example+StaticPluginPNG
+Example+TextureImageScene
 
 main-desktop
 
@@ -27,10 +27,10 @@ main-desktop
 Reporter
 
 # log
+Logger
 log-default
 logLevelToString
 logprintf
-Logger
 
 # format
 printfString
@@ -38,13 +38,13 @@ splitString
 
 # resource
 RESOURCE_LOG
+Resource
+ResourceStreamBuffer
 createTexture
 extension
 node
 setTextureImage
 string
-Resource
-ResourceStreamBuffer
 
 # render
 createGraphicsContext-desktop
@@ -64,14 +64,14 @@ mongoose
 
 # debug
 DEBUG_DEBUGGER_LOG
-PageDesc
-Page
-Page+item
-Page+setDesc
 Debugger
 Debugger+page
 Debugger+process
 Debugger+processJSON
+Page
+Page+item
+Page+setDesc
+PageDesc
+jsonToPageDesc
 debuggerToJSON
 pageToJSON
-jsonToPageDesc

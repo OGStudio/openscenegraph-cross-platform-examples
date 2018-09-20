@@ -27,21 +27,32 @@ freely, subject to the following restrictions:
 
 #include <nlohmann/json.hpp>
 
-// PageDesc Start
-#include <string>
-#include <vector>
-
-// PageDesc End
-// Page Start
-#include <functional>
-
-// Page End
 // Debugger Start
 #include "network.h"
 #include <ctime>
 
 // Debugger End
+// Page Start
+#include <functional>
 
+// Page End
+// PageDesc Start
+#include <string>
+#include <vector>
+
+// PageDesc End
+
+// DEBUG_DEBUGGER_LOG Start
+#include "log.h"
+#include "format.h"
+#define DEBUG_DEBUGGER_LOG_PREFIX "debug::Debugger(%p) %s"
+#define DEBUG_DEBUGGER_LOG(...) \
+    log::logprintf( \
+        DEBUG_DEBUGGER_LOG_PREFIX, \
+        this, \
+        format::printfString(__VA_ARGS__).c_str() \
+    )
+// DEBUG_DEBUGGER_LOG End
 
 namespace osgcpe
 {
@@ -307,7 +318,7 @@ class Debugger
             this->isProcessing = true;
                
             auto success = [&](std::string response) {
-                //OSGCPE_DEBUG_DEBUGGER_LOG("Process received JSON: '%s'", response.c_str());
+                // DEBUG_DEBUGGER_LOG("Process received JSON: '%s'", response.c_str());
                 // Only process incoming JSON response if there's response
                 if (response.length())
                 {
@@ -315,16 +326,16 @@ class Debugger
                 }
                 else
                 {
-                    OSGCPE_DEBUG_DEBUGGER_LOG("ERROR Received empty response");
+                    DEBUG_DEBUGGER_LOG("ERROR Received empty response");
                 }
                 this->isProcessing = false;
             };
             auto failure = [&](std::string reason) {
-                OSGCPE_DEBUG_DEBUGGER_LOG(reason.c_str());
+                DEBUG_DEBUGGER_LOG(reason.c_str());
                 this->isProcessing = false;
             };
             std::string data = debuggerToJSON(this->title, this->pages);
-            //OSGCPE_DEBUG_DEBUGGER_LOG("POST JSON: '%s'", data.c_str());
+            // DEBUG_DEBUGGER_LOG("POST JSON: '%s'", data.c_str());
             this->httpClient->post(this->brokerURL, data, success, failure);
         }
     // Debugger+process End
@@ -338,7 +349,7 @@ class Debugger
             // Ignore different debuggers.
             if (debuggerTitle != this->title)
             {
-                OSGCPE_DEBUG_DEBUGGER_LOG("WARNING Ignoring debugger with different title");
+                DEBUG_DEBUGGER_LOG("WARNING Ignoring debugger with different title");
                 return;
             }
             auto jpages = jdata["pages"];

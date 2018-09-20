@@ -377,8 +377,11 @@ class Application
                     auto colorComponents = format::splitString(value, ",");
                     if (colorComponents.size() != 3)
                     {
-                        OSGCPE_MAIN_APPLICATION_LOG("WARNING Skipping camera color application due to wrong value format");
-                        OSGCPE_MAIN_APPLICATION_LOG("WARNING compoents number: '%d'", colorComponents.size());
+                        MAIN_APPLICATION_LOG(
+                            "WARNING Skipping camera color application due to "
+                            "wrong value format. Components number: '%d'",
+                            colorComponents.size()
+                        );
                         return;
                     }
                     auto color = this->camera()->getClearColor();

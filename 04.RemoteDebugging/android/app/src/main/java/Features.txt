@@ -1,10 +1,5 @@
 Ex04
-library
-library+init
-library+frame
-library+httpClient
 EGLview
-RendererDelegate
 HTTPClientProcessor
 HTTPRequest
 HTTPRequestDelegate
@@ -12,3 +7,8 @@ MainActivity
 MainActivity+library+init
 MainActivity+library+frame
 MainActivity+HTTPClientProcessor
+RendererDelegate
+library
+library+init
+library+frame
+library+httpClient

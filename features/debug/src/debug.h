@@ -27,12 +27,12 @@ freely, subject to the following restrictions:
 
 #include <nlohmann/json.hpp>
 
-// FEATURE PageDesc/Include
-// FEATURE Page/Include
 // FEATURE Debugger/Include
+// FEATURE Page/Include
+// FEATURE PageDesc/Include
 
-// FEATURE OSGCPE_DEBUG_DEBUGGER_LOG/Impl
-// FEATURE OSGCPE_DEBUG_PAGE_LOG/Impl
+// FEATURE DEBUG_DEBUGGER_LOG/Impl
+// FEATURE DEBUG_PAGE_LOG/Impl
 
 namespace osgcpe
 {

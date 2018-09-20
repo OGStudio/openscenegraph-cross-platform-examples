@@ -24,7 +24,7 @@ public:
         this->isProcessing = true;
            
         auto success = [&](std::string response) {
-            //OSGCPE_DEBUG_DEBUGGER_LOG("Process received JSON: '%s'", response.c_str());
+            // DEBUG_DEBUGGER_LOG("Process received JSON: '%s'", response.c_str());
             // Only process incoming JSON response if there's response
             if (response.length())
             {
@@ -32,15 +32,15 @@ public:
             }
             else
             {
-                OSGCPE_DEBUG_DEBUGGER_LOG("ERROR Received empty response");
+                DEBUG_DEBUGGER_LOG("ERROR Received empty response");
             }
             this->isProcessing = false;
         };
         auto failure = [&](std::string reason) {
-            OSGCPE_DEBUG_DEBUGGER_LOG(reason.c_str());
+            DEBUG_DEBUGGER_LOG(reason.c_str());
             this->isProcessing = false;
         };
         std::string data = debuggerToJSON(this->title, this->pages);
-        //OSGCPE_DEBUG_DEBUGGER_LOG("POST JSON: '%s'", data.c_str());
+        // DEBUG_DEBUGGER_LOG("POST JSON: '%s'", data.c_str());
         this->httpClient->post(this->brokerURL, data, success, failure);
     }

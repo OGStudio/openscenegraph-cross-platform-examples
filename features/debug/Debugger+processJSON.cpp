@@ -8,7 +8,7 @@ public:
         // Ignore different debuggers.
         if (debuggerTitle != this->title)
         {
-            OSGCPE_DEBUG_DEBUGGER_LOG("WARNING Ignoring debugger with different title");
+            DEBUG_DEBUGGER_LOG("WARNING Ignoring debugger with different title");
             return;
         }
         auto jpages = jdata["pages"];
