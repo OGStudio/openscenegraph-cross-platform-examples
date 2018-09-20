@@ -27,8 +27,8 @@ library+frame-android
 library+handleMousePress-android
 
 # core
-SEQUENCE_ACTION
-SEQUENCE_LOG
+CORE_SEQUENCE_ACTION
+CORE_SEQUENCE_LOG
 Reporter
 Sequence
 

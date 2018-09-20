@@ -429,6 +429,7 @@ struct Example
             });
     
             // Enable sequence.
+            this->sequence.isRepeatable = true;
             this->sequence.setEnabled(true);
         }
         void tearSequenceTestDown()
