@@ -27,57 +27,39 @@ private:
         }
 
         this->sequence.setActions({
-            "enableBoxSelection",
-            "waitForBoxSelection",
-            "disableBoxSelection",
-            "dimBackground",
-            "startBoxRotation",
-            "simulateLoading",
-            "stopBoxRotation",
-            "lightBackground",
+            CORE_SEQUENCE_ACTION(
+                "enableBoxSelection",
+                this->setBoxSelectionEnabled(true)
+            ),
+            CORE_SEQUENCE_ACTION(
+                "waitForBoxSelection",
+                this->waitForBoxSelection()
+            ),
+            CORE_SEQUENCE_ACTION(
+                "disableBoxSelection",
+                this->setBoxSelectionEnabled(false)
+            ),
+            CORE_SEQUENCE_ACTION(
+                "dimBackground",
+                this->changeBackground(true)
+            ),
+            CORE_SEQUENCE_ACTION(
+                "startBoxRotation",
+                this->setBoxRotationEnabled(true)
+            ),
+            CORE_SEQUENCE_ACTION(
+                "simulateLoading",
+                this->simulateLoading()
+            ),
+            CORE_SEQUENCE_ACTION(
+                "stopBoxRotation",
+                this->setBoxRotationEnabled(false)
+            ),
+            CORE_SEQUENCE_ACTION(
+                "lightBackground",
+                this->changeBackground(false)
+            ),
         });
-
-        // Register actions.
-        CORE_REGISTER_SEQUENCE_ACTION(
-            this->sequence,
-            "waitForBoxSelection",
-            this->waitForBoxSelection()
-        );
-        CORE_REGISTER_SEQUENCE_ACTION(
-            this->sequence,
-            "enableBoxSelection",
-            this->setBoxSelectionEnabled(true)
-        );
-        CORE_REGISTER_SEQUENCE_ACTION(
-            this->sequence,
-            "disableBoxSelection",
-            this->setBoxSelectionEnabled(false)
-        );
-        CORE_REGISTER_SEQUENCE_ACTION(
-            this->sequence,
-            "startBoxRotation",
-            this->setBoxRotationEnabled(true)
-        );
-        CORE_REGISTER_SEQUENCE_ACTION(
-            this->sequence,
-            "stopBoxRotation",
-            this->setBoxRotationEnabled(false)
-        );
-        CORE_REGISTER_SEQUENCE_ACTION(
-            this->sequence,
-            "simulateLoading",
-            this->simulateLoading()
-        );
-        CORE_REGISTER_SEQUENCE_ACTION(
-            this->sequence,
-            "dimBackground",
-            this->changeBackground(true)
-        );
-        CORE_REGISTER_SEQUENCE_ACTION(
-            this->sequence,
-            "lightBackground",
-            this->changeBackground(false)
-        );
 
         // Enable sequence.
         this->sequence.setEnabled(true);

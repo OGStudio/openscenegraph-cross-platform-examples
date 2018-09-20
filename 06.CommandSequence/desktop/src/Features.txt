@@ -1,12 +1,12 @@
 # main
 Application
+Application+Logging
+Application+Mouse
+Application+Rendering
 Application+camera
 Application+frame+Reporting
 Application+run
 Application+setupWindow-desktop
-Application+Logging
-Application+Rendering
-Application+Mouse
 
 MAIN_EXAMPLE_LOG
 Example
@@ -14,36 +14,36 @@ Example+06
 Example+BoxScene
 Example+BoxSelection
 Example+SequenceTest
-Example+TextureImageScene
 Example+StaticPluginOSG
 Example+StaticPluginPNG
+Example+TextureImageScene
 
 main-desktop
 
 # core
-CORE_REGISTER_SEQUENCE_ACTION
+CORE_SEQUENCE_ACTION
 CORE_SEQUENCE_LOG
 Reporter
 Sequence
 
 # log
+Logger
 log-default
 logLevelToString
 logprintf
-Logger
 
 # format
 printfString
 
 # resource
 RESOURCE_LOG
+Resource
+ResourceStreamBuffer
 createTexture
 extension
 node
 setTextureImage
 string
-Resource
-ResourceStreamBuffer
 
 # render
 createGraphicsContext-desktop
@@ -51,16 +51,13 @@ createShaderProgram
 setupCamera
 
 # scene
+LinearInterpolator
 degreesToQuaternion
+nodeAtPosition
 quaternionToDegrees
 setSimpleRotation
 simpleRotation
-
-nodeAtPosition
-
 textureImageScene
-
-LinearInterpolator
 
 # input
 Mouse

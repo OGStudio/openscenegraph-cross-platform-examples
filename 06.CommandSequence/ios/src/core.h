@@ -38,6 +38,22 @@ freely, subject to the following restrictions:
 // Sequence End
 
 
+// CORE_SEQUENCE_ACTION Start
+#define CORE_SEQUENCE_ACTION(NAME, CALL) \
+    core::Sequence::Action(NAME, [=]() { return CALL; })
+// CORE_SEQUENCE_ACTION End
+// CORE_SEQUENCE_LOG Start
+#include "log.h"
+#include "format.h"
+#define CORE_SEQUENCE_LOG_PREFIX "core::Sequence(%p) %s"
+#define CORE_SEQUENCE_LOG(...) \
+    log::logprintf( \
+        CORE_SEQUENCE_LOG_PREFIX, \
+        this, \
+        format::printfString(__VA_ARGS__).c_str() \
+    )
+
+// CORE_SEQUENCE_LOG End
 
 namespace osgcpe
 {

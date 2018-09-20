@@ -67,6 +67,17 @@ freely, subject to the following restrictions:
 
 // Example+VBO End
 
+// MAIN_EXAMPLE_LOG Start
+#include "log.h"
+#include "format.h"
+#define MAIN_EXAMPLE_LOG_PREFIX "main::Example(%p) %s"
+#define MAIN_EXAMPLE_LOG(...) \
+    log::logprintf( \
+        MAIN_EXAMPLE_LOG_PREFIX, \
+        this, \
+        format::printfString(__VA_ARGS__).c_str() \
+    )
+// MAIN_EXAMPLE_LOG End
 
 // Example+StaticPluginOSG Start
 #include <osgDB/Registry>
@@ -383,57 +394,39 @@ struct Example
             }
     
             this->sequence.setActions({
-                "enableBoxSelection",
-                "waitForBoxSelection",
-                "disableBoxSelection",
-                "dimBackground",
-                "startBoxRotation",
-                "simulateLoading",
-                "stopBoxRotation",
-                "lightBackground",
+                CORE_SEQUENCE_ACTION(
+                    "enableBoxSelection",
+                    this->setBoxSelectionEnabled(true)
+                ),
+                CORE_SEQUENCE_ACTION(
+                    "waitForBoxSelection",
+                    this->waitForBoxSelection()
+                ),
+                CORE_SEQUENCE_ACTION(
+                    "disableBoxSelection",
+                    this->setBoxSelectionEnabled(false)
+                ),
+                CORE_SEQUENCE_ACTION(
+                    "dimBackground",
+                    this->changeBackground(true)
+                ),
+                CORE_SEQUENCE_ACTION(
+                    "startBoxRotation",
+                    this->setBoxRotationEnabled(true)
+                ),
+                CORE_SEQUENCE_ACTION(
+                    "simulateLoading",
+                    this->simulateLoading()
+                ),
+                CORE_SEQUENCE_ACTION(
+                    "stopBoxRotation",
+                    this->setBoxRotationEnabled(false)
+                ),
+                CORE_SEQUENCE_ACTION(
+                    "lightBackground",
+                    this->changeBackground(false)
+                ),
             });
-    
-            // Register actions.
-            CORE_REGISTER_SEQUENCE_ACTION(
-                this->sequence,
-                "waitForBoxSelection",
-                this->waitForBoxSelection()
-            );
-            CORE_REGISTER_SEQUENCE_ACTION(
-                this->sequence,
-                "enableBoxSelection",
-                this->setBoxSelectionEnabled(true)
-            );
-            CORE_REGISTER_SEQUENCE_ACTION(
-                this->sequence,
-                "disableBoxSelection",
-                this->setBoxSelectionEnabled(false)
-            );
-            CORE_REGISTER_SEQUENCE_ACTION(
-                this->sequence,
-                "startBoxRotation",
-                this->setBoxRotationEnabled(true)
-            );
-            CORE_REGISTER_SEQUENCE_ACTION(
-                this->sequence,
-                "stopBoxRotation",
-                this->setBoxRotationEnabled(false)
-            );
-            CORE_REGISTER_SEQUENCE_ACTION(
-                this->sequence,
-                "simulateLoading",
-                this->simulateLoading()
-            );
-            CORE_REGISTER_SEQUENCE_ACTION(
-                this->sequence,
-                "dimBackground",
-                this->changeBackground(true)
-            );
-            CORE_REGISTER_SEQUENCE_ACTION(
-                this->sequence,
-                "lightBackground",
-                this->changeBackground(false)
-            );
     
             // Enable sequence.
             this->sequence.setEnabled(true);

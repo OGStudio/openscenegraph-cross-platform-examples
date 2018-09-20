@@ -1,22 +1,22 @@
 # main
 Application
+Application+Logging
+Application+Mouse
+Application+Rendering
 Application+camera
 Application+frame+Reporting
 Application+handleMousePress-android
 Application+setupWindow-embedded
-Application+Logging
-Application+Mouse
-Application+Rendering
 
 MAIN_EXAMPLE_LOG
 Example
 Example+06
 Example+BoxScene
 Example+BoxSelection
-Example+TextureImageScene
 Example+SequenceTest
 Example+StaticPluginOSG
 Example+StaticPluginPNG
+Example+TextureImageScene
 Example+VBO
 
 library+Ex06+JNI-android
@@ -27,8 +27,8 @@ library+frame-android
 library+handleMousePress-android
 
 # core
-CORE_REGISTER_SEQUENCE_ACTION
-CORE_SEQUENCE_LOG
+SEQUENCE_ACTION
+SEQUENCE_LOG
 Reporter
 Sequence
 
@@ -43,26 +43,25 @@ printfString
 
 # resource
 RESOURCE_LOG
+Resource
+ResourceStreamBuffer
 createTexture
 extension
 node
 setTextureImage
 string
-Resource
-ResourceStreamBuffer
 
 # render
-createShaderProgram
 VBOSetupVisitor
+createShaderProgram
 
 # scene
 LinearInterpolator
 degreesToQuaternion
+nodeAtPosition
 quaternionToDegrees
 setSimpleRotation
 simpleRotation
-
-nodeAtPosition
 textureImageScene
 
 # input
