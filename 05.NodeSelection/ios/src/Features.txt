@@ -6,22 +6,22 @@ RenderVC+FrameReporting
 
 # main
 Application
-Application+camera
-Application+frame+Reporting
-Application+setupWindow-ios
 Application+Logging
 Application+Rendering
 Application+Mouse
+Application+camera
+Application+frame+Reporting
+Application+setupWindow-ios
 
-OSGCPE_MAIN_EXAMPLE_LOG
+MAIN_EXAMPLE_LOG
 Example
 Example+05
 Example+BoxScene
-Example+TextureImageScene
 Example+BoxSelection
 Example+BoxRotation
 Example+StaticPluginOSG
 Example+StaticPluginPNG
+Example+TextureImageScene
 Example+VBO
 
 library-ios
@@ -32,41 +32,38 @@ library+frame-ios
 Reporter
 
 # log
+Logger
 log-default
 logLevelToString
 logprintf
-Logger
 
 # format
 printfString
 
 # resource
-OSGCPE_RESOURCE_LOG
+RESOURCE_LOG
+Resource
+ResourceStreamBuffer
 createTexture
 extension
 node
 setTextureImage
 string
-Resource
-ResourceStreamBuffer
 
 # render
+VBOSetupVisitor
 createGraphicsContext-ios
 createShaderProgram
 setupCamera
-VBOSetupVisitor
 
 # scene
+LinearInterpolator
 degreesToQuaternion
+nodeAtPosition
 quaternionToDegrees
 setSimpleRotation
 simpleRotation
-
-nodeAtPosition
-
 textureImageScene
-
-LinearInterpolator
 
 # input
 Mouse
