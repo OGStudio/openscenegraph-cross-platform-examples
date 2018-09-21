@@ -205,9 +205,9 @@ Here's a [web build of the example][web-build].
 [libpng-android]: https://github.com/julienr/libpng-android
 [emscripten]: http://emscripten.org/
 [emscripten-png]: web/CMakeLists.txt#L29
-[resource-to-string]: desktop/src/resource.h#L177
+[resource-to-string]: desktop/src/resource.h#L181
 [resource-string-usage]: desktop/src/scene.h#L44
-[shaders-definition]: desktop/src/main.h#L276
+[shaders-definition]: desktop/src/main.h#L279
 [resource-setTextureImage]: desktop/src/resource.h#L184
 [resource-createTexture]: desktop/src/resource.h#L242
 [scene-textureImageScene]: desktop/src/scene.h#L44
