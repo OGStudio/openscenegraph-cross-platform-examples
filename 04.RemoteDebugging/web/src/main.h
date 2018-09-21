@@ -46,10 +46,6 @@ freely, subject to the following restrictions:
 #include "debug.h"
 
 // Application+Debugging End
-// Application+DebugCamera Start
-#include "scene.h"
-
-// Application+DebugCamera End
 // Application+HTTPClient Start
 #include "network.h"
 
@@ -86,6 +82,10 @@ freely, subject to the following restrictions:
 #include <osg/MatrixTransform>
 
 // Example+BoxScene End
+// Example+DebugCamera Start
+#include "scene.h"
+
+// Example+DebugCamera End
 // Example+TextureImageScene Start
 #include "resource.h"
 #include "ppl.frag.h"
@@ -163,13 +163,10 @@ class Application
             
             // Application+HTTPClientProcessor End
             // Application+Debugging Start
-            this->setupDebugging(name);
+            // NOTE Do not use `-` because it breaks everything.
+            this->setupDebugging("OSGCPE04");
             
             // Application+Debugging End
-            // Application+DebugCamera Start
-            this->setupDebugCamera();
-            
-            // Application+DebugCamera End
 // Application Start
         }
         ~Application()
@@ -435,12 +432,17 @@ class Application
     // Application+Rendering End
     // Application+CameraManipulator Start
     private:
-        osg::ref_ptr<osgGA::TrackballManipulator> cameraManipulator;
+        osg::ref_ptr<osgGA::TrackballManipulator> cameraManip;
         void setupCameraManipulator()
         {
             // Create manipulator: CRITICAL for mobile and web.
-            this->cameraManipulator = new osgGA::TrackballManipulator;
-            this->viewer->setCameraManipulator(this->cameraManipulator);
+            this->cameraManip = new osgGA::TrackballManipulator;
+            this->viewer->setCameraManipulator(this->cameraManip);
+        }
+    public:
+        osgGA::TrackballManipulator *cameraManipulator()
+        {
+            return this->cameraManip;
         }
     // Application+CameraManipulator End
     // Application+Debugging Start
@@ -469,71 +471,6 @@ class Application
             delete this->debugger;
         }
     // Application+Debugging End
-    // Application+DebugCamera Start
-    private:
-        debug::Page debugPage;
-    public:
-        void setupDebugCamera()
-        {
-            this->debugPage.title = "camera";
-            this->setupDebugBGColor();
-            this->setupDebugCameraOrientation();
-            this->debugger->addPage(this->debugPage);
-        }
-    private:
-        void setupDebugBGColor()
-        {
-            this->debugPage.addItem(
-                "BGColor",
-                // Getter.
-                [&] {
-                    auto color = this->camera()->getClearColor();
-                    int r = color.r() * 255.0;
-                    int g = color.g() * 255.0;
-                    int b = color.b() * 255.0;
-                    return format::printfString("%d,%d,%d", r, g, b);
-                },
-                // Setter.
-                [&](const std::string &value) {
-                    auto colorComponents = format::splitString(value, ",");
-                    if (colorComponents.size() != 3)
-                    {
-                        MAIN_APPLICATION_LOG(
-                            "WARNING Skipping camera color application due to "
-                            "wrong value format. Components number: '%d'",
-                            colorComponents.size()
-                        );
-                        return;
-                    }
-                    auto color = this->camera()->getClearColor();
-                    color.r() = static_cast<float>(atoi(colorComponents[0].c_str())) / 255.0;
-                    color.g() = static_cast<float>(atoi(colorComponents[1].c_str())) / 255.0;
-                    color.b() = static_cast<float>(atoi(colorComponents[2].c_str())) / 255.0;
-                    this->camera()->setClearColor(color);
-                }
-            );
-        }
-    
-        void setupDebugCameraOrientation()
-        {
-            this->debugPage.addItem(
-                "Position/Rotation",
-                // Getter.
-                [&] {
-                    osg::Vec3d pos;
-                    osg::Quat q;
-                    this->cameraManipulator->getTransformation(pos, q);
-                    auto rot = scene::quaternionToDegrees(q);
-                    return
-                        format::printfString(
-                            "%f,%f,%f/%f,%f,%f",
-                            pos.x(), pos.y(), pos.z(),
-                            rot.x(), rot.y(), rot.z()
-                        );
-                }
-            );
-        }
-    // Application+DebugCamera End
 // Application Start
 };
 // Application End
@@ -558,6 +495,10 @@ struct Example
         this->setupBoxScene();
         
         // Example+BoxScene End
+        // Example+DebugCamera Start
+        this->setupDebugCamera();
+        
+        // Example+DebugCamera End
         // Example+VBO Start
         this->setupSceneVBO();
         
@@ -601,6 +542,71 @@ struct Example
             }
         }
     // Example+BoxScene End
+    // Example+DebugCamera Start
+    private:
+        debug::Page debugPage;
+    public:
+        void setupDebugCamera()
+        {
+            this->debugPage.title = "camera";
+            this->setupDebugBGColor();
+            this->setupDebugCameraOrientation();
+            this->app->debugger->addPage(this->debugPage);
+        }
+    private:
+        void setupDebugBGColor()
+        {
+            this->debugPage.addItem(
+                "BGColor",
+                // Getter.
+                [&] {
+                    auto color = this->app->camera()->getClearColor();
+                    int r = color.r() * 255.0;
+                    int g = color.g() * 255.0;
+                    int b = color.b() * 255.0;
+                    return format::printfString("%d,%d,%d", r, g, b);
+                },
+                // Setter.
+                [&](const std::string &value) {
+                    auto colorComponents = format::splitString(value, ",");
+                    if (colorComponents.size() != 3)
+                    {
+                        MAIN_APPLICATION_LOG(
+                            "WARNING Skipping camera color application due to "
+                            "wrong value format. Components number: '%d'",
+                            colorComponents.size()
+                        );
+                        return;
+                    }
+                    auto color = this->app->camera()->getClearColor();
+                    color.r() = static_cast<float>(atoi(colorComponents[0].c_str())) / 255.0;
+                    color.g() = static_cast<float>(atoi(colorComponents[1].c_str())) / 255.0;
+                    color.b() = static_cast<float>(atoi(colorComponents[2].c_str())) / 255.0;
+                    this->app->camera()->setClearColor(color);
+                }
+            );
+        }
+    
+        void setupDebugCameraOrientation()
+        {
+            this->debugPage.addItem(
+                "Position/Rotation",
+                // Getter.
+                [&] {
+                    osg::Vec3d pos;
+                    osg::Quat q;
+                    this->app->cameraManipulator()->getTransformation(pos, q);
+                    auto rot = scene::quaternionToDegrees(q);
+                    return
+                        format::printfString(
+                            "%f,%f,%f/%f,%f,%f",
+                            pos.x(), pos.y(), pos.z(),
+                            rot.x(), rot.y(), rot.z()
+                        );
+                }
+            );
+        }
+    // Example+DebugCamera End
     // Example+TextureImageScene Start
     private:
         void setupSceneTexturing()

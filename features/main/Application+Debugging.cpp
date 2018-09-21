@@ -2,7 +2,8 @@ FEATURE main.h/Include
 #include "debug.h"
 
 FEATURE main.h/Setup
-this->setupDebugging(name);
+// NOTE Do not use `-` because it breaks everything.
+this->setupDebugging("OSGCPE04");
 
 FEATURE main.h/TearDown
 this->tearDebuggingDown();

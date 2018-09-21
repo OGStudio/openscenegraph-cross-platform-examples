@@ -3,7 +3,6 @@ MAIN_APPLICATION_LOG
 Application
 Application+CameraManipulator
 Application+Debugging
-Application+DebugCamera
 Application+HTTPClient
 Application+Logging
 Application+Rendering
@@ -15,6 +14,7 @@ MAIN_EXAMPLE_LOG
 Example
 Example+04
 Example+BoxScene
+Example+DebugCamera
 Example+StaticPluginOSG
 Example+StaticPluginPNG
 Example+TextureImageScene

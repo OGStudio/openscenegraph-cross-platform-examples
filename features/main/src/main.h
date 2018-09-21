@@ -31,7 +31,6 @@ freely, subject to the following restrictions:
 
 // FEATURE Application+CameraManipulator/Include
 // FEATURE Application+Debugging/Include
-// FEATURE Application+DebugCamera/Include
 // FEATURE Application+HTTPClient/Include
 // FEATURE Application+Logging/Include
 // FEATURE Application+Mouse/Include
@@ -41,6 +40,7 @@ freely, subject to the following restrictions:
 // FEATURE MAIN_APPLICATION_LOG/Impl
 
 // FEATURE Example+BoxScene/Include
+// FEATURE Example+DebugCamera/Include
 // FEATURE Example+SequenceTest/Include
 // FEATURE Example+TextureImageScene/Include
 // FEATURE Example+HTTPSGetPost/Include
@@ -64,7 +64,6 @@ namespace main
             // FEATURE Application+HTTPClient/Setup
             // FEATURE Application+HTTPClientProcessor/Setup
             // FEATURE Application+Debugging/Setup
-            // FEATURE Application+DebugCamera/Setup
             // FEATURE Application+WindowResizing-web/Setup
 // FEATURE Application/TearDown
             // FEATURE Application+Debugging/TearDown
@@ -92,7 +91,6 @@ namespace main
     // FEATURE Application+Mouse/Impl
     // FEATURE Application+CameraManipulator/Impl
     // FEATURE Application+Debugging/Impl
-    // FEATURE Application+DebugCamera/Impl
     // FEATURE Application+WindowResizing-web/Impl
 // FEATURE Application/End
 
@@ -106,6 +104,7 @@ namespace main
 
 // FEATURE Example/Setup
         // FEATURE Example+BoxScene/Setup
+        // FEATURE Example+DebugCamera/Setup
         // FEATURE Example+VBO/Setup
         // FEATURE Example+SingleColorScene/Setup
         // FEATURE Example+TextureImageScene/Setup
@@ -121,6 +120,7 @@ namespace main
     // FEATURE Example+BoxRotation/Impl
     // FEATURE Example+BoxScene/Impl
     // FEATURE Example+BoxSelection/Impl
+    // FEATURE Example+DebugCamera/Impl
     // FEATURE Example+HTTPSGetPost/Impl
     // FEATURE Example+SequenceTest/Impl
     // FEATURE Example+SingleColorScene/Impl
