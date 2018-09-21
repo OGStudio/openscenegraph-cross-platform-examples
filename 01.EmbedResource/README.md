@@ -144,6 +144,6 @@ Here's a [web build of the example][web-build].
 [Resource]: desktop/src/resource.h#L55
 [ResourceStreamBuffer]: desktop/src/resource.h#L77
 [model-resource]: desktop/src/main.h#L232
-[node-resource]: desktop/src/resource.h#L119
-[plugin-reference]: desktop/src/main.h#L65
+[node-resource]: desktop/src/resource.h#L123
+[plugin-reference]: desktop/src/main.h#L66
 [web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/01/ex01-embed-resource.html
