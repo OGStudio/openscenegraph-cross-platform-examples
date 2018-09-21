@@ -208,7 +208,7 @@ Here's a [web build of the example][web-build].
 [resource-to-string]: desktop/src/resource.h#L181
 [resource-string-usage]: desktop/src/scene.h#L44
 [shaders-definition]: desktop/src/main.h#L279
-[resource-setTextureImage]: desktop/src/resource.h#L184
-[resource-createTexture]: desktop/src/resource.h#L242
+[resource-setTextureImage]: desktop/src/resource.h#L188
+[resource-createTexture]: desktop/src/resource.h#L246
 [scene-textureImageScene]: desktop/src/scene.h#L44
 [web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/02/ex02-texture-image.html
