@@ -141,8 +141,8 @@ Here's a [web build of the example][web-build].
 [model-header]: ../data/box.osgt.h
 [model-reference]: desktop/src/main.h#L43
 [data-cmake]: CMakeLists.txt#L19
-[Resource]: desktop/src/resource.h#L52
-[ResourceStreamBuffer]: desktop/src/resource.h#L74
+[Resource]: desktop/src/resource.h#L55
+[ResourceStreamBuffer]: desktop/src/resource.h#L77
 [model-resource]: desktop/src/main.h#L232
 [node-resource]: desktop/src/resource.h#L119
 [plugin-reference]: desktop/src/main.h#L65
