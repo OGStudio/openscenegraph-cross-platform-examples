@@ -13,6 +13,7 @@
     * [03. Implement HTTP client to perform GET/POST requests](#ex03)
     * [04. Debug application remotely](#ex04)
     * [05. Node selection](#ex05)
+    * [06. Command sequence](#ex06)
 * [Help](#help)
 
 <a name="overview"/>
@@ -200,6 +201,15 @@ If you have have Python installed, here's what you need to do:
 
   Learn how to select a node.
 
+<a name="ex06"/>
+
+### [06. Command sequence][ex06]
+
+  ![Screenshot][ex06-screenshot]
+
+  Learn how to compose an asynchronous command sequence to marry
+  animation with other operations.
+
 <a name="help"/>
 
 Help
@@ -233,3 +243,6 @@ improve examples.
 
 [ex05]: 05.NodeSelection
 [ex05-screenshot]: 05.NodeSelection/shot.png
+
+[ex06]: 06.CommandSequence
+[ex06-screenshot]: 06.CommandSequence/shot.png
