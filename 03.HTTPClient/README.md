@@ -265,7 +265,7 @@ Here's a [web build of the example][web-build].
 [HttpURLConnection]: https://developer.android.com/reference/java/net/HttpURLConnection
 [NSURLSession]: https://developer.apple.com/documentation/foundation/nsurlsession?language=objc
 
-[HTTPClient]: desktop/src/network.h#L193
+[HTTPClient]: desktop/src/network.h#L203
 [HTTPRequest]: desktop/src/network.h#L52
 [HTTPClientProcessor]: desktop/src/network.h#L290
 [HTTPClientProcessor-processing]: desktop/src/main.h#L221
