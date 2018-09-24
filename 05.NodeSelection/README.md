@@ -329,8 +329,8 @@ Here's a [web build of the example][web-build].
 [web-handle-mouse-events]: web/src/main.h#L239
 [web-handle-finger-events]: web/src/main.h#L217
 
-[Mouse]: desktop/src/input.h#L95
-[Mouse-register]: desktop/src/main.h#L244
+[Mouse]: desktop/src/input.h#L84
+[Mouse-register]: desktop/src/main.h#L252
 [node-mask]: desktop/src/main.h#L422
 [intersection]: desktop/src/scene.h#L114
 [LinearInterpolator]: desktop/src/scene.h#L176
