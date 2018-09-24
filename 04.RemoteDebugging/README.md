@@ -227,9 +227,9 @@ Now open [debug UI][debug-ui] and change background color to `255,0,0`.
 
 [camera-manipulator]: desktop/src/main.h#L315
 [camera-page]: desktop/src/main.h#L422
-[camera-posrot]: desktop/src/main.h#L390
-[camera-bgcolor]: desktop/src/main.h#L360
-[camera-debugger]: desktop/src/main.h#L357
+[camera-posrot]: desktop/src/main.h#L465
+[camera-bgcolor]: desktop/src/main.h#L432
+[camera-debugger]: desktop/src/main.h#L429
 
 [web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/04/ex04-remote-debugging.html
 [debug-ui]: https://ogstudio.github.io/debug-ui/?broker=https%3A%2F%2Fosgcpe-debug-broker.herokuapp.com&debugger=Ex04&page=camera
