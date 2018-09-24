@@ -326,8 +326,8 @@ Here's a [web build of the example][web-build].
 
 [web-receive-events]: web/src/main.cpp#L38
 [web-detect-event-source]: web/src/main.h#L187
-[web-handle-mouse-events]: web/src/main.h#L221
-[web-handle-finger-events]: web/src/main.h#L199
+[web-handle-mouse-events]: web/src/main.h#L239
+[web-handle-finger-events]: web/src/main.h#L217
 
 [Mouse]: desktop/src/input.h#L95
 [Mouse-register]: desktop/src/main.h#L244
