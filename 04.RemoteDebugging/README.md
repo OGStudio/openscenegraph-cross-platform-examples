@@ -226,7 +226,7 @@ Now open [debug UI][debug-ui] and change background color to `255,0,0`.
 [Debugger-process]: desktop/src/main.h#L341
 
 [camera-manipulator]: desktop/src/main.h#L315
-[camera-page]: desktop/src/main.h#L350
+[camera-page]: desktop/src/main.h#L422
 [camera-posrot]: desktop/src/main.h#L390
 [camera-bgcolor]: desktop/src/main.h#L360
 [camera-debugger]: desktop/src/main.h#L357
