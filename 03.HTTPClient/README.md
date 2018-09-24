@@ -98,7 +98,7 @@ To support requests to HTTPS, make sure to:
 * install OpenSSL development libraries
     * `apt install libssl-dev` under Linux
     * `brew install openssl` under macOS
-    * mobile and web are fine as is
+    * TODO Windows
 * [enable OpenSSL support in Mongoose][mongoose-openssl]
 * [link with OpenSSL libraries][link-openssl]
 
@@ -271,8 +271,8 @@ Here's a [web build of the example][web-build].
 [HTTPClientProcessor-processing]: desktop/src/main.h#L224
 
 [HTTPRequestProcessorMongoose]: desktop/src/network.h#L88
-[mongoose-openssl]: ../libs/mongoose/CMakeLists.txt#L27
-[link-openssl]: ../libs/mongoose/CMakeLists.txt#L15
+[mongoose-openssl]: ../libs/mongoose/CMakeLists.txt#L29
+[link-openssl]: ../libs/mongoose/CMakeLists.txt#L17
 
 [HTTPRequestProcessorFetch]: web/src/network.h#L88
 [web-cors]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
