@@ -96,7 +96,7 @@ First, implement `handleMousePress()` function in the native library
 
 ```
 - - - -
-OSGCPE_JNI(handleMousePress)(OSGCPE_JNI_ARG, jboolean down, jfloat x, jfloat y)
+JNI_FUNC(handleMousePress)(JNI_ARG, jboolean down, jfloat x, jfloat y)
 {
     example->app->handleMousePress(down == JNI_TRUE, x, y);
 }
@@ -322,7 +322,7 @@ Here's a [web build of the example][web-build].
 [android-receive-events-listen]: android/app/src/main/java/MainActivity.java#L126
 [android-redirect-events]: android/app/src/main/java/MainActivity.java#L131
 [android-receive-events-native]: android/app/src/main/cpp/library.cpp#L71
-[android-pass-events]: android/app/src/main/cpp/main.h#L163
+[android-pass-events]: android/app/src/main/cpp/main.h#L166
 
 [web-receive-events]: web/src/main.cpp#L38
 [web-detect-event-source]: web/src/main.h#L169
