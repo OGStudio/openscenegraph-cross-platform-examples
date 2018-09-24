@@ -325,7 +325,7 @@ Here's a [web build of the example][web-build].
 [android-pass-events]: android/app/src/main/cpp/main.h#L166
 
 [web-receive-events]: web/src/main.cpp#L38
-[web-detect-event-source]: web/src/main.h#L169
+[web-detect-event-source]: web/src/main.h#L187
 [web-handle-mouse-events]: web/src/main.h#L221
 [web-handle-finger-events]: web/src/main.h#L199
 
