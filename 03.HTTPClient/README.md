@@ -297,7 +297,7 @@ Here's a [web build of the example][web-build].
 [ios-httpClientCompleteRequest]: ios/src/library.cpp#L78
 [ios-ats]: https://forums.developer.apple.com/thread/6767
 
-[https-get-post]: desktop/src/main.h#L346
+[https-get-post]: desktop/src/main.h#L349
 
 [web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/03/ex03-http-client.html
 
