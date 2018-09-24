@@ -121,8 +121,8 @@ Let's debug camera:
 We can only get camera's position from camera manipulator.
 Install one ([source code][camera-manipulator]):
 ```
-this->cameraManipulator = new osgGA::TrackballManipulator;
-this->viewer->setCameraManipulator(this->cameraManipulator);
+this->cameraManip = new osgGA::TrackballManipulator;
+this->viewer->setCameraManipulator(this->cameraManip);
 ```
 
 <a name="debug-camera-page"/>
