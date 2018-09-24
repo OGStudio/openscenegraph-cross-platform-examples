@@ -290,7 +290,7 @@ for (auto node : intersection.nodePath)
 ## 5.5. Rotate the node upon selection
 
 Use [LinearInterpolator][LinearInterpolator] to rotate the node
-during time interval ([source code][rotate]):
+([source code][rotate]):
 
 ```
 - - - -
@@ -334,6 +334,6 @@ Here's a [web build of the example][web-build].
 [node-mask]: desktop/src/main.h#L427
 [intersection]: desktop/src/scene.h#L114
 [LinearInterpolator]: desktop/src/scene.h#L176
-[rotate]: desktop/src/main.h#L338
+[rotate]: desktop/src/main.h#L341
 
 [web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/05/ex05-node-selection.html
