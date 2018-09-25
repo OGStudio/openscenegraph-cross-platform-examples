@@ -5,7 +5,7 @@
 * [Steps](#steps)
     * [6.1. Get to know Reporter](#reporter)
     * [6.2. Introduce Sequence](#sequence)
-    * [6.3. TODO](#todo)
+    * [6.3. Create a sequence of operations](#operations-sequence)
 * [Result](#result)
 
 <a name="overview"/>
@@ -70,14 +70,87 @@ void frame()
 
 ## 6.2. Introduce Sequence
 
-In order to have a command sequence of asynchronous operations, we need
-to combine several `Reporter` instances.
+In order to have a sequence of asynchronous operations, we need
+to combine asynchronous functions.
 
-<a name=""/>
+### 6.2.1. Asynchronous functions
 
-## 6.3. TODO
+From the point of view of `Sequence`, an asynchronous function is a function
+that returns pointer to `Reporter` instance ([source code][async-func]):
 
-To tell selectable scene nodes from non-selectable ones apart, we need to mark
+```
+core::Reporter *waitForBoxSelection()
+{
+    return &this->boxSelected;
+}
+```
+
+### 6.2.2. Instant asynchronous functions
+
+If you need to have a normal function call as part of `Sequence`, you should
+use instant asynchronous functions, i.e., functions that return zero
+`Reporter` instance ([source code][async-func-instant]):
+
+```
+core::Reporter *setBoxSelectionEnabled(bool state)
+{
+	- - - -
+    return 0;
+}
+```
+
+<a name="operations-sequence"/>
+
+## 6.3. Create a sequence of operations
+
+Let's perform the following upon the box selection:
+
+* dim background
+* rotate the box
+* restore background
+
+Here's how it translates into code ([source code][sequence-sample]):
+
+```
+this->sequence.setActions({
+    CORE_SEQUENCE_ACTION(
+        "enableBoxSelection",
+        this->setBoxSelectionEnabled(true)
+    ),
+    CORE_SEQUENCE_ACTION(
+        "waitForBoxSelection",
+        this->waitForBoxSelection()
+    ),
+    CORE_SEQUENCE_ACTION(
+        "disableBoxSelection",
+        this->setBoxSelectionEnabled(false)
+    ),
+    CORE_SEQUENCE_ACTION(
+        "dimBackground",
+        this->changeBackground(true)
+    ),
+    CORE_SEQUENCE_ACTION(
+        "startBoxRotation",
+        this->setBoxRotationEnabled(true)
+    ),
+    CORE_SEQUENCE_ACTION(
+        "simulateLoading",
+        this->simulateLoading()
+    ),
+    CORE_SEQUENCE_ACTION(
+        "stopBoxRotation",
+        this->setBoxRotationEnabled(false)
+    ),
+    CORE_SEQUENCE_ACTION(
+        "lightBackground",
+        this->changeBackground(false)
+    ),
+});
+
+// Enable sequence.
+this->sequence.isRepeatable = true;
+this->sequence.setEnabled(true);
+```
 
 <a name="result"/>
 
@@ -92,5 +165,9 @@ Here's a [web build of the example][web-build].
 [pattern]: https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern
 [reporter-subscription]: desktop/src/main.h#L471
 [reporter-reporting]: desktop/src/main.h#L153
+[async-func]: desktop/src/main.h#L454
+[async-func-instant]: desktop/src/main.h#L441
+[sequence-sample]: desktop/src/main.h#L396
+
 
 [web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/06/ex06-command-sequence.html
