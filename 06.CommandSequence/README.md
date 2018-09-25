@@ -14,7 +14,7 @@
 
 This example is part of [OpenSceneGraph cross-platform examples][osgcpe].
 
-In this example we create an asynchronous command sequence to combine
+In this example we create a sequence of asynchronous commands to combine
 animations with other operations.
 
 **Note**: this example requires [05.NodeSelection example][ex05] knowledge.
