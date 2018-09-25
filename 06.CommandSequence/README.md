@@ -169,7 +169,6 @@ Here's a [web build of the example][web-build].
 [reporter-reporting]: desktop/src/main.h#L153
 [async-func]: desktop/src/main.h#L454
 [async-func-instant]: desktop/src/main.h#L441
-[sequence-sample]: desktop/src/main.h#L396
-
+[sequence-sample]: desktop/src/main.h#L388
 
 [web-build]: https://ogstudio.github.io/openscenegraph-cross-platform-examples-web-builds/examples/06/ex06-command-sequence.html
