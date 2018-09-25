@@ -207,7 +207,7 @@ If you have have Python installed, here's what you need to do:
 
   ![Screenshot][ex06-screenshot]
 
-  Learn how to compose an asynchronous command sequence to combine
+  Learn how to compose a sequence of asynchronous commands to combine
   animations with other operations.
 
 <a name="help"/>
