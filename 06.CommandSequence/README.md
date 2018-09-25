@@ -105,9 +105,11 @@ core::Reporter *setBoxSelectionEnabled(bool state)
 
 Let's perform the following upon the box selection:
 
+* disable selection
 * dim background
 * rotate the box
 * restore background
+* enable selection
 
 Here's how it translates into code ([source code][sequence-sample]):
 
