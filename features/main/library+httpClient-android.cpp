@@ -9,9 +9,9 @@ JNI_FUNC_ARRAY(httpClientExecuteNextRequest)(JNI_ARG)
     auto request = example->app->httpClient->nextPendingRequest();
     if (request)
     {
-        request->status = osgcpe::network::HTTPRequest::IN_PROGRESS;
+        request->status = network::HTTPRequest::IN_PROGRESS;
         intptr_t id = reinterpret_cast<intptr_t>(request);
-        std::string sid = osgcpe::format::printfString("%ld", id);
+        std::string sid = format::printfString("%ld", id);
         requestParts.push_back(sid);
         requestParts.push_back(request->url);
         requestParts.push_back(request->data);
@@ -32,14 +32,14 @@ JNI_FUNC(httpClientCompleteRequest)(
     env->ReleaseStringUTFChars(requestId, cid);
 
     // Try to get request from id.
-    auto request = reinterpret_cast<osgcpe::network::HTTPRequest *>(id);
+    auto request = reinterpret_cast<network::HTTPRequest *>(id);
     if (!request)
     {
         return;
     }
 
     // Report result of the request.
-    request->status = osgcpe::network::HTTPRequest::COMPLETED;
+    request->status = network::HTTPRequest::COMPLETED;
     const char *creply = env->GetStringUTFChars(response, 0);
     std::string reply(creply);
     if (status == JNI_TRUE)

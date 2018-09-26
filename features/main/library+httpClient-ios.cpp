@@ -16,7 +16,7 @@ intptr_t httpClientExecuteNextRequest(std::string &url, std::string &data)
     auto request = example->app->httpClient->nextPendingRequest();
     if (request)
     {
-        request->status = osgcpe::network::HTTPRequest::IN_PROGRESS;
+        request->status = network::HTTPRequest::IN_PROGRESS;
         url = request->url;
         data = request->data;
     }
@@ -28,13 +28,13 @@ void httpClientCompleteRequest(
     bool status,
     const std::string &reply
 ) {
-    auto request = reinterpret_cast<osgcpe::network::HTTPRequest *>(id);
+    auto request = reinterpret_cast<network::HTTPRequest *>(id);
     if (!request)
     {
         return;
     }
     // Report.
-    request->status = osgcpe::network::HTTPRequest::COMPLETED;
+    request->status = network::HTTPRequest::COMPLETED;
     if (status)
     {
         request->success(reply);

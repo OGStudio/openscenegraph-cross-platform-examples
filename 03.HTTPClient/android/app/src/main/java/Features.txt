@@ -4,9 +4,9 @@ HTTPClientProcessor
 HTTPRequest
 HTTPRequestDelegate
 MainActivity
+MainActivity+HTTPClientProcessor
 MainActivity+library+init
 MainActivity+library+frame
-MainActivity+HTTPClientProcessor
 RendererDelegate
 library
 library+init
