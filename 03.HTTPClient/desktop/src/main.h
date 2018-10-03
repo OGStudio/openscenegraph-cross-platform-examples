@@ -55,6 +55,10 @@ freely, subject to the following restrictions:
 #include <osg/MatrixTransform>
 
 // Example+BoxScene End
+// Example+HTTPSGetPost Start
+#include "network.h"
+
+// Example+HTTPSGetPost End
 // Example+TextureImageScene Start
 #include "resource.h"
 #include "ppl.frag.h"
@@ -62,10 +66,6 @@ freely, subject to the following restrictions:
 #include "digit.png.h"
 
 // Example+TextureImageScene End
-// Example+HTTPSGetPost Start
-#include "network.h"
-
-// Example+HTTPSGetPost End
 
 // MAIN_EXAMPLE_LOG Start
 #include "log.h"

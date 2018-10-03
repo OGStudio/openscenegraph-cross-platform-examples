@@ -44,6 +44,7 @@ FEATURE_DIRS=(
     "/render"
     "/resource"
     "/scene"
+    "/script"
 )
 
 FEATURES_TXT_DIR_ANDROID_CPP="app/src/main/cpp"

@@ -41,9 +41,10 @@ freely, subject to the following restrictions:
 
 // FEATURE Example+BoxScene/Include
 // FEATURE Example+DebugCamera/Include
+// FEATURE Example+HTTPSGetPost/Include
+// FEATURE Example+ScriptingTest/Include
 // FEATURE Example+SequenceTest/Include
 // FEATURE Example+TextureImageScene/Include
-// FEATURE Example+HTTPSGetPost/Include
 // FEATURE Example+VBO/Include
 
 // FEATURE MAIN_EXAMPLE_LOG/Impl
@@ -111,9 +112,11 @@ namespace main
         // FEATURE Example+BoxSelection/Setup
         // FEATURE Example+BoxRotation/Setup
         // FEATURE Example+HTTPSGetPost/Setup
+        // FEATURE Example+ScriptingTest/Setup
         // FEATURE Example+SequenceTest/Setup
 // FEATURE Example/TearDown
         // FEATURE Example+SequenceTest/TearDown
+        // FEATURE Example+ScriptingTest/TearDown
         // FEATURE Example+BoxRotation/TearDown
         // FEATURE Example+BoxSelection/TearDown
 // FEATURE Example/Impl
@@ -122,6 +125,7 @@ namespace main
     // FEATURE Example+BoxSelection/Impl
     // FEATURE Example+DebugCamera/Impl
     // FEATURE Example+HTTPSGetPost/Impl
+    // FEATURE Example+ScriptingTest/Impl
     // FEATURE Example+SequenceTest/Impl
     // FEATURE Example+SingleColorScene/Impl
     // FEATURE Example+TextureImageScene/Impl

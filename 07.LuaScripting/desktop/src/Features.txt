@@ -12,8 +12,7 @@ MAIN_EXAMPLE_LOG
 Example
 Example+07
 Example+BoxScene
-Example+BoxSelection
-Example+SequenceTest
+Example+ScriptingTest
 Example+StaticPluginOSG
 Example+StaticPluginPNG
 Example+TextureImageScene
@@ -62,3 +61,8 @@ textureImageScene
 # input
 Mouse
 MouseButtons
+
+# script
+SCRIPT_ENVIRONMENT_LOG
+Environment
+EnvironmentClient
