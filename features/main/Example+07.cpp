@@ -1,2 +1,2 @@
 FEATURE main.h/Title
-const auto EXAMPLE_TITLE = "EX-07: full page";
+const auto EXAMPLE_TITLE = "OSGCPE-07: Lua scripting";

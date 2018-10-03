@@ -21,6 +21,7 @@ EXAMPLES="
 04.RemoteDebugging
 05.NodeSelection
 06.CommandSequence
+07.LuaScripting
 "
 
 # Platform -> Path to Features.txt
