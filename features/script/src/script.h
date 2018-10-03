@@ -27,6 +27,8 @@ freely, subject to the following restrictions:
 
 // FEATURE EnvironmentClient/Include
 
+// FEATURE SCRIPT_ENVIRONMENT_CLIENT_CALL/Impl
+// FEATURE SCRIPT_ENVIRONMENT_CLIENT_RESPONDS_TO_KEY/Impl
 // FEATURE SCRIPT_ENVIRONMENT_LOG/Impl
 
 namespace osgcpe

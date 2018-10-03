@@ -20,10 +20,7 @@ Example+TextureImageScene
 main-desktop
 
 # core
-CORE_SEQUENCE_ACTION
-CORE_SEQUENCE_LOG
 Reporter
-Sequence
 
 # log
 Logger
@@ -63,6 +60,8 @@ Mouse
 MouseButtons
 
 # script
+SCRIPT_ENVIRONMENT_CLIENT_RESPONDS_TO_KEY
+SCRIPT_ENVIRONMENT_CLIENT_CALL
 SCRIPT_ENVIRONMENT_LOG
 Environment
 EnvironmentClient

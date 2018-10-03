@@ -30,6 +30,18 @@ freely, subject to the following restrictions:
 
 // EnvironmentClient End
 
+// SCRIPT_ENVIRONMENT_CLIENT_CALL Start
+#define SCRIPT_ENVIRONMENT_CLIENT_CALL(...) \
+    [=](const std::string &key, const script::EnvironmentClient::Values &values) { \
+        __VA_ARGS__ \
+    }
+// SCRIPT_ENVIRONMENT_CLIENT_CALL End
+// SCRIPT_ENVIRONMENT_CLIENT_RESPONDS_TO_KEY Start
+#define SCRIPT_ENVIRONMENT_CLIENT_RESPONDS_TO_KEY(...) \
+    [=](const std::string &key) { \
+        __VA_ARGS__ \
+    }
+// SCRIPT_ENVIRONMENT_CLIENT_RESPONDS_TO_KEY End
 // SCRIPT_ENVIRONMENT_LOG Start
 #include "log.h"
 #include "format.h"
