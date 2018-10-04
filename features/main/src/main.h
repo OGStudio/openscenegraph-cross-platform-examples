@@ -104,6 +104,7 @@ namespace main
 // FEATURE Example+07/Title
 
 // FEATURE Example/Setup
+        // FEATURE Example+Parameters/Setup
         // FEATURE Example+BoxScene/Setup
         // FEATURE Example+DebugCamera/Setup
         // FEATURE Example+VBO/Setup
@@ -125,6 +126,7 @@ namespace main
     // FEATURE Example+BoxSelection/Impl
     // FEATURE Example+DebugCamera/Impl
     // FEATURE Example+HTTPSGetPost/Impl
+    // FEATURE Example+Parameters/Impl
     // FEATURE Example+ScriptingTest/Impl
     // FEATURE Example+SequenceTest/Impl
     // FEATURE Example+SingleColorScene/Impl

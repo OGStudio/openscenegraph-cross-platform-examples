@@ -12,12 +12,14 @@ MAIN_EXAMPLE_LOG
 Example
 Example+07
 Example+BoxScene
+Example+Parameters
 Example+ScriptingTest
 Example+StaticPluginOSG
 Example+StaticPluginPNG
 Example+TextureImageScene
 
 main-desktop
+main+Arguments-desktop
 
 # core
 Reporter
@@ -29,7 +31,11 @@ logLevelToString
 logprintf
 
 # format
+commandLineArgumentsToParameters
 printfString
+#splitString
+#stringStartsWith
+#trimmedString
 
 # resource
 RESOURCE_LOG

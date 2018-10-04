@@ -58,6 +58,8 @@ freely, subject to the following restrictions:
 // Example+ScriptingTest Start
 #include "script.h"
 
+#include <sol.hpp>
+
 // Example+ScriptingTest End
 // Example+TextureImageScene Start
 #include "resource.h"
@@ -325,11 +327,30 @@ struct Example
     private:
         script::Environment *environment;
         script::EnvironmentClient *sampleClient;
+        sol::state *lua;
+    
         void setupScriptingTest()
         {
             this->environment = new script::Environment;
+            this->setupSampleClient();
     
-            // Setup sample environment client in C++.
+            // Call sample client through Environment interface.
+            auto values = this->environment->call("sample", {"A", "B", "C"});
+            for (auto value : values)
+            {
+                MAIN_EXAMPLE_LOG("sample. value: '%s'", value.c_str());
+            }
+    
+            this->setupLuaEnvironment();
+        }
+        void tearScriptingTestDown()
+        {
+            this->tearLuaEnvironmentDown();
+            delete this->environment;
+            this->tearSampleClientDown();
+        }
+        void setupSampleClient()
+        {
             this->sampleClient = new script::EnvironmentClient;
             this->environment->addClient(this->sampleClient);
             this->sampleClient->respondsToKey =
@@ -341,18 +362,22 @@ struct Example
                     MAIN_EXAMPLE_LOG("sample.call(%s)", key.c_str());
                     return values;
                 );
-    
-            // Call sample client through Environment interface.
-            auto values = this->environment->call("sample", {"A", "B", "C"});
-            for (auto value : values)
-            {
-                MAIN_EXAMPLE_LOG("sample. value: '%s'", value.c_str());
-            }
         }
-        void tearScriptingTestDown()
+        void tearSampleClientDown()
         {
-            delete this->environment;
             delete this->sampleClient;
+        }
+        void setupLuaEnvironment()
+        {
+            this->lua = new sol::state;
+            this->lua->open_libraries();
+            // Register Environment instance.
+            (*this->lua)["ENV"] = this->environment;
+    
+        }
+        void tearLuaEnvironmentDown()
+        {
+            delete this->lua;
         }
     // Example+ScriptingTest End
     // Example+TextureImageScene Start

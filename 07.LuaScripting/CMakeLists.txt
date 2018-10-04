@@ -10,10 +10,15 @@ PROJECT(EX07_LUA_SCRIPTING)
 SET(EXAMPLE_BINARY_NAME "ex07-lua-scripting")
 
 # Use C++11.
-ADD_DEFINITIONS("-std=c++11")
+ADD_DEFINITIONS("-std=c++14")
 
 # Build OpenSceneGraph statically.
 INCLUDE(${OSGCPE_DIR}/libs/OpenSceneGraph/CMakeLists.txt)
+# Build Lua statically.
+INCLUDE(${OSGCPE_DIR}/libs/lua/CMakeLists.txt)
+# Reference Sol2 header-only library.
+INCLUDE_DIRECTORIES(${OSGCPE_DIR}/../sol2)
+
 
 # Reference resources.
 INCLUDE_DIRECTORIES(${OSGCPE_DIR}/data)
