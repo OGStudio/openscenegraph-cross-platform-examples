@@ -77,6 +77,7 @@ std::vector<std::string> splitString(const std::string &s, const char *c)
 }
 // splitString End
 
+
 } // namespace format
 } // namespace osgcpe
 

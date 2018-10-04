@@ -272,6 +272,10 @@ struct Example
         this->app = new Application(EXAMPLE_TITLE);
 
 // Example End
+        // Example+Parameters Start
+        this->setupParameters(parameters);
+        
+        // Example+Parameters End
         // Example+BoxScene Start
         this->setupBoxScene();
         
@@ -323,6 +327,14 @@ struct Example
             }
         }
     // Example+BoxScene End
+    // Example+Parameters Start
+    private:
+        Parameters parameters;
+        void setupParameters(const Parameters &parameters)
+        {
+            this->parameters = parameters;
+        }
+    // Example+Parameters End
     // Example+ScriptingTest Start
     private:
         script::Environment *environment;
@@ -342,6 +354,7 @@ struct Example
             }
     
             this->setupLuaEnvironment();
+            this->loadCLIScript();
         }
         void tearScriptingTestDown()
         {
@@ -409,6 +422,19 @@ struct Example
         void tearLuaEnvironmentDown()
         {
             delete this->lua;
+        }
+        void loadCLIScript()
+        {
+            // Make sure `script` parameter exists.
+            auto it = this->parameters.find("script");
+            if (it == this->parameters.end())
+            {
+                return;
+            }
+    
+            auto path = it->second;
+            MAIN_EXAMPLE_LOG("TODO Load script at '%s'", path.c_str());
+    
         }
     // Example+ScriptingTest End
     // Example+TextureImageScene Start

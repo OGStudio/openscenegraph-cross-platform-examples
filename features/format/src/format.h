@@ -25,6 +25,7 @@ freely, subject to the following restrictions:
 #ifndef OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_FORMAT_H
 #define OPENSCENEGRAPH_CROSS_PLATFORM_EXAMPLES_FORMAT_H
 
+// FEATURE commandLineArgumentsToParameters/Include
 // FEATURE printfString/Include
 
 namespace osgcpe
@@ -36,6 +37,8 @@ namespace format
 // FEATURE splitString/Impl
 // FEATURE stringStartsWith/Impl
 // FEATURE trimmedString/Impl
+
+// FEATURE commandLineArgumentsToParameters/Impl
 
 } // namespace format
 } // namespace osgcpe

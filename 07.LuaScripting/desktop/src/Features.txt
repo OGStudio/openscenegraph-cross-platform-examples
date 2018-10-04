@@ -33,9 +33,8 @@ logprintf
 # format
 commandLineArgumentsToParameters
 printfString
-#splitString
-#stringStartsWith
-#trimmedString
+splitString
+stringStartsWith
 
 # resource
 RESOURCE_LOG

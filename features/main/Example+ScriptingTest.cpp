@@ -28,6 +28,7 @@ private:
         }
 
         this->setupLuaEnvironment();
+        this->loadCLIScript();
     }
     void tearScriptingTestDown()
     {
@@ -95,4 +96,17 @@ private:
     void tearLuaEnvironmentDown()
     {
         delete this->lua;
+    }
+    void loadCLIScript()
+    {
+        // Make sure `script` parameter exists.
+        auto it = this->parameters.find("script");
+        if (it == this->parameters.end())
+        {
+            return;
+        }
+
+        auto path = it->second;
+        MAIN_EXAMPLE_LOG("TODO Load script at '%s'", path.c_str());
+
     }

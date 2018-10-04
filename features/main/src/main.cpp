@@ -34,9 +34,11 @@ using namespace osgcpe;
 int main(int argc, char *argv[])
 {
     // FEATURE main-desktop/Setup
+        // FEATURE main+Arguments-desktop/Impl
     // FEATURE main-desktop/End
 
     // FEATURE main-web/Setup
+        // FEATURE main+Arguments-web/Impl
     // FEATURE main-web/End
     // FEATURE main+WindowResizing-web/Setup
 

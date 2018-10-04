@@ -49,6 +49,7 @@ std::string printfString(const char *fmt, ...)
 }
 // printfString End
 
+
 } // namespace format
 } // namespace osgcpe
 

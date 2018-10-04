@@ -36,6 +36,9 @@ int main(int argc, char *argv[])
     main::Example::Parameters parameters;
     
     // main-desktop End
+        // main+Arguments-desktop Start
+        parameters = format::commandLineArgumentsToParameters(argc, argv);
+        // main+Arguments-desktop End
     // main-desktop Start
     auto example = new main::Example(parameters);
     example->app->setupWindow(main::EXAMPLE_TITLE, 100, 100, 480, 320);
