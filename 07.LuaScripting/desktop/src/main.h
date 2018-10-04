@@ -433,8 +433,23 @@ struct Example
             }
     
             auto path = it->second;
-            MAIN_EXAMPLE_LOG("TODO Load script at '%s'", path.c_str());
-    
+            MAIN_EXAMPLE_LOG("Loading script '%s'", path.c_str());
+            std::ifstream localScript(path);
+            if (localScript)
+            {
+                // Read file contents into string.
+                std::string fileContents(
+                    (std::istreambuf_iterator<char>(localScript)),
+                    (std::istreambuf_iterator<char>())
+                );
+                // Execute the script.
+                this->lua->script(fileContents);
+                MAIN_EXAMPLE_LOG("Successfully loaded local script");
+            }
+            else
+            {
+                MAIN_EXAMPLE_LOG("ERROR Could not read local script");
+            }
         }
     // Example+ScriptingTest End
     // Example+TextureImageScene Start
