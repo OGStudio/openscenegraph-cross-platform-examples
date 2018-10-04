@@ -338,9 +338,6 @@ struct Example
     // Example+ScriptingTest Start
     private:
         script::Environment *environment;
-        script::EnvironmentClient *sampleClient;
-        sol::state *lua;
-    
         void setupScriptingTest()
         {
             this->environment = new script::Environment;
@@ -355,13 +352,29 @@ struct Example
     
             this->setupLuaEnvironment();
             this->loadCLIScript();
+    
+            // Call Lua side client.
+            MAIN_EXAMPLE_LOG("Calling Lua client");
+            this->environment->call("lua", {"abc"});
+            for (auto value : values)
+            {
+                MAIN_EXAMPLE_LOG("lua. value: '%s'", value.c_str());
+            }
+    
+            this->setupMouseTransmitter();
         }
         void tearScriptingTestDown()
         {
+            this->tearMouseTransmitterDown();
             this->tearLuaEnvironmentDown();
             delete this->environment;
             this->tearSampleClientDown();
         }
+    
+        // Sample client.
+    
+        script::EnvironmentClient *sampleClient;
+    
         void setupSampleClient()
         {
             this->sampleClient = new script::EnvironmentClient;
@@ -380,6 +393,11 @@ struct Example
         {
             delete this->sampleClient;
         }
+    
+        // Lua environment.
+     
+        sol::state *lua;
+    
         void setupLuaEnvironment()
         {
             this->lua = new sol::state;
@@ -450,6 +468,41 @@ struct Example
             {
                 MAIN_EXAMPLE_LOG("ERROR Could not read local script");
             }
+        }
+    
+        // Mouse transmitter.
+        const std::string mouseCallbackName = "MouseTransmitter";
+    
+        void setupMouseTransmitter()
+        {
+            this->app->mouse->pressedButtonsChanged.addCallback(
+                [=] {
+                    this->transmitMouseButtons();
+                },
+                this->mouseCallbackName
+            );
+        }
+        void tearMouseTransmitterDown()
+        {
+            this->app->mouse->pressedButtonsChanged.removeCallback(
+                this->mouseCallbackName
+            );
+        }
+        void transmitMouseButtons()
+        {
+            /*
+            // Convert buttons to string representation.
+            auto buttons = this->app->mouse->pressedButtons;
+            std::vector<std::string> strbuttons;
+            for (auto button : buttons)
+            {
+                strbuttons.push_back(mouseButtonToString(button));
+            }
+            */
+            // Transmit.
+            //auto key = "application.mouse.pressedButtons";
+            auto key = "app";
+            this->environment->call(key, {"app"});
         }
     // Example+ScriptingTest End
     // Example+TextureImageScene Start
