@@ -1,5 +1,6 @@
 FEATURE main.h/Include
 #include "script.h"
+#include "script.lua.h"
 
 #include <sol.hpp>
 
@@ -16,7 +17,8 @@ private:
         this->setupEnvironment();
         this->setupMouseTransmitter();
         this->setupCameraRepresentation();
-        this->loadScript();
+        this->loadEmbeddedScript();
+        this->loadCLIScript();
     }
     void tearScriptingTestDown()
     {
@@ -79,7 +81,21 @@ private:
 
     // Script loading.
 
-    void loadScript()
+    void loadEmbeddedScript()
+    {
+        MAIN_EXAMPLE_LOG("Loading embedded script");
+        resource::Resource res(
+            "scripts",
+            "script.lua",
+            script_lua,
+            script_lua_len
+        );
+        auto contents = resource::string(res);
+        // Execute the script.
+        this->lua->script(contents);
+        MAIN_EXAMPLE_LOG("Successfully loaded embedded script");
+    }
+    void loadCLIScript()
     {
         // Make sure `script` parameter exists.
         auto it = this->parameters.find("script");

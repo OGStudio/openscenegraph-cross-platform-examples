@@ -57,6 +57,7 @@ freely, subject to the following restrictions:
 // Example+BoxScene End
 // Example+ScriptingTest Start
 #include "script.h"
+#include "script.lua.h"
 
 #include <sol.hpp>
 
@@ -342,7 +343,8 @@ struct Example
             this->setupEnvironment();
             this->setupMouseTransmitter();
             this->setupCameraRepresentation();
-            this->loadScript();
+            this->loadEmbeddedScript();
+            this->loadCLIScript();
         }
         void tearScriptingTestDown()
         {
@@ -405,7 +407,21 @@ struct Example
     
         // Script loading.
     
-        void loadScript()
+        void loadEmbeddedScript()
+        {
+            MAIN_EXAMPLE_LOG("Loading embedded script");
+            resource::Resource res(
+                "scripts",
+                "script.lua",
+                script_lua,
+                script_lua_len
+            );
+            auto contents = resource::string(res);
+            // Execute the script.
+            this->lua->script(contents);
+            MAIN_EXAMPLE_LOG("Successfully loaded embedded script");
+        }
+        void loadCLIScript()
         {
             // Make sure `script` parameter exists.
             auto it = this->parameters.find("script");

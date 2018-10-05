@@ -6,20 +6,6 @@ function printStrings(strings)
     end
 end
 
-function toggleBackgroundColor(rComponents)
-    key = "application.camera.clearColor"
-    -- Get current color.
-    color = ENV:call(key, {})
-    -- Toggle R component.
-    if (tonumber(color[1]) == tonumber(rComponents[1])) then
-        color[1] = rComponents[2]
-    else
-        color[1] = rComponents[1]
-    end
-    -- Apply color.
-    ENV:call(key, color)
-end
-
 -- Register mouse client to receive mouse events.
 mouseClient = EnvironmentClient.new()
 ENV:addClient(mouseClient);
@@ -36,5 +22,19 @@ mouseClient.call = function(key, values)
     toggleBackgroundColor({"0.2", "0.7"})
 
     return {}
+end
+
+function toggleBackgroundColor(rComponents)
+    key = "application.camera.clearColor"
+    -- Get current color.
+    color = ENV:call(key, {})
+    -- Toggle R component.
+    if (tonumber(color[1]) == tonumber(rComponents[1])) then
+        color[1] = rComponents[2]
+    else
+        color[1] = rComponents[1]
+    end
+    -- Apply color.
+    ENV:call(key, color)
 end
 
