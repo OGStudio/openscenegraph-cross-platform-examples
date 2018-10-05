@@ -510,6 +510,7 @@ struct Example
             const script::EnvironmentClient::Values &values
         ) {
             auto cameraKey = key.substr(this->cameraKeyPrefix.length());
+            script::EnvironmentClient::Values empty;
             if (cameraKey == "clearColor")
             {
                 // Set.
@@ -522,7 +523,6 @@ struct Example
                             "ERROR Could not set key '%s' "
                             "because values' count is not 3"
                         );
-                        script::EnvironmentClient::Values empty;
                         return empty;
                     }
     
@@ -542,13 +542,12 @@ struct Example
                     format::printfString("%f", color.b()),
                 };
             }
-            else
-            {
-                MAIN_EXAMPLE_LOG(
-                    "ERROR No camera handler for key '%s'",
-                    key.c_str()
-                );
-            }
+    
+            MAIN_EXAMPLE_LOG(
+                "ERROR No camera handler for key '%s'",
+                key.c_str()
+            );
+            return empty;
         }
     // Example+ScriptingTest End
     // Example+TextureImageScene Start
