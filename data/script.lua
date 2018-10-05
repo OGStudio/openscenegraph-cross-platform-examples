@@ -6,22 +6,19 @@ function printStrings(strings)
     end
 end
 
-
--- Call sample environment client registered at C++ side.
-values = ENV:call("sample", {"One", "Two"})
-printStrings(values)
-
--- Register new client that responds to 'lua' key.
-luaClient = EnvironmentClient.new()
-luaClient.respondsToKey = function(key)
-    return key == "lua"
+function toggleBackgroundColor(rComponents)
+    key = "application.camera.clearColor"
+    -- Get current color.
+    color = ENV:call(key, {})
+    -- Toggle R component.
+    if (tonumber(color[1]) == tonumber(rComponents[1])) then
+        color[1] = rComponents[2]
+    else
+        color[1] = rComponents[1]
+    end
+    -- Apply color.
+    ENV:call(key, color)
 end
-luaClient.call = function(key, values)
-    return {"Wow", "Nah"}
-end
--- Add it to Environemnt.
-ENV:addClient(luaClient)
--- 'lua' client is called by parent.
 
 -- Register mouse client to receive mouse events.
 mouseClient = EnvironmentClient.new()
@@ -35,7 +32,8 @@ mouseClient.call = function(key, values)
         return {}
     end
 
-    print("mouse clicked")
+    print("Mouse clicked. Toggle background color")
+    toggleBackgroundColor({"0.2", "0.7"})
 
     return {}
 end

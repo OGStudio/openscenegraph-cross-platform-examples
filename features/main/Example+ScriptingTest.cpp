@@ -11,69 +11,29 @@ this->tearScriptingTestDown();
 
 FEATURE main.h/Impl
 private:
-    script::Environment *environment;
     void setupScriptingTest()
     {
-        this->environment = new script::Environment;
-        this->setupSampleClient();
-
-        // Call sample client through Environment interface.
-        auto values = this->environment->call("sample", {"A", "B", "C"});
-        for (auto value : values)
-        {
-            MAIN_EXAMPLE_LOG("sample. value: '%s'", value.c_str());
-        }
-
-        this->setupLuaEnvironment();
-        this->loadCLIScript();
-
-        // Call Lua side client.
-        MAIN_EXAMPLE_LOG("Calling Lua client");
-        this->environment->call("lua", {"abc"});
-        for (auto value : values)
-        {
-            MAIN_EXAMPLE_LOG("lua. value: '%s'", value.c_str());
-        }
-
+        this->setupEnvironment();
         this->setupMouseTransmitter();
+        this->setupCameraRepresentation();
+        this->loadScript();
     }
     void tearScriptingTestDown()
     {
+        this->tearCameraRepresentationDown();
         this->tearMouseTransmitterDown();
-        this->tearLuaEnvironmentDown();
-        delete this->environment;
-        this->tearSampleClientDown();
+        this->tearEnvironmentDown();
     }
 
-    // Sample client.
-
-    script::EnvironmentClient *sampleClient;
-
-    void setupSampleClient()
-    {
-        this->sampleClient = new script::EnvironmentClient;
-        this->environment->addClient(this->sampleClient);
-        this->sampleClient->respondsToKey =
-            SCRIPT_ENVIRONMENT_CLIENT_RESPONDS_TO_KEY(
-                return (key == "sample");
-            );
-        this->sampleClient->call =
-            SCRIPT_ENVIRONMENT_CLIENT_CALL(
-                MAIN_EXAMPLE_LOG("sample.call(%s)", key.c_str());
-                return values;
-            );
-    }
-    void tearSampleClientDown()
-    {
-        delete this->sampleClient;
-    }
-
-    // Lua environment.
+    // Environment.
  
+    script::Environment *environment;
     sol::state *lua;
 
-    void setupLuaEnvironment()
+    void setupEnvironment()
     {
+        this->environment = new script::Environment;
+
         this->lua = new sol::state;
         this->lua->open_libraries();
         // Register Environment instance.
@@ -111,11 +71,15 @@ private:
             &script::EnvironmentClient::respondsToKey
         );
     }
-    void tearLuaEnvironmentDown()
+    void tearEnvironmentDown()
     {
         delete this->lua;
+        delete this->environment;
     }
-    void loadCLIScript()
+
+    // Script loading.
+
+    void loadScript()
     {
         // Make sure `script` parameter exists.
         auto it = this->parameters.find("script");
@@ -145,6 +109,7 @@ private:
     }
 
     // Mouse transmitter.
+
     const std::string mouseCallbackName = "MouseTransmitter";
 
     void setupMouseTransmitter()
@@ -174,4 +139,72 @@ private:
         // Transmit.
         auto key = "application.mouse.pressedButtons";
         this->environment->call(key, strbuttons);
+    }
+
+    // Camera representation.
+
+    script::EnvironmentClient *cameraClient;
+    const std::string cameraKeyPrefix = "application.camera.";
+
+    void setupCameraRepresentation()
+    {
+        this->cameraClient = new script::EnvironmentClient;
+        this->environment->addClient(this->cameraClient);
+        this->cameraClient->respondsToKey =
+            SCRIPT_ENVIRONMENT_CLIENT_RESPONDS_TO_KEY(
+                return format::stringStartsWith(key, this->cameraKeyPrefix);
+            );
+        this->cameraClient->call =
+            SCRIPT_ENVIRONMENT_CLIENT_CALL(
+                return this->processCamera(key, values);
+            );
+    }
+    void tearCameraRepresentationDown()
+    {
+        delete this->cameraClient;
+    }
+    script::EnvironmentClient::Values processCamera(
+        const std::string &key,
+        const script::EnvironmentClient::Values &values
+    ) {
+        auto cameraKey = key.substr(this->cameraKeyPrefix.length());
+        if (cameraKey == "clearColor")
+        {
+            // Set.
+            if (!values.empty())
+            {
+                // Make sure there are three components.
+                if (values.size() != 3)
+                {
+                    MAIN_EXAMPLE_LOG(
+                        "ERROR Could not set key '%s' "
+                        "because values' count is not 3"
+                    );
+                    script::EnvironmentClient::Values empty;
+                    return empty;
+                }
+
+                // Apply color.
+                auto color = this->app->camera()->getClearColor();
+                color.r() = atof(values[0].c_str());
+                color.g() = atof(values[1].c_str());
+                color.b() = atof(values[2].c_str());
+                this->app->camera()->setClearColor(color);
+            }
+
+            // Return current color for Get and after successful Set.
+            auto color = this->app->camera()->getClearColor();
+            return {
+                format::printfString("%f", color.r()),
+                format::printfString("%f", color.g()),
+                format::printfString("%f", color.b()),
+            };
+        }
+        else
+        {
+            MAIN_EXAMPLE_LOG(
+                "ERROR No camera handler for key '%s'",
+                key.c_str()
+            );
+        }
     }

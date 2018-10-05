@@ -36,6 +36,14 @@ freely, subject to the following restrictions:
         __VA_ARGS__ \
     }
 // SCRIPT_ENVIRONMENT_CLIENT_CALL End
+// SCRIPT_ENVIRONMENT_CLIENT_CALL_NORETURN Start
+#define SCRIPT_ENVIRONMENT_CLIENT_CALL_NORETURN(...) \
+    [=](const std::string &key, const script::EnvironmentClient::Values &values) { \
+        __VA_ARGS__; \
+        script::EnvironmentClient::Values empty; \
+        return empty; \
+    }
+// SCRIPT_ENVIRONMENT_CLIENT_CALL_NORETURN End
 // SCRIPT_ENVIRONMENT_CLIENT_RESPONDS_TO_KEY Start
 #define SCRIPT_ENVIRONMENT_CLIENT_RESPONDS_TO_KEY(...) \
     [=](const std::string &key) { \
