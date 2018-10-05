@@ -1,3 +1,9 @@
+
+#ifdef __ANDROID__
+    // Define missing log2 function.
+    #define log2(x) (log(x) / log(2))
+#endif
+
 #include "lapi.c"
 #include "lcode.c"
 #include "lctype.c"

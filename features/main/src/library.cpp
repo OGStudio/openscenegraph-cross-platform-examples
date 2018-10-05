@@ -22,6 +22,8 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
+#include "missing-functions-android.h"
+
 #include "main.h"
 // FEATURE library-android/Include
 // FEATURE library-ios/Include
@@ -33,6 +35,7 @@ freely, subject to the following restrictions:
 // FEATURE library+Ex04+JNI-android/Impl
 // FEATURE library+Ex05+JNI-android/Impl
 // FEATURE library+Ex06+JNI-android/Impl
+// FEATURE library+Ex07+JNI-android/Impl
 
 using namespace osgcpe;
 
