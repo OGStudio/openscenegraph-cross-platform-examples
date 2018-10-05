@@ -16,7 +16,6 @@ INCLUDE(${OSGCPE_DIR}/libs/lua/CMakeLists.txt)
 # Reference Sol2 header-only library.
 INCLUDE_DIRECTORIES(${OSGCPE_DIR}/../sol2)
 
-
 # Reference resources.
 INCLUDE_DIRECTORIES(${OSGCPE_DIR}/data)
 
