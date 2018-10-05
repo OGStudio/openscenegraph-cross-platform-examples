@@ -490,7 +490,6 @@ struct Example
         }
         void transmitMouseButtons()
         {
-            /*
             // Convert buttons to string representation.
             auto buttons = this->app->mouse->pressedButtons;
             std::vector<std::string> strbuttons;
@@ -498,11 +497,9 @@ struct Example
             {
                 strbuttons.push_back(mouseButtonToString(button));
             }
-            */
             // Transmit.
-            //auto key = "application.mouse.pressedButtons";
-            auto key = "app";
-            this->environment->call(key, {"app"});
+            auto key = "application.mouse.pressedButtons";
+            this->environment->call(key, strbuttons);
         }
     // Example+ScriptingTest End
     // Example+TextureImageScene Start

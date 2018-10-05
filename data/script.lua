@@ -21,18 +21,22 @@ luaClient.call = function(key, values)
 end
 -- Add it to Environemnt.
 ENV:addClient(luaClient)
--- Make a call from C++ side.
--- Call newly registered client.
---values = ENV:call("lua", {"X", "Y"})
---printStrings(values)
+-- 'lua' client is called by parent.
 
--- Register mouse client that listens to Mouse C++ events.
+-- Register mouse client to receive mouse events.
 mouseClient = EnvironmentClient.new()
 ENV:addClient(mouseClient);
 mouseClient.respondsToKey = function(key)
-    return (key == "app")
+    return key == "application.mouse.pressedButtons"
 end
 mouseClient.call = function(key, values)
-    print("whatever")
+    -- Make sure there are pressed buttons.
+    if (next(values) == nil) then
+        return {}
+    end
+
+    print("mouse clicked")
+
+    return {}
 end
 
