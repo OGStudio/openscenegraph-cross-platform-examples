@@ -10,6 +10,9 @@ INCLUDE_DIRECTORIES(src)
 # Create executable.
 ADD_EXECUTABLE(${EXAMPLE_BINARY_NAME} src/main.cpp)
 
+# Use C++14.
+TARGET_COMPILE_OPTIONS(${EXAMPLE_BINARY_NAME} PUBLIC "-std=c++14")
+
 # Use ImageIO for macOS.
 IF (${OSG_PLATFORM} STREQUAL "macos")
     SET(IMAGE_LINK_LIBS "osgdb_imageio")

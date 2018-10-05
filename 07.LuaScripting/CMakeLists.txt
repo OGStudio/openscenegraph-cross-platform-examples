@@ -9,9 +9,6 @@
 PROJECT(EX07_LUA_SCRIPTING)
 SET(EXAMPLE_BINARY_NAME "ex07-lua-scripting")
 
-# Use C++11.
-ADD_DEFINITIONS("-std=c++14")
-
 # Build OpenSceneGraph statically.
 INCLUDE(${OSGCPE_DIR}/libs/OpenSceneGraph/CMakeLists.txt)
 # Build Lua statically.
