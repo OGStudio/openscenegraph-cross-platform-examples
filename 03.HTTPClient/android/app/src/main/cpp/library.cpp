@@ -22,10 +22,8 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "missing-functions-android.h"
-
-#include "main.h"
 // library-android Start
+#include "missing-functions-android.h"
 #include <jni.h>
 
 // library-android End
@@ -33,6 +31,7 @@ freely, subject to the following restrictions:
 #include "format.h"
 
 // library+httpClient-android End
+#include "main.h"
 
 // library+Ex03+JNI-android Start
 #define JNI_FUNC(FUNC_NAME) \

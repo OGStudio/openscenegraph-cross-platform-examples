@@ -22,12 +22,10 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "missing-functions-android.h"
-
-#include "main.h"
 // FEATURE library-android/Include
 // FEATURE library-ios/Include
 // FEATURE library+httpClient-android/Include
+#include "main.h"
 
 // FEATURE library+Ex01+JNI-android/Impl
 // FEATURE library+Ex02+JNI-android/Impl

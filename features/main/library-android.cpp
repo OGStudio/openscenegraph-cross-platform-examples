@@ -1,4 +1,5 @@
 FEATURE library.cpp/Include
+#include "missing-functions-android.h"
 #include <jni.h>
 
 FEATURE library.cpp/NamespaceStart

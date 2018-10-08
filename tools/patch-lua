@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Remove `system()` call.
+fileName="src/loslib.c"
+echo "Patching '$fileName'"
+sed -i.bak 's|system(cmd)|-1|' $fileName

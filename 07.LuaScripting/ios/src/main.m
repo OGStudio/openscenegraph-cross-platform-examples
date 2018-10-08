@@ -22,47 +22,11 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-// library-ios Start
-#include "library.h"
+#import <UIKit/UIKit.h>
+#import "ios.h"
 
-// library-ios End
-#include "main.h"
-
-
-using namespace osgcpe;
-
-// Example instance.
-main::Example *example = 0;
-
-// library-ios Start
-namespace library
-{
-
-// library-ios End
-
-// library+init-ios Start
-UIView *init(int width, int height, float scale, UIView *parentView)
-{
-    // Create example only once.
-    // If we create example at stack, the instance might get initialized
-    // before plugin readers/writers are available, which would break everything.
-    if (!example)
-    {
-        main::Example::Parameters parameters;
-        example = new main::Example(parameters);
+int main(int argc, char * argv[]) {
+    @autoreleasepool {
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
     }
-    return example->app->setupWindow(width, height, scale, parentView);
 }
-// library+init-ios End
-// library+frame-ios Start
-void frame()
-{
-    example->app->frame();
-}
-// library+frame-ios End
-
-
-// library-ios Start
-} // namespace library.
-// library-ios End
-

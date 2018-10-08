@@ -1,0 +1,473 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2F4EB962202B07390019AD8B /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4EB95C202B06590019AD8B /* MobileCoreServices.framework */; };
+		2F4EB97D202B07A70019AD8B /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F4EB96F202B074D0019AD8B /* Accelerate.framework */; };
+		2F5C7BF0211C2EF1004ED0F6 /* osgdb_imageio.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C7BEF211C2EF1004ED0F6 /* osgdb_imageio.mm */; };
+		2F7788931F530562008378D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F7788921F530562008378D5 /* main.m */; };
+		2F77889E1F530562008378D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F77889D1F530562008378D5 /* Assets.xcassets */; };
+		2F7788A11F530562008378D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F77889F1F530562008378D5 /* LaunchScreen.storyboard */; };
+		2FBE4E7421198A5E00D55C84 /* library.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FBE4E7321198A5D00D55C84 /* library.mm */; };
+		2FDFA0D4216B545A00CA5588 /* lua.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDFA0D3216B545A00CA5588 /* lua.m */; };
+		2FF6D68C211C2CEA0083A068 /* osgdb_osg.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D67A211C2CE90083A068 /* osgdb_osg.mm */; };
+		2FF6D68D211C2CEA0083A068 /* osgdb_serializers_osg-Node.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D67B211C2CE90083A068 /* osgdb_serializers_osg-Node.mm */; };
+		2FF6D68E211C2CEA0083A068 /* osgdb_serializers_osg-Transform.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D67C211C2CE90083A068 /* osgdb_serializers_osg-Transform.mm */; };
+		2FF6D68F211C2CEA0083A068 /* osgdb_serializers_osg-Geometry.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D67D211C2CE90083A068 /* osgdb_serializers_osg-Geometry.mm */; };
+		2FF6D690211C2CEA0083A068 /* osg-03.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D67E211C2CE90083A068 /* osg-03.mm */; };
+		2FF6D691211C2CEA0083A068 /* osgdb_serializers_osg-LibraryWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D67F211C2CE90083A068 /* osgdb_serializers_osg-LibraryWrapper.mm */; };
+		2FF6D692211C2CEA0083A068 /* osgGA.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D680211C2CE90083A068 /* osgGA.mm */; };
+		2FF6D693211C2CEA0083A068 /* osgDB.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D681211C2CEA0083A068 /* osgDB.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2FF6D694211C2CEA0083A068 /* osgUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D682211C2CEA0083A068 /* osgUtil.mm */; };
+		2FF6D695211C2CEA0083A068 /* osgdb_serializers_osg-Group.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D683211C2CEA0083A068 /* osgdb_serializers_osg-Group.mm */; };
+		2FF6D696211C2CEA0083A068 /* osgdb_serializers_osg-Object.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D684211C2CEA0083A068 /* osgdb_serializers_osg-Object.mm */; };
+		2FF6D697211C2CEA0083A068 /* OpenThreads.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D685211C2CEA0083A068 /* OpenThreads.mm */; };
+		2FF6D698211C2CEA0083A068 /* osgdb_serializers_osg-Drawable.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D686211C2CEA0083A068 /* osgdb_serializers_osg-Drawable.mm */; };
+		2FF6D699211C2CEA0083A068 /* osgdb_serializers_osg-Geode.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D687211C2CEA0083A068 /* osgdb_serializers_osg-Geode.mm */; };
+		2FF6D69A211C2CEA0083A068 /* osg-02.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D688211C2CEA0083A068 /* osg-02.mm */; };
+		2FF6D69B211C2CEA0083A068 /* osg-01.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D689211C2CEA0083A068 /* osg-01.mm */; };
+		2FF6D69C211C2CEA0083A068 /* osgdb_serializers_osg-MatrixTransform.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D68A211C2CEA0083A068 /* osgdb_serializers_osg-MatrixTransform.mm */; };
+		2FF6D69D211C2CEA0083A068 /* osgViewer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FF6D68B211C2CEA0083A068 /* osgViewer.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		2FFD8D2621071FA100D4B5FD /* ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2FFD8D2421071FA100D4B5FD /* ios.mm */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2F17CA1C1F6B1AF500629C05 /* mjin-player.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "mjin-player.xcodeproj"; sourceTree = "<group>"; };
+		2F4EB958202B05F40019AD8B /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		2F4EB95A202B06090019AD8B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2F4EB95C202B06590019AD8B /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		2F4EB95E202B07140019AD8B /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		2F4EB960202B07270019AD8B /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		2F4EB963202B07410019AD8B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2F4EB965202B074C0019AD8B /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
+		2F4EB966202B074C0019AD8B /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		2F4EB967202B074C0019AD8B /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		2F4EB968202B074C0019AD8B /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		2F4EB969202B074C0019AD8B /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		2F4EB96A202B074C0019AD8B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		2F4EB96B202B074C0019AD8B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		2F4EB96C202B074C0019AD8B /* CallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CallKit.framework; path = System/Library/Frameworks/CallKit.framework; sourceTree = SDKROOT; };
+		2F4EB96D202B074D0019AD8B /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		2F4EB96E202B074D0019AD8B /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		2F4EB96F202B074D0019AD8B /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		2F4EB970202B074D0019AD8B /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		2F5C7BEF211C2EF1004ED0F6 /* osgdb_imageio.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = osgdb_imageio.mm; path = "../../libs/OpenSceneGraph/src-ios/osgdb_imageio.mm"; sourceTree = "<group>"; };
+		2F77888E1F530562008378D5 /* ex07.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ex07.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F7788921F530562008378D5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2F77889D1F530562008378D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2F7788A01F530562008378D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2F7788A21F530562008378D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2FBE4E7221198A5D00D55C84 /* library.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = library.h; sourceTree = "<group>"; };
+		2FBE4E7321198A5D00D55C84 /* library.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = library.mm; sourceTree = "<group>"; };
+		2FDFA0D3216B545A00CA5588 /* lua.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = lua.m; path = ../../libs/lua/lua.m; sourceTree = "<group>"; };
+		2FF6D67A211C2CE90083A068 /* osgdb_osg.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = osgdb_osg.mm; path = "../../libs/OpenSceneGraph/src-ios/osgdb_osg.mm"; sourceTree = "<group>"; };
+		2FF6D67B211C2CE90083A068 /* osgdb_serializers_osg-Node.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "osgdb_serializers_osg-Node.mm"; path = "../../libs/OpenSceneGraph/src-ios/osgdb_serializers_osg-Node.mm"; sourceTree = "<group>"; };
+		2FF6D67C211C2CE90083A068 /* osgdb_serializers_osg-Transform.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "osgdb_serializers_osg-Transform.mm"; path = "../../libs/OpenSceneGraph/src-ios/osgdb_serializers_osg-Transform.mm"; sourceTree = "<group>"; };
+		2FF6D67D211C2CE90083A068 /* osgdb_serializers_osg-Geometry.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "osgdb_serializers_osg-Geometry.mm"; path = "../../libs/OpenSceneGraph/src-ios/osgdb_serializers_osg-Geometry.mm"; sourceTree = "<group>"; };
+		2FF6D67E211C2CE90083A068 /* osg-03.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "osg-03.mm"; path = "../../libs/OpenSceneGraph/src-ios/osg-03.mm"; sourceTree = "<group>"; };
+		2FF6D67F211C2CE90083A068 /* osgdb_serializers_osg-LibraryWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "osgdb_serializers_osg-LibraryWrapper.mm"; path = "../../libs/OpenSceneGraph/src-ios/osgdb_serializers_osg-LibraryWrapper.mm"; sourceTree = "<group>"; };
+		2FF6D680211C2CE90083A068 /* osgGA.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = osgGA.mm; path = "../../libs/OpenSceneGraph/src-ios/osgGA.mm"; sourceTree = "<group>"; };
+		2FF6D681211C2CEA0083A068 /* osgDB.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = osgDB.mm; path = "../../libs/OpenSceneGraph/src-ios/osgDB.mm"; sourceTree = "<group>"; };
+		2FF6D682211C2CEA0083A068 /* osgUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = osgUtil.mm; path = "../../libs/OpenSceneGraph/src-ios/osgUtil.mm"; sourceTree = "<group>"; };
+		2FF6D683211C2CEA0083A068 /* osgdb_serializers_osg-Group.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "osgdb_serializers_osg-Group.mm"; path = "../../libs/OpenSceneGraph/src-ios/osgdb_serializers_osg-Group.mm"; sourceTree = "<group>"; };
+		2FF6D684211C2CEA0083A068 /* osgdb_serializers_osg-Object.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "osgdb_serializers_osg-Object.mm"; path = "../../libs/OpenSceneGraph/src-ios/osgdb_serializers_osg-Object.mm"; sourceTree = "<group>"; };
+		2FF6D685211C2CEA0083A068 /* OpenThreads.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = OpenThreads.mm; path = "../../libs/OpenSceneGraph/src-ios/OpenThreads.mm"; sourceTree = "<group>"; };
+		2FF6D686211C2CEA0083A068 /* osgdb_serializers_osg-Drawable.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "osgdb_serializers_osg-Drawable.mm"; path = "../../libs/OpenSceneGraph/src-ios/osgdb_serializers_osg-Drawable.mm"; sourceTree = "<group>"; };
+		2FF6D687211C2CEA0083A068 /* osgdb_serializers_osg-Geode.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "osgdb_serializers_osg-Geode.mm"; path = "../../libs/OpenSceneGraph/src-ios/osgdb_serializers_osg-Geode.mm"; sourceTree = "<group>"; };
+		2FF6D688211C2CEA0083A068 /* osg-02.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "osg-02.mm"; path = "../../libs/OpenSceneGraph/src-ios/osg-02.mm"; sourceTree = "<group>"; };
+		2FF6D689211C2CEA0083A068 /* osg-01.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "osg-01.mm"; path = "../../libs/OpenSceneGraph/src-ios/osg-01.mm"; sourceTree = "<group>"; };
+		2FF6D68A211C2CEA0083A068 /* osgdb_serializers_osg-MatrixTransform.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "osgdb_serializers_osg-MatrixTransform.mm"; path = "../../libs/OpenSceneGraph/src-ios/osgdb_serializers_osg-MatrixTransform.mm"; sourceTree = "<group>"; };
+		2FF6D68B211C2CEA0083A068 /* osgViewer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = osgViewer.mm; path = "../../libs/OpenSceneGraph/src-ios/osgViewer.mm"; sourceTree = "<group>"; };
+		2FFD8D2421071FA100D4B5FD /* ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ios.mm; sourceTree = "<group>"; };
+		2FFD8D2521071FA100D4B5FD /* ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2F77888B1F530562008378D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F4EB97D202B07A70019AD8B /* Accelerate.framework in Frameworks */,
+				2F4EB962202B07390019AD8B /* MobileCoreServices.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2F17CA1D1F6B1AF500629C05 /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2F7788851F530562008378D5 = {
+			isa = PBXGroup;
+			children = (
+				2FF6D678211C2CCB0083A068 /* OpenSceneGraph */,
+				2FDFA0D3216B545A00CA5588 /* lua.m */,
+				2F7788901F530562008378D5 /* src */,
+				2F77888F1F530562008378D5 /* Products */,
+				2FFF43FB1F57405A003D419D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2F77888F1F530562008378D5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2F77888E1F530562008378D5 /* ex07.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2F7788901F530562008378D5 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				2FFD8D2521071FA100D4B5FD /* ios.h */,
+				2FFD8D2421071FA100D4B5FD /* ios.mm */,
+				2FBE4E7221198A5D00D55C84 /* library.h */,
+				2FBE4E7321198A5D00D55C84 /* library.mm */,
+				2F77889D1F530562008378D5 /* Assets.xcassets */,
+				2F77889F1F530562008378D5 /* LaunchScreen.storyboard */,
+				2F7788A21F530562008378D5 /* Info.plist */,
+				2F7788911F530562008378D5 /* Supporting Files */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		2F7788911F530562008378D5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2F7788921F530562008378D5 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2FF6D678211C2CCB0083A068 /* OpenSceneGraph */ = {
+			isa = PBXGroup;
+			children = (
+				2FF6D685211C2CEA0083A068 /* OpenThreads.mm */,
+				2FF6D689211C2CEA0083A068 /* osg-01.mm */,
+				2FF6D688211C2CEA0083A068 /* osg-02.mm */,
+				2FF6D67E211C2CE90083A068 /* osg-03.mm */,
+				2F5C7BEF211C2EF1004ED0F6 /* osgdb_imageio.mm */,
+				2FF6D67A211C2CE90083A068 /* osgdb_osg.mm */,
+				2FF6D686211C2CEA0083A068 /* osgdb_serializers_osg-Drawable.mm */,
+				2FF6D687211C2CEA0083A068 /* osgdb_serializers_osg-Geode.mm */,
+				2FF6D67D211C2CE90083A068 /* osgdb_serializers_osg-Geometry.mm */,
+				2FF6D683211C2CEA0083A068 /* osgdb_serializers_osg-Group.mm */,
+				2FF6D67F211C2CE90083A068 /* osgdb_serializers_osg-LibraryWrapper.mm */,
+				2FF6D68A211C2CEA0083A068 /* osgdb_serializers_osg-MatrixTransform.mm */,
+				2FF6D67B211C2CE90083A068 /* osgdb_serializers_osg-Node.mm */,
+				2FF6D684211C2CEA0083A068 /* osgdb_serializers_osg-Object.mm */,
+				2FF6D67C211C2CE90083A068 /* osgdb_serializers_osg-Transform.mm */,
+				2FF6D681211C2CEA0083A068 /* osgDB.mm */,
+				2FF6D680211C2CE90083A068 /* osgGA.mm */,
+				2FF6D682211C2CEA0083A068 /* osgUtil.mm */,
+				2FF6D68B211C2CEA0083A068 /* osgViewer.mm */,
+			);
+			name = OpenSceneGraph;
+			sourceTree = "<group>";
+		};
+		2FFF43FB1F57405A003D419D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2F4EB96F202B074D0019AD8B /* Accelerate.framework */,
+				2F4EB966202B074C0019AD8B /* Accounts.framework */,
+				2F4EB96D202B074D0019AD8B /* AddressBook.framework */,
+				2F4EB970202B074D0019AD8B /* AddressBookUI.framework */,
+				2F4EB968202B074C0019AD8B /* AdSupport.framework */,
+				2F4EB965202B074C0019AD8B /* ARKit.framework */,
+				2F4EB969202B074C0019AD8B /* AssetsLibrary.framework */,
+				2F4EB96A202B074C0019AD8B /* AudioToolbox.framework */,
+				2F4EB967202B074C0019AD8B /* AudioUnit.framework */,
+				2F4EB96B202B074C0019AD8B /* AVFoundation.framework */,
+				2F4EB96E202B074D0019AD8B /* AVKit.framework */,
+				2F4EB96C202B074C0019AD8B /* CallKit.framework */,
+				2F4EB963202B07410019AD8B /* Foundation.framework */,
+				2F4EB960202B07270019AD8B /* CoreMedia.framework */,
+				2F4EB95E202B07140019AD8B /* CoreFoundation.framework */,
+				2F4EB95C202B06590019AD8B /* MobileCoreServices.framework */,
+				2F4EB95A202B06090019AD8B /* CoreGraphics.framework */,
+				2F4EB958202B05F40019AD8B /* ImageIO.framework */,
+				2F17CA1C1F6B1AF500629C05 /* mjin-player.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2F77888D1F530562008378D5 /* ex07 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2F7788A51F530562008378D5 /* Build configuration list for PBXNativeTarget "ex07" */;
+			buildPhases = (
+				2F77888A1F530562008378D5 /* Sources */,
+				2F77888B1F530562008378D5 /* Frameworks */,
+				2F77888C1F530562008378D5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ex07;
+			productName = "mjin-player";
+			productReference = 2F77888E1F530562008378D5 /* ex07.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2F7788861F530562008378D5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = OpensourceGameStudio;
+				TargetAttributes = {
+					2F77888D1F530562008378D5 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 8379YHJ3XA;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 2F7788891F530562008378D5 /* Build configuration list for PBXProject "ex07" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2F7788851F530562008378D5;
+			productRefGroup = 2F77888F1F530562008378D5 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 2F17CA1D1F6B1AF500629C05 /* Products */;
+					ProjectRef = 2F17CA1C1F6B1AF500629C05 /* mjin-player.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				2F77888D1F530562008378D5 /* ex07 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2F77888C1F530562008378D5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F7788A11F530562008378D5 /* LaunchScreen.storyboard in Resources */,
+				2F77889E1F530562008378D5 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2F77888A1F530562008378D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2F7788931F530562008378D5 /* main.m in Sources */,
+				2FF6D698211C2CEA0083A068 /* osgdb_serializers_osg-Drawable.mm in Sources */,
+				2FF6D697211C2CEA0083A068 /* OpenThreads.mm in Sources */,
+				2FF6D694211C2CEA0083A068 /* osgUtil.mm in Sources */,
+				2FF6D68D211C2CEA0083A068 /* osgdb_serializers_osg-Node.mm in Sources */,
+				2FF6D690211C2CEA0083A068 /* osg-03.mm in Sources */,
+				2FBE4E7421198A5E00D55C84 /* library.mm in Sources */,
+				2FF6D69A211C2CEA0083A068 /* osg-02.mm in Sources */,
+				2FFD8D2621071FA100D4B5FD /* ios.mm in Sources */,
+				2FF6D692211C2CEA0083A068 /* osgGA.mm in Sources */,
+				2FDFA0D4216B545A00CA5588 /* lua.m in Sources */,
+				2FF6D695211C2CEA0083A068 /* osgdb_serializers_osg-Group.mm in Sources */,
+				2FF6D696211C2CEA0083A068 /* osgdb_serializers_osg-Object.mm in Sources */,
+				2FF6D699211C2CEA0083A068 /* osgdb_serializers_osg-Geode.mm in Sources */,
+				2FF6D69D211C2CEA0083A068 /* osgViewer.mm in Sources */,
+				2FF6D69C211C2CEA0083A068 /* osgdb_serializers_osg-MatrixTransform.mm in Sources */,
+				2F5C7BF0211C2EF1004ED0F6 /* osgdb_imageio.mm in Sources */,
+				2FF6D691211C2CEA0083A068 /* osgdb_serializers_osg-LibraryWrapper.mm in Sources */,
+				2FF6D68E211C2CEA0083A068 /* osgdb_serializers_osg-Transform.mm in Sources */,
+				2FF6D68C211C2CEA0083A068 /* osgdb_osg.mm in Sources */,
+				2FF6D69B211C2CEA0083A068 /* osg-01.mm in Sources */,
+				2FF6D68F211C2CEA0083A068 /* osgdb_serializers_osg-Geometry.mm in Sources */,
+				2FF6D693211C2CEA0083A068 /* osgDB.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2F77889F1F530562008378D5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2F7788A01F530562008378D5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2F7788A31F530562008378D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2F7788A41F530562008378D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2F7788A61F530562008378D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				DEVELOPMENT_TEAM = 8379YHJ3XA;
+				ENABLE_BITCODE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/src/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = org.opengamestudio.ex07;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../OpenSceneGraph $(SRCROOT)/../../../OpenSceneGraph/include $(SRCROOT)/../../libs/OpenSceneGraph/include/ios $(SRCROOT)/../../../lua/src $(SRCROOT)/../../../sol2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/src $(SRCROOT)/../../libs/OpenSceneGraph $(SRCROOT)/../../data";
+			};
+			name = Debug;
+		};
+		2F7788A71F530562008378D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				DEVELOPMENT_TEAM = 8379YHJ3XA;
+				ENABLE_BITCODE = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/src/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = org.opengamestudio.ex07;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(SRCROOT)/../../../OpenSceneGraph $(SRCROOT)/../../../OpenSceneGraph/include $(SRCROOT)/../../libs/OpenSceneGraph/include/ios $(SRCROOT)/../../../lua/src $(SRCROOT)/../../../sol2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/src $(SRCROOT)/../../libs/OpenSceneGraph $(SRCROOT)/../../data";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2F7788891F530562008378D5 /* Build configuration list for PBXProject "ex07" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F7788A31F530562008378D5 /* Debug */,
+				2F7788A41F530562008378D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2F7788A51F530562008378D5 /* Build configuration list for PBXNativeTarget "ex07" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F7788A61F530562008378D5 /* Debug */,
+				2F7788A71F530562008378D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2F7788861F530562008378D5 /* Project object */;
+}

@@ -22,13 +22,11 @@ freely, subject to the following restrictions:
 3. This notice may not be removed or altered from any source distribution.
 */
 
-#include "missing-functions-android.h"
-
-#include "main.h"
 // library-ios Start
 #include "library.h"
 
 // library-ios End
+#include "main.h"
 
 
 using namespace osgcpe;
