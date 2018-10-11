@@ -39,6 +39,8 @@ freely, subject to the following restrictions:
 
 // FEATURE MAIN_APPLICATION_LOG/Impl
 
+// FEATURE Example+loadCLIScript/Include
+
 // FEATURE Example+BoxScene/Include
 // FEATURE Example+DebugCamera/Include
 // FEATURE Example+HTTPSGetPost/Include
@@ -124,6 +126,9 @@ namespace main
         // FEATURE Example+BoxRotation/TearDown
         // FEATURE Example+BoxSelection/TearDown
 // FEATURE Example/Impl
+
+    // FEATURE Example+loadCLIScript/Impl
+
     // FEATURE Example+BoxRotation/Impl
     // FEATURE Example+BoxScene/Impl
     // FEATURE Example+BoxSelection/Impl
@@ -136,8 +141,6 @@ namespace main
     // FEATURE Example+SingleColorScene/Impl
     // FEATURE Example+TextureImageScene/Impl
     // FEATURE Example+VBO/Impl
-
-    // FEATURE Example+loadCLIScript/Impl
 // FEATURE Example/End
 
 } // namespace main.

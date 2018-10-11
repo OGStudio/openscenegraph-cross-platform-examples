@@ -1,3 +1,6 @@
+FEATURE main.h/Include
+#include <fstream>
+
 FEATURE main.h/Impl
 private:
     void loadCLIScript()

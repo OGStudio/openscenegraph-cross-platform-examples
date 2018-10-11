@@ -66,6 +66,7 @@ freely, subject to the following restrictions:
     )
 // MAIN_APPLICATION_LOG End
 
+
 // Example+BoxScene Start
 #include "box.osgt.h"
 #include "resource.h"
@@ -437,6 +438,8 @@ struct Example
     }
 
 // Example End
+
+
     // Example+BoxRotation Start
     private:
         const std::string boxRotationCallbackName = "BoxRotation";
@@ -620,7 +623,6 @@ struct Example
             this->scene->accept(vbo);
         }
     // Example+VBO End
-
 // Example Start
 };
 // Example End

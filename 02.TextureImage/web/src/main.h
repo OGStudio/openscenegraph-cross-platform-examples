@@ -54,6 +54,7 @@ freely, subject to the following restrictions:
     )
 // MAIN_APPLICATION_LOG End
 
+
 // Example+BoxScene Start
 #include "box.osgt.h"
 #include "resource.h"
@@ -294,6 +295,8 @@ struct Example
     }
 
 // Example End
+
+
     // Example+BoxScene Start
     private:
         osg::ref_ptr<osg::MatrixTransform> scene;
@@ -350,7 +353,6 @@ struct Example
             this->scene->accept(vbo);
         }
     // Example+VBO End
-
 // Example Start
 };
 // Example End
