@@ -577,6 +577,7 @@ struct Example
             this->scene->accept(vbo);
         }
     // Example+VBO End
+
 // Example Start
 };
 // Example End

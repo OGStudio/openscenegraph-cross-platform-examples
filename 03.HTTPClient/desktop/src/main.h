@@ -395,6 +395,7 @@ struct Example
             scene::textureImageScene(this->scene, shaderFrag, shaderVert, texture);
         }
     // Example+TextureImageScene End
+
 // Example Start
 };
 // Example End

@@ -262,6 +262,7 @@ struct Example
             osgcpe::scene::paintScene(this->scene);
         }
     // Example+SingleColorScene End
+
 // Example Start
 };
 // Example End

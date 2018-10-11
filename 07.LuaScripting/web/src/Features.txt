@@ -21,6 +21,7 @@ Example+StaticPluginOSG
 Example+StaticPluginPNG
 Example+TextureImageScene
 Example+VBO
+Example+loadCLIScript
 
 main-web
 main+Input-web

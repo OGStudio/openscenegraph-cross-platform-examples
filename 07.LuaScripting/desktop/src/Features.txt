@@ -18,6 +18,7 @@ Example+ScriptingTest
 Example+StaticPluginOSG
 Example+StaticPluginPNG
 Example+TextureImageScene
+Example+loadCLIScript
 
 main-desktop
 main+Arguments-desktop

@@ -19,6 +19,7 @@ Example+StaticPluginOSG
 Example+StaticPluginPNG
 Example+TextureImageScene
 Example+VBO
+Example+loadCLIScript
 
 library+Ex07+JNI-android
 

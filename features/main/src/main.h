@@ -136,6 +136,8 @@ namespace main
     // FEATURE Example+SingleColorScene/Impl
     // FEATURE Example+TextureImageScene/Impl
     // FEATURE Example+VBO/Impl
+
+    // FEATURE Example+loadCLIScript/Impl
 // FEATURE Example/End
 
 } // namespace main.
