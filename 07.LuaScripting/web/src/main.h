@@ -74,11 +74,13 @@ freely, subject to the following restrictions:
 #include <osg/MatrixTransform>
 
 // Example+BoxScene End
-// Example+ScriptingTest Start
+// Example+ScriptingEnvironment Start
 #include "script.h"
-#include "script.lua.h"
-
 #include <sol.hpp>
+
+// Example+ScriptingEnvironment End
+// Example+ScriptingTest Start
+#include "script.lua.h"
 
 // Example+ScriptingTest End
 // Example+TextureImageScene Start
@@ -421,6 +423,10 @@ struct Example
         this->setupSceneTexturing();
         
         // Example+TextureImageScene End
+        // Example+ScriptingEnvironment Start
+        this->setupScriptingEnvironment();
+        
+        // Example+ScriptingEnvironment End
         // Example+ScriptingTest Start
         this->setupScriptingTest();
         
@@ -435,6 +441,10 @@ struct Example
         this->tearScriptingTestDown();
         
         // Example+ScriptingTest End
+        // Example+ScriptingEnvironment Start
+        this->tearScriptingEnvironmentDown();
+        
+        // Example+ScriptingEnvironment End
 // Example Start
         delete this->app;
     }
@@ -472,29 +482,12 @@ struct Example
             this->parameters = parameters;
         }
     // Example+Parameters End
-    // Example+ScriptingTest Start
+    // Example+ScriptingEnvironment Start
     private:
-        void setupScriptingTest()
-        {
-            this->setupEnvironment();
-            this->setupMouseTransmitter();
-            this->setupCameraRepresentation();
-            this->loadEmbeddedScript();
-            this->loadCLIScript();
-        }
-        void tearScriptingTestDown()
-        {
-            this->tearCameraRepresentationDown();
-            this->tearMouseTransmitterDown();
-            this->tearEnvironmentDown();
-        }
-    
-        // Environment.
-     
         script::Environment *environment;
         sol::state *lua;
     
-        void setupEnvironment()
+        void setupScriptingEnvironment()
         {
             this->environment = new script::Environment;
     
@@ -535,10 +528,25 @@ struct Example
                 &script::EnvironmentClient::respondsToKey
             );
         }
-        void tearEnvironmentDown()
+        void tearScriptingEnvironmentDown()
         {
             delete this->lua;
             delete this->environment;
+        }
+    // Example+ScriptingEnvironment End
+    // Example+ScriptingTest Start
+    private:
+        void setupScriptingTest()
+        {
+            this->setupMouseTransmitter();
+            this->setupCameraRepresentation();
+            this->loadEmbeddedScript();
+            this->loadCLIScript();
+        }
+        void tearScriptingTestDown()
+        {
+            this->tearCameraRepresentationDown();
+            this->tearMouseTransmitterDown();
         }
     
         // Script loading.

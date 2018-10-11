@@ -1,8 +1,5 @@
 FEATURE main.h/Include
-#include "script.h"
 #include "script.lua.h"
-
-#include <sol.hpp>
 
 FEATURE main.h/Setup
 this->setupScriptingTest();
@@ -14,7 +11,6 @@ FEATURE main.h/Impl
 private:
     void setupScriptingTest()
     {
-        this->setupEnvironment();
         this->setupMouseTransmitter();
         this->setupCameraRepresentation();
         this->loadEmbeddedScript();
@@ -24,59 +20,6 @@ private:
     {
         this->tearCameraRepresentationDown();
         this->tearMouseTransmitterDown();
-        this->tearEnvironmentDown();
-    }
-
-    // Environment.
- 
-    script::Environment *environment;
-    sol::state *lua;
-
-    void setupEnvironment()
-    {
-        this->environment = new script::Environment;
-
-        this->lua = new sol::state;
-        this->lua->open_libraries();
-        // Register Environment instance.
-        (*this->lua)["ENV"] = this->environment;
-        // Register Environment class.
-        this->lua->new_usertype<script::Environment>(
-            "Environment",
-            // 'addClient' method.
-            "addClient",
-            &script::Environment::addClient,
-            // 'call' method.
-            "call",
-            [](script::Environment &env, const std::string &key, sol::nested<script::EnvironmentClient::Values> values)
-            {
-                return env.call(key, values);
-            }
-        );
-        // Register EnvironmentClient class.
-        this->lua->new_usertype<script::EnvironmentClient>(
-            "EnvironmentClient",
-            // 'call' method.
-            "call",
-            sol::property(
-                [](script::EnvironmentClient &ec, sol::function luaCallback)
-                {
-                    ec.call =
-                        SCRIPT_ENVIRONMENT_CLIENT_CALL(
-                            sol::nested<script::EnvironmentClient::Values> result = luaCallback(key, sol::as_table(values));
-                            return std::move(result.source);
-                        );
-                }
-            ),
-            // 'respondsToKey' method.
-            "respondsToKey",
-            &script::EnvironmentClient::respondsToKey
-        );
-    }
-    void tearEnvironmentDown()
-    {
-        delete this->lua;
-        delete this->environment;
     }
 
     // Script loading.

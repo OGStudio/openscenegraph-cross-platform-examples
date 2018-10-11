@@ -15,6 +15,7 @@ Example
 Example+07
 Example+BoxScene
 Example+Parameters
+Example+ScriptingEnvironment
 Example+ScriptingTest
 Example+StaticPluginOSG
 Example+StaticPluginPNG
