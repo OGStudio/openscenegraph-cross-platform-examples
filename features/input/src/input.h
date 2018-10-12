@@ -27,7 +27,7 @@ freely, subject to the following restrictions:
 
 // FEATURE Mouse/Include
 
-// FEATURE OSGCPE_INPUT_MOUSE_LOG/Impl
+// FEATURE INPUT_MOUSE_LOG/Impl
 
 namespace osgcpe
 {
