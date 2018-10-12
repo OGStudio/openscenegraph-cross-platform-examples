@@ -32,6 +32,17 @@ freely, subject to the following restrictions:
 
 // Mouse End
 
+// INPUT_MOUSE_LOG Start
+#include "log.h"
+#include "format.h"
+#define INPUT_MOUSE_LOG_PREFIX "input::Mouse(%p) %s"
+#define INPUT_MOUSE_LOG(...) \
+    log::logprintf( \
+        INPUT_MOUSE_LOG_PREFIX, \
+        this, \
+        format::printfString(__VA_ARGS__).c_str() \
+    )
+// INPUT_MOUSE_LOG End
 
 namespace osgcpe
 {
@@ -107,7 +118,7 @@ class Mouse : public osgGA::GUIEventHandler
             {
                 this->position = pos;
                 this->positionChanged.report();
-                //OSGCPE_INPUT_MOUSE_LOG("Position: '%f x %f'", pos.x(), pos.y());
+                INPUT_MOUSE_LOG("Position: '%f x %f'", pos.x(), pos.y());
             }
 
             // Process pressed buttons.
