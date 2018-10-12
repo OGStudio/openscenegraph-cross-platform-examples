@@ -107,7 +107,7 @@ class Mouse : public osgGA::GUIEventHandler
             {
                 this->position = pos;
                 this->positionChanged.report();
-                INPUT_MOUSE_LOG("Position: '%f x %f'", pos.x(), pos.y());
+                //INPUT_MOUSE_LOG("Position: '%f x %f'", pos.x(), pos.y());
             }
 
             // Process pressed buttons.
