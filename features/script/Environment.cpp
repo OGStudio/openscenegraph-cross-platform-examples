@@ -5,39 +5,51 @@ class Environment
     public:
         Environment() { }
 
-        void addClient(EnvironmentClient *client)
-        {
-            this->clients.push_back(client);
+        void addClient(
+            EnvironmentClient *client,
+            const std::vector<std::string> &keys
+        ) {
+            // TODO Keep client for later removal?
+            //this->clients[client] = keys;
+
+            // Map keys to the client.
+            for (auto key : keys)
+            {
+                this->keys[key] = client;
+            }
         }
 
-        EnvironmentClient::Values call(
+        std::vector<std::string> call(
             const std::string &key,
-            const EnvironmentClient::Values &values
+            const std::vector<std::string> &values
         ) {
-            for (auto client : this->clients)
+            // Make sure there is a client that responds to the key.
+            auto it = this->keys.find(key);
+            if (it == this->keys.end())
             {
-                // Make sure client has callbacks set up.
-                if (
-                    !client->respondsToKey ||
-                    !client->call
-                ) {
-                    continue;
-                }
-
-                // Perform a call if client supports this key.
-                if (client->respondsToKey(key))
-                {
-                    return client->call(key, values);
-                }
+                SCRIPT_ENVIRONMENT_LOG(
+                    "ERROR Could not find a client that responds to '%s' key",
+                    key.c_str()
+                );
+                return { };
             }
 
-            SCRIPT_ENVIRONMENT_LOG(
-                "ERROR Could not find a client that responds to '%s' key",
-                key.c_str()
-            );
-            return {};
+            // Make sure the client has callback assigned.
+            auto client = it->second;
+            if (!client->call)
+            {
+                SCRIPT_ENVIRONMENT_LOG(
+                    "ERROR Could not process '%s' key because the client "
+                    "does not have a callback assigned",
+                    key.c_str()
+                );
+                return { };
+            }
+
+            // Perform the call.
+            return client->call(key, values);
         }
 
     private:
-        std::vector<EnvironmentClient *> clients;
+        std::map<std::string, EnvironmentClient *> keys;
 };

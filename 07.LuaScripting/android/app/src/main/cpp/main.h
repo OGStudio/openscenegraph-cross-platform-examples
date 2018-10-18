@@ -415,7 +415,7 @@ struct Example
                 &script::Environment::addClient,
                 // 'call' method.
                 "call",
-                [](script::Environment &env, const std::string &key, sol::nested<script::EnvironmentClient::Values> values)
+                [](script::Environment &env, const std::string &key, sol::nested<std::vector<std::string> > values)
                 {
                     return env.call(key, values);
                 }
@@ -430,14 +430,12 @@ struct Example
                     {
                         ec.call =
                             SCRIPT_ENVIRONMENT_CLIENT_CALL(
-                                sol::nested<script::EnvironmentClient::Values> result = luaCallback(key, sol::as_table(values));
+                                sol::nested<std::vector<std::string> > result =
+                                    luaCallback(key, sol::as_table(values));
                                 return std::move(result.source);
                             );
                     }
-                ),
-                // 'respondsToKey' method.
-                "respondsToKey",
-                &script::EnvironmentClient::respondsToKey
+                )
             );
         }
         void tearScriptingEnvironmentDown()
@@ -514,68 +512,58 @@ struct Example
         // Camera representation.
     
         script::EnvironmentClient *cameraClient;
-        const std::string cameraKeyPrefix = "application.camera.";
+        const std::string cameraColorKey = "application.camera.clearColor";
     
         void setupCameraRepresentation()
         {
             this->cameraClient = new script::EnvironmentClient;
-            this->environment->addClient(this->cameraClient);
-            this->cameraClient->respondsToKey =
-                SCRIPT_ENVIRONMENT_CLIENT_RESPONDS_TO_KEY(
-                    return format::stringStartsWith(key, this->cameraKeyPrefix);
-                );
+            this->environment->addClient(
+                this->cameraClient,
+                {
+                    this->cameraColorKey
+                }
+            );
             this->cameraClient->call =
                 SCRIPT_ENVIRONMENT_CLIENT_CALL(
-                    return this->processCamera(key, values);
+                    return this->processCameraClearColor(key, values);
                 );
         }
         void tearCameraRepresentationDown()
         {
             delete this->cameraClient;
         }
-        script::EnvironmentClient::Values processCamera(
+        std::vector<std::string> processCameraClearColor(
             const std::string &key,
-            const script::EnvironmentClient::Values &values
+            const std::vector<std::string> &values
         ) {
-            auto cameraKey = key.substr(this->cameraKeyPrefix.length());
-            script::EnvironmentClient::Values empty;
-            if (cameraKey == "clearColor")
+            // Set.
+            if (!values.empty())
             {
-                // Set.
-                if (!values.empty())
+                // Make sure there are three components.
+                if (values.size() != 3)
                 {
-                    // Make sure there are three components.
-                    if (values.size() != 3)
-                    {
-                        MAIN_EXAMPLE_LOG(
-                            "ERROR Could not set key '%s' "
-                            "because values' count is not 3"
-                        );
-                        return empty;
-                    }
-    
-                    // Apply color.
-                    auto color = this->app->camera()->getClearColor();
-                    color.r() = atof(values[0].c_str());
-                    color.g() = atof(values[1].c_str());
-                    color.b() = atof(values[2].c_str());
-                    this->app->camera()->setClearColor(color);
+                    MAIN_EXAMPLE_LOG(
+                        "ERROR Could not set key '%s' "
+                        "because values' count is not 3"
+                    );
+                    return { };
                 }
     
-                // Return current color for Get and after successful Set.
+                // Apply color.
                 auto color = this->app->camera()->getClearColor();
-                return {
-                    format::printfString("%f", color.r()),
-                    format::printfString("%f", color.g()),
-                    format::printfString("%f", color.b()),
-                };
+                color.r() = atof(values[0].c_str());
+                color.g() = atof(values[1].c_str());
+                color.b() = atof(values[2].c_str());
+                this->app->camera()->setClearColor(color);
             }
     
-            MAIN_EXAMPLE_LOG(
-                "ERROR No camera handler for key '%s'",
-                key.c_str()
-            );
-            return empty;
+            // Return current color for Get and after successful Set.
+            auto color = this->app->camera()->getClearColor();
+            return {
+                format::printfString("%f", color.r()),
+                format::printfString("%f", color.g()),
+                format::printfString("%f", color.b()),
+            };
         }
     // Example+ScriptingTest End
     // Example+TextureImageScene Start

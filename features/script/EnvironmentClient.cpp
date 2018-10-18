@@ -6,19 +6,18 @@ FEATURE script.h/Impl
 class EnvironmentClient
 {
     public:
-        typedef std::vector<std::string> Values;
-
         EnvironmentClient() :
-            respondsToKey(nullptr),
             call(nullptr)
         { }
         ~EnvironmentClient() { }
 
-        // 'respondsToKey' method/callback.
-        typedef std::function<bool (const std::string &)> CallbackRespondsToKey;
-        CallbackRespondsToKey respondsToKey;
-
         // 'call' method/callback.
-        typedef std::function<Values (const std::string &, const Values &)> CallbackCall;
+        typedef
+            std::function<
+                std::vector<std::string> (
+                    const std::string &,
+                    const std::vector<std::string> &
+                )
+            > CallbackCall;
         CallbackCall call;
 };

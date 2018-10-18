@@ -7,11 +7,14 @@ function printStrings(strings)
 end
 
 -- Register mouse client to receive mouse events.
+--[[
 mouseClient = EnvironmentClient.new()
-ENV:addClient(mouseClient);
-mouseClient.respondsToKey = function(key)
-    return key == "application.mouse.pressedButtons"
-end
+ENV:addClient(
+    mouseClient,
+    {
+        "application.mouse.pressedButtons"
+    }
+);
 mouseClient.call = function(key, values)
     -- Make sure there are pressed buttons.
     if (next(values) == nil) then
@@ -23,6 +26,7 @@ mouseClient.call = function(key, values)
 
     return {}
 end
+--]]
 
 function toggleBackgroundColor(rComponents)
     key = "application.camera.clearColor"
