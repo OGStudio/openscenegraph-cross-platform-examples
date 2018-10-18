@@ -402,7 +402,11 @@ struct Example
                 "Environment",
                 // 'addClient' method.
                 "addClient",
-                &script::Environment::addClient,
+                [](script::Environment &env, script::EnvironmentClient *client, sol::nested<std::vector<std::string> > keys)
+                {
+                    env.addClient(client, keys);
+                },
+                //&script::Environment::addClient,
                 // 'call' method.
                 "call",
                 [](script::Environment &env, const std::string &key, sol::nested<std::vector<std::string> > values)

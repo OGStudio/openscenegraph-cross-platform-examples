@@ -7,7 +7,6 @@ function printStrings(strings)
 end
 
 -- Register mouse client to receive mouse events.
---[[
 mouseClient = EnvironmentClient.new()
 ENV:addClient(
     mouseClient,
@@ -26,7 +25,6 @@ mouseClient.call = function(key, values)
 
     return {}
 end
---]]
 
 function toggleBackgroundColor(rComponents)
     key = "application.camera.clearColor"

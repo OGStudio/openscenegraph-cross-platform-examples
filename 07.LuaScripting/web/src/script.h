@@ -85,6 +85,7 @@ class Environment
             EnvironmentClient *client,
             const std::vector<std::string> &keys
         ) {
+            SCRIPT_ENVIRONMENT_LOG("01.addClient");
             // TODO Keep client for later removal?
             //this->clients[client] = keys;
 
@@ -93,6 +94,8 @@ class Environment
             {
                 this->keys[key] = client;
             }
+
+            SCRIPT_ENVIRONMENT_LOG("02.addClient");
         }
 
         std::vector<std::string> call(
