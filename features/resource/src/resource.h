@@ -41,6 +41,7 @@ namespace resource
 // FEATURE ResourceStreamBuffer/Impl
 
 // FEATURE extension/Impl
+// FEATURE isPathRemote/Impl
 // FEATURE node/Impl
 // FEATURE string/Impl
 // FEATURE setTextureImage/Impl

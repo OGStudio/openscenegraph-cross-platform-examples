@@ -27,4 +27,6 @@ class Pool
 
             return 0;
         }
+
+FEATURE resource.h/End
 };
