@@ -5,7 +5,7 @@ struct Resource
     Resource(
         const std::string &group,
         const std::string &name,
-        unsigned char *contents,
+        const std::string &contents,
         unsigned int len
     ) :
         group(group),
@@ -16,6 +16,6 @@ struct Resource
 
     std::string group;
     std::string name;
-    unsigned char *contents;
+    std::string contents;
     unsigned int len;
 };
