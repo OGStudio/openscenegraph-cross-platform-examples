@@ -16,10 +16,20 @@ class Environment
             }
         }
 
+        //! Execute a call by finding suitable client to delegate the call to.
         std::vector<std::string> call(
             const std::string &key,
             const std::vector<std::string> &values
         ) {
+            if (this->isVerbose)
+            {
+                SCRIPT_ENVIRONMENT_LOG(
+                    "call(%s, {%s})",
+                    key.c_str(),
+                    format::stringsToString(values).c_str()
+                );
+            }
+
             // Make sure there is a client that responds to the key.
             auto it = this->keys.find(key);
             if (it == this->keys.end())
@@ -47,6 +57,13 @@ class Environment
             return client->call(key, values);
         }
 
+        //! Verbose Environment logs all calls.
+        void setVerbose(bool state)
+        {
+            this->isVerbose = state;
+        }
+
     private:
         std::map<std::string, EnvironmentClient *> keys;
+        bool isVerbose = false;
 };

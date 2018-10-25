@@ -36,6 +36,7 @@ namespace format
 // FEATURE printfString/Impl
 // FEATURE splitString/Impl
 // FEATURE stringStartsWith/Impl
+// FEATURE stringsToString/Impl
 // FEATURE trimmedString/Impl
 
 // FEATURE commandLineArgumentsToParameters/Impl

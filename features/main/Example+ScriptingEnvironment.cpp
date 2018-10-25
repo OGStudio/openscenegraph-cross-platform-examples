@@ -24,6 +24,12 @@ private:
         // Register Environment class.
         this->lua->new_usertype<script::Environment>(
             "Environment",
+            // 'setVerbose' method.
+            "setVerbose",
+            [](script::Environment &env, bool state)
+            {
+                env.setVerbose(state);
+            },
             // 'addClient' method.
             "addClient",
             [](script::Environment &env, script::EnvironmentClient *client, sol::nested<std::vector<std::string> > keys)
