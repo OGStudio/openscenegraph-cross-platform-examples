@@ -67,3 +67,18 @@ private:
         delete this->lua;
         delete this->environment;
     }
+    void executeScript(const std::string &contents)
+    {
+        // Try to execute the script.
+        try {
+            this->lua->script(contents);
+            MAIN_EXAMPLE_LOG("Successfully executed script");
+        }
+        catch (const std::exception &e)
+        {
+            MAIN_EXAMPLE_LOG(
+                "ERROR Could not execute script. %s",
+                e.what()
+            );
+        }
+    }

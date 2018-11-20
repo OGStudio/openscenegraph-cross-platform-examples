@@ -16,7 +16,7 @@ private:
         }
 
         auto path = it->second;
-        MAIN_EXAMPLE_LOG("Loading script '%s'", path.c_str());
+        MAIN_EXAMPLE_LOG("Loading a script from '%s'", path.c_str());
         std::ifstream localScript(path);
         if (localScript)
         {
@@ -25,21 +25,10 @@ private:
                 (std::istreambuf_iterator<char>(localScript)),
                 (std::istreambuf_iterator<char>())
             );
-            // Execute the script.
-            try {
-                this->lua->script(fileContents);
-                MAIN_EXAMPLE_LOG("Successfully loaded local script");
-            }
-            catch (const std::exception &e)
-            {
-                MAIN_EXAMPLE_LOG(
-                    "ERROR Could not load local script. %s",
-                    e.what()
-                );
-            }
+            this->executeScript(response);
         }
         else
         {
-            MAIN_EXAMPLE_LOG("ERROR Could not read local script");
+            MAIN_EXAMPLE_LOG("ERROR Could not read the script");
         }
     }
