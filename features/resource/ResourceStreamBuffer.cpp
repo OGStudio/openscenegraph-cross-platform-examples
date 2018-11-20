@@ -8,7 +8,7 @@ struct ResourceStreamBuffer : std::streambuf
     ResourceStreamBuffer(const Resource &resource)
     {
         char *contents = const_cast<char *>(resource.contents.data());
-        this->setg(contents, contents, contents + resource.len);
+        this->setg(contents, contents, contents + resource.contents.length());
     }
     // Implement 'seekoff()' to support 'seekg()' calls.
     // OpenSceneGraph plugins like OSG and ImageIO use 'seekg()'.

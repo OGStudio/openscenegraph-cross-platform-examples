@@ -39,7 +39,7 @@ freely, subject to the following restrictions:
 
 // FEATURE MAIN_APPLICATION_LOG/Impl
 
-// FEATURE Example+loadCLIScript/Include
+// FEATURE Example+LoadCLIScript/Include
 
 // FEATURE Example+BoxScene/Include
 // FEATURE Example+DebugCamera/Include
@@ -118,6 +118,7 @@ namespace main
         // FEATURE Example+HTTPSGetPost/Setup
         // FEATURE Example+ScriptingEnvironment/Setup
         // FEATURE Example+ScriptingTest/Setup
+        // FEATURE Example+LoadCLIScript/Setup
         // FEATURE Example+SequenceTest/Setup
 // FEATURE Example/TearDown
         // FEATURE Example+SequenceTest/TearDown
@@ -127,7 +128,7 @@ namespace main
         // FEATURE Example+BoxSelection/TearDown
 // FEATURE Example/Impl
 
-    // FEATURE Example+loadCLIScript/Impl
+    // FEATURE Example+LoadCLIScript/Impl
 
     // FEATURE Example+BoxRotation/Impl
     // FEATURE Example+BoxScene/Impl

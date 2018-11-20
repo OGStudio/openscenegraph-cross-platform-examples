@@ -1,6 +1,9 @@
 FEATURE main.h/Include
 #include <fstream>
 
+FEATURE main.h/Setup
+this->loadCLIScript();
+
 FEATURE main.h/Impl
 private:
     void loadCLIScript()
@@ -23,8 +26,17 @@ private:
                 (std::istreambuf_iterator<char>())
             );
             // Execute the script.
-            this->lua->script(fileContents);
-            MAIN_EXAMPLE_LOG("Successfully loaded local script");
+            try {
+                this->lua->script(fileContents);
+                MAIN_EXAMPLE_LOG("Successfully loaded local script");
+            }
+            catch (const std::exception &e)
+            {
+                MAIN_EXAMPLE_LOG(
+                    "ERROR Could not load local script. %s",
+                    e.what()
+                );
+            }
         }
         else
         {

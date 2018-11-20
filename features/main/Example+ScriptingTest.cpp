@@ -14,7 +14,6 @@ private:
         this->setupMouseTransmitter();
         this->setupCameraRepresentation();
         this->loadEmbeddedScript();
-        this->loadCLIScript();
     }
     void tearScriptingTestDown()
     {
