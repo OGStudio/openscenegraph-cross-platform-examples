@@ -13,5 +13,5 @@ fi
 # Replace
 #   `Module["arguments"]=[]`
 # with
-#   `Module["arguments"]=[window.location.protocol + "//" + window.location.host, window.location.search.substr(1)]`
-sed 's|Module\["arguments"\]=\[\]|Module\["arguments"\]=\[window.location.protocol+"//"+window.location.host,window.location.search.substr(1)\]|' $fileName
+#   `Module["arguments"]=[window.location.href, window.location.search.substr(1)]`
+sed 's|Module\["arguments"\]=\[\]|Module\["arguments"\]=\[window.location.href,window.location.search.substr(1)\]|' $fileName

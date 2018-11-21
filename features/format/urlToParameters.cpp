@@ -14,7 +14,7 @@ Parameters urlToParameters(int argc, char *argv[])
         return parameters;
     }
 
-    auto query = argv[2];
+    std::string query = argv[2];
     auto options = format::splitString(query, "&");
 
     for (auto option : options)
@@ -28,8 +28,17 @@ Parameters urlToParameters(int argc, char *argv[])
         }
     }
 
-    // Add "base" parameter.
-    parameters["base"] = argv[1];
+    // Add "index" parameter that is everything
+    // before "?" and the search string.
+    std::string url(argv[1]);
+    // Assume no parameters by default.
+    parameters["index"] = url;
+    // Rewrite if there were parameters after all.
+    if (query.length())
+    {
+        auto pos = url.find("?");
+        parameters["index"] = url.substr(0, pos);
+    }
 
     return parameters;
 }
