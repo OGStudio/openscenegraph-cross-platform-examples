@@ -4,19 +4,17 @@ FEATURE format.h/Include
 FEATURE format.h/Impl
 typedef std::map<std::string, std::string> Parameters;
 //! Convert query parameters starting after `?` that are in the form of `key=value` to parameters.
-Parameters urlQueryToParameters(
-    int argc,
-    char *argv[]
-) {
+Parameters urlToParameters(int argc, char *argv[])
+{
     Parameters parameters;
 
-    // No query has been provided. Nothing to parse.
-    if (argc < 2)
+    // No URL has been provided. Nothing to parse.
+    if (argc < 3)
     {
         return parameters;
     }
 
-    auto query = argv[1];
+    auto query = argv[2];
     auto options = format::splitString(query, "&");
 
     for (auto option : options)
@@ -29,5 +27,9 @@ Parameters urlQueryToParameters(
             parameters[key] = value;
         }
     }
+
+    // Add "base" parameter.
+    parameters["base"] = argv[1];
+
     return parameters;
 }

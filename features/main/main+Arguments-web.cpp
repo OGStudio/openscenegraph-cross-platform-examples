@@ -1,2 +1,2 @@
 FEATURE main.cpp/Impl
-parameters = format::urlQueryToParameters(argc, argv);
+parameters = format::urlToParameters(argc, argv);
