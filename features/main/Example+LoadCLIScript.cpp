@@ -25,7 +25,7 @@ private:
                 (std::istreambuf_iterator<char>(localScript)),
                 (std::istreambuf_iterator<char>())
             );
-            this->executeScript(response);
+            this->executeScript(fileContents);
         }
         else
         {
