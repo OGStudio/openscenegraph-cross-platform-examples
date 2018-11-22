@@ -28,16 +28,16 @@ Parameters urlToParameters(int argc, char *argv[])
         }
     }
 
-    // Add "index" parameter that is everything
-    // before "?" and the search string.
+    // Add "base" parameter that is
+    // everything before `? and the search string` plus `/..`
     std::string url(argv[1]);
     // Assume no parameters by default.
-    parameters["index"] = url;
-    // Rewrite if there were parameters after all.
+    parameters["base"] = url + "/..";
+    // Update for when parameters are present.
     if (query.length())
     {
         auto pos = url.find("?");
-        parameters["index"] = url.substr(0, pos);
+        parameters["base"] = url.substr(0, pos) + "/..";
     }
 
     return parameters;
