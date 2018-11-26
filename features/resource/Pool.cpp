@@ -6,7 +6,7 @@ class Pool
 
         std::vector<Resource> resources;
 
-        void addResource(Resource &resource)
+        void addResource(Resource resource)
         {
             this->resources.push_back(resource);
         }
