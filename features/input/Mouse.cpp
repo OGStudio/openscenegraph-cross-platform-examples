@@ -55,6 +55,7 @@ class Mouse : public osgGA::GUIEventHandler
     private:
         void setButtonState(MOUSE_BUTTON button, bool state)
         {
+            //INPUT_MOUSE_LOG("setButtonState(%d, %d)", button, state);
             auto &buttons = this->pressedButtons;
             auto btn = std::find(buttons.begin(), buttons.end(), button);
             // Button is already pressed.
@@ -68,7 +69,7 @@ class Mouse : public osgGA::GUIEventHandler
                         buttons.end()
                     );
                     this->pressedButtonsChanged.report();
-                    //OSGCPE_INPUT_MOUSE_LOG("Released button '%d'", button);
+                    //INPUT_MOUSE_LOG("Released button '%d'", button);
                 }
             }
             // Button is not pressed.
@@ -79,7 +80,7 @@ class Mouse : public osgGA::GUIEventHandler
                 {
                     buttons.push_back(button);
                     this->pressedButtonsChanged.report();
-                    //OSGCPE_INPUT_MOUSE_LOG("Pressed button '%d'", button);
+                    //INPUT_MOUSE_LOG("Pressed button '%d'", button);
                 }
             }
         }
